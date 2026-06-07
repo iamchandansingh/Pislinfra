@@ -1,0 +1,335 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import PageHero from '../../components/hero/PageHero';
+import { FaTrophy, FaShieldAlt, FaLeaf, FaMedal, FaAward, FaStar, FaHeart, FaWalking } from 'react-icons/fa';
+
+const NAVY = '#28296F';
+const ORANGE = '#ff904e';
+const CUSTOM_BORDER = '#ff8d4b'; // Your requested 2px border color
+
+const awardsData = [
+  {
+    id: 1,
+    title: 'Best Safety Conscious Contractor Award',
+    desc: 'Recognized at MPL-Green PVC Projects, Mundra for outstanding safety performance and continuous commitment towards workplace safety excellence.',
+    icon: FaShieldAlt,
+    tag: 'Safety Excellence',
+    location: 'Mundra, Gujarat',
+    year: '2025',
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80',
+    color: '#10b981',
+  },
+  {
+    id: 2,
+    title: '2 Million LTI-Free Safe Manhours Achievement',
+    desc: 'Reliance Jamnagar project achieved 2 million LTI-free safe manhours through exceptional HSE practices and dedicated teamwork.',
+    icon: FaTrophy,
+    tag: 'HSE Milestone',
+    location: 'Jamnagar, Gujarat',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1200&q=80',
+    color: '#f59e0b',
+  },
+  {
+    id: 3,
+    title: '2 Million Safe Man-Hours Award',
+    desc: 'Adani MPL site successfully achieved 2 million safe man-hours, reflecting strong safety culture and zero-harm commitment.',
+    icon: FaMedal,
+    tag: 'Safety Culture',
+    location: 'Mundra, Gujarat',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+    color: '#3b82f6',
+  },
+  {
+    id: 4,
+    title: 'IGBC Green Warehouse Gold Certification',
+    desc: 'PISL received prestigious IGBC Gold Certification for sustainable warehouse infrastructure and environmentally responsible development practices.',
+    icon: FaLeaf,
+    tag: 'Sustainability',
+    location: 'India',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+    color: '#22c55e',
+  },
+  {
+    id: 5,
+    title: 'LEED Gold Certified Logistics Park',
+    desc: 'Pragati One Logistics Park became one of India\'s first non-captive warehousing projects to receive LEED Gold Certification.',
+    icon: FaAward,
+    tag: 'LEED Gold',
+    location: 'Haryana, India',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+    color: '#8b5cf6',
+  },
+  {
+    id: 6,
+    title: 'Economic Times Real Estate Award Winner',
+    desc: 'Pragati One Logistics Park was declared winner at The Economic Times Real Estate Awards under Industrial & Warehousing category.',
+    icon: FaStar,
+    tag: 'Industry Leader',
+    location: 'India',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+    color: '#ec4899',
+  },
+  {
+    id: 7,
+    title: 'Entrepreneur of the Year Recognition',
+    desc: 'Lt Col Jitender Yadav was honoured with the Entrepreneur of the Year award for exceptional leadership and contribution to infrastructure development.',
+    icon: FaTrophy,
+    tag: 'Executive Leadership',
+    location: 'India',
+    year: '2023',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1200&q=80',
+    color: '#ef4444',
+  },
+  {
+    id: 8,
+    title: 'Purpose-Driven Infrastructure Leadership',
+    desc: 'PISL continues building sustainable and innovative infrastructure projects focused on community development and long-term impact.',
+    icon: FaStar,
+    tag: 'Innovation',
+    location: 'India',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    color: '#6366f1',
+  },
+  {
+    id: 9,
+    title: 'National Safety Week Appreciation',
+    desc: 'PISL PRR Jhamuwas project team received client appreciation during National Safety Week for outstanding safety participation.',
+    icon: FaShieldAlt,
+    tag: 'HSE Engagement',
+    location: 'Jhamuwas, Haryana',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1590579491624-f98f36d4c763?auto=format&fit=crop&w=1200&q=80',
+    color: '#14b8a6',
+  },
+  {
+    id: 10,
+    title: 'Blood Donation Camp Initiative',
+    desc: 'Successfully organized a Blood Donation Camp during the 54th National Safety Week Celebration at PRAGATI Mappedu Chennai Project.',
+    icon: FaHeart,
+    tag: 'Social Responsibility',
+    location: 'Chennai, Tamil Nadu',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1615461066841-6116ece60e81?auto=format&fit=crop&w=1200&q=80',
+    color: '#e11d48',
+  },
+  {
+    id: 11,
+    title: 'Early Morning Safety Walk',
+    desc: 'Conducted an early morning safety walk at PRR Jhamuwas Site to promote proactive hazard awareness and safe work culture.',
+    icon: FaWalking,
+    tag: 'Hazard Prevention',
+    location: 'Jhamuwas, Haryana',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1502920514313-52581002a659?auto=format&fit=crop&w=1200&q=80',
+    color: '#d946ef',
+  },
+  {
+    id: 12,
+    title: 'Safety Skid Awareness Program',
+    desc: 'Organized Safety Skid awareness activity at CRM 02, AMNS Surat to strengthen workplace safety engagement and hazard prevention.',
+    icon: FaShieldAlt,
+    tag: 'Workplace Training',
+    location: 'Surat, Gujarat',
+    year: '2024',
+    image: 'https://images.unsplash.com/photo-1535914254981-b5012eebbd15?auto=format&fit=crop&w=1200&q=80',
+    color: '#0ea5e9',
+  },
+];
+
+/* ─── ROW COMPONENT ──────────────────────────────────────── */
+const EditorialRow = ({ award, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const Icon = award.icon;
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        display: 'flex',
+        flexDirection: isEven ? 'row' : 'row-reverse',
+        alignItems: 'center',
+        gap: '64px',
+        marginBottom: '100px',
+        position: 'relative',
+      }}
+      className="editorial-row"
+    >
+      {/* Giant Year Watermark Background */}
+      <div style={{
+        position: 'absolute',
+        top: '-10px',
+        left: isEven ? 'auto' : '12%',
+        right: isEven ? '12%' : 'auto',
+        fontSize: '130px',
+        fontWeight: '900',
+        color: '#f1f5f9',
+        zIndex: 0,
+        userSelect: 'none',
+        pointerEvents: 'none',
+        lineHeight: 1,
+        fontFamily: 'sans-serif'
+      }} className="year-watermark">
+        {award.year}
+      </div>
+
+      {/* Cinematic Media Frame with 2px solid #ff8d4b Border & Tight Corners */}
+      <div style={{
+        flex: '1 1 55%',
+        position: 'relative',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        border: `2px solid ${CUSTOM_BORDER}`, // Sharp 2px solid custom brand border
+        boxShadow: isHovered 
+          ? '0 25px 50px -12px rgba(15,23,42,0.15)' 
+          : '0 10px 30px -15px rgba(15,23,42,0.08)',
+        transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        aspectRatio: '16 / 9',
+        zIndex: 1,
+      }}>
+        <img 
+          src={award.image} 
+          alt={award.title}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transform: isHovered ? 'scale(1.04)' : 'scale(1)',
+            transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: isHovered ? 'rgba(40,41,111,0.02)' : 'rgba(0,0,0,0)',
+          transition: 'background 0.5s ease'
+        }} />
+      </div>
+
+      {/* Descriptive Typography Content */}
+      <div style={{
+        flex: '1 1 45%',
+        zIndex: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '14px',
+        textAlign: 'left'
+      }}>
+        {/* Category Line */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{
+            fontSize: '11px',
+            fontWeight: '700',
+            textTransform: 'uppercase',
+            letterSpacing: '1.5px',
+            color: award.color,
+            background: `${award.color}10`,
+            padding: '4px 10px',
+            borderRadius: '4px'
+          }}>
+            {award.tag}
+          </span>
+          <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#cbd5e1' }} />
+          <span style={{ fontSize: '13px', fontWeight: '500', color: '#64748b' }}>
+            {award.location}
+          </span>
+        </div>
+
+        {/* Clean Editorial Title */}
+        <h3 style={{
+          fontSize: 'clamp(20px, 2.2vw, 28px)',
+          fontWeight: '800',
+          color: NAVY,
+          margin: 0,
+          lineHeight: '1.3',
+          letterSpacing: '-0.5px'
+        }}>
+          {award.title}
+        </h3>
+
+        {/* Clean Description */}
+        <p style={{
+          fontSize: '14.5px',
+          color: '#475569',
+          margin: 0,
+          lineHeight: '1.65',
+          maxWidth: '520px'
+        }}>
+          {award.desc}
+        </p>
+
+        {/* Minimal Icon Alignment */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '6px' }}>
+          <Icon style={{ fontSize: '15px', color: award.color }} />
+          <div style={{
+            height: '1px',
+            width: isHovered ? '50px' : '25px',
+            background: '#cbd5e1',
+            transition: 'width 0.4s ease'
+          }} />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+/* ─── MAIN APP VIEW ─────────────────────────────────────── */
+const Awards = () => (
+  <div style={{ background: '#ffffff', fontFamily: '"Inter", -apple-system, sans-serif', minHeight: '100vh', overflowX: 'hidden' }}>
+
+    <PageHero
+      title="Awards & Accolades"
+      subtitle="A legacy of excellence, recognized by industry leaders"
+      breadcrumb="About Us / Awards"
+      bgImage="/images/hero/Awards-Certification.png"
+    />
+
+    {/* Section Wrapper */}
+    <section style={{ padding: '100px 32px' }}>
+      <div style={{ maxWidth: 1140, margin: '0 auto' }}>
+
+        {/* Timeline Layout Container */}
+        <div className="editorial-timeline-container">
+          {awardsData.map((award, index) => (
+            <EditorialRow key={award.id} award={award} index={index} />
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    {/* Responsive Media Styles */}
+    <style>{`
+      @media (max-width: 991px) {
+        .editorial-row {
+          flex-direction: column !important;
+          gap: 20px !important;
+          margin-bottom: 60px !important;
+        }
+        .year-watermark {
+          font-size: 80px !important;
+          top: -35px !important;
+          left: 0 !important;
+          right: auto !important;
+        }
+        .editorial-row > div {
+          width: 100% !important;
+          flex: none !important;
+        }
+      }
+    `}</style>
+  </div>
+);
+
+export default Awards;

@@ -1,0 +1,391 @@
+import React, { useState } from 'react'
+import PageHero from '../components/hero/PageHero'
+import {
+  HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker,
+  HiOutlineClock
+} from 'react-icons/hi'
+import {
+  FaPaperPlane, FaGlobe, FaChevronRight,
+  FaLinkedin, FaFacebook, FaBuilding
+} from 'react-icons/fa'
+
+/* ─────────────────────────────────────────
+   DATA
+───────────────────────────────────────── */
+const BRANCHES = [
+  { city: 'Gurugram',  state: 'Haryana',       isHQ: true  },
+  { city: 'Bengaluru', state: 'Karnataka',     isHQ: false },
+  { city: 'Mumbai',    state: 'Maharashtra',   isHQ: false },
+  { city: 'Chennai',   state: 'Tamil Nadu',    isHQ: false },
+  { city: 'Jaipur',    state: 'Rajasthan',     isHQ: false },
+  { city: 'Meerut',    state: 'Uttar Pradesh', isHQ: false },
+  { city: 'Ludhiana',  state: 'Punjab',        isHQ: false },
+  { city: 'Kutch',     state: 'Gujarat',       isHQ: false },
+]
+
+/* ─────────────────────────────────────────
+   STYLE TOKENS
+───────────────────────────────────────── */
+const S = {
+  navy:      '#2a2a75',
+  orange:    '#ff8755',
+  bgPage:    '#f8f9fc',
+  white:     '#ffffff',
+  border:    '#e2e8f0',
+  textMuted: '#64748b',
+  textDark:  '#0f172a',
+}
+
+/* ── Premium Form Input Styles (Apple/Tesla vibe) ── */
+const inputStyle = {
+  width: '100%', 
+  padding: '14px 16px',
+  backgroundColor: '#f1f5f9', // Soft light gray/blue
+  border: '1px solid transparent',
+  borderRadius: '10px',
+  fontSize: '14px', 
+  color: S.textDark,
+  outline: 'none', 
+  fontFamily: 'inherit',
+  transition: 'all 0.2s ease',
+}
+
+const applyFocus  = e => {
+  e.target.style.backgroundColor = S.white
+  e.target.style.borderColor = S.orange
+  e.target.style.boxShadow = '0 0 0 4px rgba(255,135,85,0.1)' // Soft premium glow
+}
+const removeFocus = e => {
+  e.target.style.backgroundColor = '#f1f5f9'
+  e.target.style.borderColor = 'transparent'
+  e.target.style.boxShadow = 'none'
+}
+
+/* ─────────────────────────────────────────
+   MAIN COMPONENT
+───────────────────────────────────────── */
+const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    name: '', email: '', company: '', subject: '', message: ''
+  })
+  const [submitted,    setSubmitted]    = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setSubmitted(true)
+      setFormData({ name: '', email: '', company: '', subject: '', message: '' })
+      setTimeout(() => setSubmitted(false), 8000)
+    }, 1500)
+  }
+
+  return (
+    <div style={{ fontFamily: 'inherit', background: S.bgPage, minHeight: '100vh' }}>
+
+      {/* ══ 1. HERO ══ */}
+      <PageHero
+        title="Get in Touch"
+        subtitle="Secure enterprise channel for infrastructure collaboration."
+        breadcrumb="Contact"
+        bgImage="/images/hero/Contact-Us.png"
+      />
+
+      {/* ══ 2. FORM  +  HQ CARD  +  BRANCHES ══ */}
+      <section style={{ padding: '80px 24px' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+
+          {/* Left-Aligned Section Heading */}
+          <div style={{ textAlign: 'left', marginBottom: '48px' }}>
+            <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: S.orange, margin: '0 0 6px' }}>
+              Connect with us
+            </p>
+            <h2 style={{ fontSize: '38px', fontWeight: '800', color: S.navy, margin: 0, letterSpacing: '-0.5px' }}>
+              Start a Conversation
+            </h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1.25fr 1fr', gap: '40px', alignItems: 'start' }}>
+
+            {/* ── LEFT: Premium Form ── */}
+            <div style={{
+              backgroundColor: S.white, borderRadius: '24px',
+              padding: '52px 44px', border: `1px solid ${S.border}`,
+              boxShadow: '0 20px 50px rgba(0,0,0,0.03)'
+            }}>
+              {submitted ? (
+                <SuccessState />
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  <div style={{ marginBottom: '36px' }}>
+                    <h3 style={{ fontSize: '26px', fontWeight: 'bold', color: S.navy, margin: '0 0 8px' }}>Send an Inquiry</h3>
+                    <p style={{ color: S.textMuted, fontSize: '15px', margin: 0 }}>Tell us about your project and we'll respond within 24 business hours.</p>
+                  </div>
+
+                  <div style={{ display: 'grid', gap: '20px' }}>
+
+                    {/* Row 1 */}
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                      <DataInput label="Full Name"        name="name"    type="text"  value={formData.name}    onChange={handleChange} required />
+                      <DataInput label="Corporate Entity" name="company" type="text"  value={formData.company} onChange={handleChange} />
+                    </div>
+
+                    {/* Row 2 */}
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                      <DataInput label="Business Email"      name="email"   type="email" value={formData.email}   onChange={handleChange} required />
+                      <DataInput label="Subject / Reference" name="subject" type="text"  value={formData.subject} onChange={handleChange} required />
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <FieldLabel text="Inquiry Details" required />
+                      <textarea
+                        name="message" value={formData.message}
+                        onChange={handleChange} required rows={5}
+                        style={{ ...inputStyle, resize: 'vertical' }}
+                        onFocus={applyFocus} onBlur={removeFocus}
+                      />
+                    </div>
+
+                    {/* Submit button */}
+                    <button
+                      type="submit" disabled={isSubmitting}
+                      style={{
+                        marginTop: '8px', padding: '16px', backgroundColor: S.navy, color: S.white,
+                        border: 'none', borderRadius: '10px', fontSize: '15px',
+                        fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase',
+                        cursor: isSubmitting ? 'wait' : 'pointer',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+                        transition: 'all 0.2s', position: 'relative', overflow: 'hidden', fontFamily: 'inherit',
+                      }}
+                      onMouseEnter={e => { if (!isSubmitting) { e.currentTarget.style.backgroundColor = S.orange; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 20px rgba(255,135,85,0.3)' } }}
+                      onMouseLeave={e => { if (!isSubmitting) { e.currentTarget.style.backgroundColor = S.navy;   e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'   } }}
+                    >
+                      {isSubmitting
+                        ? <span>Processing Data…</span>
+                        : <><FaPaperPlane style={{ fontSize: '13px' }} /> Secure Transmission <FaChevronRight style={{ fontSize: '11px' }} /></>
+                      }
+                      {isSubmitting && (
+                        <div style={{
+                          position: 'absolute', top: 0, left: 0, height: '100%', width: '30%',
+                          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                          animation: 'scan 1s linear infinite'
+                        }} />
+                      )}
+                    </button>
+
+                  </div>
+                </form>
+              )}
+            </div>
+
+            {/* ── RIGHT: HQ Card + Simple Branches ── */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+
+              {/* HQ dark card */}
+              <div style={{
+                backgroundColor: S.navy, borderRadius: '24px',
+                padding: '44px 40px', color: S.white,
+                position: 'relative', overflow: 'hidden',
+              }}>
+                <FaGlobe style={{
+                  position: 'absolute', bottom: '-60px', right: '-60px',
+                  fontSize: '280px', color: 'rgba(255,255,255,0.03)', pointerEvents: 'none'
+                }} />
+
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <h2 style={{ fontSize: '30px', fontWeight: 'bold', margin: '0 0 6px' }}>Headquarters</h2>
+                  <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '14px', margin: '0 0 32px', lineHeight: 1.6 }}>
+                    Driving nationwide infrastructure innovation from Gurugram.
+                  </p>
+
+                  <div style={{ display: 'grid', gap: '24px' }}>
+
+                    {/* Address */}
+                    <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                      <IconBox><HiOutlineLocationMarker style={{ color: S.orange, fontSize: '22px' }} /></IconBox>
+                      <div>
+                        <HQLabel>Physical Address</HQLabel>
+                        <p style={{ margin: 0, fontSize: '15px', fontWeight: '500', color: '#fff', lineHeight: 1.6 }}>
+                          31 P, Sector 38, Gurugram,<br />Haryana 122018 (Adj. Medanta)
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Email + Phone */}
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                      <div>
+                        <HQLabel>Email</HQLabel>
+                        <a href="mailto:info@pislinfra.com" style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#fff', textDecoration: 'none', fontSize: '13px', fontWeight: '500' }}>
+                          <HiOutlineMail style={{ color: S.orange }} /> info@pislinfra.com
+                        </a>
+                      </div>
+                      <div>
+                        <HQLabel>Phone</HQLabel>
+                        <a href="tel:+918527040411" style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#fff', textDecoration: 'none', fontSize: '13px', fontWeight: '500' }}>
+                          <HiOutlinePhone style={{ color: S.orange }} /> +91 85270 40411
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Hours */}
+                    <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                      <IconBox><HiOutlineClock style={{ color: S.orange, fontSize: '20px' }} /></IconBox>
+                      <div>
+                        <HQLabel>Operational Hours</HQLabel>
+                        <p style={{ margin: 0, fontSize: '15px', fontWeight: '500', color: '#fff' }}>
+                          Mon – Sat: 09:00 – 18:00 IST
+                          <br /><span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '13px' }}>Sunday: Closed</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Social */}
+                    <div>
+                      <HQLabel>Social Channels</HQLabel>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        {[
+                          { icon: <FaLinkedin />, href: 'https://linkedin.com/showcase/pislinfra', label: 'LinkedIn' },
+                          { icon: <FaFacebook />, href: 'https://facebook.com/pislinfra',          label: 'Facebook' },
+                        ].map((soc, i) => (
+                          <a key={i} href={soc.href} target="_blank" rel="noreferrer" style={{
+                            display: 'flex', alignItems: 'center', gap: '6px',
+                            padding: '7px 14px', borderRadius: '8px',
+                            background: 'rgba(255,255,255,0.07)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            color: '#fff', textDecoration: 'none', fontSize: '13px',
+                            transition: 'background 0.2s'
+                          }}
+                            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,135,85,0.25)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.07)'}
+                          >
+                            {soc.icon} {soc.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>{/* end HQ dark card */}
+
+              {/* Simple Branches Card (No shapes, no icons) */}
+              <div style={{
+                backgroundColor: S.white, borderRadius: '24px',
+                padding: '32px', border: `1px solid ${S.border}`,
+                boxShadow: '0 10px 30px rgba(0,0,0,0.02)'
+              }}>
+                <h3 style={{ fontSize: '22px', fontWeight: '800', color: S.navy, margin: '0 0 6px' }}>Pan-India Branches</h3>
+                <p style={{ fontSize: '13px', color: S.textMuted, margin: '0 0 24px' }}>From Gurugram HQ to branch cities across the country.</p>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))', gap: '20px' }}>
+                  {BRANCHES.map((b, i) => (
+                    <div key={i}>
+                      <p style={{ fontSize: '15px', fontWeight: '800', color: S.navy, margin: '0 0 2px' }}>{b.city}</p>
+                      <p style={{ fontSize: '12px', color: S.textMuted, margin: '0 0 4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{b.state}</p>
+                      <p style={{ fontSize: '11px', fontWeight: '700', color: b.isHQ ? S.orange : S.textMuted, margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>
+                        {b.isHQ ? 'HQ' : 'Branch'}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>{/* end branches */}
+
+            </div>{/* end right column */}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 3. MAP — Clean map with small border ══ */}
+      <section style={{ position: 'relative', padding: '0 24px 80px' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', position: 'relative' }}>
+          
+          <div style={{ 
+            height: '520px', width: '100%', position: 'relative', 
+            borderRadius: '24px', overflow: 'hidden', 
+            border: `2px solid ${S.border}`, /* Small border as requested */
+            boxShadow: '0 10px 40px rgba(0,0,0,0.05)'
+          }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.3815692500916!2d77.0426737!3d28.437911900000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d18fae8f0defd%3A0x55b9cef2752f0172!2sPragati%20Infra%20Solutions%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1778654882506!5m2!1sen!2sin"
+              width="100%" height="100%"
+              style={{ border: 0, filter: 'grayscale(20%) contrast(1.05)', display: 'block' }}
+              allowFullScreen loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="PISL HQ Map"
+            />
+          </div>
+
+        </div>
+      </section>
+
+      <style>{`
+        @keyframes scan {
+          0%   { left: -30%; }
+          100% { left: 100%; }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+/* ─────────────────────────────────────────
+   SUB-COMPONENTS
+───────────────────────────────────────── */
+
+const FieldLabel = ({ text, required }) => (
+  <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', color: S.navy, letterSpacing: '0.5px', marginBottom: '8px' }}>
+    {text} {required && <span style={{ color: S.orange }}>*</span>}
+  </label>
+)
+
+const DataInput = ({ label, name, type, value, onChange, required }) => (
+  <div>
+    <FieldLabel text={label} required={required} />
+    <input
+      type={type} name={name} value={value}
+      onChange={onChange} required={required}
+      style={inputStyle}
+      onFocus={applyFocus} onBlur={removeFocus}
+    />
+  </div>
+)
+
+const SuccessState = () => (
+  <div style={{ textAlign: 'center', padding: '60px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+    <div style={{ width: '80px', height: '80px', border: '2px solid #ff8755', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', backgroundColor: '#fff5f0' }}>
+      <FaPaperPlane style={{ fontSize: '32px', color: '#ff8755' }} />
+    </div>
+    <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#2a2a75', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>
+      Message Received
+    </h3>
+    <p style={{ color: '#64748b', fontSize: '16px', lineHeight: '1.6' }}>
+      Your inquiry has been securely submitted. Our team will respond within 24 business hours.
+    </p>
+  </div>
+)
+
+const HQLabel = ({ children }) => (
+  <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', fontWeight: 'bold', letterSpacing: '1.5px', margin: '0 0 6px', textTransform: 'uppercase' }}>
+    {children}
+  </p>
+)
+
+const IconBox = ({ children }) => (
+  <div style={{
+    width: '44px', height: '44px', flexShrink: 0,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    borderRadius: '10px',
+    display: 'flex', alignItems: 'center', justifyContent: 'center'
+  }}>
+    {children}
+  </div>
+)
+
+export default ContactUs
