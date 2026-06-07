@@ -7,10 +7,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Dependencies
+node_modules/
+
+# Build
 dist
 dist-ssr
+build/
+
+# Environment
 *.local
+.env
+.env.*
+
+# Large Files
+*.mp4
+*.mov
+*.avi
+*.zip
+*.rar
 
 # Editor directories and files
 .vscode/*
