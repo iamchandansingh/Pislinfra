@@ -1,42 +1,26 @@
 const HeroVideo = () => {
   return (
-    <section style={{
-      position: 'relative',
-      width: '100%',           // ✅ Full Width
-      height: '100vh',         // ✅ Full Screen Height
-      overflow: 'hidden',
-    }}>
+    <section className="relative w-full h-[40vh] md:h-[70vh] overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
         muted
         loop
         playsInline
+        className="absolute top-0 left-0 w-full h-full z-0"
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',       // ✅ Full Width
-          height: '100%',      // ✅ Full Height
-          objectFit: 'cover',  // ✅ Cover Entire Area
-          zIndex: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover', // cover prevents stretching on mobile/desktop
         }}
       >
         <source src="/videos/PISL-WEBSITE.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Overlay */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',         // ✅ Full Width
-        height: '100%',        // ✅ Full Height
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        zIndex: 1,
-      }}></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10"></div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroVideo
+export default HeroVideo;

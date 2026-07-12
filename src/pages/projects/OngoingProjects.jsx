@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PageHero from '../../components/hero/PageHero'
+import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import projectsData from '../../data/projectsData'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
@@ -13,6 +14,28 @@ const OngoingProjects = () => {
   const endIndex = startIndex + itemsPerPage
   const currentProjects = projectsData.slice(startIndex, endIndex)
 
+  const seoData = {
+    contentType: 'page',
+    title: 'Ongoing Projects',
+    seoTitle: 'Ongoing Projects | Pislinfra',
+    seoDescription: 'Explore Pislinfra\'s ongoing industrial construction projects across India. Warehousing, logistics parks & infrastructure development currently under execution.',
+    seoKeywords: 'ongoing projects, industrial construction, warehouse projects, logistics park, infrastructure development, current projects, Pislinfra',
+    slug: 'projects/ongoing',
+    canonicalUrl: 'https://pislinfra.com/projects/ongoing',
+    ogTitle: 'Ongoing Projects - Industrial Construction | Pislinfra',
+    ogDescription: 'Current industrial & infrastructure projects under development across India.',
+    ogImage: 'https://pislinfra.com/images/hero/Ongoing-Projects.png',
+    ogType: 'website',
+    twitterTitle: 'Ongoing Projects | Pislinfra',
+    twitterDescription: 'Industrial construction projects currently under execution.',
+    twitterImage: 'https://pislinfra.com/images/hero/Ongoing-Projects.png',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'WebPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['Projects', 'Ongoing', 'Construction', 'Industrial', 'Infrastructure'],
+  };
+
   const handlePageChange = (page) => {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -20,6 +43,8 @@ const OngoingProjects = () => {
 
   return (
     <div>
+      <BlogSEO blog={seoData} />
+      
       <PageHero 
         title="Ongoing Projects" 
         subtitle="Current projects under development across India"
@@ -30,22 +55,39 @@ const OngoingProjects = () => {
       <section style={{ padding: '60px 16px', backgroundColor: '#f9fafb', minHeight: '60vh' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           
-          {/* Section Title */}
-          <div style={{ marginBottom: '32px' }}>
-            <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '8px' }}>
-              Ongoing <span style={{ color: '#ff8755' }}>Projects</span>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            marginBottom: '40px',
+            flexWrap: 'wrap',
+            gap: '16px'
+          }}>
+            <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
+              Ongoing Projects
             </h2>
-            <div style={{ width: '60px', height: '3px', backgroundColor: '#ff8755', marginBottom: '16px' }}></div>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              backgroundColor: '#f8fafc',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              border: '1px solid #e2e8f0'
+            }}>
+              <span style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>Total Projects:</span>
+              <span style={{ fontSize: '16px', color: '#0a2a66', fontWeight: '700' }}>
+                {projectsData.length}
+              </span>
+            </div>
           </div>
 
-          {/* 4 Columns Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="projects-grid">
             {currentProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '48px' }}>
               <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
@@ -79,4 +121,4 @@ const OngoingProjects = () => {
   )
 }
 
-export default OngoingProjects  
+export default OngoingProjects

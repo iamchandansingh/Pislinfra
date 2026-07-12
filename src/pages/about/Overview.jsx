@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageHero from '../../components/hero/PageHero';
+import BlogSEO from '../../components/Blog/BlogSEO';
 import OurPresence from '../../components/sections/OurPresence';
 import { FaWarehouse, FaCalendar, FaBuilding, FaUsers, FaStar, FaCogs, FaChartLine, FaHandshake, FaShieldAlt, FaUsers as FaTeam } from 'react-icons/fa';
 
@@ -32,6 +33,42 @@ const AutoSlidingImages = () => {
 };
 
 const Overview = () => {
+
+  const seoData = {
+  contentType: 'page',
+  title: 'Overview / Profile',
+  seoTitle: 'Overview / Profile',
+  seoDescription: 'PISL is India\'s leading industrial infrastructure company specializing in warehousing, logistics parks, EPC, and construction solutions.',
+  seoKeywords: 'industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, EPC contractor, industrial construction, infrastructure company, PISL Infra',
+  slug: 'about',
+  canonicalUrl: 'https://pislinfra.com/about',
+
+  ogTitle: 'Overview / Profile',
+  ogDescription: '17+ years of excellence, 16M+ sq. ft. delivered, and 600+ employees driving industrial infrastructure across India.',
+  ogImage: 'https://pislinfra.com/images/hero/11.png',
+  ogType: 'website',
+
+  twitterTitle: 'Overview / Profile',
+  twitterDescription: '17+ years of expertise in warehousing, logistics parks, EPC, and industrial construction across India.',
+  twitterImage: 'https://pislinfra.com/images/hero/11.png',
+  twitterCardType: 'summary_large_image',
+
+  schemaType: 'AboutPage',
+  breadcrumbSchema: true,
+  organizationSchema: true,
+
+  tags: [
+    'PISL Infra',
+    'Company Profile',
+    'Industrial Infrastructure',
+    'Construction',
+    'Warehousing',
+    'Logistics Parks',
+    'EPC',
+    'Industrial Development'
+  ],
+};
+
   const capabilities = [
     { icon: FaStar, title: 'Best Grade-A Industrial & Warehousing Infrastructure', desc: 'We offer the best spaces for our BTS (Built-To-Suit) clients which ensures efficiency & quality in each aspect including the Design & Construction of the project.' },
     { icon: FaCogs, title: 'Integrating New Technologies', desc: 'We are integrating Information Technology for creating useful tools to streamline our procurement processes and overall construction schedule management.' },
@@ -48,10 +85,11 @@ const Overview = () => {
 
   return (
     <div style={{ fontFamily: FONT }}>
+      <BlogSEO blog={seoData} />
+      
       <PageHero title="Overview / Profile" subtitle="Learn about our company history and mission" breadcrumb="About Us" bgImage="/images/hero/11.png" />
       
-      {/* ===== SECTION 1: OVERVIEW ===== */}
-      <section style={{ padding: '80px 24px', backgroundColor: '#ffffff' }}>
+      <section id="expertise" className="overview-section" style={{ backgroundColor: '#ffffff' }}>
         <div style={{ maxWidth: '1350px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 0.75fr', gap: '56px', alignItems: 'center' }} className="overview-split">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: NAVY, marginBottom: '24px' }}>
@@ -61,7 +99,7 @@ const Overview = () => {
               We at PISL are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors.
             </p>
             <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.8', marginBottom: '14px' }}>
-              PISL is the product of passion, hard work, and integrity. To us, excellence is a habit, and we always strive to do our best. We are an organisation with a strong ethical compass and a spectacular track record of excellence in the industry. Over the past 16 years, our proven expertise has led us to build multiple projects covering millions of square meters in the construction industry.
+              PISL is the product of passion, hard work, and integrity. To us, excellence is a habit, and we always strive to do our best. We are an organisation with a strong ethical compass and a spectacular track record of excellence in the industry. Over the past 17+ years, our proven expertise has led us to build multiple projects covering millions of square meters in the construction industry.
             </p>
             <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.8', marginBottom: '14px' }}>
               We are present across various sectors like copper smelting, food processing, radial wires, automobile, heavy engineering, MSME, chemical, and other sectors.
@@ -76,8 +114,7 @@ const Overview = () => {
         </div>
       </section>
 
-      {/* ===== SECTION 2: HIGHLIGHTS ===== */}
-      <section style={{ padding: '60px 24px', backgroundColor: '#f9fafb' }}>
+      <section className="stats-section" style={{ backgroundColor: '#f9fafb' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="stats-grid">
             {[
@@ -100,8 +137,7 @@ const Overview = () => {
         </div>
       </section>
 
-      {/* ===== SECTION 3: CAPABILITIES ===== */}
-      <section style={{ padding: '80px 24px', backgroundColor: NAVY }}>
+      <section className="overview-section" style={{ backgroundColor: NAVY }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: 'white', marginBottom: '48px', textAlign: 'center' }}>
             OUR <span style={{ color: ORANGE }}>CAPABILITIES</span>
@@ -124,8 +160,7 @@ const Overview = () => {
         </div>
       </section>
 
-      {/* ===== SECTION 4: VALUES ===== */}
-      <section style={{ padding: '80px 24px', backgroundColor: '#f9fafb' }}>
+      <section className="overview-section" style={{ backgroundColor: '#f9fafb' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: NAVY, marginBottom: '48px', textAlign: 'center' }}>
             OUR <span style={{ color: ORANGE }}>VALUES</span>
@@ -149,6 +184,9 @@ const Overview = () => {
       <OurPresence />
 
       <style>{`
+        .overview-section { padding: 80px 24px; }
+        .stats-section { padding: 60px 24px; }
+        
         @media (max-width: 900px) {
           .overview-split { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -157,6 +195,8 @@ const Overview = () => {
         }
         @media (max-width: 500px) {
           .stats-grid, .values-grid { grid-template-columns: 1fr !important; }
+          .overview-section { padding: 40px 16px !important; }
+          .stats-section { padding: 32px 16px !important; }
         }
       `}</style>
     </div>

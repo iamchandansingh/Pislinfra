@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pislinfra.com/sitemap.xml
+
+# Crawl delay (polite crawling)
+Crawl-delay: 10
+
+# Disallow admin/internal pages
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cdn-cgi/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+
+# Disallow duplicate/thin content
+Disallow: /search
+Disallow: /*?search=
+Disallow: /*?page=
+Disallow: /*?sort=
+Disallow: /*?filter=
+
+# Disallow images/scripts (optional)
+# Allow: /images/
+# Allow: /scripts/

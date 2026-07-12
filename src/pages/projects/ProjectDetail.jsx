@@ -159,29 +159,32 @@ const ProjectDetail = () => {
         bgImage={projectImages[0]}
       />
       
-      <section style={{ padding: '60px 16px', backgroundColor: 'white' }}>
+      <section className="project-detail-section" style={{ padding: '60px 16px', backgroundColor: 'white' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           
-          <Link to={backUrl}
+          <Link to={backUrl} className="back-btn"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px',
-              color: '#ff8755', fontWeight: '600', fontSize: '14px',
+              color: '#475569', fontWeight: '600', fontSize: '14px',
               textDecoration: 'none', marginBottom: '32px',
+              padding: '8px 16px', backgroundColor: '#f1f5f9',
+              borderRadius: '20px', transition: 'all 0.3s'
             }}
           >
             <FaArrowLeft /> Back to {projectType === 'completed' ? 'Completed' : 'Ongoing'} Projects
           </Link>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
+          <div className="project-detail-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
             
             {/* Left - Image Slider with Fade Effect */}
             <div>
-              <div 
+              <div className="project-image-slider"
                 style={{ 
                   position: 'relative', 
                   borderRadius: '12px', 
                   overflow: 'hidden', 
                   border: '1px solid #f0f0f0',
+                  borderLeft: '4px solid #ff8755',
                   height: '420px',
                   cursor: 'default',
                 }}
@@ -232,45 +235,44 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            {/* Right - Details */}
             <div>
-              <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '24px' }}>
+              <h2 className="project-title" style={{ fontSize: '36px', fontWeight: '800', color: '#2a2a75', marginBottom: '24px', lineHeight: '1.2' }}>
                 {project.name}
               </h2>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '28px' }}>
+              <div className="project-info-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '32px' }}>
                 
                 {/* Location Card */}
-                <div style={{
-                  padding: '16px', backgroundColor: '#f8fafc',
-                  borderRadius: '10px', border: '1px solid #f0f0f0',
-                  display: 'flex', gap: '12px', alignItems: 'flex-start',
+                <div className="info-card" style={{
+                  padding: '20px', backgroundColor: '#ffffff',
+                  borderRadius: '12px', border: '1px solid #e2e8f0',
+                  display: 'flex', gap: '14px', alignItems: 'flex-start',
                 }}>
                   <div style={{
-                    width: 40, height: 40, borderRadius: '8px',
+                    width: 44, height: 44, borderRadius: '10px',
                     background: '#fff5f0', display: 'flex',
                     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
-                    <FaMapMarkerAlt style={{ color: '#ff8755', fontSize: '16px' }} />
+                    <FaMapMarkerAlt style={{ color: '#ff8755', fontSize: '18px' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '600', textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.5px' }}>
+                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '700', textTransform: 'uppercase', marginBottom: '4px', letterSpacing: '0.5px' }}>
                       Location
                     </div>
-                    <div style={{ fontSize: '13px', color: '#1e293b', fontWeight: '500', lineHeight: '1.4' }}>
+                    <div style={{ fontSize: '14px', color: '#1e293b', fontWeight: '600', lineHeight: '1.4' }}>
                       {project.location}, {project.state}
                     </div>
                   </div>
                 </div>
 
                 {/* Client Card */}
-                <div style={{
-                  padding: '16px', backgroundColor: '#f8fafc',
-                  borderRadius: '10px', border: '1px solid #f0f0f0',
-                  display: 'flex', gap: '12px', alignItems: 'flex-start',
+                <div className="info-card" style={{
+                  padding: '20px', backgroundColor: '#ffffff',
+                  borderRadius: '12px', border: '1px solid #e2e8f0',
+                  display: 'flex', gap: '14px', alignItems: 'flex-start',
                 }}>
                   <div style={{
-                    width: 40, height: 40, borderRadius: '8px',
+                    width: 44, height: 44, borderRadius: '10px',
                     background: '#fff5f0', display: 'flex',
                     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     overflow: 'hidden',
@@ -286,14 +288,14 @@ const ProjectDetail = () => {
                               src={client.logo} 
                               alt={client.name}
                               style={{
-                                width: 28,
-                                height: 28,
-                                borderRadius: '5px',
+                                width: 30,
+                                height: 30,
+                                borderRadius: '6px',
                                 objectFit: 'contain',
                                 backgroundColor: '#ffffff',
                                 border: '1px solid #e2e8f0',
-                                padding: 1,
-                                marginLeft: idx > 0 ? '-5px' : '0',
+                                padding: 2,
+                                marginLeft: idx > 0 ? '-6px' : '0',
                                 zIndex: 2 - idx,
                               }}
                               title={client.name}
@@ -302,60 +304,60 @@ const ProjectDetail = () => {
                         ))}
                       </div>
                     ) : (
-                      <FaBuilding style={{ color: '#ff8755', fontSize: '16px' }} />
+                      <FaBuilding style={{ color: '#ff8755', fontSize: '18px' }} />
                     )}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '600', textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.5px' }}>
+                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '700', textTransform: 'uppercase', marginBottom: '4px', letterSpacing: '0.5px' }}>
                       Client
                     </div>
-                    <div style={{ fontSize: '13px', color: '#1e293b', fontWeight: '500', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontSize: '14px', color: '#1e293b', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {project.client}
                     </div>
                   </div>
                 </div>
 
                 {/* Area Card */}
-                <div style={{
-                  padding: '16px', backgroundColor: '#f8fafc',
-                  borderRadius: '10px', border: '1px solid #f0f0f0',
-                  display: 'flex', gap: '12px', alignItems: 'flex-start',
+                <div className="info-card" style={{
+                  padding: '20px', backgroundColor: '#ffffff',
+                  borderRadius: '12px', border: '1px solid #e2e8f0',
+                  display: 'flex', gap: '14px', alignItems: 'flex-start',
                 }}>
                   <div style={{
-                    width: 40, height: 40, borderRadius: '8px',
+                    width: 44, height: 44, borderRadius: '10px',
                     background: '#fff5f0', display: 'flex',
                     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
-                    <FaRulerCombined style={{ color: '#ff8755', fontSize: '16px' }} />
+                    <FaRulerCombined style={{ color: '#ff8755', fontSize: '18px' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '600', textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.5px' }}>
+                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '700', textTransform: 'uppercase', marginBottom: '4px', letterSpacing: '0.5px' }}>
                       Area
                     </div>
-                    <div style={{ fontSize: '13px', color: '#1e293b', fontWeight: '500' }}>
+                    <div style={{ fontSize: '14px', color: '#1e293b', fontWeight: '600' }}>
                       {project.area}
                     </div>
                   </div>
                 </div>
 
                 {/* Timeline Card */}
-                <div style={{
-                  padding: '16px', backgroundColor: '#f8fafc',
-                  borderRadius: '10px', border: '1px solid #f0f0f0',
-                  display: 'flex', gap: '12px', alignItems: 'flex-start',
+                <div className="info-card" style={{
+                  padding: '20px', backgroundColor: '#ffffff',
+                  borderRadius: '12px', border: '1px solid #e2e8f0',
+                  display: 'flex', gap: '14px', alignItems: 'flex-start',
                 }}>
                   <div style={{
-                    width: 40, height: 40, borderRadius: '8px',
+                    width: 44, height: 44, borderRadius: '10px',
                     background: '#fff5f0', display: 'flex',
                     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
-                    <FaCalendarAlt style={{ color: '#ff8755', fontSize: '16px' }} />
+                    <FaCalendarAlt style={{ color: '#ff8755', fontSize: '18px' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '600', textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.5px' }}>
+                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '700', textTransform: 'uppercase', marginBottom: '4px', letterSpacing: '0.5px' }}>
                       Timeline
                     </div>
-                    <div style={{ fontSize: '13px', color: '#1e293b', fontWeight: '500' }}>
+                    <div style={{ fontSize: '14px', color: '#1e293b', fontWeight: '600' }}>
                       {project.timeline}
                     </div>
                   </div>
@@ -363,23 +365,25 @@ const ProjectDetail = () => {
               </div>
 
               {/* Scope of Work */}
-              <div style={{
-                padding: '20px', backgroundColor: '#fff5f0',
-                borderRadius: '10px', border: '1px solid #ffd5c2',
+              <div className="scope-card" style={{
+                padding: '28px', backgroundColor: '#ffffff',
+                borderRadius: '12px', border: '1px solid #e2e8f0',
+                borderLeft: '4px solid #ff8755',
+                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                   <div style={{
-                    width: 32, height: 32, borderRadius: '8px',
+                    width: 36, height: 36, borderRadius: '8px',
                     background: '#ff8755', display: 'flex',
                     alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <FaClipboardList style={{ color: '#ffffff', fontSize: '14px' }} />
+                    <FaClipboardList style={{ color: '#ffffff', fontSize: '16px' }} />
                   </div>
-                  <h4 style={{ fontWeight: 'bold', color: '#2a2a75', fontSize: '15px', margin: 0 }}>
+                  <h4 style={{ fontWeight: '800', color: '#0f172a', fontSize: '18px', margin: 0 }}>
                     Scope of Work
                   </h4>
                 </div>
-                <p style={{ color: '#4b5563', fontSize: '14px', lineHeight: '1.7', margin: 0 }}>
+                <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.8', margin: 0 }}>
                   {project.scope}
                 </p>
               </div>
@@ -390,18 +394,25 @@ const ProjectDetail = () => {
 
       {/* More Projects */}
       <section 
+        className="more-projects-section"
         style={{ padding: '60px 16px 80px', backgroundColor: '#f9fafb' }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           
-          <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '8px' }}>
-            More <span style={{ color: '#ff8755' }}>Projects</span>
-          </h2>
-          <div style={{ width: '60px', height: '3px', backgroundColor: '#ff8755', marginBottom: '32px' }}></div>
-
           <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            marginBottom: '40px'
+          }}>
+            <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
+              More Projects
+            </h2>
+          </div>
+
+          <div className="more-projects-grid" style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(4, 1fr)', 
             gap: '20px',
@@ -426,6 +437,54 @@ const ProjectDetail = () => {
 
         </div>
       </section>
+
+      {/* Responsive Styles */}
+      <style>{`
+        .back-btn:hover {
+          background-color: #e2e8f0 !important;
+          color: #1e293b !important;
+        }
+        
+        @media (max-width: 768px) {
+          .project-detail-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .project-image-slider {
+            height: 280px !important;
+          }
+          .project-title {
+            font-size: 28px !important;
+          }
+          .project-info-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .more-projects-grid {
+            grid-template-columns: repeat(1, 1fr) !important;
+          }
+          .project-detail-section {
+            padding: 40px 16px !important;
+          }
+          .more-projects-section {
+            padding: 40px 16px 60px !important;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .more-projects-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .project-detail-section {
+            padding: 32px 12px !important;
+          }
+          .more-projects-section {
+            padding: 32px 12px 48px !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

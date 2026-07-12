@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import awardsAndCertifications from '../../data/Awards-&-Certifications';
 
 interface YearData {
   year: string;
@@ -12,16 +13,28 @@ interface AwardsYearSidebarProps {
   activeYear?: string;
 }
 
-const yearsData: YearData[] = [
-  { year: '2025', total: 10, description: 'Remarkable achievements and milestones.', color: '#22C55E' },
-  { year: '2024', total: 9, description: 'Celebrating our progress and achievements.', color: '#3B82F6' },
-  { year: '2023', total: 8, description: 'Recognitions that reinforce our leadership.', color: '#8B5CF6' },
-  { year: '2022', total: 7, description: 'Milestones that mark our growth and impact.', color: '#F97316' },
-];
-
 const AwardsYearSidebar: React.FC<AwardsYearSidebarProps> = ({ onYearClick, activeYear = '2025' }) => {
-  const totalAllAwards = yearsData.reduce((sum, y) => sum + y.total, 0);
   const [clickedYear, setClickedYear] = useState<string | null>(null);
+
+  const yearCountMap: { [key: string]: number } = {};
+  awardsAndCertifications.forEach(award => {
+    if (award.year) {
+      yearCountMap[award.year] = (yearCountMap[award.year] || 0) + 1;
+    }
+  });
+
+  const colors = ['#22C55E', '#3B82F6', '#8B5CF6', '#F97316', '#EF4444', '#06B6D4'];
+  
+  const yearsData: YearData[] = Object.entries(yearCountMap)
+    .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
+    .map(([year, total], index) => ({
+      year,
+      total,
+      description: 'Recognitions that reinforce our leadership.',
+      color: colors[index % colors.length],
+    }));
+
+  const totalAllAwards = awardsAndCertifications.length;
 
   const handleClick = (year: string) => {
     if (onYearClick) onYearClick(year);

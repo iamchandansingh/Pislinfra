@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 
 // Import all team member images
 import pankajSoodImg from '../../assets/images/leadership/Core Team/Pankaj-Sood.png';
@@ -92,17 +91,9 @@ const TeamMemberCard = ({ member, index }) => {
         <p style={{ fontSize: '12px', color: ORANGE, fontWeight: 700, margin: '0 0 10px 0', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
           {member.role} • <span style={{ color: '#64748b', fontWeight: 500 }}>{member.dept}</span>
         </p>
-        <p style={{ fontSize: '13px', color: '#475569', fontWeight: 500, lineHeight: '1.45', margin: '0 0 16px 0', flex: 1 }}>
+        <p style={{ fontSize: '13px', color: '#475569', fontWeight: 500, lineHeight: '1.45', margin: '0', flex: 1 }}>
           {member.desc}
         </p>
-        <div style={{ display: 'flex', gap: '12px', marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '12px', width: '100%' }}>
-          <a href="#linkedin" className="pisl-meta-anchor" style={{ color: '#94a3b8', display: 'flex', transition: 'color 0.2s' }}>
-            <FaLinkedinIn style={{ fontSize: '13px' }} />
-          </a>
-          <a href="#email" className="pisl-meta-anchor" style={{ color: '#94a3b8', display: 'flex', transition: 'color 0.2s' }}>
-            <FaEnvelope style={{ fontSize: '13px' }} />
-          </a>
-        </div>
       </div>
     </motion.div>
   );
@@ -121,7 +112,7 @@ const CoreTeamGrid = () => {
           fontSize: '28px', fontWeight: 900, color: NAVY,
           margin: '0 0 48px 0', letterSpacing: '-0.5px'
         }}>
-          Our <span style={{ color: ORANGE }}>Core Team</span>
+          Our Core Team
         </h2>
 
         <div 
@@ -145,9 +136,6 @@ const CoreTeamGrid = () => {
         }
         .pisl-passport-member-card:hover {
           border-color: rgba(40, 41, 111, 0.12) !important;
-        }
-        .pisl-meta-anchor:hover {
-          color: ${ORANGE} !important;
         }
         @media (max-width: 1100px) {
           .pisl-passport-grid {

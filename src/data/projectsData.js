@@ -11,12 +11,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for CRM, Packaging Line, Admin Building, Cooling Tower',
     images: [
-      '/src/assets/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png',
-      '/src/assets/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-2.png',
-      '/src/assets/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-3.png',
-      '/src/assets/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-4.png',
-      '/src/assets/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-5.png',
-      '/src/assets/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-6.png'
+      '/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png',
+      '/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-2.png',
+      '/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-3.png',
+      '/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-4.png',
+      '/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-5.png',
+      '/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-6.png'
     ]
   },
   {
@@ -31,13 +31,13 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for CRM, Packaging Line, Admin Building, Cooling Tower',
     images: [
-  '/src/assets/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj.png',      // 1st image
-  '/src/assets/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-6.png',    // 2nd
-  '/src/assets/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-5.png',    // 3rd
-  '/src/assets/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-4.png',    // 4th
-  '/src/assets/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-3.png',    // 5th
-  '/src/assets/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-2.png'     // 6th
-]
+      '/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj.png',
+      '/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-6.png',
+      '/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-5.png',
+      '/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-4.png',
+      '/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-3.png',
+      '/images/Project/ongoing/Hazira-Surat/amns-steel-plant-hazira-gj-2.png'
+    ]
   },
   {
     id: 3,
@@ -51,12 +51,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Excavation, Concreting, Shuttering, Reinforcement',
     images: [
-      '/src/assets/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj.png',
-      '/src/assets/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-2.png',
-      '/src/assets/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-3.png',
-      '/src/assets/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-4.png',
-      '/src/assets/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-5.png',
-      '/src/assets/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-6.png'
+      '/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj.png',
+      '/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-2.png',
+      '/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-3.png',
+      '/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-4.png',
+      '/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-5.png',
+      '/images/Project/ongoing/Jamnagar/reliance-solar-unit-manufacturing-plant-jamnagar-gj-6.png'
     ]
   },
   {
@@ -71,12 +71,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/src/assets/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn.png',
-      '/src/assets/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-2.png',
-      '/src/assets/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-3.png',
-      '/src/assets/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-4.png',
-      '/src/assets/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-5.png',
-      '/src/assets/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-6.png'
+      '/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn.png',
+      '/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-2.png',
+      '/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-3.png',
+      '/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-4.png',
+      '/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-5.png',
+      '/images/Project/ongoing/Mappedu-Chennai/vpw-logistics-park-mappedu-tn-6.png'
     ]
   },
   {
@@ -91,12 +91,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Excavation, Concreting, Shuttering, Reinforcement',
     images: [
-      '/src/assets/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up.png',
-      '/src/assets/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-2.png',
-      '/src/assets/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-3.png',
-      '/src/assets/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-4.png',
-      '/src/assets/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-5.png',
-      '/src/assets/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-6.png'
+      '/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up.png',
+      '/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-2.png',
+      '/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-3.png',
+      '/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-4.png',
+      '/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-5.png',
+      '/images/Project/ongoing/Najibabad/cbg-plant-najibabad-up-6.png'
     ]
   },
   {
@@ -111,11 +111,11 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development',
     images: [
-      '/src/assets/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh.png',
-      '/src/assets/images/Project/ongoing/Dhanbad/cpwdiit-ism-campus-project-dhanbad-jh-2.png',
-      '/src/assets/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-3.png',
-      '/src/assets/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-4.png',
-      '/src/assets/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-5.png'
+      '/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh.png',
+      '/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-2.png',
+      '/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-3.png',
+      '/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-4.png',
+      '/images/Project/ongoing/Dhanbad/cpwd-iit-ism-campus-project-dhanbad-jh-5.png'
     ]
   },
   {
@@ -130,12 +130,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Precasting & Erection of 75,000 MT Piperack Structures, CPCV Plant Civil & Structural Works, External Development',
     images: [
-      '/src/assets/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj.png',
-      '/src/assets/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-2.png',
-      '/src/assets/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-3.png',
-      '/src/assets/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-4.png',
-      '/src/assets/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-5.png',
-      '/src/assets/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-6.png'
+      '/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj.png',
+      '/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-2.png',
+      '/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-3.png',
+      '/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-4.png',
+      '/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-5.png',
+      '/images/Project/ongoing/Dahej/reliance-dmd-plant-dahej-gj-6.png'
     ]
   },
   {
@@ -150,12 +150,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure',
     images: [
-      '/src/assets/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj.png',
-      '/src/assets/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-2.png',
-      '/src/assets/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-3.png',
-      '/src/assets/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-4.png',
-      '/src/assets/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-5.png',
-      '/src/assets/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-6.png'
+      '/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj.png',
+      '/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-2.png',
+      '/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-3.png',
+      '/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-4.png',
+      '/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-5.png',
+      '/images/Project/ongoing/GIDC-Sanand/amns-ssc-gidc-project-sanand-gj-6.png'
     ]
   },
   {
@@ -170,19 +170,19 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure',
     images: [
-      '/src/assets/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh.png',
-      '/src/assets/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-2.png',
-      '/src/assets/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-3.png',
-      '/src/assets/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-4.png',
-      '/src/assets/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-5.png',
-      '/src/assets/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-6.png'
+      '/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh.png',
+      '/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-2.png',
+      '/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-3.png',
+      '/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-4.png',
+      '/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-5.png',
+      '/images/Project/ongoing/Pune/sanaswadi-industrial-project-pune-mh-6.png'
     ]
   },
   {
     id: 10,
     category: 'Warehousing',
     name: 'PMG Logistics Park',
-    location: 'Banga  lore',
+    location: 'Bangalore',
     state: 'Karnataka',
     area: '5.79 Lakh Sq. ft',
     client: 'PMG',
@@ -190,11 +190,11 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/src/assets/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka.png',
-      '/src/assets/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-2.png',
-      '/src/assets/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-3.png',
-      '/src/assets/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-4.png',
-      '/src/assets/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-5.png'
+      '/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka.png',
+      '/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-2.png',
+      '/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-3.png',
+      '/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-4.png',
+      '/images/Project/ongoing/Bangaluru/pmg-logistics-park-kolathur-ka-5.png'
     ]
   },
   {
@@ -209,12 +209,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/src/assets/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn.png',
-      '/src/assets/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-2.png',
-      '/src/assets/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-3.png',
-      '/src/assets/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-4.png',
-      '/src/assets/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-5.png',
-      '/src/assets/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-6.png'
+      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn.png',
+      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-2.png',
+      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-3.png',
+      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-4.png',
+      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-5.png',
+      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-6.png'
     ]
   },
   {
@@ -229,12 +229,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/src/assets/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb.png',
-      '/src/assets/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-2.png',
-      '/src/assets/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-3.png',
-      '/src/assets/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-4.png',
-      '/src/assets/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-5.png',
-      '/src/assets/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-6.png'
+      '/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb.png',
+      '/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-2.png',
+      '/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-3.png',
+      '/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-4.png',
+      '/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-5.png',
+      '/images/Project/ongoing/Ludhiana/logistics-park-llp-ludhiana-pb-6.png'
     ]
   },
   {
@@ -249,12 +249,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/src/assets/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg.png',
-      '/src/assets/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-2.png',
-      '/src/assets/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-3.png',
-      '/src/assets/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-4.png',
-      '/src/assets/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-5.png',
-      '/src/assets/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-6.png'
+      '/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg.png',
+      '/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-2.png',
+      '/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-3.png',
+      '/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-4.png',
+      '/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-5.png',
+      '/images/Project/ongoing/Telangana/pmg-logistics-park-hyderabad-tg-6.png'
     ]
   },
   {
@@ -269,10 +269,10 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/src/assets/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj.png',
-      '/src/assets/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj-2.png',
-      '/src/assets/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj-3.png',
-      '/src/assets/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj-4.png'
+      '/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj.png',
+      '/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj-2.png',
+      '/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj-3.png',
+      '/images/Project/ongoing/Neemrana/pmg-logistics-park-neemrana-rj-4.png'
     ]
   },
   {
@@ -287,12 +287,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Construction work of Retail Arcade & allied services including Civil, Electrical, Firefighting, Plumbing, Security Works, Interiors & PEB.',
     images: [
-      '/src/assets/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr.png',
-      '/src/assets/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-2.png',
-      '/src/assets/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-3.png',
-      '/src/assets/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-4.png',
-      '/src/assets/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-5.png',
-      '/src/assets/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-6.png'
+      '/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr.png',
+      '/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-2.png',
+      '/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-3.png',
+      '/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-4.png',
+      '/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-5.png',
+      '/images/Project/ongoing/HIGHWAY-HUMSAFAR/highway-humsafar-delhi-mumbai-expressway-hr-6.png'
     ]
   },
   {
@@ -307,12 +307,12 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Construction Work of pipe rack, sleeper, and foundations, Utility Building, Water Reservoir, Pump House',
     images: [
-      '/src/assets/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj.png',
-      '/src/assets/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-2.png',
-      '/src/assets/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-3.png',
-      '/src/assets/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-4.png',
-      '/src/assets/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-5.png',
-      '/src/assets/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-6.png'
+      '/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj.png',
+      '/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-2.png',
+      '/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-3.png',
+      '/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-4.png',
+      '/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-5.png',
+      '/images/Project/ongoing/Dahej-02/vinyl-project-at-dmd.-osbl-area-dahej-gj-6.png'
     ]
   }
 ];

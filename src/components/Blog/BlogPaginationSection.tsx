@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import BlogDB from '../../data/BlogDB';
 
-// Main Component
-const BlogPaginationSection: React.FC = () => {
+const BlogPaginationSection = ({ postsPerPage = 6, onPageChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
+  
+  const totalPages = Math.ceil(BlogDB.length / postsPerPage);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
+      if (onPageChange) onPageChange(page);
     }
   };
 
@@ -20,13 +22,12 @@ const BlogPaginationSection: React.FC = () => {
     handlePageChange(currentPage + 1);
   };
 
-  // Generate page numbers with ellipsis
-  const getPageNumbers = (): (number | string)[] => {
+  const getPageNumbers = () => {
     if (totalPages <= 5) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
-    const pages: (number | string)[] = [1];
+    const pages = [1];
 
     if (currentPage > 3) {
       pages.push('...');
@@ -48,6 +49,8 @@ const BlogPaginationSection: React.FC = () => {
     return pages;
   };
 
+  if (totalPages <= 1) return null;
+
   const pageNumbers = getPageNumbers();
 
   return (
@@ -63,7 +66,6 @@ const BlogPaginationSection: React.FC = () => {
         paddingRight: '16px',
       }}>
         
-        {/* Pagination - CENTERED */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -71,7 +73,6 @@ const BlogPaginationSection: React.FC = () => {
           gap: '8px',
         }}>
           
-          {/* Previous Button */}
           <button
             onClick={handlePrevious}
             disabled={currentPage === 1}
@@ -103,7 +104,6 @@ const BlogPaginationSection: React.FC = () => {
             <ChevronLeft size={16} color="#64748B" />
           </button>
 
-          {/* Page Numbers */}
           {pageNumbers.map((page, index) => {
             const isActive = page === currentPage;
             const isEllipsis = page === '...';
@@ -137,7 +137,7 @@ const BlogPaginationSection: React.FC = () => {
             return (
               <button
                 key={page}
-                onClick={() => handlePageChange(page as number)}
+                onClick={() => handlePageChange(page)}
                 style={{
                   width: '36px',
                   height: '36px',
@@ -176,7 +176,6 @@ const BlogPaginationSection: React.FC = () => {
             );
           })}
 
-          {/* Next Button */}
           <button
             onClick={handleNext}
             disabled={currentPage === totalPages}

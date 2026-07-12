@@ -1,27 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FiHeart, FiUsers, FiBookOpen, FiDroplet, FiFeather, FiLink } from 'react-icons/fi';
+import { FiHeart, FiUsers, FiBookOpen, FiDroplet, FiFeather } from 'react-icons/fi';
 
-interface StatItem {
-  id: string;
-  icon: React.ReactNode;
-  iconColor: string;
-  value: number;
-  suffix: string;
-  label: string;
-}
-
-const statsData: StatItem[] = [
+const statsData = [
   { id: 'projects', icon: <FiHeart size={34} strokeWidth={1.8} />, iconColor: '#FF6B35', value: 50, suffix: '+', label: 'CSR Projects' },
-  { id: 'impacted', icon: <FiUsers size={34} strokeWidth={1.8} />, iconColor: '#6366F1', value: 100, suffix: 'K+', label: 'Lives Impacted' },
-  { id: 'education', icon: <FiBookOpen size={34} strokeWidth={1.8} />, iconColor: '#22C55E', value: 75, suffix: '+', label: 'Education Initiatives' },
-  { id: 'health', icon: <FiDroplet size={34} strokeWidth={1.8} />, iconColor: '#EC4899', value: 40, suffix: '+', label: 'Health Camps' },
+  { id: 'impacted', icon: <FiUsers size={34} strokeWidth={1.8} />, iconColor: '#6366F1', value: 10, suffix: '+', label: 'Lives Impacted' },
+  { id: 'education', icon: <FiBookOpen size={34} strokeWidth={1.8} />, iconColor: '#22C55E', value: 25, suffix: '+', label: 'Education Initiatives' },
+  { id: 'health', icon: <FiDroplet size={34} strokeWidth={1.8} />, iconColor: '#EC4899', value: 20, suffix: '+', label: 'Health Camps' },
   { id: 'environment', icon: <FiFeather size={34} strokeWidth={1.8} />, iconColor: '#F97316', value: 30, suffix: '+', label: 'Environment Projects' },
-  { id: 'partners', icon: <FiLink size={34} strokeWidth={1.8} />, iconColor: '#3B82F6', value: 100, suffix: '+', label: 'Community Partners' },
 ];
 
-const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) => {
+const CounterAnimation = ({ value, suffix }) => {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
@@ -54,30 +44,63 @@ const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) 
   );
 };
 
-const CSRStats: React.FC = () => {
+const CSRStats = () => {
   return (
     <div style={{ width: '100%', position: 'relative', zIndex: 10, marginTop: '-55px' }}>
       <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
-        <div style={{
+        <div className="csr-stats-container" style={{
           backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '16px',
           padding: '20px 16px', boxShadow: '0 12px 40px rgba(0,0,0,0.08)',
-          display: 'flex', alignItems: 'center',
+          display: 'flex', alignItems: 'center', flexWrap: 'wrap',
         }}>
           {statsData.map((stat, index) => (
             <React.Fragment key={stat.id}>
-              <div className="stat-item" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', padding: '0 8px' }}>
+              <div className="stat-item" style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', padding: '10px 8px', minWidth: '0' }}>
                 <span style={{ color: stat.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>{stat.icon}</span>
                 <div>
                   <CounterAnimation value={stat.value} suffix={stat.suffix} />
                   <p style={{ fontSize: '11px', fontWeight: 600, color: '#475569', lineHeight: 1.3, marginTop: '2px', marginBottom: 0, fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>
                 </div>
               </div>
-              {index < statsData.length - 1 && <div style={{ width: '1px', height: '65px', backgroundColor: '#EEF2F7', flexShrink: 0 }} />}
+              {index < statsData.length - 1 && <div className="stat-divider" style={{ width: '1px', height: '65px', backgroundColor: '#EEF2F7', flexShrink: 0 }} />}
             </React.Fragment>
           ))}
         </div>
       </div>
-      <style>{`@media (max-width: 1200px) { .stat-item { min-width: calc(33.33% - 1px); } } @media (max-width: 900px) { .stat-item { min-width: calc(50% - 1px); } } @media (max-width: 600px) { .stat-item { min-width: 100%; } }`}</style>
+      <style>{`
+        .csr-stats-container { display: flex; flex-wrap: wrap; }
+        .stat-item { flex: 1 1 auto; min-width: 0; }
+        .stat-divider { display: block; }
+        @media (max-width: 900px) {
+          .stat-item { 
+            flex: 1 1 calc(50% - 2px) !important; 
+            border: 1px solid #EEF2F7;
+            border-radius: 10px;
+            margin: 4px;
+            padding: 14px 10px !important;
+            background: #FAFBFC;
+          }
+          .stat-item:nth-child(3) .stat-divider { display: none !important; }
+          .stat-divider { display: none !important; }
+        }
+        @media (max-width: 600px) {
+          .csr-stats-container { 
+            gap: 8px; 
+            padding: 12px !important; 
+            background: transparent;
+            box-shadow: none;
+            border: none;
+          }
+          .stat-item { 
+            flex: 1 1 100% !important;
+            background: #FFFFFF;
+            border: 1px solid #EEF2F7;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+          }
+          .stat-divider { display: none !important; }
+        }
+      `}</style>
     </div>
   );
 };

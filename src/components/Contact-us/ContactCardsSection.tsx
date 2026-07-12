@@ -1,29 +1,16 @@
 import React from 'react';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 
-// Types
-interface ContactCardData {
-  id: string;
-  title: string;
-  icon: React.ReactNode;
-  iconBg: string;
-  iconColor: string;
-  primaryText: string;
-  secondaryText: string;
-  href?: string;
-}
-
-// Contact Cards Data
-const contactCards: ContactCardData[] = [
+const contactCards = [
   {
     id: 'call',
     title: 'Call Us',
     icon: <Phone size={22} />,
     iconBg: '#FFF3EC',
     iconColor: '#FF6B35',
-    primaryText: '082870 40111',
-    secondaryText: 'Mon - Sat 9:00 AM - 6:00 PM',
-    href: 'tel:08287040111',
+    primaryText: '085270 40411',
+    secondaryText: 'Mon – Sat: 9:00 AM – 6:00 PM',
+    href: 'tel:08527040411',
   },
   {
     id: 'email',
@@ -41,31 +28,19 @@ const contactCards: ContactCardData[] = [
     icon: <MapPin size={22} />,
     iconBg: '#EEFDF3',
     iconColor: '#22C55E',
-    primaryText: '3rd Floor, Plot No 18, Maruti Kunj, Sec 28, Gurugram Haryana 122018',
-    secondaryText: '',
-    href: 'https://maps.google.com/?q=3rd+Floor+Plot+No+18+Maruti+Kunj+Sec+28+Gurugram+Haryana+122018',
-  },
-  {
-    id: 'whatsapp',
-    title: 'WhatsApp',
-    icon: <MessageCircle size={22} />,
-    iconBg: '#EEFDF3',
-    iconColor: '#22C55E',
-    primaryText: '+91 82870 40111',
-    secondaryText: 'Chat with our team',
-    href: 'https://wa.me/918287040111',
+    primaryText: '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
+    href: 'https://maps.app.goo.gl/yrFiVHJsAwLp461c9',
   },
 ];
 
-// Individual Contact Card
-const ContactCard: React.FC<{ card: ContactCardData }> = ({ card }) => {
+const ContactCard = ({ card }) => {
   const isLink = Boolean(card.href);
   const Component = isLink ? 'a' : 'div';
   const linkProps = isLink
     ? {
         href: card.href,
-        target: card.id !== 'call' && card.id !== 'email' ? '_blank' : undefined,
-        rel: card.id !== 'call' && card.id !== 'email' ? 'noopener noreferrer' : undefined,
+        target: '_blank',
+        rel: 'noopener noreferrer',
       }
     : {};
 
@@ -73,155 +48,60 @@ const ContactCard: React.FC<{ card: ContactCardData }> = ({ card }) => {
     <Component
       {...linkProps}
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '14px',
-        textDecoration: 'none',
-        color: 'inherit',
-        backgroundColor: '#FFFFFF',
-        borderRadius: '16px',
-        border: '1px solid #E5E7EB',
-        padding: '16px 20px',
-        boxShadow: '0 4px 12px rgba(15, 23, 42, 0.04)',
-        transition: 'all 0.3s ease',
-        cursor: isLink ? 'pointer' : 'default',
-        boxSizing: 'border-box',
+        display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none', color: 'inherit',
+        backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #E5E7EB',
+        padding: '20px', boxShadow: '0 4px 12px rgba(15,23,42,0.04)',
+        transition: 'all 0.3s ease', cursor: isLink ? 'pointer' : 'default', boxSizing: 'border-box',
+        width: '100%', height: '100%', minHeight: '110px',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-3px)';
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(15, 23, 42, 0.08)';
+        e.currentTarget.style.boxShadow = '0 12px 24px rgba(15,23,42,0.08)';
         e.currentTarget.style.borderColor = '#D1D5DB';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 12px rgba(15, 23, 42, 0.04)';
+        e.currentTarget.style.boxShadow = '0 4px 12px rgba(15,23,42,0.04)';
         e.currentTarget.style.borderColor = '#E5E7EB';
       }}
-      role={isLink ? 'link' : 'article'}
       aria-label={`${card.title}: ${card.primaryText}`}
     >
-      {/* Icon Circle - LEFT */}
-      <div
-        style={{
-          width: '48px',
-          height: '48px',
-          minWidth: '48px',
-          borderRadius: '50%',
-          backgroundColor: card.iconBg,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
-        aria-hidden="true"
-      >
-        <span style={{ color: card.iconColor, display: 'flex', lineHeight: 0 }}>
-          {card.icon}
-        </span>
+      <div style={{
+        width: '48px', height: '48px', minWidth: '48px', borderRadius: '50%',
+        backgroundColor: card.iconBg, display: 'flex', alignItems: 'center',
+        justifyContent: 'center', flexShrink: 0,
+      }}>
+        <span style={{ color: card.iconColor, display: 'flex', lineHeight: 0 }}>{card.icon}</span>
       </div>
-
-      {/* Content - RIGHT */}
       <div style={{ flex: 1, minWidth: 0 }}>
-        {/* Title */}
-        <h3
-          style={{
-            fontSize: '14px',
-            fontWeight: 700,
-            color: '#1E2A5A',
-            margin: '0 0 3px 0',
-            lineHeight: 1.3,
-            fontFamily: 'Inter, sans-serif',
-          }}
-        >
-          {card.title}
-        </h3>
-
-        {/* Primary Text */}
-        <p
-          style={{
-            fontSize: '13px',
-            fontWeight: 600,
-            color: '#334155',
-            margin: '0 0 2px 0',
-            lineHeight: 1.4,
-            wordBreak: 'break-word',
-            fontFamily: 'Inter, sans-serif',
-          }}
-        >
-          {card.primaryText}
-        </p>
-
-        {/* Secondary Text */}
-        <p
-          style={{
-            fontSize: '12px',
-            fontWeight: 400,
-            color: '#64748B',
-            margin: 0,
-            lineHeight: 1.4,
-            fontFamily: 'Inter, sans-serif',
-          }}
-        >
-          {card.secondaryText}
-        </p>
+        <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#1E2A5A', margin: '0 0 4px 0', lineHeight: 1.3, fontFamily: 'Inter, sans-serif' }}>{card.title}</h3>
+        <p style={{ fontSize: '13px', fontWeight: 600, color: '#334155', margin: '0 0 4px 0', lineHeight: 1.4, wordBreak: 'break-word', fontFamily: 'Inter, sans-serif' }}>{card.primaryText}</p>
+        {card.secondaryText && (
+          <p style={{ fontSize: '12px', fontWeight: 400, color: '#64748B', margin: 0, lineHeight: 1.4, fontFamily: 'Inter, sans-serif' }}>{card.secondaryText}</p>
+        )}
       </div>
     </Component>
   );
 };
 
-// Main ContactCardsSection Component
-const ContactCardsSection: React.FC = () => {
+const ContactCardsSection = () => {
   return (
-    <div
-      style={{
-        width: '95%',
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '24px 0',
-      }}
-      aria-label="Contact information cards"
-    >
-      {/* Cards Grid */}
-      <div
-        className="cards-grid"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '20px',
-        }}
-        role="list"
-      >
+    <div className="contact-cards-wrapper" style={{ width: '95%', maxWidth: '1100px', margin: '0 auto', padding: '24px 0 0 0', position: 'relative', zIndex: 10 }} aria-label="Contact information cards">
+      <div className="cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '12px', alignItems: 'stretch' }} role="list">
         {contactCards.map((card) => (
-          <div key={card.id} role="listitem">
-            <ContactCard card={card} />
-          </div>
+          <div key={card.id} role="listitem" style={{ display: 'flex' }}><ContactCard card={card} /></div>
         ))}
       </div>
 
-      {/* Responsive Styles */}
       <style>{`
-        .cards-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+        @media (max-width: 639px) {
+          .contact-cards-wrapper { padding-bottom: 24px !important; }
         }
-        @media (max-width: 1200px) {
-          .cards-grid {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-          }
+        @media (min-width: 550px) { 
+          .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; } 
         }
-        @media (max-width: 1000px) {
-          .cards-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-          }
-        }
-        @media (max-width: 550px) {
-          .cards-grid {
-            grid-template-columns: 1fr;
-            gap: 12px;
-          }
+        @media (min-width: 900px) { 
+          .cards-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 18px !important; justify-content: center !important; } 
         }
       `}</style>
     </div>

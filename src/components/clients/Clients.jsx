@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import clientsData from '../../data/clientsData';
 
+const NAVY = '#0a2a66';
+const ORANGE = '#ff8755';
+
 const Clients = () => {
   const seriesOrder = [
     'Reliance Industries Limited',
@@ -105,10 +108,10 @@ const Clients = () => {
               style={{
                 background: '#ffffff',
                 borderRadius: 12,
-                padding: '36px 20px',
+                padding: '16px 20px',
                 minWidth: 'calc((1370px - 72px) / 7)',
                 maxWidth: 'calc((1370px - 72px) / 7)',
-                minHeight: 120,
+                minHeight: 90,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -125,7 +128,7 @@ const Clients = () => {
                 title={client.name}
                 style={{
                   maxWidth: '90%',
-                  maxHeight: 80,
+                  maxHeight: 60,
                   objectFit: 'contain',
                   transition: 'all 0.35s ease',
                 }}
@@ -144,7 +147,7 @@ const Clients = () => {
 
   return (
     <section style={{
-      padding: '80px 24px',
+      padding: '24px',
       background: '#f8fafc',
     }}>
       <div style={{ maxWidth: 1370, margin: '0 auto' }}>
@@ -154,17 +157,17 @@ const Clients = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          style={{ textAlign: 'center', marginBottom: 48 }}
+          style={{ textAlign: 'center', marginBottom: 32 }}
         >
           <h2 style={{
-            fontSize: 'clamp(28px, 4vw, 34px)',
-            fontWeight: 900,
-            color: '#28286e',
+            fontSize: 'clamp(22px, 3vw, 30px)',
+            fontWeight: 800,
+            color: NAVY,
             margin: 0,
             letterSpacing: '-0.5px',
             padding: '0 16px',
           }}>
-            CLIENTS THAT <span style={{ color: '#ff8755' }}>TRUST US</span>
+            CLIENTS THAT <span style={{ color: NAVY }}>TRUST US</span>
           </h2>
         </motion.div>
 
@@ -180,16 +183,13 @@ const Clients = () => {
       </div>
 
       <style>{`
-        @media (max-width: 1370px) {
+        @media (max-width: 1200px) {
           .clients-grid { grid-template-columns: repeat(4, 1fr) !important; }
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
           .clients-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
-        @media (max-width: 768px) {
-          .clients-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
           .clients-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>

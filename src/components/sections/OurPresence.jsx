@@ -7,7 +7,6 @@ const OurPresence = () => {
 
   const ongoingProjects = projectsData || [];
 
-  // Structural mapping framework
   const findProject = (location) => {
     if (!ongoingProjects.length) return null;
     return ongoingProjects.find(p => 
@@ -32,7 +31,6 @@ const OurPresence = () => {
     return null;
   };
 
-  // Automated list filtered by active dataset entries
   const locations = [
     { id: 1, label: "Jamnagar, GJ", top: 51, left: 11, side: "left", arrow: 100, region: "WEST", info: getProjectInfo("Jamnagar") },
     { id: 2, label: "Mundra, GJ", top: 49, left: 11, side: "left", arrow: 100, region: "WEST", info: getProjectInfo("Mundra") },
@@ -90,7 +88,6 @@ const OurPresence = () => {
           backgroundColor: 'transparent'
         }}
       >
-        {/* COMPACT MACRO DATA DETAILS POPUP */}
         {isActive && loc.info && (
           <div 
             onClick={(e) => e.stopPropagation()} 
@@ -148,24 +145,20 @@ const OurPresence = () => {
           </div>
         )}
 
-        {/* HIGH-PRECISION VECTOR CANVAS GRAPHICS */}
         <svg style={{ position: 'absolute', overflow: 'visible', width: '100%', height: '100%', pointerEvents: 'auto' }}>
           <circle cx={markerOffsetX} cy={lineY} r={isActive ? 14 : 7} fill="none" stroke={color} strokeWidth="1.5" className={isActive ? "glow-active" : "glow-normal"} style={{ pointerEvents: 'none' }} />
           {isActive && <circle cx={markerOffsetX} cy={lineY} r="20" fill="none" stroke={color} strokeWidth="1" className="glow-outer" style={{ pointerEvents: 'none' }} />}
           
-          {/* Tracking Arrow Track Line */}
-          {/* Design is exactly identical, but when active, it executes a 2s draw-in grow effect */}
           <line 
             x1={markerOffsetX} y1={lineY} x2={finalArrowX} y2={lineY} 
             stroke={isActive ? '#ff5500' : '#cbd5e1'} 
             strokeWidth={isActive ? "3.5" : "1.8"} 
             strokeDasharray={loc.arrow}
-            strokeDashoffset={isActive ? 0 : 0} // Kept 0 by default so normal lines remain visible
+            strokeDashoffset={isActive ? 0 : 0}
             className={isActive ? "arrow-grow-active arrow-pulse-smooth" : ""}
             style={{ transition: 'stroke-width 0.15s ease', cursor: 'pointer' }} 
           />
           
-          {/* Terminal Title Point Dot (Static & Stable) */}
           <circle 
             cx={finalArrowX} cy={lineY} 
             r={isActive ? 3.5 : 2} 
@@ -174,10 +167,8 @@ const OurPresence = () => {
             style={{ cursor: 'pointer' }} 
           />
           
-          {/* Central Anchor Node Pin */}
           <circle cx={markerOffsetX} cy={lineY} r={isActive ? 6.5 : 4} fill={isActive ? '#ff8d4b' : color} stroke="#fff" strokeWidth="2" style={{ filter: isActive ? `drop-shadow(0 0 6px ${color})` : 'none', transition: 'all 0.15s ease', cursor: 'pointer' }} />
           
-          {/* Static High Contrast Location Label Vector */}
           <text 
             x={textX} 
             y={lineY + 4} 
@@ -205,12 +196,11 @@ const OurPresence = () => {
     <section style={{ padding: '100px 24px', backgroundColor: '#fafafa', overflow: 'hidden' }} onClick={() => setActiveLocation(null)}>
       <div style={{ maxWidth: '1300px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'start' }} className="presence-grid" onClick={(e) => e.stopPropagation()}>
         
-        {/* LEFT COMPONENT CONTROLS BOARD */}
+        {/* LEFT */}
         <div>
           <h2 style={{ fontSize: '30px', fontWeight: '750', color: '#0f172a', marginBottom: '12px', letterSpacing: '-1px', lineHeight: 1.1 }}>OUR <span style={{ color: '#ff8755' }}>PRESENCE</span></h2>
           <p style={{ color: '#64748b', fontSize: '15.5px', lineHeight: '1.65', marginBottom: '36px' }}> Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring </p>
 
-          {/* Region Action Control Panels */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             {regions.map((region) => {
               const list = locations.filter(loc => loc.region === region.id);
@@ -248,12 +238,11 @@ const OurPresence = () => {
           </div>
         </div>
 
-        {/* RIGHT PANEL - MAP INTERFACE CANVAS DISPLAY */}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+        {/* RIGHT - MAP (Phone pe hide) */}
+        <div className="map-wrapper" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
           <div style={{ position: 'relative', width: '100%', maxWidth: '540px' }} onClick={(e) => e.stopPropagation()}>
             <img src="/indiaHigh.svg" alt="India Infrastructure Grid Layout" style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.96, userSelect: 'none' }} />
             
-            {/* Iterated Node Layers Rendering */}
             {locations.map((loc) => (
               <LocationMarker key={loc.id} loc={loc} />
             ))}
@@ -261,9 +250,9 @@ const OurPresence = () => {
         </div>
       </div>
 
-      {/* RENDER STYLESHEET ENGINES WITH 2S ACTIVE GROW ANIMATION */}
       <style>{`
         @media (max-width: 1024px) { .presence-grid { grid-template-columns: 1fr !important; gap: 50px !important; } }
+        @media (max-width: 768px) { .map-wrapper { display: none !important; } }
         @keyframes popIn { 0% { opacity: 0; transform: translateY(10px) scale(0.97); filter: blur(2px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
         
         @keyframes glowNormal { 0%,100%{transform:scale(1); opacity:0.25} 50%{transform:scale(1.35); opacity:0.45} }
@@ -275,34 +264,25 @@ const OurPresence = () => {
         @keyframes glowOuter { 0%{transform:scale(0.5); opacity:0} 30%{opacity:0.35} 100%{transform:scale(1.35); opacity:0} }
         .glow-outer { animation: glowOuter 1.6s cubic-bezier(0.16, 1, 0.3, 1) infinite; transform-origin: 25px 20px; }
         
-        /* 2 Seconds Premium Growing Animation ONLY when Active */
         @keyframes lineGrowIn {
           0% { stroke-dashoffset: 100%; }
           100% { stroke-dashoffset: 0; }
         }
-        .arrow-grow-active {
-          animation: lineGrowIn 2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
-        }
+        .arrow-grow-active { animation: lineGrowIn 2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important; }
 
-        /* Title text & dot smooth reveal transition sync at the end of the line journey */
         @keyframes titleReveal {
           0% { opacity: 0; filter: blur(1px); }
           50% { opacity: 0; }
           100% { opacity: 1; filter: blur(0); }
         }
-        .title-reveal-active {
-          animation: titleReveal 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
+        .title-reveal-active { animation: titleReveal 2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 
-        /* Ambient Line Pulse for active state */
         @keyframes ambientLinePulse {
           0%, 100% { stroke: #ff5500; filter: drop-shadow(0 0 1px rgba(255,85,0,0.1)); }
           50% { stroke: #ff2200; filter: drop-shadow(0 0 6px rgba(255,50,0,0.6)); }
         }
         .arrow-pulse-smooth { animation: ambientLinePulse 2s ease-in-out infinite; }
 
-        .live-dot { animation: livePulse 2s ease-in-out infinite; }
-        @keyframes livePulse { 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.5); opacity:0.4} }
         .region-pill-trigger:hover { color: #ff8755 !important; background-color: rgba(255,135,85,0.06) !important; }
       `}</style>
     </section>

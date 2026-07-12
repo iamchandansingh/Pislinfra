@@ -71,9 +71,9 @@ const AboutUs = () => {
           }} />
         </div>
 
-        {/* ── RIGHT COLUMN: Clickable Typography Block (Redirects to /about) ── */}
+        {/* ── RIGHT COLUMN: Clickable Typography Block (Redirects to /about#expertise) ── */}
         <motion.a 
-          href="/about" 
+          href="/about#expertise" 
           initial={{ opacity: 0, x: 20 }} 
           whileInView={{ opacity: 1, x: 0 }} 
           whileHover={{ x: 6 }}

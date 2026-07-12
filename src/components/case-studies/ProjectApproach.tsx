@@ -1,9 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 
-interface TimelineStep { id: number; step: string; title: string; description: string; }
-
-const timelineSteps: TimelineStep[] = [
+const timelineSteps = [
   { id: 1, step: '01', title: 'Understand', description: 'We deeply understand the client\'s needs.' },
   { id: 2, step: '02', title: 'Plan', description: 'We create smart, feasible and efficient plans.' },
   { id: 3, step: '03', title: 'Execute', description: 'We execute with precision and strict quality control.' },
@@ -11,7 +10,9 @@ const timelineSteps: TimelineStep[] = [
   { id: 5, step: '05', title: 'Optimize', description: 'We ensure long-term value and sustainability.' },
 ];
 
-const ProjectApproachCTA: React.FC = () => {
+const ProjectApproachCTA = () => {
+  const navigate = useNavigate();
+
   return (
     <div style={{ width: '100%', padding: '20px 0', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: '1300px', margin: '0 auto', paddingLeft: '16px', paddingRight: '16px' }}>
@@ -39,13 +40,25 @@ const ProjectApproachCTA: React.FC = () => {
           <div style={{ background: 'linear-gradient(135deg, #001B5B 0%, #0A2A66 100%)', borderRadius: '14px', padding: '26px', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '280px' }}>
             <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.2, margin: '0 0 10px 0', fontFamily: 'Inter, sans-serif' }}>Have a Project in Mind?</h3>
             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, margin: '0 0 18px 0', fontFamily: 'Inter, sans-serif' }}>Let's build something extraordinary together.</p>
-            <button style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', height: '44px', padding: '0 22px', backgroundColor: '#FF6B35', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter, sans-serif', alignSelf: 'flex-start', boxShadow: '0 4px 12px rgba(255,107,53,0.2)' }}>
+            <button onClick={() => navigate('/contact-us')} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', height: '44px', padding: '0 22px', backgroundColor: '#FF6B35', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter, sans-serif', alignSelf: 'flex-start', boxShadow: '0 4px 12px rgba(255,107,53,0.2)' }}>
               Get In Touch <FiArrowRight size={16} />
             </button>
           </div>
         </div>
       </div>
-      <style>{`@media (max-width: 1100px) { .approach-container { grid-template-columns: 1fr !important; } .timeline-grid { grid-template-columns: repeat(3, 1fr) !important; } .timeline-line { display: none; } } @media (max-width: 700px) { .timeline-grid { grid-template-columns: repeat(2, 1fr) !important; } } @media (max-width: 500px) { .timeline-grid { grid-template-columns: 1fr !important; } }`}</style>
+      <style>{`
+        @media (max-width: 1100px) {
+          .approach-container { grid-template-columns: 1fr !important; }
+          .timeline-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .timeline-line { display: none; }
+        }
+        @media (max-width: 700px) {
+          .timeline-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 500px) {
+          .timeline-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   );
 };

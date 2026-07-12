@@ -1,15 +1,38 @@
 import React from 'react'
 import PageHero from '../components/hero/PageHero'
+import BlogSEO from '../components/Blog/BlogSEO'
 import ContactCardsSection from '../components/Contact-us/ContactCardsSection'
 import ContactInquirySection from '../components/Contact-us/ContactInquirySection'
-import CompanyStatsSection from '../components/Contact-us/CompanyStatsSection'
 import ContactMapSection from '../components/Contact-us/ContactMapSection'
 
 const ContactUs = () => {
+  const seoData = {
+    contentType: 'page',
+    title: 'Contact Us',
+    seoTitle: 'Contact Us',
+    seoDescription: 'Contact Pislinfra for industrial infrastructure projects. Reach out via phone, email, or visit our office in Gurugram, Haryana. Get a quote today.',
+    seoKeywords: 'contact Pislinfra, infrastructure company contact, construction inquiry, industrial project quote, PISL office, Gurugram',
+    slug: 'contact-us',
+    canonicalUrl: 'https://pislinfra.com/contact-us',
+    ogTitle: 'Contact Pislinfra',
+    ogDescription: 'Get in touch with Pislinfra for warehousing, logistics & construction projects. Call, email or visit us.',
+    ogImage: 'https://pislinfra.com/images/hero/Contact-Us.png',
+    ogType: 'website',
+    twitterTitle: 'Contact Pislinfra - Infrastructure Company',
+    twitterDescription: 'Reach out for industrial construction & infrastructure projects.',
+    twitterImage: 'https://pislinfra.com/images/hero/Contact-Us.png',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'ContactPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['Contact', 'Inquiry', 'Quote', 'Industrial', 'Construction'],
+  };
+
   return (
-    <div style={{ fontFamily: 'inherit', minHeight: '100vh' }}>
+    <div style={{ fontFamily: 'Inter, sans-serif', minHeight: '100vh' }}>
       
-      {/* ══ 1. HERO SECTION ══ */}
+      <BlogSEO blog={seoData} />
+
       <PageHero
         title="Get in Touch"
         subtitle="Secure enterprise channel for infrastructure collaboration."
@@ -17,18 +40,20 @@ const ContactUs = () => {
         bgImage="/images/hero/Contact-Us.png"
       />
 
-      {/* ══ 2. CONTACT CARDS SECTION ══ */}
-      <ContactCardsSection />
+      <div className="contact-sections" style={{ display: 'flex', flexDirection: 'column', paddingBottom: '0' }}>
+        <ContactCardsSection />
+        <ContactInquirySection />
+        <ContactMapSection />
+      </div>
 
-      {/* ══ 3. CONTACT INQUIRY SECTION ══ */}
-      <ContactInquirySection />
-
-      {/* ══ 4. COMPANY STATS SECTION ══ */}
-      <CompanyStatsSection />
-
-      {/* ══ 5. MAP SECTION ══ */}
-      <ContactMapSection />
-
+      <style>{`
+        @media (min-width: 640px) {
+          .contact-sections { gap: 0 !important; }
+        }
+        @media (min-width: 1024px) {
+          .contact-sections { gap: 0 !important; }
+        }
+      `}</style>
     </div>
   )
 }

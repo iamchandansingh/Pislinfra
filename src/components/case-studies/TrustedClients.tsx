@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import clientsData from '../../data/clientsData';
 
-interface Client { id: number; name: string; logo: string; }
-
-const TrustedClients: React.FC = () => {
+const TrustedClients = () => {
   const seriesOrder = [
     'Adani', 'AM/NS India (ArcelorMittal Nippon Steel India)', 'Reliance Industries Limited',
     'Flipkart', 'Amazon', 'DHL', 'Prologis', 'Morgan Stanley', 'Lodha', 'PMG',
@@ -13,11 +11,11 @@ const TrustedClients: React.FC = () => {
 
   const filteredClients = seriesOrder
     .map(name => clientsData.find(c => c.name === name))
-    .filter(Boolean) as Client[];
+    .filter(Boolean);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef(null);
   const visibleLogos = 6;
 
   useEffect(() => {
@@ -43,7 +41,7 @@ const TrustedClients: React.FC = () => {
   return (
     <div style={{ width: '100%', padding: '48px 0', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: '1300px', margin: '0 auto', paddingLeft: '16px', paddingRight: '16px' }}>
-        <div style={{
+        <div className="clients-slider" style={{
           backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '18px',
           padding: '26px 28px', boxShadow: '0 6px 25px rgba(0,0,0,0.04)',
           display: 'flex', alignItems: 'center', gap: '16px',
@@ -55,7 +53,7 @@ const TrustedClients: React.FC = () => {
             <FiChevronLeft size={18} />
           </button>
 
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '55px', overflow: 'hidden', minHeight: '60px' }}>
+          <div className="clients-track" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '55px', overflow: 'hidden', minHeight: '60px' }}>
             {getVisibleClients().map((client, index) => (
               <div key={`${client.id}-${index}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.85, flexShrink: 0 }}>
                 <img src={client.logo} alt={client.name} title={client.name} style={{ height: '52px', maxWidth: '130px', objectFit: 'contain' }} />
@@ -69,6 +67,17 @@ const TrustedClients: React.FC = () => {
 
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .clients-track { gap: 30px !important; }
+        }
+        @media (max-width: 600px) {
+          .clients-slider { padding: 16px 12px !important; gap: 8px !important; }
+          .clients-track { gap: 16px !important; }
+          .clients-track img { height: 36px !important; max-width: 90px !important; }
+        }
+      `}</style>
     </div>
   );
 };

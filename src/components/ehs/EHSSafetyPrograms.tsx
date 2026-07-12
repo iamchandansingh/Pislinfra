@@ -20,27 +20,51 @@ const programs: Program[] = [
 const EHSSafetyPrograms: React.FC = () => {
   return (
     <div style={{ width: '100%', padding: '28px 0', backgroundColor: '#FFFFFF' }}>
+      <style>{`
+        .programs-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          background-color: #EEF2F7;
+          border: 1px solid #EEF2F7;
+          border-radius: 14px;
+          overflow: hidden;
+          margin-top: 24px;
+          gap: 1px;
+        }
+        .program-item {
+          padding: 26px 18px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          background-color: #FFFFFF;
+        }
+        @media (max-width: 1200px) {
+          .programs-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 900px) {
+          .programs-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+          .programs-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
       <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
         <div style={{ backgroundColor: '#F8FAFC', border: '1px solid #EEF2F7', borderRadius: '18px', padding: '32px' }}>
           
           <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, letterSpacing: '-0.5px', margin: 0, fontFamily: 'Inter, sans-serif' }}>Our Safety Programs</h2>
           <p style={{ fontSize: '13px', fontWeight: 400, color: '#64748B', lineHeight: 1.5, margin: '8px 0 0 0', fontFamily: 'Inter, sans-serif' }}>Structured programs that promote safety culture and drive zero harm.</p>
 
-          <div className="pc" style={{ marginTop: '24px', backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '14px', overflow: 'hidden', display: 'flex' }}>
-            {programs.map((program, index) => (
-              <React.Fragment key={program.id}>
-                <div className="pi" style={{ flex: 1, padding: '26px 18px', display: 'flex', alignItems: 'center', gap: '14px', backgroundColor: '#FFFFFF', minWidth: 0 }}>
-                  <span style={{ color: program.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>{program.icon}</span>
-                  <h3 style={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', lineHeight: 1.3, margin: 0, fontFamily: 'Inter, sans-serif' }}>{program.title}</h3>
-                </div>
-                {index < programs.length - 1 && <div style={{ width: '1px', backgroundColor: '#EEF2F7', flexShrink: 0 }} />}
-              </React.Fragment>
+          <div className="programs-grid">
+            {programs.map((program) => (
+              <div key={program.id} className="program-item">
+                <span style={{ color: program.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>{program.icon}</span>
+                <h3 style={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', lineHeight: 1.3, margin: 0, fontFamily: 'Inter, sans-serif' }}>{program.title}</h3>
+              </div>
             ))}
           </div>
 
         </div>
       </div>
-      <style>{`@media (max-width: 1200px) { .pc { flex-wrap: wrap; } .pi { min-width: calc(33.33% - 1px); flex: unset; } } @media (max-width: 900px) { .pi { min-width: calc(50% - 1px); } } @media (max-width: 600px) { .pi { min-width: 100%; } }`}</style>
     </div>
   );
 };

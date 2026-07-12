@@ -3,21 +3,21 @@ import React from 'react';
 const SafetyCulture = () => {
   return (
     <div style={{
-      fontFamily: '"Helvetica Neue", Arial, sans-serif',
+      fontFamily: 'Inter, sans-serif',
       padding: '60px 20px',
-      maxWidth: '1350px',
+      maxWidth: '1370px',
       margin: '0 auto',
       backgroundColor: '#ffffff'
     }}>
 
-      <div style={{ 
+      <div className="safety-culture-grid" style={{ 
         display: 'grid', 
         gridTemplateColumns: '1fr 1fr', 
         gap: '50px', 
         alignItems: 'center' 
-      }} className="safety-culture-grid">
+      }}>
         
-        {/* ==================== LEFT: Worker Image ==================== */}
+        {/* LEFT: Worker Image */}
         <div style={{
           borderRadius: '16px',
           overflow: 'hidden',
@@ -40,7 +40,7 @@ const SafetyCulture = () => {
           />
         </div>
 
-        {/* ==================== RIGHT: Content ==================== */}
+        {/* RIGHT: Content */}
         <div style={{ paddingLeft: '10px' }}>
           
           {/* Safety Culture */}
@@ -48,12 +48,12 @@ const SafetyCulture = () => {
             <h2 style={{
               fontSize: 'clamp(28px, 3.5vw, 40px)',
               fontWeight: '800',
-              color: '#111',
+              color: '#0a2a66',
               margin: '0 0 16px',
               letterSpacing: '-1px',
               lineHeight: 1.2
             }}>
-              Safety <span style={{ color: '#ff8755' }}>Culture</span>
+              Safety <span style={{ color: '#0a2a66' }}>Culture</span>
             </h2>
             
             <p style={{
@@ -86,7 +86,7 @@ const SafetyCulture = () => {
             <h3 style={{
               fontSize: '17px',
               fontWeight: '700',
-              color: '#111',
+              color: '#0a2a66',
               margin: '0 0 8px'
             }}>
               Pre-Task Planning Resources
@@ -111,7 +111,7 @@ const SafetyCulture = () => {
             <h3 style={{
               fontSize: '17px',
               fontWeight: '700',
-              color: '#111',
+              color: '#0a2a66',
               margin: '0 0 12px'
             }}>
               PPE Requirements
@@ -138,7 +138,7 @@ const SafetyCulture = () => {
                     width: '5px',
                     height: '5px',
                     borderRadius: '50%',
-                    background: '#ff8755',
+                    background: '#0a2a66',
                     flexShrink: 0
                   }} />
                   {item}
@@ -152,9 +152,15 @@ const SafetyCulture = () => {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .safety-culture-grid {
             grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .safety-culture-grid {
+            gap: 24px !important;
           }
         }
       `}</style>

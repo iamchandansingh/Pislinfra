@@ -6,87 +6,45 @@ const PageHero = ({ title, subtitle, breadcrumb, bgImage }) => {
     <section style={{
       position: 'relative',
       width: '100%',
-      padding: '80px 16px',
+      padding: '60px 16px',
       overflow: 'hidden',
+      fontFamily: 'Inter, sans-serif',
     }}>
-      {/* Background Image */}
       <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        filter: 'brightness(0.4)',
-        zIndex: 0,
-      }}></div>
-
-      {/* Gradient Overlay */}
+        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+        backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center',
+        filter: 'brightness(0.4)', zIndex: 0,
+      }} />
       <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        background: 'linear-gradient(135deg, rgba(42,42,117,0.9) 0%, rgba(0,0,0,0.6) 100%)',
-        zIndex: 1,
-      }}></div>
+        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+        background: 'linear-gradient(135deg, rgba(42,42,117,0.9) 0%, rgba(0,0,0,0.6) 100%)', zIndex: 1,
+      }} />
 
-      {/* Content */}
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 2, 
-        maxWidth: '1300px', 
-        margin: '0 auto',
-        paddingLeft: '0px',
-        paddingRight: '0px',
-      }}>
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1370px', margin: '0 auto', paddingLeft: '0px', paddingRight: '0px' }}>
         
-        {/* Breadcrumb */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '8px', 
-          marginBottom: '20px', 
-          fontSize: '14px', 
-          color: '#b3b5ff' 
-        }}>
-          <Link to="/" style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '4px', 
-            color: '#b3b5ff', 
-            textDecoration: 'none',
-            transition: 'color 0.3s'
-          }}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', fontSize: '13px', color: '#b3b5ff' }}>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#b3b5ff', textDecoration: 'none', transition: 'color 0.3s' }}
             onMouseEnter={(e) => e.currentTarget.style.color = '#ff8755'}
-            onMouseLeave={(e) => e.currentTarget.style.color = '#b3b5ff'}
-          >
+            onMouseLeave={(e) => e.currentTarget.style.color = '#b3b5ff'}>
             <HiHome /> Home
           </Link>
           <span style={{ color: '#8888ff' }}>/</span>
-          <span style={{ color: '#ff8755' }}>{breadcrumb}</span>
+          <span style={{ color: '#ff8755', fontWeight: 600 }}>{breadcrumb}</span>
         </div>
 
-        {/* Title */}
-        <h1 style={{
-          fontSize: 'clamp(28px, 5vw, 42px)',
-          fontWeight: 'bold',
-          color: 'white',
-          marginBottom: subtitle ? '8px' : '0',
-        }}>
+        <h1 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'white', marginBottom: subtitle ? '6px' : '0' }}>
           {title}
         </h1>
 
-        {/* Subtitle */}
         {subtitle && (
-          <p style={{ color: '#b3b5ff', fontSize: '16px', margin: 0 }}>
-            {subtitle}
-          </p>
+          <p style={{ color: '#b3b5ff', fontSize: '14px', margin: 0 }}>{subtitle}</p>
         )}
       </div>
+
+      <style>{`
+        @media (min-width: 640px) { section { padding: 70px 20px !important; } }
+        @media (min-width: 1024px) { section { padding: 80px 24px !important; } }
+      `}</style>
     </section>
   )
 }

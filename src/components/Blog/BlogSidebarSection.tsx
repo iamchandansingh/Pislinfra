@@ -1,333 +1,365 @@
-import React, { useState } from 'react';
-import { Search, Folder, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Folder } from 'lucide-react';
+import BlogDB from '../../data/BlogDB';
 
-// Types
-interface RecentPost {
-  id: number;
-  title: string;
-  date: string;
-  image: string;
-}
+const BlogSidebarSection = () => {
+  const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
 
-interface CategoryItem {
-  id: string;
-  name: string;
-  count: number;
-}
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-// Recent Posts Data - Online Images
-const recentPosts: RecentPost[] = [
-  {
-    id: 1,
-    title: 'Future of Infrastructure Development in India',
-    date: '05 Jun 2026',
-    image: 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=200',
-  },
-  {
-    id: 2,
-    title: 'Logistics Parks: The Backbone of Supply Chain',
-    date: '02 Jun 2026',
-    image: 'https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=200',
-  },
-  {
-    id: 3,
-    title: 'Warehouse Automation Trends 2026',
-    date: '30 May 2026',
-    image: 'https://images.pexels.com/photos/3777190/pexels-photo-3777190.jpeg?auto=compress&cs=tinysrgb&w=200',
-  },
-  {
-    id: 4,
-    title: 'Safety Standards in Industrial Construction',
-    date: '28 May 2026',
-    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=200',
-  },
-  {
-    id: 5,
-    title: 'Govt Initiatives Boosting Infrastructure Growth',
-    date: '26 May 2026',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=200',
-  },
-];
+  const recentPosts = [...BlogDB]
+    .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
+    .slice(0, 5)
+    .map(blog => ({
+      id: blog.id,
+      title: blog.title,
+      date: new Date(blog.publishDate).toLocaleDateString('en-US', {
+        day: '2-digit', month: 'short', year: 'numeric',
+      }),
+      image: blog.featuredImage,
+      slug: blog.slug,
+    }));
 
-// Categories Data
-const categories: CategoryItem[] = [
-  { id: 'infrastructure', name: 'Infrastructure', count: 12 },
-  { id: 'logistics', name: 'Logistics', count: 10 },
-  { id: 'warehousing', name: 'Warehousing', count: 8 },
-  { id: 'industrial', name: 'Industrial', count: 7 },
-  { id: 'safety', name: 'Safety', count: 6 },
-  { id: 'government-policy', name: 'Government Policy', count: 5 },
-  { id: 'projects', name: 'Projects', count: 9 },
-];
+  const categoryCounts = {};
+  BlogDB.forEach(blog => {
+    if (blog.category) {
+      categoryCounts[blog.category] = (categoryCounts[blog.category] || 0) + 1;
+    }
+  });
 
-// Main Component
-const BlogSidebarSection: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [email, setEmail] = useState('');
+  const categories = Object.entries(categoryCounts).map(([name, count]) => ({
+    id: name.toLowerCase().replace(/\s+/g, '-'),
+    name,
+    count,
+  }));
 
   return (
-    <aside style={{
-      width: '100%',
-      maxWidth: '320px',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '24px',
-      flexShrink: 0,
-      position: 'sticky',
-      top: '32px',
-    }}
-    className="blog-sidebar">
+    <aside className="blog-sidebar">
       
-      {/* 1. Search + Recent Posts - MERGED */}
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E5EAF2',
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 2px 10px rgba(15,23,42,0.03)',
-      }}>
-        {/* Search */}
-        <h3 style={{
-          fontSize: '28px',
-          fontWeight: 700,
-          color: '#1E2A5A',
-          marginBottom: '20px',
-          fontFamily: 'Inter, sans-serif',
-          lineHeight: 1.2,
-        }}>
-          Search
-        </h3>
-        <div style={{ position: 'relative', marginBottom: '24px' }}>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search blogs..."
-            style={{
-              width: '100%',
-              height: '44px',
-              border: '1px solid #DCE3EC',
-              borderRadius: '8px',
-              padding: '0 48px 0 14px',
-              fontSize: '13px',
-              color: '#64748B',
-              outline: 'none',
-              fontFamily: 'Inter, sans-serif',
-              boxSizing: 'border-box',
-              backgroundColor: '#FFFFFF',
-            }}
-            onFocus={(e) => { e.currentTarget.style.borderColor = '#FF6B35'; }}
-            onBlur={(e) => { e.currentTarget.style.borderColor = '#DCE3EC'; }}
-          />
-          <button
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              width: '44px',
-              height: '44px',
-              backgroundColor: '#0B1450',
-              border: 'none',
-              borderRadius: '0 8px 8px 0',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-            }}
-            aria-label="Search"
-          >
-            <Search size={16} color="#FFFFFF" />
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div style={{
-          height: '1px',
-          backgroundColor: '#EEF2F7',
-          marginBottom: '24px',
-        }} />
-
-        {/* Recent Posts */}
-        <h3 style={{
-          fontSize: '28px',
-          fontWeight: 700,
-          color: '#1E2A5A',
-          marginBottom: '20px',
-          fontFamily: 'Inter, sans-serif',
-          lineHeight: 1.2,
-        }}>
-          Recent Posts
-        </h3>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {recentPosts.map((post, index) => (
+      {/* Recent Posts Card */}
+      <div className="sidebar-card">
+        <h3 className="sidebar-heading">Recent Posts</h3>
+        
+        <div className="recent-posts-list">
+          {recentPosts.length > 0 ? recentPosts.map((post, index) => (
             <div
               key={post.id}
-              style={{
-                display: 'flex',
-                gap: '12px',
-                paddingTop: index === 0 ? '0' : '14px',
-                paddingBottom: '14px',
-                borderBottom: index < recentPosts.length - 1 ? '1px solid #EEF2F7' : 'none',
-                cursor: 'pointer',
-              }}
+              onClick={() => navigate(`/blog/${post.slug}`)}
+              className={`recent-post-item ${index === recentPosts.length - 1 ? 'last-item' : ''}`}
             >
-              <div style={{
-                width: '72px',
-                height: '56px',
-                minWidth: '72px',
-                borderRadius: '6px',
-                overflow: 'hidden',
-                backgroundColor: '#F1F5F9',
-                backgroundImage: `url(${post.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h4 style={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  color: '#1E2A5A',
-                  margin: '0 0 4px 0',
-                  lineHeight: 1.4,
-                  display: '-webkit-box',
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden',
-                  fontFamily: 'Inter, sans-serif',
-                }}>
-                  {post.title}
-                </h4>
-                <p style={{
-                  fontSize: '12px',
-                  fontWeight: 500,
-                  color: '#64748B',
-                  margin: 0,
-                  fontFamily: 'Inter, sans-serif',
-                }}>
-                  {post.date}
-                </p>
+              <div
+                className="recent-post-image"
+                style={{
+                  backgroundImage: `url(${post.image})`,
+                }}
+              />
+              <div className="recent-post-content">
+                <h4 className="recent-post-title">{post.title}</h4>
+                <p className="recent-post-date">{post.date}</p>
               </div>
             </div>
-          ))}
+          )) : (
+            <p className="no-posts-text">No posts yet</p>
+          )}
         </div>
       </div>
 
-      {/* 2. Categories Widget */}
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E5EAF2',
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 2px 10px rgba(15,23,42,0.03)',
-      }}>
-        <h3 style={{
-          fontSize: '28px',
-          fontWeight: 700,
-          color: '#1E2A5A',
-          marginBottom: '20px',
-          fontFamily: 'Inter, sans-serif',
-          lineHeight: 1.2,
-        }}>
-          Categories
-        </h3>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {categories.map((category, index) => (
-            <div
-              key={category.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                height: '40px',
-                borderBottom: index < categories.length - 1 ? '1px solid #EEF2F7' : 'none',
-                cursor: 'pointer',
-                color: '#475569',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#FF6B35'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#475569'; }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Folder size={14} color="#FF6B35" />
-                <span style={{ fontSize: '14px', fontWeight: 500, color: 'inherit', fontFamily: 'Inter, sans-serif' }}>
-                  {category.name}
+      {/* Categories Card */}
+      {categories.length > 0 && (
+        <div className="sidebar-card">
+          <h3 className="sidebar-heading">Categories</h3>
+          
+          <div className="categories-list">
+            {categories.map((category, index) => (
+              <div
+                key={category.id}
+                onClick={() => navigate(`/blog?category=${encodeURIComponent(category.name)}`)}
+                className={`category-item ${index === categories.length - 1 ? 'last-item' : ''}`}
+              >
+                <div className="category-name">
+                  <Folder size={13} color="#FF6B35" />
+                  <span>{category.name}</span>
+                </div>
+                <span className="category-count">
+                  {String(category.count).padStart(2, '0')}
                 </span>
               </div>
-              <span style={{ fontSize: '13px', fontWeight: 600, color: '#64748B', fontFamily: 'Inter, sans-serif' }}>
-                {category.count.toString().padStart(2, '0')}
-              </span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* 3. Newsletter Widget */}
-      <div style={{
-        background: 'linear-gradient(180deg, #0B1450 0%, #182D8C 100%)',
-        borderRadius: '12px',
-        padding: '24px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', bottom: '-20px', right: '-20px',
-          width: '120px', height: '120px', borderRadius: '50%',
-          backgroundColor: 'rgba(255,255,255,0.05)', pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', bottom: '10px', right: '10px',
-          opacity: 0.08, pointerEvents: 'none',
-        }}>
-          <Mail size={80} color="#FFFFFF" />
-        </div>
-
-        <h3 style={{
-          fontSize: '24px', fontWeight: 700, color: '#FFFFFF',
-          marginBottom: '12px', fontFamily: 'Inter, sans-serif',
-          lineHeight: 1.2, position: 'relative', zIndex: 1,
-        }}>
-          Subscribe
-        </h3>
-        <p style={{
-          fontSize: '13px', lineHeight: 1.7, color: 'rgba(255,255,255,0.85)',
-          marginBottom: '16px', fontFamily: 'Inter, sans-serif',
-          position: 'relative', zIndex: 1,
-        }}>
-          Get the latest insights delivered to your inbox.
-        </p>
-
-        <div style={{ position: 'relative', zIndex: 1, marginBottom: '12px' }}>
-          <input
-            type="email" value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            style={{
-              width: '100%', height: '44px', backgroundColor: '#FFFFFF',
-              border: 'none', borderRadius: '8px', padding: '0 14px',
-              fontSize: '13px', color: '#1E2A5A', outline: 'none',
-              fontFamily: 'Inter, sans-serif', boxSizing: 'border-box',
-            }}
-          />
-        </div>
-
-        <button
-          style={{
-            width: '100%', height: '44px', backgroundColor: '#FF6B35',
-            color: '#FFFFFF', border: 'none', borderRadius: '8px',
-            fontSize: '13px', fontWeight: 600, cursor: 'pointer',
-            fontFamily: 'Inter, sans-serif', transition: 'background 0.2s',
-            position: 'relative', zIndex: 1,
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#F45A22'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FF6B35'; }}
-        >
-          Subscribe Now
-        </button>
-      </div>
-
+      {/* Responsive Styles */}
       <style>{`
-        @media (max-width: 1024px) {
-          .blog-sidebar { max-width: 100% !important; position: static !important; }
+        /* ===== BASE (Mobile First) ===== */
+        .blog-sidebar {
+          width: 100%;
+          max-width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          flex-shrink: 0;
+          position: static;
+        }
+
+        .sidebar-card {
+          background-color: #FFFFFF;
+          border: 1px solid #E5EAF2;
+          border-radius: 10px;
+          padding: 16px;
+          box-shadow: 0 1px 4px rgba(15,23,42,0.02);
+        }
+
+        .sidebar-heading {
+          font-size: 18px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0 0 12px 0;
+          font-family: Inter, sans-serif;
+          line-height: 1.2;
+        }
+
+        /* Recent Posts */
+        .recent-posts-list {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .recent-post-item {
+          display: flex;
+          gap: 10px;
+          padding: 10px 0;
+          border-bottom: 1px solid #EEF2F7;
+          cursor: pointer;
+          transition: opacity 0.2s;
+        }
+
+        .recent-post-item:hover {
+          opacity: 0.8;
+        }
+
+        .recent-post-item:first-child {
+          padding-top: 0;
+        }
+
+        .recent-post-item.last-item {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        .recent-post-image {
+          width: 60px;
+          height: 48px;
+          min-width: 60px;
+          border-radius: 6px;
+          overflow: hidden;
+          background-color: #F1F5F9;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .recent-post-content {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .recent-post-title {
+          font-size: 12px;
+          font-weight: 600;
+          color: #1E2A5A;
+          margin: 0 0 3px 0;
+          line-height: 1.3;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          font-family: Inter, sans-serif;
+        }
+
+        .recent-post-date {
+          font-size: 11px;
+          font-weight: 500;
+          color: #64748B;
+          margin: 0;
+          font-family: Inter, sans-serif;
+        }
+
+        .no-posts-text {
+          font-size: 12px;
+          color: #94A3B8;
+          font-family: Inter, sans-serif;
+          text-align: center;
+          padding: 12px 0;
+          margin: 0;
+        }
+
+        /* Categories */
+        .categories-list {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .category-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 38px;
+          border-bottom: 1px solid #EEF2F7;
+          cursor: pointer;
+          color: #475569;
+          transition: color 0.2s;
+        }
+
+        .category-item:hover {
+          color: #FF6B35;
+        }
+
+        .category-item.last-item {
+          border-bottom: none;
+        }
+
+        .category-name {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .category-name span {
+          font-size: 13px;
+          font-weight: 500;
+          color: inherit;
+          font-family: Inter, sans-serif;
+        }
+
+        .category-count {
+          font-size: 12px;
+          font-weight: 600;
+          color: #64748B;
+          font-family: Inter, sans-serif;
+        }
+
+
+        /* ===== Tablet (640px+) ===== */
+        @media (min-width: 640px) {
+          .blog-sidebar {
+            gap: 20px;
+          }
+
+          .sidebar-card {
+            padding: 20px;
+            border-radius: 12px;
+          }
+
+          .sidebar-heading {
+            font-size: 20px;
+            margin-bottom: 14px;
+          }
+
+          .recent-post-image {
+            width: 70px;
+            height: 52px;
+            min-width: 70px;
+          }
+
+          .recent-post-title {
+            font-size: 13px;
+          }
+        }
+
+
+        /* ===== Desktop (1100px+) ===== */
+        @media (min-width: 1100px) {
+          .blog-sidebar {
+            max-width: 320px;
+            position: sticky;
+            top: 100px;
+            gap: 20px;
+          }
+
+          .sidebar-heading {
+            font-size: 22px;
+            margin-bottom: 16px;
+          }
+
+          .recent-post-image {
+            width: 64px;
+            height: 48px;
+            min-width: 64px;
+          }
+
+          .recent-post-title {
+            font-size: 12px;
+          }
+
+          .category-item {
+            height: 36px;
+          }
+        }
+
+
+        /* ===== Large Desktop (1400px+) ===== */
+        @media (min-width: 1400px) {
+          .blog-sidebar {
+            max-width: 360px;
+          }
+
+          .sidebar-heading {
+            font-size: 24px;
+          }
+
+          .recent-post-image {
+            width: 72px;
+            height: 54px;
+            min-width: 72px;
+          }
+
+          .recent-post-title {
+            font-size: 13px;
+          }
+        }
+
+
+        /* ===== Small Mobile (480px) ===== */
+        @media (max-width: 480px) {
+          .blog-sidebar {
+            gap: 12px;
+          }
+
+          .sidebar-card {
+            padding: 14px;
+          }
+
+          .sidebar-heading {
+            font-size: 17px;
+            margin-bottom: 10px;
+          }
+
+          .recent-post-image {
+            width: 52px;
+            height: 42px;
+            min-width: 52px;
+          }
+
+          .recent-post-title {
+            font-size: 11px;
+          }
+
+          .recent-post-date {
+            font-size: 10px;
+          }
+
+          .category-name span {
+            font-size: 12px;
+          }
         }
       `}</style>
     </aside>

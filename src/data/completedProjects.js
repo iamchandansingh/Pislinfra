@@ -11,13 +11,13 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build',
     images: [
-      '/src/assets/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr.png',
-      '/src/assets/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-2.png',
-      '/src/assets/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-3.png',
-      '/src/assets/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-5.png',
-      '/src/assets/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-6.png'
+      '/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr.png',
+      '/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-2.png',
+      '/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-3.png',
+      '/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-5.png',
+      '/images/Project/complete/Pataudi-NCR/om-sukh-logistics-park-pataudi-hr-6.png'
     ]
-},
+  },
   {
     id: 2,
     category: 'Warehousing',
@@ -30,12 +30,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Civil & PHE Work',
     images: [
-      '/src/assets/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr.png',
-      '/src/assets/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-2.png',
-      '/src/assets/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-3.png',
-      '/src/assets/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-4.png',
-      '/src/assets/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-5.png',
-      '/src/assets/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-6.png'
+      '/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr.png',
+      '/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-2.png',
+      '/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-3.png',
+      '/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-4.png',
+      '/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-5.png',
+      '/images/Project/complete/Patli-NCR/ncr-bigbox-patli-hr-6.png'
     ]
   },
   {
@@ -50,12 +50,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build',
     images: [
-      '/src/assets/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr.png',
-      '/src/assets/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-2.png',
-      '/src/assets/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-3.png',
-      '/src/assets/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-4.png',
-      '/src/assets/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-5.png',
-      '/src/assets/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-6.png'
+      '/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr.png',
+      '/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-2.png',
+      '/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-3.png',
+      '/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-4.png',
+      '/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-5.png',
+      '/images/Project/complete/Tauru-NCR/prr-warehousing-pvt-ltd-tauru-hr-6.png'
     ]
   },
   {
@@ -70,12 +70,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build',
     images: [
-      '/src/assets/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn.png',
-      '/src/assets/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-2.png',
-      '/src/assets/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-3.png',
-      '/src/assets/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-4.png',
-      '/src/assets/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-5.png',
-      '/src/assets/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-6.png'
+      '/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn.png',
+      '/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-2.png',
+      '/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-3.png',
+      '/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-4.png',
+      '/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-5.png',
+      '/images/Project/complete/Coimbatore/gmr-coimbatore-logistics-park-coimbatore-tn-6.png'
     ]
   },
   {
@@ -90,12 +90,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build',
     images: [
-      '/src/assets/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn.png',
-      '/src/assets/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-2.png',
-      '/src/assets/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-3.png',
-      '/src/assets/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-4.png',
-      '/src/assets/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-5.png',
-      '/src/assets/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-6.png'
+      '/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn.png',
+      '/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-2.png',
+      '/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-3.png',
+      '/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-4.png',
+      '/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-5.png',
+      '/images/Project/complete/Thoothukudi/vinfast-factory-phase-1-thoothukudi-tn-6.png'
     ]
   },
   {
@@ -110,12 +110,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka.png',
-      '/src/assets/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-2.png',
-      '/src/assets/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-3.png',
-      '/src/assets/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-4.png',
-      '/src/assets/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-5.png',
-      '/src/assets/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-6.png'
+      '/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka.png',
+      '/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-2.png',
+      '/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-3.png',
+      '/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-4.png',
+      '/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-5.png',
+      '/images/Project/complete/Bengaluru/gmr-hoskote-logistics-park-ka-6.png'
     ]
   },
   {
@@ -130,12 +130,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr.png',
-      '/src/assets/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-2.png',
-      '/src/assets/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-3.png',
-      '/src/assets/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-4.png',
-      '/src/assets/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-5.png',
-      '/src/assets/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-6.png'
+      '/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr.png',
+      '/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-2.png',
+      '/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-3.png',
+      '/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-4.png',
+      '/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-5.png',
+      '/images/Project/complete/Palwal-NCR/bluestar-realtors-ltd-palwal-hr-6.png'
     ]
   },
   {
@@ -150,12 +150,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Civil Work & External Development Work',
     images: [
-      '/src/assets/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn.png',
-      '/src/assets/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-2.png',
-      '/src/assets/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-3.png',
-      '/src/assets/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-4.png',
-      '/src/assets/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-5.png',
-      '/src/assets/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-6.png'
+      '/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn.png',
+      '/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-2.png',
+      '/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-3.png',
+      '/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-4.png',
+      '/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-5.png',
+      '/images/Project/complete/Chennai/rajratan-global-wires-chennai-tn-6.png'
     ]
   },
   {
@@ -170,12 +170,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Civil Work & Unity Building',
     images: [
-      '/src/assets/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh.png',
-      '/src/assets/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-2.png',
-      '/src/assets/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-3.png',
-      '/src/assets/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-4.png',
-      '/src/assets/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-5.png',
-      '/src/assets/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-6.png'
+      '/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh.png',
+      '/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-2.png',
+      '/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-3.png',
+      '/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-4.png',
+      '/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-5.png',
+      '/images/Project/complete/Mumbai/lodha-industrial-park-development-a5-mumbai-mh-6.png'
     ]
   },
   {
@@ -190,12 +190,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Industrial Building & Admin Building',
     images: [
-      '/src/assets/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr.png',
-      '/src/assets/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-2.png',
-      '/src/assets/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-3.png',
-      '/src/assets/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-4.png',
-      '/src/assets/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-5.png',
-      '/src/assets/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-6.png'
+      '/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr.png',
+      '/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-2.png',
+      '/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-3.png',
+      '/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-4.png',
+      '/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-5.png',
+      '/images/Project/complete/Farukhnager-HR/avitech-nutrition-farukhnager-hr-6.png'
     ]
   },
   {
@@ -210,12 +210,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Civil Work & External Development Work',
     images: [
-      '/src/assets/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr.png',
-      '/src/assets/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-2.png',
-      '/src/assets/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-3.png',
-      '/src/assets/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-4.png',
-      '/src/assets/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-5.png',
-      '/src/assets/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-6.png'
+      '/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr.png',
+      '/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-2.png',
+      '/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-3.png',
+      '/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-4.png',
+      '/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-5.png',
+      '/images/Project/complete/Jaipur/oswal-logistics-park-jaipur-hr-6.png'
     ]
   },
   {
@@ -230,11 +230,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj.png',
-      '/src/assets/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-2.png',
-      '/src/assets/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-3.png',
-      '/src/assets/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-4.png',
-      '/src/assets/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-5.png'
+      '/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj.png',
+      '/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-2.png',
+      '/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-3.png',
+      '/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-4.png',
+      '/images/Project/complete/Neemrana/pragati-prathamus-logistics-park-neemrana-rj-5.png'
     ]
   },
   {
@@ -249,12 +249,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb.png',
-      '/src/assets/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-2.png',
-      '/src/assets/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-3.png',
-      '/src/assets/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-4.png',
-      '/src/assets/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-5.png',
-      '/src/assets/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-6.png'
+      '/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb.png',
+      '/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-2.png',
+      '/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-3.png',
+      '/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-4.png',
+      '/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-5.png',
+      '/images/Project/complete/Ludhiana/ludhiana-logistics-park-pb-6.png'
     ]
   },
   {
@@ -269,12 +269,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr.png',
-      '/src/assets/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-2.png',
-      '/src/assets/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-3.png',
-      '/src/assets/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-4.png',
-      '/src/assets/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-5.png',
-      '/src/assets/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-6.png'
+      '/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr.png',
+      '/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-2.png',
+      '/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-3.png',
+      '/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-4.png',
+      '/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-5.png',
+      '/images/Project/complete/Farrukhnagar-NCR/pragati-farrukhnagar-logistics-park-hr-6.png'
     ]
   },
   {
@@ -289,11 +289,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-2.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-3.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-4.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-6.png'
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-2.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-3.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-4.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-6.png'
     ]
   },
   {
@@ -308,13 +308,13 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka.png',
-      '/src/assets/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-2.png',
-      '/src/assets/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-3.png',
-      '/src/assets/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-4.png',
-      '/src/assets/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-5.png',
-      '/src/assets/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-6.png',
-      '/src/assets/images/Project/complete/Bengaluru-KA/7.png'
+      '/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka.png',
+      '/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-2.png',
+      '/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-3.png',
+      '/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-4.png',
+      '/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-5.png',
+      '/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-6.png',
+      '/images/Project/complete/Bengaluru-KA/7.png'
     ]
   },
   {
@@ -329,11 +329,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Pataudi-HR/flipkart-sampka-ptaudi-hr.png',
-      '/src/assets/images/Project/complete/Pataudi-HR/flipkart-sampka-ptaudi-hr-2.png',
-      '/src/assets/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr.png',
-      '/src/assets/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr-3.png',
-      '/src/assets/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr-2.png'
+      '/images/Project/complete/Pataudi-HR/flipkart-sampka-ptaudi-hr.png',
+      '/images/Project/complete/Pataudi-HR/flipkart-sampka-ptaudi-hr-2.png',
+      '/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr.png',
+      '/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr-3.png',
+      '/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr-2.png'
     ]
   },
   {
@@ -348,12 +348,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-2.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-3.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-4.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-5.png',
-      '/src/assets/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-6.png'
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-2.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-3.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-4.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-5.png',
+      '/images/Project/complete/Khijuri-NCR/pragati-one-logistics-park-khijuri-hr-6.png'
     ]
   },
   {
@@ -368,12 +368,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr.png',
-      '/src/assets/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-2.png',
-      '/src/assets/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-3.png',
-      '/src/assets/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-4.png',
-      '/src/assets/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-5.png',
-      '/src/assets/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-6.png'
+      '/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr.png',
+      '/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-2.png',
+      '/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-3.png',
+      '/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-4.png',
+      '/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-5.png',
+      '/images/Project/complete/Pathreri-NCR/ecom-express-india-one-pathreri-hr-6.png'
     ]
   },
   {
@@ -388,11 +388,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr.png',
-      '/src/assets/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-2.png',
-      '/src/assets/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-3.png',
-      '/src/assets/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-4.png',
-      '/src/assets/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-5.png'
+      '/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr.png',
+      '/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-2.png',
+      '/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-3.png',
+      '/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-4.png',
+      '/images/Project/complete/Jamalpur-NCR/amazon-ncrun-jamalpur-hr-5.png'
     ]
   },
   {
@@ -407,11 +407,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr.png',
-      '/src/assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-2.png',
-      '/src/assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-3.png',
-      '/src/assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-4.png',
-      '/src/assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-5.png'
+      '/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr.png',
+      '/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-2.png',
+      '/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-3.png',
+      '/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-4.png',
+      '/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-5.png'
     ]
   },
   {
@@ -426,11 +426,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr.png',
-      '/src/assets/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-2.png',
-      '/src/assets/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-3.png',
-      '/src/assets/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-4.png',
-      '/src/assets/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-5.png'
+      '/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr.png',
+      '/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-2.png',
+      '/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-3.png',
+      '/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-4.png',
+      '/images/Project/complete/Manesar-NCR/amazon-delu-manesar-hr-5.png'
     ]
   },
   {
@@ -445,12 +445,12 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Civil Work for External Development',
     images: [
-      '/src/assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-2.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-3.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-4.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-5.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-6.png'
+      '/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr.png',
+      '/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-2.png',
+      '/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-3.png',
+      '/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-4.png',
+      '/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-5.png',
+      '/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-6.png'
     ]
   },
   {
@@ -465,11 +465,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr.png',
-      '/src/assets/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-2.png',
-      '/src/assets/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-3.png',
-      '/src/assets/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-4.png',
-      '/src/assets/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-5.png'
+      '/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr.png',
+      '/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-2.png',
+      '/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-3.png',
+      '/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-4.png',
+      '/images/Project/complete/Dharuhera-NCR/cadbury-warehouse-dharuhera-hr-5.png'
     ]
   },
   {
@@ -484,11 +484,11 @@ const completedProjects = [
     status: 'Completed',
     scope: 'Design & Build Contract',
     images: [
-      '/src/assets/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-2.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-3.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-4.png',
-      '/src/assets/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-5.png'
+      '/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr.png',
+      '/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-2.png',
+      '/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-3.png',
+      '/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-4.png',
+      '/images/Project/complete/Bilaspur-NCR-2/blue-dart-warehouse-bilaspur-hr-5.png'
     ]
   }
 ];

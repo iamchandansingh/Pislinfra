@@ -4,27 +4,9 @@ import AwardsFilters from './AwardsFilters';
 import AwardsGrid from './AwardsGrid';
 import { sampleAwards } from './AwardsCard';
 
-interface AwardItem {
-  id: string; image: string; badge: string; badgeBg: string; badgeColor: string;
-  title: string; location: string; description: string; category: string;
-  type: 'award' | 'certificate'; date?: string;
-}
-
-interface AwardsAccordionProps {    
-  year: string;
-  totalAwards: number;
-  totalCertificates: number;
-  description: string;
-  awards?: AwardItem[];
-  defaultOpen?: boolean;
-  color?: string;
-  isOpen?: boolean;
-  onToggle?: () => void;
-}
-
-const AwardsAccordion: React.FC<AwardsAccordionProps> = ({
+const AwardsAccordion = ({
   year, totalAwards, totalCertificates, description,
-  awards = sampleAwards as AwardItem[],
+  awards = sampleAwards,
   defaultOpen = false, color = '#3B82F6',
   isOpen: controlledOpen,
   onToggle,
@@ -34,7 +16,7 @@ const AwardsAccordion: React.FC<AwardsAccordionProps> = ({
   const [activeFilter, setActiveFilter] = useState('all');
   const total = totalAwards + totalCertificates;
   
-  const contentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {

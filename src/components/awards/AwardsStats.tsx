@@ -1,25 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiAward, FiStar, FiUsers, FiGlobe } from 'react-icons/fi';
+import awardsAndCertifications from '../../data/Awards-&-Certifications';
 
-interface StatItem {
-  id: string;
-  icon: React.ReactNode;
-  iconColor: string;
-  value: number;
-  suffix: string;
-  label: string;
-}
-
-const statsData: StatItem[] = [
-  { id: 'awards', icon: <FiAward size={36} strokeWidth={1.8} />, iconColor: '#F97316', value: 60, suffix: '+', label: 'Awards Won' },
-  { id: 'years', icon: <FiStar size={36} strokeWidth={1.8} />, iconColor: '#F59E0B', value: 10, suffix: '+', label: 'Years of Recognition' },
-  { id: 'institutions', icon: <FiUsers size={36} strokeWidth={1.8} />, iconColor: '#4F46E5', value: 25, suffix: '+', label: 'Institutions & Bodies' },
-  { id: 'recognition', icon: <FiGlobe size={36} strokeWidth={1.8} />, iconColor: '#22C55E', value: 1, suffix: '', label: 'Pan India Recognition' },
-];
-
-const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) => {
+const CounterAnimation = ({ value, suffix }) => {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
@@ -55,22 +40,79 @@ const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) 
   );
 };
 
-const AwardsStats: React.FC = () => (
-  <div style={{ width: '100%', position: 'relative', marginTop: '-55px', zIndex: 20 }}>
-    <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
-      <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '18px', padding: '22px 20px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-        {statsData.map((stat, index) => (
-          <div key={stat.id} style={{ display: 'flex', alignItems: 'center', gap: '14px', justifyContent: 'center', padding: '0 14px', borderRight: index < 3 ? '1px solid #EEF2F7' : 'none' }}>
-            <span style={{ color: stat.iconColor, display: 'flex', lineHeight: 0 }}>{stat.icon}</span>
-            <div>
-              <CounterAnimation value={stat.value} suffix={stat.suffix} />
-              <p style={{ fontSize: '12px', fontWeight: 600, color: '#475569', margin: '3px 0 0 0', fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>
+const AwardsStats = () => {
+  const totalAwards = awardsAndCertifications.filter(a => a.category === 'Award').length;
+  const totalCertifications = awardsAndCertifications.filter(a => a.category === 'Certification').length;
+  const totalAll = awardsAndCertifications.length;
+  
+  const years = [...new Set(awardsAndCertifications.map(a => a.year).filter(Boolean))];
+  const yearsCount = years.length;
+
+  const statsData = [
+    { id: 'awards', icon: <FiAward size={36} strokeWidth={1.8} />, iconColor: '#F97316', value: totalAll, suffix: '+', label: 'Awards & Certs' },
+    { id: 'years', icon: <FiStar size={36} strokeWidth={1.8} />, iconColor: '#F59E0B', value: yearsCount, suffix: '+', label: 'Years of Recognition' },
+    { id: 'institutions', icon: <FiUsers size={36} strokeWidth={1.8} />, iconColor: '#4F46E5', value: 8, suffix: '+', label: 'Institutions & Bodies' },
+    { id: 'recognition', icon: <FiGlobe size={36} strokeWidth={1.8} />, iconColor: '#22C55E', value: 1, suffix: '', label: 'Pan India Recognition' },
+  ];
+
+  return (
+    <div style={{ width: '100%', position: 'relative', marginTop: '-55px', zIndex: 20 }}>
+      <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
+        
+        {/* Desktop Layout */}
+        <div className="awards-desktop" style={{ 
+          backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '18px', 
+          padding: '22px 20px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', 
+          display: 'none', gridTemplateColumns: 'repeat(4, 1fr)',
+        }}>
+          {statsData.map((stat, index) => (
+            <div key={stat.id} style={{ 
+              display: 'flex', alignItems: 'center', gap: '14px', justifyContent: 'center', 
+              padding: '0 14px', borderRight: index < 3 ? '1px solid #EEF2F7' : 'none' 
+            }}>
+              <span style={{ color: stat.iconColor, display: 'flex', lineHeight: 0 }}>{stat.icon}</span>
+              <div>
+                <CounterAnimation value={stat.value} suffix={stat.suffix} />
+                <p style={{ fontSize: '12px', fontWeight: 600, color: '#475569', margin: '3px 0 0 0', fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="awards-mobile" style={{ 
+          backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '16px', 
+          padding: '16px 10px', boxShadow: '0 8px 24px rgba(0,0,0,0.06)', 
+          display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',
+        }}>
+          {statsData.map((stat, index) => (
+            <div key={stat.id} style={{ 
+              display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'center', 
+              padding: '14px 8px', 
+              borderRight: index % 2 === 0 ? '1px solid #EEF2F7' : 'none',
+              borderBottom: index < 2 ? '1px solid #EEF2F7' : 'none',
+            }}>
+              <span style={{ color: stat.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>
+                {React.cloneElement(stat.icon, { size: 30 })}
+              </span>
+              <div>
+                <CounterAnimation value={stat.value} suffix={stat.suffix} />
+                <p style={{ fontSize: '10px', fontWeight: 600, color: '#475569', margin: '2px 0 0 0', fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
+
+      <style>{`
+        @media (min-width: 640px) {
+          .awards-desktop { display: grid !important; }
+          .awards-mobile { display: none !important; }
+        }
+      `}</style>
     </div>
-  </div>
-);
+  );
+};
 
 export default AwardsStats;

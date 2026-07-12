@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaLinkedinIn, FaTwitter, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaLinkedinIn } from 'react-icons/fa';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 
-/* ─── CORPORATE BRAND COLORS ─────────────────────────────────────────────── */
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
@@ -12,7 +11,6 @@ const Footer = () => {
     <footer style={{ backgroundColor: NAVY, color: '#ffffff', borderTop: '4px solid #ff904e' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '64px 24px 48px' }}>
         
-        {/* Dynamic Matrix Responsive Column Grid */}
         <div 
           className="pisl-main-footer-grid"
           style={{ 
@@ -22,9 +20,8 @@ const Footer = () => {
           }}
         >
           
-          {/* ── COLUMN 1: CORPORATE BRAND PROFILE ── */}
+          {/* COLUMN 1: BRAND */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-            {/* Increased Logo Asset Size Wrapper */}
             <div style={{ height: '125px', marginBottom: '1px', display: 'flex', alignItems: 'center' }}>
               <img 
                 src="/White Logo.png" 
@@ -37,42 +34,32 @@ const Footer = () => {
               Leading infrastructure development company delivering world-class industrial, logistics, and warehouse solutions across India.
             </p>
             
-            {/* Social Asset Handles Row */}
             <div style={{ display: 'flex', gap: '10px' }}>
-              {[
-                { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-                { icon: FaTwitter, href: '#', label: 'Twitter' },
-                { icon: FaFacebookF, href: '#', label: 'Facebook' },
-                { icon: FaInstagram, href: '#', label: 'Instagram' },
-                { icon: FaYoutube, href: '#', label: 'YouTube' },
-              ].map((social, idx) => (
-                <a 
-                  key={idx} 
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label={social.label}
-                  className="pisl-footer-social-icon"
-                  style={{ 
-                    width: '34px', 
-                    height: '34px', 
-                    backgroundColor: 'rgba(255,255,255,0.06)', 
-                    borderRadius: '8px', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    color: '#e2e8f0', 
-                    textDecoration: 'none', 
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)' 
-                  }}
-                >
-                  <social.icon style={{ fontSize: '14px' }} />
-                </a>
-              ))}
+              <a 
+                href="https://www.linkedin.com/company/pislinfra" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn"
+                className="pisl-footer-social-icon"
+                style={{ 
+                  width: '34px', 
+                  height: '34px', 
+                  backgroundColor: 'rgba(255,255,255,0.06)', 
+                  borderRadius: '8px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  color: '#e2e8f0', 
+                  textDecoration: 'none', 
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)' 
+                }}
+              >
+                <FaLinkedinIn style={{ fontSize: '14px' }} />
+              </a>
             </div>
           </div>
 
-          {/* ── COLUMN 2: QUICK ACCENTS ── */}
+          {/* COLUMN 2: COMPANY */}
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#ffffff', marginBottom: '20px', textAlign: 'left' }}>
               Company
@@ -81,7 +68,7 @@ const Footer = () => {
               {[
                 { label: 'Profile', href: '/about' },
                 { label: 'Projects', href: '/projects' },
-                { label: 'Services', href: '/services' },
+                { label: 'Our Solutions', href: '/solutions' },
                 { label: 'Blog', href: '/blog' },
               ].map((link, index) => (
                 <li key={index} style={{ marginBottom: '12px' }}>
@@ -98,7 +85,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* ── COLUMN 3: CORPORATE LINKS ── */}
+          {/* COLUMN 3: RESOURCES */}
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#ffffff', marginBottom: '20px', textAlign: 'left' }}>
               Resources
@@ -124,17 +111,17 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* ── COLUMN 4: DIVISION SERVICES ── */}
+          {/* COLUMN 4: SOLUTIONS */}
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#ffffff', marginBottom: '20px', textAlign: 'left' }}>
               Our Solutions
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'left' }}>
               {[
-                { label: 'Industrial Build', href: '/services/industrial' },
-                { label: 'Infrastructure Development', href: '/services/infrastructure' },
-                { label: 'Logistic Parks', href: '/services/logistic' },
-                { label: 'Warehouse Contractors', href: '/services/warehouse' },
+                { label: 'Industrial Build', href: '/solutions/industrial' },
+                { label: 'Infrastructure Development', href: '/solutions/infrastructure' },
+                { label: 'Logistic Parks', href: '/solutions/logistic' },
+                { label: 'Warehouse Contractors', href: '/solutions/warehouse' },
               ].map((link, index) => (
                 <li key={index} style={{ marginBottom: '12px' }}>
                   <Link 
@@ -150,7 +137,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* ── COLUMN 5: SYSTEM INFRASTRUCTURE ADDRESS BLOCK ── */}
+          {/* COLUMN 5: CONTACT */}
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#ffffff', marginBottom: '20px', textAlign: 'left' }}>
               Contact Hub
@@ -168,9 +155,11 @@ const Footer = () => {
                   <span style={{ wordBreak: 'break-all' }}>info@pislinfra.com</span>
                 </a>
               </li>
-              <li style={{ marginBottom: '14px', display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#cbd5e1', fontSize: '13.5px', fontWeight: 500, lineHeight: '1.5' }}>
+              <li style={{ marginBottom: '14px', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                 <HiLocationMarker style={{ color: ORANGE, fontSize: '18px', flexShrink: 0, marginTop: '2px' }} />
-                <span>31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018</span>
+                <a href="https://maps.app.goo.gl/yrFiVHJsAwLp461c9" target="_blank" rel="noopener noreferrer" className="pisl-footer-link" style={{ color: '#cbd5e1', fontSize: '13.5px', textDecoration: 'none', fontWeight: 500, lineHeight: '1.5', transition: 'color 0.2s' }}>
+                  31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018
+                </a>
               </li>
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: '#cbd5e1', fontSize: '13.5px', fontWeight: 500, lineHeight: '1.5' }}>
                 <HiClock style={{ color: ORANGE, fontSize: '18px', flexShrink: 0, marginTop: '2px' }} />
@@ -183,7 +172,6 @@ const Footer = () => {
 
       </div>
 
-      {/* Copyright Ground Bar Anchor */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(15, 23, 42, 0.15)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '20px 24px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
           <p style={{ color: '#94a3b8', fontSize: '13.5px', margin: 0, fontWeight: 500 }}>
@@ -192,7 +180,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Global CSS Injectors for Cross-Over Responsiveness */}
       <style>{`
         .pisl-footer-social-icon:hover {
           background-color: ${ORANGE} !important;
@@ -205,18 +192,19 @@ const Footer = () => {
         @media (max-width: 1200px) {
           .pisl-main-footer-grid {
             grid-template-columns: repeat(3, 1fr) !important;
-            gap: 40px 32px !important;
+            gap: 32px !important;
           }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .pisl-main-footer-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+            gap: 28px !important;
           }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
           .pisl-main-footer-grid {
             grid-template-columns: 1fr !important;
-            gap: 36px !important;
+            gap: 24px !important;
           }
         }
       `}</style>

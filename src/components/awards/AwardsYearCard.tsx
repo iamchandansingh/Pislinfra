@@ -1,16 +1,7 @@
 import React from 'react';
 import { FiAward, FiCheckCircle, FiStar } from 'react-icons/fi';
 
-interface AwardsYearCardProps {
-  year: string;
-  totalAwards: number;
-  totalCertificates: number;
-  description: string;
-  children?: React.ReactNode;
-  color?: string;
-}
-
-const AwardsYearCard: React.FC<AwardsYearCardProps> = ({
+const AwardsYearCard = ({
   year, totalAwards, totalCertificates, description, children, color = '#22C55E',
 }) => {
   const total = totalAwards + totalCertificates;

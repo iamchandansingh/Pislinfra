@@ -46,22 +46,26 @@ const processSteps: ProcessStep[] = [
 // Main Component
 const HiringProcessSection: React.FC = () => {
   return (
-    <section style={{ width: '100%', marginTop: '70px', marginBottom: '70px' }}>
+    <section style={{ 
+      width: '100%', 
+      marginTop: '20px', 
+      marginBottom: '40px',
+      padding: '0 16px',
+      boxSizing: 'border-box',
+    }}>
       <div style={{ 
         width: '100%', 
-        maxWidth: '1350px', 
+        maxWidth: '1200px', 
         margin: '0 auto',
-        paddingLeft: '8px', 
-        paddingRight: '8px',
       }}>
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <h2 style={{
-            fontSize: '42px',
+            fontSize: '24px',
             fontWeight: 700,
             color: '#1E2A5A',
-            margin: '0 0 16px 0',
+            margin: '0 0 10px 0',
             lineHeight: 1.2,
           }}>
             Our Hiring <span style={{ color: '#FF6B35' }}>Process</span>
@@ -69,8 +73,8 @@ const HiringProcessSection: React.FC = () => {
           
           {/* Orange Underline */}
           <div style={{
-            width: '60px',
-            height: '4px',
+            width: '40px',
+            height: '3px',
             backgroundColor: '#FF6B35',
             borderRadius: '999px',
             margin: '0 auto',
@@ -78,73 +82,39 @@ const HiringProcessSection: React.FC = () => {
         </div>
 
         {/* Timeline Container */}
-        <div style={{ position: 'relative', padding: '0 20px' }}>
+        <div className="timeline-container" style={{ position: 'relative' }}>
           
           {/* Horizontal Connecting Line - Desktop only */}
-          <div style={{
-            position: 'absolute',
-            top: '36px',
-            left: '8%',
-            right: '8%',
-            height: '2px',
-            backgroundColor: '#E5EAF2',
-            zIndex: 0,
-          }}
-          className="timeline-line" />
+          <div className="timeline-line" />
 
-          {/* Steps - Left to Right Layout */}
+          {/* Steps Grid */}
           <div className="process-grid">
-            {processSteps.map((step) => (
-              <div key={step.id} style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: '16px',
-                position: 'relative',
-                zIndex: 1,
-                padding: '12px 0',
-              }}>
-                {/* Step Circle */}
-                <div style={{
-                  width: '72px',
-                  height: '72px',
-                  minWidth: '72px',
-                  borderRadius: '50%',
-                  backgroundColor: '#FFFFFF',
-                  border: '2px solid #FFD6BF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  zIndex: 2,
-                }}>
-                  <span style={{ color: '#FF6B35', display: 'flex', lineHeight: 0 }}>
-                    {step.icon}
-                  </span>
+            {processSteps.map((step, index) => (
+              <div key={step.id} className="process-step">
+                
+                {/* Step Number + Icon Circle */}
+                <div className="step-icon-wrapper">
+                  {/* Step Number (Mobile/Tablet) */}
+                  <span className="step-number">{String(step.id).padStart(2, '0')}</span>
+                  
+                  {/* Icon Circle */}
+                  <div className="icon-circle">
+                    <span style={{ color: '#FF6B35', display: 'flex', lineHeight: 0 }}>
+                      {step.icon}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div>
-                  {/* Title */}
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: 700,
-                    color: '#1E2A5A',
-                    marginBottom: '6px',
-                    lineHeight: 1.3,
-                  }}>
-                    {step.title}
-                  </h3>
+                <div className="step-content">
+                  {/* Step Number + Title in one line for mobile */}
+                  <div className="step-title-row">
+                    <span className="step-number-inline">{String(step.id).padStart(2, '0')}</span>
+                    <h3 className="step-title">{step.title}</h3>
+                  </div>
 
                   {/* Description */}
-                  <p style={{
-                    fontSize: '14px',
-                    fontWeight: 400,
-                    lineHeight: 1.6,
-                    color: '#64748B',
-                    margin: 0,
-                  }}>
-                    {step.description}
-                  </p>
+                  <p className="step-description">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -155,38 +125,274 @@ const HiringProcessSection: React.FC = () => {
 
       {/* Responsive Styles */}
       <style>{`
+        /* ===== DEFAULT: Mobile First (< 640px) ===== */
         .process-grid {
-          display: grid;
-          grid-template-columns: repeat(1, 1fr);
-          gap: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
         }
+
+        .process-step {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding: 14px 0;
+          position: relative;
+        }
+
+        /* Vertical connecting line between steps */
+        .process-step:not(:last-child)::after {
+          content: '';
+          position: absolute;
+          left: 23px;
+          top: 58px;
+          bottom: -14px;
+          width: 2px;
+          background-color: #E5EAF2;
+        }
+
+        .step-icon-wrapper {
+          position: relative;
+          z-index: 1;
+          flex-shrink: 0;
+        }
+
+        .icon-circle {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background-color: #FFFFFF;
+          border: 2px solid #FFD6BF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .icon-circle svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        /* Step Number Badge (Top-Right of Circle) */
+        .step-number {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: #FF6B35;
+          color: #FFFFFF;
+          font-size: 10px;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+        }
+
+        .step-number-inline {
+          display: none;
+        }
+
+        .step-content {
+          flex: 1;
+          padding-top: 2px;
+        }
+
+        .step-title-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 4px;
+        }
+
+        .step-title {
+          font-size: 16px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0;
+          line-height: 1.3;
+        }
+
+        .step-description {
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #64748B;
+          margin: 0;
+        }
+
         .timeline-line {
           display: none;
         }
-        @media (min-width: 768px) {
-          .process-grid {
-            grid-template-columns: repeat(3, 1fr);
+
+
+        /* ===== Tablet (640px - 1023px) ===== */
+        @media (min-width: 640px) {
+          .process-step {
+            gap: 16px;
+            padding: 16px 0;
+          }
+
+          .process-step:not(:last-child)::after {
+            left: 28px;
+            top: 64px;
+            bottom: -16px;
+          }
+
+          .icon-circle {
+            width: 56px;
+            height: 56px;
+          }
+
+          .icon-circle svg {
+            width: 22px;
+            height: 22px;
+          }
+
+          .step-number {
+            width: 22px;
+            height: 22px;
+            font-size: 11px;
+          }
+
+          .step-title {
+            font-size: 17px;
+          }
+
+          .step-description {
+            font-size: 14px;
+          }
+
+          .process-step:not(:last-child)::after {
+            left: 28px;
           }
         }
-        @media (min-width: 1100px) {
+
+
+        /* ===== Desktop (1024px+) ===== */
+        @media (min-width: 1024px) {
           .process-grid {
+            display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 24px;
+            gap: 20px;
           }
+
+          .process-step {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0;
+            gap: 0;
+          }
+
+          /* Remove vertical lines */
+          .process-step:not(:last-child)::after {
+            display: none;
+          }
+
+          /* Show horizontal connecting line */
           .timeline-line {
             display: block;
+            position: absolute;
+            top: 32px;
+            left: 8%;
+            right: 8%;
+            height: 2px;
+            background-color: #E5EAF2;
+            z-index: 0;
           }
-          .process-grid > div {
-            flex-direction: column !important;
-            text-align: center;
+
+          .step-icon-wrapper {
+            margin-bottom: 16px;
+            z-index: 1;
           }
-          .process-grid > div > div:last-child {
+
+          .icon-circle {
+            width: 64px;
+            height: 64px;
+            border: 2px solid #FFD6BF;
+          }
+
+          .icon-circle svg {
+            width: 24px;
+            height: 24px;
+          }
+
+          .step-number {
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
+            top: -8px;
+            right: -8px;
+          }
+
+          /* Hide inline number, show badge on icon */
+          .step-number-inline {
+            display: none;
+          }
+
+          .step-number {
+            display: flex;
+          }
+
+          .step-content {
             text-align: center;
+            padding-top: 0;
+          }
+
+          .step-title-row {
+            justify-content: center;
+            margin-bottom: 6px;
+          }
+
+          .step-title {
+            font-size: 16px;
+          }
+
+          .step-description {
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 180px;
+            margin: 0 auto;
           }
         }
-        @media (max-width: 1099px) {
+
+
+        /* ===== Large Desktop (1200px+) ===== */
+        @media (min-width: 1200px) {
+          .process-grid {
+            gap: 30px;
+          }
+
+          .icon-circle {
+            width: 72px;
+            height: 72px;
+          }
+
+          .icon-circle svg {
+            width: 26px;
+            height: 26px;
+          }
+
+          .step-number {
+            width: 26px;
+            height: 26px;
+            font-size: 12px;
+          }
+
+          .step-title {
+            font-size: 18px;
+          }
+
+          .step-description {
+            font-size: 14px;
+            max-width: 200px;
+          }
+
           .timeline-line {
-            display: none;
+            top: 36px;
           }
         }
       `}</style>
