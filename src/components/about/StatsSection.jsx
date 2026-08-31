@@ -211,7 +211,7 @@ const StatsSection = () => {
       <div style={{
         width: '100%',
         maxWidth: '1536px',
-        padding: '100px 24px 120px 24px',
+        padding: '30px 24px 30px 24px',
         backgroundColor: '#FAFBFC',
         backgroundImage: 'url("/bgimage.png")',
         backgroundSize: 'cover',
@@ -231,7 +231,7 @@ const StatsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="pisl-stats-left lg:pr-10"
-            style={{ marginTop: '-220px' }}
+            style={{ marginTop: '0px' }}
           >
 
 

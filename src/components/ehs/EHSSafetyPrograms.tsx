@@ -8,7 +8,7 @@ interface Program {
   title: string;
 }
 
-const programs: Program[] = [
+const programsData: Program[] = [
   { id: 'ppe', icon: <FiTool size={32} strokeWidth={1.8} />, iconColor: '#2563EB', title: 'PPE Compliance' },
   { id: 'toolbox', icon: <FiClipboard size={32} strokeWidth={1.8} />, iconColor: '#F97316', title: 'Toolbox Talks' },
   { id: 'inspections', icon: <FiSearch size={32} strokeWidth={1.8} />, iconColor: '#22C55E', title: 'Site Inspections & Audits' },
@@ -17,7 +17,8 @@ const programs: Program[] = [
   { id: 'reporting', icon: <FiUserCheck size={32} strokeWidth={1.8} />, iconColor: '#A855F7', title: 'Incident Reporting & Learning' },
 ];
 
-const EHSSafetyPrograms: React.FC = () => {
+const EHSSafetyPrograms: React.FC<any> = ({ programs, title }) => {
+  const activePrograms = programs && programs.length > 0 ? programs.map((p, i) => ({ id: p.id || i, icon: programsData[i]?.icon, iconColor: programsData[i]?.iconColor, title: p.title })) : programsData;
   return (
     <div style={{ width: '100%', padding: '28px 0', backgroundColor: '#FFFFFF' }}>
       <style>{`
@@ -55,7 +56,7 @@ const EHSSafetyPrograms: React.FC = () => {
           <p style={{ fontSize: '13px', fontWeight: 400, color: '#64748B', lineHeight: 1.5, margin: '8px 0 0 0', fontFamily: 'Inter, sans-serif' }}>Structured programs that promote safety culture and drive zero harm.</p>
 
           <div className="programs-grid">
-            {programs.map((program) => (
+            {activePrograms.map((program) => (
               <div key={program.id} className="program-item">
                 <span style={{ color: program.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>{program.icon}</span>
                 <h3 style={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', lineHeight: 1.3, margin: 0, fontFamily: 'Inter, sans-serif' }}>{program.title}</h3>

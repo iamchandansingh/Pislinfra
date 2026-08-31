@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaBuilding, FaCheckCircle } from 'react-icons/fa';
 import { HiOutlineShieldCheck } from 'react-icons/hi2';
 import clientsData from '../../data/clientsData';
 
@@ -56,7 +56,7 @@ const getClientInfo = (clientName) => {
   });
 };
 
-const ProjectCard = ({ project, type, isSelected = false }) => {
+const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = null }) => {
   const navigate = useNavigate();
 
   const coverImage = project?.images?.[0] 
@@ -67,12 +67,12 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    const projectType = type || (project.status === 'Ongoing' ? 'ongoing' : 'completed');
-    const projectSlug = project.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    navigate(`/project/${projectType}/${projectSlug}`);
+    const projectType = type || (project.status === 'Ongoing' || project.status === 'ongoing' ? 'ongoing' : 'completed');
+    const slug = project.name ? project.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : project.id;
+    navigate(`/project/${projectType}/${slug}`, { state: { projectData: project } });
   };
 
-  const isOngoing = project.status === 'Ongoing' || type === 'ongoing';
+  const isOngoing = project.status === 'Ongoing' || project.status === 'ongoing' || type === 'ongoing';
   const accentColor = isOngoing ? '#ff8755' : '#198847';
 
   return (
@@ -87,6 +87,8 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
           cursor: 'pointer',
           position: 'relative',
           zIndex: isSelected ? 10 : 1,
+          display: 'flex',
+          flexDirection: 'column'
         }}
         onClick={handleClick}
       >
@@ -198,7 +200,7 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
               <FaMapMarkerAlt style={{ color: accentColor, fontSize: '11px', flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <span style={{ display: 'block', fontSize: '8px', fontWeight: '700', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Location</span>
-                <span style={{ fontSize: '11px', fontWeight: '600', color: '#334155', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{project.location}, {project.state}</span>
+                <span style={{ fontSize: '11px', fontWeight: '600', color: '#334155', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{project.location || project.city}, {project.state}</span>
               </div>
             </div>
           </div>
@@ -271,9 +273,9 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
               }}>
-                {clientInfoList.map(c => c.name).join(', ')}
+                {clientInfoList.map(c => c.name).join(', ') || project.client || 'PISL Client'}
               </span>
-              <span style={{ fontSize: '10px', fontWeight: '500', color: '#94a3b8' }}>{project.timeline || 'N/A'}</span>
+              <span style={{ fontSize: '10px', fontWeight: '500', color: '#94a3b8' }}>{project.timeline || 'Ongoing'}</span>
             </div>
 
             {clientInfoList.some(c => c.logo) && (

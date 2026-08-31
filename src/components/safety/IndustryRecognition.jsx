@@ -80,12 +80,28 @@ const awards = [
   },
 ];
 
-const IndustryRecognition = () => {
+const getAwardUrl = (img) => {
+  if (!img) return "";
+  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
+  if (!url) return "";
+  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+};
+
+const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
+  const activeAwards = strapiAwards && strapiAwards.length > 0 
+    ? strapiAwards.map((a, i) => ({ 
+        title: a.title, 
+        subtitle: a.subtitle, 
+        text: a.description ? a.description.substring(0, 20) : awards[i]?.text, 
+        description: a.description, 
+        image: getAwardUrl(a.image) || awards[i]?.image || "" 
+      })) 
+    : awards;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [cardsPerView, setCardsPerView] = useState(4);
   const [isHovered, setIsHovered] = useState(false);
-  const totalPosts = awards.length;
+  const totalPosts = activeAwards.length;
 
   // Responsive cards per view
   useEffect(() => {
@@ -141,7 +157,7 @@ const IndustryRecognition = () => {
 
   return (
     <section style={{
-      padding: '40px 24px 0px', // Removed bottom padding so SafetyResources is flush
+      padding: '80px 24px 60px',
       backgroundColor: '#f8fafc',
       fontFamily: FONT,
       overflow: 'hidden',

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
@@ -31,9 +31,12 @@ import AnnualReports from './pages/AnnualReports'
 import Sitemap from './pages/Sitemap'
 import ProjectDetail from './pages/projects/ProjectDetail'
 import CaseStudyDetail from './pages/projects/CaseStudyDetail'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import { BlogProvider } from './context/BlogContext'
 
 function App() {
   return (
+    <BlogProvider>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -54,15 +57,18 @@ function App() {
         <Route path="solutions/logistic" element={<Logistic />} />
         <Route path="solutions/warehouse" element={<Warehouse />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blog/ndustrial-construction-modern-infrastructure-growth" element={<Navigate to="/blog/industrial-construction-modern-infrastructure-growth" replace />} />
         <Route path="blog/:slug" element={<BlogDetail />} />
         <Route path="careers" element={<Careers />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="annual-reports" element={<AnnualReports />} />
         <Route path="sitemap" element={<Sitemap />} />
         <Route path="project/:type/:id" element={<ProjectDetail />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+    </BlogProvider>
   )
 }
 

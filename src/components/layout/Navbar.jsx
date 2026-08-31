@@ -1,9 +1,18 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { fetchStrapiData } from '../../services/strapi'
 import { HiMenuAlt3, HiX, HiChevronDown, HiPhone, HiMail, HiLocationMarker } from 'react-icons/hi'
 import { FaBuilding, FaUsers, FaShieldAlt, FaAward, FaHeart } from 'react-icons/fa'
 
-const navigationData = [
+const iconMap = {
+  FaBuilding,
+  FaUsers,
+  FaShieldAlt,
+  FaAward,
+  FaHeart
+};
+
+const defaultNavigationData = [
   { id: 'home', label: 'Home', href: '/' },
   { 
     id: 'about', label: 'About Us', href: '/about',
@@ -36,8 +45,8 @@ const navigationData = [
   { id: 'careers', label: 'Careers', href: '/careers' },
 ]
 
-const TypewriterTagline = () => {
-  const fullText = 'Progressive Innovative Sustainable Limitless'
+const TypewriterTagline = ({ tagline }) => {
+  const fullText = tagline || 'Progressive Innovative Sustainable Limitless'
   const [displayText, setDisplayText] = useState('')
 
   useEffect(() => {
@@ -69,6 +78,40 @@ const Navbar = () => {
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null)
   const location = useLocation()
 
+  const [topHeaderData, setTopHeaderData] = useState({
+    address: '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
+    phone: '085270 40411',
+    email: 'info@pislinfra.com'
+  });
+  const [headerData, setHeaderData] = useState({
+    tagline: 'Progressive Innovative Sustainable Limitless',
+    logo: null,
+    navigation: defaultNavigationData
+  });
+
+  useEffect(() => {
+    const loadData = async () => {
+      const topData = await fetchStrapiData('top-header');
+      if (topData) {
+        setTopHeaderData({
+          address: topData.address || '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
+          phone: topData.phone || '085270 40411',
+          email: topData.email || 'info@pislinfra.com'
+        });
+      }
+      const hData = await fetchStrapiData('header?populate[0]=logo&populate[1]=navigation.subLinks');
+      if (hData) {
+        setHeaderData({
+          tagline: hData.tagline || 'Progressive Innovative Sustainable Limitless',
+          logo: hData.logo || null,
+          navigation: (hData.navigation && hData.navigation.length > 0) ? hData.navigation : defaultNavigationData
+        });
+      }
+    };
+    loadData();
+  }, []);
+
+
   useEffect(() => {
     window.scrollTo(0, 0)
     setIsMobileOpen(false)
@@ -97,12 +140,12 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 0', flexWrap: 'wrap', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flex: '1 1 auto' }}>
               <HiLocationMarker style={{ color: activeColor, flexShrink: 0, fontSize: '16px' }} />
-              <span style={{ lineHeight: '1.4' }}>31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018</span>
+              <span style={{ lineHeight: '1.4' }}>{topHeaderData.address}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
-              <a href="tel:+918527040411" style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'white', textDecoration: 'none', whiteSpace: 'nowrap' }}><HiPhone style={{ color: activeColor, fontSize: '14px' }} />085270 40411</a>
+              <a href={`tel:${topHeaderData.phone}`} style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'white', textDecoration: 'none', whiteSpace: 'nowrap' }}><HiPhone style={{ color: activeColor, fontSize: '14px' }} />{topHeaderData.phone}</a>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>|</span>
-              <a href="mailto:info@pislinfra.com" style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'white', textDecoration: 'none', whiteSpace: 'nowrap' }}><HiMail style={{ color: activeColor, fontSize: '14px' }} />info@pislinfra.com</a>
+              <a href={`mailto:${topHeaderData.email}`} style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'white', textDecoration: 'none', whiteSpace: 'nowrap' }}><HiMail style={{ color: activeColor, fontSize: '14px' }} />{topHeaderData.email}</a>
             </div>
           </div>
         </div>
@@ -114,15 +157,15 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
             
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-              <img src="/logo.png" alt="PISL INFRA" style={{ height: '45px', width: 'auto' }} />
-              <TypewriterTagline />
+              <img src={headerData.logo?.url ? (headerData.logo.url.startsWith("/") ? `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${headerData.logo.url}` : headerData.logo.url) : "/logo.png"} alt="PISL INFRA" style={{ height: '45px', width: 'auto' }} />
+              <TypewriterTagline tagline={headerData.tagline} />
             </Link>
 
             {/* DESKTOP MENU */}
             <div style={{ display: 'none', alignItems: 'center', gap: '4px' }} className="lg-menu">
-              {navigationData.map((item) => (
-                <div key={item.id} style={{ position: 'relative' }} onMouseEnter={() => item.children && setOpenDropdown(item.id)} onMouseLeave={() => setOpenDropdown(null)}>
-                  {item.children ? (
+              {(headerData.navigation || []).map((item) => (
+                <div key={item.id} style={{ position: 'relative' }} onMouseEnter={() => ((item.subLinks && item.subLinks.length > 0) || item.children) && setOpenDropdown(item.id)} onMouseLeave={() => setOpenDropdown(null)}>
+                  {(item.subLinks && item.subLinks.length > 0) || item.children ? (
                     <>
                       <button style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '8px 12px', fontSize: '14px', fontWeight: '500', borderRadius: '8px', border: 'none', cursor: 'pointer', transition: 'color 0.3s', backgroundColor: 'transparent', color: openDropdown === item.id ? activeColor : '#374151' }}>
                         {item.label}<HiChevronDown style={{ fontSize: '12px', transform: openDropdown === item.id ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
@@ -130,11 +173,11 @@ const Navbar = () => {
                       {openDropdown === item.id && (
                         <div style={{ position: 'absolute', top: '100%', right: 0, paddingTop: '10px', zIndex: 50 }}>
                           <div style={{ width: '260px', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)', border: '1px solid #f3f4f6', padding: '8px 0' }}>
-                            {item.children.map((child) => (
+                            {(item.subLinks || item.children).map((child) => (
                               <Link key={child.id} to={child.href} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 16px', fontSize: '14px', color: '#4b5563', textDecoration: 'none', transition: 'all 0.3s', borderRadius: '8px', margin: '0 4px' }}
                                 onMouseEnter={(e) => { e.currentTarget.style.color = activeColor; e.currentTarget.style.backgroundColor = '#fff5f0' }}
                                 onMouseLeave={(e) => { e.currentTarget.style.color = '#4b5563'; e.currentTarget.style.backgroundColor = 'transparent' }}>
-                                {child.icon && <child.icon style={{ fontSize: '16px', color: activeColor }} />}{child.label}
+                                {child.icon && (typeof child.icon === 'string' ? (iconMap[child.icon] ? React.createElement(iconMap[child.icon], { style: { fontSize: '16px', color: activeColor } }) : null) : <child.icon style={{ fontSize: '16px', color: activeColor }} />)}{child.label}
                               </Link>
                             ))}
                           </div>
@@ -180,14 +223,14 @@ const Navbar = () => {
             <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} onClick={() => setIsMobileOpen(false)} />
             <div style={{ position: 'absolute', right: 0, top: 0, height: '100%', width: '320px', maxWidth: '100%', backgroundColor: 'white', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflowY: 'auto' }}>
               <div style={{ padding: '16px' }}>
-                {navigationData.map((item) => (
+                {(headerData.navigation || []).map((item) => (
                   <div key={item.id}>
-                    {item.children ? (
+                    {(item.subLinks && item.subLinks.length > 0) || item.children ? (
                       <>
                         <button onClick={() => setOpenMobileDropdown(openMobileDropdown === item.id ? null : item.id)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '12px 16px', fontSize: '14px', fontWeight: '500', color: openMobileDropdown === item.id ? activeColor : '#374151', border: 'none', backgroundColor: openMobileDropdown === item.id ? '#fff5f0' : 'transparent', cursor: 'pointer', borderRadius: '8px', transition: 'all 0.3s' }}>{item.label}<HiChevronDown style={{ fontSize: '14px', transform: openMobileDropdown === item.id ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} /></button>
                         {openMobileDropdown === item.id && (
                           <div style={{ marginLeft: '16px', borderLeft: `2px solid ${activeColor}30`, paddingLeft: '12px', paddingTop: '4px', paddingBottom: '4px' }}>
-                            {item.children.map((child) => (<Link key={child.id} to={child.href} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 16px', fontSize: '14px', color: '#4b5563', textDecoration: 'none', borderRadius: '8px', transition: 'all 0.3s' }}>{child.icon && <child.icon style={{ fontSize: '14px', color: activeColor }} />}{child.label}</Link>))}
+                            {(item.subLinks || item.children).map((child) => (<Link key={child.id} to={child.href} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 16px', fontSize: '14px', color: '#4b5563', textDecoration: 'none', borderRadius: '8px', transition: 'all 0.3s' }}>{child.icon && (typeof child.icon === 'string' ? (iconMap[child.icon] ? React.createElement(iconMap[child.icon], { style: { fontSize: '14px', color: activeColor } }) : null) : <child.icon style={{ fontSize: '14px', color: activeColor }} />)}{child.label}</Link>))}
                           </div>
                         )}
                       </>

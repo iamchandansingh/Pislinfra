@@ -1,38 +1,87 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { fetchStrapiData } from '../../services/strapi'
+import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import industrialBg from '../../assets/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr.png'
-import { FaStar, FaUsers, FaHandshake, FaCogs } from 'react-icons/fa'
+import * as FaIcons from 'react-icons/fa';
+import * as HiIcons from 'react-icons/hi';
+import * as BiIcons from 'react-icons/bi';
+import Preloader from '../../components/common/Preloader';
+
+const getIcon = (iconName) => {
+  if (!iconName) return FaIcons.FaCircle;
+  if (iconName.startsWith('Fa')) return FaIcons[iconName] || FaIcons.FaCircle;
+  if (iconName.startsWith('Hi')) return HiIcons[iconName] || FaIcons.FaCircle;
+  if (iconName.startsWith('Bi')) return BiIcons[iconName] || FaIcons.FaCircle;
+  return FaIcons.FaCircle;
+};
+
+
+
+const defaultIndustrialData = {
+  title: "Industrial Development",
+  introText: "PISL provides EPC, construction, infrastructure development, and industrial solutions across India.",
+  mainFeatureTitle: "What is Industrial Development?",
+  mainFeatureText: "Industrial development encompasses civil engineering, structural steel, foundation works, and utility infrastructure designed for factories and processing plants.",
+  features: [
+    { title: "Heavy Structural Steel", desc: "Engineered PEB & heavy structural fabrication.", icon: "FaBuilding" },
+    { title: "Turnkey EPC Services", desc: "End-to-end design, civil construction, and commissioning.", icon: "FaCogs" },
+    { title: "Safety & Compliance", desc: "Highest international safety protocols and ISO standard compliance.", icon: "FaShieldAlt" }
+  ],
+  whyPislTitle: "Why Choose PISL for Industrial Construction?",
+  whyPislText: "With over two decades of proven experience, PISL has delivered landmark industrial facilities across India."
+};
 
 const Industrial = () => {
-  const seoData = {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetchStrapiData('solution-pages?filters[slug]=industrial&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo');
+        if (response && response.length > 0) {
+          setData(response[0]);
+        } else {
+          setData(defaultIndustrialData);
+        }
+      } catch (err) {
+        setData(defaultIndustrialData);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (loading || !data) return <Preloader />;
+
+    const seoData = {
     contentType: 'page',
-    title: 'Industrial Development',
-    seoTitle: 'Industrial Development| Pislinfra',
-    seoDescription: 'Pislinfra delivers world-class industrial facilities & manufacturing plants. Expert in industrial construction, design-build solutions & infrastructure development across India.',
-    seoKeywords: 'industrial development, industrial construction, manufacturing plants, industrial facilities, factory construction, industrial infrastructure, Pislinfra',
+    title: data.title,
+    seoTitle: data.seo?.seoTitle,
+    seoDescription: data.seo?.seoDescription,
+    seoKeywords: data.seo?.seoKeywords,
     slug: 'solutions/industrial',
-    canonicalUrl: 'https://pislinfra.com/solutions/industrial',
-    ogTitle: 'Industrial Development - Manufacturing Facilities | Pislinfra',
-    ogDescription: 'World-class industrial facilities & manufacturing plants. Expert construction services.',
-    ogImage: 'https://pislinfra.com/images/hero/Service.png',
-    ogType: 'website',
-    twitterTitle: 'Industrial Development | Pislinfra',
-    twitterDescription: 'Industrial construction & manufacturing facility experts.',
-    twitterImage: 'https://pislinfra.com/images/hero/Service.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Industrial', 'Manufacturing', 'Construction', 'Development', 'Factory'],
+    canonicalUrl: data.seo?.canonicalUrl,
+    ogTitle: data.seo?.ogTitle,
+    ogDescription: data.seo?.ogDescription,
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, ''),
+    ogType: data.seo?.ogType || 'website',
+    twitterTitle: data.seo?.twitterTitle,
+    twitterDescription: data.seo?.twitterDescription,
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, ''),
+    twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
+    schemaType: data.seo?.schemaType || 'WebPage',
+    breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
+    organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
+    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Industrial', 'Manufacturing', 'Construction', 'Development', 'Factory'],
+    noIndex: data.seo?.noIndex || false,
+    noFollow: data.seo?.noFollow || false,
+    structuredData: data.seo?.structuredData
   };
 
-  const features = [
-    { icon: FaStar, title: 'High-Quality Services', desc: 'PISL provides high-quality industrial building services and solutions at competitive rates. Our persistent commitment to quality and strict adherence to rigorous safety standards demonstrate our commitment to providing outstanding value.' },
-    { icon: FaUsers, title: 'Expert Team', desc: 'Engineers, designers, and labourers at PISL have the knowledge and experience to manage projects of any scale and complexity. Their strengths include managing challenging tasks and guaranteeing effective outcomes.' },
-    { icon: FaHandshake, title: 'Trusted Partner', desc: 'As a dependable industrial construction company, PISL consistently earns the trust of clients, forming partnerships built on transparency, professionalism, and reliability.' },
-    { icon: FaStar, title: 'Client Satisfaction', desc: 'PISL prioritises attaining complete client satisfaction and assistance. Our concentrated efforts are focused on understanding and addressing our client\'s specific needs.' },
-    { icon: FaCogs, title: 'Continuous Innovation', desc: 'PISL is committed to continuous improvement and innovation in our processes and functions. By constantly evolving, we ensure the delivery of effective and cutting-edge services.' },
-  ]
+  const features = data.features || [];
 
   return (
     <SolutionLayout
@@ -41,34 +90,26 @@ const Industrial = () => {
         title: "Industrial Development",
         subtitle: "World-class industrial facilities and manufacturing plants",
         breadcrumb: "Solutions / Industrial",
-        bgImage: industrialBg
+        bgImage: data.heroImage ? getImageUrl(data.heroImage, industrialBg) : industrialBg
       }}
       intro={{
-        text: (
-          <p>
-            At PISL's Industrial Development Hub, you can experience the pinnacle of industrial innovation. PISL is a construction pioneer with over a decade of experience. We blend accuracy, cutting-edge technological integration, and a smart financial strategy into every project, resulting in industrial development spaces that not only meet but surpass expectations and establish new standards for excellence.
-          </p>
-        )
+        text: data.introText ? (<div dangerouslySetInnerHTML={{ __html: data.introText.replace(/\n/g, '<br/>') }} />) : null
       }}
       mainFeature={{
-        title: <span>What is <span style={{ color: '#0a2a66' }}>Industrial Development?</span></span>,
-        text: (
-          <>
-            <p style={{ marginBottom: '16px' }}>
-              Industrial development is the dynamic process of creating, expanding, and optimising infrastructure and facilities within the industrial sector. It involves the strategic integration of technology, efficient resource management, and innovative warehouse design to foster economic growth, job creation, and the establishment of industrial ecosystems, driving progress and sustainability.
-            </p>
-            <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '16px', marginTop: '32px' }}>
-              Our Unique <span style={{ color: '#0a2a66' }}>Methodologies & Approach</span>
-            </h3>
-            <p style={{ marginBottom: '16px' }}>
-              Ranked among India's premier industrial construction firms, our commitment extends beyond mere project completion—we consider it incomplete until we precisely fulfil our client's unique requirements.
-            </p>
-            <p>
-              Our methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.
-            </p>
-          </>
+        
+        title: (
+          <span>
+            {(() => {
+              const words = (data.mainFeatureTitle || "What is Industrial Development?").split(' ');
+              if (words.length <= 2) return <span style={{ color: '#0a2a66' }}>{words.join(' ')}</span>;
+              const firstPart = words.slice(0, words.length - 2).join(' ');
+              const lastPart = words.slice(-2).join(' ');
+              return <>{firstPart} <span style={{ color: '#0a2a66' }}>{lastPart}</span></>;
+            })()}
+          </span>
         ),
-        image: industrialBg
+        text: data.mainFeatureText ? (<div style={{ marginBottom: '16px', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: data.mainFeatureText.replace(/### (.*?)\n/g, '<h3 style="font-size: 22px; font-weight: bold; color: #2a2a75; margin-bottom: 16px; margin-top: 32px;">$1</h3>').replace(/\n\n/g, '<br/><br/>') }} />) : null,
+        image: getImageUrl(data.mainFeatureImage, industrialBg)
       }}
     >
       <style>{`
@@ -93,7 +134,7 @@ const Industrial = () => {
           height: 100%; /* Fills the stretched column */
           border-radius: 20px;
           overflow: hidden;
-          background-image: url('/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka-6.png');
+          background-image: url('${data.whyPislImage ? getImageUrl(data.whyPislImage, "") : ""}');
           background-size: cover;
           background-position: center;
           box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -300,6 +341,7 @@ const Industrial = () => {
         }
       `}</style>
 
+      {(data.whyPislTitle || (data.features && data.features.length > 0)) && (
       <div className="why-pisl-split-wrapper">
         
         {/* Left Fixed Area */}
@@ -307,13 +349,9 @@ const Industrial = () => {
           <div className="why-pisl-image-card">
             <div className="why-pisl-image-overlay"></div>
             <div className="why-pisl-image-content">
-              <div className="why-pisl-image-badge">Core Advantages</div>
-              <h2 className="why-pisl-left-title">
-                Why <span>PISL Infra?</span>
-              </h2>
-              <p className="why-pisl-left-desc">
-                At PISL Infra, we thrive on harnessing the creativity of our focused team of engineers, designers, and workers. This collaborative synergy ensures the generation of fresh, inventive ideas, delivering unparalleled results for our clients across diverse industries.
-              </p>
+              {data.whyPislBadge && <div className="why-pisl-image-badge">{data.whyPislBadge}</div>}
+              <h2 className="why-pisl-left-title" dangerouslySetInnerHTML={{ __html: data.whyPislTitle ? data.whyPislTitle.replace('PISL Infra?', '<span>PISL Infra?</span>') : 'Why <span>PISL Infra?</span>' }}></h2>
+              <p className="why-pisl-left-desc">{data.whyPislDesc}</p>
             </div>
           </div>
         </div>
@@ -323,14 +361,14 @@ const Industrial = () => {
           {features.map((feature, index) => (
             <div key={index} className="why-pisl-list-card">
               <div className="why-pisl-list-icon-wrap">
-                <feature.icon className="why-pisl-list-icon" />
+                {(() => { const Icon = getIcon(feature.icon); return <Icon className="why-pisl-list-icon" />; })()}
               </div>
               <div className="why-pisl-list-text">
                 <h3 className="why-pisl-list-title">
                   {feature.title}
                 </h3>
                 <p className="why-pisl-list-desc">
-                  {feature.desc}
+                  {feature.description || feature.desc}
                 </p>
               </div>
             </div>
@@ -338,7 +376,7 @@ const Industrial = () => {
         </div>
 
       </div>
-    </SolutionLayout>
+      )}</SolutionLayout>
   )
 }
 

@@ -2,24 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaShieldAlt, FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
 
-const hseImages = [
+const fallbackImages = [
   '/images/EHS/Heroimages/2.png',
 ];
 
-const HSESection = () => {
+const HSESection = ({ data }) => {
   const navigate = useNavigate();
   const [currentImg, setCurrentImg] = useState(0);
 
+  const images = data?.hseImage?.url 
+    ? [getImageUrl(data.hseImage.url)] 
+    : fallbackImages;
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImg((prev) => (prev + 1) % hseImages.length);
+      setCurrentImg((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <section style={{ 
@@ -40,10 +45,14 @@ const HSESection = () => {
             fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800, color: NAVY,
             margin: '0 0 6px', letterSpacing: '-1px'
           }}>
-            Health, Safety & <span style={{ color: NAVY }}>Environment</span>
+            {data?.hseTitle ? (
+              <span dangerouslySetInnerHTML={{ __html: data.hseTitle }} />
+            ) : (
+              <>Health, Safety & <span style={{ color: NAVY }}>Environment</span></>
+            )}
           </h2>
           <p style={{ fontSize: 14, color: '#64748b', maxWidth: 550, margin: '0 auto', lineHeight: 1.6 }}>
-            Providing a safe workplace to our workers & protection of the environment is our topmost priority.
+            {data?.hseDesc || 'Providing a safe workplace to our workers & protection of the environment is our topmost priority.'}
           </p>
         </motion.div>
 
@@ -60,7 +69,7 @@ const HSESection = () => {
             style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(10,42,102,0.08)', height: 380, border: '3px solid #ff8755' }}
           >
             <img
-              src={hseImages[0]}
+              src={images[0]}
               alt="HSE"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
@@ -81,19 +90,19 @@ const HSESection = () => {
               }}>
                 <div style={{ position: 'absolute', top: -30, right: -30, width: 100, height: 100, borderRadius: '50%', background: `${ORANGE}15`, pointerEvents: 'none' }} />
                 <h3 style={{ fontSize: 18, fontWeight: 800, margin: '0 0 8px', position: 'relative' }}>
-                  "Zero Harm Is Possible"
+                  "{data?.hseQuote || 'Zero Harm Is Possible'}"
                 </h3>
                 <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: 1.6, position: 'relative' }}>
-                  As an emerging leader in construction, we prohibit all injuries and illnesses arising from work.
+                  {data?.hseQuoteDesc || 'As an emerging leader in construction, we prohibit all injuries and illnesses arising from work.'}
                 </p>
               </div>
 
               {/* Policy Points */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 {[
-                  { title: 'Occupational Health & Safety', desc: 'Personal commitment to safe workplace, healthy environment & culture.' },
-                  { title: 'Environmental Protection', desc: 'Minimizing ecological footprint through sustainable practices.' },
-                  { title: 'Worker Training & Wellness', desc: 'Mandatory safety training and regular health check-ups for all.' },
+                  { title: data?.hsePillar1Title || 'Occupational Health & Safety', desc: data?.hsePillar1Desc || 'Personal commitment to safe workplace, healthy environment & culture.' },
+                  { title: data?.hsePillar2Title || 'Environmental Protection', desc: data?.hsePillar2Desc || 'Minimizing ecological footprint through sustainable practices.' },
+                  { title: data?.hsePillar3Title || 'Worker Training & Wellness', desc: data?.hsePillar3Desc || 'Mandatory safety training and regular health check-ups for all.' },
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                     <div style={{ width: 8, height: 8, borderRadius: '50%', background: ORANGE, marginTop: 5, flexShrink: 0 }} />
@@ -120,7 +129,7 @@ const HSESection = () => {
                 onMouseEnter={e => e.currentTarget.style.color = ORANGE}
                 onMouseLeave={e => e.currentTarget.style.color = NAVY}
               >
-                Build with us <FaArrowRight style={{ color: ORANGE, fontSize: 12 }} />
+                {data?.ctaText || 'Build with us'} <FaArrowRight style={{ color: ORANGE, fontSize: 12 }} />
               </button>
             </div>
           </motion.div>

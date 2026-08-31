@@ -5,7 +5,8 @@ const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
 const FONT = 'Inter, sans-serif';
 
-const SafetyApproach = () => {
+const SafetyApproach = ({ approaches, title, subtitle }) => {
+  const activeTimeline = approaches && approaches.length > 0 ? approaches.map(a => ({ year: a.year, position: a.position, points: a.points || [] })) : timelineData;
   const [currentImg, setCurrentImg] = useState(0);
   
   const images = [
@@ -116,7 +117,7 @@ const SafetyApproach = () => {
             top: 0, left: 0, right: 0, bottom: 0, 
             zIndex: 2 
           }}>
-            {timelineData.map((item, index) => {
+            {activeTimeline.map((item, index) => {
               const isTop = item.position === 'top';
               const isEven = index % 2 === 0;
               
@@ -252,13 +253,11 @@ const SafetyApproach = () => {
             letterSpacing: '-1px',
             lineHeight: 1.1
           }}>
-            Safety 360° <span style={{ color: ORANGE }}>Journey</span>
+            {title || "Safety 360° Journey"}
           </h2>
           <p style={{ 
             color: '#64748b', fontSize: '15px', lineHeight: '1.7', marginBottom: '32px' 
-          }}>
-            Since introducing Safety 360° in 2018, we've continued to raise the bar by launching new proactive initiatives, promoting deep collaboration, and fostering a culture of shared responsibility across all project sites.
-          </p>
+          }}>{subtitle || "Since introducing Safety 360° in 2018, we've continued to raise the bar by launching new proactive initiatives, promoting deep collaboration, and fostering a culture of shared responsibility across all project sites."}</p>
           
           <div style={{ 
             width: '100%', 

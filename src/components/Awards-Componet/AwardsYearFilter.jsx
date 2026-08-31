@@ -40,31 +40,32 @@ const AwardsYearFilter = ({ onYearChange, initialYear = 2025, years = [2025, 202
   };
 
   return (
-    <div style={{ paddingTop: '40px', paddingBottom: '0px', backgroundColor: '#FFFFFF' }}>
-      <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 16px' }}>
+    <div style={{ paddingTop: '24px', paddingBottom: '10px', backgroundColor: '#FFFFFF' }}>
+      <div style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 20px' }}>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '100%' }}>
           
           {/* Prev Button */}
           <button
             onClick={handlePrevClick}
             disabled={isPrevDisabled}
             style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '12px',
-              border: '2px solid #E5E7EB',
-              backgroundColor: isPrevDisabled ? '#F9FAFB' : '#FFFFFF',
+              width: '38px',
+              height: '38px',
+              borderRadius: '50%',
+              border: '1.5px solid #E2E8F0',
+              backgroundColor: isPrevDisabled ? '#F8FAFC' : '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: isPrevDisabled ? 'not-allowed' : 'pointer',
-              opacity: isPrevDisabled ? 0.3 : 1,
+              opacity: isPrevDisabled ? 0.35 : 1,
               flexShrink: 0,
+              transition: 'all 0.2s ease'
             }}
             aria-label="Previous year"
           >
-            <HiChevronLeft style={{ fontSize: '22px', color: isPrevDisabled ? '#D1D5DB' : '#2A2A75' }} />
+            <HiChevronLeft style={{ fontSize: '18px', color: isPrevDisabled ? '#94A3B8' : '#1E2A5A' }} />
           </button>
 
           {/* Year Buttons */}
@@ -74,14 +75,14 @@ const AwardsYearFilter = ({ onYearChange, initialYear = 2025, years = [2025, 202
             style={{ 
               display: 'flex', 
               alignItems: 'center', 
-              gap: '12px', 
+              gap: '10px', 
               flexWrap: 'nowrap', 
               justifyContent: 'flex-start',
               overflowX: 'auto',
               padding: '4px 0',
               flex: 1,
-              scrollbarWidth: 'none', /* Firefox */
-              msOverflowStyle: 'none',  /* IE and Edge */
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
             }}
           >
             <style dangerouslySetInnerHTML={{__html: `
@@ -96,21 +97,22 @@ const AwardsYearFilter = ({ onYearChange, initialYear = 2025, years = [2025, 202
                 onClick={() => handleYearChange(year)}
                 style={{
                   flexShrink: 0,
-                  minWidth: '130px',
-                  height: '52px',
-                  padding: '0 28px',
-                  borderRadius: '14px',
-                  border: selectedYear === year ? '2px solid #2A2A75' : '2px solid #F3F4F6',
-                  backgroundColor: selectedYear === year ? '#2A2A75' : '#FFFFFF',
-                  color: selectedYear === year ? '#FFFFFF' : '#4B5563',
-                  fontSize: '18px',
-                  fontWeight: 600,
+                  minWidth: '95px',
+                  height: '40px',
+                  padding: '0 20px',
+                  borderRadius: '100px',
+                  border: selectedYear === year ? '1.5px solid #1E2A5A' : '1px solid #E2E8F0',
+                  backgroundColor: selectedYear === year ? '#1E2A5A' : '#FFFFFF',
+                  color: selectedYear === year ? '#FFFFFF' : '#64748B',
+                  fontSize: '13.5px',
+                  fontWeight: selectedYear === year ? 800 : 600,
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: selectedYear === year ? '0 4px 16px rgba(42,42,117,0.2)' : 'none',
-                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  boxShadow: selectedYear === year ? '0 4px 12px rgba(30,42,90,0.18)' : 'none',
+                  fontFamily: "'Inter', sans-serif",
+                  transition: 'all 0.2s ease'
                 }}
                 aria-label={`Filter by year ${year}`}
                 aria-pressed={selectedYear === year}
@@ -125,21 +127,22 @@ const AwardsYearFilter = ({ onYearChange, initialYear = 2025, years = [2025, 202
             onClick={handleNextClick}
             disabled={isNextDisabled}
             style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '12px',
-              border: '2px solid #E5E7EB',
-              backgroundColor: isNextDisabled ? '#F9FAFB' : '#FFFFFF',
+              width: '38px',
+              height: '38px',
+              borderRadius: '50%',
+              border: '1.5px solid #E2E8F0',
+              backgroundColor: isNextDisabled ? '#F8FAFC' : '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: isNextDisabled ? 'not-allowed' : 'pointer',
-              opacity: isNextDisabled ? 0.3 : 1,
+              opacity: isNextDisabled ? 0.35 : 1,
               flexShrink: 0,
+              transition: 'all 0.2s ease'
             }}
             aria-label="Next year"
           >
-            <HiChevronRight style={{ fontSize: '22px', color: isNextDisabled ? '#D1D5DB' : '#2A2A75' }} />
+            <HiChevronRight style={{ fontSize: '18px', color: isNextDisabled ? '#94A3B8' : '#1E2A5A' }} />
           </button>
 
         </div>

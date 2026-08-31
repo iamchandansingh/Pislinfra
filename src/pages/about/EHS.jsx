@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import EHSStats from '../../components/ehs/EHSStats'
@@ -12,28 +12,50 @@ import SafetyCulture from '../../components/safety/SafetyCulture';
 import SafetyPhilosophy from '../../components/safety/SafetyPhilosophy';
 import IndustryRecognition from '../../components/safety/IndustryRecognition';
 import SafetyResources from '../../components/safety/SafetyResources';
+import { fetchStrapiData } from '../../services/strapi';
+import Preloader from '../../components/common/Preloader';
+
+const getImageUrl = (imgObj, defaultImg) => {
+  if (!imgObj) return defaultImg;
+  const url = imgObj.url || imgObj.data?.attributes?.url;
+  if (!url) return defaultImg;
+  if (url.startsWith('http')) return url;
+  return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+};
 
 const EHS = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        let res = null;
+        try {
+          res = await fetchStrapiData('ehs-page?populate=deep');
+        } catch(e) {}
+        
+        if (!res) {
+          res = await fetchStrapiData('ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs');
+        }
+        
+        setData(res);
+      } catch (err) {
+        console.error('Error fetching EHS data', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (loading) return <Preloader />;
+  if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
+
   const seoData = {
+    ...data.seo,
     contentType: 'page',
-    title: 'EHS Standards',
-    seoTitle: 'Environment, Health & Safety Standards',
-    seoDescription: 'Pislinfra\'s EHS standards ensure zero harm, environmental protection & workplace safety. Comprehensive safety programs, certifications & sustainable construction practices.',
-    seoKeywords: 'EHS standards, environment health safety, construction safety, workplace safety, safety certification, environmental protection, sustainable construction, Pislinfra',
-    slug: 'about/ehs',
-    canonicalUrl: 'https://pislinfra.com/about/ehs',
-    ogTitle: 'EHS Standards - Safety & Environment | Pislinfra',
-    ogDescription: 'Our commitment to environment, health & safety excellence.',
-    ogImage: 'https://pislinfra.com/images/hero/EHS.png',
-    ogType: 'website',
-    twitterTitle: 'EHS Standards | Pislinfra',
-    twitterDescription: 'Zero harm commitment & sustainable practices.',
-    twitterImage: 'https://pislinfra.com/images/hero/EHS.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['EHS', 'Safety', 'Health', 'Environment', 'Certification', 'Construction'],
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/EHS.png')
   };
 
   return (
@@ -41,40 +63,60 @@ const EHS = () => {
       <BlogSEO blog={seoData} />
       
       <PageHero 
-        title="EHS Standards" 
-        subtitle="Environment, Health & Safety Standards"
-        breadcrumb="About Us / EHS"
-        bgImage="/images/hero/EHS.png"
+        title={data.title} 
+        subtitle={data.subtitle}
+        breadcrumb={data.breadcrumb}
+        bgImage={getImageUrl(data.heroImage, "/images/hero/EHS.png")}
       />
       
       <div style={{ height: '40px', backgroundColor: '#FFFFFF' }} />
       
-      {/* 1. Top Section (Requested Sequence) */}
-      <EHSStats />
-      
-      {/* 2. Second Section (Requested Sequence) */}
-      <SafeManHoursAndCommitment />
-      
-      {/* 3. Third Section (Latest HSE Statistics & CCTV) */}
-      <SafetyPhilosophy />
-      
-      {/* 4. Fourth Section (PISL HSE Journey) */}
-      <SafetyApproach />
-
-      {/* 5. Rules & Culture */}
-      <LifeSavingRules />
-      <SafetyCulture />
-      
-      {/* 6. Programs & Pillars */}
-      <EHSPillarsAndPrograms />
-      <EHSSafetyPrograms />
-      
-      {/* 7. Certifications & Recognition */}
-      <CertificationsAndEHSAction />
-      <IndustryRecognition />
-
-      {/* 8. Downloads */}
-      <SafetyResources />
+      <EHSStats stats={data.stats} />
+      <SafeManHoursAndCommitment 
+        features={data.features} 
+        title={data.commitmentTitle} 
+      />
+      <SafetyPhilosophy 
+        philosophyItems={data.philosophy} 
+        title={data.philosophySectionTitle} 
+      />
+      <SafetyApproach 
+        approaches={data.approaches} 
+        title={data.approachesSectionTitle} 
+        subtitle={data.approachesSectionSubtitle} 
+      />
+      <LifeSavingRules 
+        rules={data.rules} 
+        title={data.rulesSectionTitle} 
+        subtitle={data.rulesSectionSubtitle} 
+      />
+      <SafetyCulture 
+        title={data.safetyCultureTitle} 
+        desc={data.safetyCultureDesc} 
+      />
+      <EHSPillarsAndPrograms 
+        pillars={data.pillars} 
+        title={data.pillarsSectionTitle} 
+      />
+      <EHSSafetyPrograms 
+        programs={data.programs} 
+        title={data.programsSectionTitle} 
+      />
+      <CertificationsAndEHSAction 
+        gallery={data.gallery} 
+        title={data.gallerySectionTitle} 
+      />
+      <IndustryRecognition 
+        awards={data.awards} 
+        title={data.awardsSectionTitle} 
+        subtitle={data.awardsSectionSubtitle} 
+      />
+      <SafetyResources 
+        resources={data.resources} 
+        title={data.resourcesSectionTitle} 
+        subtitle={data.resourcesSectionSubtitle} 
+        desc={data.resourcesSectionDesc} 
+      />
     </div>
   )
 }

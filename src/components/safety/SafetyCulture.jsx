@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SafetyCulture = () => {
+const SafetyCulture = ({ title, desc }) => {
   return (
     <div style={{
       fontFamily: 'Inter, sans-serif',
@@ -53,7 +53,7 @@ const SafetyCulture = () => {
               letterSpacing: '-1px',
               lineHeight: 1.2
             }}>
-              Safety <span style={{ color: '#0a2a66' }}>Culture</span>
+              {title || <>Safety <span style={{ color: '#0a2a66' }}>Culture</span></>}
             </h2>
             
             <p style={{
@@ -62,7 +62,7 @@ const SafetyCulture = () => {
               color: '#475569',
               margin: '0 0 16px'
             }}>
-              Safety is built through awareness, responsibility, and teamwork. Every individual is encouraged to follow proactive safety practices, maintain workplace discipline, and contribute towards a safer environment across every project.
+              {desc || "Safety is built through awareness, responsibility, and teamwork. Every individual is encouraged to follow proactive safety practices, maintain workplace discipline, and contribute towards a safer environment across every project."}
             </p>
             
             <p style={{

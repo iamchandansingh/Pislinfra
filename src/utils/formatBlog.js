@@ -1,0 +1,28 @@
+export const formatStrapiBlogs = (strapiBlogs) => {
+  return strapiBlogs.map(item => {
+    return {
+      id: item.documentId || item.id,
+      title: item.title,
+      slug: item.slug,
+      excerpt: item.excerpt,
+      content: item.content,
+      category: item.category,
+      publishDate: item.publishDate,
+      readTime: item.readTime,
+      featuredImage: item.featuredImage?.url 
+        ? (item.featuredImage.url.startsWith('http') ? item.featuredImage.url : `http://127.0.0.1:1337${item.featuredImage.url}`) 
+        : null,
+      galleryImages: item.galleryImages?.map(img => 
+        img.url.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`
+      ) || [],
+      tags: item.tags || [],
+      author: item.author || {},
+      featured: item.featured,
+      status: item.statusField || 'published',
+      seoTitle: item.seo?.seoTitle,
+      seoDescription: item.seo?.seoDescription,
+      seoKeywords: item.seo?.seoKeywords,
+      faqSchema: item.faqSchema || [],
+    };
+  });
+};

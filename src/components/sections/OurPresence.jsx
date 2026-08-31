@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, User, Maximize2, Calendar, Layers } from 'lucide-react';
 import projectsData from '../../data/projectsData';
 
-const OurPresence = () => {
+const OurPresence = ({ title, description }) => {
   const [activeLocation, setActiveLocation] = useState(null);
 
   const ongoingProjects = projectsData || [];
@@ -198,8 +198,12 @@ const OurPresence = () => {
         
         {/* LEFT */}
         <div>
-          <h2 style={{ fontSize: '30px', fontWeight: '750', color: '#0f172a', marginBottom: '12px', letterSpacing: '-1px', lineHeight: 1.1 }}>OUR <span style={{ color: '#ff8755' }}>PRESENCE</span></h2>
-          <p style={{ color: '#64748b', fontSize: '15.5px', lineHeight: '1.65', marginBottom: '36px' }}> Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring </p>
+          <h2 style={{ fontSize: '30px', fontWeight: '750', color: '#0f172a', marginBottom: '12px', letterSpacing: '-1px', lineHeight: 1.1 }}>{title ? (
+    <span>{title.split(' ')[0]} <span style={{ color: '#ff8755' }}>{title.split(' ').slice(1).join(' ')}</span></span>
+  ) : (
+    <span>OUR <span style={{ color: '#ff8755' }}>PRESENCE</span></span>
+  )}</h2>
+          <p style={{ color: '#64748b', fontSize: '15.5px', lineHeight: '1.65', marginBottom: '36px' }}>{description || 'Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring'}</p>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             {regions.map((region) => {

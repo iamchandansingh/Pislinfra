@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import BlogDB from '../../data/BlogDB';
 
-const FeaturedArticleSection = () => {
+
+
+const FeaturedArticleSection = ({ article: latestBlog }) => {
+  if (!latestBlog) return null;
+
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   
@@ -16,8 +19,7 @@ const FeaturedArticleSection = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const latestBlog = [...BlogDB]
-    .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))[0];
+  
 
   if (!latestBlog) return null;
 

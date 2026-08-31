@@ -136,7 +136,7 @@ const Industries = () => {
 
   return (
     <section style={{
-      padding: '40px 24px',
+      padding: '30px 24px',
       background: '#f8fafc',
       fontFamily: '"Inter", "Helvetica Neue", sans-serif',
       overflow: 'hidden',

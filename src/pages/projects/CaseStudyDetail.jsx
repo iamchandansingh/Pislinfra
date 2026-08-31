@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { fetchStrapiData } from '../../services/strapi'
+import Preloader from '../../components/common/Preloader'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import caseStudies from '../../data/caseStudies'
@@ -27,7 +30,55 @@ const headingStyle = { color: '#28296F', fontSize: '32px', marginBottom: '20px',
 const CaseStudyDetail = () => {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const cs = caseStudies.find(c => c.slug === slug)
+  
+  const [cs, setCs] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const csData = await fetchStrapiData(`case-studies?filters[slug][$eq]=${slug}&populate=*`);
+        if (csData && csData.length > 0) {
+          const item = csData[0];
+          setCs({
+            id: item.documentId || item.id,
+            slug: item.slug,
+            title: item.title,
+            project: item.project,
+            developer: item.developer,
+            location: item.location,
+            plinthArea: item.plinthArea,
+            buildUpArea: item.buildUpArea,
+            introduction: item.introduction,
+            overview: item.overview,
+            engagement: item.engagement || [],
+            challenges: item.challenges || [],
+            achievements: item.achievements || [],
+            conclusion: item.conclusion,
+            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `http://127.0.0.1:1337${item.image.url}`) : null,
+            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `http://127.0.0.1:1337${item.engagementImage.url}`) : null,
+            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `http://127.0.0.1:1337${item.challengesImage.url}`) : null,
+            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `http://127.0.0.1:1337${item.achievementsImage.url}`) : null,
+            seo: item.seo,
+          });
+        } else {
+          const found = caseStudies.find(c => c.slug === slug);
+          setCs(found || null);
+        }
+      } catch (err) {
+        console.error("Error fetching case study details:", err);
+        const found = caseStudies.find(c => c.slug === slug);
+        setCs(found || null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    getData();
+  }, [slug]);
+
+  if (loading) return <Preloader />
+
 
   if (!cs) {
     return (

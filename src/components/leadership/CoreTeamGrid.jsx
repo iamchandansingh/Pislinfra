@@ -1,45 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Import all team member images
-import pankajSoodImg from '../../assets/images/leadership/Core Team/Pankaj-Sood.png';
-import ramdhanYadavImg from '../../assets/images/leadership/Core Team/Ramdhan-Yadav.png';
-import rajeshYadavImg from '../../assets/images/leadership/Core Team/Rajesh-Yada.png';
-import brigadierSurinderImg from '../../assets/images/leadership/Core Team/Brigadier-Surinder-Singh.png';
-import arnabBoseImg from '../../assets/images/leadership/Core Team/Arnab-Bose.png';
-import jitenderSinghImg from '../../assets/images/leadership/Core Team/JITENDER-SINGH.png';
-import sumitGuptaImg from '../../assets/images/leadership/Core Team/Sumit-Gupta.png';
-import opTiwariImg from '../../assets/images/leadership/Core Team/OP-Tiwari.png';
-import manojKumarImg from '../../assets/images/leadership/Core Team/Manoj-Kumar.png';
-import princeAroraImg from '../../assets/images/leadership/Core Team/Prince-Arora.png';
-import kartikDaraImg from '../../assets/images/leadership/Core Team/Kartik-Dara.png';
-import ravinderTomarImg from '../../assets/images/leadership/Core Team/Ravinder-Toma.png';
-import amitDubeyImg from '../../assets/images/leadership/Core Team/Amit-Dubey.png';
-import mohsinKhanImg from '../../assets/images/leadership/Core Team/Mohsin-Khan.png';
-import soniaAhujaImg from '../../assets/images/leadership/Core Team/Sonia-Ahuja.png';
-import gurpreetSinghImg from '../../assets/images/leadership/Core Team/Gurpreet-Singh.png';
-
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
-const teamMembers = [
-  { id: 1, name: 'PANKAJ SOOD', role: 'Chief Financial Officer', dept: 'Finance', desc: 'Driving strategic financial planning and enterprise growth initiatives.', img: pankajSoodImg },
-  { id: 2, name: 'RAMDHAN YADAV', role: 'Director Finance', dept: 'Finance', desc: 'Managing corporate finance operations and compliance frameworks.', img: ramdhanYadavImg },
-  { id: 3, name: 'RAJESH YADAV', role: 'Chief Development Officer', dept: 'Development', desc: 'Leading large-scale infrastructure development and execution strategies.', img: rajeshYadavImg },
-  { id: 4, name: 'BRIG. SURINDER YADAV', role: 'Chief Administrative Officer', dept: 'Administration', desc: 'Overseeing administrative operations and organizational governance.', img: brigadierSurinderImg },
-  { id: 5, name: 'ARNAB BOSE', role: 'Sr Project Director', dept: 'Projects', desc: 'Delivering high-value infrastructure projects with operational excellence.', img: arnabBoseImg },
-  { id: 6, name: 'JITENDER SINGH', role: 'Sr Project Director', dept: 'Projects', desc: 'Supervising multi-site project execution and engineering coordination.', img: jitenderSinghImg },
-  { id: 7, name: 'SUMIT GUPTA', role: 'Project Director', dept: 'Projects', desc: 'Managing end-to-end project planning and construction workflows.', img: sumitGuptaImg },
-  { id: 8, name: 'OP TIWARI', role: 'DGM Projects', dept: 'Projects', desc: 'Streamlining project delivery and execution management systems.', img: opTiwariImg },
-  { id: 9, name: 'MANOJ KUMAR', role: 'Vice President (Tendering)', dept: 'Tendering', desc: 'Leading tendering operations and contract acquisition strategies.', img: manojKumarImg },
-  { id: 10, name: 'PRINCE ARORA', role: 'Manager Tendering – Civil', dept: 'Tendering', desc: 'Handling civil tender management and bid optimization processes.', img: princeAroraImg },
-  { id: 11, name: 'KARTIK DARA', role: 'Manager Tendering – Civil', dept: 'Tendering', desc: 'Coordinating civil estimation and tender documentation workflows.', img: kartikDaraImg },
-  { id: 12, name: 'RAVINDRA TOMAR', role: 'Manager Tendering – MEP', dept: 'Tendering', desc: 'Managing MEP tendering and technical commercial evaluations.', img: ravinderTomarImg },
-  { id: 13, name: 'AMIT DUBEY', role: 'EHS Lead', dept: 'Safety & EHS', desc: 'Ensuring workplace safety, EHS compliance, and risk management.', img: amitDubeyImg },
-  { id: 14, name: 'MOHSIN KHAN', role: 'AGM Procurement', dept: 'Procurement', desc: 'Managing procurement operations and strategic vendor coordination.', img: mohsinKhanImg },
-  { id: 15, name: 'SONIA AHUJA', role: 'Sr. Manager Design', dept: 'Design', desc: 'Developing smart architectural and engineering design solutions.', img: soniaAhujaImg },
-  { id: 16, name: 'GURPREET SINGH', role: 'Manager Design', dept: 'Design', desc: 'Creating innovative structural and design planning frameworks.', img: gurpreetSinghImg }
-];
+const getImageUrl = (imgObj, defaultImg) => {
+  if (!imgObj) return defaultImg;
+  const url = imgObj.url || imgObj.data?.attributes?.url;
+  if (!url) return defaultImg;
+  if (url.startsWith('http')) return url;
+  return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+};
 
 const TeamMemberCard = ({ member, index }) => {
   return (
@@ -70,7 +41,7 @@ const TeamMemberCard = ({ member, index }) => {
         marginBottom: '16px'
       }}>
         <img 
-          src={member.img} 
+          src={getImageUrl(member.image)} 
           alt={member.name} 
           style={{ 
             width: '100%', 
@@ -89,17 +60,17 @@ const TeamMemberCard = ({ member, index }) => {
           {member.name}
         </h4>
         <p style={{ fontSize: '12px', color: ORANGE, fontWeight: 700, margin: '0 0 10px 0', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
-          {member.role} • <span style={{ color: '#64748b', fontWeight: 500 }}>{member.dept}</span>
+          {member.designation} {member.department && <span style={{ color: '#64748b', fontWeight: 500 }}>• {member.department}</span>}
         </p>
         <p style={{ fontSize: '13px', color: '#475569', fontWeight: 500, lineHeight: '1.45', margin: '0', flex: 1 }}>
-          {member.desc}
+          {member.bio}
         </p>
       </div>
     </motion.div>
   );
 };
 
-const CoreTeamGrid = () => {
+const CoreTeamGrid = ({ title, members }) => {
   return (
     <section style={{
       padding: '100px 24px',
@@ -112,7 +83,7 @@ const CoreTeamGrid = () => {
           fontSize: '28px', fontWeight: 900, color: NAVY,
           margin: '0 0 48px 0', letterSpacing: '-0.5px'
         }}>
-          Our Core Team
+          {title || 'Our Core Team'}
         </h2>
 
         <div 
@@ -123,8 +94,8 @@ const CoreTeamGrid = () => {
             gap: '24px'
           }}
         >
-          {teamMembers.map((member, index) => (
-            <TeamMemberCard key={member.id} member={member} index={index} />
+          {(members || []).map((member, index) => (
+            <TeamMemberCard key={index} member={member} index={index} />
           ))}
         </div>
 

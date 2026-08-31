@@ -1,14 +1,66 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import projectsData from '../../data/projectsData'
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
+import { HiChevronLeft, HiChevronRight, HiCheckCircle, HiExclamation } from 'react-icons/hi'
+import { fetchStrapiData } from '../../services/strapi'
+import Preloader from '../../components/common/Preloader'
+import localProjectsData from '../../data/projectsData'
+
+const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
 const OngoingProjects = () => {
   const [currentPage, setCurrentPage] = useState(1)
+  const [projectsData, setProjectsData] = useState(localProjectsData)
+  const [pageData, setPageData] = useState(null)
+  const [loading, setLoading] = useState(false)
   const itemsPerPage = 16
-  
+
+  useEffect(() => {
+    let isMounted = true;
+    const getData = async () => {
+      try {
+        const pData = await fetchStrapiData('ongoing-page?populate=seo,heroImage');
+        if (pData && isMounted) {
+          setPageData(pData);
+        }
+
+        const projData = await fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
+        if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
+          const formatted = projData.map(item => {
+            const matchLocal = localProjectsData.find(lp => slugify(lp.name) === slugify(item.name)) || {};
+            const imgs = item.images && item.images.length > 0 
+              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`)
+              : (matchLocal.images || []);
+
+            return {
+              id: item.documentId || item.id,
+              category: item.category || matchLocal.category,
+              name: item.name || matchLocal.name,
+              location: item.location || matchLocal.location,
+              state: item.state || matchLocal.state,
+              area: item.area || matchLocal.area,
+              client: item.client || matchLocal.client,
+              timeline: item.timeline || matchLocal.timeline,
+              status: item.projectStatus || item.status || 'Ongoing',
+              scope: item.scope || matchLocal.scope,
+              images: imgs.length > 0 ? imgs : (matchLocal.images || [])
+            };
+          });
+          setProjectsData(formatted);
+        }
+      } catch (err) {
+        console.error('Failed to fetch ongoing projects', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+    getData();
+    return () => { isMounted = false; };
+  }, []);
+
+  if (loading) return <Preloader />;
+
   const totalPages = Math.ceil(projectsData.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -16,45 +68,47 @@ const OngoingProjects = () => {
 
   const seoData = {
     contentType: 'page',
-    title: 'Ongoing Projects',
-    seoTitle: 'Ongoing Projects | Pislinfra',
-    seoDescription: 'Explore Pislinfra\'s ongoing industrial construction projects across India. Warehousing, logistics parks & infrastructure development currently under execution.',
-    seoKeywords: 'ongoing projects, industrial construction, warehouse projects, logistics park, infrastructure development, current projects, Pislinfra',
+    title: pageData?.seo?.seoTitle || 'Ongoing Projects',
+    seoTitle: pageData?.seo?.seoTitle || 'Ongoing Projects | Pislinfra',
+    seoDescription: pageData?.seo?.seoDescription || 'Explore Pislinfra\'s ongoing industrial construction projects across India.',
+    seoKeywords: pageData?.seo?.seoKeywords || 'ongoing projects, industrial construction',
     slug: 'projects/ongoing',
     canonicalUrl: 'https://pislinfra.com/projects/ongoing',
-    ogTitle: 'Ongoing Projects - Industrial Construction | Pislinfra',
-    ogDescription: 'Current industrial & infrastructure projects under development across India.',
-    ogImage: 'https://pislinfra.com/images/hero/Ongoing-Projects.png',
-    ogType: 'website',
-    twitterTitle: 'Ongoing Projects | Pislinfra',
-    twitterDescription: 'Industrial construction projects currently under execution.',
-    twitterImage: 'https://pislinfra.com/images/hero/Ongoing-Projects.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Projects', 'Ongoing', 'Construction', 'Industrial', 'Infrastructure'],
-  };
+    ogTitle: pageData?.seo?.seoTitle || 'Ongoing Projects - Industrial Construction | Pislinfra',
+    ogDescription: pageData?.seo?.seoDescription || 'Current industrial & infrastructure projects under development across India.',
+    heroImage: pageData?.heroImage?.url || '/images/projects/ongoing-hero.jpg'
+  }
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 400, behavior: 'smooth' })
   }
+
+  const getImageUrl = (img) => {
+    if (!img) return null;
+    return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+  };
+
+  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/Ongoing-Projects.png";
 
   return (
     <div>
       <BlogSEO blog={seoData} />
       
       <PageHero 
-        title="Ongoing Projects" 
-        subtitle="Current projects under development across India"
-        breadcrumb="Projects / Ongoing"
-        bgImage="/images/hero/Ongoing-Projects.png"
+        title={pageData?.heroTitle || "Ongoing Projects"} 
+        subtitle={pageData?.heroSubtitle || "Current projects under development across India"}
+        breadcrumb={pageData?.heroBreadcrumb || "Projects / Ongoing"}
+        bgImage={heroImage}
       />
       
       <section style={{ padding: '60px 16px', backgroundColor: '#f9fafb', minHeight: '60vh' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           
+          {pageData?.description && (
+            <div style={{ marginBottom: '40px', fontSize: '16px', color: '#475569', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }} dangerouslySetInnerHTML={{ __html: pageData.description.replace(/\n/g, '<br />') }} />
+          )}
+
           <div style={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
@@ -64,7 +118,7 @@ const OngoingProjects = () => {
             gap: '16px'
           }}>
             <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
-              Ongoing Projects
+              {pageData?.heroTitle || "Ongoing Projects"}
             </h2>
             <div style={{
               display: 'flex',
@@ -84,7 +138,11 @@ const OngoingProjects = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="projects-grid">
             {currentProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
+                type="ongoing"
+              />
             ))}
           </div>
 
@@ -116,6 +174,10 @@ const OngoingProjects = () => {
         @media (max-width: 1200px) { .projects-grid { grid-template-columns: repeat(3, 1fr) !important; } }
         @media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr) !important; } }
         @media (max-width: 600px) { .projects-grid { grid-template-columns: repeat(1, 1fr) !important; } }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
     </div>
   )

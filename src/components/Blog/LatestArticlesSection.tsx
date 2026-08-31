@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import BlogDB from '../../data/BlogDB';
 
-const LatestArticlesSection = ({ visibleCount = 6 }) => {
+const LatestArticlesSection = ({ articles: inputArticles }) => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -16,10 +16,7 @@ const LatestArticlesSection = ({ visibleCount = 6 }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const articles = [...BlogDB]
-    .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
-    .slice(0, visibleCount)
-    .map(blog => ({
+  const articles = (inputArticles || []).map(blog => ({
       id: blog.id,
       category: blog.category,
       title: blog.title,
@@ -28,7 +25,9 @@ const LatestArticlesSection = ({ visibleCount = 6 }) => {
       }),
       description: blog.excerpt,
       image: blog.featuredImage,
-      slug: blog.slug,
+      badgeBg: '#EEF4FF',
+      badgeColor: '#2563EB',
+      slug: blog.slug
     }));
 
   if (articles.length === 0) {

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FiHeart, FiUsers, FiBookOpen, FiDroplet, FiFeather } from 'react-icons/fi';
+import { FiUsers, FiBookOpen, FiDroplet, FiFeather } from 'react-icons/fi';
 
-const statsData = [
-  { id: 'projects', icon: <FiHeart size={34} strokeWidth={1.8} />, iconColor: '#FF6B35', value: 50, suffix: '+', label: 'CSR Projects' },
-  { id: 'impacted', icon: <FiUsers size={34} strokeWidth={1.8} />, iconColor: '#6366F1', value: 10, suffix: '+', label: 'Lives Impacted' },
-  { id: 'education', icon: <FiBookOpen size={34} strokeWidth={1.8} />, iconColor: '#22C55E', value: 25, suffix: '+', label: 'Education Initiatives' },
-  { id: 'health', icon: <FiDroplet size={34} strokeWidth={1.8} />, iconColor: '#EC4899', value: 20, suffix: '+', label: 'Health Camps' },
-  { id: 'environment', icon: <FiFeather size={34} strokeWidth={1.8} />, iconColor: '#F97316', value: 30, suffix: '+', label: 'Environment Projects' },
+const defaultStats = [
+  { id: 'impacted', iconName: 'FiUsers', iconColor: '#6366F1', value: 10, suffix: '+', label: 'Lives Impacted' },
+  { id: 'education', iconName: 'FiBookOpen', iconColor: '#22C55E', value: 25, suffix: '+', label: 'Education Initiatives' },
+  { id: 'health', iconName: 'FiDroplet', iconColor: '#EC4899', value: 20, suffix: '+', label: 'Health Camps' },
+  { id: 'environment', iconName: 'FiFeather', iconColor: '#F97316', value: 30, suffix: '+', label: 'Environment Projects' },
 ];
 
 const CounterAnimation = ({ value, suffix }) => {
@@ -44,9 +43,23 @@ const CounterAnimation = ({ value, suffix }) => {
   );
 };
 
-const CSRStats = () => {
+const getIcon = (name) => {
+  const size = 34;
+  const strokeWidth = 1.8;
+  switch (name) {
+    case 'FiUsers': return <FiUsers size={size} strokeWidth={strokeWidth} />;
+    case 'FiBookOpen': return <FiBookOpen size={size} strokeWidth={strokeWidth} />;
+    case 'FiDroplet': return <FiDroplet size={size} strokeWidth={strokeWidth} />;
+    case 'FiFeather': return <FiFeather size={size} strokeWidth={strokeWidth} />;
+    default: return <FiUsers size={size} strokeWidth={strokeWidth} />;
+  }
+};
+
+const CSRStats = ({ stats }) => {
+  const statsData = stats && stats.length > 0 ? stats : defaultStats;
+
   return (
-    <div style={{ width: '100%', position: 'relative', zIndex: 10, marginTop: '-55px' }}>
+    <div style={{ width: '100%', position: 'relative', zIndex: 10, marginTop: '40px', marginBottom: '10px' }}>
       <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
         <div className="csr-stats-container" style={{
           backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '16px',
@@ -54,9 +67,9 @@ const CSRStats = () => {
           display: 'flex', alignItems: 'center', flexWrap: 'wrap',
         }}>
           {statsData.map((stat, index) => (
-            <React.Fragment key={stat.id}>
+            <React.Fragment key={stat.id || index}>
               <div className="stat-item" style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'center', padding: '10px 8px', minWidth: '0' }}>
-                <span style={{ color: stat.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>{stat.icon}</span>
+                <span style={{ color: stat.iconColor, display: 'flex', lineHeight: 0, flexShrink: 0 }}>{getIcon(stat.iconName)}</span>
                 <div>
                   <CounterAnimation value={stat.value} suffix={stat.suffix} />
                   <p style={{ fontSize: '11px', fontWeight: 600, color: '#475569', lineHeight: 1.3, marginTop: '2px', marginBottom: 0, fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>

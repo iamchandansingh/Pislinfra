@@ -23,7 +23,7 @@ interface InfoItem {
 }
 
 // Job Positions List
-const jobPositions: string[] = [
+const defaultJobPositions: string[] = [
   'Planning & MIS Engineer',
   'Planning & MIS Manager',
   'Costing Engineer',
@@ -96,11 +96,14 @@ const initialFormData: FormData = {
 };
 
 interface Props {
+  jobPositionsList?: string[];
+  title?: string;
+  subtitle?: string;
   preSelectedPosition?: string;
 }
 
 // Main Component
-const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition }) => {
+const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition, jobPositionsList, title, subtitle }) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
 
   useEffect(() => {
@@ -333,14 +336,14 @@ const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition }) => {
                 color: '#1E2A5A',
                 margin: '0 0 4px 0',
               }}>
-                Apply For a Position
+                {title || 'Apply For a Position'}
               </h2>
               <p style={{
                 fontSize: '14px',
                 color: '#64748B',
                 margin: 0,
               }}>
-                Fill out the details below to apply for a position.
+                {subtitle || 'Fill out the details below to apply for a position.'}
               </p>
             </div>
 
@@ -457,7 +460,7 @@ const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition }) => {
                       data-error={!!errors.position}
                     >
                       <option value="">-- Select Position --</option>
-                      {jobPositions.map((position) => (
+                      {(jobPositionsList || defaultJobPositions).map((position) => (
                         <option key={position} value={position}>{position}</option>
                       ))}
                     </select>

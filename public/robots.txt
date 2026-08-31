@@ -25,3 +25,7 @@ Disallow: /*?filter=
 # Disallow images/scripts (optional)
 # Allow: /images/
 # Allow: /scripts/
+
+# AI Crawlers
+User-agent: GPTBot
+Disallow: /

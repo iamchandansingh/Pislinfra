@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
+import { fetchStrapiData } from '../../services/strapi'
+import Preloader from '../../components/common/Preloader'
+
 import PageHero from '../../components/hero/PageHero'
 import ProjectCard from '../../components/cards/ProjectCard'
 import projectsData from '../../data/projectsData'
@@ -63,8 +66,11 @@ const getClientInfo = (clientName) => {
   })
 }
 
+const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
 const ProjectDetail = () => {
   const { id, type } = useParams()
+  const location = useLocation()
 
   const fallbackImages = [
     'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -81,22 +87,128 @@ const ProjectDetail = () => {
   const [viewedProjects, setViewedProjects] = useState([])
 
   const projectType = type || 'ongoing'
-  const projectIdOrSlug = id
+  const projectIdOrSlug = id || ''
 
-  const allProjects = projectType === 'completed' ? completedProjects : projectsData
-  
-  const project = allProjects.find(p => {
-    if (projectIdOrSlug && !isNaN(projectIdOrSlug)) {
-      return p.id === parseInt(projectIdOrSlug)
-    }
+  const localPool = projectType === 'completed' ? completedProjects : projectsData;
+  const initialMatch = location.state?.projectData || localPool.find(p => {
+    return slugify(p.name) === slugify(projectIdOrSlug) || 
+           (p.id && p.id.toString() === projectIdOrSlug.toString()) ||
+           slugify(p.name).includes(slugify(projectIdOrSlug)) ||
+           slugify(projectIdOrSlug).includes(slugify(p.name));
+  });
+
+  const [project, setProject] = useState(initialMatch || null)
+  const [allProjects, setAllProjects] = useState(localPool)
+  const [loading, setLoading] = useState(initialMatch ? false : true)
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    const fetchUltraFast = async () => {
+      let endpoint = projectType === 'completed' ? 'completed-projects' : 'ongoing-projects';
+      const isDocumentId = projectIdOrSlug.length >= 20 && !projectIdOrSlug.includes('-');
+      let foundFast = false;
+
+      // STEP 1: If it's a documentId, fetch directly
+      if (isDocumentId) {
+        try {
+          const projData = await fetchStrapiData(`${endpoint}/${projectIdOrSlug}?populate=*`);
+          if (projData && isMounted) {
+            const formatted = {
+              id: projData.documentId || projData.id,
+              category: projData.category,
+              name: projData.name,
+              location: projData.location,
+              state: projData.state,
+              area: projData.area,
+              client: projData.client,
+              timeline: projData.timeline,
+              status: projData.projectStatus || projData.status || (projectType === 'completed' ? 'Completed' : 'Ongoing'),
+              scope: projData.scope,
+              images: projData.images && projData.images.length > 0 
+                ? projData.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`) 
+                : (initialMatch?.images || [])
+            };
+            setProject(formatted);
+            setLoading(false);
+            foundFast = true;
+          }
+        } catch(e) {
+          console.warn("Fast fetch failed, falling back to full list search...");
+        }
+      }
+
+      // STEP 2: Fetch all projects
+      try {
+        const allData = await fetchStrapiData(`${endpoint}?populate=*&pagination[pageSize]=100&sort=createdAt:asc`);
+        
+        if (allData && Array.isArray(allData) && allData.length > 0 && isMounted) {
+          const formattedAll = allData.map(item => {
+            const localFallback = localPool.find(lp => slugify(lp.name) === slugify(item.name)) || {};
+            const imgs = item.images && item.images.length > 0 
+              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`)
+              : (localFallback.images || []);
+
+            return {
+              id: item.documentId || item.id,
+              category: item.category || localFallback.category,
+              name: item.name || localFallback.name,
+              location: item.location || localFallback.location,
+              state: item.state || localFallback.state,
+              area: item.area || localFallback.area,
+              client: item.client || localFallback.client,
+              timeline: item.timeline || localFallback.timeline,
+              status: item.projectStatus || item.status || (projectType === 'completed' ? 'Completed' : 'Ongoing'),
+              scope: item.scope || localFallback.scope,
+              images: imgs.length > 0 ? imgs : (localFallback.images || [fallbackImages[0]])
+            };
+          });
+          
+          setAllProjects(formattedAll);
+          
+          // Search project by slug, documentId, or name
+          if (!foundFast) {
+            let foundProject = formattedAll.find(p => p.id === projectIdOrSlug || p.documentId === projectIdOrSlug);
+            if (!foundProject) {
+              foundProject = formattedAll.find(p => {
+                 const s = slugify(p.name);
+                 const targetS = slugify(projectIdOrSlug);
+                 return s === targetS || s.includes(targetS) || targetS.includes(s) || p.id.toString() === projectIdOrSlug;
+              });
+            }
+            
+            if (foundProject) {
+              setProject(foundProject);
+            } else if (initialMatch) {
+              setProject(initialMatch);
+            }
+            setLoading(false);
+          }
+        } else if (initialMatch && isMounted) {
+          setProject(initialMatch);
+          setLoading(false);
+        } else if (isMounted) {
+          setLoading(false);
+        }
+      } catch (e) {
+        console.error(e);
+        if (isMounted) {
+          if (initialMatch) setProject(initialMatch);
+          setLoading(false);
+        }
+      }
+    };
+
     if (projectIdOrSlug) {
-      const slug = p.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
-      return slug === projectIdOrSlug
+      fetchUltraFast();
+    } else {
+      setLoading(false);
     }
-    return false
-  })
+    
+    return () => { isMounted = false; };
+  }, [projectIdOrSlug, projectType]);
 
-  const projectImages = project?.images?.length > 0 
+const projectImages = project?.images?.length > 0 
     ? project.images 
     : fallbackImages
 
@@ -119,10 +231,6 @@ const ProjectDetail = () => {
     return () => clearInterval(interval)
   }, [isPaused, relatedProjects.length])
 
-  const visibleProjects = []
-  for (let i = 0; i < 4; i++) {
-    visibleProjects.push(relatedProjects[(sliderIndex + i) % relatedProjects.length])
-  }
 
   useEffect(() => {
     if (isHovered) return
@@ -131,6 +239,14 @@ const ProjectDetail = () => {
     }, 2000)
     return () => clearInterval(interval)
   }, [isHovered, projectImages.length])
+
+  const visibleProjects = [];
+  if (relatedProjects.length > 0) {
+    for (let i = 0; i < Math.min(4, relatedProjects.length); i++) {
+      visibleProjects.push(relatedProjects[(sliderIndex + i) % relatedProjects.length]);
+    }
+  }
+  if (loading) return <Preloader />;
 
   if (!project) {
     return (
@@ -430,7 +546,7 @@ const ProjectDetail = () => {
                     <FaEye style={{ fontSize: '10px' }} /> Viewed
                   </div>
                 )}
-                <ProjectCard project={proj} type={projectType} />
+                <ProjectCard project={proj || {}} type={projectType} />
               </div>
             ))}
           </div>

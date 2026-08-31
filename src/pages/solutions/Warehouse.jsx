@@ -1,45 +1,101 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { fetchStrapiData } from '../../services/strapi'
+import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import warehouseBg from '../../assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-5.png'
-import { FaBuilding, FaBorderAll, FaHome, FaThLarge, FaCogs, FaMapMarkedAlt, FaStar, FaShieldAlt } from 'react-icons/fa'
+import * as FaIcons from 'react-icons/fa';
+import * as HiIcons from 'react-icons/hi';
+import * as BiIcons from 'react-icons/bi';
+import Preloader from '../../components/common/Preloader';
+
+const getIcon = (iconName) => {
+  if (!iconName) return FaIcons.FaCircle;
+  if (iconName.startsWith('Fa')) return FaIcons[iconName] || FaIcons.FaCircle;
+  if (iconName.startsWith('Hi')) return HiIcons[iconName] || FaIcons.FaCircle;
+  if (iconName.startsWith('Bi')) return BiIcons[iconName] || FaIcons.FaCircle;
+  return FaIcons.FaCircle;
+};
+
+
+
+const defaultWarehouseData = {
+  title: "Warehousing Solutions",
+  introText: "PISL specializes in designing and constructing LEED-certified warehousing facilities.",
+  mainFeatureTitle: "Grade-A Warehousing",
+  mainFeatureText: "High-bay warehousing with FM2 floor specifications, thermal insulation, and energy-efficient systems.",
+  grids: { items: [] }
+};
 
 const Warehouse = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetchStrapiData('solution-pages?filters[slug]=warehouse&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo');
+        if (response && response.length > 0) {
+          setData(response[0]);
+        } else {
+          setData(defaultWarehouseData);
+        }
+      } catch (err) {
+        setData(defaultWarehouseData);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (loading || !data) return <Preloader />;
+
   const seoData = {
     contentType: 'page',
-    title: 'Warehouse Contractors',
-    seoTitle: 'Warehouse',
-    seoDescription: 'Pislinfra is a leading warehouse contractor in India. Expert design-build solutions for industrial storage & distribution centers. Cost-effective warehouse construction.',
-    seoKeywords: 'warehouse contractors, warehouse construction, industrial storage, distribution center, design build warehouse, warehouse design, logistics facility, Pislinfra',
+    title: data.title,
+    seoTitle: data.seo?.seoTitle,
+    seoDescription: data.seo?.seoDescription,
+    seoKeywords: data.seo?.seoKeywords,
     slug: 'solutions/warehouse',
-    canonicalUrl: 'https://pislinfra.com/solutions/warehouse',
-    ogTitle: 'Warehouse Contractors - Industrial Storage Solutions | Pislinfra',
-    ogDescription: 'Leading warehouse contractor in India. Design-build solutions for storage & distribution centers.',
-    ogImage: 'https://pislinfra.com/images/hero/Service.png',
-    ogType: 'website',
-    twitterTitle: 'Warehouse Contractors | Pislinfra',
-    twitterDescription: 'Expert warehouse construction & design-build solutions.',
-    twitterImage: 'https://pislinfra.com/images/hero/Service.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Warehouse', 'Construction', 'Design Build', 'Industrial', 'Storage', 'Logistics'],
+    canonicalUrl: data.seo?.canonicalUrl,
+    ogTitle: data.seo?.ogTitle,
+    ogDescription: data.seo?.ogDescription,
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, ''),
+    ogType: data.seo?.ogType || 'website',
+    twitterTitle: data.seo?.twitterTitle,
+    twitterDescription: data.seo?.twitterDescription,
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, ''),
+    twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
+    schemaType: data.seo?.schemaType || 'WebPage',
+    breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
+    organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
+    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Warehouse', 'Construction', 'Design Build', 'Industrial', 'Storage', 'Logistics'],
+    noIndex: data.seo?.noIndex || false,
+    noFollow: data.seo?.noFollow || false,
+    structuredData: data.seo?.structuredData
   };
 
-  const designConsiderations = [
-    { icon: FaBuilding, title: '1. Floor Systems', desc: 'Choosing the right warehouse floor system necessitates an understanding of concrete kinds, site dynamics, and how a space will be used. Concrete floors can be reinforced or unreinforced, freezer/cooler compatible, shrinkage compensating, and tailored to the user\'s floor loads and equipment route requirements.' },
-    { icon: FaBorderAll, title: '2. Exterior Wall Types', desc: 'Selecting warehouse exterior walls considers factors like size and schedule. Large facilities often opt for on-site poured concrete panels, which are cost-effective and have versatile finishes. Precast panels, produced offsite, suit tight schedules and are ideal for installation before the floor slab.' },
-    { icon: FaHome, title: '3. Building Structure', desc: 'In planning a warehouse, factors like roof loads, wall cladding, and storage heights must be factored in. Engineered steel joists, rafters, and columns can span considerable distances and support substantial roof loads. For tall storage needs, rack-supported structures optimise space.' },
-    { icon: FaThLarge, title: '4. Bay Sizing', desc: 'Bay sizing and rack design are critical elements in the warehouse building. The width and clear height of the structure are used to determine forklift travel pathways, aisle widths and racking layouts. A skilled warehouse contractor is critical to guaranteeing successful construction.' },
-    { icon: FaCogs, title: '5. Building Systems', desc: 'Decisions on dock types, sizes, and specifications have significance throughout the design phase. The functional requirements dictate whether mechanical or hydraulic docks are used. Electrical service, HVAC, fire protection, and lighting are all factors to consider with strict adherence to code standards.' },
-    { icon: FaMapMarkedAlt, title: '6. Site Design & Selection', desc: 'Guidelines dictate parking ratios, dock size, and office space distribution. PISL\'s expertise guarantees efficient and functional space utilisation. Our site feasibility services empower clients to make informed decisions by providing cost information and aiding in schedule considerations before construction.' },
-  ]
+  const mapGridItems = (items) => {
+    if (!items) return [];
+    return items.map(item => ({
+      icon: getIcon(item.icon),
+      title: item.title,
+      desc: item.description || item.desc
+    }));
+  };
 
-  const advantages = [
-    { icon: FaStar, title: 'Design-Build Strategy', desc: 'PISL\'s distinctive design-build strategy eliminates the risk of upfront costs by providing customers with a complimentary preliminary design.' },
-    { icon: FaShieldAlt, title: 'Integrated Project Delivery', desc: 'Our integrated project delivery strategy unifies design and construction quality, capital expenditure management, and schedule adherence under a single point of contact.' },
-    { icon: FaCogs, title: 'Risk Minimisation', desc: 'Our team of construction experts deeply understands each business, strategically minimising risk exposure and delivering optimal value.' },
-  ]
+  const gridsArray = Array.isArray(data.grids) ? data.grids : (data.grids?.items ? [data.grids] : []);
+  const dynamicGrids = gridsArray.map(grid => ({
+    title: grid.title ? <span dangerouslySetInnerHTML={{ __html: grid.title.replace(/\((.*?)\)/g, '<span style="color: #0a2a66">($1)</span>') }} /> : '',
+    description: grid.description,
+    items: mapGridItems(grid.items),
+    vertical: grid.vertical,
+    minWidth: grid.minWidth,
+    cardBg: grid.cardBg,
+    cardBorder: grid.cardBorder,
+    iconBg: grid.iconBg,
+    iconColor: grid.iconColor
+  }));
 
   return (
     <SolutionLayout
@@ -48,35 +104,26 @@ const Warehouse = () => {
         title: "Warehouse Contractors",
         subtitle: "State-of-the-art storage & distribution centers",
         breadcrumb: "Solutions / Warehouse",
-        bgImage: warehouseBg
+        bgImage: data.heroImage ? getImageUrl(data.heroImage, warehouseBg) : warehouseBg
       }}
       mainFeature={{
-        title: <span>Design-Build <span style={{ color: '#0a2a66' }}>Solutions</span></span>,
-        text: (
-          <p>
-            PISL stands as the leading warehouse contractor and distribution space nationwide, serving as a reliable contractor for clients nationwide. We are highly competent in offering the best and most cost-effective warehouse design and construction solutions for our clients. This holds true whether it's speculative developments or expansive distribution centres catering to e-commerce end-users, Consumer Packaged Goods (CPGs), and Third-Party Logistics (3PL) providers.
-          </p>
+        title: (
+          <span>
+            {(() => {
+              const words = (data.mainFeatureTitle || "Design-Build Solutions").split(' ');
+              if (words.length === 1) return <span style={{ color: '#0a2a66' }}>{words[0]}</span>;
+              const firstPart = words.slice(0, words.length - 1).join(' ');
+              const lastPart = words.slice(-1).join(' ');
+              return <>{firstPart} <span style={{ color: '#0a2a66' }}>{lastPart}</span></>;
+            })()}
+          </span>
         ),
-        image: warehouseBg
+        text: data.mainFeatureText ? (
+          <div style={{ marginBottom: '16px', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: data.mainFeatureText.replace(/### (.*?)\n/g, '<h3 style="font-size: 22px; font-weight: bold; color: #2a2a75; margin-bottom: 16px; margin-top: 32px;">$1</h3>').replace(/\n\n/g, '<br/><br/>') }} />
+        ) : null,
+        image: data.mainFeatureImage ? getImageUrl(data.mainFeatureImage, warehouseBg) : null
       }}
-      grids={[
-        {
-          title: <span>Construction <span style={{ color: '#0a2a66' }}>Considerations</span></span>,
-          description: "When undertaking warehouse construction, numerous warehouse design and construction intricacies must be taken into account to achieve a successful development. Working with an experienced contractor who is actively involved in the design and early stages of a project ensures optimal results.",
-          items: designConsiderations,
-          minWidth: '400px'
-        },
-        {
-          title: <span>The PISL <span style={{ color: '#0a2a66' }}>Infra Advantage</span></span>,
-          items: advantages,
-          vertical: true,
-          cardBg: '#fff5f0',
-          cardBorder: '#ffd5c2',
-          iconBg: '#ff8755',
-          iconColor: 'white',
-          minWidth: '300px'
-        }
-      ]}
+      grids={dynamicGrids}
     />
   )
 }

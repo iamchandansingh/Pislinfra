@@ -1,48 +1,10 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
-
-const contactCards = [
-  {
-    id: 'call',
-    title: 'Call Us',
-    icon: <Phone size={22} />,
-    iconBg: '#FFF3EC',
-    iconColor: '#FF6B35',
-    primaryText: '085270 40411',
-    secondaryText: 'Mon – Sat: 9:00 AM – 6:00 PM',
-    href: 'tel:08527040411',
-  },
-  {
-    id: 'email',
-    title: 'Email Us',
-    icon: <Mail size={22} />,
-    iconBg: '#EEF4FF',
-    iconColor: '#2563EB',
-    primaryText: 'info@pislinfra.com',
-    secondaryText: 'We reply within 24 hours',
-    href: 'mailto:info@pislinfra.com',
-  },
-  {
-    id: 'visit',
-    title: 'Visit Us',
-    icon: <MapPin size={22} />,
-    iconBg: '#EEFDF3',
-    iconColor: '#22C55E',
-    primaryText: '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
-    href: 'https://maps.app.goo.gl/yrFiVHJsAwLp461c9',
-  },
-];
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const ContactCard = ({ card }) => {
   const isLink = Boolean(card.href);
   const Component = isLink ? 'a' : 'div';
-  const linkProps = isLink
-    ? {
-        href: card.href,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-      }
-    : {};
+  const linkProps = isLink ? { href: card.href, target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
     <Component
@@ -64,7 +26,6 @@ const ContactCard = ({ card }) => {
         e.currentTarget.style.boxShadow = '0 4px 12px rgba(15,23,42,0.04)';
         e.currentTarget.style.borderColor = '#E5E7EB';
       }}
-      aria-label={`${card.title}: ${card.primaryText}`}
     >
       <div style={{
         width: '48px', height: '48px', minWidth: '48px', borderRadius: '50%',
@@ -84,25 +45,50 @@ const ContactCard = ({ card }) => {
   );
 };
 
-const ContactCardsSection = () => {
+const ContactCardsSection = ({ pageData }) => {
+  const contactCards = [
+    {
+      id: 'call',
+      title: 'Call Us',
+      icon: <Phone size={22} />,
+      iconBg: '#FFF3EC',
+      iconColor: '#FF6B35',
+      primaryText: pageData?.phone || '085270 40411',
+      secondaryText: 'Mon – Sat: 9:00 AM – 6:00 PM',
+      href: `tel:${pageData?.phone || '08527040411'}`.replace(/\s/g, ''),
+    },
+    {
+      id: 'email',
+      title: 'Email Us',
+      icon: <Mail size={22} />,
+      iconBg: '#EEF4FF',
+      iconColor: '#2563EB',
+      primaryText: pageData?.email || 'info@pislinfra.com',
+      secondaryText: 'We reply within 24 hours',
+      href: `mailto:${pageData?.email || 'info@pislinfra.com'}`,
+    },
+    {
+      id: 'visit',
+      title: 'Visit Us',
+      icon: <MapPin size={22} />,
+      iconBg: '#EEFDF3',
+      iconColor: '#22C55E',
+      primaryText: pageData?.address || '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
+      href: pageData?.mapUrl || 'https://maps.app.goo.gl/yrFiVHJsAwLp461c9',
+    },
+  ];
+
   return (
-    <div className="contact-cards-wrapper" style={{ width: '95%', maxWidth: '1100px', margin: '0 auto', padding: '24px 0 0 0', position: 'relative', zIndex: 10 }} aria-label="Contact information cards">
-      <div className="cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '12px', alignItems: 'stretch' }} role="list">
+    <div className="contact-cards-wrapper" style={{ width: '95%', maxWidth: '1100px', margin: '0 auto', padding: '24px 0 0 0', position: 'relative', zIndex: 10 }}>
+      <div className="cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '12px', alignItems: 'stretch' }}>
         {contactCards.map((card) => (
-          <div key={card.id} role="listitem" style={{ display: 'flex' }}><ContactCard card={card} /></div>
+          <div key={card.id} style={{ display: 'flex' }}><ContactCard card={card} /></div>
         ))}
       </div>
-
       <style>{`
-        @media (max-width: 639px) {
-          .contact-cards-wrapper { padding-bottom: 24px !important; }
-        }
-        @media (min-width: 550px) { 
-          .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; } 
-        }
-        @media (min-width: 900px) { 
-          .cards-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 18px !important; justify-content: center !important; } 
-        }
+        @media (max-width: 639px) { .contact-cards-wrapper { padding-bottom: 24px !important; } }
+        @media (min-width: 550px) { .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; } }
+        @media (min-width: 900px) { .cards-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 18px !important; justify-content: center !important; } }
       `}</style>
     </div>
   );

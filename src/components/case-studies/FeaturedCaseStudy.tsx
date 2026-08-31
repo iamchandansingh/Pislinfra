@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { FiUser, FiMapPin, FiGrid, FiAlertTriangle, FiSettings, FiTrendingUp, FiArrowRight } from 'react-icons/fi';
 import caseStudies from '../../data/caseStudies';
 
-const FeaturedCaseStudy = () => {
+const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured }) => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  const featured = caseStudies.find(c => c.slug === 'pragati-farukhnagar-logistics') || caseStudies[0];
+  const featured = strapiFeatured || caseStudies.find(c => c.slug === 'pragati-farukhnagar-logistics') || caseStudies[0];
 
   if (!featured) return null;
 

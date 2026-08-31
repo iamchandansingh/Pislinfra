@@ -12,6 +12,8 @@ interface JobOpening {
 }
 
 interface Props {
+  openings?: JobOpening[];
+  title?: string;
   onApplyNow: (position: string) => void;
 }
 
@@ -48,7 +50,7 @@ const jobOpenings: JobOpening[] = [
 
 const columns = ['Job Title', 'Department', 'Experience', 'Qualification', 'Location', 'Action'];
 
-const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow }) => {
+const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -70,9 +72,9 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow }) => {
     setCurrentPage(1);
   }, [searchQuery, departmentFilter]);
 
-  const departments = Array.from(new Set(jobOpenings.map(job => job.department))).sort();
+  const departments = Array.from(new Set((openings || jobOpenings).map(job => job.department))).sort();
 
-  const filteredJobs = jobOpenings.filter(job => {
+  const filteredJobs = (openings || jobOpenings).filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesDepartment = departmentFilter === '' || job.department === departmentFilter;
     return matchesSearch && matchesDepartment;

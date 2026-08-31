@@ -14,6 +14,25 @@ import award10 from '../assets/Award&Certificate/10.jpeg';
 const awardsAndCertifications = [
   {
     id: 1,
+    title: "ArcelorMittal Nippon Steel India – Sanand Service Centre",
+    category: "Safety Excellence",
+    year: "2026",
+    company: "AM/NS India",
+    location: "Sanand, Gujarat",
+    description: "Awarded in recognition of exceptional industrial construction execution, zero-harm safety standards, and benchmark EPC delivery at the Sanand Steel Service Centre project.",
+    image: "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_AMNS_INDIA_svg_svg_778803768e.svg",
+    clientImage: "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
+    images: [
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_AMNS_INDIA_svg_svg_778803768e.svg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_AMNS_INDIA_svg_svg_25c6bc6a74.svg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_AMNS_INDIA_svg_svg_7ec5727f1d.svg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_AMNS_INDIA_svg_svg_8d79cef566.svg"
+    ],
+    pdf: null,
+  },
+  {
+    id: 2,
     title: "Purpose-Driven Infrastructure",
     category: "Report",
     year: "2024",
@@ -93,33 +112,28 @@ const awardsAndCertifications = [
     clientImage: awardsClient,
     pdf: null,
   },
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+  {
+    id: 9,
+    title: "Heavy Industrial EPC & Infrastructure Excellence Award",
+    category: "Award",
+    year: "2023",
+    company: "National Infrastructure Forum",
+    description: "Conferred for outstanding heavy industrial EPC execution, precision PEB construction, and accelerated delivery across Rajasthan and Gujarat industrial corridors.",
+    image: award13,
+    clientImage: award2,
+    pdf: null,
+  },
+  {
+    id: 10,
+    title: "Zero-Incident Safety & Quality Benchmark Accolade",
+    category: "Award",
+    year: "2023",
+    company: "Adani & Industrial Safety Council",
+    description: "Awarded for exceptional site safety, rigorous QA/QC adherence, and zero reportable lost-time injuries during mega logistics park execution.",
+    image: awards15,
+    clientImage: awardsClient,
+    pdf: null,
+  }
 ];
 
 export default awardsAndCertifications;

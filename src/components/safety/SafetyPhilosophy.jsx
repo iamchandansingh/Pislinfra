@@ -44,7 +44,21 @@ const philosophyData = [
   },
 ];
 
-const SafetyPhilosophy = () => {
+const getUrl = (img) => {
+  if (!img) return null;
+  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
+  if (!url) return null;
+  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+};
+
+const SafetyPhilosophy = ({ philosophyItems, title }) => {
+  const activeData = philosophyItems && philosophyItems.length > 0 
+    ? philosophyItems.map((p, i) => ({ 
+        title: p.title, 
+        description: p.description, 
+        image: getUrl(p.image) || philosophyData[i]?.image 
+      })) 
+    : philosophyData;
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
@@ -75,14 +89,12 @@ const SafetyPhilosophy = () => {
               letterSpacing: '-0.5px',
               lineHeight: 1.2,
             }}
-          >
-            Latest HSE Statistics
-          </h2>
+          >{title || "Latest HSE Statistics"}</h2>
         </motion.div>
 
         {/* Responsive Grid */}
         <div className="safety-grid">
-          {philosophyData.map((data, index) => (
+          {activeData.map((data, index) => (
             <React.Fragment key={index}>
               {/* Text Card */}
               <motion.div

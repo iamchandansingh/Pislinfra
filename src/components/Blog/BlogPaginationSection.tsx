@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import BlogDB from '../../data/BlogDB';
+import { useBlogs } from '../../context/BlogContext';
+
+
 
 const BlogPaginationSection = ({ postsPerPage = 6, onPageChange }) => {
+  const { blogs: BlogDB, loading } = useBlogs();
+
   const [currentPage, setCurrentPage] = useState(1);
   
   const totalPages = Math.ceil(BlogDB.length / postsPerPage);

@@ -18,7 +18,7 @@ const SolutionLayout = ({ seoData, hero, intro, mainFeature, grids, children }) 
         <div style={{ maxWidth: '1350px', margin: '0 auto' }}>
           
           {/* Optional Intro Paragraph */}
-          {intro && (
+          {intro && intro.text && (
             <div style={{ maxWidth: '900px', margin: '0 auto 60px', textAlign: 'center' }}>
               {intro.title && (
                 <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '16px' }}>
@@ -32,17 +32,21 @@ const SolutionLayout = ({ seoData, hero, intro, mainFeature, grids, children }) 
           )}
 
           {/* Main Feature: 2 Column Layout (Text + Image) */}
-          {mainFeature && (
-            <div className="solution-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center', marginBottom: '60px' }}>
+          {mainFeature && mainFeature.text && (
+            <div className="solution-row" style={{ display: 'grid', gridTemplateColumns: mainFeature.image ? '1fr 1fr' : '1fr', gap: '48px', alignItems: 'center', marginBottom: '60px' }}>
               <div>
-                <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '16px' }}>
-                  {mainFeature.title}
-                </h2>
+                {mainFeature.title && (
+                  <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '16px' }}>
+                    {mainFeature.title}
+                  </h2>
+                )}
                 <div style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8' }}>
                   {mainFeature.text}
                 </div>
               </div>
-              <div style={{ borderRadius: '16px', overflow: 'hidden', height: '400px', backgroundImage: `url(${mainFeature.image})`, backgroundSize: 'cover', backgroundPosition: 'center', border: '4px solid #ff8755', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}></div>
+              {mainFeature.image && (
+                <div style={{ borderRadius: '16px', overflow: 'hidden', height: '400px', backgroundImage: `url(${mainFeature.image})`, backgroundSize: 'cover', backgroundPosition: 'center', border: '4px solid #ff8755', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}></div>
+              )}
             </div>
           )}
 

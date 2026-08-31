@@ -57,10 +57,11 @@ const supportItems = [
   { icon: FaCheckCircle, title: '100% Compliant' },
 ];
 
-const SafetyResources = () => {
+const SafetyResources = ({ resources, title, subtitle, desc }) => {
+  const activeResources = resources && resources.length > 0 ? resources.map((r, i) => ({ id: r.id || i, title: r.title, desc: r.description || r.desc || resourcesList[i]?.desc, size: resourcesList[i]?.size || "0 MB", icon: resourcesList[i]?.icon })) : resourcesList;
   return (
     <section style={{ 
-      padding: '0px 24px 60px', // Same side padding as IndustryRecognition
+      padding: '60px 24px 80px',
       backgroundColor: '#f8fafc',
       fontFamily: FONT
     }}>

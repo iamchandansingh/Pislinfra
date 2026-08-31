@@ -3,9 +3,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import BlogDB from '../../data/BlogDB';
+import { useBlogs } from '../../context/BlogContext';
 
-const getInternalLinks = () => {
+
+
+const getInternalLinks = (BlogDB) => {
   const links = {};
   BlogDB.forEach(blog => {
     links[blog.title] = `/blog/${blog.slug}`;
@@ -14,6 +16,7 @@ const getInternalLinks = () => {
 };
 
 const FAQItem = ({ question, answer }) => {
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -73,8 +76,9 @@ const TableRenderer = ({ data }) => {
 };
 
 const BlogContent = ({ content = '', images = [], faq = [], onContentReady }) => {
+  const { blogs: BlogDB, loading } = useBlogs();
   const contentRef = useRef(null);
-  const internalLinks = getInternalLinks();
+  const internalLinks = getInternalLinks(BlogDB);
 
   useEffect(() => {
     if (contentRef.current && onContentReady) {

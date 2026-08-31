@@ -1,20 +1,83 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import completedProjects from '../../data/completedProjects'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
+import { fetchStrapiData } from '../../services/strapi'
+import Preloader from '../../components/common/Preloader'
+import localCompletedProjects from '../../data/completedProjects'
+
+const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
 const CompletedProjects = () => {
+  const [pageData, setPageData] = useState(null)
+  const [projectsList, setProjectsList] = useState(localCompletedProjects)
+  const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 16
+  const itemsPerPage = 100
   
-  const totalPages = Math.ceil(completedProjects.length / itemsPerPage)
+  useEffect(() => {
+    let isMounted = true;
+    const getData = async () => {
+      try {
+        const pData = await fetchStrapiData('completed-page?populate=seo,heroImage');
+        if (pData && isMounted) {
+          setPageData(pData);
+        }
+
+        const projData = await fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
+        if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
+          const formatted = projData.map(item => {
+            const matchLocal = localCompletedProjects.find(lp => slugify(lp.name) === slugify(item.name)) || {};
+            const imgs = item.images && item.images.length > 0 
+              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`)
+              : (matchLocal.images || []);
+
+            return {
+              id: item.documentId || item.id,
+              category: item.category || matchLocal.category,
+              name: item.name || matchLocal.name,
+              location: item.location || matchLocal.location,
+              state: item.state || matchLocal.state,
+              area: item.area || matchLocal.area,
+              client: item.client || matchLocal.client,
+              timeline: item.timeline || matchLocal.timeline,
+              status: item.projectStatus || item.status || 'Completed',
+              scope: item.scope || matchLocal.scope,
+              images: imgs.length > 0 ? imgs : (matchLocal.images || [])
+            };
+          });
+          setProjectsList(formatted);
+        }
+      } catch (err) {
+        console.error("Error fetching completed projects:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+    
+    getData();
+    return () => { isMounted = false; };
+  }, []);
+
+  if (loading) return <Preloader />;
+  
+  const getImageUrl = (img) => {
+    if (!img) return null;
+    return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+  };
+
+  const totalPages = Math.ceil(projectsList.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  const currentProjects = completedProjects.slice(startIndex, endIndex)
+  const currentProjects = projectsList.slice(startIndex, endIndex)
 
-  const seoData = {
+  const heroTitle = pageData?.heroTitle || "Completed Projects";
+  const heroSubtitle = pageData?.heroSubtitle || "Successfully delivered infrastructure projects across India";
+  const heroBreadcrumb = pageData?.heroBreadcrumb || "Projects / Completed";
+  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/Completed-Projects.png";
+
+  const seoData = pageData?.seo || {
     contentType: 'page',
     title: 'Completed Projects',
     seoTitle: 'Completed Projects | Pislinfra',
@@ -46,10 +109,10 @@ const CompletedProjects = () => {
       <BlogSEO blog={seoData} />
       
       <PageHero 
-        title="Completed Projects" 
-        subtitle="Successfully delivered infrastructure projects across India"
-        breadcrumb="Projects / Completed"
-        bgImage="/images/hero/Completed-Projects.png"
+        title={heroTitle} 
+        subtitle={heroSubtitle}
+        breadcrumb={heroBreadcrumb}
+        bgImage={heroImage}
       />
       
       <section style={{ padding: '60px 16px', backgroundColor: '#f9fafb', minHeight: '60vh' }}>
@@ -63,9 +126,16 @@ const CompletedProjects = () => {
             flexWrap: 'wrap',
             gap: '16px'
           }}>
-            <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
-              Completed Projects
-            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
+                {heroTitle}
+              </h2>
+              {pageData?.description && (
+                <p style={{ margin: 0, color: '#64748b', fontSize: '16px', maxWidth: '800px' }}>
+                  {pageData.description}
+                </p>
+              )}
+            </div>
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -77,7 +147,7 @@ const CompletedProjects = () => {
             }}>
               <span style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>Total Projects:</span>
               <span style={{ fontSize: '16px', color: '#0a2a66', fontWeight: '700' }}>
-                {completedProjects.length}
+                {projectsList.length}
               </span>
             </div>
           </div>

@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import BlogDB from '../data/BlogDB';
+
 import BlogHero from '../components/BlogDetail/BlogHero';
 import BlogContent from '../components/BlogDetail/BlogContent';
 import BlogSidebar from '../components/BlogDetail/BlogSidebar';
 import RelatedSection from '../components/BlogDetail/RelatedSection';
 import BlogSEO from '../components/Blog/BlogSEO';
+import { useBlogs } from '../context/BlogContext';
+import Preloader from '../components/common/Preloader';
+
 
 const DEFAULT_IMAGE = '/images/hero/Completed-Projects.png';
 
 const BlogDetail = () => {
+  const { blogs: BlogDB, loading } = useBlogs();
+  
   const { slug } = useParams();
   const navigate = useNavigate();
   const blog = BlogDB.find(b => b.slug === slug);
@@ -20,7 +25,9 @@ const BlogDetail = () => {
   }, [slug]);
 
   if (!blog) {
-    return (
+    if (loading) return <Preloader />;
+
+  return (
       <div style={{
         display: 'flex', minHeight: '60vh', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center', padding: '0 20px',
@@ -59,8 +66,9 @@ const BlogDetail = () => {
     return headings;
   };
 
-  const relatedBlogs = BlogDB
-    .filter(b => b.category === blog.category && b.slug !== blog.slug)
+  const relatedBlogs = [...BlogDB]
+    .filter(b => b.category === blog.category && b.slug !== blog.slug && b.status === 'published')
+    .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
     .slice(0, 4)
     .map(b => ({
       id: b.id, title: b.title, slug: b.slug, category: b.category,

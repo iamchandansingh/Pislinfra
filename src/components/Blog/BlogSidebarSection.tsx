@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Folder } from 'lucide-react';
-import BlogDB from '../../data/BlogDB';
+import { useBlogs } from '../../context/BlogContext';
+
+
 
 const BlogSidebarSection = () => {
+  const { blogs: BlogDB, loading } = useBlogs();
+
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -17,8 +21,9 @@ const BlogSidebarSection = () => {
   }, []);
 
   const recentPosts = [...BlogDB]
+    .filter(b => b.status === 'published')
     .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
-    .slice(0, 5)
+    .slice(1, 6)
     .map(blog => ({
       id: blog.id,
       title: blog.title,

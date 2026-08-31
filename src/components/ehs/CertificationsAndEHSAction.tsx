@@ -3,7 +3,8 @@ import { FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import clientsData from '../../data/clientsData';
 
-const CertificationsAndEHSAction = () => {
+const CertificationsAndEHSAction = ({ gallery, title }) => {
+  const activeGallery = gallery && gallery.length > 0 ? gallery.map((g, i) => ({ id: g.id || i, title: g.title, image: g.image?.url ? "http://127.0.0.1:1337" + g.image.url : g.image?.data?.attributes?.url ? "http://127.0.0.1:1337" + g.image.data.attributes.url : g.image || galleryItems[i]?.image || "" })) : galleryItems;
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
   

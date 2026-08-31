@@ -1,12 +1,15 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiMapPin, FiGrid, FiCalendar, FiClock } from 'react-icons/fi';
 import caseStudies from '../../data/caseStudies';
 
-const CaseStudiesGrid = () => {
+const CaseStudiesGrid: React.FC<any> = ({ caseStudies: strapiCaseStudies }) => {
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
-  const mappedStudies = caseStudies.map((study, index) => ({
+  const mappedStudies = (strapiCaseStudies && strapiCaseStudies.length > 0 ? strapiCaseStudies : caseStudies).map((study, index) => ({
     id: index + 1,
     slug: study.slug,
     title: study.title,
@@ -21,6 +24,17 @@ const CaseStudiesGrid = () => {
     buildUpArea: study.buildUpArea,
   }));
 
+  
+  const totalPages = Math.ceil(mappedStudies.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentStudies = mappedStudies.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: document.getElementById('case-studies-grid')?.offsetTop - 100 || 0, behavior: 'smooth' });
+  };
+
   return (
     <div style={{ width: '100%', padding: '20px 0', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: '1370px', margin: '0 auto', paddingLeft: '16px', paddingRight: '16px' }}>
@@ -29,8 +43,8 @@ const CaseStudiesGrid = () => {
           All Case Studies
         </h2>
 
-        <div className="studies-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
-          {mappedStudies.map((study) => (
+        <div id="case-studies-grid" className="studies-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+          {currentStudies.map((study) => (
             <div key={study.id} style={{ 
               backgroundColor: '#FFFFFF', 
               borderRadius: '12px', 

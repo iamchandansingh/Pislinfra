@@ -1,5 +1,14 @@
 import React from 'react';
-import { FileText, ClipboardCheck, Briefcase, Users, BadgeCheck } from 'lucide-react';
+
+import * as LucideIcons from 'lucide-react';
+
+const getLucideIcon = (iconName: string, size = 24) => {
+  if (!iconName) return <LucideIcons.Check size={size} />;
+  const IconComponent = (LucideIcons as any)[iconName];
+  if (IconComponent) return <IconComponent size={size} />;
+  return <LucideIcons.Check size={size} />;
+};
+
 
 // Types
 interface ProcessStep {
@@ -10,41 +19,41 @@ interface ProcessStep {
 }
 
 // Process Data
-const processSteps: ProcessStep[] = [
+const defaultProcessSteps: ProcessStep[] = [
   {
     id: 1,
-    icon: <FileText size={24} />,
+    icon: "FileText",
     title: 'Apply Online',
     description: 'Submit your application through our career portal with updated resume.',
   },
   {
     id: 2,
-    icon: <ClipboardCheck size={24} />,
+    icon: "ClipboardCheck",
     title: 'Initial Screening',
     description: 'We review your profile and conduct a shortlisting assessment.',
   },
   {
     id: 3,
-    icon: <Briefcase size={24} />,
+    icon: "Briefcase",
     title: 'Technical Interview',
     description: 'Discussion with our technical team to assess your skills and experience.',
   },
   {
     id: 4,
-    icon: <Users size={24} />,
+    icon: "Users",
     title: 'HR Discussion',
     description: 'HR round to understand your goals, expectations and cultural fit.',
   },
   {
     id: 5,
-    icon: <BadgeCheck size={24} />,
+    icon: "BadgeCheck",
     title: 'Offer Letter',
     description: 'Successful candidates receive the offer letter within 2-5 working days.',
   },
 ];
 
 // Main Component
-const HiringProcessSection: React.FC = () => {
+const HiringProcessSection = ({ title, steps }: { title?: string, steps?: any[] }) => {
   return (
     <section style={{ 
       width: '100%', 
@@ -89,7 +98,7 @@ const HiringProcessSection: React.FC = () => {
 
           {/* Steps Grid */}
           <div className="process-grid">
-            {processSteps.map((step, index) => (
+            {(steps || defaultProcessSteps).map((step, index) => (
               <div key={step.id} className="process-step">
                 
                 {/* Step Number + Icon Circle */}
@@ -100,7 +109,7 @@ const HiringProcessSection: React.FC = () => {
                   {/* Icon Circle */}
                   <div className="icon-circle">
                     <span style={{ color: '#FF6B35', display: 'flex', lineHeight: 0 }}>
-                      {step.icon}
+                      {typeof step.icon === "string" ? getLucideIcon(step.icon) : step.icon}
                     </span>
                   </div>
                 </div>

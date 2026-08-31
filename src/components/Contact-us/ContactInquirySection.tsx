@@ -13,14 +13,14 @@ const SERVICE_OPTIONS = [
 const OFFICE_INFO = {
   title: 'Head Office', company: 'PISL',
   address: ['31 P, adj. to Medanta, Medicity,', 'Islampur Colony, Sector 38,', 'Gurugram, Haryana 122018'],
-  phone: '085270 40411', email: 'info@pislinfra.com',
+  phone: '{pageData?.phone || "085270 40411"}', email: '{pageData?.email || "info@pislinfra.com"}',
 };
 
 const inputStyle = { width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid #D1D5DB', fontSize: '13px', color: '#28286e', outline: 'none', fontFamily: 'Inter, sans-serif', transition: 'all 0.2s ease', backgroundColor: '#FFFFFF', boxSizing: 'border-box' as const };
 const labelStyle = { display: 'block', fontSize: '12px', fontWeight: 600, color: '#334155', marginBottom: '3px', fontFamily: 'Inter, sans-serif' };
 const errorStyle = { color: '#EF4444', fontSize: '11px', marginTop: '2px', fontFamily: 'Inter, sans-serif' };
 
-const ContactInquirySection = () => {
+const ContactInquirySection = ({ pageData }) => {
   const [formData, setFormData] = useState({ fullName: '', companyName: '', email: '', phone: '', serviceRequired: '', subject: '', projectDetails: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,8 +86,8 @@ const ContactInquirySection = () => {
           {/* Form Container */}
           <div className="contact-form" style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #E5E7EB', padding: '20px 16px', boxShadow: '0 4px 12px rgba(15,23,42,0.04)' }}>
             <div style={{ marginBottom: '16px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#28286e', margin: '0 0 3px 0' }}>We'd Love to Hear From You</h2>
-              <p style={{ fontSize: '12px', color: '#64748B', margin: 0 }}>Tell us about your project and our team will get back to you within 24 business hours.</p>
+              <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#28286e', margin: '0 0 3px 0' }}>{pageData?.inquiryTitle || "We'd Love to Hear From You"}</h2>
+              <p style={{ fontSize: '12px', color: '#64748B', margin: 0 }}>{pageData?.inquirySubtitle || "Tell us about your project and our team will get back to you within 24 business hours."}</p>
             </div>
 
             {isSubmitted ? (
@@ -177,17 +177,17 @@ const ContactInquirySection = () => {
 
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '12px' }}>
                 <MapPin size={16} color="#ff8d4b" style={{ marginTop: '2px', flexShrink: 0 }} />
-                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', margin: 0, lineHeight: 1.5 }}>{OFFICE_INFO.address.join(' ')}</p>
+                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', margin: 0, lineHeight: 1.5 }}>{pageData?.address || "31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018"}</p>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
                 <Phone size={16} color="#ff8d4b" style={{ flexShrink: 0 }} />
-                <a href={`tel:${OFFICE_INFO.phone.replace(/\s/g, '')}`} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>{OFFICE_INFO.phone}</a>
+                <a href={`tel:${(pageData?.phone || "085270 40411").replace(/\s/g, '')}`} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>{pageData?.phone || "085270 40411"}</a>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <Mail size={16} color="#ff8d4b" style={{ flexShrink: 0 }} />
-                <a href={`mailto:${OFFICE_INFO.email}`} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>{OFFICE_INFO.email}</a>
+                <a href={`mailto:${pageData?.email || "info@pislinfra.com"}`} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>{pageData?.email || "info@pislinfra.com"}</a>
               </div>
 
               <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '14px', marginBottom: '14px' }}>

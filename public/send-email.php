@@ -155,69 +155,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Send the email to Admin via SMTP
         $adminSent = send_smtp_mail($to, $email_subject, $email_body, $headers);
+        if (!$adminSent) {
+            $adminSent = mail($to, $email_subject, $email_body, $headers);
+        }
 
-        // ==========================================
-        // 2. AUTO-REPLY TO SENDER (PREMIUM DESIGN)
-        // ==========================================
-        $userSubject = "Thank you for contacting {$company}";
-        
-        $userMessage = "<!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset='UTF-8'>
-            <style>
-                body { margin: 0; padding: 0; background-color: #f4f7f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #334155; }
-                .wrapper { width: 100%; padding: 40px 0; background-color: #f4f7f6; }
-                .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-                .header { background: linear-gradient(135deg, #1e1e52, #28286e); padding: 30px; text-align: center; border-bottom: 4px solid #ff8d4b; }
-                .header h1 { color: #ffffff; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: 0.5px; }
-                .content { padding: 35px 30px; }
-                .content p { font-size: 15px; line-height: 1.6; margin-top: 0; margin-bottom: 20px; color: #475569; }
-                .highlight-box { background-color: #f8fafc; padding: 20px; border-left: 4px solid #ff8d4b; border-radius: 0 8px 8px 0; margin: 30px 0; }
-                .highlight-box p { margin: 0; font-size: 14px; }
-                .footer { background-color: #1e1e52; padding: 30px; text-align: center; }
-                .footer p { margin: 0 0 5px 0; font-size: 13px; color: #94a3b8; }
-                .footer .contact-info { color: #ffffff; font-weight: 500; font-size: 14px; margin-top: 15px; }
-            </style>
-        </head>
-        <body>
-            <div class='wrapper'>
-                <div class='container'>
-                    <div class='header'>
-                        <h1>Thank You for Reaching Out!</h1>
-                    </div>
-                    <div class='content'>
-                        <p>Dear <strong>{$fullName}</strong>,</p>
-                        <p>Thank you for contacting <strong>{$company}</strong>. We have successfully received your inquiry regarding <strong>{$serviceRequired}</strong>.</p>
-                        <p>One of our industrial infrastructure experts is currently reviewing your requirements and will get back to you within 24 business hours to discuss your project in detail.</p>
-                        
-                        <div class='highlight-box'>
-                            <p><strong>Need immediate assistance?</strong><br>Feel free to reach us directly at <strong>085270 40411</strong> or simply reply to this email.</p>
-                        </div>
-                        
-                        <p>Best Regards,<br><strong style='color: #1e1e52; font-size: 16px;'>The {$company} Team</strong></p>
-                    </div>
-                    <div class='footer'>
-                        <p>31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018</p>
-                        <p>info@pislinfra.com | pislinfra.com</p>
-                        <p class='contact-info'>📞 085270 40411 | 070328 02501</p>
-                    </div>
-                </div>
-            </div>
-        </body>
-        </html>";
-        
-        $userHeaders = "MIME-Version: 1.0\r\n";
-        $userHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
-        $userHeaders .= "From: {$company} <{$fromEmail}>\r\n";
-        $userHeaders .= "Reply-To: {$fromEmail}\r\n";
-        
-        // Send Auto-reply via SMTP
         if ($adminSent) {
-            send_smtp_mail($email, $userSubject, $userMessage, $userHeaders);
             echo json_encode(["success" => true, "message" => "Email sent successfully!"]);
         } else {
-            echo json_encode(["success" => false, "message" => "Failed to send email via SMTP authentication."]);
+            echo json_encode(["success" => false, "message" => "Failed to send email."]);
         }
     } else {
         echo json_encode(["success" => false, "message" => "Invalid data received."]);

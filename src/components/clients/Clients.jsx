@@ -1,47 +1,56 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { fetchStrapiData } from '../../services/strapi';
 import clientsData from '../../data/clientsData';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
 
-const Clients = () => {
-  const seriesOrder = [
-    'Reliance Industries Limited',
-    'AM/NS India (ArcelorMittal Nippon Steel India)',
-    'Adani',
-    'GAR',
-    'Morgan Stanley',
-    'Prologis',
-    'Lodha',
-    'PMG',
-    'CPWD (Central Public Works Department)',
-    'VinFast',
-    'SEMAC',
-    'Rajratan',
-    'Oswal Group',
-    'Avitech',
-    'Amazon',
-    'Flipkart',
-    'Ecom Express',
-    'Daikin',
-    'Bosch',
-    'Allcargo',
-    'Myntra',
-    'Cadbury',
-    'Blue Dart',
-    'DHL',
-    'Haryana Government',
-    'Stellar',
-    'Lodha Group',
-    'LOGOS',
-  ];
+const getClientLogo = (name, strapiLogoObj) => {
+  if (strapiLogoObj?.url) {
+    return strapiLogoObj.url.startsWith('http') ? strapiLogoObj.url : `http://localhost:1337${strapiLogoObj.url}`;
+  }
+  const client = clientsData.find(c => c.name && c.name.toLowerCase() === name.toLowerCase());
+  return client?.logo || null;
+};
 
-  const filteredClients = seriesOrder
-    .map(name => clientsData.find(c => c.name === name))
-    .filter(Boolean);
+const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
+  const [clients, setClients] = useState(clientsData);
 
-  const RowSlider = ({ clients, direction = 'left', speed = 0.5 }) => {
+  useEffect(() => {
+    async function loadData() {
+      try {
+        if (propClientsData && Array.isArray(propClientsData) && propClientsData.length > 0) {
+          const mapped = propClientsData.map(item => ({
+            id: item.id || item.name,
+            name: item.name,
+            logo: getClientLogo(item.name, item.logo)
+          })).filter(c => c.logo);
+          if (mapped.length > 0) {
+            setClients(mapped);
+            return;
+          }
+        }
+
+        const data = await fetchStrapiData('clients?pagination[pageSize]=100&sort=order:asc&populate=*');
+        if (data && Array.isArray(data) && data.length > 0) {
+          const mapped = data.map(item => ({
+            id: item.id,
+            name: item.name,
+            logo: getClientLogo(item.name, item.logo)
+          })).filter(c => c.logo); // Only keep those with a valid logo
+          if (mapped.length > 0) {
+            setClients(mapped);
+          }
+        }
+      } catch (err) {
+        console.error("Clients Strapi fetch error:", err);
+      }
+    }
+    loadData();
+  }, [propClientsData]);
+
+  const RowSlider = ({ rowClients, direction = 'left', speed = 0.5 }) => {
     const [position, setPosition] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const containerRef = useRef(null);
@@ -53,10 +62,10 @@ const Clients = () => {
         const singleSetWidth = containerRef.current.scrollWidth / 3;
         setTotalWidth(singleSetWidth);
       }
-    }, [clients]);
+    }, [rowClients]);
 
     useEffect(() => {
-      if (isPaused) return;
+      if (isPaused || totalWidth === 0) return;
       
       const interval = setInterval(() => {
         setPosition(prev => {
@@ -82,7 +91,9 @@ const Clients = () => {
       }, 3000);
     };
 
-    const tripleClients = [...clients, ...clients, ...clients];
+    if (!rowClients || rowClients.length === 0) return null;
+
+    const tripleClients = [...rowClients, ...rowClients, ...rowClients];
 
     return (
       <div 
@@ -141,9 +152,15 @@ const Clients = () => {
   };
 
   const rows = [];
-  for (let i = 0; i < filteredClients.length; i += 7) {
-    rows.push(filteredClients.slice(i, i + 7));
+  if (clients.length > 0) {
+    // If we have fewer than 7 clients, just make one row
+    // If more, distribute evenly into rows of 7
+    for (let i = 0; i < clients.length; i += 7) {
+      rows.push(clients.slice(i, i + 7));
+    }
   }
+
+  if (clients.length === 0) return null;
 
   return (
     <section style={{
@@ -174,7 +191,7 @@ const Clients = () => {
         {rows.map((rowClients, idx) => (
           <RowSlider 
             key={idx} 
-            clients={rowClients} 
+            rowClients={rowClients} 
             direction={idx % 2 === 0 ? 'left' : 'right'} 
             speed={0.6 + idx * 0.1}
           />

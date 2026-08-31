@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-const csrImages = [
-  '/images/CSR/CSR-(5).png',
-  '/images/CSR/CSR-(3).png',
-  '/images/CSR/CSR-(1).png'
-];
+const getImageUrl = (img) => {
+  if (!img) return null;
+  return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+};
 
-const CSRPhilosophy = () => {
+const CSRPhilosophy = ({ title, description, images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const csrImages = images && images.length > 0 ? images.map(img => getImageUrl(img)) : ['/images/CSR/CSR-(5).png', '/images/CSR/CSR-(3).png', '/images/CSR/CSR-(1).png'];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % csrImages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [csrImages.length]);
 
   return (
     <div style={{ width: '100%', padding: '50px 0', backgroundColor: '#FFFFFF' }}>
@@ -28,8 +28,8 @@ const CSRPhilosophy = () => {
         }}>
           
           <div>
-            <h2 style={{ fontSize: '36px', fontWeight: 800, color: '#052A73', lineHeight: 1.15, letterSpacing: '-1px', margin: '0', fontFamily: 'Inter, sans-serif' }}>Creating Sustainable<br />Communities</h2>
-            <p style={{ fontSize: '14px', fontWeight: 400, color: '#64748B', lineHeight: 1.7, maxWidth: '500px', margin: '18px 0 0 0', fontFamily: 'Inter, sans-serif' }}>Our CSR philosophy is built on the foundation of sustainable development, inclusive growth, and social equity. We focus on initiatives that empower communities, enhance quality of life, and contribute to a better, greener future.</p>
+            <h2 style={{ fontSize: '36px', fontWeight: 800, color: '#052A73', lineHeight: 1.15, letterSpacing: '-1px', margin: '0', fontFamily: 'Inter, sans-serif' }} dangerouslySetInnerHTML={{ __html: (title || 'Creating Sustainable<br />Communities').replace(/\n/g, '<br />') }}></h2>
+            <p style={{ fontSize: '14px', fontWeight: 400, color: '#64748B', lineHeight: 1.7, maxWidth: '500px', margin: '18px 0 0 0', fontFamily: 'Inter, sans-serif' }}>{description || 'Our CSR philosophy is built on the foundation of sustainable development, inclusive growth, and social equity. We focus on initiatives that empower communities, enhance quality of life, and contribute to a better, greener future.'}</p>
           </div>
 
           <div style={{ 

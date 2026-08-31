@@ -9,12 +9,12 @@ const ArrowRightIcon = () => (
   </svg>
 );
 
-const AwardsJourney = ({ onContactClick, onViewProjects }) => {
+const AwardsJourney = ({ onContactClick, onViewProjects, title, desc }) => {
   return (
     <div className="bg-white">
 
       {/* CTA Section */}
-      <section className="py-0 pb-0">
+      <section className="py-0 pb-0" style={{ paddingBottom: '80px', paddingTop: '40px' }}>
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 20px' }}>
           
           <div className="awards-journey-container" style={{
@@ -26,7 +26,7 @@ const AwardsJourney = ({ onContactClick, onViewProjects }) => {
             alignItems: 'center',
             justifyContent: 'flex-start',
             textAlign: 'left',
-            padding: '30px 40px',
+            padding: '20px 24px',
             position: 'relative',
             overflow: 'hidden',
             boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
@@ -66,12 +66,8 @@ const AwardsJourney = ({ onContactClick, onViewProjects }) => {
               <h4 style={{ color: '#F37346', fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px', fontFamily: "'Inter', sans-serif" }}>
                 PARTNER WITH AN
               </h4>
-              <h2 style={{ color: '#FFFFFF', fontSize: '38px', fontWeight: 600, fontFamily: "'Georgia', serif", lineHeight: 1.15, marginBottom: '16px', letterSpacing: '-0.5px' }}>
-                Award-Winning<br />Organization
-              </h2>
-              <p style={{ color: '#E5E7EB', fontSize: '15px', fontWeight: 400, fontFamily: "'Inter', sans-serif", margin: 0, maxWidth: '400px' }}>
-                Let's build a stronger, smarter and sustainable future together.
-              </p>
+              <h2 style={{ color: '#FFFFFF', fontSize: '38px', fontWeight: 600, fontFamily: "'Georgia', serif", lineHeight: 1.15, marginBottom: '16px', letterSpacing: '-0.5px' }} dangerouslySetInnerHTML={{ __html: title || "Award-Winning<br />Organization" }} />
+              <p style={{ color: '#E5E7EB', fontSize: '15px', fontWeight: 400, fontFamily: "'Inter', sans-serif", margin: 0, maxWidth: '400px' }}>{desc || "Let's build a stronger, smarter and sustainable future together."}</p>
             </div>
 
             {/* Right Buttons */}
@@ -91,7 +87,7 @@ const AwardsJourney = ({ onContactClick, onViewProjects }) => {
       <style>{`
         @media (max-width: 768px) {
           .awards-journey-container {
-            padding: 30px 20px !important;
+            padding: 20px 16px !important;
             flex-direction: column !important;
             text-align: center !important;
             justify-content: center !important;

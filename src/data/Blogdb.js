@@ -467,10 +467,10 @@ India boasts many strong players, but PISL stands out for its twelve-year track 
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 3,
     title: "7 Proven Principles for Best Warehouse Design and Operation",
     slug: "7-proven-principles-warehouse-design-operation",
@@ -676,10 +676,10 @@ Warehouse design and operation refer to the strategic planning and management of
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 4,
     title: "Choosing the Right Contractor for Your Warehouse Construction Project",
     slug: "choosing-right-contractor-warehouse-construction",
@@ -876,9 +876,9 @@ Specialists understand operational flows, safety norms, tech readiness, and lega
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
-{
+  {
     id: 5,
     title: "10+ Various Advantages of An Industrial Logistic Park",
     slug: "10-advantages-industrial-logistic-park",
@@ -1062,11 +1062,11 @@ Coming to the different players, PISL Infra is one of the leaders with well-equi
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
-{
+  {
     id: 6,
     title: "5+ Ultimate Benefits of Working with an EPC Company",
     slug: "5-ultimate-benefits-epc-company",
@@ -1266,12 +1266,12 @@ There are plenty of EPC companies in India, but PISL Infra is well-regarded for 
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
 
-{
+  {
     id: 7,
     title: "The Benefits of a Built-to-Suit Warehouse for Your Business",
     slug: "benefits-built-to-suit-warehouse",
@@ -1465,10 +1465,10 @@ A built-to-suit warehouse is a custom-designed facility built to match a company
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 8,
     title: "Warehouse Design | Complete Guide for Warehouse Design and Layout",
     slug: "warehouse-design-complete-guide",
@@ -1649,10 +1649,10 @@ The outer design of a warehouse impacts security, accessibility, loading/unloadi
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 9,
     title: "How to Evaluate the Best Warehouse Contractors for Your Business",
     slug: "evaluate-best-warehouse-contractors",
@@ -1857,9 +1857,9 @@ Warehouse manufacturing companies produce prefabricated materials and components
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
-{
+  {
     id: 10,
     title: "Optimizing Warehouse Layout for Efficiency and Safety",
     slug: "optimizing-warehouse-layout-efficiency-safety",
@@ -2046,7 +2046,7 @@ The main factors affecting the warehouse layout are the type and size of invento
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
@@ -2056,7 +2056,7 @@ The main factors affecting the warehouse layout are the type and size of invento
 
 
 
-{
+  {
     id: 11,
     title: "Role of Technology in Modern Warehouse Construction",
     slug: "role-technology-modern-warehouse-construction",
@@ -2274,12 +2274,12 @@ In India, modern warehouses are mushrooming at full speed, with companies like P
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
 
-{
+  {
     id: 12,
     title: "Maximising Land Use in Industrial Parks | PISL Infra",
     slug: "maximising-land-use-industrial-parks",
@@ -2472,10 +2472,10 @@ The classification of industrial parks can be done as follows: Logistics and War
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 13,
     title: "Sustainable Warehouse Construction: Best Practices and Benefits",
     slug: "sustainable-warehouse-construction-best-practices",
@@ -2622,11 +2622,11 @@ When you partner with PISL, you will get not only a warehouse but also a strong,
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
-{
+  {
     id: 14,
     title: "Innovative Materials and Techniques in Industrial Park Construction",
     slug: "innovative-materials-techniques-industrial-park-construction",
@@ -2803,10 +2803,10 @@ At PISL Infra, we're at the forefront of this transformation, combining our expe
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 15,
     title: "Logistics Infrastructure in India: Opportunities and Challenges",
     slug: "logistics-infrastructure-india-opportunities-challenges",
@@ -2919,9 +2919,9 @@ With a strategic focus on logistics park development, PISL Infra continues to be
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
-{
+  {
     id: 16,
     title: "8 Best Practices to Improve Construction Site Safety",
     slug: "8-best-practices-construction-site-safety",
@@ -3088,12 +3088,12 @@ Want a safety consultation for your next warehousing and industrial project? Con
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
 
-{
+  {
     id: 17,
     title: "Key Challenges in Industrial Construction & How to Overcome Them",
     slug: "key-challenges-industrial-construction-overcome",
@@ -3264,11 +3264,11 @@ Related Blog: Logistics Infrastructure in India: Key Opportunities & Challenges`
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
-{
+  {
     id: 18,
     title: "Understanding the Different Types of Purlins Used in Construction",
     slug: "types-of-purlins-used-in-construction",
@@ -3514,11 +3514,11 @@ For sheds, C purlins are suitable for small structures, whereas Z or Box purlins
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
-{
+  {
     id: 19,
     title: "Best EPC Contractors in India | Why PISL Infra Leads?",
     slug: "best-epc-contractors-india-pisl-infra",
@@ -3676,14 +3676,14 @@ In this very infrastructure arena, providing the foundation of development, PISL
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
 
 
 
-{
+  {
     id: 20,
     title: "Logistics Park Companies in India: PISL Leading the Way",
     slug: "logistics-park-companies-india-pisl-leading",
@@ -3848,11 +3848,11 @@ ESR India, IndoSpace, Agility Logistics Parks, and PISL are leading names shapin
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
-{
+  {
     id: 22,
     title: "Warehouse Construction Cost in India 2026 | Complete Guide by PISL",
     slug: "warehouse-construction-cost-india-2026-guide",
@@ -4032,13 +4032,13 @@ Connect with PISL to build smarter, not costlier.`,
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
 
 
 
-{
+  {
     id: 23,
     title: "Green Industrial Park: Where Sustainable Industry Meets Smart Growth",
     slug: "green-industrial-park-sustainable-smart-growth",
@@ -4195,10 +4195,10 @@ We can unite and create industrial ecosystems that focus not only on growth but 
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 24,
     title: "Phases of Construction Project | Complete Guide by PISL for 2026",
     slug: "phases-of-construction-project-complete-guide",
@@ -4381,10 +4381,10 @@ However, all projects will have a direction. The process of undertaking all acti
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 25,
     title: "Construction Safety: How Responsible Contractors Build Safer, Smarter Project Sites",
     slug: "construction-safety-responsible-contractors-safer-sites",
@@ -4577,10 +4577,10 @@ The construction industry defines success as delivering exceptional work, which 
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
+  },
 
 
-{
+  {
     id: 26,
     title: "Water Management System: Building a Sustainable and Resilient Water Future",
     slug: "water-management-system-sustainable-resilient-future",
@@ -4745,53 +4745,7 @@ Organizations that adopt smarter water management approaches, which combine thei
     businessName: "PISL - Pragati Infra Solutions",
     businessLocation: "India",
     serviceArea: "Pan India",
-},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  },
 
 ];
 

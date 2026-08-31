@@ -79,7 +79,8 @@ const ruleData = [
   }
 ];
 
-const LifeSavingRules = () => {
+const LifeSavingRules = ({ rules, title, subtitle }) => {
+  const activeRules = rules && rules.length > 0 ? rules.map((r, i) => ({ id: r.id || (i+1), imgBase64: r.imgBase64Key ? iconData[r.imgBase64Key] : ruleData[i]?.imgBase64, titleEn: r.titleEn, descEn: r.descEn, descHi: r.descHi })) : ruleData;
   const printRef = useRef(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [optimizedIcons, setOptimizedIcons] = useState<Record<number, string>>({});

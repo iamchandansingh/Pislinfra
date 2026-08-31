@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ─── CORPORATE BRAND COLORS ─────────────────────────────────────────────── */
@@ -6,7 +7,8 @@ const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
 /* ─── MAIN ABOUT US COMPONENT ────────────────────────────────────────────── */
-const AboutUs = () => {
+const AboutUs = ({ data }) => {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
 
   // 5 Premium PISL Reference Images
@@ -27,40 +29,48 @@ const AboutUs = () => {
   }, [images.length]);
 
   return (
-    <section style={{ 
-      backgroundColor: '#ffffff', 
-      padding: '70px 24px',
-      fontFamily: '"Inter", "-apple-system", sans-serif', 
+    <section className="pisl-about-modern-section" style={{ 
+      backgroundColor: '#FFFFFF', 
+      padding: '70px 0', 
+      position: 'relative', 
       overflow: 'hidden' 
     }}>
-      <div className="pisl-simple-layout" style={{ 
-        maxWidth: '1350px', 
+      <div className="pisl-container" style={{ 
+        maxWidth: '1360px', 
         margin: '0 auto', 
+        padding: '0 24px', 
         display: 'grid', 
-        gridTemplateColumns: '1fr 1fr', 
-        gap: '64px', 
+        gridTemplateColumns: '45% 55%', 
+        gap: '60px', 
         alignItems: 'center' 
       }}>
         
-        {/* ── LEFT COLUMN: Sleek Compact Slider ── */}
+        {/* ── LEFT COLUMN: Elegant Single Dynamic Image Frame ── */}
         <div style={{ 
           position: 'relative', 
           width: '100%', 
-          height: '360px',
-          borderRadius: '12px', 
+          height: '460px', 
+          borderRadius: '24px', 
           overflow: 'hidden', 
-          boxShadow: '0 16px 32px rgba(40, 41, 111, 0.06)' 
+          boxShadow: '0 20px 40px -15px rgba(40, 41, 111, 0.12)',
+          background: '#f1f5f9'
         }}>
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="wait">
             <motion.img 
               key={activeIndex}
               src={images[activeIndex]} 
-              alt={`PISL Asset ${activeIndex + 1}`} 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              alt="PISL Infrastructure Excellence" 
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover', 
+                objectPosition: 'center',
+                display: 'block' 
+              }} 
             />
           </AnimatePresence>
 
@@ -71,9 +81,9 @@ const AboutUs = () => {
           }} />
         </div>
 
-        {/* ── RIGHT COLUMN: Clickable Typography Block (Redirects to /about#expertise) ── */}
-        <motion.a 
-          href="/about#expertise" 
+        {/* ── RIGHT COLUMN: Clickable Typography Block (Redirects cleanly to /about) ── */}
+        <motion.div 
+          onClick={() => navigate('/about')}
           initial={{ opacity: 0, x: 20 }} 
           whileInView={{ opacity: 1, x: 0 }} 
           whileHover={{ x: 6 }}
@@ -97,22 +107,19 @@ const AboutUs = () => {
             margin: '0 0 24px 0',
             transition: 'opacity 0.3s ease'
           }}>
-            About <span style={{ color: ORANGE }}> Our Expertise </span>
-          
+            {data?.aboutTitle ? <span dangerouslySetInnerHTML={{__html: data.aboutTitle}} /> : <>About <span style={{ color: ORANGE }}> Our Expertise </span></>}
           </h2>
 
           {/* Content Paragraphs */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <p style={{ fontSize: '15.5px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
-              We at PISL are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors. We are committed to excellence, specializing in the full-cycle development of high-quality industrial and warehousing assets.
+              {data?.aboutDesc ? data.aboutDesc.split('\n')[0] : "We at PISL are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors. We are committed to excellence, specializing in the full-cycle development of high-quality industrial and warehousing assets."}
             </p>
-            
             <p style={{ fontSize: '15.5px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
-              A client-first approach anchors our mission. As we expand our footprint nationwide, we proactively address the evolving business requirements of our clients, ensuring optimum operational efficiency.
+              {data?.aboutDesc && data.aboutDesc.includes('\n') ? data.aboutDesc.split('\n')[1] : "A client-first approach anchors our mission. As we expand our footprint nationwide, we proactively address the evolving business requirements of our clients, ensuring optimum operational efficiency."}
             </p>
           </div>
-        </motion.a>
-
+        </motion.div>
       </div>
 
       {/* Global Style overrides for micro-interactions & responsiveness */}

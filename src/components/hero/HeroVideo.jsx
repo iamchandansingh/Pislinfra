@@ -1,4 +1,4 @@
-const HeroVideo = () => {
+const HeroVideo = ({ videoSrc }) => {
   return (
     <section className="relative w-full h-[40vh] md:h-[70vh] overflow-hidden">
       {/* Video Background */}
@@ -14,7 +14,7 @@ const HeroVideo = () => {
           objectFit: 'cover', // cover prevents stretching on mobile/desktop
         }}
       >
-        <source src="/videos/PISL-WEBSITE.mp4" type="video/mp4" />
+        <source src={videoSrc || "/videos/PISL-WEBSITE.mp4"} type="video/mp4" />
       </video>
 
       {/* Dark Overlay */}

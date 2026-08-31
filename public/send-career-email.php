@@ -236,69 +236,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Send email via custom SMTP
     $adminSent = send_smtp_mail($adminEmail, $adminSubject, $adminMessage, $adminHeaders);
-    
-    // ==========================================
-    // 2. AUTO-REPLY TO CANDIDATE (PREMIUM DESIGN)
-    // ==========================================
-    
-    $userSubject = "Application Received - {$companyName}";
-    
-    $userMessage = "<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='UTF-8'>
-        <style>
-            body { margin: 0; padding: 0; background-color: #f4f7f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #334155; }
-            .wrapper { width: 100%; padding: 40px 0; background-color: #f4f7f6; }
-            .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-            .header { background: linear-gradient(135deg, #1e1e52, #28286e); padding: 30px; text-align: center; border-bottom: 4px solid #ff8d4b; }
-            .header h1 { color: #ffffff; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: 0.5px; }
-            .content { padding: 35px 30px; }
-            .content p { font-size: 15px; line-height: 1.6; margin-top: 0; margin-bottom: 20px; color: #475569; }
-            .highlight-box { background-color: #f8fafc; padding: 20px; border-left: 4px solid #ff8d4b; border-radius: 0 8px 8px 0; margin: 30px 0; }
-            .highlight-box p { margin: 0; font-size: 14px; }
-            .footer { background-color: #1e1e52; padding: 30px; text-align: center; }
-            .footer p { margin: 0 0 5px 0; font-size: 13px; color: #94a3b8; }
-            .footer .contact-info { color: #ffffff; font-weight: 500; font-size: 14px; margin-top: 15px; }
-        </style>
-    </head>
-    <body>
-        <div class='wrapper'>
-            <div class='container'>
-                <div class='header'>
-                    <h1>Application Received</h1>
-                </div>
-                <div class='content'>
-                    <p>Dear <strong>{$data['fullName']}</strong>,</p>
-                    <p>Thank you for expressing your interest in joining <strong>{$companyName}</strong>. We have successfully received your application and resume for the position of <strong>{$data['position']}</strong>.</p>
-                    <p>Our Talent Acquisition team is currently reviewing your profile to see if your experience and skills align with our current requirements.</p>
-                    
-                    <div class='highlight-box'>
-                        <p><strong>What's Next?</strong><br>If your profile is shortlisted, our HR team will reach out to you directly to schedule an interview. Due to the high volume of applications, we only contact shortlisted candidates.</p>
-                    </div>
-                    
-                    <p>We appreciate your interest in our company and wish you the best in your career endeavors.</p>
-                    <br>
-                    <p>Best Regards,<br><strong style='color: #1e1e52; font-size: 16px;'>HR Department, {$companyName}</strong></p>
-                </div>
-                <div class='footer'>
-                    <p>31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018</p>
-                    <p>careers@pislinfra.com | pislinfra.com</p>
-                    <p class='contact-info'>📞 085270 40411 | 070328 02501</p>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>";
-    
-    $userHeaders = "MIME-Version: 1.0\r\n";
-    $userHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $userHeaders .= "From: {$companyName} Careers <{$fromEmail}>\r\n";
-    $userHeaders .= "Reply-To: {$adminEmail}\r\n";
-    
-    // Send email via custom SMTP
-    if($adminSent) {
-        send_smtp_mail($data['email'], $userSubject, $userMessage, $userHeaders);
+    if (!$adminSent) {
+        $adminSent = mail($adminEmail, $adminSubject, $adminMessage, $adminHeaders);
     }
+    
 }
 ?>

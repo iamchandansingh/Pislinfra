@@ -109,7 +109,7 @@ const BlogSEO = ({ blog }) => {
       }
       if (blog.tags) {
         document.querySelectorAll('meta[property="article:tag"]').forEach(el => el.remove());
-        blog.tags.forEach(tag => {
+        const tagsArray = Array.isArray(blog.tags) ? blog.tags : (typeof blog.tags === 'string' ? blog.tags.split(',').map(t => t.trim()) : []); tagsArray.forEach(tag => {
           const element = document.createElement('meta');
           element.setAttribute('property', 'article:tag');
           element.setAttribute('content', tag);
@@ -222,6 +222,16 @@ const BlogSEO = ({ blog }) => {
       addJsonLd(orgSchema);
     }
 
+    
+    // Custom Structured Data
+    if (blog.structuredData) {
+      let parsed = blog.structuredData;
+      if (typeof parsed === 'string') {
+        try { parsed = JSON.parse(parsed); } catch (e) {}
+      }
+      addJsonLd(parsed);
+    }
+  
     // ==================== IMAGE ALT HELPER ====================
     if (blog.imageAlt || blog.imageTitle) {
       window.__BLOG_IMAGE_DATA__ = {

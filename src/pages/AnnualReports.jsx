@@ -1,58 +1,75 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { fetchStrapiData } from '../services/strapi';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
 import { FaDownload, FaFilePdf, FaCalendar } from 'react-icons/fa';
+import Preloader from '../components/common/Preloader';
 
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
 const AnnualReports = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetchStrapiData('annual-report-page?populate[0]=heroImage&populate[1]=seo&populate[2]=reports&populate[3]=reports.pdfFile');
+        if (response) {
+          setData(response);
+        }
+      } catch (error) {
+        console.error('Error fetching annual reports:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  const getImageUrl = (imgObj, defaultImg) => {
+    if (!imgObj || (!imgObj.url && !imgObj.data?.attributes?.url)) return defaultImg;
+    const url = imgObj.url || imgObj.data?.attributes?.url;
+    if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+    return url;
+  };
+
+  const getFileUrl = (fileUrl, pdfFileObj) => {
+    const url = pdfFileObj?.url || pdfFileObj?.data?.attributes?.url;
+    if (url) {
+      if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+      return url;
+    }
+    return fileUrl || '#';
+  };
+
+  const handleDownload = (url) => {
+    window.open(url, '_blank');
+  };
+
+  if (loading) return <Preloader />;
+  if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Reports not found.</div>;
+
   const seoData = {
+    ...data.seo,
     contentType: 'page',
-    title: 'Annual Reports',
-    seoTitle: 'Annual Reports | Pislinfra',
-    seoDescription: 'Download Pislinfra\'s annual reports & returns from FY 2019-20 to FY 2024-25. Comprehensive financial disclosures, project updates & company performance metrics.',
-    seoKeywords: 'annual reports, annual return, financial reports, company performance, FY 2024-25, annual filing, Pislinfra reports',
-    slug: 'annual-reports',
-    canonicalUrl: 'https://pislinfra.com/annual-reports',
-    ogTitle: 'Annual Reports - Financial Disclosures | Pislinfra',
-    ogDescription: 'Download our annual reports & returns for detailed financial insights.',
-    ogImage: 'https://pislinfra.com/images/hero/Annual-Reports.png',
-    ogType: 'website',
-    twitterTitle: 'Annual Reports | Pislinfra',
-    twitterDescription: 'Financial reports & performance highlights.',
-    twitterImage: 'https://pislinfra.com/images/hero/Annual-Reports.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Annual Reports', 'Financial', 'Returns', 'Performance', 'Download'],
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png')
   };
 
-  const reports = [
-    { id: 1, year: '2024-2025', title: 'Annual Return FY 2024-25', desc: 'Comprehensive annual return filing with complete financial disclosures and company performance metrics.', size: 'PDF', file: '/reports/Annual-Return_2024-25.pdf' },
-    { id: 2, year: '2023-2024', title: 'Annual Report FY 2023-24', desc: 'Detailed analysis of infrastructure projects completed and new strategic initiatives undertaken during the year.', size: 'PDF', file: '/reports/Annual-Reports-2023-2024.pdf' },
-    { id: 3, year: '2022-2023', title: 'Annual Return FY 2022-23', desc: 'Performance summary and strategic roadmap highlighting key milestones and future expansion plans.', size: 'PDF', file: '/reports/Annual-Return-2022-23.pdf' },
-    { id: 4, year: '2021-2022', title: 'Annual Return FY 2021-22', desc: 'Milestones achieved, capacity building efforts, and operational highlights across India.', size: 'PDF', file: '/reports/Annual-Return-2021-22.pdf' },
-    { id: 5, year: '2020-2021', title: 'Annual Return FY 2020-21', desc: 'Financial year performance review with comprehensive company returns and compliance documentation.', size: 'PDF', file: '/reports/Pragati-Infra-Solutions-Private-Limited_Annual-Return_2020-21-1.pdf' },
-    { id: 6, year: '2019-2020', title: 'Annual Return FY 2019-20', desc: 'Annual return filing for the financial year with complete statutory disclosures and company data.', size: 'PDF', file: '/reports/Pragati-Infra-Solutions-Private-Limited_Annual-Return_2019-2020.pdf' },
-  ];
-
-  const handleDownload = (file) => {
-    window.open(file, '_blank');
-  };
+  const reports = data.reports || [];
 
   return (
     <div style={{ background: '#ffffff', fontFamily: '"Inter", "Helvetica Neue", sans-serif' }}>
-      
       <BlogSEO blog={seoData} />
       
       <PageHero 
-        title="Annual Reports" 
-        subtitle="Financial reports and performance highlights"
-        breadcrumb="Annual Reports"
-        bgImage="/images/hero/Annual-Reports.png"
+        title={data.title} 
+        subtitle={data.subtitle}
+        breadcrumb={data.breadcrumb}
+        bgImage={getImageUrl(data.heroImage, "/images/hero/Annual-Reports.png")}
       />
 
       <section style={{ padding: '100px 24px', backgroundColor: '#f8fafc' }}>
@@ -66,17 +83,23 @@ const AnnualReports = () => {
             style={{ textAlign: 'center', marginBottom: '64px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
           >
             <h2 style={{ fontSize: 'clamp(28px, 3vw, 38px)', fontWeight: 900, color: NAVY, margin: '0 0 16px 0', letterSpacing: '-0.8px' }}>
-              Download Our <span style={{ color: ORANGE }}>Reports</span>
+              {data.headerTitle ? (
+                <>
+                  {data.headerTitle.split(' ').slice(0, -1).join(' ')} <span style={{ color: ORANGE }}>{data.headerTitle.split(' ').slice(-1)}</span>
+                </>
+              ) : (
+                <>Download Our <span style={{ color: ORANGE }}>Reports</span></>
+              )}
             </h2>
             <p style={{ color: '#64748b', lineHeight: '1.6', fontSize: '15px', maxWidth: '580px', margin: 0, fontWeight: 500 }}>
-              Access our annual reports and returns for detailed insights into our financial performance, project updates, and future plans nationwide.
+              {data.headerDescription}
             </p>
           </motion.div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {reports.map((report, idx) => (
               <motion.div 
-                key={report.id}
+                key={report.id || idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -101,7 +124,7 @@ const AnnualReports = () => {
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => handleDownload(report.file)}
+                  onClick={() => handleDownload(getFileUrl(report.fileUrl, report.pdfFile))}
                   style={{ padding: '12px 24px', backgroundColor: NAVY, color: '#ffffff', border: 'none', borderRadius: '100px', fontWeight: '800', fontSize: '12.5px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', whiteSpace: 'nowrap', textTransform: 'uppercase', letterSpacing: '1px', boxShadow: '0 4px 12px rgba(40, 41, 111, 0.1)', transition: 'background-color 0.2s ease' }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = ORANGE}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = NAVY}

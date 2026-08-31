@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
@@ -81,7 +82,24 @@ const SquareServiceCard = ({ data, index }) => {
   );
 };
 
-const Services = () => {
+const Services = ({ data }) => {
+  const servicesDataMapped = [
+    {
+      id: 'design',
+      title: 'DESIGN',
+      desc: data?.items?.[0]?.desc || 'Our team of dedicated architects and designers collaboratively envision and execute projects that redefine skylines and set new standards in architectural excellence. From conceptualisation to realisation, our vertical design approach ensures every project stands as a testament to our commitment to shaping environments that not only stand tall but also enrich lives.',
+      img: getImageUrl(data?.items?.[0]?.img) || '/images/Overview/3.png',
+      link: '/solutions'
+    },
+    {
+      id: 'construction',
+      title: 'CONSTRUCTION',
+      desc: data?.items?.[1]?.desc || 'We specialise in the vertical of construction that builds the backbone of industries. Our expertise lies in creating robust and efficient spaces that cater to the unique needs of warehousing and industrial operations. From large-scale warehouses to specialised industrial facilities, we are committed to constructing vertical spaces that facilitate streamlined operations.',
+      img: getImageUrl(data?.items?.[1]?.img) || '/images/Overview/vpw.png',
+      link: '/solutions'
+    }
+  ];
+
   return (
     <section style={{
       padding: '40px 20px',
@@ -109,7 +127,7 @@ const Services = () => {
           display: 'flex', justifyContent: 'center',
           flexWrap: 'wrap', gap: '24px',
         }}>
-          {servicesData.map((data, index) => (
+          {servicesDataMapped.map((data, index) => (
             <SquareServiceCard key={data.id} data={data} index={index} />
           ))}
         </div>

@@ -1,37 +1,86 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { fetchStrapiData } from '../../services/strapi'
+import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import infraBg from '../../assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-6.png'
-import { FaClock, FaCheckCircle, FaUserTie, FaHardHat } from 'react-icons/fa'
+import * as FaIcons from 'react-icons/fa';
+import * as HiIcons from 'react-icons/hi';
+import * as BiIcons from 'react-icons/bi';
+import Preloader from '../../components/common/Preloader';
+
+const getIcon = (iconName) => {
+  if (!iconName) return FaIcons.FaCircle;
+  if (iconName.startsWith('Fa')) return FaIcons[iconName] || FaIcons.FaCircle;
+  if (iconName.startsWith('Hi')) return HiIcons[iconName] || FaIcons.FaCircle;
+  if (iconName.startsWith('Bi')) return BiIcons[iconName] || FaIcons.FaCircle;
+  return FaIcons.FaCircle;
+};
+
+
+
+const defaultInfrastructureData = {
+  title: "Infrastructure Solutions",
+  introText: "PISL delivers robust infrastructure solutions across transportation, utility, and civil engineering projects.",
+  mainFeatureTitle: "Infrastructure Development & Engineering",
+  mainFeatureText: "Our infrastructure solutions provide sustainable, scalable, and resilient engineering for modern India.",
+  features: [
+    { title: "Civil Infrastructure", desc: "Roadways, bridges, and site development.", icon: "FaBuilding" },
+    { title: "Utility Networks", desc: "Water supply, drainage, and power grid integration.", icon: "FaCogs" }
+  ],
+  whyPislTitle: "Why Partner with PISL?",
+  whyPislText: "Unmatched technical expertise and proven execution speed."
+};
 
 const Infrastructure = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetchStrapiData('solution-pages?filters[slug]=infrastructure&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo');
+        if (response && response.length > 0) {
+          setData(response[0]);
+        } else {
+          setData(defaultInfrastructureData);
+        }
+      } catch (err) {
+        setData(defaultInfrastructureData);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (loading || !data) return <Preloader />;
+
   const seoData = {
     contentType: 'page',
-    title: 'Infrastructure Development',
-    seoTitle: 'Infrastructure Development | Pislinfra',
-    seoDescription: 'Pislinfra offers comprehensive infrastructure development services. From planning to execution, we build robust infrastructure projects across India.',
-    seoKeywords: 'infrastructure development, infrastructure projects, civil engineering, construction planning, infrastructure company, Pislinfra',
+    title: data.title,
+    seoTitle: data.seo?.seoTitle,
+    seoDescription: data.seo?.seoDescription,
+    seoKeywords: data.seo?.seoKeywords,
     slug: 'solutions/infrastructure',
-    canonicalUrl: 'https://pislinfra.com/solutions/infrastructure',
-    ogTitle: 'Infrastructure Development Services | Pislinfra',
-    ogDescription: 'Comprehensive infrastructure development from planning to execution.',
-    ogImage: 'https://pislinfra.com/images/hero/Service.png',
-    ogType: 'website',
-    twitterTitle: 'Infrastructure Development | Pislinfra',
-    twitterDescription: 'Robust infrastructure projects across India.',
-    twitterImage: 'https://pislinfra.com/images/hero/Service.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Infrastructure', 'Development', 'Civil Engineering', 'Construction'],
+    canonicalUrl: data.seo?.canonicalUrl,
+    ogTitle: data.seo?.ogTitle,
+    ogDescription: data.seo?.ogDescription,
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, ''),
+    ogType: data.seo?.ogType || 'website',
+    twitterTitle: data.seo?.twitterTitle,
+    twitterDescription: data.seo?.twitterDescription,
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, ''),
+    twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
+    schemaType: data.seo?.schemaType || 'WebPage',
+    breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
+    organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
+    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Infrastructure', 'Development', 'Civil Engineering', 'Construction'],
+    noIndex: data.seo?.noIndex || false,
+    noFollow: data.seo?.noFollow || false,
+    structuredData: data.seo?.structuredData
   };
 
-  const differentiators = [
-    { icon: FaClock, title: 'Timely Delivery', desc: 'At PISL Infra, punctual project completion is our hallmark. We understand the importance of timelines and are committed to delivering results efficiently without compromising on quality.' },
-    { icon: FaCheckCircle, title: 'Quality Construction', desc: 'Our unwavering dedication to delivering high-quality building services sets us apart. We uphold strict standards to ensure that every aspect of our work meets or exceeds industry expectations.' },
-    { icon: FaUserTie, title: 'Professional Management', desc: 'A team of highly qualified and experienced individuals forms the backbone of our operations. Their expertise ensures precision and excellence in every phase of the construction process.' },
-    { icon: FaHardHat, title: 'Safety Commitment', desc: 'Safety is non-negotiable at PISL Infra. We adhere strictly to safety requirements, prioritising the well-being of our team, clients, and the community in every project we undertake.' }
-  ]
+  const differentiators = data.features || [];
 
   return (
     <SolutionLayout
@@ -40,34 +89,25 @@ const Infrastructure = () => {
         title: "Infrastructure Development",
         subtitle: "Building the foundation for tomorrow's growth",
         breadcrumb: "Solutions / Infrastructure",
-        bgImage: infraBg
+        bgImage: data.heroImage ? getImageUrl(data.heroImage, infraBg) : infraBg
       }}
       intro={{
-        text: (
-          <p>
-            Experience the zenith of construction prowess with PISL Infra's Infrastructure Development. Armed with a profound understanding of industry requirements, we are well-equipped to undertake major commercial building projects nationwide. We specialise in offering premium yet affordable factory construction services. From factory sheds to diverse manufacturing facilities, our services align with our clients' business goals.
-          </p>
-        )
+        text: data.introText ? (<div dangerouslySetInnerHTML={{ __html: data.introText.replace(/\n/g, '<br/>') }} />) : null
       }}
       mainFeature={{
-        title: <span>Introduction to <span style={{ color: '#0a2a66' }}>Infrastructure Development</span></span>,
-        text: (
-          <>
-            <p style={{ marginBottom: '16px' }}>
-              Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.
-            </p>
-            <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '16px', marginTop: '32px' }}>
-              Services Offered by <span style={{ color: '#0a2a66' }}>PISL Infra</span>
-            </h3>
-            <p style={{ marginBottom: '16px' }}>
-              PISL Infra stands out for providing quality services efficiently and affordably. We offer world-class services, ensuring adherence to the most recent construction technology guidelines. Customer satisfaction is our goal, and we try to do the best possible for our clients. PISL has emerged as the premier company for manufacturing and infrastructure development nationwide.
-            </p>
-            <p>
-              We take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.
-            </p>
-          </>
+        title: (
+          <span>
+            {(() => {
+              const words = (data.mainFeatureTitle || "Introduction to Infrastructure Development").split(' ');
+              if (words.length <= 2) return <span style={{ color: '#0a2a66' }}>{words.join(' ')}</span>;
+              const firstPart = words.slice(0, words.length - 2).join(' ');
+              const lastPart = words.slice(-2).join(' ');
+              return <>{firstPart} <span style={{ color: '#0a2a66' }}>{lastPart}</span></>;
+            })()}
+          </span>
         ),
-        image: infraBg
+        text: data.mainFeatureText ? (<div style={{ marginBottom: '16px', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: data.mainFeatureText.replace(/### (.*?)\n/g, '<h3 style="font-size: 22px; font-weight: bold; color: #2a2a75; margin-bottom: 16px; margin-top: 32px;">$1</h3>').replace(/\n\n/g, '<br/><br/>') }} />) : null,
+        image: getImageUrl(data.mainFeatureImage, infraBg)
       }}
     >
       <style>{`
@@ -90,7 +130,7 @@ const Infrastructure = () => {
           height: 100%;
           border-radius: 20px;
           overflow: hidden;
-          background-image: url('/images/Project/complete/Bengaluru-KA/logos-india-industrial-park-bengaluru-ka.png');
+          background-image: url('${data.whyPislImage ? getImageUrl(data.whyPislImage, "") : ""}');
           background-size: cover;
           background-position: center;
           box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -288,6 +328,7 @@ const Infrastructure = () => {
         }
       `}</style>
 
+      {(data.whyPislTitle || (data.features && data.features.length > 0)) && (
       <div className="why-pisl-split-wrapper">
         
         {/* Left Fixed Area */}
@@ -295,13 +336,9 @@ const Infrastructure = () => {
           <div className="why-pisl-image-card">
             <div className="why-pisl-image-overlay"></div>
             <div className="why-pisl-image-content">
-              <div className="why-pisl-image-badge">Core Advantages</div>
-              <h2 className="why-pisl-left-title">
-                What Differentiates <span>Us?</span>
-              </h2>
-              <p className="why-pisl-left-desc">
-                Our steadfast dedication to essential distinguishing qualities demonstrates our commitment to attaining operational excellence and maintaining the highest industry standards.
-              </p>
+              {data.whyPislBadge && <div className="why-pisl-image-badge">{data.whyPislBadge}</div>}
+              <h2 className="why-pisl-left-title" dangerouslySetInnerHTML={{ __html: data.whyPislTitle ? data.whyPislTitle.replace('Us?', '<span>Us?</span>') : 'What Differentiates <span>Us?</span>' }}></h2>
+              <p className="why-pisl-left-desc">{data.whyPislDesc}</p>
             </div>
           </div>
         </div>
@@ -311,14 +348,14 @@ const Infrastructure = () => {
           {differentiators.map((feature, index) => (
             <div key={index} className="why-pisl-list-card">
               <div className="why-pisl-list-icon-wrap">
-                <feature.icon className="why-pisl-list-icon" />
+                {(() => { const Icon = getIcon(feature.icon); return <Icon className="why-pisl-list-icon" />; })()}
               </div>
               <div className="why-pisl-list-text">
                 <h3 className="why-pisl-list-title">
                   {feature.title}
                 </h3>
                 <p className="why-pisl-list-desc">
-                  {feature.desc}
+                  {feature.description || feature.desc}
                 </p>
               </div>
             </div>
@@ -326,7 +363,7 @@ const Infrastructure = () => {
         </div>
 
       </div>
-    </SolutionLayout>
+      )}</SolutionLayout>
   )
 }
 

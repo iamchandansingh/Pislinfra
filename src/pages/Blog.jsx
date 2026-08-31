@@ -5,11 +5,16 @@ import BlogSEO from '../components/Blog/BlogSEO';
 import FeaturedArticleSection from '../components/Blog/FeaturedArticleSection';
 import LatestArticlesSection from '../components/Blog/LatestArticlesSection';
 import BlogSidebarSection from '../components/Blog/BlogSidebarSection';
-import BlogDB from '../data/BlogDB';
+import { useBlogs } from '../context/BlogContext';
+import Preloader from '../components/common/Preloader';
+
+
 
 const ITEMS_PER_PAGE = 6;
 
 const Blog = () => {
+  const { blogs: BlogDB, blogPage, loading } = useBlogs();
+  
   const [searchParams] = useSearchParams();
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [isMobile, setIsMobile] = useState(false);
@@ -67,16 +72,18 @@ const Blog = () => {
     setVisibleCount(filteredBlogs.length);
   };
 
+  if (loading) return <Preloader />;
+
   return (
     <div style={{ fontFamily: 'Inter, sans-serif' }}>
       
       <BlogSEO blog={seoData} />
 
       <PageHero 
-        title={searchQuery ? `Search: "${searchQuery}"` : "Blog"} 
-        subtitle={searchQuery ? `${filteredBlogs.length} results found` : "Insights, news & updates from PISL INFRA"} 
-        breadcrumb="Blog" 
-        bgImage="/images/hero/Blog.png" 
+        title={searchQuery ? `Search: "${searchQuery}"` : (blogPage?.heroTitle || "Blog")} 
+        subtitle={searchQuery ? `${filteredBlogs.length} results found` : (blogPage?.heroSubtitle || "Insights, news & updates from PISL INFRA")} 
+        breadcrumb={blogPage?.heroBreadcrumb || "Blog"} 
+        bgImage={blogPage?.heroImage?.url ? (blogPage.heroImage.url.startsWith('http') ? blogPage.heroImage.url : `http://localhost:1337${blogPage.heroImage.url}`) : "/images/hero/Blog.png"} 
       />
 
       <div style={{ height: isMobile ? '16px' : '32px', backgroundColor: 'white' }} />
@@ -94,8 +101,8 @@ const Blog = () => {
           <div className="blog-layout">
             
             <div className="blog-main-content">
-              <FeaturedArticleSection />
-              <LatestArticlesSection visibleCount={visibleCount} />
+              {!searchQuery && filteredBlogs.length > 0 && <FeaturedArticleSection article={filteredBlogs[0]} />}
+              <LatestArticlesSection articles={filteredBlogs.slice(!searchQuery ? 1 : 0, visibleCount + (!searchQuery ? 1 : 0))} />
               
               {hasMore && (
                 <div style={{ textAlign: 'center', marginTop: isMobile ? '24px' : '40px' }}>

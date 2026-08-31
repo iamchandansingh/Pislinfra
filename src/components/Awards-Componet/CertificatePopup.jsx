@@ -1,7 +1,9 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
 
 // SVG Icons
 const CloseIcon = () => (
@@ -52,26 +54,34 @@ const VerifiedIcon = () => (
 );
 
 const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
+  const [activeImageIndex, setActiveImageIndex] = React.useState(0);
   if (!isOpen || !certificateData) return null;
 
-  // Use the standard schema keys if present, otherwise fallback to custom keys
   const certData = {
-    name: certificateData.name || certificateData.title || 'Official Certificate',
-    issuingAuthority: certificateData.issuer || certificateData.presentedBy || 'Governing Body',
+    name: certificateData.name || certificateData.title || 'Certificate of Excellence',
+    title: certificateData.title || certificateData.name,
+    category: certificateData.category || 'Quality & Standards',
+    issuingAuthority: certificateData.issuingAuthority || certificateData.presentedBy || 'Certification Body',
     issueDate: certificateData.issueDate || certificateData.year || '2024',
-    expiryDate: certificateData.expiryDate || 'Valid Indefinitely',
+    expiryDate: certificateData.expiryDate || 'Lifetime',
+    certificateNumber: certificateData.certificateNumber || certificateData.id || 'PISL-CERT-001',
+    description: certificateData.description || certificateData.desc || 'Standard compliance and excellence certification achieved by Pragati Infra Solutions.',
     country: certificateData.country || certificateData.location || 'Global',
     businessScope: certificateData.businessScope || certificateData.category || 'Professional Excellence',
     image: certificateData.image,
     gallery: certificateData.gallery || []
   };
 
-  const images = certData.gallery && certData.gallery.length > 0 
-    ? [certData.image, ...certData.gallery] 
-    : [certData.image];
+  const images = (certificateData.images && certificateData.images.length > 0)
+    ? certificateData.images
+    : (certData.gallery && certData.gallery.length > 0)
+      ? [certData.image, ...certData.gallery] 
+      : (certData.image ? [certData.image] : []);
+
+  const currentImg = images[activeImageIndex] || images[0] || certData.image;
 
   const handleDownload = () => {
-    window.open(certData.image, '_blank');
+    window.open(currentImg || certData.image, '_blank');
   };
 
   const infoItems = [
@@ -85,26 +95,28 @@ const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
 
   return (
     <div 
+      className="cert-popup-overlay"
       style={{
         position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: 'rgba(0,0,0,0.85)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         zIndex: 10000,
-        padding: '24px'
+        padding: '16px'
       }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div 
+        className="cert-popup-modal"
         style={{
-          width: '100%', maxWidth: '1000px',
+          width: '100%', maxWidth: '980px',
           backgroundColor: '#ffffff',
           borderRadius: '16px',
           overflow: 'hidden',
-          boxShadow: '0 40px 100px rgba(0,0,0,0.3)',
+          boxShadow: '0 40px 100px rgba(0,0,0,0.4)',
           display: 'flex',
           flexDirection: 'row',
-          height: '600px',
-          maxHeight: '90vh',
+          height: '580px',
+          maxHeight: '92vh',
           position: 'relative'
         }}
         onClick={(e) => e.stopPropagation()}
@@ -114,202 +126,209 @@ const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
         <button 
           onClick={onClose} 
           style={{
-            position: 'absolute', top: '20px', right: '20px',
-            width: '44px', height: '44px',
-            borderRadius: '16px',
+            position: 'absolute', top: '16px', right: '16px',
+            width: '40px', height: '40px',
+            borderRadius: '12px',
             backgroundColor: 'rgba(255,255,255,0.95)',
-            border: '1px solid #f3f4f6',
+            border: '1px solid #e2e8f0',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer', zIndex: 50,
-            color: '#6b7280',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-            transition: 'all 0.3s ease'
+            cursor: 'pointer', zIndex: 60,
+            color: '#64748B',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#F37346';
+            e.currentTarget.style.backgroundColor = '#2A2A75';
             e.currentTarget.style.color = '#fff';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.95)';
-            e.currentTarget.style.color = '#6b7280';
+            e.currentTarget.style.color = '#64748B';
           }}
         >
           <CloseIcon />
         </button>
 
-        {/* Left - Certificate Image */}
-        <div style={{
-          width: '50%',
-          backgroundColor: '#12163E',
-          backgroundImage: 'url(/images/popup-bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '24px',
-          overflow: 'hidden'
-        }}>
-          
-          <div style={{ position: 'relative', zIndex: 10, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {images.length > 1 ? (
-              <Swiper
-                modules={[Autoplay]}
-                autoplay={{ delay: 2000, disableOnInteraction: false }}
-                speed={500}
-                loop={true}
-                style={{ width: '100%', height: '100%' }}
-              >
-                {images.map((img, idx) => (
-                  <SwiperSlide key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                    <div style={{
-                      padding: '16px',
-                      backgroundColor: '#ffffff',
-                      border: '12px solid #171717',
-                      boxShadow: 'inset 0 0 0 2px #d4af37, 0 35px 60px -15px rgba(0,0,0,0.8)',
-                      maxWidth: '85%',
-                      maxHeight: '85%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <img 
-                        src={img} 
-                        alt={`${certData.name} - ${idx + 1}`} 
-                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', border: '1px solid #e5e5e5' }}
-                      />
-                    </div>
-                  </SwiperSlide>
+        {/* Left - Certificate Image Section (Instant 0ms Display) */}
+        <div 
+          className="cert-popup-left"
+          style={{
+            width: '45%',
+            backgroundColor: '#12163E',
+            backgroundImage: 'url(/images/popup-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px',
+            overflow: 'hidden',
+            flexShrink: 0
+          }}
+        >
+          <div style={{ position: 'relative', zIndex: 10, width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{
+              padding: '10px',
+              backgroundColor: '#ffffff',
+              border: '6px solid #171717',
+              boxShadow: 'inset 0 0 0 2px #d4af37, 0 20px 40px -10px rgba(0,0,0,0.6)',
+              maxWidth: '90%',
+              maxHeight: images.length > 1 ? '78%' : '90%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '4px'
+            }}>
+              <img 
+                src={currentImg} 
+                alt={certData.name} 
+                style={{ maxWidth: '100%', maxHeight: '330px', objectFit: 'contain', display: 'block' }}
+              />
+            </div>
+
+            {images.length > 1 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '14px' }}>
+                {images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImageIndex(idx)}
+                    style={{
+                      width: activeImageIndex === idx ? '22px' : '9px',
+                      height: '9px',
+                      borderRadius: '100px',
+                      backgroundColor: activeImageIndex === idx ? '#F37346' : 'rgba(255,255,255,0.45)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: 0
+                    }}
+                  />
                 ))}
-              </Swiper>
-            ) : (
-              <div style={{
-                padding: '16px',
-                backgroundColor: '#ffffff',
-                border: '12px solid #171717',
-                boxShadow: 'inset 0 0 0 2px #d4af37, 0 35px 60px -15px rgba(0,0,0,0.8)',
-                maxWidth: '85%',
-                maxHeight: '85%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <img 
-                  src={images[0]} 
-                  alt={certData.name} 
-                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', border: '1px solid #e5e5e5' }}
-                />
               </div>
             )}
           </div>
         </div>
 
-        {/* Right - Content Section */}
-        <div style={{
-          width: '50%',
-          padding: '40px',
-          overflowY: 'auto',
-          boxSizing: 'border-box',
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          
-          {/* Top Label */}
+        {/* Right - Content Section with Sticky Fixed Footer */}
+        <div 
+          className="cert-popup-right"
+          style={{
+            width: '55%',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            backgroundColor: '#ffffff'
+          }}
+        >
+          {/* Scrollable Content Body */}
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '8px',
-            fontSize: '12px', fontWeight: 600, color: '#10B981',
-            textTransform: 'uppercase', letterSpacing: '3px',
-            marginBottom: '16px', fontFamily: "'Inter', sans-serif"
+            flex: 1,
+            overflowY: 'auto',
+            padding: '32px 32px 16px 32px',
+            boxSizing: 'border-box'
           }}>
-            <span style={{ width: '20px', height: '20px', borderRadius: '6px', backgroundColor: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <VerifiedIcon />
-            </span>
-            Verified Certification
-          </div>
+            {/* Top Label */}
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              fontSize: '11.5px', fontWeight: 700, color: '#10B981',
+              textTransform: 'uppercase', letterSpacing: '2px',
+              marginBottom: '12px', fontFamily: "'Inter', sans-serif"
+            }}>
+              <span style={{ width: '20px', height: '20px', borderRadius: '6px', backgroundColor: '#ecfdf5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <VerifiedIcon />
+              </span>
+              Verified Certification
+            </div>
 
-          {/* Title */}
-          <h2 style={{
-            fontSize: '32px', fontWeight: 'bold', color: '#2A2A75',
-            marginBottom: '32px', fontFamily: "'Inter', sans-serif",
-            lineHeight: 1.15, letterSpacing: '-0.3px'
-          }}>
-            {certData.name}
-          </h2>
+            {/* Title */}
+            <h2 style={{
+              fontSize: 'clamp(20px, 2.2vw, 26px)', fontWeight: 800, color: '#1E2A5A',
+              marginBottom: '20px', fontFamily: "'Inter', sans-serif",
+              lineHeight: 1.25, letterSpacing: '-0.3px'
+            }}>
+              {certData.name}
+            </h2>
 
-          {/* Info Grid */}
-          <div style={{
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px'
-          }}>
-            {infoItems.map((item, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                <div style={{
-                  width: '44px', height: '44px', borderRadius: '12px',
-                  backgroundColor: item.green ? '#ecfdf5' : '#f9fafb',
-                  border: `1px solid ${item.green ? '#d1fae5' : '#f3f4f6'}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: item.green ? '#10B981' : item.color, flexShrink: 0
-                }}>
-                  <item.icon />
-                </div>
-                <div>
-                  <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '4px', fontFamily: "'Inter', sans-serif" }}>
-                    {item.label}
-                  </div>
-                  <div style={{ 
-                    fontSize: '14px', fontWeight: 600, 
-                    color: item.green ? '#10B981' : '#1f2937', 
-                    fontFamily: "'Inter', sans-serif" 
+            {/* Info Grid */}
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px'
+            }}>
+              {infoItems.map((item, index) => (
+                <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                  <div style={{
+                    width: '38px', height: '38px', borderRadius: '10px',
+                    backgroundColor: item.green ? '#ecfdf5' : '#F8FAFC',
+                    border: `1px solid ${item.green ? '#d1fae5' : '#E2E8F0'}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: item.green ? '#10B981' : item.color, flexShrink: 0
                   }}>
-                    {item.value}
+                    <item.icon />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '11px', color: '#94A3B8', marginBottom: '2px', fontFamily: "'Inter', sans-serif" }}>
+                      {item.label}
+                    </div>
+                    <div style={{ 
+                      fontSize: '13px', fontWeight: 700, 
+                      color: item.green ? '#10B981' : '#1E2A5A', 
+                      fontFamily: "'Inter', sans-serif" 
+                    }}>
+                      {item.value}
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Verification Badge */}
+            <div style={{
+              padding: '14px', backgroundColor: '#F8FAFC', borderRadius: '12px',
+              border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', gap: '14px',
+              marginBottom: '16px'
+            }}>
+              <div style={{ width: '40px', height: '40px', backgroundColor: '#fff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/ISO_Logo_%28Red_square%29.svg/1200px-ISO_Logo_%28Red_square%29.svg.png" alt="ISO" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
               </div>
-            ))}
-          </div>
-
-          {/* Verification Badge */}
-          <div style={{
-            padding: '16px', backgroundColor: '#f8fafc', borderRadius: '16px',
-            border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '16px',
-            marginBottom: '32px'
-          }}>
-            <div style={{ width: '48px', height: '48px', backgroundColor: '#fff', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/ISO_Logo_%28Red_square%29.svg/1200px-ISO_Logo_%28Red_square%29.svg.png" alt="ISO" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
-            </div>
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: 600, color: '#334155', marginBottom: '2px', fontFamily: "'Inter', sans-serif" }}>Internationally Recognized</div>
-              <div style={{ fontSize: '12px', color: '#64748b', fontFamily: "'Inter', sans-serif" }}>Verified by Global Standards Organization</div>
+              <div>
+                <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#1E2A5A', marginBottom: '2px', fontFamily: "'Inter', sans-serif" }}>Internationally Recognized</div>
+                <div style={{ fontSize: '11.5px', color: '#64748B', fontFamily: "'Inter', sans-serif" }}>Verified by Global Standards Organization</div>
+              </div>
             </div>
           </div>
 
-          {/* Actions */}
+          {/* Fixed Sticky Action Footer with Download Button */}
           <div style={{
-            display: 'flex', alignItems: 'center', gap: '16px',
-            paddingTop: '24px', borderTop: '1px solid #f3f4f6', marginTop: 'auto'
+            padding: '16px 32px',
+            borderTop: '1px solid #F1F5F9',
+            backgroundColor: '#FFFFFF',
+            flexShrink: 0,
+            display: 'flex',
+            alignItems: 'center',
+            boxShadow: '0 -4px 16px rgba(0,0,0,0.03)'
           }}>
             <button 
               onClick={handleDownload}
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                backgroundColor: '#2A2A75', color: '#ffffff',
-                padding: '14px 28px', borderRadius: '12px',
-                fontSize: '15px', fontWeight: 600,
+                backgroundColor: '#1E2A5A', color: '#ffffff',
+                padding: '12px 24px', borderRadius: '10px',
+                fontSize: '14.5px', fontWeight: 700,
                 border: 'none', cursor: 'pointer',
-                boxShadow: '0 4px 12px rgba(42,42,117,0.2)',
-                transition: 'all 0.3s ease',
-                flex: 1, fontFamily: "'Inter', sans-serif"
+                boxShadow: '0 4px 14px rgba(30,42,90,0.25)',
+                transition: 'all 0.25s ease',
+                width: '100%', fontFamily: "'Inter', sans-serif"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#1f1f56';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(42,42,117,0.3)';
+                e.currentTarget.style.backgroundColor = '#151e42';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 6px 18px rgba(30,42,90,0.35)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#2A2A75';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(42,42,117,0.2)';
+                e.currentTarget.style.backgroundColor = '#1E2A5A';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 14px rgba(30,42,90,0.25)';
               }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
@@ -320,6 +339,28 @@ const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 850px) {
+          .cert-popup-modal {
+            flex-direction: column !important;
+            height: auto !important;
+            max-height: 90vh !important;
+          }
+          .cert-popup-left {
+            width: 100% !important;
+            height: 200px !important;
+            padding: 12px !important;
+          }
+          .cert-popup-left img {
+            max-height: 160px !important;
+          }
+          .cert-popup-right {
+            width: 100% !important;
+            max-height: calc(90vh - 200px) !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
