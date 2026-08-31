@@ -710,9 +710,12 @@ const ExcellenceShowcase = ({
                     }}>
                       <img 
                         src={award.image} 
-                        alt={award.name} 
+                        alt={`${award.name || award.title || 'Pislinfra Award'} - ${award.category || 'Excellence'} Recognition ${award.year || ''} | Pislinfra Infrastructure Excellence`} 
+                        title={`${award.name || award.title || 'Award'} (${award.year || ''}) - Pislinfra`}
                         className="award-card-img"
                         loading="lazy"
+                        decoding="async"
+                        itemProp="image"
                         style={{ 
                           width: '100%', 
                           height: '100%', 
@@ -1151,7 +1154,15 @@ const ExcellenceShowcase = ({
                   {/* Image Header inside the Card */}
                   {item.images && item.images.length > 0 && (
                     <div style={{ width: '100%', height: '300px', backgroundColor: '#F9FAFB', overflow: 'hidden', borderBottom: '1px solid #F3F4F6' }}>
-                      <img src={itemImages && itemImages[0] ? itemImages[0] : item.images[0]} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <img 
+                        src={itemImages && itemImages[0] ? itemImages[0] : item.images[0]} 
+                        alt={`${item.title || 'Client Appreciation'} - ${item.company || 'Industry Partner'} Recognition ${item.year || ''} | Pislinfra`} 
+                        title={`${item.title || 'Recognition'} - ${item.company || ''}`}
+                        loading="lazy"
+                        decoding="async"
+                        itemProp="image"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                      />
                     </div>
                   )}
 

@@ -191,10 +191,14 @@ const LatestAchievement = ({ achievements = [], achievementData = {}, onViewDeta
               </span>
             </div>
 
-            {/* Fixed Full Cover Image */}
+            {/* Fixed Full Cover Image with Rich SEO tags */}
             <img 
               src={achievement.awardImage || achievement.certificateImage} 
-              alt={achievement.title} 
+              alt={`${achievement.title || 'Latest Recognition'} - ${achievement.category || 'Excellence'} Award ${achievement.year || '2026'} | Pislinfra Infrastructure Excellence`} 
+              title={`${achievement.title || 'Latest Recognition'} (${achievement.year || '2026'}) - Pislinfra`}
+              loading="lazy"
+              decoding="async"
+              itemProp="image"
               style={{ 
                 width: '100%', 
                 height: '100%', 

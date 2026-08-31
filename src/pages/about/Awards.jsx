@@ -296,28 +296,48 @@ const Awards = () => {
       "name": "Pislinfra Awards, Accolades & Certifications Index",
       "description": "Official index of all industry recognition awards, US LEED Gold certifications, and zero-LTI safety milestones awarded to Pislinfra.",
       "numberOfItems": awardsAndCertifications.length,
-      "itemListElement": awardsAndCertifications.map((item, idx) => ({
-        "@type": "ListItem",
-        "position": idx + 1,
-        "item": {
-          "@type": item.category === "Certification" ? "EducationalOccupationalCredential" : "Award",
-          "name": item.title,
-          "description": item.description,
-          "image": item.image || item.clientImage || "https://pislinfra.com/images/hero/Awards-Certification.png",
-          "dateCreated": String(item.year || "2025"),
-          "category": item.category,
-          "provider": {
-            "@type": "Organization",
-            "name": item.company || "National Infrastructure & Industry Council"
-          },
-          "recipient": {
-            "@type": "Organization",
-            "name": "Pislinfra",
-            "url": "https://pislinfra.com"
-          },
-          "url": `https://pislinfra.com/about/awards?award=${encodeURIComponent(item.id || item.title)}`
-        }
-      }))
+      "itemListElement": awardsAndCertifications.map((item, idx) => {
+        const rawImg = item.image || item.clientImage || (item.images && item.images[0]) || '/images/hero/Awards-Certification.png';
+        const absoluteImage = rawImg.startsWith('http') ? rawImg : `https://pislinfra.com${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
+
+        return {
+          "@type": "ListItem",
+          "position": idx + 1,
+          "item": {
+            "@type": item.category === "Certification" ? "EducationalOccupationalCredential" : "Award",
+            "name": item.title,
+            "description": item.description,
+            "image": {
+              "@type": "ImageObject",
+              "contentUrl": absoluteImage,
+              "url": absoluteImage,
+              "name": `${item.title} - ${item.category || 'Excellence'} Award`,
+              "caption": `${item.title} awarded to Pislinfra in ${item.year || '2026'}. ${item.description || ''}`,
+              "representativeOfPage": idx === 0,
+              "author": {
+                "@type": "Organization",
+                "name": "Pragati Infra Solutions Pvt. Ltd."
+              },
+              "copyrightHolder": {
+                "@type": "Organization",
+                "name": "Pislinfra"
+              }
+            },
+            "dateCreated": String(item.year || "2026"),
+            "category": item.category || "Safety & Infrastructure Excellence",
+            "provider": {
+              "@type": "Organization",
+              "name": item.company || "National Infrastructure & Safety Council"
+            },
+            "recipient": {
+              "@type": "Organization",
+              "name": "Pragati Infra Solutions Pvt. Ltd. (PISL Infra)",
+              "url": "https://pislinfra.com"
+            },
+            "url": `https://pislinfra.com/about/awards?award=${encodeURIComponent(item.id || item.title)}`
+          }
+        };
+      })
     };
 
     scriptEl.textContent = JSON.stringify(structuredData);

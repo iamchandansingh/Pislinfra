@@ -16,12 +16,63 @@
   <!-- About Us Section -->
   <url>
     <loc>https://pislinfra.com/about/awards</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
       <image:loc>https://pislinfra.com/images/hero/Awards-Certification.png</image:loc>
-      <image:title>Pislinfra Awards &amp; Industry Recognitions</image:title>
+      <image:title>Pislinfra Awards, Accolades &amp; Industry Honors</image:title>
+      <image:caption>Comprehensive showcase of Pislinfra industry honors, safety milestones, and LEED certifications.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/10.jpeg</image:loc>
+      <image:title>Best Safety Conscious Contractor - Adani Petrochemicals Award</image:title>
+      <image:caption>Awarded to Pislinfra by Adani Petrochemicals for maintaining high safety standards at Green PVC Project Mundra.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/13.jpeg</image:loc>
+      <image:title>Safety Excellence Award Trophy - Adani KCL Mundra Project</image:title>
+      <image:caption>Recognizing 3.5 Million Safe Man-Hours and zero-LTI achievement at Adani KCL Project Mundra.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/15.jpeg</image:loc>
+      <image:title>The Economic Times Real Estate Conclave &amp; Awards 2022</image:title>
+      <image:caption>Pragati One Logistics Park winner at The Economic Times Real Estate Awards North.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/2.jpg.jpeg</image:loc>
+      <image:title>Adani KCL Project Safety Excellence Certificate</image:title>
+      <image:caption>Official Safety Excellence Certificate awarded to Pislinfra by Adani Group.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/leed-gold.webp</image:loc>
+      <image:title>US LEED Gold Certification - Pragati One Logistics Park</image:title>
+      <image:caption>Gold certification awarded by U.S. Green Building Council (USGBC) and GBCI.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/leed-certificate.webp</image:loc>
+      <image:title>LEED V4 Building Design and Construction Gold Certificate</image:title>
+      <image:caption>Official USGBC Gold Certification credential for Sustainable Warehousing Infrastructure.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/indian-achiever-award.webp</image:loc>
+      <image:title>Entrepreneur of the Year Award - Indian Achievers Forum</image:title>
+      <image:caption>Awarded to Lt Col Jitender Yadav, Founder &amp; Chairman of Pislinfra.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/indian-achiever-award-certificate.webp</image:loc>
+      <image:title>Indian Achievers Forum Certificate of Recognition</image:title>
+      <image:caption>Official Certificate honoring excellence in infrastructure and corporate leadership.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/times-india's.png</image:loc>
+      <image:title>Times of India Infrastructure Feature &amp; Recognition</image:title>
+      <image:caption>Special feature highlighting Pislinfra purpose-driven green logistics &amp; EPC developments.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/awards/awards.png</image:loc>
+      <image:title>National Logistics &amp; Industrial Infrastructure Honors Trophy</image:title>
+      <image:caption>Industry excellence honor for landmark warehousing and logistics parks across India.</image:caption>
     </image:image>
   </url>
   <url>
