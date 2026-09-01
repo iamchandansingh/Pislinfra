@@ -22,7 +22,6 @@ export default defineConfig({
     }),
   ],
   
-  // ✅ FIXED - public folder use karo
   publicDir: 'public',
   
   build: {
@@ -43,8 +42,33 @@ export default defineConfig({
       },
     },
     
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react-router-dom') || id.includes('react/')) {
+              return 'vendor-react';
+            }
+            if (id.includes('react-icons') || id.includes('lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('leaflet')) {
+              return 'vendor-maps';
+            }
+            if (id.includes('html2canvas') || id.includes('dompurify')) {
+              return 'vendor-utils';
+            }
+            return 'vendor-core';
+          }
+          if (id.includes('MainBackupPislinfra.json') || id.includes('coverageMarkersData.js') || id.includes('Awards-&-Certifications.js')) {
+            return 'data-store';
+          }
+        },
+      },
+    },
+    
     target: 'es2020',
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1500,
   },
   
   esbuild: {

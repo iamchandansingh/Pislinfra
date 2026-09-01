@@ -121,6 +121,10 @@ const getFromIDB = async (endpoint) => {
   }
 };
 
+const memoryCache = new Map();
+const lastFetchedTime = new Map();
+const inFlightRequests = new Map();
+
 const getLocalBackup = (endpoint) => {
   if (!offlineBackup) return null;
   if (offlineBackup[endpoint]) {
@@ -140,122 +144,131 @@ const getLocalBackup = (endpoint) => {
   return null;
 };
 
-// ==========================================
-// 4. ENTERPRISE 4-TIER DATA FETCHING & AUTO-SYNC ENGINE
-// ==========================================
-export const fetchStrapiData = async (endpoint) => {
-  // If no STRAPI_URL configured on live production domain, seamlessly use offline tiers
-  if (!STRAPI_URL) {
-    const idbData = await getFromIDB(endpoint);
-    if (idbData) return sanitizeBrandText(idbData);
-
-    if (typeof window !== 'undefined' && window.localStorage) {
-      try {
-        const localCached = window.localStorage.getItem(`pisl_cache_${endpoint}`);
-        if (localCached) return sanitizeBrandText(JSON.parse(localCached));
-      } catch (e) {}
-    }
-
-    if (typeof window !== 'undefined') {
-      try {
-        const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(endpoint)}`, { cache: 'no-cache' });
-        if (hostingerRes.ok) {
-          const hostingerJson = await hostingerRes.json();
-          if (hostingerJson) return sanitizeBrandText(hostingerJson);
-        }
-      } catch (e) {}
-    }
-
-    return getLocalBackup(endpoint);
+// Background live sync worker without blocking UI
+const revalidateInBackground = (endpoint) => {
+  if (!STRAPI_URL) return;
+  const now = Date.now();
+  if (lastFetchedTime.has(endpoint) && now - lastFetchedTime.get(endpoint) < 15000) {
+    return; // Fetched less than 15s ago, no need to spam
   }
+  if (inFlightRequests.has(endpoint)) return;
 
-  // ── TIER 1: LIVE CLOUD CMS FETCH (Neon DB + Cloudflare + Strapi) ──
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000); // 4s Neon cloud DB tolerance
+  const fetchPromise = (async () => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-    const response = await fetch(`${STRAPI_URL}/api/${endpoint}`, {
-      signal: controller.signal
-    });
-    clearTimeout(timeoutId);
-
-    // If server responds with valid status (< 500), server is 100% online
-    if (response.status < 500) {
-      successfulAttempts++;
-      failedAttempts = 0;
-      notifyStatus(false);
+      const response = await fetch(`${STRAPI_URL}/api/${endpoint}`, {
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         const json = await response.json();
         if (json && json.data) {
           const cleanData = sanitizeBrandText(json.data);
-
-          // Instant Real-Time Multi-Tier Persistence:
-          // A) High-capacity IndexedDB (for 12,000+ blogs & jobs)
+          memoryCache.set(endpoint, cleanData);
+          lastFetchedTime.set(endpoint, Date.now());
           saveToIDB(endpoint, cleanData);
-
-          // B) Fast Browser LocalStorage
           if (typeof window !== 'undefined' && window.localStorage) {
-            try {
-              window.localStorage.setItem(`pisl_cache_${endpoint}`, JSON.stringify(cleanData));
-            } catch (e) {}
+            try { window.localStorage.setItem(`pisl_cache_${endpoint}`, JSON.stringify(cleanData)); } catch (e) {}
           }
-
-          // C) Hostinger Shared Hosting Server Disk Snapshot (POST /sync-backup.php)
           if (typeof window !== 'undefined') {
-            setTimeout(() => {
-              fetch('/sync-backup.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ endpoint, data: cleanData })
-              }).catch(() => {});
-            }, 500);
+            fetch('/sync-backup.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ endpoint, data: cleanData })
+            }).catch(() => {});
           }
-
+          notifyStatus(false);
           return cleanData;
         }
       }
-    } else {
-      failedAttempts++;
-      if (failedAttempts >= 2 && successfulAttempts === 0) {
-        notifyStatus(true);
-      }
+    } catch (e) {} finally {
+      inFlightRequests.delete(endpoint);
     }
-  } catch (error) {
-    failedAttempts++;
-    if (failedAttempts >= 2 && successfulAttempts === 0) {
-      notifyStatus(true);
-    }
+  })();
+
+  inFlightRequests.set(endpoint, fetchPromise);
+};
+
+// ==========================================
+// 4. ENTERPRISE 0ms SWR DATA ENGINE
+// ==========================================
+export const fetchStrapiData = async (endpoint) => {
+  // 1. FAST PATH: Memory Cache (0ms response)
+  if (memoryCache.has(endpoint)) {
+    revalidateInBackground(endpoint);
+    return memoryCache.get(endpoint);
   }
 
-  // ── TIER 2: HIGH-CAPACITY CLIENT STORAGE (IndexedDB & LocalStorage) ──
-  const idbData = await getFromIDB(endpoint);
-  if (idbData) {
-    return sanitizeBrandText(idbData);
-  }
-
+  // 2. FAST PATH: LocalStorage Cache (0.1ms response)
   if (typeof window !== 'undefined' && window.localStorage) {
     try {
       const localCached = window.localStorage.getItem(`pisl_cache_${endpoint}`);
       if (localCached) {
-        return sanitizeBrandText(JSON.parse(localCached));
+        const parsed = sanitizeBrandText(JSON.parse(localCached));
+        memoryCache.set(endpoint, parsed);
+        revalidateInBackground(endpoint);
+        return parsed;
       }
     } catch (e) {}
   }
 
-  // ── TIER 3: HOSTINGER DISK BACKUP SNAPSHOT ──
+  // 3. FAST PATH: Bundled Offline Fallback (Instant 0ms response)
+  const localFallback = getLocalBackup(endpoint);
+  if (localFallback) {
+    memoryCache.set(endpoint, localFallback);
+    revalidateInBackground(endpoint);
+    return localFallback;
+  }
+
+  // 4. Check IndexedDB
+  const idbData = await getFromIDB(endpoint);
+  if (idbData) {
+    const cleanIdb = sanitizeBrandText(idbData);
+    memoryCache.set(endpoint, cleanIdb);
+    revalidateInBackground(endpoint);
+    return cleanIdb;
+  }
+
+  // 5. Check Hostinger Server Disk Backup
   if (typeof window !== 'undefined') {
     try {
       const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(endpoint)}`, { cache: 'no-cache' });
       if (hostingerRes.ok) {
         const hostingerJson = await hostingerRes.json();
         if (hostingerJson) {
-          return sanitizeBrandText(hostingerJson);
+          const cleanHostinger = sanitizeBrandText(hostingerJson);
+          memoryCache.set(endpoint, cleanHostinger);
+          return cleanHostinger;
         }
       }
     } catch (e) {}
   }
 
-  // ── TIER 4: BUNDLED STATIC JSON REPOSITORY (MainBackupPislinfra.json) ──
-  return getLocalBackup(endpoint);
+  // 6. Direct Live Strapi Fetch if nothing else is available
+  if (STRAPI_URL) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+
+      const response = await fetch(`${STRAPI_URL}/api/${endpoint}`, {
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+
+      if (response.ok) {
+        const json = await response.json();
+        if (json && json.data) {
+          const cleanData = sanitizeBrandText(json.data);
+          memoryCache.set(endpoint, cleanData);
+          saveToIDB(endpoint, cleanData);
+          return cleanData;
+        }
+      }
+    } catch (error) {}
+  }
+
+  return null;
 };
