@@ -10,9 +10,9 @@ const isLocalhost = typeof window !== 'undefined' && (
 // If on live production (pislinfra.com), NEVER attempt to query localhost/127.0.0.1 (prevents Chrome Private Network Access popup)
 export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL 
   ? import.meta.env.VITE_STRAPI_URL 
-  : (isLocalhost ? 'http://localhost:1337' : '');
+  : (isLocalhost ? 'http://localhost:1337' : 'https://cms-pislinfra.onrender.com');
 
-let cmsOfflineState = !STRAPI_URL;
+let cmsOfflineState = false;
 let failedAttempts = 0;
 let successfulAttempts = 0;
 const listeners = new Set();
