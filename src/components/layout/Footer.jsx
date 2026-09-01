@@ -73,11 +73,12 @@ const Footer = () => {
           
           {/* COLUMN 1: BRAND INFO */}
           <div>
-            <Link to="/" style={{ display: 'inline-block', marginBottom: '20px' }}>
+            <Link to="/" style={{ display: 'inline-block', marginBottom: '22px' }}>
               <img 
                 src={logoUrl} 
                 alt="Pislinfra" 
-                style={{ height: '48px', width: 'auto', objectFit: 'contain' }} 
+                className="pisl-footer-logo"
+                style={{ height: '80px', width: 'auto', objectFit: 'contain', display: 'block' }} 
               />
             </Link>
             <p style={{ color: '#94a3b8', fontSize: '13.5px', lineHeight: '1.6', marginBottom: '24px', maxWidth: '320px', textAlign: 'left' }}>
@@ -177,7 +178,7 @@ const Footer = () => {
           {/* COLUMN 5: CONTACT */}
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#ffffff', marginBottom: '20px', textAlign: 'left' }}>
-              Contact Hub
+              Contact Us
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'left' }}>
               <li style={{ marginBottom: '14px' }}>
@@ -264,6 +265,9 @@ const Footer = () => {
           .pisl-main-footer-grid {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
+          }
+          .pisl-footer-logo {
+            height: 64px !important;
           }
         }
       `}</style>
