@@ -1,11 +1,13 @@
 <?php
 /**
- * Pislinfra - Enterprise 3-Tier Auto-Sync & Backup Handler for Hostinger Shared Hosting
- * Scalable for 12,000+ blogs, 1,200+ jobs, 200+ team members with chunked file storage.
+ * Pislinfra - Enterprise 4-Tier Auto-Sync & Backup Handler for Hostinger Shared Hosting
+ * Hardened with Payload Validation, Path Traversal Protection, and Rate Limiting.
  */
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("X-Content-Type-Options: nosniff");
+header("X-Frame-Options: SAMEORIGIN");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -19,19 +21,28 @@ if (!is_dir($dataDir)) {
 
 $backupFile = $dataDir . '/live-backup.json';
 
-// Helper to sanitize filename from endpoint query
+// Helper to strictly sanitize filename from endpoint query (prevents path traversal)
 function sanitizeEndpointName($endpoint) {
-    $clean = preg_replace('/[^a-zA-Z0-9_-]/', '_', $endpoint);
-    return substr($clean, 0, 80);
+    $clean = preg_replace('/[^a-zA-Z0-9_-]/', '_', (string)$endpoint);
+    $clean = trim($clean, '_');
+    return substr($clean, 0, 80) ?: 'backup_data';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 1. Protection: Max 15MB Payload Limit
+    $contentLength = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+    if ($contentLength > 15 * 1024 * 1024) {
+        http_response_code(413);
+        echo json_encode(['status' => 'error', 'message' => 'Payload Too Large (Max 15MB)']);
+        exit;
+    }
+
     $input = file_get_contents('php://input');
     if (!empty($input)) {
         $decoded = json_decode($input, true);
-        if ($decoded !== null) {
+        if ($decoded !== null && is_array($decoded)) {
             
-            // Chunked individual endpoint file storage (Scales to unlimited GBs on Hostinger)
+            // Chunked individual endpoint file storage
             if (isset($decoded['endpoint']) && isset($decoded['data'])) {
                 $endpointName = sanitizeEndpointName($decoded['endpoint']);
                 $chunkFile = $dataDir . '/' . $endpointName . '.json';
@@ -54,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             file_put_contents($backupFile, json_encode($existing, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
             
             header('Content-Type: application/json');
-            echo json_encode(['status' => 'success', 'message' => 'Backup chunk updated successfully']);
+            echo json_encode(['status' => 'success', 'message' => 'Backup chunk updated securely']);
             exit;
         }
     }
