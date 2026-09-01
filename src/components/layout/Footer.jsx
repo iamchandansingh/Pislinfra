@@ -217,26 +217,23 @@ const Footer = () => {
           </p>
 
           {isOffline && (
-            <div 
+            <span 
               style={{ 
-                fontSize: '11.5px', 
-                color: '#f8fafc', 
-                backgroundColor: 'rgba(234, 88, 12, 0.15)',
-                border: '1px solid rgba(234, 88, 12, 0.4)',
-                padding: '3px 10px', 
-                borderRadius: '16px',
-                fontWeight: 600,
-                letterSpacing: '0.4px',
+                fontSize: '11px', 
+                color: '#94a3b8', 
+                fontWeight: 400,
+                letterSpacing: '0.3px',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                marginLeft: 'auto'
+                gap: '5px',
+                marginLeft: 'auto',
+                opacity: 0.8
               }}
               title="CMS is currently unreachable. Content is safely running on Local Backup."
             >
-              <span style={{ width: '6px', height: '6px', backgroundColor: '#f97316', borderRadius: '50%', display: 'inline-block', boxShadow: '0 0 6px #ea580c' }}></span>
+              <span style={{ width: '4px', height: '4px', backgroundColor: '#94a3b8', borderRadius: '50%', display: 'inline-block' }}></span>
               <span>Offline Mode</span>
-            </div>
+            </span>
           )}
         </div>
       </div>
