@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchStrapiData, subscribeCmsStatus } from '../../services/strapi';
 import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
@@ -8,8 +8,13 @@ const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
 const Footer = () => {
-
   const [footerData, setFooterData] = useState(null);
+  const [isOffline, setIsOffline] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = subscribeCmsStatus(setIsOffline);
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const loadFooter = async () => {
@@ -43,70 +48,76 @@ const Footer = () => {
     { label: 'Warehouse Contractors', href: '/solutions/warehouse' },
   ];
 
+  const logoUrl = footerData?.logo?.url 
+    ? (footerData.logo.url.startsWith('http') ? footerData.logo.url : `http://localhost:1337${footerData.logo.url}`)
+    : "/White Logo.png";
+
   return (
-    <footer style={{ backgroundColor: NAVY, color: '#ffffff', borderTop: '4px solid #ff904e' }}>
+    <footer style={{ backgroundColor: '#0B132B', color: '#ffffff', fontFamily: 'inherit', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+      
+      {/* Top Banner Accent */}
+      <div style={{ height: '3px', background: `linear-gradient(90deg, ${ORANGE} 0%, #ffaa80 50%, ${NAVY} 100%)` }}></div>
+
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '64px 24px 48px' }}>
         
+        {/* MAIN 5-COLUMN GRID */}
         <div 
           className="pisl-main-footer-grid"
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: '1.3fr 0.8fr 0.8fr 1fr 1.2fr', 
-            gap: '40px' 
+            gridTemplateColumns: '1.4fr 0.9fr 0.9fr 1.1fr 1.3fr', 
+            gap: '40px',
+            alignItems: 'start'
           }}
         >
           
-          {/* COLUMN 1: BRAND */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-            <div style={{ height: '125px', marginBottom: '1px', display: 'flex', alignItems: 'center' }}>
+          {/* COLUMN 1: BRAND INFO */}
+          <div>
+            <Link to="/" style={{ display: 'inline-block', marginBottom: '20px' }}>
               <img 
-                src={footerData?.logo?.url ? (footerData.logo.url.startsWith("/") ? `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${footerData.logo.url}` : footerData.logo.url) : "/White Logo.png"} 
-                alt="PISL INFRA Logo" 
-                style={{ height: '100%', width: 'auto', objectFit: 'contain' }}
+                src={logoUrl} 
+                alt="Pislinfra" 
+                style={{ height: '48px', width: 'auto', objectFit: 'contain' }} 
               />
-            </div>
-            
-            <p style={{ color: '#cbd5e1', fontSize: '13.5px', lineHeight: '1.65', marginBottom: '24px', textAlign: 'left', fontWeight: 500 }}>
-              {footerData?.description || "Leading infrastructure development company delivering world-class industrial, logistics, and warehouse solutions across India."}
+            </Link>
+            <p style={{ color: '#94a3b8', fontSize: '13.5px', lineHeight: '1.6', marginBottom: '24px', maxWidth: '320px', textAlign: 'left' }}>
+              {footerData?.tagline || "Engineering India's industrial backbone with next-generation Grade-A warehousing, advanced PEB structures, and turnkey infrastructure projects."}
             </p>
             
+            {/* Social Icons */}
             <div style={{ display: 'flex', gap: '10px' }}>
               <a 
-                href={footerData?.linkedinUrl || "https://www.linkedin.com/company/pislinfra"} 
+                href={footerData?.linkedinUrl || "https://www.linkedin.com/company/pislinfra/"} 
                 target="_blank" 
-                rel="noopener noreferrer" 
-                aria-label="LinkedIn"
+                rel="noopener noreferrer"
                 className="pisl-footer-social-icon"
                 style={{ 
-                  width: '34px', 
-                  height: '34px', 
-                  backgroundColor: 'rgba(255,255,255,0.06)', 
-                  borderRadius: '8px', 
+                  width: '36px', 
+                  height: '36px', 
+                  backgroundColor: 'rgba(255, 255, 255, 0.06)', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
-                  color: '#e2e8f0', 
-                  textDecoration: 'none', 
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)' 
+                  borderRadius: '8px', 
+                  color: '#ffffff', 
+                  fontSize: '15px', 
+                  transition: 'all 0.3s ease',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
                 }}
+                aria-label="LinkedIn"
               >
-                <FaLinkedinIn style={{ fontSize: '14px' }} />
+                <FaLinkedinIn />
               </a>
             </div>
           </div>
 
-          {/* COLUMN 2: COMPANY */}
+          {/* COLUMN 2: QUICK LINKS */}
           <div>
             <h4 style={{ fontSize: '15px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#ffffff', marginBottom: '20px', textAlign: 'left' }}>
               Company
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'left' }}>
-              {[
-                { label: 'Profile', href: '/about' },
-                { label: 'Projects', href: '/projects' },
-                { label: 'Our Solutions', href: '/solutions' },
-                { label: 'Blog', href: '/blog' },
-              ].map((link, index) => (
+              {companyLinks.map((link, index) => (
                 <li key={index} style={{ marginBottom: '12px' }}>
                   <Link 
                     to={link.href} 
@@ -127,13 +138,7 @@ const Footer = () => {
               Resources
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'left' }}>
-              {[
-                { label: 'Careers', href: '/careers' },
-                { label: 'Annual Reports', href: '/annual-reports' },
-                { label: 'Contact Us', href: '/contact-us' },
-                { label: 'Sitemap', href: '/sitemap' },
-                { label: 'Privacy Policy', href: '/privacy-policy' },
-              ].map((link, index) => (
+              {resourceLinks.map((link, index) => (
                 <li key={index} style={{ marginBottom: '12px' }}>
                   <Link 
                     to={link.href} 
@@ -154,12 +159,7 @@ const Footer = () => {
               Our Solutions
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'left' }}>
-              {[
-                { label: 'Industrial Build', href: '/solutions/industrial' },
-                { label: 'Infrastructure Development', href: '/solutions/infrastructure' },
-                { label: 'Logistic Parks', href: '/solutions/logistic' },
-                { label: 'Warehouse Contractors', href: '/solutions/warehouse' },
-              ].map((link, index) => (
+              {solutionLinks.map((link, index) => (
                 <li key={index} style={{ marginBottom: '12px' }}>
                   <Link 
                     to={link.href} 
@@ -212,8 +212,30 @@ const Footer = () => {
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', backgroundColor: 'rgba(15, 23, 42, 0.15)' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '20px 24px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
           <p style={{ color: '#94a3b8', fontSize: '13.5px', margin: 0, fontWeight: 500 }}>
-            &copy; {new Date().getFullYear()} {footerData?.copyrightText || "PISL INFRA. All rights reserved."}
+            &copy; {new Date().getFullYear()} {footerData?.copyrightText ? footerData.copyrightText.replace(/PISL\s+INFRA\./gi, 'Pislinfra.').replace(/PISL\s+INFRA/gi, 'Pislinfra').replace(/PISL\s+Infra/gi, 'Pislinfra') : "Pislinfra. All rights reserved."}
           </p>
+
+          {isOffline && (
+            <span 
+              style={{ 
+                fontSize: '11px', 
+                color: '#64748b', 
+                backgroundColor: 'transparent',
+                padding: '2px 4px', 
+                fontWeight: 400,
+                letterSpacing: '0.4px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                opacity: 0.65,
+                marginLeft: 'auto'
+              }}
+              title="CMS is currently unreachable. Content is safely served from local backup."
+            >
+              <span style={{ width: '4px', height: '4px', backgroundColor: '#94a3b8', borderRadius: '50%', opacity: 0.7 }}></span>
+              offline mode
+            </span>
+          )}
         </div>
       </div>
 

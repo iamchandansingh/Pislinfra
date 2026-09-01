@@ -50,9 +50,26 @@ const Leadership = () => {
   if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
 
   const seoData = {
-    ...data.seo,
     contentType: 'page',
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/leadership.png')
+    title: data.seo?.seoTitle || 'Leadership & Executive Management Team | Pislinfra',
+    seoTitle: data.seo?.seoTitle || 'Leadership & Board of Directors - Visionary Infrastructure Leaders | Pislinfra',
+    seoDescription: data.seo?.seoDescription || 'Meet the leadership team and board of directors at Pislinfra steering India\'s fastest-growing industrial EPC, civil engineering, and warehouse construction enterprise.',
+    seoKeywords: data.seo?.seoKeywords || 'Pislinfra leadership, board of directors, management team, industrial infrastructure leaders India, civil engineering executives, construction MD India',
+    slug: 'about/leadership',
+    canonicalUrl: 'https://pislinfra.com/about/leadership',
+    ogTitle: data.seo?.ogTitle || 'Executive Leadership & Management Team | Pislinfra',
+    ogDescription: data.seo?.ogDescription || 'Meet the visionaries driving engineering excellence and nationwide industrial infrastructure development at Pislinfra.',
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/leadership.png'),
+    ogType: 'website',
+    twitterTitle: data.seo?.twitterTitle || 'Leadership Team | Pislinfra',
+    twitterDescription: data.seo?.twitterDescription || 'Visionary leadership behind 16M+ sq. ft of turnkey infrastructure in India.',
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/leadership.png'),
+    twitterCardType: 'summary_large_image',
+    schemaType: 'AboutPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['Leadership', 'Management', 'Directors', 'Founders', 'Pislinfra Executive Team'],
+    ...data.seo
   };
 
   return (

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url>
+    <loc>https://pislinfra.com/projects/case-study</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/sunsat-warehousing</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>Flipkart Sampka - Sunsat Warehousing Case Study | Pislinfra</image:title>
+      <image:caption>Pislinfra completed 0.84 Million Sq. Ft Flipkart FCMH facility in 9 months with 104 dock doors and Asia&apos;s longest underground fire corridor.</image:caption>
+      <image:geo_location>Sampka, Delhi NCR, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/pragati-farukhnagar-logistics</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>Pragati Farukhnagar Logistics Park Case Study | Pislinfra</image:title>
+      <image:caption>10 Lakh sq. ft Grade-A warehouse delivered for Flipkart &amp; Morgan Stanley with high-speed execution.</image:caption>
+      <image:geo_location>Farrukhnagar, Haryana, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/ludhiana-logistics-park</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>Ludhiana Logistics Park Case Study | Pislinfra</image:title>
+      <image:caption>High-bay industrial warehousing and distribution park engineered in Ludhiana, Punjab.</image:caption>
+      <image:geo_location>Ludhiana, Punjab, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/bluestar-realtors-palwal</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>Bluestar Realtors Palwal Case Study | Pislinfra</image:title>
+      <image:caption>Turnkey distribution facility built for Ecom Express in Palwal with advanced sorting layouts.</image:caption>
+      <image:geo_location>Palwal, NCR, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/ncr-bigbox-patli</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>NCR Bigbox Patli Case Study | Pislinfra</image:title>
+      <image:caption>Grade-A industrial logistics park delivered with FM2 flooring and heavy-load capacity.</image:caption>
+      <image:geo_location>Patli, NCR, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/avitech-nutrition-farukhnagar</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>Avitech Nutrition Farukhnagar Plant Case Study | Pislinfra</image:title>
+      <image:caption>State-of-the-art animal nutrition manufacturing facility engineered and constructed by Pislinfra.</image:caption>
+      <image:geo_location>Farrukhnagar, Haryana, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/om-sukh-logistics-park-pataudi</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>Om Sukh Logistics Park Pataudi Case Study | Pislinfra</image:title>
+      <image:caption>Multi-user Grade-A warehousing park developed in Pataudi with modern utility networks.</image:caption>
+      <image:geo_location>Pataudi, NCR, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/projects/case-study/gmr-coimbatore-logistics-park</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Completed-Projects.png</image:loc>
+      <image:title>GMR Coimbatore Logistics Park Case Study | Pislinfra</image:title>
+      <image:caption>Strategic logistics park constructed for GMR in Coimbatore, Tamil Nadu.</image:caption>
+      <image:geo_location>Coimbatore, Tamil Nadu, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+</urlset>

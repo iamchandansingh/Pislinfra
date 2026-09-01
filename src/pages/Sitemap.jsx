@@ -5,10 +5,17 @@ import { HiChevronRight } from 'react-icons/hi';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
 
+import { useBlogs } from '../context/BlogContext';
+import fallbackDB from '../data/Blogdb.js';
+
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
 const Sitemap = () => {
+  const { blogs } = useBlogs();
+  const allBlogs = (blogs && blogs.length > 0) ? blogs : fallbackDB;
+  const publishedBlogs = allBlogs.filter(b => b.status === 'published' && b.slug);
+
   const seoData = {
     contentType: 'page',
     title: 'Sitemap',
@@ -51,7 +58,10 @@ const Sitemap = () => {
       { title: 'Logistic Park Development', link: '/solutions/logistic' },
       { title: 'Warehouse Contractors', link: '/solutions/warehouse' },
     ]},
-    { title: 'Blog', link: '/blog', children: [] },
+    { title: `Blog & Articles (${publishedBlogs.length})`, link: '/blog', children: publishedBlogs.map(b => ({
+      title: b.title,
+      link: `/blog/${b.slug}`
+    })) },
     { title: 'Careers', link: '/careers', children: [] },
     { title: 'Annual Reports', link: '/annual-reports', children: [] },
     { title: 'Contact Us', link: '/contact-us', children: [] },

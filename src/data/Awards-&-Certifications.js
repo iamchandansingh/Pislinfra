@@ -36,7 +36,7 @@ const awardsAndCertifications = [
     title: "Purpose-Driven Infrastructure",
     category: "Report",
     year: "2024",
-    description: "At PISL, we are motivated by positive impact sustainability of purpose-driven infrastructure projects which enhance communities, promote eco-friendly practices, and drive economic growth.",
+    description: "At Pislinfra, we are motivated by positive impact sustainability of purpose-driven infrastructure projects which enhance communities, promote eco-friendly practices, and drive economic growth.",
     image: untitledDesign,
     clientImage: timesIndia,
     pdf: "/reports/Pragati-Infra-Solutions-2.pdf",

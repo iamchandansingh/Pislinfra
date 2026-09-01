@@ -8,8 +8,6 @@ import BlogSidebarSection from '../components/Blog/BlogSidebarSection';
 import { useBlogs } from '../context/BlogContext';
 import Preloader from '../components/common/Preloader';
 
-
-
 const ITEMS_PER_PAGE = 6;
 
 const Blog = () => {
@@ -30,18 +28,42 @@ const Blog = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const filteredBlogs = BlogDB.filter(b => {
-    if (b.status !== 'published') return false;
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      return (
-        b.title.toLowerCase().includes(query) ||
-        b.excerpt.toLowerCase().includes(query) ||
-        b.tags.some(tag => tag.toLowerCase().includes(query))
-      );
-    }
-    return true;
-  });
+  // Filter and Sort: Featured article / Newest first, then all remaining latest articles
+  const filteredBlogs = [...BlogDB]
+    .filter(b => {
+      if (b.status !== 'published') return false;
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        return (
+          b.title.toLowerCase().includes(query) ||
+          (b.excerpt && b.excerpt.toLowerCase().includes(query)) ||
+          (b.tags && b.tags.some(tag => typeof tag === 'string' && tag.toLowerCase().includes(query)))
+        );
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      // 1. Explicit featured flag takes priority
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      
+      // 2. Newest blog (by createdAt or publishDate) comes first
+      const timeA = new Date(a.createdAt || a.publishDate || 0).getTime();
+      const timeB = new Date(b.createdAt || b.publishDate || 0).getTime();
+      return timeB - timeA;
+    });
+
+  const featuredArticle = filteredBlogs.length > 0 ? filteredBlogs[0] : null;
+  const latestArticles = !searchQuery 
+    ? filteredBlogs.slice(1, visibleCount + 1) 
+    : filteredBlogs.slice(0, visibleCount);
+
+  const totalRemainingCount = !searchQuery ? Math.max(0, filteredBlogs.length - 1) : filteredBlogs.length;
+  const hasMore = visibleCount < totalRemainingCount;
+
+  const handleShowAll = () => {
+    setVisibleCount(totalRemainingCount);
+  };
 
   const seoData = {
     contentType: 'blog',
@@ -64,12 +86,43 @@ const Blog = () => {
     breadcrumbSchema: true,
     organizationSchema: true,
     tags: ['Blog', 'Infrastructure', 'Construction', 'Insights', 'News'],
-  };
-
-  const hasMore = visibleCount < filteredBlogs.length;
-
-  const handleShowAll = () => {
-    setVisibleCount(filteredBlogs.length);
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Pislinfra Infrastructure & Construction Insights Blog",
+      "description": "Comprehensive engineering, warehousing, logistics, and EPC construction insights published by Pislinfra.",
+      "numberOfItems": filteredBlogs.length,
+      "itemListElement": filteredBlogs.map((b, idx) => {
+        const rawImg = b.featuredImage || b.image || '/images/hero/Blog.png';
+        const absoluteImage = rawImg.startsWith('http') ? rawImg : `https://pislinfra.com${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
+        return {
+          "@type": "ListItem",
+          "position": idx + 1,
+          "item": {
+            "@type": "BlogPosting",
+            "headline": b.title,
+            "name": b.title,
+            "description": b.excerpt,
+            "image": {
+              "@type": "ImageObject",
+              "url": absoluteImage,
+              "contentUrl": absoluteImage,
+              "name": b.title,
+              "author": {
+                "@type": "Organization",
+                "name": "Pragati Infra Solutions Pvt. Ltd."
+              }
+            },
+            "datePublished": b.publishDate,
+            "author": {
+              "@type": "Organization",
+              "name": b.authorName || "Pislinfra Team"
+            },
+            "url": `https://pislinfra.com/blog/${b.slug}`
+          }
+        };
+      })
+    }
   };
 
   if (loading) return <Preloader />;
@@ -81,7 +134,7 @@ const Blog = () => {
 
       <PageHero 
         title={searchQuery ? `Search: "${searchQuery}"` : (blogPage?.heroTitle || "Blog")} 
-        subtitle={searchQuery ? `${filteredBlogs.length} results found` : (blogPage?.heroSubtitle || "Insights, news & updates from PISL INFRA")} 
+        subtitle={searchQuery ? `${filteredBlogs.length} results found` : (blogPage?.heroSubtitle || "Insights, news & updates from Pislinfra")} 
         breadcrumb={blogPage?.heroBreadcrumb || "Blog"} 
         bgImage={blogPage?.heroImage?.url ? (blogPage.heroImage.url.startsWith('http') ? blogPage.heroImage.url : `http://localhost:1337${blogPage.heroImage.url}`) : "/images/hero/Blog.png"} 
       />
@@ -101,8 +154,8 @@ const Blog = () => {
           <div className="blog-layout">
             
             <div className="blog-main-content">
-              {!searchQuery && filteredBlogs.length > 0 && <FeaturedArticleSection article={filteredBlogs[0]} />}
-              <LatestArticlesSection articles={filteredBlogs.slice(!searchQuery ? 1 : 0, visibleCount + (!searchQuery ? 1 : 0))} />
+              {!searchQuery && featuredArticle && <FeaturedArticleSection article={featuredArticle} />}
+              <LatestArticlesSection articles={latestArticles} />
               
               {hasMore && (
                 <div style={{ textAlign: 'center', marginTop: isMobile ? '24px' : '40px' }}>
@@ -114,53 +167,34 @@ const Blog = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: '8px',
-                      padding: isMobile ? '10px 24px' : '12px 32px',
-                      backgroundColor: '#FF6B35',
-                      color: '#FFFFFF',
+                      padding: '12px 32px',
+                      backgroundColor: '#FF6B00',
+                      color: 'white',
+                      fontWeight: '600',
+                      fontSize: '14px',
+                      borderRadius: '8px',
                       border: 'none',
-                      borderRadius: '10px',
-                      fontSize: isMobile ? '14px' : '15px',
-                      fontWeight: 600,
                       cursor: 'pointer',
-                      fontFamily: 'Inter, sans-serif',
                       transition: 'all 0.2s ease',
-                      width: isMobile ? '100%' : 'auto',
-                      maxWidth: isMobile ? '320px' : 'none',
+                      boxShadow: '0 4px 12px rgba(255, 107, 0, 0.25)',
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E55A00'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FF6B35'; }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#E55F00';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FF6B00';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
                   >
-                    Show All Articles ({filteredBlogs.length})
+                    Load More Articles
                   </button>
-                </div>
-              )}
-
-              {filteredBlogs.length === 0 && (
-                <div style={{
-                  textAlign: 'center',
-                  padding: isMobile ? '40px 20px' : '60px 20px',
-                }}>
-                  <h3 style={{
-                    fontSize: isMobile ? '18px' : '22px',
-                    fontWeight: 600,
-                    color: '#1E2A5A',
-                    marginBottom: '8px',
-                  }}>
-                    No articles found
-                  </h3>
-                  <p style={{
-                    fontSize: isMobile ? '13px' : '15px',
-                    color: '#64748B',
-                    margin: 0,
-                  }}>
-                    Try adjusting your search terms or browse all articles.
-                  </p>
                 </div>
               )}
             </div>
 
             <div className="blog-sidebar-wrapper">
-              <BlogSidebarSection />
+              <BlogSidebarSection blogs={filteredBlogs} />
             </div>
 
           </div>
@@ -168,21 +202,50 @@ const Blog = () => {
       </section>
 
       <style>{`
-        .blog-layout { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: flex-start; }
-        .blog-main-content { min-width: 0; }
-        .blog-sidebar-wrapper { max-width: 100%; }
-        @media (min-width: 768px) { .blog-layout { gap: 32px; } }
-        @media (min-width: 1100px) {
-          .blog-layout { grid-template-columns: 1fr 320px; gap: 40px; }
-          .blog-sidebar-wrapper { max-width: 320px; position: sticky; top: 100px; }
+        .blog-layout {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
         }
-        @media (min-width: 1400px) {
-          .blog-layout { grid-template-columns: 1fr 360px; gap: 48px; }
-          .blog-sidebar-wrapper { max-width: 360px; }
+
+        .blog-main-content {
+          width: 100%;
         }
-        .show-all-btn:hover { background-color: #E55A00 !important; }
-        html { scroll-behavior: smooth; }
+
+        .blog-sidebar-wrapper {
+          width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+          .blog-layout {
+            flex-direction: row;
+            gap: 32px;
+          }
+
+          .blog-main-content {
+            width: 70%;
+          }
+
+          .blog-sidebar-wrapper {
+            width: 30%;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .blog-layout {
+            gap: 40px;
+          }
+
+          .blog-main-content {
+            width: 72%;
+          }
+
+          .blog-sidebar-wrapper {
+            width: 28%;
+          }
+        }
       `}</style>
+
     </div>
   );
 };

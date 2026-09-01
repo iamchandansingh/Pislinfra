@@ -53,9 +53,26 @@ const EHS = () => {
   if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
 
   const seoData = {
-    ...data.seo,
     contentType: 'page',
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/EHS.png')
+    title: data.seo?.seoTitle || 'Environment, Health & Safety (EHS) Policy | Pislinfra',
+    seoTitle: data.seo?.seoTitle || 'EHS Safety Protocols & Zero-Accident Construction Standards | Pislinfra',
+    seoDescription: data.seo?.seoDescription || 'Pislinfra is committed to world-class Environment, Health & Safety (EHS) standards with over 15+ million safe man-hours, ISO certifications, and zero-LTI safety protocols on construction sites.',
+    seoKeywords: data.seo?.seoKeywords || 'EHS policy construction, safety standards industrial construction, ISO 45001 contractor India, zero harm safety culture, safe man hours construction, Pislinfra EHS',
+    slug: 'about/ehs',
+    canonicalUrl: 'https://pislinfra.com/about/ehs',
+    ogTitle: data.seo?.ogTitle || 'EHS & Industrial Safety Standards | Pislinfra',
+    ogDescription: data.seo?.ogDescription || 'Uncompromising commitment to workforce safety, environmental sustainability, and ISO certified standards.',
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
+    ogType: 'website',
+    twitterTitle: data.seo?.twitterTitle || 'EHS & Workplace Safety | Pislinfra',
+    twitterDescription: data.seo?.twitterDescription || '15+ Million Safe Man-Hours delivered with rigorous site safety standards.',
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
+    twitterCardType: 'summary_large_image',
+    schemaType: 'AboutPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['EHS', 'Safety Policy', 'Safe Man Hours', 'ISO 45001', 'Construction Safety', 'Pislinfra'],
+    ...data.seo
   };
 
   return (

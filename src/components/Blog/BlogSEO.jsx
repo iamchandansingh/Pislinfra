@@ -8,34 +8,39 @@ const BlogSEO = ({ blog }) => {
 
     // ==================== DETECT CONTENT TYPE ====================
     const isCaseStudy = blog.contentType === 'case-study' || blog.articleSection === 'Case Studies';
-    const isBlog = blog.contentType === 'blog' || blog.articleSection === 'Blog';
+    const isBlog = blog.contentType === 'blog' || blog.articleSection === 'Blog' || (!blog.contentType && blog.slug);
     const isPage = blog.contentType === 'page';
     
     const parentPath = isCaseStudy ? '/projects/case-study' : isBlog ? '/blog' : '';
     const parentName = isCaseStudy ? 'Case Studies' : isBlog ? 'Blog' : '';
     const siteName = 'Pislinfra';
+    const siteUrl = window.location.origin || 'https://pislinfra.com';
 
     // ==================== FALLBACK LOGIC ====================
-    const seoTitle = blog.seoTitle || blog.title;
-    const seoDescription = blog.seoDescription || blog.excerpt?.substring(0, 160);
+    const seoTitle = blog.seoTitle || `${blog.title} | Pislinfra`;
+    const rawExcerpt = blog.seoDescription || blog.excerpt || (typeof blog.content === 'string' ? blog.content.substring(0, 160) : '');
+    const seoDescription = rawExcerpt.replace(/[\n\r]+/g, ' ').trim().substring(0, 160);
     const ogTitle = blog.ogTitle || blog.seoTitle || blog.title;
-    const ogDescription = blog.ogDescription || blog.seoDescription || blog.excerpt?.substring(0, 160);
-    const ogImage = blog.ogImage || blog.featuredImage || blog.image || '/logo.png';
+    const ogDescription = blog.ogDescription || seoDescription;
+    const rawImage = blog.ogImage || blog.featuredImage || blog.image || '/images/hero/Blog.png';
+    const absoluteImage = rawImage.startsWith('http') ? rawImage : `${siteUrl}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
     
     // Canonical URL
     let canonicalUrl = blog.canonicalUrl || '';
     if (!canonicalUrl) {
-      const origin = window.location.origin;
       if (isCaseStudy || isBlog) {
-        canonicalUrl = `${origin}${parentPath}/${blog.slug}`;
+        canonicalUrl = `${siteUrl}${parentPath}/${blog.slug}`;
       } else {
-        canonicalUrl = blog.slug ? `${origin}/${blog.slug}` : origin;
+        canonicalUrl = blog.slug ? `${siteUrl}/${blog.slug}` : siteUrl;
       }
     }
     
-    const twitterTitle = blog.twitterTitle || blog.seoTitle || blog.title;
-    const twitterDescription = blog.twitterDescription || blog.seoDescription || blog.excerpt?.substring(0, 160);
-    const twitterImage = blog.twitterImage || blog.ogImage || blog.featuredImage || blog.image || '/logo.png';
+    const twitterTitle = blog.twitterTitle || seoTitle;
+    const twitterDescription = blog.twitterDescription || seoDescription;
+    const twitterImage = blog.twitterImage || absoluteImage;
+    const publishDate = blog.publishDate || '2026-01-01';
+    const updatedDate = blog.updatedDate || blog.publishDate || new Date().toISOString().split('T')[0];
+    const authorName = blog.authorName || blog.author?.name || 'Pragati Infra Solutions Pvt. Ltd.';
 
     // ==================== TITLE TAG ====================
     document.title = seoTitle;
@@ -60,18 +65,27 @@ const BlogSEO = ({ blog }) => {
 
     // ==================== CORE SEO META TAGS ====================
     setMetaTag('description', seoDescription);
-    setMetaTag('keywords', blog.seoKeywords);
+    setMetaTag('keywords', blog.seoKeywords || (Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags || 'warehouse construction, industrial infrastructure, PEB buildings'));
+    setMetaTag('author', authorName);
 
-    // ==================== ROBOTS META ====================
-    const robotsRules = [];
-    if (blog.noIndex) robotsRules.push('noindex'); else robotsRules.push('index');
-    if (blog.noFollow) robotsRules.push('nofollow'); else robotsRules.push('follow');
-    if (blog.noArchive) robotsRules.push('noarchive');
-    if (blog.noSnippet) robotsRules.push('nosnippet');
-    if (blog.maxSnippet !== undefined) robotsRules.push(`max-snippet:${blog.maxSnippet}`);
-    if (blog.maxImagePreview) robotsRules.push(`max-image-preview:${blog.maxImagePreview}`);
-    if (blog.maxVideoPreview !== undefined && blog.maxVideoPreview >= 0) robotsRules.push(`max-video-preview:${blog.maxVideoPreview}`);
-    setMetaTag('robots', robotsRules.join(', '));
+    // ==================== ROBOTS & CRAWLER DIRECTIVES ====================
+    setMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    setMetaTag('googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    setMetaTag('googlebot-news', 'index, follow');
+    setMetaTag('bingbot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+
+    // ==================== VOICE SEARCH & GOOGLE ASSISTANT TAGS ====================
+    setMetaTag('voice-search-enabled', 'true');
+    setMetaTag('speakable', 'true');
+    setMetaTag('google-assistant-ready', 'true');
+
+    // ==================== AI SEARCH ENGINE CITATIONS ====================
+    setMetaTag('citation_title', blog.title);
+    setMetaTag('citation_author', authorName);
+    setMetaTag('citation_publication_date', publishDate);
+    setMetaTag('citation_online_date', updatedDate);
+    setMetaTag('citation_fulltext_html_url', canonicalUrl);
+    setMetaTag('citation_language', blog.language || 'en');
 
     // ==================== CANONICAL URL ====================
     let canonicalElement = document.querySelector('link[rel="canonical"]');
@@ -85,31 +99,36 @@ const BlogSEO = ({ blog }) => {
     // ==================== OPEN GRAPH TAGS ====================
     setMetaTag('og:title', ogTitle, true);
     setMetaTag('og:description', ogDescription, true);
-    setMetaTag('og:image', ogImage, true);
+    setMetaTag('og:image', absoluteImage, true);
+    setMetaTag('og:image:secure_url', absoluteImage, true);
+    setMetaTag('og:image:alt', blog.imageAlt || blog.title, true);
+    setMetaTag('og:image:width', '1200', true);
+    setMetaTag('og:image:height', '630', true);
     setMetaTag('og:url', canonicalUrl, true);
     setMetaTag('og:type', blog.ogType || (isCaseStudy || isBlog ? 'article' : 'website'), true);
     setMetaTag('og:site_name', siteName, true);
+    setMetaTag('og:locale', 'en_IN', true);
 
     // ==================== TWITTER CARD TAGS ====================
-    setMetaTag('twitter:card', blog.twitterCardType || 'summary_large_image');
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:site', '@Pislinfra');
+    setMetaTag('twitter:creator', '@Pislinfra');
     setMetaTag('twitter:title', twitterTitle);
     setMetaTag('twitter:description', twitterDescription);
     setMetaTag('twitter:image', twitterImage);
+    setMetaTag('twitter:image:alt', blog.imageAlt || blog.title);
 
-    // ==================== ARTICLE META (only for blog/case-study) ====================
+    // ==================== ARTICLE META ====================
     if (isCaseStudy || isBlog) {
-      if (blog.publishDate) {
-        setMetaTag('article:published_time', new Date(blog.publishDate).toISOString(), true);
-      }
-      if (blog.updatedDate) {
-        setMetaTag('article:modified_time', new Date(blog.updatedDate).toISOString(), true);
-      }
-      if (blog.articleSection) {
-        setMetaTag('article:section', blog.articleSection, true);
-      }
+      setMetaTag('article:published_time', new Date(publishDate).toISOString(), true);
+      setMetaTag('article:modified_time', new Date(updatedDate).toISOString(), true);
+      setMetaTag('article:author', authorName, true);
+      setMetaTag('article:section', blog.articleSection || blog.category || 'Industrial Construction', true);
+
       if (blog.tags) {
         document.querySelectorAll('meta[property="article:tag"]').forEach(el => el.remove());
-        const tagsArray = Array.isArray(blog.tags) ? blog.tags : (typeof blog.tags === 'string' ? blog.tags.split(',').map(t => t.trim()) : []); tagsArray.forEach(tag => {
+        const tagsArray = Array.isArray(blog.tags) ? blog.tags : (typeof blog.tags === 'string' ? blog.tags.split(',').map(t => t.trim()) : []);
+        tagsArray.forEach(tag => {
           const element = document.createElement('meta');
           element.setAttribute('property', 'article:tag');
           element.setAttribute('content', tag);
@@ -121,146 +140,225 @@ const BlogSEO = ({ blog }) => {
     // ==================== JSON-LD SCHEMA MARKUP ====================
     document.querySelectorAll('script[type="application/ld+json"]').forEach(el => el.remove());
 
-    // Schema based on content type
-    if (blog.schemaType) {
-      const schemaType = isPage ? 'WebSite' : blog.schemaType || 'Article';
-      
-      const schema = {
-        '@context': 'https://schema.org',
-        '@type': schemaType,
-        name: schemaType === 'WebSite' || schemaType === 'Organization' ? siteName : undefined,
-        headline: (isCaseStudy || isBlog) ? (blog.headline || blog.title) : undefined,
-        description: seoDescription,
-        image: ogImage,
-        datePublished: (isCaseStudy || isBlog) ? blog.publishDate : undefined,
-        dateModified: (isCaseStudy || isBlog) ? (blog.updatedDate || blog.publishDate) : undefined,
-        author: (isCaseStudy || isBlog) ? {
-          '@type': 'Organization',
-          name: blog.authorName || blog.author?.name || 'Pislinfra Team',
-          url: blog.authorUrl || `${window.location.origin}/about`,
-        } : undefined,
-        publisher: {
-          '@type': 'Organization',
-          name: siteName,
-          logo: {
-            '@type': 'ImageObject',
-            url: `${window.location.origin}/logo.png`,
-          },
-        },
-        mainEntityOfPage: {
-          '@type': 'WebPage',
-          '@id': canonicalUrl,
-        },
-        url: isPage ? canonicalUrl : undefined,
-      };
-      
-      // Remove undefined values
-      Object.keys(schema).forEach(key => schema[key] === undefined && delete schema[key]);
-      
-      addJsonLd(schema);
+    // 1. Google Assistant / Voice Search Speakable Specification Schema
+    const speakableSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      'url': canonicalUrl,
+      'name': blog.title,
+      'description': seoDescription,
+      'speakable': {
+        '@type': 'SpeakableSpecification',
+        'cssSelector': [
+          '#speakable-summary',
+          '.speakable-quick-answer',
+          '.blog-hero-title',
+          '.blog-hero-excerpt',
+          '.content-h2',
+          '.content-p',
+          '.faq-answer'
+        ],
+        'xpath': [
+          '/html/head/title',
+          '/html/head/meta[@name=\'description\']/@content'
+        ]
+      }
+    };
+    addJsonLd(speakableSchema);
+
+    // 2. High-Resolution Google Images Schema (ImageObject)
+    const imageObjectSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'ImageObject',
+      '@id': `${absoluteImage}#primaryimage`,
+      'url': absoluteImage,
+      'contentUrl': absoluteImage,
+      'thumbnailUrl': absoluteImage,
+      'width': 1200,
+      'height': 630,
+      'caption': blog.imageCaption || blog.excerpt || blog.title,
+      'name': blog.imageTitle || blog.title,
+      'description': blog.imageAlt || blog.title,
+      'representativeOfPage': true,
+      'license': `${siteUrl}/privacy-policy`,
+      'acquireLicensePage': `${siteUrl}/contact-us`,
+      'creditText': 'Pragati Infra Solutions Pvt. Ltd.',
+      'creator': {
+        '@type': 'Organization',
+        'name': 'Pislinfra',
+        'url': siteUrl
+      },
+      'copyrightNotice': `© ${new Date().getFullYear()} Pragati Infra Solutions Pvt. Ltd.`
+    };
+    addJsonLd(imageObjectSchema);
+
+    // 3. BlogPosting / Article Schema
+    const blogPostingSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      '@id': `${canonicalUrl}#article`,
+      'isPartOf': {
+        '@type': 'WebSite',
+        'name': siteName,
+        'url': siteUrl
+      },
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': canonicalUrl
+      },
+      'headline': blog.headline || blog.title,
+      'name': blog.title,
+      'description': seoDescription,
+      'image': imageObjectSchema,
+      'datePublished': publishDate,
+      'dateModified': updatedDate,
+      'inLanguage': blog.language || 'en-IN',
+      'wordCount': blog.wordCount || (blog.content ? blog.content.split(/\s+/).length : 1200),
+      'keywords': blog.seoKeywords || (Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags),
+      'articleSection': blog.articleSection || blog.category || 'Industrial Construction & Infrastructure',
+      'author': {
+        '@type': 'Organization',
+        'name': authorName,
+        'url': `${siteUrl}/about`,
+        'logo': `${siteUrl}/logo.png`
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': siteName,
+        'url': siteUrl,
+        'logo': {
+          '@type': 'ImageObject',
+          'url': `${siteUrl}/logo.png`,
+          'width': 512,
+          'height': 512
+        }
+      },
+      'speakable': {
+        '@type': 'SpeakableSpecification',
+        'cssSelector': ['#speakable-summary', '.blog-hero-title', '.blog-hero-excerpt', '.content-h2']
+      }
+    };
+    addJsonLd(blogPostingSchema);
+
+    // 4. BreadcrumbList Schema
+    const breadcrumbSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': siteUrl },
+        { '@type': 'ListItem', 'position': 2, 'name': parentName || 'Blog', 'item': `${siteUrl}${parentPath || '/blog'}` },
+        { '@type': 'ListItem', 'position': 3, 'name': blog.title, 'item': canonicalUrl }
+      ]
+    };
+    addJsonLd(breadcrumbSchema);
+
+    // 5. FAQ Schema (Extract from blog.faqSchema or parse from content)
+    let faqsToInclude = Array.isArray(blog.faqSchema) && blog.faqSchema.length > 0 ? blog.faqSchema : [];
+    
+    // Auto-extract FAQs from content if missing
+    if (faqsToInclude.length === 0 && typeof blog.content === 'string') {
+      const qMatches = blog.content.match(/Q\d+[:.]\s*(.*?)\n+A\d*[:.]?\s*(.*?)(?=\n+Q\d+|$)/gis);
+      if (qMatches && qMatches.length > 0) {
+        faqsToInclude = qMatches.slice(0, 5).map(m => {
+          const parts = m.split(/\n+A\d*[:.]?\s*/i);
+          return {
+            question: parts[0]?.replace(/^Q\d+[:.]\s*/i, '').trim(),
+            answer: parts[1]?.trim()
+          };
+        }).filter(f => f.question && f.answer);
+      }
     }
 
-    // FAQ Schema
-    if (blog.faqSchema && blog.faqSchema.length > 0) {
+    if (faqsToInclude.length > 0) {
       const faqSchema = {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: blog.faqSchema.map(faq => ({
+        'mainEntity': faqsToInclude.map(faq => ({
           '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: {
+          'name': faq.question,
+          'acceptedAnswer': {
             '@type': 'Answer',
-            text: faq.answer,
-          },
-        })),
+            'text': faq.answer
+          }
+        }))
       };
       addJsonLd(faqSchema);
     }
 
-    // Breadcrumb Schema (Dynamic)
-    if (blog.breadcrumbSchema) {
-      const itemListElement = [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: window.location.origin },
-      ];
-      
-      if (parentName && parentPath) {
-        itemListElement.push({ 
-          '@type': 'ListItem', position: 2, 
-          name: parentName, 
-          item: `${window.location.origin}${parentPath}` 
-        });
-        itemListElement.push({ 
-          '@type': 'ListItem', position: 3, 
-          name: blog.title, 
-          item: canonicalUrl 
-        });
-      } else {
-        itemListElement.push({ 
-          '@type': 'ListItem', position: 2, 
-          name: blog.title, 
-          item: canonicalUrl 
-        });
-      }
-      
-      const breadcrumbSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement,
-      };
-      addJsonLd(breadcrumbSchema);
-    }
+    // 6. Organization Knowledge Graph Schema
+    const orgSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      'name': 'Pragati Infra Solutions Pvt. Ltd.',
+      'alternateName': ['Pislinfra', 'PISL'],
+      'url': siteUrl,
+      'logo': `${siteUrl}/logo.png`,
+      'contactPoint': {
+        '@type': 'ContactPoint',
+        'telephone': '+91-124-400-0000',
+        'contactType': 'customer support',
+        'areaServed': 'IN',
+        'availableLanguage': ['en', 'hi']
+      },
+      'sameAs': [
+        'https://www.linkedin.com/company/pislinfra',
+        'https://twitter.com/Pislinfra',
+        'https://www.facebook.com/pislinfra'
+      ]
+    };
+    addJsonLd(orgSchema);
 
-    // Organization Schema
-    if (blog.organizationSchema) {
-      const orgSchema = {
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: siteName,
-        url: window.location.origin,
-        logo: `${window.location.origin}/logo.png`,
-      };
-      addJsonLd(orgSchema);
-    }
-
-    
-    // Custom Structured Data
-    if (blog.structuredData) {
-      let parsed = blog.structuredData;
-      if (typeof parsed === 'string') {
-        try { parsed = JSON.parse(parsed); } catch (e) {}
-      }
-      addJsonLd(parsed);
-    }
-  
     // ==================== IMAGE ALT HELPER ====================
-    if (blog.imageAlt || blog.imageTitle) {
-      window.__BLOG_IMAGE_DATA__ = {
-        alt: blog.imageAlt || blog.title,
-        title: blog.imageTitle || blog.title,
-        caption: blog.imageCaption || '',
-        license: blog.imageLicense || '',
-      };
-    }
+    window.__BLOG_IMAGE_DATA__ = {
+      alt: blog.imageAlt || blog.title,
+      title: blog.imageTitle || blog.title,
+      caption: blog.imageCaption || blog.excerpt || blog.title,
+      license: `${siteUrl}/privacy-policy`,
+    };
 
     // ==================== CLEANUP ====================
     return () => {
       document.title = 'Pislinfra';
       removeMetaTag('description');
       removeMetaTag('keywords');
+      removeMetaTag('author');
       removeMetaTag('robots');
+      removeMetaTag('googlebot');
+      removeMetaTag('googlebot-news');
+      removeMetaTag('bingbot');
+      removeMetaTag('voice-search-enabled');
+      removeMetaTag('speakable');
+      removeMetaTag('google-assistant-ready');
+      removeMetaTag('citation_title');
+      removeMetaTag('citation_author');
+      removeMetaTag('citation_publication_date');
+      removeMetaTag('citation_online_date');
+      removeMetaTag('citation_fulltext_html_url');
+      removeMetaTag('citation_language');
       removeMetaTag('og:title', true);
       removeMetaTag('og:description', true);
       removeMetaTag('og:image', true);
+      removeMetaTag('og:image:secure_url', true);
+      removeMetaTag('og:image:alt', true);
+      removeMetaTag('og:image:width', true);
+      removeMetaTag('og:image:height', true);
       removeMetaTag('og:url', true);
       removeMetaTag('og:type', true);
       removeMetaTag('og:site_name', true);
+      removeMetaTag('og:locale', true);
       removeMetaTag('twitter:card');
+      removeMetaTag('twitter:site');
+      removeMetaTag('twitter:creator');
       removeMetaTag('twitter:title');
       removeMetaTag('twitter:description');
       removeMetaTag('twitter:image');
+      removeMetaTag('twitter:image:alt');
       document.querySelectorAll('meta[property="article:tag"]').forEach(el => el.remove());
       document.querySelectorAll('meta[property="article:published_time"]').forEach(el => el.remove());
       document.querySelectorAll('meta[property="article:modified_time"]').forEach(el => el.remove());
+      document.querySelectorAll('meta[property="article:author"]').forEach(el => el.remove());
       document.querySelectorAll('meta[property="article:section"]').forEach(el => el.remove());
       document.querySelectorAll('script[type="application/ld+json"]').forEach(el => el.remove());
       const canonicalEl = document.querySelector('link[rel="canonical"]');

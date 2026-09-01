@@ -202,7 +202,7 @@
   border-right-color: var(--border);
 }
 
-/* PISL INFRA Custom Styles - Brand Colors: #28286e (navy), #ff8d4b (orange) */
+/* Pislinfra Custom Styles - Brand Colors: #28286e (navy), #ff8d4b (orange) */
 .pisl-logo {
   background-color: #ff8d4b;
   transition: transform 0.3s ease;

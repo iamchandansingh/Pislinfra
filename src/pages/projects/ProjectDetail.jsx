@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import { fetchStrapiData } from '../../services/strapi'
 import Preloader from '../../components/common/Preloader'
-
 import PageHero from '../../components/hero/PageHero'
+import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import projectsData from '../../data/projectsData'
 import completedProjects from '../../data/completedProjects'
@@ -44,7 +44,7 @@ const getClientInfo = (clientName) => {
       'AM/NS': 'AM/NS India (ArcelorMittal Nippon Steel India)',
       'PRR Group': 'Prologis',
       'PRR': 'Prologis',
-      'PISL Infra': 'GAR',
+      'Pislinfra': 'GAR',
       'PISL': 'GAR',
       'Engineers India': 'EIL (Engineers India Limited)',
       'EIL': 'EIL (Engineers India Limited)',
@@ -99,53 +99,28 @@ const ProjectDetail = () => {
 
   const [project, setProject] = useState(initialMatch || null)
   const [allProjects, setAllProjects] = useState(localPool)
-  const [loading, setLoading] = useState(initialMatch ? false : true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     let isMounted = true;
-    
-    const fetchUltraFast = async () => {
-      let endpoint = projectType === 'completed' ? 'completed-projects' : 'ongoing-projects';
-      const isDocumentId = projectIdOrSlug.length >= 20 && !projectIdOrSlug.includes('-');
-      let foundFast = false;
 
-      // STEP 1: If it's a documentId, fetch directly
-      if (isDocumentId) {
-        try {
-          const projData = await fetchStrapiData(`${endpoint}/${projectIdOrSlug}?populate=*`);
-          if (projData && isMounted) {
-            const formatted = {
-              id: projData.documentId || projData.id,
-              category: projData.category,
-              name: projData.name,
-              location: projData.location,
-              state: projData.state,
-              area: projData.area,
-              client: projData.client,
-              timeline: projData.timeline,
-              status: projData.projectStatus || projData.status || (projectType === 'completed' ? 'Completed' : 'Ongoing'),
-              scope: projData.scope,
-              images: projData.images && projData.images.length > 0 
-                ? projData.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`) 
-                : (initialMatch?.images || [])
-            };
-            setProject(formatted);
-            setLoading(false);
-            foundFast = true;
-          }
-        } catch(e) {
-          console.warn("Fast fetch failed, falling back to full list search...");
-        }
+    const fetchUltraFast = async () => {
+      let foundFast = false;
+      if (initialMatch && isMounted) {
+        setProject(initialMatch);
+        foundFast = true;
       }
 
-      // STEP 2: Fetch all projects
       try {
-        const allData = await fetchStrapiData(`${endpoint}?populate=*&pagination[pageSize]=100&sort=createdAt:asc`);
+        const endpoint = projectType === 'completed' 
+          ? 'completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'
+          : 'ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc';
         
-        if (allData && Array.isArray(allData) && allData.length > 0 && isMounted) {
-          const formattedAll = allData.map(item => {
+        const res = await fetchStrapiData(endpoint);
+        if (res && Array.isArray(res) && res.length > 0 && isMounted) {
+          const formattedAll = res.map(item => {
             const localFallback = localPool.find(lp => slugify(lp.name) === slugify(item.name)) || {};
-            const imgs = item.images && item.images.length > 0 
+            const imgs = item.images && item.images.length > 0
               ? item.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`)
               : (localFallback.images || []);
 
@@ -166,7 +141,6 @@ const ProjectDetail = () => {
           
           setAllProjects(formattedAll);
           
-          // Search project by slug, documentId, or name
           if (!foundFast) {
             let foundProject = formattedAll.find(p => p.id === projectIdOrSlug || p.documentId === projectIdOrSlug);
             if (!foundProject) {
@@ -208,37 +182,36 @@ const ProjectDetail = () => {
     return () => { isMounted = false; };
   }, [projectIdOrSlug, projectType]);
 
-const projectImages = project?.images?.length > 0 
+  const projectImages = project?.images?.length > 0 
     ? project.images 
-    : fallbackImages
+    : fallbackImages;
 
-  const relatedProjects = allProjects.filter(p => p.id !== project?.id)
+  const relatedProjects = allProjects.filter(p => p.id !== project?.id);
 
   useEffect(() => {
     if (project) {
-      const saved = JSON.parse(localStorage.getItem('viewedProjects') || '[]')
-      const updated = [project, ...saved.filter(p => p.id !== project.id)].slice(0, 10)
-      localStorage.setItem('viewedProjects', JSON.stringify(updated))
-      setViewedProjects(updated.map(p => p.id))
+      const saved = JSON.parse(localStorage.getItem('viewedProjects') || '[]');
+      const updated = [project, ...saved.filter(p => p.id !== project.id)].slice(0, 10);
+      localStorage.setItem('viewedProjects', JSON.stringify(updated));
+      setViewedProjects(updated.map(p => p.id));
     }
-  }, [project])
+  }, [project]);
 
   useEffect(() => {
-    if (isPaused || relatedProjects.length === 0) return
+    if (isPaused || relatedProjects.length === 0) return;
     const interval = setInterval(() => {
-      setSliderIndex((prev) => (prev + 1) % relatedProjects.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [isPaused, relatedProjects.length])
-
+      setSliderIndex((prev) => (prev + 1) % relatedProjects.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isPaused, relatedProjects.length]);
 
   useEffect(() => {
-    if (isHovered) return
+    if (isHovered) return;
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % projectImages.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [isHovered, projectImages.length])
+      setCurrentSlide((prev) => (prev + 1) % projectImages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isHovered, projectImages.length]);
 
   const visibleProjects = [];
   if (relatedProjects.length > 0) {
@@ -246,6 +219,7 @@ const projectImages = project?.images?.length > 0
       visibleProjects.push(relatedProjects[(sliderIndex + i) % relatedProjects.length]);
     }
   }
+
   if (loading) return <Preloader />;
 
   if (!project) {
@@ -259,15 +233,42 @@ const projectImages = project?.images?.length > 0
           <Link to="/coverage" style={{ color: '#ff8755', fontWeight: '600' }}>Back to Coverage Map</Link>
         </section>
       </div>
-    )
+    );
   }
 
-  const clientInfoList = getClientInfo(project.client)
-  const hasAnyLogo = clientInfoList.some(c => c.logo)
-  const backUrl = projectType === 'completed' ? '/projects/completed' : '/projects/ongoing'
+  const clientInfoList = getClientInfo(project.client);
+  const hasAnyLogo = clientInfoList.some(c => c.logo);
+  const backUrl = projectType === 'completed' ? '/projects/completed' : '/projects/ongoing';
+
+  const seoData = {
+    contentType: 'page',
+    title: `${project.name} | ${project.category} Project | Pislinfra`,
+    seoTitle: `${project.name} - ${project.category} Construction in ${project.location}, ${project.state} | Pislinfra`,
+    seoDescription: `${project.name} in ${project.location}, ${project.state}. Client: ${project.client}, Area: ${project.area}, Status: ${project.status}. Scope of work: ${project.scope}. Delivered by Pislinfra.`,
+    seoKeywords: `${project.name}, ${project.client} construction project, ${project.category} construction ${project.location}, industrial warehouse ${project.state}, Pislinfra projects, turnkey civil engineering`,
+    slug: `project/${projectType}/${slugify(project.name)}`,
+    canonicalUrl: `https://pislinfra.com/project/${projectType}/${slugify(project.name)}`,
+    ogTitle: `${project.name} - ${project.category} (${project.status}) | Pislinfra`,
+    ogDescription: `${project.name} in ${project.location}, ${project.state} for ${project.client}. Built by Pislinfra.`,
+    ogImage: projectImages[0],
+    ogType: 'website',
+    twitterTitle: `${project.name} | Pislinfra Projects`,
+    twitterDescription: `${project.name} in ${project.location}, ${project.state}. Area: ${project.area}.`,
+    twitterImage: projectImages[0],
+    twitterCardType: 'summary_large_image',
+    schemaType: 'CivicStructure',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: [project.category, project.status, project.location, project.state, 'Industrial Construction', 'Pislinfra Project'],
+    imageAlt: `${project.name} ${project.category} project site in ${project.location}, ${project.state}`,
+    imageTitle: `${project.name} - Pislinfra Infrastructure`,
+    imageCaption: `${project.name} (${project.category}) delivered for ${project.client} in ${project.location}, ${project.state}`
+  };
 
   return (
     <div>
+      <BlogSEO blog={seoData} />
+
       <PageHero 
         title={project.name}
         subtitle={`${project.category} Project`}

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Clients Showcase on Homepage -->
+  <url>
+    <loc>https://pislinfra.com/#clients</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Reliance-logo.webp</image:loc>
+      <image:title>Reliance Industries Limited - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Reliance Industries Limited in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/NSINDIA.png</image:loc>
+      <image:title>AM/NS India (ArcelorMittal Nippon Steel India) - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for AM/NS India (ArcelorMittal Nippon Steel India) in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Adani.webp</image:loc>
+      <image:title>Adani - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Adani in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/GMR.webp</image:loc>
+      <image:title>GAR - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for GAR in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/MorganStanley.webp</image:loc>
+      <image:title>Morgan Stanley - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Morgan Stanley in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Prologis.webp</image:loc>
+      <image:title>Prologis - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Prologis in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Lodha.webp</image:loc>
+      <image:title>Lodha - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Lodha in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Pmg.png</image:loc>
+      <image:title>PMG - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for PMG in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Cpwd.webp</image:loc>
+      <image:title>CPWD (Central Public Works Department) - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for CPWD (Central Public Works Department) in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Vinfast.png</image:loc>
+      <image:title>VinFast - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for VinFast in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/semac-2.webp</image:loc>
+      <image:title>SEMAC - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for SEMAC in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Rajratan-2.webp</image:loc>
+      <image:title>Rajratan - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Rajratan in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/OswalGroup.png</image:loc>
+      <image:title>Oswal Group - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Oswal Group in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/avitech.webp</image:loc>
+      <image:title>Avitech - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Avitech in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Amazon.webp</image:loc>
+      <image:title>Amazon - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Amazon in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Flipkart.webp</image:loc>
+      <image:title>Flipkart - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Flipkart in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/EcomExpress.webp</image:loc>
+      <image:title>Ecom Express - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Ecom Express in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/DAIKIN.webp</image:loc>
+      <image:title>Daikin - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Daikin in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Bosch.webp</image:loc>
+      <image:title>Bosch - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Bosch in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/allCargo.webp</image:loc>
+      <image:title>Allcargo - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Allcargo in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Myntra.webp</image:loc>
+      <image:title>Myntra - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Myntra in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Cadbury.webp</image:loc>
+      <image:title>Cadbury - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Cadbury in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/BLUEDART.webp</image:loc>
+      <image:title>Blue Dart - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Blue Dart in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/DHL.webp</image:loc>
+      <image:title>DHL - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for DHL in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/HariyanaGoverment.png</image:loc>
+      <image:title>Haryana Government - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Haryana Government in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/steller.webp</image:loc>
+      <image:title>Stellar - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Stellar in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/LOHIAGrups.webp</image:loc>
+      <image:title>Lodha Group - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for Lodha Group in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/assets/images/CLIENTS/Logos.webp</image:loc>
+      <image:title>LOGOS - Official Industrial Client of Pislinfra</image:title>
+      <image:caption>Pislinfra delivered turnkey warehousing, PEB manufacturing plants and civil infrastructure for LOGOS in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+</urlset>

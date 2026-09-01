@@ -8,15 +8,17 @@ import CurrentOpeningsSection from '../components/Careers/CurrentOpeningsSection
 import HiringProcessSection from '../components/Careers/HiringProcessSection'
 import CareerApplicationSection from '../components/Careers/CareerApplicationSection'
 
+import jobOpeningsData from '../data/careersJobsData';
+
 const defaultCareerData = {
   title: 'Careers',
-  heroSubtitle: "Join PISL INFRA and build tomorrow's India with us.",
+  heroSubtitle: "Join Pislinfra and build tomorrow's India with us.",
   breadcrumb: 'Careers',
   heroImage: { url: '/images/hero/Careers.png' },
   seo: {
-    seoTitle: 'Careers | Join PISL Infra Team',
-    seoDescription: 'Explore exciting career opportunities at Pislinfra. Join our engineering, project management, and construction leadership teams.',
-    seoKeywords: 'careers, jobs, civil engineering jobs, construction careers, PISL infra hiring',
+    seoTitle: 'Careers & Current Openings | Join India\'s Leading EPC Team | Pislinfra',
+    seoDescription: 'Explore 27+ exciting engineering, project management, and construction job openings at Pislinfra across PAN India. Apply online today.',
+    seoKeywords: 'construction jobs India, civil engineer careers, planning engineer hiring, safety officer jobs, project manager vacancy, Pislinfra hiring, PAN India construction jobs',
     canonicalUrl: 'https://pislinfra.com/careers'
   }
 };
@@ -34,26 +36,71 @@ const Careers = () => {
       const jobsRes = await fetchStrapiData('job-openings?pagination[limit]=100');
       if (jobsRes) {
          const items = Array.isArray(jobsRes) ? jobsRes : (jobsRes.data || []);
-         setJobs(items);
+         setJobs(items.length > 0 ? items : jobOpeningsData);
+      } else {
+        setJobs(jobOpeningsData);
       }
     };
     loadData();
   }, []);
 
+  const allJobsList = jobs.length > 0 ? jobs : jobOpeningsData;
+
+  const jobPostingSchemas = allJobsList.map(job => ({
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    'title': job.title,
+    'description': job.description || `${job.title} vacancy at Pragati Infra Solutions Pvt. Ltd. Experience: ${job.experience}. Qualification: ${job.qualification}. Location: ${job.location}.`,
+    'identifier': {
+      '@type': 'PropertyValue',
+      'name': 'Pislinfra',
+      'value': `PISL-JOB-${job.id || job.title.replace(/\s+/g, '-').toUpperCase()}`
+    },
+    'datePosted': '2026-01-01',
+    'validThrough': '2026-12-31',
+    'employmentType': job.employmentType || 'FULL_TIME',
+    'hiringOrganization': {
+      '@type': 'Organization',
+      'name': 'Pragati Infra Solutions Pvt. Ltd.',
+      'sameAs': 'https://pislinfra.com',
+      'logo': 'https://pislinfra.com/logo.png'
+    },
+    'jobLocation': {
+      '@type': 'Place',
+      'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38',
+        'addressLocality': 'Gurugram',
+        'addressRegion': 'Haryana',
+        'postalCode': '122018',
+        'addressCountry': 'IN'
+      }
+    },
+    'applicantLocationRequirements': {
+      '@type': 'Country',
+      'name': 'IN'
+    },
+    'experienceRequirements': job.experience,
+    'qualifications': job.qualification,
+    'occupationalCategory': `${job.department} Engineering / Construction`,
+    'directApply': true,
+    'url': `https://pislinfra.com/careers`
+  }));
+
   const seoData = {
     contentType: 'page',
     title: data?.title || 'Careers',
-    seoTitle: data?.seo?.seoTitle || 'Careers | Join PISL Infra Team',
-    seoDescription: data?.seo?.seoDescription || 'Explore exciting career opportunities at Pislinfra.',
-    seoKeywords: data?.seo?.seoKeywords || 'careers, jobs, engineering, infrastructure',
+    seoTitle: data?.seo?.seoTitle || defaultCareerData.seo.seoTitle,
+    seoDescription: data?.seo?.seoDescription || defaultCareerData.seo.seoDescription,
+    seoKeywords: data?.seo?.seoKeywords || defaultCareerData.seo.seoKeywords,
     slug: 'careers',
     canonicalUrl: data?.seo?.canonicalUrl || 'https://pislinfra.com/careers',
-    ogTitle: data?.seo?.ogTitle || 'Careers at Pislinfra',
-    ogDescription: data?.seo?.ogDescription || 'Explore exciting career opportunities at Pislinfra.',
+    ogTitle: data?.seo?.ogTitle || defaultCareerData.seo.seoTitle,
+    ogDescription: data?.seo?.ogDescription || defaultCareerData.seo.seoDescription,
     ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, '/images/hero/Careers.png'),
     ogType: data?.seo?.ogType || 'website',
-    twitterTitle: data?.seo?.twitterTitle || 'Careers at Pislinfra',
-    twitterDescription: data?.seo?.twitterDescription || 'Explore career opportunities at Pislinfra.',
+    twitterTitle: data?.seo?.twitterTitle || defaultCareerData.seo.seoTitle,
+    twitterDescription: data?.seo?.twitterDescription || defaultCareerData.seo.seoDescription,
     twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, '/images/hero/Careers.png'),
     twitterCardType: data?.seo?.twitterCardType || 'summary_large_image',
     schemaType: data?.seo?.schemaType || 'WebPage',
@@ -62,7 +109,7 @@ const Careers = () => {
     tags: data?.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Careers', 'Jobs', 'Hiring', 'Construction', 'Engineering'],
     noIndex: data?.seo?.noIndex || false,
     noFollow: data?.seo?.noFollow || false,
-    structuredData: data?.seo?.structuredData
+    structuredData: jobPostingSchemas
   };
 
   const handleApplyNow = (position) => {
@@ -79,7 +126,7 @@ const Careers = () => {
 
       <PageHero
         title={data?.title || "Careers"}
-        subtitle={data?.heroSubtitle || "Join PISL INFRA and build tomorrow's India with us."}
+        subtitle={data?.heroSubtitle || "Join Pislinfra and build tomorrow's India with us."}
         breadcrumb={data?.breadcrumb || "Careers"}
         bgImage={getImageUrl(data?.heroImage, "/images/hero/Careers.png")}
       />

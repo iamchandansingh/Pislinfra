@@ -106,18 +106,32 @@ const Home = () => {
 
   if (loading) return <Preloader />;
 
-  const seoData = data?.seo || null;
+  const homeSeoData = {
+    contentType: 'page',
+    title: data?.seo?.seoTitle || 'Pislinfra | Industrial Infrastructure & Turnkey EPC Company India',
+    seoTitle: data?.seo?.seoTitle || 'Pislinfra | Premier Industrial Infrastructure, Warehouse & EPC Company India',
+    seoDescription: data?.seo?.seoDescription || 'Pislinfra (Pragati Infra Solutions) is India\'s leading industrial infrastructure, warehouse construction, and turnkey EPC company with 16M+ sq ft delivered across India.',
+    seoKeywords: data?.seo?.seoKeywords || 'industrial construction company India, warehouse EPC contractor, PEB warehouse construction, logistics park builder, turnkey civil engineering India, Pislinfra, Pragati Infra Solutions',
+    slug: '',
+    canonicalUrl: 'https://pislinfra.com/',
+    ogTitle: data?.seo?.ogTitle || 'Pislinfra - Turnkey Industrial Infrastructure & EPC Company India',
+    ogDescription: data?.seo?.ogDescription || 'Leading industrial construction company specializing in warehousing, logistics parks & EPC solutions across India. 16M+ sq ft delivered.',
+    ogImage: data?.seo?.ogImage || 'https://pislinfra.com/logo.png',
+    ogType: 'website',
+    twitterTitle: data?.seo?.twitterTitle || 'Pislinfra | Industrial & Warehouse Infrastructure',
+    twitterDescription: data?.seo?.twitterDescription || 'Turnkey industrial construction and EPC solutions with 16M+ sq ft delivered in India.',
+    twitterImage: data?.seo?.twitterImage || 'https://pislinfra.com/logo.png',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'WebSite',
+    breadcrumbSchema: false,
+    organizationSchema: true,
+    tags: ['Industrial Construction', 'Warehousing', 'Logistics Parks', 'Turnkey EPC', 'PEB Buildings', 'India'],
+    ...data?.seo
+  };
 
   return (
     <>
-      <SEO
-        title={seoData?.seoTitle || "PISL"}
-        description={seoData?.seoDescription || "PISL provides EPC, construction, infrastructure development, and industrial solutions across India."}
-        canonical={seoData?.canonicalUrl || "https://pislinfra.com"}
-        image={seoData?.ogImage || "https://pislinfra.com/og-image.jpg"}
-      />
-      
-      {seoData && <BlogSEO blog={ seoData } />}
+      <BlogSEO blog={homeSeoData} />
 
       <div>
         <HeroVideo />

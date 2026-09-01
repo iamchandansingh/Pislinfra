@@ -579,7 +579,7 @@ const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition, jobPos
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#FF6B35', margin: '0 0 4px 0' }}>Have Questions?</h3>
               <h2 style={{ fontSize: '26px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 8px 0' }}>We're Here to Help!</h2>
               <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, margin: 0 }}>
-                Reach out to our recruitment team for any queries related to careers at PISL.
+                Reach out to our recruitment team for any queries related to careers at Pislinfra.
               </p>
             </div>
 

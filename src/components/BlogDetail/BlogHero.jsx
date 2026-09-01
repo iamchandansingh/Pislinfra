@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FiHome, FiChevronRight } from 'react-icons/fi';
 
 const BlogHero = ({
@@ -8,19 +7,6 @@ const BlogHero = ({
   excerpt = "Exploring key trends, opportunities and innovations shaping India's infrastructure future.",
   coverImage = '/blog/default-cover.png',
 }) => {
-  const fadeUpVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 0) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    }),
-  };
-
   return (
     <section style={{
       position: 'relative',
@@ -31,19 +17,14 @@ const BlogHero = ({
     }}>
       {/* Background Layer */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
-        <motion.div
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          style={{ height: '100%', width: '100%' }}
-        >
+        <div style={{ height: '100%', width: '100%' }}>
           <img
             src={coverImage}
             alt={title}
             style={{ height: '100%', width: '100%', objectFit: 'cover' }}
             loading="eager"
           />
-        </motion.div>
+        </div>
         <div style={{
           position: 'absolute',
           top: 0,
@@ -73,11 +54,7 @@ const BlogHero = ({
       }}>
         
         {/* Breadcrumb */}
-        <motion.nav
-          custom={0}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+        <nav
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -132,10 +109,10 @@ const BlogHero = ({
           }}>
             {title}
           </span>
-        </motion.nav>
+        </nav>
 
         {/* Category Badge */}
-        <motion.div custom={1} initial="hidden" animate="visible" variants={fadeUpVariants}>
+        <div>
           <span style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -151,14 +128,10 @@ const BlogHero = ({
           }}>
             {category}
           </span>
-        </motion.div>
+        </div>
 
         {/* Title */}
-        <motion.h1
-          custom={2}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+        <h1
           style={{
             marginTop: '20px',
             maxWidth: '900px',
@@ -171,14 +144,10 @@ const BlogHero = ({
           }}
         >
           {title}
-        </motion.h1>
+        </h1>
 
         {/* Excerpt */}
-        <motion.p
-          custom={3}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUpVariants}
+        <p
           style={{
             marginTop: '12px',
             maxWidth: '672px',
@@ -189,7 +158,7 @@ const BlogHero = ({
           }}
         >
           {excerpt}
-        </motion.p>
+        </p>
       </div>
 
       {/* Responsive styles */}

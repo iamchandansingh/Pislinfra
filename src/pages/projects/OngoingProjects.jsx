@@ -68,16 +68,25 @@ const OngoingProjects = () => {
 
   const seoData = {
     contentType: 'page',
-    title: pageData?.seo?.seoTitle || 'Ongoing Projects',
-    seoTitle: pageData?.seo?.seoTitle || 'Ongoing Projects | Pislinfra',
-    seoDescription: pageData?.seo?.seoDescription || 'Explore Pislinfra\'s ongoing industrial construction projects across India.',
-    seoKeywords: pageData?.seo?.seoKeywords || 'ongoing projects, industrial construction',
+    title: pageData?.seo?.seoTitle || 'Ongoing Industrial Construction Projects | Pislinfra',
+    seoTitle: pageData?.seo?.seoTitle || 'Ongoing Industrial Projects & Construction Sites in India | Pislinfra',
+    seoDescription: pageData?.seo?.seoDescription || 'Explore Pislinfra\'s ongoing industrial construction, warehouse developments, PEB steel plants, and infrastructure sites under execution across India.',
+    seoKeywords: pageData?.seo?.seoKeywords || 'ongoing industrial projects, warehouse construction sites India, PEB manufacturing plants under construction, civil infrastructure ongoing work, Pislinfra projects',
     slug: 'projects/ongoing',
     canonicalUrl: 'https://pislinfra.com/projects/ongoing',
-    ogTitle: pageData?.seo?.seoTitle || 'Ongoing Projects - Industrial Construction | Pislinfra',
-    ogDescription: pageData?.seo?.seoDescription || 'Current industrial & infrastructure projects under development across India.',
-    heroImage: pageData?.heroImage?.url || '/images/projects/ongoing-hero.jpg'
-  }
+    ogTitle: pageData?.seo?.ogTitle || 'Ongoing Industrial Projects & Construction Sites | Pislinfra',
+    ogDescription: pageData?.seo?.ogDescription || 'Explore active industrial & warehouse construction projects under development by Pislinfra across India.',
+    ogImage: pageData?.heroImage?.url || '/images/hero/Ongoing-Projects.png',
+    ogType: 'website',
+    twitterTitle: pageData?.seo?.twitterTitle || 'Ongoing Industrial Projects | Pislinfra',
+    twitterDescription: pageData?.seo?.twitterDescription || 'Current industrial & infrastructure projects under development across India.',
+    twitterImage: pageData?.heroImage?.url || '/images/hero/Ongoing-Projects.png',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'CollectionPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['Ongoing Projects', 'Industrial Construction', 'Warehousing', 'Infrastructure Sites', 'India Projects'],
+  };
 
   const handlePageChange = (page) => {
     setCurrentPage(page)

@@ -201,7 +201,7 @@ const MsmeLogo = () => (
 
 /**
  * ExcellenceShowcase - Premium Enterprise Awards & Certificates Gallery
- * PISL Infrastructure Company
+ * Pislinfrastructure Company
  */
 const ExcellenceShowcase = ({ 
   awards = [], 

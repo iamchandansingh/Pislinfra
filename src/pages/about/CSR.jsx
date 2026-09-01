@@ -34,24 +34,25 @@ const CSR = () => {
   const pageData = data || {};
   const seoData = {
     contentType: 'page',
-    title: pageData?.seo?.seoTitle || 'CSR Initiatives',
-    seoTitle: pageData?.seo?.seoTitle || 'CSR Initiatives',
-    seoDescription: pageData?.seo?.seoDescription || 'Pislinfra CSR initiatives.',
-    seoKeywords: pageData?.seo?.seoKeywords || '',
+    title: pageData?.seo?.seoTitle || 'Corporate Social Responsibility (CSR) Initiatives | Pislinfra',
+    seoTitle: pageData?.seo?.seoTitle || 'CSR & Community Empowerment Programs - Sustainable Social Impact | Pislinfra',
+    seoDescription: pageData?.seo?.seoDescription || 'Discover Pislinfra\'s Corporate Social Responsibility (CSR) programs empowering local communities through education, healthcare, skill development, and environmental greening across India.',
+    seoKeywords: pageData?.seo?.seoKeywords || 'Pislinfra CSR, corporate social responsibility construction, community empowerment India, sustainable development, green initiatives, healthcare and education CSR',
     slug: 'about/csr',
     canonicalUrl: 'https://pislinfra.com/about/csr',
-    ogTitle: pageData?.seo?.seoTitle || 'CSR Initiatives - Social Responsibility | Pislinfra',
-    ogDescription: pageData?.seo?.seoDescription || 'Changing lives beyond business.',
-    ogImage: 'https://pislinfra.com/images/hero/leadership.png',
+    ogTitle: pageData?.seo?.ogTitle || 'CSR & Community Initiatives | Pislinfra',
+    ogDescription: pageData?.seo?.ogDescription || 'Changing lives beyond construction through grassroots education, healthcare, and ecological sustainability.',
+    ogImage: pageData?.heroImage?.url || '/images/hero/CSR.png',
     ogType: 'website',
-    twitterTitle: 'CSR Initiatives | Pislinfra',
-    twitterDescription: 'Community development & social welfare programs.',
-    twitterImage: 'https://pislinfra.com/images/hero/leadership.png',
+    twitterTitle: pageData?.seo?.twitterTitle || 'CSR Programs | Pislinfra',
+    twitterDescription: pageData?.seo?.twitterDescription || 'Community development & social welfare programs by Pislinfra across India.',
+    twitterImage: pageData?.heroImage?.url || '/images/hero/CSR.png',
     twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
+    schemaType: 'AboutPage',
     breadcrumbSchema: true,
     organizationSchema: true,
-    tags: ['CSR', 'Social Responsibility', 'Community', 'Education', 'Environment', 'Welfare'],
+    tags: ['CSR', 'Social Responsibility', 'Community Empowerment', 'Education', 'Environment', 'Welfare', 'Pislinfra'],
+    ...pageData?.seo
   };
 
   const getImageUrl = (img) => {

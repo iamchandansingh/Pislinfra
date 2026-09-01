@@ -44,7 +44,7 @@ const Preloader = () => {
       `}</style>
       <div className="preloader-container">
         <div className="spinner-ring">
-          <img src="/logo.png" alt="PISL Logo" style={{ animation: 'pulse-logo 2s ease-in-out infinite', willChange: 'transform' }} />
+          <img src="/logo.png" alt="Pislinfra Logo" style={{ animation: 'pulse-logo 2s ease-in-out infinite', willChange: 'transform' }} />
           <svg viewBox="0 0 100 100" className="spinner-svg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', animation: 'spin 0.6s linear infinite', willChange: 'transform' }}>
             <circle cx="50" cy="50" r="47" fill="none" stroke="#F3F4F6" strokeWidth="0.5" />
             

@@ -69,14 +69,14 @@ const AuthorCard = () => {
     <div className="sidebar-card" style={{ borderRadius: '14px', border: '1px solid #E5E7EB', backgroundColor: '#FFFFFF', padding: '18px', boxShadow: '0 2px 8px rgba(0,0,0,0.03)', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
         <div style={{ display: 'flex', height: '56px', width: '56px', flexShrink: 0, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderRadius: '50%', border: '2px solid rgba(255,107,0,0.15)', backgroundColor: '#FFF0E5' }}>
-          <img src="/logo.png" alt="PISL" style={{ height: '60%', width: '60%', objectFit: 'contain' }} />
+          <img src="/logo.png" alt="Pislinfra" style={{ height: '60%', width: '60%', objectFit: 'contain' }} />
         </div>
         <div>
-          <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#081B4B', margin: 0 }}>PISL Team</h4>
+          <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#081B4B', margin: 0 }}>Pislinfra Team</h4>
           <p style={{ fontSize: '12px', color: '#64748B', margin: '2px 0 0 0' }}>Infrastructure Experts</p>
         </div>
       </div>
-      <p style={{ marginTop: '12px', fontSize: '13px', lineHeight: 1.5, color: '#475569' }}>Industrial infrastructure development experts at PISL</p>
+      <p style={{ marginTop: '12px', fontSize: '13px', lineHeight: 1.5, color: '#475569' }}>Industrial infrastructure development experts at Pislinfra</p>
       <div style={{ marginTop: '12px', display: 'flex', gap: '6px' }}>
         <a href="https://in.linkedin.com/company/pislinfra" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', borderRadius: '9999px', backgroundColor: '#EEF2FF', padding: '7px 14px', fontSize: '11px', fontWeight: 600, color: '#081B4B', textDecoration: 'none', transition: 'all 0.2s ease' }}
           onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#081B4B'; e.currentTarget.style.color = '#FFFFFF'; }}
@@ -127,7 +127,7 @@ const DownloadBlogPDF = ({ title = '', content = '' }) => {
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
-    doc.text(`Author: PISL Team | Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, margin, y);
+    doc.text(`Author: Pislinfra Team | Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, margin, y);
     y += 15;
 
     const paragraphs = cleanContent.split('\n\n');

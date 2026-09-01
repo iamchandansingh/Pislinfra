@@ -59,7 +59,7 @@ const AboutUs = ({ data }) => {
             <motion.img 
               key={activeIndex}
               src={images[activeIndex]} 
-              alt="PISL Infrastructure Excellence" 
+              alt="Pislinfrastructure Excellence" 
               initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -113,7 +113,7 @@ const AboutUs = ({ data }) => {
           {/* Content Paragraphs */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <p style={{ fontSize: '15.5px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
-              {data?.aboutDesc ? data.aboutDesc.split('\n')[0] : "We at PISL are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors. We are committed to excellence, specializing in the full-cycle development of high-quality industrial and warehousing assets."}
+              {data?.aboutDesc ? data.aboutDesc.split('\n')[0] : "We at Pislinfra are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors. We are committed to excellence, specializing in the full-cycle development of high-quality industrial and warehousing assets."}
             </p>
             <p style={{ fontSize: '15.5px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
               {data?.aboutDesc && data.aboutDesc.includes('\n') ? data.aboutDesc.split('\n')[1] : "A client-first approach anchors our mission. As we expand our footprint nationwide, we proactively address the evolving business requirements of our clients, ensuring optimum operational efficiency."}

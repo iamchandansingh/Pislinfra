@@ -157,7 +157,7 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
             
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-              <img src={headerData.logo?.url ? (headerData.logo.url.startsWith("/") ? `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${headerData.logo.url}` : headerData.logo.url) : "/logo.png"} alt="PISL INFRA" style={{ height: '45px', width: 'auto' }} />
+              <img src={headerData.logo?.url ? (headerData.logo.url.startsWith("/") ? `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${headerData.logo.url}` : headerData.logo.url) : "/logo.png"} alt="Pislinfra" style={{ height: '45px', width: 'auto' }} />
               <TypewriterTagline tagline={headerData.tagline} />
             </Link>
 

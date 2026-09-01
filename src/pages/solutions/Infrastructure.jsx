@@ -20,14 +20,14 @@ const getIcon = (iconName) => {
 
 const defaultInfrastructureData = {
   title: "Infrastructure Solutions",
-  introText: "PISL delivers robust infrastructure solutions across transportation, utility, and civil engineering projects.",
+  introText: "Pislinfra delivers robust infrastructure solutions across transportation, utility, and civil engineering projects.",
   mainFeatureTitle: "Infrastructure Development & Engineering",
   mainFeatureText: "Our infrastructure solutions provide sustainable, scalable, and resilient engineering for modern India.",
   features: [
     { title: "Civil Infrastructure", desc: "Roadways, bridges, and site development.", icon: "FaBuilding" },
     { title: "Utility Networks", desc: "Water supply, drainage, and power grid integration.", icon: "FaCogs" }
   ],
-  whyPislTitle: "Why Partner with PISL?",
+  whyPislTitle: "Why Partner with Pislinfra?",
   whyPislText: "Unmatched technical expertise and proven execution speed."
 };
 
@@ -57,24 +57,24 @@ const Infrastructure = () => {
 
   const seoData = {
     contentType: 'page',
-    title: data.title,
-    seoTitle: data.seo?.seoTitle,
-    seoDescription: data.seo?.seoDescription,
-    seoKeywords: data.seo?.seoKeywords,
+    title: data.title || "Infrastructure Solutions",
+    seoTitle: data.seo?.seoTitle || "Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra",
+    seoDescription: data.seo?.seoDescription || "Delivering world-class civil infrastructure, highways, industrial road networks, utility grids, and site development for large-scale enterprise projects in India.",
+    seoKeywords: data.seo?.seoKeywords || "civil infrastructure development, industrial road networks, utility infrastructure contractor, site grading and leveling, heavy civil engineering India, Pislinfra infrastructure",
     slug: 'solutions/infrastructure',
-    canonicalUrl: data.seo?.canonicalUrl,
-    ogTitle: data.seo?.ogTitle,
-    ogDescription: data.seo?.ogDescription,
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, ''),
+    canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/infrastructure",
+    ogTitle: data.seo?.ogTitle || "Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra",
+    ogDescription: data.seo?.ogDescription || "Delivering world-class civil infrastructure, industrial road networks, and utility grids across India.",
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
     ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.seo?.twitterTitle,
-    twitterDescription: data.seo?.twitterDescription,
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, ''),
+    twitterTitle: data.seo?.twitterTitle || "Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra",
+    twitterDescription: data.seo?.twitterDescription || "Delivering world-class civil infrastructure, industrial road networks, and utility grids across India.",
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
     twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
-    schemaType: data.seo?.schemaType || 'WebPage',
+    schemaType: data.seo?.schemaType || 'Service',
     breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
     organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Infrastructure', 'Development', 'Civil Engineering', 'Construction'],
+    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Civil Infrastructure', 'Industrial Utilities', 'Road Networks', 'Heavy Engineering', 'Earthworks'],
     noIndex: data.seo?.noIndex || false,
     noFollow: data.seo?.noFollow || false,
     structuredData: data.seo?.structuredData

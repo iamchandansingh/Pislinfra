@@ -85,7 +85,7 @@ const CSRInitiatives = ({ givingBackCards, envCards, celebCards }) => {
         </div>
 
         <div>
-          <SectionTitle title="CELEBRATIONS AT PISL" />
+          <SectionTitle title="CELEBRATIONS AT PISLINFRA" />
           <div className="init-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '24px' }}>
             {celebrationCards.map((card, idx) => (
               <div key={card.id || idx} style={{ backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '14px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }}>

@@ -4,11 +4,13 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
     "dev": "vite",
-    "build": "vite build",
+    "start": "vite",
+    "build": "node scripts/generateSitemap.js && vite build && node scripts/prerenderBlogs.js",
+    "sitemap": "node scripts/generateSitemap.js",
+    "prerender": "node scripts/prerenderBlogs.js",
+    "ping": "node scripts/pingSearchEngines.js",
     "preview": "vite preview",
-    "backup": "node MainBackupPislinfra.js",
     "lint": "eslint ."
   },
   "dependencies": {

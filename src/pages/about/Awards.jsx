@@ -331,7 +331,7 @@ const Awards = () => {
             },
             "recipient": {
               "@type": "Organization",
-              "name": "Pragati Infra Solutions Pvt. Ltd. (PISL Infra)",
+              "name": "Pragati Infra Solutions Pvt. Ltd. (Pislinfra)",
               "url": "https://pislinfra.com"
             },
             "url": `https://pislinfra.com/about/awards?award=${encodeURIComponent(item.id || item.title)}`

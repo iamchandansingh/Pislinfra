@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://pislinfra.com/solutions</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Service.png</image:loc>
+      <image:title>Turnkey Industrial &amp; Infrastructure Solutions | Pislinfra</image:title>
+      <image:caption>Comprehensive industrial construction, warehouse design &amp; build, logistics parks, and turnkey EPC across India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/solutions/industrial</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Industrial.png</image:loc>
+      <image:title>Turnkey Industrial Construction &amp; Manufacturing Plants EPC | Pislinfra</image:title>
+      <image:caption>Leading industrial construction EPC contractor in India. Heavy structural steel, factory buildings, and manufacturing plants.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/solutions/infrastructure</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Infrastructure.png</image:loc>
+      <image:title>Heavy Civil &amp; Utility Infrastructure Development Solutions | Pislinfra</image:title>
+      <image:caption>Delivering world-class civil infrastructure, highways, industrial road networks, and utility grids across India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/solutions/logistic</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Logistic.png</image:loc>
+      <image:title>Grade-A Logistics Parks &amp; Distribution Centers Construction | Pislinfra</image:title>
+      <image:caption>Specialized construction of Grade-A logistics parks, warehousing hubs, and multi-modal distribution centers.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/solutions/warehouse</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Warehouse.png</image:loc>
+      <image:title>Modern Warehouse Design &amp; LEED Certified Construction | Pislinfra</image:title>
+      <image:caption>Premier warehouse construction company in India. High-bay PEB buildings, FM2 floor specifications, and LEED gold green warehousing.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+</urlset>

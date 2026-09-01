@@ -4,11 +4,11 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-function send_smtp_mail($to, $subject, $body, $custom_headers) {
+function send_smtp_mail($to, $subject, $body, $custom_headers, $cc_list = []) {
     $smtp_host = "ssl://smtp.gmail.com";
     $smtp_port = 465;
     $smtp_user = "info@pislinfra.com";
-    // Using the 16-digit Google App Password provided by the user (spaces removed)
+    // Google App Password
     $smtp_pass = "oqdyatxmxgrcamsg";
 
     $socket = @fsockopen($smtp_host, $smtp_port, $errno, $errstr, 15);
@@ -46,10 +46,24 @@ function send_smtp_mail($to, $subject, $body, $custom_headers) {
     fwrite($socket, "RCPT TO: <$to>\r\n");
     if (!$read_smtp_response($socket, "250")) return false;
 
+    // Send RCPT TO for each CC recipient
+    if (!empty($cc_list)) {
+        foreach ($cc_list as $cc_email) {
+            $cc_email = trim($cc_email);
+            if (!empty($cc_email)) {
+                fwrite($socket, "RCPT TO: <$cc_email>\r\n");
+                $read_smtp_response($socket, "250");
+            }
+        }
+    }
+
     fwrite($socket, "DATA\r\n");
     if (!$read_smtp_response($socket, "354")) return false;
 
     $mail_headers = "To: <$to>\r\n";
+    if (!empty($cc_list)) {
+        $mail_headers .= "Cc: " . implode(", ", $cc_list) . "\r\n";
+    }
     $mail_headers .= "Subject: $subject\r\n";
     $mail_headers .= $custom_headers;
     if (!empty($custom_headers) && substr($custom_headers, -2) !== "\r\n") {
@@ -89,13 +103,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     
-    $companyName = "PISL Infra";
+    $companyName = "Pislinfra";
     $adminEmail = "careers@pislinfra.com";
-    $fromEmail = "info@pislinfra.com"; // SMTP authenticated email MUST match From Header
+    $cc_recipients = [
+        "aayush@pislinfra.com",
+        "rohitashv@pislinfra.com"
+    ];
+    $fromEmail = "info@pislinfra.com"; // SMTP authenticated email
     $websiteUrl = "https://pislinfra.com";
     
     // Handle file upload
-    $resumeInfo = "No resume uploaded";
+    $resumeInfo = "No resume attached";
     $fileEncoded = "";
     $fileName = "";
     $fileType = "";
@@ -123,13 +141,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resumeInfo = "$fileName (" . round($fileSize / 1024, 1) . " KB)";
     }
     
-    // ==========================================
-    // RESPOND TO CLIENT IMMEDIATELY
-    // ==========================================
-    // This allows the frontend to show "Success" immediately without waiting for the 
-    // slow SMTP upload to Google (which takes 10-20 seconds for large attachments).
+    // Respond to client quickly
     ignore_user_abort(true);
-    set_time_limit(120); // Give script 2 minutes to upload to Google SMTP
+    set_time_limit(120);
     
     $responseJson = json_encode(['success' => true, 'message' => 'Application submitted successfully']);
     
@@ -137,7 +151,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Length: ' . strlen($responseJson));
     echo $responseJson;
     
-    // Flush all output buffers to force the web server to send the response to the browser
     if (ob_get_length()) {
         ob_end_flush();
     }
@@ -147,11 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     // ==========================================
-    // 1. EMAIL TO ADMIN (PREMIUM DESIGN)
+    // 1. EXECUTIVE CAREER APPLICATION HTML TEMPLATE
     // ==========================================
-    
-    $adminSubject = "New Job Application from Website: " . $data['position'] . " - " . $data['fullName'];
-    
+    $adminSubject = "Job Application: " . $data['position'] . " - " . $data['fullName'];
     $boundary = md5(time());
     
     $adminHeaders = "MIME-Version: 1.0\r\n";
@@ -163,63 +174,150 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $adminMessage .= "Content-Type: text/html; charset=UTF-8\r\n";
     $adminMessage .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
     
-    $currentDate = date('d M Y, h:i A');
-    $descriptionRow = $data['description'] ? "<tr><th>Description</th><td>{$data['description']}</td></tr>" : "";
+    $currentDate = date('d M Y, h:i A') . ' IST';
+    $descriptionBlock = !empty($data['description']) 
+        ? "<tr><td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b; vertical-align: top;'>Candidate Notes</td><td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #334155; line-height: 1.6;'>" . nl2br(htmlspecialchars($data['description'])) . "</td></tr>"
+        : "";
     
     $adminMessage .= "<!DOCTYPE html>
-    <html>
+    <html lang='en'>
     <head>
         <meta charset='UTF-8'>
-        <style>
-            body { margin: 0; padding: 0; background-color: #f4f7f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #334155; }
-            .wrapper { width: 100%; padding: 40px 0; background-color: #f4f7f6; }
-            .container { max-width: 650px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
-            .header { background: linear-gradient(135deg, #1e1e52, #28286e); padding: 30px; text-align: center; border-bottom: 4px solid #ff8d4b; }
-            .header h1 { color: #ffffff; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
-            .content { padding: 35px 30px; }
-            .content p { font-size: 15px; line-height: 1.6; margin-top: 0; margin-bottom: 25px; color: #475569; }
-            .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
-            .data-table th, .data-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
-            .data-table th { width: 35%; color: #64748b; font-weight: 600; background-color: #f8fafc; }
-            .data-table td { color: #0f172a; font-weight: 500; }
-            .data-table tr:last-child th, .data-table tr:last-child td { border-bottom: none; }
-            .resume-box { margin-top: 25px; padding: 15px 20px; background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; display: inline-block; font-size: 14px; color: #166534; font-weight: 500; }
-            .footer { background-color: #f8fafc; padding: 25px 30px; text-align: center; border-top: 1px solid #e2e8f0; }
-            .footer p { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.5; }
-        </style>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>New Job Application</title>
     </head>
-    <body>
-        <div class='wrapper'>
-            <div class='container'>
-                <div class='header'>
-                    <h1>New Career Application</h1>
-                </div>
-                <div class='content'>
-                    <p>Hello HR Team,<br><br>A new job application has been submitted via the <strong>Careers</strong> page. Please review the candidate details below:</p>
-                    
-                    <table class='data-table'>
-                        <tr><th>Date</th><td>{$currentDate}</td></tr>
-                        <tr><th>Position Applied</th><td><strong style='color:#ff8d4b;'>{$data['position']}</strong></td></tr>
-                        <tr><th>Full Name</th><td>{$data['fullName']}</td></tr>
-                        <tr><th>Phone Number</th><td>{$data['phone']}</td></tr>
-                        <tr><th>Email Address</th><td>{$data['email']}</td></tr>
-                        <tr><th>Highest Qualification</th><td>" . ($data['qualification'] ?: 'N/A') . "</td></tr>
-                        <tr><th>Current Salary</th><td>{$data['currentSalary']}</td></tr>
-                        <tr><th>Current Location</th><td>{$data['location']}</td></tr>
-                        <tr><th>Willing to Relocate</th><td>" . ucfirst($data['relocate']) . "</td></tr>
-                        <tr><th>Notice Period</th><td>{$data['noticePeriod']}</td></tr>
-                        {$descriptionRow}
+    <body style='margin: 0; padding: 0; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; color: #1e293b;'>
+        <table role='presentation' width='100%' cellspacing='0' cellpadding='0' border='0' style='background-color: #f1f5f9; padding: 40px 15px;'>
+            <tr>
+                <td align='center'>
+                    <table role='presentation' width='100%' style='max-width: 640px; background-color: #ffffff; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0;' cellspacing='0' cellpadding='0' border='0'>
+                        
+                        <!-- HEADER -->
+                        <tr>
+                            <td style='background: linear-gradient(135deg, #0B132B 0%, #1E2A5A 100%); padding: 32px 36px 28px; text-align: left; border-bottom: 3px solid #ff904e;'>
+                                <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                    <tr>
+                                        <td>
+                                            <div style='font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;'>
+                                                Pislinfra<span style='color: #ff904e;'>.</span>
+                                            </div>
+                                            <div style='font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; font-weight: 600;'>
+                                                Human Resources & Talent Acquisition
+                                            </div>
+                                        </td>
+                                        <td align='right'>
+                                            <span style='display: inline-block; background-color: rgba(255, 144, 78, 0.18); border: 1px solid rgba(255, 144, 78, 0.4); color: #ffaa75; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;'>
+                                                Job Application
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- BODY -->
+                        <tr>
+                            <td style='padding: 36px 36px 28px;'>
+                                <h2 style='margin: 0 0 6px 0; font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.3px;'>
+                                    New Candidate Application
+                                </h2>
+                                <p style='margin: 0 0 24px 0; font-size: 14px; line-height: 1.6; color: #64748b;'>
+                                    A new applicant has submitted their profile for <strong style='color: #ff904e;'>{$data['position']}</strong> via <strong style='color: #0f172a;'>pislinfra.com/careers</strong>:
+                                </p>
+
+                                <!-- APPLICANT DETAILS TABLE -->
+                                <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background-color: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 24px;'>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; width: 35%; font-size: 13px; font-weight: 600; color: #64748b;'>Position Applied</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14.5px; font-weight: 800; color: #ff904e;'>{$data['position']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Candidate Name</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 700; color: #0f172a;'>{$data['fullName']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Direct Phone</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px;'>
+                                            <a href='tel:{$data['phone']}' style='color: #2563eb; text-decoration: none; font-weight: 700;'>{$data['phone']}</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Email Address</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px;'>
+                                            <a href='mailto:{$data['email']}' style='color: #2563eb; text-decoration: none; font-weight: 600;'>{$data['email']}</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Qualification</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0f172a; font-weight: 600;'>" . ($data['qualification'] ?: 'Not Specified') . "</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Current Salary</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 700; color: #059669;'>{$data['currentSalary']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Current Location</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0f172a;'>{$data['location']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Willing to Relocate?</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 600; color: #0f172a;'>" . ucfirst($data['relocate']) . "</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Notice Period</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 600; color: #0f172a;'>{$data['noticePeriod']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Applied On</td>
+                                        <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #64748b;'>{$currentDate}</td>
+                                    </tr>
+                                    {$descriptionBlock}
+                                </table>
+
+                                <!-- RESUME ATTACHMENT CARD -->
+                                <div style='background-color: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 14px 18px; margin-bottom: 28px;'>
+                                    <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tr>
+                                            <td style='font-size: 13.5px; font-weight: 700; color: #166534;'>
+                                                📎 Resume Attachment:
+                                            </td>
+                                            <td align='right' style='font-size: 13px; font-weight: 600; color: #15803d;'>
+                                                {$resumeInfo}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <!-- ACTION BUTTON -->
+                                <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                    <tr>
+                                        <td align='center'>
+                                            <a href='mailto:{$data['email']}?subject=Pislinfra%20Application%20Update%20-%20{$data['position']}' style='display: inline-block; background-color: #ff904e; color: #ffffff; font-size: 14px; font-weight: 700; text-decoration: none; padding: 12px 28px; border-radius: 8px; box-shadow: 0 4px 12px rgba(255, 144, 78, 0.35); text-transform: uppercase; letter-spacing: 0.5px;'>
+                                                ✉️ Email Candidate ({$data['fullName']})
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+
+                        <!-- FOOTER -->
+                        <tr>
+                            <td style='background-color: #0B132B; padding: 24px 36px; text-align: center; border-top: 1px solid #1E2A5A;'>
+                                <p style='margin: 0 0 6px 0; font-size: 12.5px; color: #94a3b8;'>
+                                    Auto-generated notification from the <strong style='color: #ffffff;'>Pislinfra</strong> Careers Portal.
+                                </p>
+                                <p style='margin: 0; font-size: 11.5px; color: #64748b;'>
+                                    CC: aayush@pislinfra.com, rohitashv@pislinfra.com | Gurugram, Haryana, India
+                                </p>
+                            </td>
+                        </tr>
+
                     </table>
-                    
-                    <div class='resume-box'>
-                        📎 Attached Resume: {$resumeInfo}
-                    </div>
-                </div>
-                <div class='footer'>
-                    <p>This is an automated notification from the <strong>{$companyName}</strong> website.<br>Please do not reply to this system email directly.</p>
-                </div>
-            </div>
-        </div>
+                </td>
+            </tr>
+        </table>
     </body>
     </html>\r\n";
     
@@ -234,10 +332,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $adminMessage .= "--{$boundary}--";
     
-    // Send email via custom SMTP
-    $adminSent = send_smtp_mail($adminEmail, $adminSubject, $adminMessage, $adminHeaders);
+    // Send email via custom SMTP with CC recipients
+    $adminSent = send_smtp_mail($adminEmail, $adminSubject, $adminMessage, $adminHeaders, $cc_recipients);
     if (!$adminSent) {
-        $adminSent = mail($adminEmail, $adminSubject, $adminMessage, $adminHeaders);
+        $fallback_headers = $adminHeaders . "Cc: " . implode(", ", $cc_recipients) . "\r\n";
+        $adminSent = mail($adminEmail, $adminSubject, $adminMessage, $fallback_headers);
     }
     
 }

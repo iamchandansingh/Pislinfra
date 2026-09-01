@@ -20,7 +20,7 @@ const getIcon = (iconName) => {
 
 const defaultIndustrialData = {
   title: "Industrial Development",
-  introText: "PISL provides EPC, construction, infrastructure development, and industrial solutions across India.",
+  introText: "Pislinfra provides EPC, construction, infrastructure development, and industrial solutions across India.",
   mainFeatureTitle: "What is Industrial Development?",
   mainFeatureText: "Industrial development encompasses civil engineering, structural steel, foundation works, and utility infrastructure designed for factories and processing plants.",
   features: [
@@ -28,7 +28,7 @@ const defaultIndustrialData = {
     { title: "Turnkey EPC Services", desc: "End-to-end design, civil construction, and commissioning.", icon: "FaCogs" },
     { title: "Safety & Compliance", desc: "Highest international safety protocols and ISO standard compliance.", icon: "FaShieldAlt" }
   ],
-  whyPislTitle: "Why Choose PISL for Industrial Construction?",
+  whyPislTitle: "Why Choose Pislinfra for Industrial Construction?",
   whyPislText: "With over two decades of proven experience, PISL has delivered landmark industrial facilities across India."
 };
 
@@ -56,26 +56,26 @@ const Industrial = () => {
 
   if (loading || !data) return <Preloader />;
 
-    const seoData = {
+  const seoData = {
     contentType: 'page',
-    title: data.title,
-    seoTitle: data.seo?.seoTitle,
-    seoDescription: data.seo?.seoDescription,
-    seoKeywords: data.seo?.seoKeywords,
+    title: data.title || "Industrial Development",
+    seoTitle: data.seo?.seoTitle || "Turnkey Industrial Construction & Manufacturing Plants EPC | Pislinfra",
+    seoDescription: data.seo?.seoDescription || "PISL is India's leading industrial construction EPC contractor specializing in heavy structural steel, manufacturing factories, PEB engineering, and turnkey plants.",
+    seoKeywords: data.seo?.seoKeywords || "industrial construction, turnkey EPC contractor India, factory building construction, heavy steel PEB fabrication, manufacturing infrastructure, industrial development, Pislinfra",
     slug: 'solutions/industrial',
-    canonicalUrl: data.seo?.canonicalUrl,
-    ogTitle: data.seo?.ogTitle,
-    ogDescription: data.seo?.ogDescription,
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, ''),
+    canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/industrial",
+    ogTitle: data.seo?.ogTitle || "Turnkey Industrial Construction & Manufacturing Plants EPC | Pislinfra",
+    ogDescription: data.seo?.ogDescription || "Leading industrial construction EPC contractor in India. Heavy structural steel, factories, and turnkey manufacturing infrastructure.",
+    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Industrial.png'),
     ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.seo?.twitterTitle,
-    twitterDescription: data.seo?.twitterDescription,
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, ''),
+    twitterTitle: data.seo?.twitterTitle || "Turnkey Industrial Construction & Manufacturing Plants EPC | Pislinfra",
+    twitterDescription: data.seo?.twitterDescription || "Leading industrial construction EPC contractor in India. Heavy structural steel, factories, and turnkey manufacturing infrastructure.",
+    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Industrial.png'),
     twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
-    schemaType: data.seo?.schemaType || 'WebPage',
+    schemaType: data.seo?.schemaType || 'Service',
     breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
     organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Industrial', 'Manufacturing', 'Construction', 'Development', 'Factory'],
+    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Industrial Construction', 'Manufacturing Plants', 'Turnkey EPC', 'Factory Engineering', 'PEB Structures'],
     noIndex: data.seo?.noIndex || false,
     noFollow: data.seo?.noFollow || false,
     structuredData: data.seo?.structuredData
@@ -350,7 +350,7 @@ const Industrial = () => {
             <div className="why-pisl-image-overlay"></div>
             <div className="why-pisl-image-content">
               {data.whyPislBadge && <div className="why-pisl-image-badge">{data.whyPislBadge}</div>}
-              <h2 className="why-pisl-left-title" dangerouslySetInnerHTML={{ __html: data.whyPislTitle ? data.whyPislTitle.replace('PISL Infra?', '<span>PISL Infra?</span>') : 'Why <span>PISL Infra?</span>' }}></h2>
+              <h2 className="why-pisl-left-title" dangerouslySetInnerHTML={{ __html: data.whyPislTitle ? data.whyPislTitle.replace('Pislinfra?', '<span>Pislinfra?</span>') : 'Why <span>Pislinfra?</span>' }}></h2>
               <p className="why-pisl-left-desc">{data.whyPislDesc}</p>
             </div>
           </div>

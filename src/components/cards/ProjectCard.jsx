@@ -34,7 +34,7 @@ const getClientInfo = (clientName) => {
       'AM/NS': 'AM/NS India (ArcelorMittal Nippon Steel India)',
       'PRR Group': 'Prologis',
       'PRR': 'Prologis',
-      'PISL Infra': 'GAR',
+      'Pislinfra': 'GAR',
       'PISL': 'GAR',
       'Engineers India': 'EIL (Engineers India Limited)',
       'EIL': 'EIL (Engineers India Limited)',
@@ -273,7 +273,7 @@ const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = nu
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
               }}>
-                {clientInfoList.map(c => c.name).join(', ') || project.client || 'PISL Client'}
+                {clientInfoList.map(c => c.name).join(', ') || project.client || 'Pislinfra Client'}
               </span>
               <span style={{ fontSize: '10px', fontWeight: '500', color: '#94a3b8' }}>{project.timeline || 'Ongoing'}</span>
             </div>

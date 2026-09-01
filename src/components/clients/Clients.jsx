@@ -135,8 +135,10 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
             >
               <img
                 src={client.logo}
-                alt={client.name}
-                title={client.name}
+                alt={`${client.name} - Pislinfra Industrial Client & Warehousing Partner`}
+                title={`${client.name} - Turnkey Infrastructure & Construction Client of Pislinfra`}
+                loading="lazy"
+                decoding="async"
                 style={{
                   maxWidth: '90%',
                   maxHeight: 60,

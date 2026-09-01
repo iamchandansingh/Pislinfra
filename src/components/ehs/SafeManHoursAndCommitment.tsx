@@ -175,7 +175,7 @@ const SafeManHoursAndCommitment = ({ features, title }) => {
           </div>
 
           <div className="ehs-text-col">
-            <h3 style={{ fontSize: '26px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, margin: '0 0 12px 0', fontFamily: 'Inter, sans-serif' }}>At PISL, safety is not just a priority, it's a core value.</h3>
+            <h3 style={{ fontSize: '26px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, margin: '0 0 12px 0', fontFamily: 'Inter, sans-serif' }}>At Pislinfra, safety is not just a priority, it's a core value.</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: '#64748B', margin: '0 0 20px 0', fontFamily: 'Inter, sans-serif' }}>We are spreading the "ZERO HARM IS POSSIBLE" belief by eliminating all injuries and work-related ill health through prevention, training and continuous improvement.</p>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
