@@ -12,7 +12,7 @@ export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL
   ? import.meta.env.VITE_STRAPI_URL 
   : (isLocalhost ? 'http://localhost:1337' : '');
 
-let cmsOfflineState = false;
+let cmsOfflineState = !STRAPI_URL;
 let failedAttempts = 0;
 let successfulAttempts = 0;
 const listeners = new Set();
@@ -146,10 +146,13 @@ const getLocalBackup = (endpoint) => {
 
 // Background live sync worker without blocking UI
 const revalidateInBackground = (endpoint) => {
-  if (!STRAPI_URL) return;
+  if (!STRAPI_URL) {
+    notifyStatus(true);
+    return;
+  }
   const now = Date.now();
   if (lastFetchedTime.has(endpoint) && now - lastFetchedTime.get(endpoint) < 15000) {
-    return; // Fetched less than 15s ago, no need to spam
+    return;
   }
   if (inFlightRequests.has(endpoint)) return;
 
@@ -183,8 +186,12 @@ const revalidateInBackground = (endpoint) => {
           notifyStatus(false);
           return cleanData;
         }
+      } else {
+        notifyStatus(true);
       }
-    } catch (e) {} finally {
+    } catch (e) {
+      notifyStatus(true);
+    } finally {
       inFlightRequests.delete(endpoint);
     }
   })();
