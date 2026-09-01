@@ -1202,9 +1202,9 @@ ${extraSchemasJson}`;
   // ==========================================
   // 7. PRERENDER ROOT HOME PAGE WITH ALL CLIENT SCHEMAS
   // ==========================================
-  const homeTitle = 'Pislinfra | Premier Industrial Infrastructure, Warehouse & EPC Company India';
-  const homeDescription = 'Pislinfra (Pragati Infra Solutions) is India\'s leading industrial infrastructure, warehouse construction, and turnkey EPC company with 16M+ sq ft delivered across India for Amazon, Flipkart, Adani, Reliance, Myntra, Bosch, Daikin, and Prologis.';
-  const homeKeywords = 'industrial construction company India, warehouse EPC contractor, PEB warehouse construction, logistics park builder, turnkey civil engineering India, Pislinfra, Amazon warehouse builder, Flipkart logistics park, Adani construction partner, Reliance solar unit builder';
+  const homeTitle = 'Pislinfra | Industrial Infrastructure & EPC Company India';
+  const homeDescription = 'Pislinfra delivers warehousing, logistics parks, and industrial construction solutions, with 17+ years of experience and 16M+ sq. ft. delivered.';
+  const homeKeywords = 'Pislinfra, industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, turnkey EPC company India, PEB warehouse construction, Grade-A warehouse builder, industrial park developers NCR, civil engineering contractors India, factory shed construction, pre-engineered buildings India, commercial construction company, BTS warehouse developers, logistics park infrastructure, heavy industrial construction, Pragati Infra Solutions, warehouse contractors Delhi NCR Haryana Gujarat, Amazon warehouse builder, Flipkart logistics park, Adani construction partner, Reliance solar unit builder';
   const homeCanonicalUrl = `${SITE_URL}/`;
   const homeLogoUrl = `${SITE_URL}/logo.png`;
 

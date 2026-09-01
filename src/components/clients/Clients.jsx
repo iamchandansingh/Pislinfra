@@ -8,7 +8,7 @@ const ORANGE = '#ff8755';
 
 const getClientLogo = (name, strapiLogoObj) => {
   if (strapiLogoObj?.url) {
-    return strapiLogoObj.url.startsWith('http') ? strapiLogoObj.url : `http://localhost:1337${strapiLogoObj.url}`;
+    return strapiLogoObj.url.startsWith('http') ? strapiLogoObj.url : `${strapiLogoObj.url}`;
   }
   const client = clientsData.find(c => c.name && c.name.toLowerCase() === name.toLowerCase());
   return client?.logo || null;

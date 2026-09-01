@@ -57,7 +57,7 @@ const CSR = () => {
 
   const getImageUrl = (img) => {
     if (!img) return null;
-    return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+    return img.url?.startsWith('http') ? img.url : `${img.url}`;
   };
 
   const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/leadership.png";

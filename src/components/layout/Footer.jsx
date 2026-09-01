@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData, subscribeCmsStatus } from '../../services/strapi';
+import { fetchStrapiData, subscribeCmsStatus, STRAPI_URL } from '../../services/strapi';
 import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
@@ -49,7 +49,7 @@ const Footer = () => {
   ];
 
   const logoUrl = footerData?.logo?.url 
-    ? (footerData.logo.url.startsWith('http') ? footerData.logo.url : `http://localhost:1337${footerData.logo.url}`)
+    ? (footerData.logo.url.startsWith('http') ? footerData.logo.url : (STRAPI_URL ? `${STRAPI_URL}${footerData.logo.url}` : "/White Logo.png"))
     : "/White Logo.png";
 
   return (

@@ -38,10 +38,10 @@ const CaseStudy = () => {
             challenges: item.challenges,
             achievements: item.achievements,
             conclusion: item.conclusion,
-            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `http://127.0.0.1:1337${item.image.url}`) : null,
-            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `http://127.0.0.1:1337${item.engagementImage.url}`) : null,
-            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `http://127.0.0.1:1337${item.challengesImage.url}`) : null,
-            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `http://127.0.0.1:1337${item.achievementsImage.url}`) : null,
+            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `${item.image.url}`) : null,
+            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `${item.engagementImage.url}`) : null,
+            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `${item.challengesImage.url}`) : null,
+            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `${item.achievementsImage.url}`) : null,
             seo: item.seo,
           }));
           setCaseStudiesList(formatted);
@@ -60,7 +60,7 @@ const CaseStudy = () => {
 
   const getImageUrl = (img) => {
     if (!img) return null;
-    return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+    return img.url?.startsWith('http') ? img.url : `${img.url}`;
   };
 
   const heroTitle = pageData?.heroTitle || "Case Studies";

@@ -9,7 +9,7 @@ const getImageUrl = (imgObj, defaultImg) => {
   const url = imgObj.url || imgObj.data?.attributes?.url;
   if (!url) return defaultImg;
   if (url.startsWith('http')) return url;
-  return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+  return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
 };
 
 const TeamMemberCard = ({ member, index }) => {

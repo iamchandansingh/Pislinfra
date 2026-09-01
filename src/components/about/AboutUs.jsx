@@ -35,25 +35,26 @@ const AboutUs = ({ data }) => {
       position: 'relative', 
       overflow: 'hidden' 
     }}>
-      <div className="pisl-container" style={{ 
+      <div className="pisl-container pisl-about-grid" style={{ 
         maxWidth: '1360px', 
         margin: '0 auto', 
         padding: '0 24px', 
         display: 'grid', 
         gridTemplateColumns: '45% 55%', 
-        gap: '60px', 
+        gap: '48px', 
         alignItems: 'center' 
       }}>
         
-        {/* ── LEFT COLUMN: Elegant Single Dynamic Image Frame ── */}
-        <div style={{ 
+        {/* ── LEFT COLUMN: Reduced Height Dynamic Image Frame ── */}
+        <div className="pisl-image-frame" style={{ 
           position: 'relative', 
           width: '100%', 
-          height: '460px', 
-          borderRadius: '24px', 
+          height: '360px', 
+          borderRadius: '20px', 
           overflow: 'hidden', 
-          boxShadow: '0 20px 40px -15px rgba(40, 41, 111, 0.12)',
-          background: '#f1f5f9'
+          boxShadow: '0 16px 36px -12px rgba(40, 41, 111, 0.12)',
+          background: '#f1f5f9',
+          border: '1px solid #e2e8f0'
         }}>
           <AnimatePresence mode="wait">
             <motion.img 
@@ -76,46 +77,50 @@ const AboutUs = ({ data }) => {
 
           {/* Bottom Gradient for Image Depth */}
           <div style={{ 
-            position: 'absolute', inset: 'auto 0 0 0', height: '70px', 
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent)', pointerEvents: 'none' 
+            position: 'absolute', inset: 'auto 0 0 0', height: '60px', 
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent)', pointerEvents: 'none' 
           }} />
         </div>
 
-        {/* ── RIGHT COLUMN: Clickable Typography Block (Redirects cleanly to /about) ── */}
+        {/* ── RIGHT COLUMN: Clean Typography Block (No borders) ── */}
         <motion.div 
           onClick={() => navigate('/about')}
           initial={{ opacity: 0, x: 20 }} 
           whileInView={{ opacity: 1, x: 0 }} 
-          whileHover={{ x: 6 }}
+          whileHover={{ x: 4 }}
           viewport={{ once: true }} 
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="pisl-clickable-block"
           style={{
             display: 'block',
             textDecoration: 'none', 
             color: 'inherit',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            padding: 0,
+            border: 'none',
+            background: 'transparent',
+            boxShadow: 'none'
           }}
         >
           {/* Main Title */}
           <h2 className="pisl-title" style={{ 
-            fontSize: 'clamp(30px, 3.5vw, 40px)', 
+            fontSize: 'clamp(28px, 3.2vw, 36px)', 
             fontWeight: 800, 
             color: NAVY, 
             lineHeight: '1.2', 
-            letterSpacing: '-1px', 
-            margin: '0 0 24px 0',
+            letterSpacing: '-0.8px', 
+            margin: '0 0 18px 0',
             transition: 'opacity 0.3s ease'
           }}>
             {data?.aboutTitle ? <span dangerouslySetInnerHTML={{__html: data.aboutTitle}} /> : <>About <span style={{ color: ORANGE }}> Our Expertise </span></>}
           </h2>
 
           {/* Content Paragraphs */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <p style={{ fontSize: '15.5px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <p style={{ fontSize: '15px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
               {data?.aboutDesc ? data.aboutDesc.split('\n')[0] : "We at Pislinfra are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors. We are committed to excellence, specializing in the full-cycle development of high-quality industrial and warehousing assets."}
             </p>
-            <p style={{ fontSize: '15.5px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
+            <p style={{ fontSize: '15px', color: '#475569', lineHeight: '1.75', margin: 0, fontWeight: 500 }}>
               {data?.aboutDesc && data.aboutDesc.includes('\n') ? data.aboutDesc.split('\n')[1] : "A client-first approach anchors our mission. As we expand our footprint nationwide, we proactively address the evolving business requirements of our clients, ensuring optimum operational efficiency."}
             </p>
           </div>
@@ -129,17 +134,17 @@ const AboutUs = ({ data }) => {
         }
         
         @media (max-width: 992px) {
-          .pisl-simple-layout {
+          .pisl-about-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 32px !important;
           }
-          .pisl-simple-layout > div {
-            height: 320px !important;
+          .pisl-image-frame {
+            height: 280px !important;
           }
         }
         @media (max-width: 640px) {
-          .pisl-simple-layout > div {
-            height: 260px !important;
+          .pisl-image-frame {
+            height: 220px !important;
           }
         }
       `}</style>

@@ -11,10 +11,10 @@ export const formatStrapiBlogs = (strapiBlogs) => {
       createdAt: item.createdAt,
       readTime: item.readTime,
       featuredImage: item.featuredImage?.url 
-        ? (item.featuredImage.url.startsWith('http') ? item.featuredImage.url : `http://127.0.0.1:1337${item.featuredImage.url}`) 
+        ? (item.featuredImage.url.startsWith('http') ? item.featuredImage.url : `${item.featuredImage.url}`) 
         : null,
       galleryImages: item.galleryImages?.map(img => 
-        img.url.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`
+        img.url.startsWith('http') ? img.url : `${img.url}`
       ) || [],
       tags: typeof item.tags === 'string' ? item.tags.split(',').map(t => t.trim()) : (Array.isArray(item.tags) ? item.tags : []),
       author: item.author || {},

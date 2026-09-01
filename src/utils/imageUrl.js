@@ -7,7 +7,7 @@ export const getImageUrl = (url, defaultImg = '') => {
   }
   if (!url || typeof url !== 'string') return defaultImg;
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) return url;
-  if (url.startsWith('/uploads')) return `${STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+  if (url.startsWith('/uploads')) return STRAPI_URL ? `${STRAPI_URL}${url}` : (defaultImg || url);
   return url;
 };
 

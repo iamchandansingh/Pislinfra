@@ -46,7 +46,7 @@ const AutoSlidingImages = () => {
   ];
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    const timer = setInterval(() => setCurrent((prev) => (prev + 1) % images.length), 3000);
+    const timer = setInterval(() => setCurrent((prev) => (prev + 1) % images.length), 4000);
     return () => clearInterval(timer);
   }, []);
   return (
@@ -83,7 +83,7 @@ const Overview = () => {
     const url = imgObj.url || imgObj.data?.attributes?.url;
     if (!url) return defaultImg;
     if (url.startsWith('http')) return url;
-    return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+    return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
   };
 
   if (loading) return <Preloader />;

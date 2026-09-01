@@ -136,7 +136,7 @@ const Blog = () => {
         title={searchQuery ? `Search: "${searchQuery}"` : (blogPage?.heroTitle || "Blog")} 
         subtitle={searchQuery ? `${filteredBlogs.length} results found` : (blogPage?.heroSubtitle || "Insights, news & updates from Pislinfra")} 
         breadcrumb={blogPage?.heroBreadcrumb || "Blog"} 
-        bgImage={blogPage?.heroImage?.url ? (blogPage.heroImage.url.startsWith('http') ? blogPage.heroImage.url : `http://localhost:1337${blogPage.heroImage.url}`) : "/images/hero/Blog.png"} 
+        bgImage={blogPage?.heroImage?.url ? (blogPage.heroImage.url.startsWith('http') ? blogPage.heroImage.url : `${blogPage.heroImage.url}`) : "/images/hero/Blog.png"} 
       />
 
       <div style={{ height: isMobile ? '16px' : '32px', backgroundColor: 'white' }} />

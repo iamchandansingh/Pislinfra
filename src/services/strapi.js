@@ -1,6 +1,16 @@
 import offlineBackup from '../data/MainBackupPislinfra.json';
 
-export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
+const isLocalhost = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1' ||
+  window.location.hostname === '0.0.0.0' ||
+  window.location.hostname.endsWith('.local')
+);
+
+// If on live production (pislinfra.com), NEVER attempt to query localhost/127.0.0.1 (prevents Chrome Private Network Access popup)
+export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL 
+  ? import.meta.env.VITE_STRAPI_URL 
+  : (isLocalhost ? 'http://localhost:1337' : '');
 
 let cmsOfflineState = false;
 let failedAttempts = 0;
@@ -111,11 +121,55 @@ const getFromIDB = async (endpoint) => {
   }
 };
 
+const getLocalBackup = (endpoint) => {
+  if (!offlineBackup) return null;
+  if (offlineBackup[endpoint]) {
+    return sanitizeBrandText(offlineBackup[endpoint]);
+  }
+  const baseKey = endpoint.split('?')[0];
+  if (offlineBackup[baseKey]) {
+    return sanitizeBrandText(offlineBackup[baseKey]);
+  }
+  const slugMatch = endpoint.match(/filters\[slug\](?:\[\$eq\])?=([a-zA-Z0-9_-]+)/);
+  if (slugMatch && slugMatch[1]) {
+    const slugKey = `${baseKey}-${slugMatch[1]}`;
+    if (offlineBackup[slugKey]) {
+      return sanitizeBrandText(offlineBackup[slugKey]);
+    }
+  }
+  return null;
+};
+
 // ==========================================
-// 4. ENTERPRISE 3-TIER DATA FETCHING ENGINE
+// 4. ENTERPRISE 4-TIER DATA FETCHING & AUTO-SYNC ENGINE
 // ==========================================
 export const fetchStrapiData = async (endpoint) => {
-  // ── OPTION 1: LIVE CLOUD CMS FETCH (Neon DB + Cloudflare + Strapi) ──
+  // If no STRAPI_URL configured on live production domain, seamlessly use offline tiers
+  if (!STRAPI_URL) {
+    const idbData = await getFromIDB(endpoint);
+    if (idbData) return sanitizeBrandText(idbData);
+
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const localCached = window.localStorage.getItem(`pisl_cache_${endpoint}`);
+        if (localCached) return sanitizeBrandText(JSON.parse(localCached));
+      } catch (e) {}
+    }
+
+    if (typeof window !== 'undefined') {
+      try {
+        const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(endpoint)}`, { cache: 'no-cache' });
+        if (hostingerRes.ok) {
+          const hostingerJson = await hostingerRes.json();
+          if (hostingerJson) return sanitizeBrandText(hostingerJson);
+        }
+      } catch (e) {}
+    }
+
+    return getLocalBackup(endpoint);
+  }
+
+  // ── TIER 1: LIVE CLOUD CMS FETCH (Neon DB + Cloudflare + Strapi) ──
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 4000); // 4s Neon cloud DB tolerance
@@ -129,14 +183,14 @@ export const fetchStrapiData = async (endpoint) => {
     if (response.status < 500) {
       successfulAttempts++;
       failedAttempts = 0;
-      notifyStatus(false); // CMS is ONLINE (Footer remains clean & hidden)
+      notifyStatus(false);
 
       if (response.ok) {
         const json = await response.json();
         if (json && json.data) {
           const cleanData = sanitizeBrandText(json.data);
 
-          // 1-Second Instant Local Backup Sync:
+          // Instant Real-Time Multi-Tier Persistence:
           // A) High-capacity IndexedDB (for 12,000+ blogs & jobs)
           saveToIDB(endpoint, cleanData);
 
@@ -147,7 +201,7 @@ export const fetchStrapiData = async (endpoint) => {
             } catch (e) {}
           }
 
-          // C) Hostinger Server Disk Sync (PHP API Snapshot in background)
+          // C) Hostinger Shared Hosting Server Disk Snapshot (POST /sync-backup.php)
           if (typeof window !== 'undefined') {
             setTimeout(() => {
               fetch('/sync-backup.php', {
@@ -164,25 +218,22 @@ export const fetchStrapiData = async (endpoint) => {
     } else {
       failedAttempts++;
       if (failedAttempts >= 2 && successfulAttempts === 0) {
-        notifyStatus(true); // Trigger Offline Mode in footer
+        notifyStatus(true);
       }
     }
   } catch (error) {
-    // Network failure / Connection Refused / Neon DB billing timeout
     failedAttempts++;
     if (failedAttempts >= 2 && successfulAttempts === 0) {
-      notifyStatus(true); // Trigger Offline Mode in footer
+      notifyStatus(true);
     }
   }
 
-  // ── OPTION 2: HIGH-CAPACITY CLIENT STORAGE (IndexedDB & LocalStorage) ──
-  // A) Check IndexedDB (Instant Gigabyte Storage)
+  // ── TIER 2: HIGH-CAPACITY CLIENT STORAGE (IndexedDB & LocalStorage) ──
   const idbData = await getFromIDB(endpoint);
   if (idbData) {
     return sanitizeBrandText(idbData);
   }
 
-  // B) Check LocalStorage
   if (typeof window !== 'undefined' && window.localStorage) {
     try {
       const localCached = window.localStorage.getItem(`pisl_cache_${endpoint}`);
@@ -192,8 +243,7 @@ export const fetchStrapiData = async (endpoint) => {
     } catch (e) {}
   }
 
-  // ── OPTION 3: HOSTINGER DISK BACKUP & BUNDLED HARDCODED REPOSITORY ──
-  // A) Check Hostinger Server Disk Live Backup
+  // ── TIER 3: HOSTINGER DISK BACKUP SNAPSHOT ──
   if (typeof window !== 'undefined') {
     try {
       const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(endpoint)}`, { cache: 'no-cache' });
@@ -206,25 +256,6 @@ export const fetchStrapiData = async (endpoint) => {
     } catch (e) {}
   }
 
-  // B) Bundled Static JSON Fallback (MainBackupPislinfra.json)
-  if (offlineBackup) {
-    if (offlineBackup[endpoint]) {
-      return sanitizeBrandText(offlineBackup[endpoint]);
-    }
-    const baseKey = endpoint.split('?')[0];
-    if (offlineBackup[baseKey]) {
-      return sanitizeBrandText(offlineBackup[baseKey]);
-    }
-
-    // Check slug filter (e.g. solution-pages?filters[slug]=warehouse)
-    const slugMatch = endpoint.match(/filters\[slug\](?:\[\$eq\])?=([a-zA-Z0-9_-]+)/);
-    if (slugMatch && slugMatch[1]) {
-      const slugKey = `${baseKey}-${slugMatch[1]}`;
-      if (offlineBackup[slugKey]) {
-        return sanitizeBrandText(offlineBackup[slugKey]);
-      }
-    }
-  }
-
-  return null;
+  // ── TIER 4: BUNDLED STATIC JSON REPOSITORY (MainBackupPislinfra.json) ──
+  return getLocalBackup(endpoint);
 };

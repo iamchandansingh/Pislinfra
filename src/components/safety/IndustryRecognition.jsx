@@ -84,7 +84,7 @@ const getAwardUrl = (img) => {
   if (!img) return "";
   const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
   if (!url) return "";
-  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
 };
 
 const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {

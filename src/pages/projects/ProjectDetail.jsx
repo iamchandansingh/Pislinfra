@@ -121,7 +121,7 @@ const ProjectDetail = () => {
           const formattedAll = res.map(item => {
             const localFallback = localPool.find(lp => slugify(lp.name) === slugify(item.name)) || {};
             const imgs = item.images && item.images.length > 0
-              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`)
+              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `${img.url}`)
               : (localFallback.images || []);
 
             return {

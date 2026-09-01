@@ -24,6 +24,7 @@ import 'swiper/css/pagination';
 
 import projectsData from '../../data/projectsData';
 import completedProjectsData from '../../data/completedProjects';
+import coverageMarkersData from '../../data/coverageMarkersData';
 import HaryanaCompletedMap from './HaryanaCompletedMap';
 import GujaratMap from './GujaratMap';
 
@@ -32,18 +33,42 @@ const GREEN = '#198847';
 const FALLBACK_IMG = 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=600';
 
 const LOCATIONS = {
+  // Gujarat
   'Mundra': { cx: 5.0, cy: 49.0 },
   'Hazira, Surat': { cx: 16.0, cy: 54.0 },
   'Surat': { cx: 16.0, cy: 54.0 },
   'Hazira': { cx: 16.0, cy: 54.0 },
   'Jamnagar': { cx: 7.0, cy: 51.0 },
   'Dahej': { cx: 13.0, cy: 52.0 },
+  'Dahej-02': { cx: 13.0, cy: 52.0 },
   'GIDC Sanand': { cx: 17.5, cy: 48.5 },
   'Sanand': { cx: 17.5, cy: 48.5 },
   'Ahmedabad': { cx: 18.0, cy: 48.5 },
   'Vadodara': { cx: 18.5, cy: 51.0 },
   'Rajkot': { cx: 12.0, cy: 50.0 },
   'Bharuch': { cx: 15.0, cy: 52.5 },
+
+  // Haryana / NCR (Major Warehousing & Industrial Belt)
+  'Pataudi': { cx: 28.3, cy: 30.8 },
+  'Patli': { cx: 28.6, cy: 30.6 },
+  'Tauru': { cx: 28.7, cy: 31.1 },
+  'Farrukhnagar': { cx: 28.4, cy: 30.4 },
+  'Farukhnagar': { cx: 28.4, cy: 30.4 },
+  'Palwal': { cx: 29.5, cy: 31.2 },
+  'Khijuri': { cx: 28.1, cy: 32.2 },
+  'Luhari': { cx: 28.2, cy: 30.9 },
+  'Pathreri': { cx: 28.5, cy: 31.2 },
+  'Jamalpur': { cx: 28.4, cy: 31.0 },
+  'Manesar': { cx: 28.6, cy: 30.7 },
+  'Bilaspur': { cx: 28.5, cy: 31.0 },
+  'Dharuhera': { cx: 28.2, cy: 31.5 },
+  'Gurgaon': { cx: 28.5, cy: 30.5 },
+  'Gurugram': { cx: 28.5, cy: 30.5 },
+  'Faridabad': { cx: 29.5, cy: 31.0 },
+  'Delhi-Mumbai Expressway, Nuh': { cx: 29.0, cy: 31.8 },
+  'Nuh': { cx: 29.0, cy: 31.8 },
+
+  // South India
   'Mappedu, Chennai': { cx: 41.0, cy: 78.0 },
   'Mappedu': { cx: 41.0, cy: 78.0 },
   'Chennai': { cx: 41.0, cy: 78.0 },
@@ -51,31 +76,32 @@ const LOCATIONS = {
   'Tuticorin': { cx: 36.0, cy: 90.5 },
   'Thoothukudi': { cx: 36.0, cy: 90.5 },
   'Hosur': { cx: 33.5, cy: 80.5 },
+  'Bangalore': { cx: 32.5, cy: 79.5 },
+  'Bengaluru': { cx: 32.5, cy: 79.5 },
+  'Hyderabad': { cx: 35.5, cy: 65.0 },
+  'Visakhapatnam': { cx: 54.0, cy: 63.0 },
+
+  // North & East India
   'Najibabad': { cx: 36.0, cy: 29.0 },
   'Noida': { cx: 30.5, cy: 31.5 },
   'Greater Noida': { cx: 30.5, cy: 31.5 },
   'Lucknow': { cx: 43.0, cy: 36.0 },
   'Kanpur': { cx: 40.0, cy: 38.0 },
-  'Dhanbad': { cx: 61.55, cy: 46.10 },
-  'Ranchi': { cx: 58.0, cy: 48.0 },
-  'Jamshedpur': { cx: 63.0, cy: 49.0 },
-  'Pune': { cx: 20.0, cy: 63.0 },
-  'Mumbai': { cx: 17.0, cy: 62.0 },
-  'Nagpur': { cx: 39.0, cy: 53.0 },
-  'Bangalore': { cx: 32.5, cy: 79.5 },
-  'Bengaluru': { cx: 32.5, cy: 79.5 },
-  'Hyderabad': { cx: 35.5, cy: 65.0 },
   'Ludhiana': { cx: 25.50, cy: 23.1 },
   'Neemrana': { cx: 28.0, cy: 32.5 },
   'Jaipur': { cx: 25.5, cy: 36.0 },
   'Bhiwadi': { cx: 28.5, cy: 31.8 },
-  'Gurgaon': { cx: 28.5, cy: 30.5 },
-  'Gurugram': { cx: 28.5, cy: 30.5 },
-  'Faridabad': { cx: 29.5, cy: 31.0 },
+  'Dhanbad': { cx: 61.55, cy: 46.10 },
+  'Ranchi': { cx: 58.0, cy: 48.0 },
+  'Jamshedpur': { cx: 63.0, cy: 49.0 },
   'Kolkata': { cx: 67.0, cy: 50.0 },
+
+  // West & Central India
+  'Pune': { cx: 20.0, cy: 63.0 },
+  'Mumbai': { cx: 17.0, cy: 62.0 },
+  'Nagpur': { cx: 39.0, cy: 53.0 },
   'Indore': { cx: 25.0, cy: 49.0 },
   'Bhopal': { cx: 30.0, cy: 47.0 },
-  'Visakhapatnam': { cx: 54.0, cy: 63.0 },
 };
 
 const STATE_FALLBACKS = {
@@ -367,7 +393,7 @@ const CardProject = ({project,isSelected,onCardClick}) => {
   );
 };
 
-export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: strapiOngoing, completedProjects: strapiCompleted }){
+export default function CoverageMap({ data, mapMarkers = coverageMarkersData, ongoingProjects: strapiOngoing, completedProjects: strapiCompleted }){
   const navigate = useNavigate();
 
   // Dynamic state for ongoing & completed project lists
@@ -376,8 +402,37 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
   const [customLocations, setCustomLocations] = useState({});
 
   useEffect(() => {
+    const normalizeProject = (p, defaultStatus, idx) => {
+      const cityName = (p.city || p.location || '').trim();
+      const stateName = (p.state || '').trim();
+      const isOg = (p.status || defaultStatus).toLowerCase() === 'ongoing';
+      const loc = getLoc({ ...p, city: cityName, state: stateName }, mapMarkers, customLocations);
+      const images = Array.isArray(p.images) && p.images.length > 0 
+        ? p.images 
+        : (p.image ? [p.image] : [FALLBACK_IMG]);
+
+      return {
+        id: p.id || `${isOg ? 'og' : 'comp'}-${idx}`,
+        name: p.name || p.title || 'Project',
+        city: cityName || stateName || 'Default City',
+        location: cityName || stateName || 'Default City',
+        state: stateName || (isOg ? 'Gujarat' : 'Haryana'),
+        status: isOg ? 'Ongoing' : 'Completed',
+        category: p.category || (isOg ? 'Infrastructure' : 'Industrial'),
+        area: p.area || 'N/A',
+        client: p.client || 'Pislinfra Client',
+        scope: p.scope || (isOg ? 'EPC Services' : 'Full Turnkey Construction'),
+        timeline: p.timeline || (isOg ? '2024 - 2026' : 'Completed'),
+        progress: p.progress != null ? p.progress : (isOg ? 75 : 100),
+        cx: p.cx != null ? Number(p.cx) : loc.cx,
+        cy: p.cy != null ? Number(p.cy) : loc.cy,
+        images: images,
+        image: p.image || images[0] || FALLBACK_IMG,
+      };
+    };
+
     if (Array.isArray(mapMarkers) && mapMarkers.length > 0) {
-      const allProjectsFromMarkers = mapMarkers.map(m => {
+      const allProjectsFromMarkers = mapMarkers.map((m, i) => {
         const mName = m.projectName || m.project_name || m.name || '';
         const mCity = m.city || m.location || '';
         const mState = m.state || '';
@@ -414,16 +469,16 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
         if (Array.isArray(m.images) && m.images.length > 1) {
           markerImgs = m.images.map(img => {
             const url = img.url || '';
-            return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+            return url.startsWith('http') ? url : `${url}`;
           });
         } else if (match.images && match.images.length > 0) {
           markerImgs = match.images;
         } else if (Array.isArray(m.images) && m.images.length === 1) {
           const url = m.images[0].url || '';
-          markerImgs = [url.startsWith('http') ? url : `http://localhost:1337${url}`];
+          markerImgs = [url.startsWith('http') ? url : `${url}`];
         } else if (m.image?.url) {
           const url = m.image.url;
-          markerImgs = [url.startsWith('http') ? url : `http://localhost:1337${url}`];
+          markerImgs = [url.startsWith('http') ? url : `${url}`];
         } else if (match.image) {
           markerImgs = [match.image];
         } else {
@@ -431,7 +486,7 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
         }
 
         return {
-          id: m.id || m.documentId || match.id,
+          id: m.id || m.documentId || match.id || `m-${i}`,
           name: mName || match.name || 'Project',
           state: mState || match.state || 'Default State',
           city: mCity || match.city || match.location || 'Default City',
@@ -456,15 +511,20 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
       setOngoingProjects(ogList);
       setCompletedProjects(compList);
     } else {
-      const ogList = (strapiOngoing && strapiOngoing.length > 0) ? strapiOngoing : projectsData;
-      const compList = (strapiCompleted && strapiCompleted.length > 0) ? strapiCompleted : completedProjectsData;
+      // 100% RELIABLE OFFLINE CMS FALLBACK
+      const rawOg = (strapiOngoing && strapiOngoing.length > 0) ? strapiOngoing : projectsData;
+      const rawComp = (strapiCompleted && strapiCompleted.length > 0) ? strapiCompleted : completedProjectsData;
+
+      const ogList = rawOg.map((p, idx) => normalizeProject(p, 'Ongoing', idx));
+      const compList = rawComp.map((p, idx) => normalizeProject(p, 'Completed', idx));
+
       setOngoingProjects(ogList);
       setCompletedProjects(compList);
     }
-  }, [strapiOngoing, strapiCompleted, mapMarkers]);
+  }, [strapiOngoing, strapiCompleted, mapMarkers, customLocations]);
 
-  const gujaratProjectCount = ongoingProjects.filter(p=>p.state==='Gujarat').length;
-  const haryanaProjectCount = completedProjects.filter(p=>p.state==='Haryana').length;
+  const gujaratProjectCount = ongoingProjects.filter(p => (p.state || '').toLowerCase() === 'gujarat').length;
+  const haryanaProjectCount = completedProjects.filter(p => (p.state || '').toLowerCase() === 'haryana').length;
 
   const [activeTab, setActiveTab] = useState('ongoing');
   const [selectedCity, setSelectedCity] = useState(null);
@@ -539,9 +599,10 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
 
   const locationCounts = {};
   filteredProjects.forEach(p => {
-    const key = p.city;
-    if (activeTab === 'ongoing' && p.state === 'Gujarat') return;
-    if (activeTab === 'completed' && p.state === 'Haryana') return;
+    const key = (p.city || p.location || '').trim();
+    if (!key) return;
+    if (activeTab === 'ongoing' && (p.state || '').toLowerCase() === 'gujarat') return;
+    if (activeTab === 'completed' && (p.state || '').toLowerCase() === 'haryana') return;
     if (!locationCounts[key]) locationCounts[key] = [];
     locationCounts[key].push(p);
   });
@@ -557,9 +618,9 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
 
   useEffect(() => {
     if (selectedCity) {
-      const projs = filteredProjects.filter(p => p.city === selectedCity);
+      const projs = filteredProjects.filter(p => (p.city || p.location || '').trim().toLowerCase() === selectedCity.toLowerCase());
       setHighlightedIds(projs.map(p => p.id));
-      const cardIdx = filteredProjects.findIndex(p => p.city === selectedCity);
+      const cardIdx = filteredProjects.findIndex(p => (p.city || p.location || '').trim().toLowerCase() === selectedCity.toLowerCase());
       setTimeout(() => {
         if (swiperRef.current && cardIdx >= 0) swiperRef.current.slideTo(cardIdx);
       }, 80);
@@ -839,7 +900,7 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
                     <Swiper key={swiperKey} onSwiper={s => { swiperRef.current = s; }} modules={[Navigation, Pagination, Autoplay]} spaceBetween={16} slidesPerView={2} slidesPerGroup={2} navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }} pagination={{ clickable: true, dynamicBullets: true }} autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }} breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 1024: { slidesPerView: 2, slidesPerGroup: 2 } }} onBeforeInit={sw => { sw.params.navigation.prevEl = prevRef.current; sw.params.navigation.nextEl = nextRef.current; }} style={{ paddingBottom: '50px' }}>
                       {filteredProjects.map(project => (
                         <SwiperSlide key={`${project.id}-${project.status}`} style={{ height: 'auto' }}>
-                          <div onMouseEnter={() => setHoveredCity(project.city)} onMouseLeave={() => setHoveredCity(null)}>
+                          <div onMouseEnter={() => setHoveredCity(project.city || project.location)} onMouseLeave={() => setHoveredCity(null)}>
                             <CardProject project={project} isSelected={highlightedIds.includes(project.id)} onCardClick={handleCardClick}/>
                           </div>
                         </SwiperSlide>
@@ -857,6 +918,13 @@ export default function CoverageMap({ data, mapMarkers = [], ongoingProjects: st
           </div>
         </div>
       </div>
+
+      {showGujaratMap && (
+        <GujaratMap onClose={() => setShowGujaratMap(false)} />
+      )}
+      {showHaryanaMap && (
+        <HaryanaCompletedMap onClose={() => setShowHaryanaMap(false)} />
+      )}
 
       <style>{`
         @keyframes mmPing{0%{transform:translate(-50%,-50%) scale(0.5);opacity:0.4;}70%{transform:translate(-50%,-50%) scale(2.3);opacity:0;}100%{transform:translate(-50%,-50%) scale(2.3);opacity:0;}}

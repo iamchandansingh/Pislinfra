@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
-import { fetchStrapiData } from '../../services/strapi';
+import defaultClientAppreciations from '../../data/clientAppreciationsData';
+import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import AwardsYearFilter from '../../components/Awards-Componet/AwardsYearFilter';
@@ -22,7 +23,7 @@ const getImageUrl = (imgObj, defaultImg = '') => {
   let url = typeof imgObj === 'string' ? imgObj : (imgObj.url || imgObj.data?.attributes?.url);
   if (!url || typeof url !== 'string') return defaultImg;
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) return url;
-  if (url.startsWith('/uploads')) return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+  if (url.startsWith('/uploads')) return STRAPI_URL ? `${STRAPI_URL}${url}` : (defaultImg || url);
   return url;
 };
 
@@ -35,7 +36,7 @@ const Awards = () => {
   const [activePopupType, setActivePopupType] = useState(null);
   const [pageData, setPageData] = useState(null);
   const [awardsAndCertifications, setAwardsAndCertifications] = useState(defaultAwardsData);
-  const [clientAppreciationsData, setClientAppreciationsData] = useState([]);
+  const [clientAppreciationsData, setClientAppreciationsData] = useState(defaultClientAppreciations);
   const [milestonesData, setMilestonesData] = useState([]);
 
   useEffect(() => {
@@ -228,7 +229,7 @@ const Awards = () => {
   }, [filteredData, awardsAndCertifications]);
 
   const awardsShowcaseData = useMemo(() => {
-    return filteredData.filter(item => item.category !== 'Certification').map(item => {
+    return filteredData.map(item => {
       const images = [];
       if (item.images && Array.isArray(item.images) && item.images.length > 0) {
         images.push(...item.images);
@@ -447,7 +448,7 @@ const Awards = () => {
         ))}
       </div>
 
-      <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={pageData?.heroImage?.url ? `http://127.0.0.1:1337${pageData.heroImage.url}` : pageData?.heroImage?.data?.attributes?.url ? `http://127.0.0.1:1337${pageData.heroImage.data.attributes.url}` : "/images/hero/Awards-Certification.png"} />
+      <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={getImageUrl(pageData?.heroImage, "/images/hero/Awards-Certification.png")} />
       {latestAchievementData && (
         <LatestAchievement 
           achievements={awardsAndCertifications.filter(a => a.category !== 'Certification').slice(0, 5)} 

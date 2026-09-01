@@ -48,7 +48,7 @@ const getUrl = (img) => {
   if (!img) return null;
   const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
   if (!url) return null;
-  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
 };
 
 const SafetyPhilosophy = ({ philosophyItems, title }) => {

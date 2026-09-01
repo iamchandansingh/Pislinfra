@@ -30,7 +30,7 @@ const CompletedProjects = () => {
           const formatted = projData.map(item => {
             const matchLocal = localCompletedProjects.find(lp => slugify(lp.name) === slugify(item.name)) || {};
             const imgs = item.images && item.images.length > 0 
-              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `http://localhost:1337${img.url}`)
+              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `${img.url}`)
               : (matchLocal.images || []);
 
             return {
@@ -64,7 +64,7 @@ const CompletedProjects = () => {
   
   const getImageUrl = (img) => {
     if (!img) return null;
-    return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+    return img.url?.startsWith('http') ? img.url : `${img.url}`;
   };
 
   const totalPages = Math.ceil(projectsList.length / itemsPerPage)

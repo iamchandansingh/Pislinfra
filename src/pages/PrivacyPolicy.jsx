@@ -32,7 +32,7 @@ const PrivacyPolicy = () => {
   const getImageUrl = (imgObj, defaultImg) => {
     if (!imgObj || (!imgObj.url && !imgObj.data?.attributes?.url)) return defaultImg;
     const url = imgObj.url || imgObj.data?.attributes?.url;
-    if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${url}`;
+    if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
     return url;
   };
 

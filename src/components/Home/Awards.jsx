@@ -6,6 +6,7 @@ import { ChevronRight, ArrowRight } from 'lucide-react';
 import { fetchStrapiData } from '../../services/strapi';
 import { getImageUrl } from '../../utils/imageUrl';
 import clientsData from '../../data/clientsData';
+import awardsAndCertifications from '../../data/Awards-&-Certifications';
 
 const getLogo = (companyName) => {
   if (!companyName) return '/images/clients/default-logo.png';
@@ -40,147 +41,17 @@ const getLogo = (companyName) => {
   return client?.logo || '/images/clients/default-logo.png';
 };
 
-const defaultAwards = [
-  { 
-    id: 1, 
-    company: 'Adani', 
-    title: 'Best Safety Conscious Contractor Award', 
-    desc: 'Recognized at MPL-Green PVC Projects, Mundra for outstanding safety performance and continuous commitment towards workplace safety excellence.', 
-    year: '2025', 
-    category: 'Safety Excellence', 
-    location: 'Mundra, Gujarat', 
-    images: [
-      '/images/awards/adani-Mundra-Petrochem-limmited-Jan-25.png',
-      '/images/awards/adani-Mundra-Petrochem-LTd-Green-Pvc-Project.png'
-    ],
-    logo: getLogo('Adani')
-  },
-  { 
-    id: 2, 
-    company: 'Reliance Industries Limited', 
-    title: '2 Million LTI-Free Safe Manhours Achievement', 
-    desc: 'Reliance Jamnagar project achieved 2 million LTI-free safe manhours through exceptional HSE practices and dedicated teamwork.', 
-    year: '2024', 
-    category: 'HSE Excellence', 
-    location: 'Jamnagar, Gujarat', 
-    images: [
-      '/images/awards/Reliance-Jamnagar-HSE.png',
-      '/images/awards/Reliance-Jamnagar-HSE-(2).png'
-    ],
-    logo: getLogo('Reliance')
-  },
-  { 
-    id: 3, 
-    company: 'Adani', 
-    title: '2 Million Safe Man-Hours Award', 
-    desc: 'Adani MPL site successfully achieved 2 million safe man-hours, reflecting strong safety culture and zero-harm commitment.', 
-    year: '2024', 
-    category: 'Safety Milestone', 
-    location: 'Mundra, Gujarat', 
-    images: [
-      '/images/awards/Safety-Excellence-Awards-Adani.png',
-      '/images/awards/Safety-Excellence-Awards-Adani-(2).png',
-      '/images/awards/Mundra-Petrochem-Adani.png'
-    ],
-    logo: getLogo('Adani')
-  },
-  { 
-    id: 4, 
-    company: 'Flipkart', 
-    title: 'Flipkart Safety Excellence Appreciation', 
-    desc: 'PISL Patli Project received appreciation from Flipkart for achieving 1.5 million safe man-hours without any LTI incident.', 
-    year: '2024', 
-    category: 'Safety Appreciation', 
-    location: 'Patli, Haryana', 
-    images: [
-      '/images/awards/NCR-Patli.png'
-    ],
-    logo: getLogo('Flipkart')
-  },
-  { 
-    id: 5, 
-    company: 'Adani', 
-    title: '1 Million Safe Hours Milestone', 
-    desc: 'Mundra Team successfully crossed 1 million safe working hours with consistent dedication towards safety and operational discipline.', 
-    year: '2024', 
-    category: 'Safety Milestone', 
-    location: 'Mundra, Gujarat', 
-    images: [
-      '/images/awards/adani-Mundra-Petrochem-limmited-july2025.png',
-      '/images/awards/adani-Mundra-Petrochem-LTd-Green-Pvc-Project-(2).png'
-    ],
-    logo: getLogo('Adani')
-  },
-  { 
-    id: 6, 
-    company: 'Adani', 
-    title: 'Best Safety Conscious Contractor Recognition', 
-    desc: 'Awarded again at MPL-Green PVC Projects for maintaining exceptional HSE standards and safe execution practices.', 
-    year: '2025', 
-    category: 'Safety Excellence', 
-    location: 'Mundra, Gujarat', 
-    images: [
-      '/images/awards/Safety-Excellence-Awards-Adani-(3).png',
-      '/images/awards/adani-Mundra-Petrochem-LTd-Green-Pvc-Project-(2).png'
-    ],
-    logo: getLogo('Adani')
-  },
-  { 
-    id: 7, 
-    company: 'Prologis', 
-    title: 'National Safety Week Appreciation', 
-    desc: 'PISL PRR Jhamuwas project team was appreciated by the client during the National Safety Week closing ceremony for outstanding safety participation.', 
-    year: '2024', 
-    category: 'Safety Week', 
-    location: 'Jhamuwas, Haryana', 
-    images: [
-      '/images/awards/Celebrated-National-Safety-PRR-Jhamuwas.png',
-      '/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(2).png'
-    ],
-    logo: getLogo('Prologis')
-  },
-  { 
-    id: 8, 
-    company: 'GAR', 
-    title: 'Blood Donation Camp Initiative', 
-    desc: 'Successfully conducted a Blood Donation Camp during the 54th National Safety Week Celebration at PRAGATI Mappedu Chennai Project.', 
-    year: '2024', 
-    category: 'CSR Initiative', 
-    location: 'Chennai, Tamil Nadu', 
-    images: [
-      '/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(3).png',
-      '/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(4).png'
-    ],
-    logo: getLogo('GAR')
-  },
-  { 
-    id: 9, 
-    company: 'Prologis', 
-    title: 'Early Morning Safety Walk', 
-    desc: 'Conducted an early morning safety walk at PRR Jhamuwas Site to strengthen awareness and proactive safety culture.', 
-    year: '2024', 
-    category: 'Safety Initiative', 
-    location: 'Jhamuwas, Haryana', 
-    images: [
-      '/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(5).png',
-      '/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(6).png'
-    ],
-    logo: getLogo('Prologis')
-  },
-  { 
-    id: 10, 
-    company: 'AM/NS India', 
-    title: 'Safety Skid Awareness Program', 
-    desc: 'Organized Safety Skid activity at CRM 02, AMNS Surat to promote hazard awareness and workplace safety engagement.', 
-    year: '2024', 
-    category: 'Safety Training', 
-    location: 'Surat, Gujarat', 
-    images: [
-      '/images/awards/Safety-Excellence-Awards-Adani-(2).png'
-    ],
-    logo: getLogo('AM/NS India')
-  }
-];
+const defaultAwards = awardsAndCertifications.map((item, idx) => ({
+  id: item.id || idx + 1,
+  company: item.company || 'Industry Leaders',
+  title: item.title,
+  desc: item.description || item.desc || '',
+  year: String(item.year || '2025'),
+  category: item.category || 'Excellence',
+  location: item.location || 'India',
+  images: item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['/images/about/sustainable-infra-gold.jpg']),
+  logo: getLogo(item.company)
+}));
 
 const NAVY   = '#0a2a66';
 const ORANGE = '#ff8755';
@@ -216,7 +87,7 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
 
   const getFullUrl = (url) => {
     if (!url) return '';
-    return url.startsWith('http') ? url : `http://localhost:1337${url}`;
+    return url.startsWith('http') ? url : `${url}`;
   };
 
   useEffect(() => {

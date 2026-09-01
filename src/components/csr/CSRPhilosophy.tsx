@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const getImageUrl = (img) => {
   if (!img) return null;
-  return img.url?.startsWith('http') ? img.url : `http://127.0.0.1:1337${img.url}`;
+  return img.url?.startsWith('http') ? img.url : `${img.url}`;
 };
 
 const CSRPhilosophy = ({ title, description, images }) => {

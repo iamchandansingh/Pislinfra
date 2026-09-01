@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
 import { HiMenuAlt3, HiX, HiChevronDown, HiPhone, HiMail, HiLocationMarker } from 'react-icons/hi'
 import { FaBuilding, FaUsers, FaShieldAlt, FaAward, FaHeart } from 'react-icons/fa'
 
@@ -157,7 +157,7 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
             
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-              <img src={headerData.logo?.url ? (headerData.logo.url.startsWith("/") ? `${import.meta.env.VITE_STRAPI_URL || "http://127.0.0.1:1337"}${headerData.logo.url}` : headerData.logo.url) : "/logo.png"} alt="Pislinfra" style={{ height: '45px', width: 'auto' }} />
+              <img src={headerData.logo?.url ? (headerData.logo.url.startsWith("/") ? (STRAPI_URL ? `${STRAPI_URL}${headerData.logo.url}` : "/logo.png") : headerData.logo.url) : "/logo.png"} alt="Pislinfra" style={{ height: '45px', width: 'auto' }} />
               <TypewriterTagline tagline={headerData.tagline} />
             </Link>
 

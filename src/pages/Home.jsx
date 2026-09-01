@@ -15,15 +15,34 @@ import { fetchStrapiData } from '../services/strapi';
 import { getImageUrl } from '../utils/imageUrl';
 import projectsData from '../data/projectsData';
 import completedProjectsData from '../data/completedProjects';
+import coverageMarkersData from '../data/coverageMarkersData';
+import awardsAndCertifications from '../data/Awards-&-Certifications';
+import clientsData from '../data/clientsData';
+
+const defaultOngoing = projectsData.map(p => ({
+  ...p,
+  city: p.city || p.location || 'Gujarat',
+  location: p.location || p.city || 'Gujarat',
+  image: p.image || (p.images && p.images[0]) || '',
+  images: p.images || (p.image ? [p.image] : [])
+}));
+
+const defaultCompleted = completedProjectsData.map(p => ({
+  ...p,
+  city: p.city || p.location || 'Haryana',
+  location: p.location || p.city || 'Haryana',
+  image: p.image || (p.images && p.images[0]) || '',
+  images: p.images || (p.image ? [p.image] : [])
+}));
 
 const Home = () => {
   const [data, setData] = useState(null);
-  const [ongoing, setOngoing] = useState(projectsData);
-  const [completed, setCompleted] = useState(completedProjectsData);
+  const [ongoing, setOngoing] = useState(defaultOngoing);
+  const [completed, setCompleted] = useState(defaultCompleted);
   const [loading, setLoading] = useState(true);
-  const [clients, setClients] = useState([]);
-  const [awards, setAwards] = useState([]);
-  const [markers, setMarkers] = useState([]);
+  const [clients, setClients] = useState(clientsData);
+  const [awards, setAwards] = useState(awardsAndCertifications);
+  const [markers, setMarkers] = useState(coverageMarkersData);
   
   useEffect(() => {
     const loadData = async () => {
@@ -108,14 +127,14 @@ const Home = () => {
 
   const homeSeoData = {
     contentType: 'page',
-    title: data?.seo?.seoTitle || 'Pislinfra | Industrial Infrastructure & Turnkey EPC Company India',
-    seoTitle: data?.seo?.seoTitle || 'Pislinfra | Premier Industrial Infrastructure, Warehouse & EPC Company India',
-    seoDescription: data?.seo?.seoDescription || 'Pislinfra (Pragati Infra Solutions) is India\'s leading industrial infrastructure, warehouse construction, and turnkey EPC company with 16M+ sq ft delivered across India.',
-    seoKeywords: data?.seo?.seoKeywords || 'industrial construction company India, warehouse EPC contractor, PEB warehouse construction, logistics park builder, turnkey civil engineering India, Pislinfra, Pragati Infra Solutions',
+    title: data?.seo?.seoTitle || 'Pislinfra | Industrial Infrastructure & EPC Company India',
+    seoTitle: data?.seo?.seoTitle || 'Pislinfra | Industrial Infrastructure & EPC Company India',
+    seoDescription: data?.seo?.seoDescription || 'Pislinfra delivers warehousing, logistics parks, and industrial construction solutions, with 17+ years of experience and 16M+ sq. ft. delivered.',
+    seoKeywords: data?.seo?.seoKeywords || 'Pislinfra, industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, turnkey EPC company India, PEB warehouse construction, Grade-A warehouse builder, industrial park developers NCR, civil engineering contractors India, factory shed construction, pre-engineered buildings India, commercial construction company, BTS warehouse developers, logistics park infrastructure, heavy industrial construction, Pragati Infra Solutions, warehouse contractors Delhi NCR Haryana Gujarat',
     slug: '',
     canonicalUrl: 'https://pislinfra.com/',
-    ogTitle: data?.seo?.ogTitle || 'Pislinfra - Turnkey Industrial Infrastructure & EPC Company India',
-    ogDescription: data?.seo?.ogDescription || 'Leading industrial construction company specializing in warehousing, logistics parks & EPC solutions across India. 16M+ sq ft delivered.',
+    ogTitle: data?.seo?.ogTitle || 'Pislinfra | Industrial Infrastructure & EPC Company India',
+    ogDescription: data?.seo?.ogDescription || 'Pislinfra delivers warehousing, logistics parks, and industrial construction solutions, with 17+ years of experience and 16M+ sq. ft. delivered.',
     ogImage: data?.seo?.ogImage || 'https://pislinfra.com/logo.png',
     ogType: 'website',
     twitterTitle: data?.seo?.twitterTitle || 'Pislinfra | Industrial & Warehouse Infrastructure',
