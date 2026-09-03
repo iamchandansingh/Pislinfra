@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <tr>
                                             <td>
                                                 <div style='font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;'>
-                                                    Pislinfra<span style='color: #ff904e;'>.</span>
+                                                    <img src='https://pislinfra.com/White%20Logo.png' alt='Pislinfra' style='height: 35px; width: auto; display: block;' />
                                                 </div>
                                                 <div style='font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; font-weight: 600;'>
                                                     Industrial & Infrastructure EPC
