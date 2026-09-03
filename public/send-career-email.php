@@ -107,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $adminEmail = "careers@pislinfra.com";
     $cc_recipients = [
         "aayush@pislinfra.com",
-        "rohitashv@pislinfra.com"
     ];
     $fromEmail = "info@pislinfra.com"; // SMTP authenticated email
     $websiteUrl = "https://pislinfra.com";
@@ -309,7 +308,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     Auto-generated notification from the <strong style='color: #ffffff;'>Pislinfra</strong> Careers Portal.
                                 </p>
                                 <p style='margin: 0; font-size: 11.5px; color: #64748b;'>
-                                    CC: aayush@pislinfra.com, rohitashv@pislinfra.com | Gurugram, Haryana, India
+                                    CC: aayush@pislinfra.com | Gurugram, Haryana, India
                                 </p>
                             </td>
                         </tr>
