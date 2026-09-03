@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url>
+    <loc>https://pislinfra.com/careers</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Careers.png</image:loc>
+      <image:title>Careers at Pislinfra - 27+ Current Engineering &amp; Construction Job Openings</image:title>
+      <image:caption>Join Pislinfra engineering, project management, and construction leadership teams across India.</image:caption>
+      <image:geo_location>Gurugram, Haryana, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+</urlset>

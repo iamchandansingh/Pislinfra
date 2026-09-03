@@ -98,14 +98,17 @@ const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = nu
           overflow: 'hidden',
         }}>
           {/* Background Image that scales on hover */}
-          <div 
+          <img 
             className="project-card-image"
+            src={coverImage}
+            alt={project.name || "Project"}
+            loading="lazy"
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundImage: `url(${coverImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
             }}
           />
           

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import { fetchStrapiData } from '../../services/strapi'
 import Preloader from '../../components/common/Preloader'
 import localCompletedProjects from '../../data/completedProjects'
@@ -13,12 +12,11 @@ const CompletedProjects = () => {
   const [pageData, setPageData] = useState(null)
   const [projectsList, setProjectsList] = useState(localCompletedProjects)
   const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 100
   
   useEffect(() => {
     let isMounted = true;
     const getData = async () => {
+      setLoading(true);
       try {
         const pData = await fetchStrapiData('completed-page?populate=seo,heroImage');
         if (pData && isMounted) {
@@ -30,7 +28,7 @@ const CompletedProjects = () => {
           const formatted = projData.map(item => {
             const matchLocal = localCompletedProjects.find(lp => slugify(lp.name) === slugify(item.name)) || {};
             const imgs = item.images && item.images.length > 0 
-              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `${img.url}`)
+              ? item.images.map(img => { const optimal = img.formats?.medium?.url || img.formats?.small?.url || img.url; return optimal?.startsWith('http') ? optimal : optimal })
               : (matchLocal.images || []);
 
             return {
@@ -67,11 +65,6 @@ const CompletedProjects = () => {
     return img.url?.startsWith('http') ? img.url : `${img.url}`;
   };
 
-  const totalPages = Math.ceil(projectsList.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage
-  const currentProjects = projectsList.slice(startIndex, endIndex)
-
   const heroTitle = pageData?.heroTitle || "Completed Projects";
   const heroSubtitle = pageData?.heroSubtitle || "Successfully delivered infrastructure projects across India";
   const heroBreadcrumb = pageData?.heroBreadcrumb || "Projects / Completed";
@@ -98,11 +91,6 @@ const CompletedProjects = () => {
     organizationSchema: true,
     tags: ['Projects', 'Completed', 'Construction', 'Industrial', 'Portfolio'],
   };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
 
   return (
     <div>
@@ -153,32 +141,11 @@ const CompletedProjects = () => {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="projects-grid">
-            {currentProjects.map((project) => (
+            {projectsList.map((project) => (
               <ProjectCard key={project.id} project={project} type="completed" />
             ))}
           </div>
-
-          {totalPages > 1 && (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '48px' }}>
-              <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
-                style={{ width: '40px', height: '40px', borderRadius: '8px', border: '1px solid #e5e7eb', backgroundColor: currentPage === 1 ? '#f9fafb' : 'white', color: currentPage === 1 ? '#d1d5db' : '#374151', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                <HiChevronLeft style={{ fontSize: '18px' }} />
-              </button>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button key={page} onClick={() => handlePageChange(page)}
-                  style={{ width: '40px', height: '40px', borderRadius: '8px', border: page === currentPage ? '2px solid #ff8755' : '1px solid #e5e7eb', backgroundColor: page === currentPage ? '#fff5f0' : 'white', color: page === currentPage ? '#ff8755' : '#374151', fontWeight: page === currentPage ? '700' : '500', fontSize: '14px', cursor: 'pointer' }}
-                >
-                  {page}
-                </button>
-              ))}
-              <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}
-                style={{ width: '40px', height: '40px', borderRadius: '8px', border: '1px solid #e5e7eb', backgroundColor: currentPage === totalPages ? '#f9fafb' : 'white', color: currentPage === totalPages ? '#d1d5db' : '#374151', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                <HiChevronRight style={{ fontSize: '18px' }} />
-              </button>
-            </div>
-          )}
+          
         </div>
       </section>
 

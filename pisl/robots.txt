@@ -1,0 +1,82 @@
+# Robots.txt for Pislinfra
+# Optimized for Google, Google Images, Google Assistant, Bing, and AI Search Engines
+
+User-agent: *
+Allow: /
+Allow: /solutions/
+Allow: /solutions/industrial
+Allow: /solutions/infrastructure
+Allow: /solutions/logistic
+Allow: /solutions/warehouse
+Allow: /blog/
+Allow: /blog/*
+Allow: /projects/
+Allow: /projects/*
+Allow: /project/
+Allow: /project/*
+Allow: /about/
+Allow: /about/*
+Allow: /careers
+Allow: /contact-us
+Allow: /annual-reports
+Allow: /coverage
+Allow: /sitemap
+Allow: /reports/
+Allow: /reports/*
+
+# Specific Image Crawlers
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
+Allow: /assets/
+Allow: /reports/
+Allow: /dist/assets/
+
+# Search Engine & Assistant Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Disallow admin & sensitive endpoints
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cdn-cgi/
+Disallow: /wp-admin/
+
+# Disallow search query duplicate parameters
+Disallow: /search
+Disallow: /*?search=
+Disallow: /*?sort=
+Disallow: /*?filter=
+
+# XML Sitemaps and RSS Feeds for Immediate Googlebot Discovery
+Sitemap: https://pislinfra.com/sitemap.xml
+Sitemap: https://pislinfra.com/sitemap-careers.xml
+Sitemap: https://pislinfra.com/sitemap-clients.xml
+Sitemap: https://pislinfra.com/sitemap-documents.xml
+Sitemap: https://pislinfra.com/sitemap-case-studies.xml
+Sitemap: https://pislinfra.com/sitemap-about.xml
+Sitemap: https://pislinfra.com/sitemap-projects.xml
+Sitemap: https://pislinfra.com/sitemap-solutions.xml
+Sitemap: https://pislinfra.com/sitemap-blogs.xml
+Sitemap: https://pislinfra.com/rss.xml

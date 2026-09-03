@@ -30,7 +30,7 @@ const OngoingProjects = () => {
           const formatted = projData.map(item => {
             const matchLocal = localProjectsData.find(lp => slugify(lp.name) === slugify(item.name)) || {};
             const imgs = item.images && item.images.length > 0 
-              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `${img.url}`)
+              ? item.images.map(img => { const optimal = img.formats?.medium?.url || img.formats?.small?.url || img.url; return optimal?.startsWith('http') ? optimal : optimal })
               : (matchLocal.images || []);
 
             return {
