@@ -1145,17 +1145,17 @@ const ExcellenceShowcase = ({
                          ...item,
                          name: item.title,
                          description: item.desc,
-                         image: item.images && item.images.length > 0 ? item.images[0] : 'https://placehold.co/400x300?text=No+Image',
-                         gallery: item.images && item.images.length > 1 ? item.images.slice(1) : []
+                         image: itemImages && itemImages.length > 0 ? itemImages[0] : 'https://placehold.co/400x300?text=No+Image',
+                         gallery: itemImages && itemImages.length > 1 ? itemImages.slice(1) : []
                        });
                      }
                   }}
                 >
                   {/* Image Header inside the Card */}
-                  {item.images && item.images.length > 0 && (
+                  {itemImages && itemImages.length > 0 && (
                     <div style={{ width: '100%', height: '300px', backgroundColor: '#F9FAFB', overflow: 'hidden', borderBottom: '1px solid #F3F4F6' }}>
                       <img 
-                        src={itemImages && itemImages[0] ? itemImages[0] : item.images[0]} 
+                        src={itemImages[0]} 
                         alt={`${item.title || 'Client Appreciation'} - ${item.company || 'Industry Partner'} Recognition ${item.year || ''} | Pislinfra`} 
                         title={`${item.title || 'Recognition'} - ${item.company || ''}`}
                         loading="lazy"
