@@ -40,6 +40,7 @@ const CaseStudyDetail = () => {
         const csData = await fetchStrapiData(`case-studies?filters[slug][$eq]=${slug}&populate=*`);
         if (csData && csData.length > 0) {
           const item = csData[0];
+          const matchLocal = caseStudies.find(lc => lc.slug === item.slug) || {};
           setCs({
             id: item.documentId || item.id,
             slug: item.slug,
@@ -55,10 +56,10 @@ const CaseStudyDetail = () => {
             challenges: item.challenges || [],
             achievements: item.achievements || [],
             conclusion: item.conclusion,
-            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `${item.image.url}`) : null,
-            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `${item.engagementImage.url}`) : null,
-            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `${item.challengesImage.url}`) : null,
-            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `${item.achievementsImage.url}`) : null,
+            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `${item.image.url}`) : matchLocal.image || null,
+            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `${item.engagementImage.url}`) : matchLocal.engagementImage || null,
+            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `${item.challengesImage.url}`) : matchLocal.challengesImage || null,
+            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `${item.achievementsImage.url}`) : matchLocal.achievementsImage || null,
             seo: item.seo,
           });
         } else {
