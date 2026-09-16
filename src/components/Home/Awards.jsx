@@ -272,7 +272,7 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
         {/* MOBILE: Grid */}
         <div className="awards-all-mobile" style={{ display: 'none' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-            {awards.map((award) => (
+            {awards.slice(0, 5).map((award) => (
               <div 
                 key={award.id} 
                 onClick={() => navigate('/about/awards')}

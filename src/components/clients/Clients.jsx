@@ -112,6 +112,7 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
           {tripleClients.map((client, idx) => (
             <motion.div
               key={`${client.id}-${idx}`}
+              className="client-logo-card"
               whileHover={{ 
                 y: -4,
                 boxShadow: '0 12px 28px rgba(0,0,0,0.10)',
@@ -134,6 +135,7 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
               }}
             >
               <img
+                className="client-logo-img"
                 src={client.logo}
                 alt={`${client.name} - Pislinfra Industrial Client & Warehousing Partner`}
                 title={`${client.name} - Turnkey Infrastructure & Construction Client of Pislinfra`}
@@ -210,6 +212,16 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
         }
         @media (max-width: 600px) {
           .clients-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .client-logo-card {
+            min-width: 100px !important;
+            max-width: 100px !important;
+            min-height: 60px !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+          }
+          .client-logo-img {
+            max-height: 35px !important;
+          }
         }
       `}</style>
     </section>
