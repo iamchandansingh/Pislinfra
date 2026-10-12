@@ -43,27 +43,6 @@ const projectsData = [
   },
   {
     "id": 3,
-    "documentId": "hz2fwqbqv8txit8nef7yavfu",
-    "category": "Industrial",
-    "name": "Reliance Solar Unit Manufacturing Plant",
-    "location": "Jamnagar",
-    "state": "Gujarat",
-    "area": "21.09 Lakh Sq. ft.",
-    "client": "Reliance New Solar Energy Limited",
-    "timeline": "2022 - WIP",
-    "status": "Ongoing",
-    "scope": "Excavation, Concreting, Shuttering, Reinforcement",
-    "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_fec39f116d.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_318cf6a93d.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_5_ba5057d1f1.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_9fb455d2e9.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_761b33d651.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_6_dfe6b76dab.png"
-    ]
-  },
-  {
-    "id": 4,
     "documentId": "ywzyrpkgrji1iuhjn72mt0kd",
     "category": "Warehousing",
     "name": "VPW Logistics Park",
@@ -84,7 +63,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 5,
+    "id": 4,
     "documentId": "amba9u870vie2hx8hmse641h",
     "category": "Bio Energy",
     "name": "CBG Plant",
@@ -105,26 +84,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 6,
-    "documentId": "wqd7gr6n1eodf36348atvtn4",
-    "category": "Institutional",
-    "name": "CPWD – IIT ISM Campus Project",
-    "location": "Dhanbad",
-    "state": "Jharkhand",
-    "area": "1.82 Lakh Sq. ft",
-    "client": "IIT ISM Dhanbad (CPWD)",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development",
-    "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_0af1e34235.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_1ed9fbb57a.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_99b906acc0.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_006c5ffb41.png"
-    ]
-  },
-  {
-    "id": 7,
+    "id": 5,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
     "category": "Industrial",
     "name": "Reliance DMD Plant",
@@ -145,7 +105,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 8,
+    "id": 6,
     "documentId": "n3hwjilrop1oleltf6fwjxmx",
     "category": "Industrial",
     "name": "AMNS SSC GIDC Project",
@@ -166,7 +126,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 9,
+    "id": 7,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
@@ -187,45 +147,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 10,
-    "documentId": "j79vn6ntpnv4dk7hdwx16ars",
-    "category": "Warehousing",
-    "name": "PMG Logistics Park",
-    "location": "Kolathur, Bangalore",
-    "state": "Karnataka",
-    "area": "5.79 Lakh Sq. ft",
-    "client": "PMG",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_PISL_f570401ce9.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_PISL_40549a305b.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_PISL_eaba1bf8da.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_PISL_3d32e8072c.jpg"
-    ]
-  },
-  {
-    "id": 11,
-    "documentId": "jaoghcghfrr1twfmyl3x799k",
-    "category": "Warehousing",
-    "name": "HANNO ONE Logistics Park",
-    "location": "Hosur",
-    "state": "Tamil Nadu",
-    "area": "3.43 Lakh Sq. Ft",
-    "client": "Hanno One Warehouse Pvt. Ltd.",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-    ]
-  },
-  {
-    "id": 12,
+    "id": 8,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -246,7 +168,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 13,
+    "id": 9,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -265,7 +187,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 10,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
@@ -286,7 +208,66 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
+    "id": 11,
+    "documentId": "j79vn6ntpnv4dk7hdwx16ars",
+    "category": "Warehousing",
+    "name": "PMG Logistics Park",
+    "location": "Kolathur, Bangalore",
+    "state": "Karnataka",
+    "area": "5.79 Lakh Sq. ft",
+    "client": "PMG",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+    "images": [
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_PISL_f570401ce9.jpg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_PISL_40549a305b.jpg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_PISL_eaba1bf8da.jpg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_PISL_3d32e8072c.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "documentId": "wqd7gr6n1eodf36348atvtn4",
+    "category": "Institutional",
+    "name": "CPWD – IIT ISM Campus Project",
+    "location": "Dhanbad",
+    "state": "Jharkhand",
+    "area": "1.82 Lakh Sq. ft",
+    "client": "IIT ISM Dhanbad (CPWD)",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development",
+    "images": [
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_0af1e34235.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_1ed9fbb57a.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_99b906acc0.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_006c5ffb41.png"
+    ]
+  },
+  {
+    "id": 13,
+    "documentId": "hz2fwqbqv8txit8nef7yavfu",
+    "category": "Industrial",
+    "name": "Reliance Solar Unit Manufacturing Plant",
+    "location": "Jamnagar",
+    "state": "Gujarat",
+    "area": "21.09 Lakh Sq. ft.",
+    "client": "Reliance New Solar Energy Limited",
+    "timeline": "2022 - WIP",
+    "status": "Ongoing",
+    "scope": "Excavation, Concreting, Shuttering, Reinforcement",
+    "images": [
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_fec39f116d.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_318cf6a93d.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_5_ba5057d1f1.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_9fb455d2e9.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_761b33d651.png",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_6_dfe6b76dab.png"
+    ]
+  },
+  {
+    "id": 14,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
@@ -305,7 +286,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
@@ -322,6 +303,25 @@ const projectsData = [
       "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
       "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
       "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "jaoghcghfrr1twfmyl3x799k",
+    "category": "Warehousing",
+    "name": "HANNO ONE Logistics Park",
+    "location": "Hosur",
+    "state": "Tamil Nadu",
+    "area": "3.43 Lakh Sq. Ft",
+    "client": "Hanno One Warehouse Pvt. Ltd.",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+    "images": [
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
     ]
   }
 ];

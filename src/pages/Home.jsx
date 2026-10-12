@@ -49,8 +49,8 @@ const Home = () => {
       try {
         const [homeRes, ongoingRes, completedRes, clientsRes, awardsRes, markersRes] = await Promise.all([
           fetchStrapiData('home-page?populate=*'),
-          fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'),
-          fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'),
+          fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100'),
+          fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100'),
           fetchStrapiData('clients?pagination[pageSize]=100&sort=order:asc'),
           fetchStrapiData('awards?populate=*&sort=order:asc'),
           fetchStrapiData('coverage-markers?populate=*&pagination[pageSize]=100')
@@ -62,7 +62,11 @@ const Home = () => {
         const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
         if (ongoingRes && Array.isArray(ongoingRes) && ongoingRes.length > 0) {
-          setOngoing(ongoingRes.map(p => {
+          const filteredOngoing = ongoingRes.filter(p => {
+            const n = (p.name || p.title || '').toLowerCase();
+            return !n.includes('humsafar') && !n.includes('logistics park llp');
+          });
+          setOngoing(filteredOngoing.map(p => {
             const pName = p.name || p.title || '';
             const matchLocal = projectsData.find(lp => {
               const sL = slugify(lp.name);
@@ -98,7 +102,7 @@ const Home = () => {
         }
         
         if (completedRes && Array.isArray(completedRes) && completedRes.length > 0) {
-          setCompleted(completedRes.map(p => {
+          const mappedCompleted = completedRes.map(p => {
             const pName = p.name || p.title || '';
             const matchLocal = completedProjectsData.find(lp => {
               const sL = slugify(lp.name);
@@ -130,7 +134,11 @@ const Home = () => {
               images: finalImages,
               image: finalImages[0]
             };
-          }));
+          });
+
+          const existingSlugs = new Set(mappedCompleted.map(p => slugify(p.name)));
+          const missingCompleted = defaultCompleted.filter(p => !existingSlugs.has(slugify(p.name)));
+          setCompleted([...mappedCompleted, ...missingCompleted]);
         }
         
         if (clientsRes && Array.isArray(clientsRes)) setClients(clientsRes);

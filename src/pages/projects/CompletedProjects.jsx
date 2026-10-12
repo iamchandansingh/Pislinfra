@@ -24,7 +24,7 @@ const CompletedProjects = () => {
           setPageData(pData);
         }
 
-        const projData = await fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
+        const projData = await fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100');
         if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
           const formatted = projData.map(item => {
             const matchLocal = localCompletedProjects.find(lp => {
@@ -52,7 +52,10 @@ const CompletedProjects = () => {
               images: imgs.length > 0 ? imgs : (matchLocal.images || [])
             };
           });
-          setProjectsList(formatted);
+
+          const existingSlugs = new Set(formatted.map(p => slugify(p.name)));
+          const missingCompleted = localCompletedProjects.filter(p => !existingSlugs.has(slugify(p.name)));
+          setProjectsList([...formatted, ...missingCompleted]);
         }
       } catch (err) {
         console.error("Error fetching completed projects:", err);

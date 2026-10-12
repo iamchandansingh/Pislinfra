@@ -16,8 +16,8 @@ const CANDIDATE_URLS = [
 ];
 
 const ENDPOINTS = [
-  'ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc',
-  'completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc',
+  'ongoing-projects?populate=*&pagination[pageSize]=100',
+  'completed-projects?populate=*&pagination[pageSize]=100',
   'home-page?populate=*',
   'clients?pagination[pageSize]=100&sort=order:asc',
   'awards?populate=*&sort=order:asc',
@@ -81,9 +81,13 @@ async function syncBackup() {
         const baseKey = ep.split('?')[0];
         backup[baseKey] = data;
 
-        // If ongoing-projects, update projectsData.js
+        // If ongoing-projects, update projectsData.js (16 projects)
         if (ep.includes('ongoing-projects') && Array.isArray(data) && data.length > 0) {
-          const formattedOg = data.map((p, idx) => {
+          const filteredOg = data.filter(p => {
+            const n = (p.name || p.title || '').toLowerCase();
+            return !n.includes('humsafar') && !n.includes('logistics park llp');
+          });
+          const formattedOg = filteredOg.map((p, idx) => {
             const imgs = (p.images || []).map(img => img.formats?.large?.url || img.formats?.medium?.url || img.url).filter(Boolean);
             return {
               id: idx + 1,
@@ -104,7 +108,7 @@ async function syncBackup() {
           console.log(`✅ Synced ongoing projects (${formattedOg.length}) to projectsData.js`);
         }
 
-        // If completed-projects, update completedProjects.js
+        // If completed-projects, update completedProjects.js (27 projects)
         if (ep.includes('completed-projects') && Array.isArray(data) && data.length > 0) {
           const formattedComp = data.map((p, idx) => {
             const imgs = (p.images || []).map(img => img.formats?.large?.url || img.formats?.medium?.url || img.url).filter(Boolean);
@@ -123,8 +127,23 @@ async function syncBackup() {
               images: imgs
             };
           });
-          fs.writeFileSync(COMP_PATH, `const completedProjects = ${JSON.stringify(formattedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
-          console.log(`✅ Synced completed projects (${formattedComp.length}) to completedProjects.js`);
+
+          let existingComp = [];
+          if (fs.existsSync(COMP_PATH)) {
+            try {
+              const compContent = fs.readFileSync(COMP_PATH, 'utf8');
+              const jsonMatch = compContent.match(/const\s+completedProjects\s*=\s*(\[[\s\S]*?\]);/);
+              if (jsonMatch) existingComp = JSON.parse(jsonMatch[1]);
+            } catch (e) {}
+          }
+          const existingSlugs = new Set(formattedComp.map(p => (p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
+          const missing = existingComp.filter(p => !existingSlugs.has((p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
+          const allComp = [...formattedComp, ...missing].map((p, idx) => ({ ...p, id: idx + 1 }));
+
+          fs.writeFileSync(COMP_PATH, `const completedProjects = ${JSON.stringify(allComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
+          backup[ep] = allComp;
+          backup[baseKey] = allComp;
+          console.log(`✅ Synced completed projects (${allComp.length}) to completedProjects.js`);
         }
       }
     } catch (err) {

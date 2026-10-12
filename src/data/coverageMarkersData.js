@@ -794,13 +794,13 @@ const coverageMarkersData = [
     "documentId": "29e7205ef94f0eca0c28fdcb",
     "projectName": "HANNO ONE Logistics Park",
     "projectType": "Ongoing",
-    "cx": 30.5,
-    "cy": 85.5,
+    "cx": 33.5,
+    "cy": 80.5,
     "createdAt": "2026-08-29T03:59:03.261Z",
     "updatedAt": "2026-08-29T03:59:03.261Z",
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
-    "city": "Coimbatore",
+    "city": "Hosur",
     "images": [
       {
         "id": 303,
@@ -879,7 +879,7 @@ const coverageMarkersData = [
     "id": 651,
     "documentId": "bc93f9a6bdb0b8008001b7e6",
     "projectName": "HIGHWAY HUMSAFAR",
-    "projectType": "Ongoing",
+    "projectType": "Completed",
     "cx": 27,
     "cy": 42,
     "createdAt": "2026-08-29T03:59:03.261Z",
@@ -1320,7 +1320,7 @@ const coverageMarkersData = [
     "id": 652,
     "documentId": "f215ea000abb0c7a037cbbc3",
     "projectName": "Logistics Park LLP",
-    "projectType": "Ongoing",
+    "projectType": "Completed",
     "cx": 25.5,
     "cy": 23.1,
     "createdAt": "2026-08-29T03:59:03.261Z",
@@ -4063,6 +4063,46 @@ const coverageMarkersData = [
         "createdAt": "2026-08-23T08:20:20.434Z",
         "updatedAt": "2026-08-26T12:45:36.704Z",
         "publishedAt": "2026-08-23T08:20:20.434Z"
+      }
+    ]
+  },
+  {
+    "id": 670,
+    "documentId": "bp21qkt8v34g0l0gbdipv1o1",
+    "projectName": "Crestway Projects Private Limited",
+    "projectType": "Ongoing",
+    "cx": 28.4,
+    "cy": 30.4,
+    "createdAt": "2026-08-29T03:59:03.261Z",
+    "updatedAt": "2026-08-29T03:59:03.261Z",
+    "publishedAt": "2026-08-29T03:59:03.261Z",
+    "state": "Haryana",
+    "city": "Farrukhnagar",
+    "images": [
+      {
+        "id": 901,
+        "name": "large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg"
+      }
+    ]
+  },
+  {
+    "id": 671,
+    "documentId": "s9c61ng7zi9ht7st5r2gjj50",
+    "projectName": "TR Building Township Jamnagar",
+    "projectType": "Ongoing",
+    "cx": 7.0,
+    "cy": 51.0,
+    "createdAt": "2026-08-29T03:59:03.261Z",
+    "updatedAt": "2026-08-29T03:59:03.261Z",
+    "publishedAt": "2026-08-29T03:59:03.261Z",
+    "state": "Gujarat",
+    "city": "Jamnagar",
+    "images": [
+      {
+        "id": 902,
+        "name": "large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg"
       }
     ]
   }

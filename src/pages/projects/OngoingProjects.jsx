@@ -26,9 +26,13 @@ const OngoingProjects = () => {
           setPageData(pData);
         }
 
-        const projData = await fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
+        const projData = await fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100');
         if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
-          const formatted = projData.map(item => {
+          const filtered = projData.filter(item => {
+            const n = (item.name || item.title || '').toLowerCase();
+            return !n.includes('humsafar') && !n.includes('logistics park llp');
+          });
+          const formatted = filtered.map(item => {
             const matchLocal = localProjectsData.find(lp => {
               const sL = slugify(lp.name);
               const sI = slugify(item.name);

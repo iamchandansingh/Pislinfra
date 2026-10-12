@@ -70,6 +70,36 @@ export const subscribeCmsStatus = (callback) => {
 export const isCmsOffline = () => cmsOfflineState;
 
 // ==========================================
+// 2.1 CACHE VERSIONING & INSTANT PURGE
+// (Busts legacy browser cache so visitors instantly get latest projects)
+// ==========================================
+export const CACHE_VERSION = 'v4_2026_10_12';
+
+if (typeof window !== 'undefined' && window.localStorage) {
+  try {
+    const currentVersion = window.localStorage.getItem('pisl_cache_version');
+    if (currentVersion !== CACHE_VERSION) {
+      console.log('🔄 New Pislinfra version detected. Purging legacy cache...');
+      const keysToRemove = [];
+      for (let i = 0; i < window.localStorage.length; i++) {
+        const k = window.localStorage.key(i);
+        if (k && (k.startsWith('pisl_cache_') || k.startsWith('strapi_'))) {
+          keysToRemove.push(k);
+        }
+      }
+      keysToRemove.forEach(k => window.localStorage.removeItem(k));
+      window.localStorage.setItem('pisl_cache_version', CACHE_VERSION);
+
+      if (window.indexedDB) {
+        try {
+          window.indexedDB.deleteDatabase('Pislinfra_Offline_Engine');
+        } catch (e) {}
+      }
+    }
+  } catch (e) {}
+}
+
+// ==========================================
 // 3. ENTERPRISE INDEXEDDB HIGH-CAPACITY STORAGE
 // (Handles 12,000+ blogs without 5MB limits)
 // ==========================================
@@ -149,6 +179,14 @@ const getLocalBackup = (endpoint) => {
 export const fetchStrapiData = async (endpoint, options = {}) => {
   const { forceFresh = false } = options;
 
+  // Normalize endpoint: Strip heavy sort=createdAt:* when querying Strapi because Render free tier times out on sorting populated relations
+  const cleanEndpoint = endpoint
+    .replace(/([?&])sort=createdAt:(asc|desc)(&|$)/, '$1')
+    .replace(/\?$/, '')
+    .replace(/&&+/g, '&');
+
+  const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes fresh cache limit
+
   // 1. LIVE NETWORK FETCH FIRST (Always prioritize fresh data from Strapi CMS)
   const candidateUrls = isLocalhost
     ? ['http://localhost:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
@@ -158,10 +196,10 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
     if (!baseUrl) continue;
     try {
       const controller = new AbortController();
-      const timeoutMs = baseUrl.includes('localhost') ? 3000 : 10000;
+      const timeoutMs = baseUrl.includes('localhost') ? 3000 : 7000;
       const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-      const response = await fetch(`${baseUrl}/api/${endpoint}`, {
+      const response = await fetch(`${baseUrl}/api/${cleanEndpoint}`, {
         signal: controller.signal,
         headers: {
           'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -175,21 +213,28 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
         if (json && json.data) {
           const cleanData = sanitizeBrandText(json.data);
           memoryCache.set(endpoint, cleanData);
+          memoryCache.set(cleanEndpoint, cleanData);
           lastFetchedTime.set(endpoint, Date.now());
+          lastFetchedTime.set(cleanEndpoint, Date.now());
+          saveToIDB(cleanEndpoint, cleanData);
           saveToIDB(endpoint, cleanData);
+
           if (typeof window !== 'undefined' && window.localStorage) {
             try { 
+              window.localStorage.setItem(`pisl_cache_${cleanEndpoint}`, JSON.stringify(cleanData));
               window.localStorage.setItem(`pisl_cache_${endpoint}`, JSON.stringify(cleanData));
+              window.localStorage.setItem(`pisl_cache_time_${cleanEndpoint}`, Date.now().toString());
               window.localStorage.setItem(`pisl_cache_time_${endpoint}`, Date.now().toString());
             } catch (e) {}
           }
+
           if (typeof window !== 'undefined') {
             if (isLocalhost) {
               try {
                 fetch('/__api/save-main-backup', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ endpoint, data: cleanData })
+                  body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
                 }).catch(() => {});
               } catch (e) {}
             } else {
@@ -198,7 +243,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
                 fetch('/sync-backup.php', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ endpoint, data: cleanData })
+                  body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
                 }).catch(() => {});
               } catch (e) {}
             }
@@ -218,46 +263,56 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
   if (memoryCache.has(endpoint)) {
     return memoryCache.get(endpoint);
   }
-
-  // 3. FALLBACK: LocalStorage Cache
-  if (typeof window !== 'undefined' && window.localStorage) {
-    try {
-      const localCached = window.localStorage.getItem(`pisl_cache_${endpoint}`);
-      if (localCached) {
-        const parsed = sanitizeBrandText(JSON.parse(localCached));
-        memoryCache.set(endpoint, parsed);
-        return parsed;
-      }
-    } catch (e) {}
+  if (memoryCache.has(cleanEndpoint)) {
+    return memoryCache.get(cleanEndpoint);
   }
 
-  // 4. FALLBACK: IndexedDB
-  const idbData = await getFromIDB(endpoint);
-  if (idbData) {
-    const cleanIdb = sanitizeBrandText(idbData);
-    memoryCache.set(endpoint, cleanIdb);
-    return cleanIdb;
-  }
-
-  // 5. FALLBACK: Hostinger Server Disk Backup
-  if (typeof window !== 'undefined') {
+  // 3. FALLBACK: Hostinger Server Disk Backup (Direct from server disk live-backup)
+  if (typeof window !== 'undefined' && !isLocalhost) {
     try {
-      const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(endpoint)}`, { cache: 'no-cache' });
+      const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(cleanEndpoint)}`, { cache: 'no-cache' });
       if (hostingerRes.ok) {
         const hostingerJson = await hostingerRes.json();
         if (hostingerJson) {
           const cleanHostinger = sanitizeBrandText(hostingerJson);
           memoryCache.set(endpoint, cleanHostinger);
+          memoryCache.set(cleanEndpoint, cleanHostinger);
           return cleanHostinger;
         }
       }
     } catch (e) {}
   }
 
+  // 4. FALLBACK: LocalStorage Cache (within valid TTL)
+  if (typeof window !== 'undefined' && window.localStorage) {
+    try {
+      const cacheTime = window.localStorage.getItem(`pisl_cache_time_${cleanEndpoint}`) || window.localStorage.getItem(`pisl_cache_time_${endpoint}`);
+      if (cacheTime && (Date.now() - Number(cacheTime) < CACHE_TTL_MS)) {
+        const localCached = window.localStorage.getItem(`pisl_cache_${cleanEndpoint}`) || window.localStorage.getItem(`pisl_cache_${endpoint}`);
+        if (localCached) {
+          const parsed = sanitizeBrandText(JSON.parse(localCached));
+          memoryCache.set(endpoint, parsed);
+          memoryCache.set(cleanEndpoint, parsed);
+          return parsed;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 5. FALLBACK: IndexedDB
+  const idbData = (await getFromIDB(cleanEndpoint)) || (await getFromIDB(endpoint));
+  if (idbData) {
+    const cleanIdb = sanitizeBrandText(idbData);
+    memoryCache.set(endpoint, cleanIdb);
+    memoryCache.set(cleanEndpoint, cleanIdb);
+    return cleanIdb;
+  }
+
   // 6. LAST RESORT FALLBACK: Bundled Offline Fallback (MainBackupPislinfra.json)
-  const localFallback = getLocalBackup(endpoint);
+  const localFallback = getLocalBackup(cleanEndpoint) || getLocalBackup(endpoint);
   if (localFallback) {
     memoryCache.set(endpoint, localFallback);
+    memoryCache.set(cleanEndpoint, localFallback);
     return localFallback;
   }
 

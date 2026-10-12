@@ -518,25 +518,6 @@ const completedProjects = [
   },
   {
     "id": 26,
-    "documentId": "z1q5jo0ztyq62pf7jctkkqc8",
-    "category": "Industrial",
-    "name": "Logistics Park LLP",
-    "location": "Ludhiana",
-    "state": "Punjab",
-    "area": "1.16 Lakh Sq. ft",
-    "client": "PMG",
-    "timeline": "2026 ",
-    "status": "Completed",
-    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_Ludhiana_08fe0ac214.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_Ludhiana_30fd41522e.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_Ludhiana_0cb21412eb.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_Ludhiana_14dce031dc.jpeg"
-    ]
-  },
-  {
-    "id": 27,
     "documentId": "mb0bown4q747qsdmnfo92dct",
     "category": "Industrial",
     "name": "HIGHWAY HUMSAFAR",
@@ -553,6 +534,25 @@ const completedProjects = [
       "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Highway_3_a79fa57c80.png",
       "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Highway_4_4952c44ce1.png",
       "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Highway_5_1c0aded13d.png"
+    ]
+  },
+  {
+    "id": 27,
+    "documentId": "z1q5jo0ztyq62pf7jctkkqc8",
+    "category": "Industrial",
+    "name": "Logistics Park LLP",
+    "location": "Ludhiana",
+    "state": "Punjab",
+    "area": "1.16 Lakh Sq. ft",
+    "client": "PMG",
+    "timeline": "2026 ",
+    "status": "Completed",
+    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+    "images": [
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_Ludhiana_08fe0ac214.jpeg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_Ludhiana_30fd41522e.jpeg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_Ludhiana_0cb21412eb.jpeg",
+      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_Ludhiana_14dce031dc.jpeg"
     ]
   }
 ];
