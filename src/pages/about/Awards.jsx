@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
 import defaultClientAppreciations from '../../data/clientAppreciationsData';
 import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
+import { getImageUrl } from '../../utils/imageUrl';
 import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
@@ -18,21 +19,6 @@ const ArrowUpIcon = () => (
     <line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" />
   </svg>
 );
-
-const getImageUrl = (imgObj, defaultImg = '/images/awards/certificate.jpg') => {
-  if (!imgObj) return defaultImg;
-  let url = typeof imgObj === 'string' 
-    ? imgObj 
-    : (imgObj.url || imgObj.data?.attributes?.url || imgObj.formats?.large?.url || imgObj.formats?.medium?.url || imgObj.formats?.small?.url || imgObj.formats?.thumbnail?.url);
-  if (!url || typeof url !== 'string') return defaultImg;
-  if (url.includes('r2.dev/')) {
-    const filename = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
-    return `/images/awards/${filename}`;
-  }
-  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) return url;
-  if (url.startsWith('/uploads')) return STRAPI_URL ? `${STRAPI_URL}${url}` : (defaultImg || url);
-  return url;
-};
 
 const Awards = () => {
   const navigate = useNavigate();

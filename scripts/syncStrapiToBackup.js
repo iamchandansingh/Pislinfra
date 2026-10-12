@@ -158,7 +158,7 @@ async function syncBackup() {
     console.log(`📡 Connected to Strapi CMS at ${activeStrapiUrl}. Updating latest entries...`);
     for (const ep of STRAPI_ENDPOINTS) {
       try {
-        const res = await fetchJson(`${activeStrapiUrl}/api/${ep}`, 7000);
+        const res = await fetchJson(`${activeStrapiUrl}/api/${ep}`, 15000);
         const data = sanitizeBrand(unwrap(res));
         if (data) {
           masterBackup[ep] = data;

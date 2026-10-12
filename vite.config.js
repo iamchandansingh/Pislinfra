@@ -9,6 +9,27 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+async function downloadImageIfMissing(url, folder) {
+  if (!url || typeof url !== 'string' || !url.includes('r2.dev/')) return url;
+  const fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+  const targetDir = path.resolve(__dirname, 'public/images', folder);
+  if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
+  const targetPath = path.join(targetDir, fn);
+  if (!fs.existsSync(targetPath)) {
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': 'PislinfraDev/1.0' } });
+      if (res.ok) {
+        const buf = Buffer.from(await res.arrayBuffer());
+        fs.writeFileSync(targetPath, buf);
+        console.log(`📥 Auto-downloaded [${folder}] image: ${fn}`);
+      }
+    } catch (e) {
+      console.warn(`Could not download ${fn}:`, e.message);
+    }
+  }
+  return `/images/${folder}/${fn}`;
+}
+
 function autoBackupDevPlugin() {
   return {
     name: 'auto-backup-dev-plugin',
@@ -17,26 +38,50 @@ function autoBackupDevPlugin() {
         if (req.method === 'POST') {
           let body = '';
           req.on('data', chunk => { body += chunk; });
-          req.on('end', () => {
+          req.on('end', async () => {
             try {
               const { endpoint, data } = JSON.parse(body);
               if (endpoint && data) {
+                // Update MainBackupPislinfra.json
                 const backupPath = path.resolve(__dirname, 'src/data/MainBackupPislinfra.json');
                 if (fs.existsSync(backupPath)) {
-                  const backup = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
-                  backup[endpoint] = data;
-                  const baseKey = endpoint.split('?')[0];
-                  backup[baseKey] = data;
-                  fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2), 'utf8');
+                  try {
+                    const backup = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
+                    backup[endpoint] = data;
+                    const baseKey = endpoint.split('?')[0];
+                    backup[baseKey] = data;
+                    fs.writeFileSync(backupPath, JSON.stringify(backup, null, 2), 'utf8');
+                  } catch (e) {}
+                }
+
+                // Update public/data/live-backup.json
+                const liveBackupPath = path.resolve(__dirname, 'public/data/live-backup.json');
+                if (fs.existsSync(liveBackupPath)) {
+                  try {
+                    const liveBackup = JSON.parse(fs.readFileSync(liveBackupPath, 'utf8'));
+                    liveBackup[endpoint] = data;
+                    const baseKey = endpoint.split('?')[0];
+                    liveBackup[baseKey] = data;
+                    fs.writeFileSync(liveBackupPath, JSON.stringify(liveBackup, null, 2), 'utf8');
+                  } catch (e) {}
                 }
 
                 if (endpoint.includes('ongoing-projects') && Array.isArray(data) && data.length > 0) {
                   const ogPath = path.resolve(__dirname, 'src/data/projectsData.js');
-                  const formattedOg = data.map((p, idx) => {
-                    const imgs = (p.images || []).map(img => img.formats?.large?.url || img.formats?.medium?.url || img.url).filter(Boolean);
+                  const filtered = data.filter(p => {
+                    const n = (p.name || p.title || '').toLowerCase();
+                    return !n.includes('humsafar') && !n.includes('logistics park llp');
+                  });
+                  const formattedOg = await Promise.all(filtered.map(async (p, idx) => {
+                    const rawImgs = p.images || (p.image ? [p.image] : []);
+                    const imgs = (await Promise.all(rawImgs.map(async (img) => {
+                      const u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+                      return await downloadImageIfMissing(u, 'projects');
+                    }))).filter(Boolean);
+
                     return {
                       id: idx + 1,
-                      documentId: p.documentId,
+                      documentId: p.documentId || `og_${idx + 1}`,
                       category: p.category || "Industrial",
                       name: p.name,
                       location: p.location,
@@ -46,19 +91,26 @@ function autoBackupDevPlugin() {
                       timeline: p.timeline,
                       status: "Ongoing",
                       scope: p.scope,
-                      images: imgs
+                      images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
                     };
-                  });
-                  fs.writeFileSync(ogPath, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
+                  }));
+                  if (formattedOg.length === 16) {
+                    fs.writeFileSync(ogPath, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
+                  }
                 }
 
                 if (endpoint.includes('completed-projects') && Array.isArray(data) && data.length > 0) {
                   const compPath = path.resolve(__dirname, 'src/data/completedProjects.js');
-                  const formattedComp = data.map((p, idx) => {
-                    const imgs = (p.images || []).map(img => img.formats?.large?.url || img.formats?.medium?.url || img.url).filter(Boolean);
+                  const formattedComp = await Promise.all(data.map(async (p, idx) => {
+                    const rawImgs = p.images || (p.image ? [p.image] : []);
+                    const imgs = (await Promise.all(rawImgs.map(async (img) => {
+                      const u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+                      return await downloadImageIfMissing(u, 'projects');
+                    }))).filter(Boolean);
+
                     return {
                       id: idx + 1,
-                      documentId: p.documentId,
+                      documentId: p.documentId || `comp_${idx + 1}`,
                       category: p.category || "Warehousing",
                       name: p.name,
                       location: p.location,
@@ -68,10 +120,12 @@ function autoBackupDevPlugin() {
                       timeline: p.timeline,
                       status: "Completed",
                       scope: p.scope,
-                      images: imgs
+                      images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
                     };
-                  });
-                  fs.writeFileSync(compPath, `const completedProjects = ${JSON.stringify(formattedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
+                  }));
+                  if (formattedComp.length >= 25) {
+                    fs.writeFileSync(compPath, `const completedProjects = ${JSON.stringify(formattedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
+                  }
                 }
               }
               res.statusCode = 200;
