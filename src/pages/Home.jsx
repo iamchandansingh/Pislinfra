@@ -18,6 +18,7 @@ import completedProjectsData from '../data/completedProjects';
 import coverageMarkersData from '../data/coverageMarkersData';
 import awardsAndCertifications from '../data/Awards-&-Certifications';
 import clientsData from '../data/clientsData';
+import { sortAwardsByFeaturedAndDate } from '../utils/awardSort';
 
 const defaultOngoing = projectsData.map(p => ({
   ...p,
@@ -41,7 +42,7 @@ const Home = () => {
   const [completed, setCompleted] = useState(defaultCompleted);
   const [loading, setLoading] = useState(true);
   const [clients, setClients] = useState(clientsData);
-  const [awards, setAwards] = useState(awardsAndCertifications);
+  const [awards, setAwards] = useState(() => sortAwardsByFeaturedAndDate(awardsAndCertifications));
   const [markers, setMarkers] = useState(coverageMarkersData);
   
   useEffect(() => {
@@ -52,7 +53,7 @@ const Home = () => {
           fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100'),
           fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100'),
           fetchStrapiData('clients?pagination[pageSize]=100&sort=order:asc'),
-          fetchStrapiData('awards?populate=*&sort=order:asc'),
+          fetchStrapiData('awards?populate=*&sort=createdAt:desc'),
           fetchStrapiData('coverage-markers?populate=*&pagination[pageSize]=100')
         ]);
         
@@ -142,7 +143,7 @@ const Home = () => {
         }
         
         if (clientsRes && Array.isArray(clientsRes)) setClients(clientsRes);
-        if (awardsRes && Array.isArray(awardsRes)) setAwards(awardsRes);
+        if (awardsRes && Array.isArray(awardsRes)) setAwards(sortAwardsByFeaturedAndDate(awardsRes));
         
       } catch (err) {
         console.error("Failed to load home page data from Strapi", err);

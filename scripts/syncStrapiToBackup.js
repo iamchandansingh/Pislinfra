@@ -24,7 +24,7 @@ const STRAPI_ENDPOINTS = [
   'completed-projects?populate=*&pagination[pageSize]=100',
   'home-page?populate=*',
   'clients?pagination[pageSize]=100&sort=order:asc',
-  'awards?populate=*&pagination[pageSize]=100&sort=order:asc',
+  'awards?populate=*&pagination[pageSize]=100&sort=createdAt:desc',
   'coverage-markers?populate=*&pagination[pageSize]=100',
   'blogs?populate=*&pagination[pageSize]=100',
   'job-openings?pagination[limit]=100',
@@ -239,7 +239,7 @@ async function syncBackup() {
   }
 
   // 5. Ensure Awards (Full dataset from live DB & offline file)
-  const rawAwards = masterBackup['awards'] || masterBackup['awards?populate=*&pagination[pageSize]=100&sort=order:asc'];
+  const rawAwards = masterBackup['awards'] || masterBackup['awards?populate=*&pagination[pageSize]=100&sort=createdAt:desc'] || masterBackup['awards?populate=*&pagination[pageSize]=100&sort=order:asc'];
   if (Array.isArray(rawAwards) && rawAwards.length > 0) {
     const formattedAwards = rawAwards.map((item, idx) => {
       const allImgs = [];
@@ -269,6 +269,9 @@ async function syncBackup() {
         location: item.location || 'India',
         description: item.desc || item.description || '',
         videoUrl: item.videoUrl || null,
+        featured: Boolean(item.featured || item.isFeatured),
+        isFeatured: Boolean(item.featured || item.isFeatured),
+        createdAt: item.createdAt || null,
         image: primaryImg,
         clientImage: clientImg,
         images: allImgs.length > 0 ? allImgs : [primaryImg],
@@ -277,11 +280,51 @@ async function syncBackup() {
       };
     });
 
-    fs.writeFileSync(AWARDS_PATH, `const awardsAndCertifications = ${JSON.stringify(formattedAwards, null, 2)};\n\nexport default awardsAndCertifications;\n`, 'utf8');
-    masterBackup['awards'] = formattedAwards;
-    masterBackup['awards?populate=*&sort=order:asc'] = formattedAwards;
-    masterBackup['awards?populate=*&pagination[pageSize]=100'] = formattedAwards;
-    console.log(`✅ Synced awards (${formattedAwards.length}) into Awards-&-Certifications.js and master backup`);
+    // Deduplicate and sort: Featured first, then Year (desc: 2026 first), then newest createdAt first!
+    const seenAwards = new Set();
+    const dedupedAwards = [];
+    for (const a of formattedAwards) {
+      if (!a || !a.title) continue;
+      const key = a.title.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!seenAwards.has(key)) {
+        seenAwards.add(key);
+        dedupedAwards.push(a);
+      }
+    }
+
+    const sortedAwards = dedupedAwards.sort((a, b) => {
+      const aFeat = Boolean(a.featured || a.isFeatured);
+      const bFeat = Boolean(b.featured || b.isFeatured);
+      if (aFeat && !bFeat) return -1;
+      if (!aFeat && bFeat) return 1;
+
+      const aYear = parseInt(a.year, 10) || 0;
+      const bYear = parseInt(b.year, 10) || 0;
+      if (bYear !== aYear) return bYear - aYear;
+
+      if (a.createdAt && b.createdAt) {
+        const aTime = new Date(a.createdAt).getTime();
+        const bTime = new Date(b.createdAt).getTime();
+        if (!isNaN(aTime) && !isNaN(bTime) && bTime !== aTime) {
+          return bTime - aTime;
+        }
+      } else if (a.createdAt && !b.createdAt) return -1;
+      else if (!a.createdAt && b.createdAt) return 1;
+
+      const aTrophy = a.title?.includes('🏆') ? 1 : 0;
+      const bTrophy = b.title?.includes('🏆') ? 1 : 0;
+      if (bTrophy !== aTrophy) return bTrophy - aTrophy;
+
+      return 0;
+    });
+
+    fs.writeFileSync(AWARDS_PATH, `const awardsAndCertifications = ${JSON.stringify(sortedAwards, null, 2)};\n\nexport default awardsAndCertifications;\n`, 'utf8');
+    masterBackup['awards'] = sortedAwards;
+    masterBackup['awards?populate=*&sort=order:asc'] = sortedAwards;
+    masterBackup['awards?populate=*&sort=createdAt:desc'] = sortedAwards;
+    masterBackup['awards?populate=*&pagination[pageSize]=100'] = sortedAwards;
+    masterBackup['awards?populate=*&pagination[pageSize]=100&sort=createdAt:desc'] = sortedAwards;
+    console.log(`✅ Synced and sorted awards (${sortedAwards.length}) into Awards-&-Certifications.js and master backup`);
   }
 
   // 5.1 Ensure Leadership Page

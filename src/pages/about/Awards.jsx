@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
 import defaultClientAppreciations from '../../data/clientAppreciationsData';
 import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
+import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import AwardsYearFilter from '../../components/Awards-Componet/AwardsYearFilter';
@@ -35,7 +36,7 @@ const Awards = () => {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [activePopupType, setActivePopupType] = useState(null);
   const [pageData, setPageData] = useState(null);
-  const [awardsAndCertifications, setAwardsAndCertifications] = useState(defaultAwardsData);
+  const [awardsAndCertifications, setAwardsAndCertifications] = useState(() => sortAwardsByFeaturedAndDate(defaultAwardsData));
   const [clientAppreciationsData, setClientAppreciationsData] = useState(defaultClientAppreciations);
   const [milestonesData, setMilestonesData] = useState([]);
 
@@ -138,6 +139,9 @@ const Awards = () => {
               location: strapiItem.location || (defaultItem ? defaultItem.location : 'India'),
               description: strapiItem.desc || strapiItem.description || (defaultItem ? defaultItem.description : ''),
               videoUrl: strapiItem.videoUrl || (defaultItem ? defaultItem.videoUrl : null),
+              featured: Boolean(strapiItem.featured || strapiItem.isFeatured || defaultItem?.featured || defaultItem?.isFeatured),
+              isFeatured: Boolean(strapiItem.featured || strapiItem.isFeatured || defaultItem?.featured || defaultItem?.isFeatured),
+              createdAt: strapiItem.createdAt || defaultItem?.createdAt || null,
               image: primaryImg,
               clientImage: secondaryImg,
               images: allImgs.length > 0 ? allImgs : [primaryImg],
@@ -146,10 +150,10 @@ const Awards = () => {
             };
           });
 
-          // Strapi live CMS is the master single source of truth; guarantee full 43 awards
+          // Strapi live CMS is the master single source of truth; sort by featured and newest date
           const existingTitles = new Set(mappedAwards.map(a => (a.title || '').trim().toLowerCase()));
           const missingAwards = defaultAwardsData.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
-          setAwardsAndCertifications([...mappedAwards, ...missingAwards]);
+          setAwardsAndCertifications(sortAwardsByFeaturedAndDate([...mappedAwards, ...missingAwards]));
         }
       } catch (err) {
         console.error('Error fetching Awards data', err);
@@ -455,7 +459,7 @@ const Awards = () => {
       <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={getImageUrl(pageData?.heroImage, "/images/hero/Awards-Certification.png")} />
       {latestAchievementData && (
         <LatestAchievement 
-          achievements={awardsAndCertifications.filter(a => a.category !== 'Certification').slice(0, 5)} 
+          achievements={(filteredData.length > 0 ? filteredData : awardsAndCertifications).filter(a => a.category !== 'Certification').slice(0, 5)} 
           achievementData={latestAchievementData} 
           onViewDetails={handleViewAwardDetails} 
           onDownload={handleDownload} 

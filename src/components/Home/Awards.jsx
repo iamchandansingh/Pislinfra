@@ -7,6 +7,7 @@ import { fetchStrapiData } from '../../services/strapi';
 import { getImageUrl } from '../../utils/imageUrl';
 import clientsData from '../../data/clientsData';
 import awardsAndCertifications from '../../data/Awards-&-Certifications';
+import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
 
 const getLogo = (companyName) => {
   if (!companyName) return '/images/clients/default-logo.png';
@@ -41,17 +42,20 @@ const getLogo = (companyName) => {
   return client?.logo || '/images/clients/default-logo.png';
 };
 
-const defaultAwards = awardsAndCertifications.map((item, idx) => ({
+const defaultAwards = sortAwardsByFeaturedAndDate(awardsAndCertifications.map((item, idx) => ({
   id: item.id || idx + 1,
   company: item.company || 'Industry Leaders',
   title: item.title,
   desc: item.description || item.desc || '',
-  year: String(item.year || '2025'),
+  year: String(item.year || '2026'),
   category: item.category || 'Excellence',
   location: item.location || 'India',
+  featured: Boolean(item.featured || item.isFeatured),
+  isFeatured: Boolean(item.featured || item.isFeatured),
+  createdAt: item.createdAt || null,
   images: item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : ['/images/about/sustainable-infra-gold.jpg']),
   logo: getLogo(item.company)
-}));
+})));
 
 const NAVY   = '#0a2a66';
 const ORANGE = '#ff8755';
@@ -129,26 +133,29 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
             desc: item.desc || item.description || 'Award Description',
             company: item.company || 'Pragati Infra Solutions Pvt. Ltd.',
             location: item.location || 'India',
+            featured: Boolean(item.featured || item.isFeatured),
+            isFeatured: Boolean(item.featured || item.isFeatured),
+            createdAt: item.createdAt || null,
             images: imageArray,
             logo: item.logo ? getImageUrl(item.logo, getLogo(item.company)) : getLogo(item.company)
           };
         };
 
         if (propAwardsData && Array.isArray(propAwardsData) && propAwardsData.length > 0) {
-          const mapped = propAwardsData.map(processAwardItem);
+          const mapped = sortAwardsByFeaturedAndDate(propAwardsData.map(processAwardItem));
           if (mapped.length > 0) {
             setAwards(mapped);
             return;
           }
         }
 
-        const data = await fetchStrapiData('awards?populate=*&sort=order:asc');
+        const data = await fetchStrapiData('awards?populate=*&sort=createdAt:desc');
         const rawList = Array.isArray(data) ? data : (data?.data || null);
         if (rawList && rawList.length > 0) {
           const mapped = rawList.map(processAwardItem);
           const existingTitles = new Set(mapped.map(a => (a.title || '').trim().toLowerCase()));
           const missing = defaultAwards.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
-          setAwards([...mapped, ...missing]);
+          setAwards(sortAwardsByFeaturedAndDate([...mapped, ...missing]));
         }
       } catch (err) {
         console.error("Awards Strapi fetch error:", err);
