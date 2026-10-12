@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import PageHero from '../../components/hero/PageHero'
@@ -220,9 +220,32 @@ const ProjectDetail = () => {
     };
     window.addEventListener('focus', handleFocus);
     window.addEventListener('visibilitychange', handleVisibility);
-    const intervalId = setInterval(() => {
-      if (projectIdOrSlug) fetchUltraFast(true);
-    }, 10000);
+
+    // Ultra-fast 2s change detector: polls lightweight updatedAt
+    let lastSig = '';
+    const pollFast = async () => {
+      if (!isMounted || !projectIdOrSlug) return;
+      try {
+        const ep = projectType === 'completed' ? 'completed-projects' : 'ongoing-projects';
+        const res = await fetch(`${STRAPI_URL}/api/${ep}?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache, no-store' }
+        });
+        if (res.ok) {
+          const json = await res.json();
+          const latestTs = json?.data?.[0]?.updatedAt;
+          const total = json?.meta?.pagination?.total;
+          const currentSig = `${latestTs}_${total}`;
+          if (lastSig && lastSig !== currentSig) {
+            fetchUltraFast(true);
+          }
+          lastSig = currentSig;
+        }
+      } catch (e) {}
+    };
+
+    pollFast();
+    const intervalId = setInterval(pollFast, 2000);
 
     return () => {
       isMounted = false;

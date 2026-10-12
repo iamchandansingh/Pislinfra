@@ -11,7 +11,7 @@ import Clients from '../components/clients/Clients';
 import Awards from '../components/Home/Awards';
 import HSESection from '../components/Home/HSESection';
 import Preloader from '../components/common/Preloader';
-import { fetchStrapiData } from '../services/strapi';
+import { fetchStrapiData, STRAPI_URL } from '../services/strapi';
 import { getImageUrl } from '../utils/imageUrl';
 import projectsData from '../data/projectsData';
 import completedProjectsData from '../data/completedProjects';
@@ -164,9 +164,38 @@ const Home = () => {
     window.addEventListener('focus', handleFocus);
     window.addEventListener('visibilitychange', handleVisibility);
 
+    // Ultra-fast 2s change detector for ongoing & completed projects on Home page
+    let lastSig = '';
+    const pollFast = async () => {
+      try {
+        const [ogRes, compRes] = await Promise.all([
+          fetch(`${STRAPI_URL}/api/ongoing-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache, no-store' }
+          }),
+          fetch(`${STRAPI_URL}/api/completed-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache, no-store' }
+          })
+        ]);
+        if (ogRes.ok && compRes.ok) {
+          const [ogJson, compJson] = await Promise.all([ogRes.json(), compRes.json()]);
+          const currentSig = `${ogJson?.data?.[0]?.updatedAt}_${ogJson?.meta?.pagination?.total}_${compJson?.data?.[0]?.updatedAt}_${compJson?.meta?.pagination?.total}`;
+          if (lastSig && lastSig !== currentSig) {
+            loadData(true);
+          }
+          lastSig = currentSig;
+        }
+      } catch (e) {}
+    };
+
+    pollFast();
+    const intervalId = setInterval(pollFast, 2000);
+
     return () => {
       window.removeEventListener('focus', handleFocus);
       window.removeEventListener('visibilitychange', handleVisibility);
+      clearInterval(intervalId);
     };
   }, []);
 

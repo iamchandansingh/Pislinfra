@@ -3,7 +3,7 @@ import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import { HiChevronLeft, HiChevronRight, HiCheckCircle, HiExclamation } from 'react-icons/hi'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localProjectsData from '../../data/projectsData'
@@ -90,7 +90,31 @@ const OngoingProjects = () => {
     };
     window.addEventListener('focus', handleFocus);
     window.addEventListener('visibilitychange', handleVisibility);
-    const intervalId = setInterval(() => getData(true), 10000);
+
+    // Ultra-fast 2s change detector: polls lightweight updatedAt & total count in 5ms
+    let lastSig = '';
+    const pollFast = async () => {
+      if (!isMounted) return;
+      try {
+        const res = await fetch(`${STRAPI_URL}/api/ongoing-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache, no-store' }
+        });
+        if (res.ok) {
+          const json = await res.json();
+          const latestTs = json?.data?.[0]?.updatedAt;
+          const total = json?.meta?.pagination?.total;
+          const currentSig = `${latestTs}_${total}`;
+          if (lastSig && lastSig !== currentSig) {
+            getData(true);
+          }
+          lastSig = currentSig;
+        }
+      } catch (e) {}
+    };
+
+    pollFast();
+    const intervalId = setInterval(pollFast, 2000);
 
     return () => {
       isMounted = false;
