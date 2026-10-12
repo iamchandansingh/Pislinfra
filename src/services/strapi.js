@@ -183,6 +183,26 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
               window.localStorage.setItem(`pisl_cache_time_${endpoint}`, Date.now().toString());
             } catch (e) {}
           }
+          if (typeof window !== 'undefined') {
+            if (isLocalhost) {
+              try {
+                fetch('/__api/save-main-backup', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ endpoint, data: cleanData })
+                }).catch(() => {});
+              } catch (e) {}
+            } else {
+              // On live Hostinger production: Automatically save live Strapi updates to Hostinger disk DB
+              try {
+                fetch('/sync-backup.php', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ endpoint, data: cleanData })
+                }).catch(() => {});
+              } catch (e) {}
+            }
+          }
           notifyStatus(false);
           return cleanData;
         }

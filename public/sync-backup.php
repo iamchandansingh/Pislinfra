@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isset($decoded['endpoint']) && isset($decoded['data'])) {
                 $existing[$decoded['endpoint']] = $decoded['data'];
+                $baseKey = explode('?', (string)$decoded['endpoint'])[0];
+                $existing[$baseKey] = $decoded['data'];
             } else {
                 $existing = array_merge($existing, $decoded);
             }
@@ -86,10 +88,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             readfile($chunkFile);
             exit;
         }
+        $baseName = sanitizeEndpointName(explode('?', (string)$requestedEndpoint)[0]);
+        $baseChunkFile = $dataDir . '/' . $baseName . '.json';
+        if (file_exists($baseChunkFile)) {
+            header('Content-Type: application/json');
+            readfile($baseChunkFile);
+            exit;
+        }
     }
 
-    // 2. Try serving master backup
+    // 2. Try serving from master backup file
     if (file_exists($backupFile)) {
+        if ($requestedEndpoint) {
+            $master = json_decode(file_get_contents($backupFile), true);
+            if (is_array($master)) {
+                $baseKey = explode('?', (string)$requestedEndpoint)[0];
+                if (isset($master[$requestedEndpoint])) {
+                    header('Content-Type: application/json');
+                    echo json_encode($master[$requestedEndpoint], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    exit;
+                }
+                if (isset($master[$baseKey])) {
+                    header('Content-Type: application/json');
+                    echo json_encode($master[$baseKey], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    exit;
+                }
+            }
+        }
         header('Content-Type: application/json');
         readfile($backupFile);
         exit;
