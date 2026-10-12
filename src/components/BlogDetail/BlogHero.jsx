@@ -23,6 +23,9 @@ const BlogHero = ({
             alt={title}
             style={{ height: '100%', width: '100%', objectFit: 'cover' }}
             loading="eager"
+            onError={(e) => {
+              e.currentTarget.src = '/images/hero/Blog.png';
+            }}
           />
         </div>
         <div style={{

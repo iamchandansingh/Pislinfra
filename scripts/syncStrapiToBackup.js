@@ -249,8 +249,13 @@ async function syncBackup() {
           img.forEach(addImg);
           return;
         }
-        const u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
-        if (u && !allImgs.includes(u)) allImgs.push(u);
+        let u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+        if (!u) return;
+        if (u.includes('r2.dev/')) {
+          const fn = u.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+          u = `/images/awards/${fn}`;
+        }
+        if (!allImgs.includes(u)) allImgs.push(u);
       };
       if (item.images) addImg(item.images);
       if (item.image) addImg(item.image);
@@ -337,9 +342,46 @@ async function syncBackup() {
   // 6. Ensure Blogs (35 items)
   const rawBlogs = masterBackup['blogs'] || masterBackup['blogs?populate=*&pagination[pageSize]=100'];
   if (Array.isArray(rawBlogs) && rawBlogs.length > 0) {
-    masterBackup['blogs'] = rawBlogs;
-    masterBackup['blogs?populate=*&pagination[pageSize]=100&sort=createdAt:desc'] = rawBlogs;
-    console.log(`✅ Synced blogs (${rawBlogs.length}) into master backup`);
+    const formattedBlogs = rawBlogs.map(b => {
+      let featImg = b.featuredImage ? (typeof b.featuredImage === 'string' ? b.featuredImage : (b.featuredImage.url || b.featuredImage.formats?.large?.url || b.featuredImage.formats?.medium?.url)) : (b.image ? (typeof b.image === 'string' ? b.image : b.image.url) : null);
+      if (featImg && featImg.includes('r2.dev/')) {
+        const fn = featImg.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+        featImg = `/images/blogs/${fn}`;
+      }
+      let cleanContent = b.content;
+      if (typeof cleanContent === 'string' && cleanContent.includes('r2.dev/')) {
+        cleanContent = cleanContent.replace(/https:\/\/[^\"'\s\)]*r2\.dev\/([a-zA-Z0-9._-]+)/g, (match, filename) => {
+          const fn = filename.replace(/[^a-zA-Z0-9._-]/g, '_');
+          return `/images/blogs/${fn}`;
+        });
+      }
+      return {
+        id: b.documentId || b.id,
+        title: b.title,
+        slug: b.slug,
+        excerpt: b.excerpt,
+        content: cleanContent,
+        category: b.category,
+        publishDate: b.publishDate,
+        createdAt: b.createdAt,
+        readTime: b.readTime,
+        featuredImage: featImg || '/images/hero/Blog.png',
+        tags: typeof b.tags === 'string' ? b.tags.split(',').map(t => t.trim()) : (Array.isArray(b.tags) ? b.tags : []),
+        author: b.author || {},
+        featured: Boolean(b.featured),
+        status: b.statusField || b.status || 'published',
+        seoTitle: b.seo?.seoTitle,
+        seoDescription: b.seo?.seoDescription,
+        seoKeywords: b.seo?.seoKeywords,
+        faqSchema: b.faqSchema || []
+      };
+    });
+
+    fs.writeFileSync(BLOG_PATH, `const blogDB = ${JSON.stringify(formattedBlogs, null, 2)};\n\nexport default blogDB;\n`, 'utf8');
+    masterBackup['blogs'] = formattedBlogs;
+    masterBackup['blogs?populate=*&pagination[pageSize]=100&sort=createdAt:desc'] = formattedBlogs;
+    masterBackup['blogs?populate=*&pagination[pageSize]=100'] = formattedBlogs;
+    console.log(`✅ Synced blogs (${formattedBlogs.length}) into Blogdb.js and master backup`);
   }
 
   // 7. Write Master Backup & Hostinger public static backup

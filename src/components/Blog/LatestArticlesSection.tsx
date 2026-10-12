@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import BlogDB from '../../data/BlogDB';
 
 const LatestArticlesSection = ({ articles: inputArticles }) => {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const LatestArticlesSection = ({ articles: inputArticles }) => {
         day: '2-digit', month: 'short', year: 'numeric',
       }),
       description: blog.excerpt,
-      image: blog.featuredImage,
+      image: blog.featuredImage || "/images/hero/Blog.png",
       badgeBg: '#EEF4FF',
       badgeColor: '#2563EB',
       slug: blog.slug

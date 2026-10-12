@@ -30,7 +30,7 @@ const BlogSidebarSection = () => {
       date: new Date(blog.publishDate).toLocaleDateString('en-US', {
         day: '2-digit', month: 'short', year: 'numeric',
       }),
-      image: blog.featuredImage,
+      image: blog.featuredImage || "/images/hero/Blog.png",
       slug: blog.slug,
     }));
 

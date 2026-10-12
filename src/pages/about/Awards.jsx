@@ -19,10 +19,16 @@ const ArrowUpIcon = () => (
   </svg>
 );
 
-const getImageUrl = (imgObj, defaultImg = '') => {
+const getImageUrl = (imgObj, defaultImg = '/images/awards/certificate.jpg') => {
   if (!imgObj) return defaultImg;
-  let url = typeof imgObj === 'string' ? imgObj : (imgObj.url || imgObj.data?.attributes?.url);
+  let url = typeof imgObj === 'string' 
+    ? imgObj 
+    : (imgObj.url || imgObj.data?.attributes?.url || imgObj.formats?.large?.url || imgObj.formats?.medium?.url || imgObj.formats?.small?.url || imgObj.formats?.thumbnail?.url);
   if (!url || typeof url !== 'string') return defaultImg;
+  if (url.includes('r2.dev/')) {
+    const filename = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+    return `/images/awards/${filename}`;
+  }
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) return url;
   if (url.startsWith('/uploads')) return STRAPI_URL ? `${STRAPI_URL}${url}` : (defaultImg || url);
   return url;
@@ -363,15 +369,7 @@ const Awards = () => {
           (a.title && a.title.toLowerCase() === decodeURIComponent(awardParam).toLowerCase())
         );
         if (found) {
-          setSelectedAward({
-            name: found.title,
-            image: found.image || found.clientImage,
-            certificate: found.clientImage || found.image,
-            description: found.description,
-            date: found.year,
-            location: found.location || 'India',
-            organization: found.company || 'Industry Leaders'
-          });
+          setSelectedAward(found);
           setActivePopupType('award');
         }
       } else if (certParam) {
@@ -380,13 +378,7 @@ const Awards = () => {
           (a.title && a.title.toLowerCase() === decodeURIComponent(certParam).toLowerCase())
         );
         if (found) {
-          setSelectedCertificate({
-            name: found.title,
-            image: found.image || found.clientImage,
-            description: found.description,
-            issueDate: found.year,
-            issuer: found.company || 'Industry Authority'
-          });
+          setSelectedCertificate(found);
           setActivePopupType('certificate');
         }
       }
@@ -483,10 +475,21 @@ const Awards = () => {
       <AwardsJourney statsData={{ awardsWon: pageData?.awardsWon || 50, certificates: pageData?.certificates || 25, yearsOfExcellence: pageData?.yearsOfExcellence || 15, projectsDelivered: pageData?.projectsDelivered || 500 }} onContactClick={handleContactClick} onViewProjects={handleViewProjects} title={pageData?.journeyTitle} desc={pageData?.journeyDesc} />
 
       {activePopupType === 'award' && selectedAward && (
-        <AwardPopup isOpen={true} onClose={handleClosePopup} type="award" awardData={selectedAward} />
+        <AwardPopup 
+          key={`award-popup-${selectedAward.id || selectedAward.title}`}
+          isOpen={true} 
+          onClose={handleClosePopup} 
+          type="award" 
+          awardData={selectedAward} 
+        />
       )}
       {activePopupType === 'certificate' && selectedCertificate && (
-        <CertificatePopup isOpen={true} onClose={handleClosePopup} certificateData={selectedCertificate} />
+        <CertificatePopup 
+          key={`cert-popup-${selectedCertificate.id || selectedCertificate.title}`}
+          isOpen={true} 
+          onClose={handleClosePopup} 
+          certificateData={selectedCertificate} 
+        />
       )}
 
       {showScrollTop && (

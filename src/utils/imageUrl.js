@@ -20,6 +20,13 @@ export const getImageUrl = (url, defaultImg = '') => {
   }
   if (!url || typeof url !== 'string') return defaultImg;
   url = url.trim();
+  if (url.includes('r2.dev/')) {
+    const filename = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+    if (filename.includes('optimized_') || filename.includes('Technology') || filename.includes('Warehouse') || filename.includes('Industrial') || filename.includes('Corridors') || filename.includes('Data_Centre') || filename.includes('Flooring') || filename.includes('EPC') || filename.includes('pisl_1889') || filename.includes('Water') || filename.includes('Phases')) {
+      return `/images/blogs/${filename}`;
+    }
+    return `/images/awards/${filename}`;
+  }
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) return url;
   if (url.startsWith('/uploads')) return STRAPI_URL ? `${STRAPI_URL}${url}` : (defaultImg || url);
   return url;

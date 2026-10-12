@@ -716,6 +716,11 @@ const ExcellenceShowcase = ({
                         loading="lazy"
                         decoding="async"
                         itemProp="image"
+                        onError={(e) => {
+                          if (!e.target.src.endsWith('/images/awards/certificate.jpg')) {
+                            e.target.src = '/images/awards/certificate.jpg';
+                          }
+                        }}
                         style={{ 
                           width: '100%', 
                           height: '100%', 
@@ -1161,6 +1166,11 @@ const ExcellenceShowcase = ({
                         loading="lazy"
                         decoding="async"
                         itemProp="image"
+                        onError={(e) => {
+                          if (!e.target.src.endsWith('/images/awards/certificate.jpg')) {
+                            e.target.src = '/images/awards/certificate.jpg';
+                          }
+                        }}
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
                     </div>

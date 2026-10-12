@@ -55,7 +55,14 @@ const VerifiedIcon = () => (
 
 const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
   const [activeImageIndex, setActiveImageIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setActiveImageIndex(0);
+  }, [certificateData]);
+
   if (!isOpen || !certificateData) return null;
+
+  const fallbackDefaultImg = '/images/awards/certificate.jpg';
 
   const certData = {
     name: certificateData.name || certificateData.title || 'Certificate of Excellence',
@@ -72,16 +79,26 @@ const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
     gallery: certificateData.gallery || []
   };
 
-  const images = (certificateData.images && certificateData.images.length > 0)
-    ? certificateData.images
-    : (certData.gallery && certData.gallery.length > 0)
-      ? [certData.image, ...certData.gallery] 
-      : (certData.image ? [certData.image] : []);
+  const images = React.useMemo(() => {
+    const list = [];
+    const add = (u) => {
+      if (!u || typeof u !== 'string') return;
+      if (!list.includes(u)) list.push(u);
+    };
+    if (Array.isArray(certificateData.images) && certificateData.images.length > 0) {
+      certificateData.images.forEach(add);
+    }
+    if (certData.image) add(certData.image);
+    if (Array.isArray(certData.gallery)) {
+      certData.gallery.forEach(add);
+    }
+    return list.length > 0 ? list : [fallbackDefaultImg];
+  }, [certificateData, certData.image, certData.gallery]);
 
-  const currentImg = images[activeImageIndex] || images[0] || certData.image;
+  const currentImg = images[activeImageIndex] || images[0] || fallbackDefaultImg;
 
   const handleDownload = () => {
-    window.open(currentImg || certData.image, '_blank');
+    window.open(currentImg, '_blank');
   };
 
   const infoItems = [
@@ -183,6 +200,11 @@ const CertificatePopup = ({ isOpen, onClose, certificateData }) => {
                 src={currentImg} 
                 alt={certData.name} 
                 style={{ maxWidth: '100%', maxHeight: '330px', objectFit: 'contain', display: 'block' }}
+                onError={(e) => {
+                  if (e.target.src !== window.location.origin + fallbackDefaultImg && !e.target.src.endsWith(fallbackDefaultImg)) {
+                    e.target.src = fallbackDefaultImg;
+                  }
+                }}
               />
             </div>
 

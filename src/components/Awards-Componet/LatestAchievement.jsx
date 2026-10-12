@@ -117,13 +117,24 @@ const LatestAchievement = ({ achievements = [], achievementData = {}, onViewDeta
   const handleViewDetails = () => {
     if (onViewDetails) {
       onViewDetails({ 
+        id: achievement.id,
+        title: achievement.title,
+        name: achievement.title,
+        year: achievement.year,
+        category: achievement.category,
         image: achievement.awardImage, 
         certificate: achievement.certificateImage, 
-        name: achievement.title, 
+        awardImage: achievement.awardImage,
+        certificateImage: achievement.certificateImage,
+        images: achievement.images || [achievement.awardImage],
+        gallery: achievement.gallery || [],
         description: achievement.description, 
         date: achievement.year, 
         location: achievement.location, 
-        organization: achievement.organization 
+        organization: achievement.organization,
+        company: achievement.organization,
+        presentedBy: achievement.presentedBy || achievement.organization,
+        highlights: achievement.highlights
       });
     }
   };
@@ -199,6 +210,11 @@ const LatestAchievement = ({ achievements = [], achievementData = {}, onViewDeta
               loading="lazy"
               decoding="async"
               itemProp="image"
+              onError={(e) => {
+                if (!e.target.src.endsWith('/images/awards/certificate.jpg')) {
+                  e.target.src = '/images/awards/certificate.jpg';
+                }
+              }}
               style={{ 
                 width: '100%', 
                 height: '100%', 

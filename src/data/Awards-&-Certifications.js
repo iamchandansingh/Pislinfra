@@ -11,18 +11,18 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-10-12T09:13:12.182Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_PISL_3f05c00f1e.png",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Award_0041713e17.jpeg",
+    "image": "/images/awards/large_PISL_3f05c00f1e.png",
+    "clientImage": "/images/awards/large_Award_0041713e17.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_PISL_3f05c00f1e.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Award_0041713e17.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Certificate_c2b0dd8bb2.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_jamnagar_6764b3e849.jpeg"
+      "/images/awards/large_PISL_3f05c00f1e.png",
+      "/images/awards/large_Award_0041713e17.jpeg",
+      "/images/awards/large_Certificate_c2b0dd8bb2.jpeg",
+      "/images/awards/medium_jamnagar_6764b3e849.jpeg"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Award_0041713e17.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Certificate_c2b0dd8bb2.jpeg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_jamnagar_6764b3e849.jpeg"
+      "/images/awards/large_Award_0041713e17.jpeg",
+      "/images/awards/large_Certificate_c2b0dd8bb2.jpeg",
+      "/images/awards/medium_jamnagar_6764b3e849.jpeg"
     ],
     "pdf": null
   },
@@ -38,14 +38,14 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-10-03T00:56:24.232Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Corporate_Excellence_Award_Display_102c19dcdd.png",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg",
+    "image": "/images/awards/large_Corporate_Excellence_Award_Display_102c19dcdd.png",
+    "clientImage": "/images/awards/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Corporate_Excellence_Award_Display_102c19dcdd.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg"
+      "/images/awards/large_Corporate_Excellence_Award_Display_102c19dcdd.png",
+      "/images/awards/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg"
+      "/images/awards/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg"
     ],
     "pdf": null
   },
@@ -61,10 +61,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:29:07.237Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg",
+    "image": "/images/awards/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg",
+    "clientImage": "/images/awards/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg"
+      "/images/awards/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -81,10 +81,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:24:44.839Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg",
+    "image": "/images/awards/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg",
+    "clientImage": "/images/awards/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg"
+      "/images/awards/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -101,14 +101,14 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T08:36:02.011Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/AMNS_india_Hazira_0d9cb9f750.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/AMNS_india_Haziraa_9b47157a37.avif",
+    "image": "/images/awards/AMNS_india_Hazira_0d9cb9f750.avif",
+    "clientImage": "/images/awards/AMNS_india_Haziraa_9b47157a37.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/AMNS_india_Hazira_0d9cb9f750.avif",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/AMNS_india_Haziraa_9b47157a37.avif"
+      "/images/awards/AMNS_india_Hazira_0d9cb9f750.avif",
+      "/images/awards/AMNS_india_Haziraa_9b47157a37.avif"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/AMNS_india_Haziraa_9b47157a37.avif"
+      "/images/awards/AMNS_india_Haziraa_9b47157a37.avif"
     ],
     "pdf": null
   },
@@ -124,14 +124,14 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T07:44:09.475Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Certificate_of_Appreciation1_fc28b1ea81.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Certificate_of_Appreciation_03d82b5347.avif",
+    "image": "/images/awards/Certificate_of_Appreciation1_fc28b1ea81.avif",
+    "clientImage": "/images/awards/Certificate_of_Appreciation_03d82b5347.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Certificate_of_Appreciation1_fc28b1ea81.avif",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Certificate_of_Appreciation_03d82b5347.avif"
+      "/images/awards/Certificate_of_Appreciation1_fc28b1ea81.avif",
+      "/images/awards/Certificate_of_Appreciation_03d82b5347.avif"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Certificate_of_Appreciation_03d82b5347.avif"
+      "/images/awards/Certificate_of_Appreciation_03d82b5347.avif"
     ],
     "pdf": null
   },
@@ -147,20 +147,20 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T06:29:23.020Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_AMNS_INDIA_svg_svg_778803768e.svg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
+    "image": "/images/awards/1_AMNS_INDIA_svg_svg_778803768e.svg",
+    "clientImage": "/images/awards/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_AMNS_INDIA_svg_svg_778803768e.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_AMNS_INDIA_svg_svg_25c6bc6a74.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_AMNS_INDIA_svg_svg_7ec5727f1d.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_AMNS_INDIA_svg_svg_8d79cef566.svg"
+      "/images/awards/1_AMNS_INDIA_svg_svg_778803768e.svg",
+      "/images/awards/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
+      "/images/awards/3_AMNS_INDIA_svg_svg_25c6bc6a74.svg",
+      "/images/awards/4_AMNS_INDIA_svg_svg_7ec5727f1d.svg",
+      "/images/awards/5_AMNS_INDIA_svg_svg_8d79cef566.svg"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_AMNS_INDIA_svg_svg_25c6bc6a74.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_AMNS_INDIA_svg_svg_7ec5727f1d.svg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_AMNS_INDIA_svg_svg_8d79cef566.svg"
+      "/images/awards/2_AMNS_INDIA_svg_svg_cbda376d70.svg",
+      "/images/awards/3_AMNS_INDIA_svg_svg_25c6bc6a74.svg",
+      "/images/awards/4_AMNS_INDIA_svg_svg_7ec5727f1d.svg",
+      "/images/awards/5_AMNS_INDIA_svg_svg_8d79cef566.svg"
     ],
     "pdf": null
   },
@@ -176,10 +176,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:17:41.253Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_2025_9cc1db32a0.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_2025_9cc1db32a0.jpeg",
+    "image": "/images/awards/large_Adani_2025_9cc1db32a0.jpeg",
+    "clientImage": "/images/awards/large_Adani_2025_9cc1db32a0.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_2025_9cc1db32a0.jpeg"
+      "/images/awards/large_Adani_2025_9cc1db32a0.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -196,10 +196,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:15:09.303Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_Petrochemicals_4b8d3aee71.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_Petrochemicals_4b8d3aee71.jpeg",
+    "image": "/images/awards/large_Adani_Petrochemicals_4b8d3aee71.jpeg",
+    "clientImage": "/images/awards/large_Adani_Petrochemicals_4b8d3aee71.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_Petrochemicals_4b8d3aee71.jpeg"
+      "/images/awards/large_Adani_Petrochemicals_4b8d3aee71.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -216,10 +216,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:08:56.542Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_June_2022_July_2025_336c680b3b.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_June_2022_July_2025_336c680b3b.jpeg",
+    "image": "/images/awards/large_June_2022_July_2025_336c680b3b.jpeg",
+    "clientImage": "/images/awards/large_June_2022_July_2025_336c680b3b.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_June_2022_July_2025_336c680b3b.jpeg"
+      "/images/awards/large_June_2022_July_2025_336c680b3b.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -259,14 +259,14 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T06:58:02.429Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CERTIFICATE_OF_APPRECIATION_c275666565.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Mr_Surendra_Kumar_07babf7d15.avif",
+    "image": "/images/awards/CERTIFICATE_OF_APPRECIATION_c275666565.avif",
+    "clientImage": "/images/awards/Mr_Surendra_Kumar_07babf7d15.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CERTIFICATE_OF_APPRECIATION_c275666565.avif",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Mr_Surendra_Kumar_07babf7d15.avif"
+      "/images/awards/CERTIFICATE_OF_APPRECIATION_c275666565.avif",
+      "/images/awards/Mr_Surendra_Kumar_07babf7d15.avif"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Mr_Surendra_Kumar_07babf7d15.avif"
+      "/images/awards/Mr_Surendra_Kumar_07babf7d15.avif"
     ],
     "pdf": null
   },
@@ -328,10 +328,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:03:14.929Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_HSE_2024_58e975a8f3.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_HSE_2024_58e975a8f3.jpeg",
+    "image": "/images/awards/large_HSE_2024_58e975a8f3.jpeg",
+    "clientImage": "/images/awards/large_HSE_2024_58e975a8f3.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_HSE_2024_58e975a8f3.jpeg"
+      "/images/awards/large_HSE_2024_58e975a8f3.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -348,10 +348,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T13:00:42.386Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_HSE_e66fd4c36c.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_HSE_e66fd4c36c.jpeg",
+    "image": "/images/awards/large_HSE_e66fd4c36c.jpeg",
+    "clientImage": "/images/awards/large_HSE_e66fd4c36c.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_HSE_e66fd4c36c.jpeg"
+      "/images/awards/large_HSE_e66fd4c36c.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -368,10 +368,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T11:46:48.836Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_Pragati_8ec3d6d39f.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_Pragati_8ec3d6d39f.avif",
+    "image": "/images/awards/5_Pragati_8ec3d6d39f.avif",
+    "clientImage": "/images/awards/5_Pragati_8ec3d6d39f.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_Pragati_8ec3d6d39f.avif"
+      "/images/awards/5_Pragati_8ec3d6d39f.avif"
     ],
     "gallery": [],
     "pdf": null
@@ -454,18 +454,18 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T10:28:04.781Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Untitled_design_1_8e0ada492c.jpg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/times_india_s_c79efceb51.png",
+    "image": "/images/awards/Untitled_design_1_8e0ada492c.jpg",
+    "clientImage": "/images/awards/times_india_s_c79efceb51.png",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Untitled_design_1_8e0ada492c.jpg",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/times_india_s_c79efceb51.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/7_Pragati_706674e3b4.avif",
+      "/images/awards/Untitled_design_1_8e0ada492c.jpg",
+      "/images/awards/times_india_s_c79efceb51.png",
+      "/images/awards/7_Pragati_706674e3b4.avif",
       "/images/awards/Untitled-design-1.jpg",
       "/images/awards/times-india's.png"
     ],
     "gallery": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/times_india_s_c79efceb51.png",
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/7_Pragati_706674e3b4.avif",
+      "/images/awards/times_india_s_c79efceb51.png",
+      "/images/awards/7_Pragati_706674e3b4.avif",
       "/images/awards/Untitled-design-1.jpg",
       "/images/awards/times-india's.png"
     ],
@@ -663,10 +663,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T12:56:26.556Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Quality_Safety_Training_9cd487d2ab.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Quality_Safety_Training_9cd487d2ab.jpeg",
+    "image": "/images/awards/large_Quality_Safety_Training_9cd487d2ab.jpeg",
+    "clientImage": "/images/awards/large_Quality_Safety_Training_9cd487d2ab.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Quality_Safety_Training_9cd487d2ab.jpeg"
+      "/images/awards/large_Quality_Safety_Training_9cd487d2ab.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -683,10 +683,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T12:53:49.535Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_8212684d8e.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_8212684d8e.jpeg",
+    "image": "/images/awards/large_Adani_8212684d8e.jpeg",
+    "clientImage": "/images/awards/large_Adani_8212684d8e.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Adani_8212684d8e.jpeg"
+      "/images/awards/large_Adani_8212684d8e.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -703,10 +703,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T12:49:44.133Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg",
+    "image": "/images/awards/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg",
+    "clientImage": "/images/awards/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg"
+      "/images/awards/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg"
     ],
     "gallery": [],
     "pdf": null
@@ -769,10 +769,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T11:56:32.320Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_Pragati_1e9b6445d4.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_Pragati_1e9b6445d4.avif",
+    "image": "/images/awards/4_Pragati_1e9b6445d4.avif",
+    "clientImage": "/images/awards/4_Pragati_1e9b6445d4.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_Pragati_1e9b6445d4.avif"
+      "/images/awards/4_Pragati_1e9b6445d4.avif"
     ],
     "gallery": [],
     "pdf": null
@@ -789,10 +789,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T10:16:58.845Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/8_Pragati_645979f246.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/8_Pragati_645979f246.avif",
+    "image": "/images/awards/8_Pragati_645979f246.avif",
+    "clientImage": "/images/awards/8_Pragati_645979f246.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/8_Pragati_645979f246.avif"
+      "/images/awards/8_Pragati_645979f246.avif"
     ],
     "gallery": [],
     "pdf": null
@@ -809,10 +809,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T10:16:33.707Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/6_Pragati_c805c2e1e6.avif",
+    "image": "/images/awards/6_Pragati_c805c2e1e6.avif",
     "clientImage": "/images/awards/15.jpeg",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/6_Pragati_c805c2e1e6.avif",
+      "/images/awards/6_Pragati_c805c2e1e6.avif",
       "/images/awards/15.jpeg",
       "/images/awards/awards.png"
     ],
@@ -834,10 +834,10 @@ const awardsAndCertifications = [
     "featured": false,
     "isFeatured": false,
     "createdAt": "2026-08-31T12:07:03.696Z",
-    "image": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_Pragati_57962644f1.avif",
-    "clientImage": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_Pragati_57962644f1.avif",
+    "image": "/images/awards/3_Pragati_57962644f1.avif",
+    "clientImage": "/images/awards/3_Pragati_57962644f1.avif",
     "images": [
-      "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_Pragati_57962644f1.avif"
+      "/images/awards/3_Pragati_57962644f1.avif"
     ],
     "gallery": [],
     "pdf": null

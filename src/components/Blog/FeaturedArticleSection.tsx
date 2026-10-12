@@ -76,7 +76,7 @@ const FeaturedArticleSection = ({ article: latestBlog }) => {
         <div 
           className="featured-image"
           style={{
-            backgroundImage: `url(${latestBlog.featuredImage})`,
+            backgroundImage: `url(${latestBlog.featuredImage || "/images/hero/Blog.png"})`,
           }}
         />
 
