@@ -61,15 +61,20 @@ const Home = () => {
         
         if (ongoingRes && Array.isArray(ongoingRes) && ongoingRes.length > 0) {
           setOngoing(ongoingRes.map(p => {
-            const matchLocal = projectsData.find(lp => lp.name === (p.title || p.name)) || {};
-            const strapiImg = getImageUrl(p.image?.url || p.images?.[0]?.url || '');
-            const finalImages = strapiImg ? [strapiImg] : (matchLocal.images || matchLocal.image ? [matchLocal.image || matchLocal.images?.[0]] : ['/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png']);
+            const pName = p.name || p.title || '';
+            const matchLocal = projectsData.find(lp => lp.name === pName || lp.name.toLowerCase() === pName.toLowerCase()) || {};
+            const strapiImgs = Array.isArray(p.images) && p.images.length > 0
+              ? p.images.map(img => getImageUrl(img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
+              : (p.image ? [getImageUrl(p.image.url || p.image)] : []);
+            const finalImages = strapiImgs.length > 0 
+              ? strapiImgs 
+              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png']));
             return {
-              id: p.id,
-              name: p.title || p.name,
+              id: p.documentId || p.id,
+              name: pName,
               state: p.state || matchLocal.state || 'Gujarat',
-              city: p.location || p.city || matchLocal.location || matchLocal.city,
-              location: p.location || p.city || matchLocal.location || matchLocal.city,
+              city: p.location || p.city || matchLocal.location || matchLocal.city || 'Gujarat',
+              location: p.location || p.city || matchLocal.location || matchLocal.city || 'Gujarat',
               status: 'Ongoing',
               category: p.category || matchLocal.category,
               area: p.area || matchLocal.area,
@@ -78,7 +83,7 @@ const Home = () => {
               timeline: p.timeline || matchLocal.timeline,
               cx: p.cx != null ? p.cx : matchLocal.cx,
               cy: p.cy != null ? p.cy : matchLocal.cy,
-              progress: p.progress || matchLocal.progress || 75,
+              progress: p.progress != null ? p.progress : (matchLocal.progress || 75),
               images: finalImages,
               image: finalImages[0]
             };
@@ -87,15 +92,20 @@ const Home = () => {
         
         if (completedRes && Array.isArray(completedRes) && completedRes.length > 0) {
           setCompleted(completedRes.map(p => {
-            const matchLocal = completedProjectsData.find(lp => lp.name === (p.title || p.name)) || {};
-            const strapiImg = getImageUrl(p.image?.url || p.images?.[0]?.url || '');
-            const finalImages = strapiImg ? [strapiImg] : (matchLocal.images || matchLocal.image ? [matchLocal.image || matchLocal.images?.[0]] : ['/images/Project/completed/Farrukhnagar/welspun-factory-farrukhnagar-hr-1.png']);
+            const pName = p.name || p.title || '';
+            const matchLocal = completedProjectsData.find(lp => lp.name === pName || lp.name.toLowerCase() === pName.toLowerCase()) || {};
+            const strapiImgs = Array.isArray(p.images) && p.images.length > 0
+              ? p.images.map(img => getImageUrl(img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
+              : (p.image ? [getImageUrl(p.image.url || p.image)] : []);
+            const finalImages = strapiImgs.length > 0 
+              ? strapiImgs 
+              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/completed/Farrukhnagar/welspun-factory-farrukhnagar-hr-1.png']));
             return {
-              id: p.id,
-              name: p.title || p.name,
+              id: p.documentId || p.id,
+              name: pName,
               state: p.state || matchLocal.state || 'Haryana',
-              city: p.location || p.city || matchLocal.location || matchLocal.city,
-              location: p.location || p.city || matchLocal.location || matchLocal.city,
+              city: p.location || p.city || matchLocal.location || matchLocal.city || 'Haryana',
+              location: p.location || p.city || matchLocal.location || matchLocal.city || 'Haryana',
               status: 'Completed',
               category: p.category || matchLocal.category,
               area: p.area || matchLocal.area,

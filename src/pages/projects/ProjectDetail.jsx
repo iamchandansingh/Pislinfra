@@ -121,7 +121,10 @@ const ProjectDetail = () => {
           const formattedAll = res.map(item => {
             const localFallback = localPool.find(lp => slugify(lp.name) === slugify(item.name)) || {};
             const imgs = item.images && item.images.length > 0
-              ? item.images.map(img => img.url?.startsWith('http') ? img.url : `${img.url}`)
+              ? item.images.map(img => {
+                  const u = img.formats?.large?.url || img.formats?.medium?.url || img.url || '';
+                  return u.startsWith('http') ? u : u;
+                }).filter(Boolean)
               : (localFallback.images || []);
 
             return {
@@ -141,23 +144,21 @@ const ProjectDetail = () => {
           
           setAllProjects(formattedAll);
           
-          if (!foundFast) {
-            let foundProject = formattedAll.find(p => p.id === projectIdOrSlug || p.documentId === projectIdOrSlug);
-            if (!foundProject) {
-              foundProject = formattedAll.find(p => {
-                 const s = slugify(p.name);
-                 const targetS = slugify(projectIdOrSlug);
-                 return s === targetS || s.includes(targetS) || targetS.includes(s) || p.id.toString() === projectIdOrSlug;
-              });
-            }
-            
-            if (foundProject) {
-              setProject(foundProject);
-            } else if (initialMatch) {
-              setProject(initialMatch);
-            }
-            setLoading(false);
+          let foundProject = formattedAll.find(p => p.id === projectIdOrSlug || p.documentId === projectIdOrSlug);
+          if (!foundProject) {
+            foundProject = formattedAll.find(p => {
+               const s = slugify(p.name);
+               const targetS = slugify(projectIdOrSlug);
+               return s === targetS || s.includes(targetS) || targetS.includes(s) || (p.id && p.id.toString() === projectIdOrSlug.toString());
+            });
           }
+          
+          if (foundProject && isMounted) {
+            setProject(foundProject);
+          } else if (initialMatch && isMounted && !project) {
+            setProject(initialMatch);
+          }
+          if (isMounted) setLoading(false);
         } else if (initialMatch && isMounted) {
           setProject(initialMatch);
           setLoading(false);

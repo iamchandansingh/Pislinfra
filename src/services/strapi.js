@@ -144,25 +144,23 @@ const getLocalBackup = (endpoint) => {
   return null;
 };
 
-// Background live sync worker without blocking UI
-const revalidateInBackground = (endpoint) => {
-  if (!STRAPI_URL) {
-    notifyStatus(true);
-    return;
-  }
-  const now = Date.now();
-  if (lastFetchedTime.has(endpoint) && now - lastFetchedTime.get(endpoint) < 15000) {
-    return;
-  }
-  if (inFlightRequests.has(endpoint)) return;
+// Live fetch directly from Strapi CMS with resilient timeout and fallback
+export const fetchStrapiData = async (endpoint, options = {}) => {
+  const { forceFresh = false } = options;
 
-  const fetchPromise = (async () => {
+  // 1. LIVE NETWORK FETCH FIRST (Always prioritize fresh data from Strapi CMS)
+  if (STRAPI_URL) {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      // 8 second timeout gives Render and Neon plenty of time even during cold start
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
 
       const response = await fetch(`${STRAPI_URL}/api/${endpoint}`, {
-        signal: controller.signal
+        signal: controller.signal,
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache'
+        }
       });
       clearTimeout(timeoutId);
 
@@ -174,14 +172,10 @@ const revalidateInBackground = (endpoint) => {
           lastFetchedTime.set(endpoint, Date.now());
           saveToIDB(endpoint, cleanData);
           if (typeof window !== 'undefined' && window.localStorage) {
-            try { window.localStorage.setItem(`pisl_cache_${endpoint}`, JSON.stringify(cleanData)); } catch (e) {}
-          }
-          if (typeof window !== 'undefined') {
-            fetch('/sync-backup.php', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ endpoint, data: cleanData })
-            }).catch(() => {});
+            try { 
+              window.localStorage.setItem(`pisl_cache_${endpoint}`, JSON.stringify(cleanData));
+              window.localStorage.setItem(`pisl_cache_time_${endpoint}`, Date.now().toString());
+            } catch (e) {}
           }
           notifyStatus(false);
           return cleanData;
@@ -190,56 +184,37 @@ const revalidateInBackground = (endpoint) => {
         notifyStatus(true);
       }
     } catch (e) {
+      console.warn(`[Strapi Network] Live fetch for "${endpoint}" failed or timed out. Falling back to cache.`);
       notifyStatus(true);
-    } finally {
-      inFlightRequests.delete(endpoint);
     }
-  })();
+  }
 
-  inFlightRequests.set(endpoint, fetchPromise);
-};
-
-// ==========================================
-// 4. ENTERPRISE 0ms SWR DATA ENGINE
-// ==========================================
-export const fetchStrapiData = async (endpoint) => {
-  // 1. FAST PATH: Memory Cache (0ms response)
+  // 2. FALLBACK: Memory Cache
   if (memoryCache.has(endpoint)) {
-    revalidateInBackground(endpoint);
     return memoryCache.get(endpoint);
   }
 
-  // 2. FAST PATH: LocalStorage Cache (0.1ms response)
+  // 3. FALLBACK: LocalStorage Cache
   if (typeof window !== 'undefined' && window.localStorage) {
     try {
       const localCached = window.localStorage.getItem(`pisl_cache_${endpoint}`);
       if (localCached) {
         const parsed = sanitizeBrandText(JSON.parse(localCached));
         memoryCache.set(endpoint, parsed);
-        revalidateInBackground(endpoint);
         return parsed;
       }
     } catch (e) {}
   }
 
-  // 3. FAST PATH: Bundled Offline Fallback (Instant 0ms response)
-  const localFallback = getLocalBackup(endpoint);
-  if (localFallback) {
-    memoryCache.set(endpoint, localFallback);
-    revalidateInBackground(endpoint);
-    return localFallback;
-  }
-
-  // 4. Check IndexedDB
+  // 4. FALLBACK: IndexedDB
   const idbData = await getFromIDB(endpoint);
   if (idbData) {
     const cleanIdb = sanitizeBrandText(idbData);
     memoryCache.set(endpoint, cleanIdb);
-    revalidateInBackground(endpoint);
     return cleanIdb;
   }
 
-  // 5. Check Hostinger Server Disk Backup
+  // 5. FALLBACK: Hostinger Server Disk Backup
   if (typeof window !== 'undefined') {
     try {
       const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(endpoint)}`, { cache: 'no-cache' });
@@ -254,27 +229,11 @@ export const fetchStrapiData = async (endpoint) => {
     } catch (e) {}
   }
 
-  // 6. Direct Live Strapi Fetch if nothing else is available
-  if (STRAPI_URL) {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-      const response = await fetch(`${STRAPI_URL}/api/${endpoint}`, {
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
-
-      if (response.ok) {
-        const json = await response.json();
-        if (json && json.data) {
-          const cleanData = sanitizeBrandText(json.data);
-          memoryCache.set(endpoint, cleanData);
-          saveToIDB(endpoint, cleanData);
-          return cleanData;
-        }
-      }
-    } catch (error) {}
+  // 6. LAST RESORT FALLBACK: Bundled Offline Fallback (MainBackupPislinfra.json)
+  const localFallback = getLocalBackup(endpoint);
+  if (localFallback) {
+    memoryCache.set(endpoint, localFallback);
+    return localFallback;
   }
 
   return null;

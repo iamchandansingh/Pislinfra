@@ -466,38 +466,36 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
         // Resolve images: prioritize accurate matched project gallery, then marker images
         let markerImgs = [];
-        if (Array.isArray(m.images) && m.images.length > 1) {
+        if (Array.isArray(match.images) && match.images.length > 0) {
+          markerImgs = match.images.map(img => typeof img === 'string' ? img : (img.url || FALLBACK_IMG));
+        } else if (match.image) {
+          const u = typeof match.image === 'string' ? match.image : (match.image.url || FALLBACK_IMG);
+          markerImgs = [u];
+        } else if (Array.isArray(m.images) && m.images.length > 0) {
           markerImgs = m.images.map(img => {
-            const url = img.url || '';
+            const url = typeof img === 'string' ? img : (img.url || '');
             return url.startsWith('http') ? url : `${url}`;
           });
-        } else if (match.images && match.images.length > 0) {
-          markerImgs = match.images;
-        } else if (Array.isArray(m.images) && m.images.length === 1) {
-          const url = m.images[0].url || '';
-          markerImgs = [url.startsWith('http') ? url : `${url}`];
         } else if (m.image?.url) {
           const url = m.image.url;
           markerImgs = [url.startsWith('http') ? url : `${url}`];
-        } else if (match.image) {
-          markerImgs = [match.image];
         } else {
           markerImgs = [FALLBACK_IMG];
         }
 
         return {
-          id: m.id || m.documentId || match.id || `m-${i}`,
-          name: mName || match.name || 'Project',
-          state: mState || match.state || 'Default State',
-          city: mCity || match.city || match.location || 'Default City',
-          location: mCity || match.location || match.city || 'Default City',
+          id: match.id || m.id || m.documentId || `m-${i}`,
+          name: match.name || mName || 'Project',
+          state: match.state || mState || 'Default State',
+          city: match.city || match.location || mCity || 'Default City',
+          location: match.location || match.city || mCity || 'Default City',
           status: isOngoing ? 'Ongoing' : 'Completed',
           category: match.category || (isOngoing ? 'Infrastructure' : 'Industrial'),
           area: match.area || 'N/A',
           client: match.client || 'Pislinfra Client',
           scope: match.scope || (isOngoing ? 'EPC Services' : 'Full Turnkey Construction'),
           timeline: match.timeline || (isOngoing ? '2024 - 2026' : 'Completed'),
-          progress: match.progress || (isOngoing ? (Math.floor(Math.random() * 50) + 35) : 100),
+          progress: match.progress != null ? match.progress : (isOngoing ? 75 : 100),
           cx: m.cx != null ? Number(m.cx) : (match.cx != null ? Number(match.cx) : 50),
           cy: m.cy != null ? Number(m.cy) : (match.cy != null ? Number(match.cy) : 50),
           images: markerImgs,
@@ -507,6 +505,25 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
       const ogList = allProjectsFromMarkers.filter(p => p.status === 'Ongoing');
       const compList = allProjectsFromMarkers.filter(p => p.status === 'Completed');
+
+      // Seamlessly append any projects from Strapi that were not matched by an existing marker
+      const matchedOgNames = new Set(ogList.map(p => (p.name || '').toLowerCase().trim()));
+      (strapiOngoing || []).forEach((p, idx) => {
+        const pName = (p.name || p.title || '').toLowerCase().trim();
+        if (pName && !matchedOgNames.has(pName)) {
+          matchedOgNames.add(pName);
+          ogList.push(normalizeProject(p, 'Ongoing', `strapi-og-${idx}`));
+        }
+      });
+
+      const matchedCompNames = new Set(compList.map(p => (p.name || '').toLowerCase().trim()));
+      (strapiCompleted || []).forEach((p, idx) => {
+        const pName = (p.name || p.title || '').toLowerCase().trim();
+        if (pName && !matchedCompNames.has(pName)) {
+          matchedCompNames.add(pName);
+          compList.push(normalizeProject(p, 'Completed', `strapi-comp-${idx}`));
+        }
+      });
 
       setOngoingProjects(ogList);
       setCompletedProjects(compList);

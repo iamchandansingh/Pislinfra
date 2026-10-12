@@ -29,9 +29,10 @@ const OngoingProjects = () => {
         if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
           const formatted = projData.map(item => {
             const matchLocal = localProjectsData.find(lp => slugify(lp.name) === slugify(item.name)) || {};
-            const imgs = item.images && item.images.length > 0 
-              ? item.images.map(img => { const optimal = img.formats?.medium?.url || img.formats?.small?.url || img.url; return optimal?.startsWith('http') ? optimal : optimal })
-              : (matchLocal.images || []);
+            const strapiImages = Array.isArray(item.images) && item.images.length > 0
+              ? item.images.map(img => img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url).filter(Boolean)
+              : (item.image?.url ? [item.image.url] : []);
+            const imgs = strapiImages.length > 0 ? strapiImages : (matchLocal.images || (matchLocal.image ? [matchLocal.image] : []));
 
             return {
               id: item.documentId || item.id,
