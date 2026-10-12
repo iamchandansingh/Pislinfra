@@ -125,12 +125,11 @@ const ProjectDetail = () => {
               const sI = slugify(item.name);
               return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
             }) || {};
-            const imgs = item.images && item.images.length > 0
-              ? item.images.map(img => {
-                  const u = img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url || '';
-                  return getImageUrl(u);
-                }).filter(Boolean)
-              : (item.image ? [getImageUrl(item.image.formats?.large?.url || item.image.url || item.image)] : (localFallback.images || []));
+            const rawImgs = Array.isArray(item.images) && item.images.length > 0
+              ? item.images
+              : (item.image ? [item.image] : []);
+            const strapiImages = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
+            const imgs = strapiImages.length > 0 ? strapiImages : (localFallback.images || []);
 
             return {
               id: item.documentId || item.id,

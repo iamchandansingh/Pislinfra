@@ -34,9 +34,10 @@ const OngoingProjects = () => {
               const sI = slugify(item.name);
               return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
             }) || {};
-            const strapiImages = Array.isArray(item.images) && item.images.length > 0
-              ? item.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
-              : (item.image ? [getImageUrl(item.image.formats?.large?.url || item.image.url || item.image)] : []);
+            const rawImgs = Array.isArray(item.images) && item.images.length > 0
+              ? item.images
+              : (item.image ? [item.image] : []);
+            const strapiImages = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
             const imgs = strapiImages.length > 0 ? strapiImages : (matchLocal.images || (matchLocal.image ? [matchLocal.image] : []));
 
             return {
@@ -99,12 +100,7 @@ const OngoingProjects = () => {
     window.scrollTo({ top: 400, behavior: 'smooth' })
   }
 
-  const getImageUrl = (img) => {
-    if (!img) return null;
-    return img.url?.startsWith('http') ? img.url : `${img.url}`;
-  };
-
-  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/Ongoing-Projects.png";
+  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Ongoing-Projects.png") : "/images/hero/Ongoing-Projects.png";
 
   return (
     <div>

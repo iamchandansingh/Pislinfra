@@ -69,9 +69,10 @@ const Home = () => {
               const sP = slugify(pName);
               return sL === sP || (sL && sP && (sL.includes(sP) || sP.includes(sL)));
             }) || {};
-            const strapiImgs = Array.isArray(p.images) && p.images.length > 0
-              ? p.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
-              : (p.image ? [getImageUrl(p.image.formats?.large?.url || p.image.url || p.image)] : []);
+            const rawImgs = Array.isArray(p.images) && p.images.length > 0
+              ? p.images
+              : (p.image ? [p.image] : []);
+            const strapiImgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
             const finalImages = strapiImgs.length > 0 
               ? strapiImgs 
               : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png']));
@@ -104,9 +105,10 @@ const Home = () => {
               const sP = slugify(pName);
               return sL === sP || (sL && sP && (sL.includes(sP) || sP.includes(sL)));
             }) || {};
-            const strapiImgs = Array.isArray(p.images) && p.images.length > 0
-              ? p.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
-              : (p.image ? [getImageUrl(p.image.formats?.large?.url || p.image.url || p.image)] : []);
+            const rawImgs = Array.isArray(p.images) && p.images.length > 0
+              ? p.images
+              : (p.image ? [p.image] : []);
+            const strapiImgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
             const finalImages = strapiImgs.length > 0 
               ? strapiImgs 
               : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/completed/Farrukhnagar/welspun-factory-farrukhnagar-hr-1.png']));

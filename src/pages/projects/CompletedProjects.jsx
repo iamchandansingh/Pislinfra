@@ -32,9 +32,10 @@ const CompletedProjects = () => {
               const sI = slugify(item.name);
               return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
             }) || {};
-            const strapiImages = Array.isArray(item.images) && item.images.length > 0
-              ? item.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
-              : (item.image ? [getImageUrl(item.image.formats?.large?.url || item.image.url || item.image)] : []);
+            const rawImgs = Array.isArray(item.images) && item.images.length > 0
+              ? item.images
+              : (item.image ? [item.image] : []);
+            const strapiImages = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
             const imgs = strapiImages.length > 0 ? strapiImages : (matchLocal.images || (matchLocal.image ? [matchLocal.image] : []));
 
             return {
@@ -65,16 +66,11 @@ const CompletedProjects = () => {
   }, []);
 
   if (loading) return <Preloader />;
-  
-  const getImageUrl = (img) => {
-    if (!img) return null;
-    return img.url?.startsWith('http') ? img.url : `${img.url}`;
-  };
 
   const heroTitle = pageData?.heroTitle || "Completed Projects";
   const heroSubtitle = pageData?.heroSubtitle || "Successfully delivered infrastructure projects across India";
   const heroBreadcrumb = pageData?.heroBreadcrumb || "Projects / Completed";
-  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/Completed-Projects.png";
+  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Completed-Projects.png") : "/images/hero/Completed-Projects.png";
 
   const seoData = pageData?.seo || {
     contentType: 'page',
