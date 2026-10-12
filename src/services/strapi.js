@@ -7,10 +7,10 @@ const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname.endsWith('.local')
 );
 
-// In development on localhost, prioritize local Strapi (http://localhost:1337) so edits reflect instantly.
+// In development on localhost, prioritize local Strapi (http://127.0.0.1:1337) so edits reflect instantly.
 // On live production, use VITE_STRAPI_URL or Render.
 export const STRAPI_URL = isLocalhost
-  ? 'http://localhost:1337'
+  ? 'http://127.0.0.1:1337'
   : (import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com');
 
 let cmsOfflineState = false;
@@ -207,7 +207,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
 
     // 1. LIVE NETWORK FETCH FIRST (Always prioritize fresh data from Strapi CMS)
     const candidateUrls = isLocalhost
-      ? ['', 'http://localhost:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
+      ? ['http://localhost:1337', 'http://127.0.0.1:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
       : [import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'];
 
     for (const baseUrl of candidateUrls) {
@@ -215,16 +215,22 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
       try {
         const controller = new AbortController();
         // Give local Strapi and remote CMS plenty of time to populate relations
-        const timeoutMs = 15000;
+        const timeoutMs = isLocalhost ? 35000 : 20000;
         const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-        const sep = cleanEndpoint.includes('?') ? '&' : '?';
-        const requestUrl = (isLocalhost || forceFresh)
-          ? `${baseUrl}/api/${cleanEndpoint}${sep}_t=${Date.now()}`
-          : `${baseUrl}/api/${cleanEndpoint}`;
+        if (forceFresh) {
+          memoryCache.delete(endpoint);
+          memoryCache.delete(cleanEndpoint);
+        }
+
+        const requestUrl = `${baseUrl}/api/${cleanEndpoint}`;
 
         const response = await fetch(requestUrl, {
           cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache'
+          },
           signal: controller.signal
         });
         clearTimeout(timeoutId);

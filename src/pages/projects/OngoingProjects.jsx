@@ -19,14 +19,17 @@ const OngoingProjects = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const getData = async () => {
+    const getData = async (forceFresh = false) => {
       try {
-        const pData = await fetchStrapiData('ongoing-page?populate=seo,heroImage');
+        const [pData, projData] = await Promise.all([
+          fetchStrapiData('ongoing-page?populate=seo,heroImage', { forceFresh }),
+          fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100', { forceFresh })
+        ]);
+
         if (pData && isMounted) {
           setPageData(pData);
         }
 
-        const projData = await fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100');
         if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
           const filtered = projData.filter(item => {
             const n = (item.name || item.title || '').toLowerCase();
@@ -39,8 +42,11 @@ const OngoingProjects = () => {
               const sI = slugify(item.name);
               const locL = slugify(lp.location);
               const locI = slugify(item.location);
-              if (sL === sI && locL && locI) return locL === locI;
-              return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
+              if (sL === sI) {
+                if (locL && locI) return locL === locI;
+                return true;
+              }
+              return (sL && sI && (sL.includes(sI) || sI.includes(sL)));
             }) || {};
             const rawImgs = Array.isArray(item.images) && item.images.length > 0
               ? item.images
@@ -50,6 +56,7 @@ const OngoingProjects = () => {
 
             return {
               id: item.documentId || item.id,
+              documentId: item.documentId,
               category: item.category || matchLocal.category,
               name: item.name || matchLocal.name,
               location: item.location || matchLocal.location,
@@ -70,8 +77,27 @@ const OngoingProjects = () => {
         if (isMounted) setLoading(false);
       }
     };
+
     getData();
-    return () => { isMounted = false; };
+
+    const handleFocus = () => {
+      getData(true);
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        getData(true);
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('visibilitychange', handleVisibility);
+    const intervalId = setInterval(() => getData(true), 10000);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('visibilitychange', handleVisibility);
+      clearInterval(intervalId);
+    };
   }, []);
 
   if (loading) return <Preloader />;

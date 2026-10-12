@@ -10,18 +10,32 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 async function downloadImageIfMissing(url, folder) {
-  if (!url || typeof url !== 'string' || !url.includes('r2.dev/')) return url;
-  const fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+  if (!url || typeof url !== 'string') return url;
+  let fetchUrl = url;
+  let fn = '';
+  if (url.includes('r2.dev/')) {
+    fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+  } else if (url.startsWith('/uploads/') || url.includes('localhost:1337/uploads/')) {
+    fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+    fetchUrl = url.startsWith('/uploads/') ? `http://localhost:1337${url}` : url;
+  } else {
+    return url;
+  }
+
   const targetDir = path.resolve(__dirname, 'public/images', folder);
   if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
   const targetPath = path.join(targetDir, fn);
   if (!fs.existsSync(targetPath)) {
     try {
-      const res = await fetch(url, { headers: { 'User-Agent': 'PislinfraDev/1.0' } });
+      const res = await fetch(fetchUrl, { headers: { 'User-Agent': 'PislinfraDev/1.0' } });
       if (res.ok) {
         const buf = Buffer.from(await res.arrayBuffer());
         fs.writeFileSync(targetPath, buf);
         console.log(`📥 Auto-downloaded [${folder}] image: ${fn}`);
+        const distDir = path.resolve(__dirname, 'dist/images', folder);
+        if (fs.existsSync(distDir)) {
+          fs.writeFileSync(path.join(distDir, fn), buf);
+        }
       }
     } catch (e) {
       console.warn(`Could not download ${fn}:`, e.message);
@@ -94,7 +108,7 @@ function autoBackupDevPlugin() {
                       images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
                     };
                   }));
-                  if (formattedOg.length === 16) {
+                  if (formattedOg.length > 0) {
                     fs.writeFileSync(ogPath, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
                   }
                 }
@@ -123,10 +137,24 @@ function autoBackupDevPlugin() {
                       images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
                     };
                   }));
-                  if (formattedComp.length >= 25) {
+                  if (formattedComp.length > 0) {
                     fs.writeFileSync(compPath, `const completedProjects = ${JSON.stringify(formattedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
                   }
                 }
+
+                // Auto-sync PROJECT_FILES Set in imageUrl.js
+                try {
+                  const imgUrlPath = path.resolve(__dirname, 'src/utils/imageUrl.js');
+                  const projDir = path.resolve(__dirname, 'public/images/projects');
+                  if (fs.existsSync(imgUrlPath) && fs.existsSync(projDir)) {
+                    const pFiles = fs.readdirSync(projDir).filter(f => !f.startsWith('.') && (f.endsWith('.jpg') || f.endsWith('.jpeg') || f.endsWith('.png') || f.endsWith('.webp') || f.endsWith('.avif') || f.endsWith('.svg')));
+                    pFiles.sort();
+                    let imgUrlContent = fs.readFileSync(imgUrlPath, 'utf8');
+                    const setStr = `const PROJECT_FILES = new Set(${JSON.stringify(pFiles)});`;
+                    imgUrlContent = imgUrlContent.replace(/const PROJECT_FILES = new Set\(\[[\s\S]*?\]\);/, setStr);
+                    fs.writeFileSync(imgUrlPath, imgUrlContent, 'utf8');
+                  }
+                } catch (e) {}
               }
               res.statusCode = 200;
               res.setHeader('Content-Type', 'application/json');
@@ -168,7 +196,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:1337',
+        target: 'http://127.0.0.1:1337',
+        changeOrigin: true,
+      },
+      '/uploads': {
+        target: 'http://127.0.0.1:1337',
         changeOrigin: true,
       },
     },

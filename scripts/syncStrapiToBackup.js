@@ -428,6 +428,23 @@ async function syncBackup() {
   // 7. Write Master Backup & Hostinger public static backup
   fs.writeFileSync(BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');
   fs.writeFileSync(HOSTINGER_BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');
+
+  // 8. Auto-update PROJECT_FILES Set in src/utils/imageUrl.js so newly downloaded images are instantly registered
+  try {
+    const imgUrlPath = path.resolve(__dirname, '../src/utils/imageUrl.js');
+    if (fs.existsSync(imgUrlPath) && fs.existsSync(projectImagesDir)) {
+      const pFiles = fs.readdirSync(projectImagesDir).filter(f => !f.startsWith('.') && (f.endsWith('.jpg') || f.endsWith('.jpeg') || f.endsWith('.png') || f.endsWith('.webp') || f.endsWith('.avif') || f.endsWith('.svg')));
+      pFiles.sort();
+      let imgUrlContent = fs.readFileSync(imgUrlPath, 'utf8');
+      const setStr = `const PROJECT_FILES = new Set(${JSON.stringify(pFiles)});`;
+      imgUrlContent = imgUrlContent.replace(/const PROJECT_FILES = new Set\(\[[\s\S]*?\]\);/, setStr);
+      fs.writeFileSync(imgUrlPath, imgUrlContent, 'utf8');
+      console.log(`✅ Auto-registered ${pFiles.length} project images in src/utils/imageUrl.js`);
+    }
+  } catch (e) {
+    console.warn('Could not update imageUrl.js:', e.message);
+  }
+
   console.log('🌟 Complete offline backup bundle successfully saved to MainBackupPislinfra.json & public/data/live-backup.json!');
 }
 

@@ -152,6 +152,22 @@ const Home = () => {
       }
     };
     loadData();
+
+    const handleFocus = () => {
+      loadData(true);
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        loadData(true);
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('visibilitychange', handleVisibility);
+    };
   }, []);
 
   if (loading) return <Preloader />;

@@ -85,27 +85,6 @@ const projectsData = [
   },
   {
     "id": 5,
-    "documentId": "n3hwjilrop1oleltf6fwjxmx",
-    "category": "Industrial",
-    "name": "AMNS SSC GIDC Project",
-    "location": "GIDC Sanand",
-    "state": "Gujarat",
-    "area": "16.15 Lakh Sq. ft",
-    "client": "AMNS",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
-    "images": [
-      "/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp",
-      "/images/projects/optimized_1787755127970_367_large_amns-ssc-gidc-project-sanand-gj-2_png.webp",
-      "/images/projects/optimized_1787755454265_164_large_amns-ssc-gidc-project-sanand-gj-3_png.webp",
-      "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
-      "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
-      "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
-    ]
-  },
-  {
-    "id": 6,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -126,7 +105,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 7,
+    "id": 6,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
@@ -147,7 +126,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 8,
+    "id": 7,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -166,7 +145,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "documentId": "wqd7gr6n1eodf36348atvtn4",
     "category": "Institutional",
     "name": "CPWD – IIT ISM Campus Project",
@@ -185,7 +164,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
     "category": "Industrial",
     "name": "Reliance Solar Unit Manufacturing Plant",
@@ -206,7 +185,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
@@ -225,7 +204,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
@@ -245,7 +224,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
     "category": "Warehousing",
     "name": "HANNO ONE Logistics Park",
@@ -264,7 +243,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
@@ -283,7 +262,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
+    "id": 14,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
     "category": "Industrial",
     "name": "Reliance DMD Plant",
@@ -303,7 +282,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -319,6 +298,28 @@ const projectsData = [
       "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
       "/images/projects/large_Neemrana_3_884fd40dde.jpg",
       "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "n3hwjilrop1oleltf6fwjxmx",
+    "category": "Industrial",
+    "name": "AMNS SSC GIDC Project",
+    "location": "GIDC Sanand",
+    "state": "Gujarat",
+    "area": "16.15 Lakh Sq. Ft",
+    "client": "AMNS",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
+    "images": [
+      "/images/projects/large_Screenshot_2026_10_12_at_11_53_30_PM_04b1b4e0d3.png",
+      "/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp",
+      "/images/projects/optimized_1787755127970_367_large_amns-ssc-gidc-project-sanand-gj-2_png.webp",
+      "/images/projects/optimized_1787755454265_164_large_amns-ssc-gidc-project-sanand-gj-3_png.webp",
+      "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
+      "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
+      "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
     ]
   }
 ];

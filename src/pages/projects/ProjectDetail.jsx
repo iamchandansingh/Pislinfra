@@ -123,9 +123,9 @@ const ProjectDetail = () => {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchUltraFast = async () => {
+    const fetchUltraFast = async (forceFresh = false) => {
       let foundFast = false;
-      if (initialMatch && isMounted) {
+      if (initialMatch && isMounted && !project) {
         setProject(initialMatch);
         foundFast = true;
       }
@@ -135,7 +135,7 @@ const ProjectDetail = () => {
           ? 'completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'
           : 'ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc';
         
-        const res = await fetchStrapiData(endpoint);
+        const res = await fetchStrapiData(endpoint, { forceFresh });
         if (res && Array.isArray(res) && res.length > 0 && isMounted) {
           const formattedAll = res.map(item => {
             const localFallback = localPool.find(lp => {
@@ -144,8 +144,11 @@ const ProjectDetail = () => {
               const sI = slugify(item.name);
               const locL = slugify(lp.location);
               const locI = slugify(item.location);
-              if (sL === sI && locL && locI) return locL === locI;
-              return sL === sI;
+              if (sL === sI) {
+                if (locL && locI) return locL === locI;
+                return true;
+              }
+              return false;
             }) || {};
             const rawImgs = Array.isArray(item.images) && item.images.length > 0
               ? item.images
@@ -155,6 +158,7 @@ const ProjectDetail = () => {
 
             return {
               id: item.documentId || item.id,
+              documentId: item.documentId,
               category: item.category || localFallback.category,
               name: item.name || localFallback.name,
               location: item.location || localFallback.location,
@@ -185,7 +189,7 @@ const ProjectDetail = () => {
             setProject(initialMatch);
           }
           if (isMounted) setLoading(false);
-        } else if (initialMatch && isMounted) {
+        } else if (initialMatch && isMounted && !project) {
           setProject(initialMatch);
           setLoading(false);
         } else if (isMounted) {
@@ -194,7 +198,7 @@ const ProjectDetail = () => {
       } catch (e) {
         console.error(e);
         if (isMounted) {
-          if (initialMatch) setProject(initialMatch);
+          if (initialMatch && !project) setProject(initialMatch);
           setLoading(false);
         }
       }
@@ -205,8 +209,27 @@ const ProjectDetail = () => {
     } else {
       setLoading(false);
     }
-    
-    return () => { isMounted = false; };
+
+    const handleFocus = () => {
+      if (projectIdOrSlug) fetchUltraFast(true);
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && projectIdOrSlug) {
+        fetchUltraFast(true);
+      }
+    };
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('visibilitychange', handleVisibility);
+    const intervalId = setInterval(() => {
+      if (projectIdOrSlug) fetchUltraFast(true);
+    }, 10000);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('visibilitychange', handleVisibility);
+      clearInterval(intervalId);
+    };
   }, [projectIdOrSlug, projectType]);
 
   const rawImages = project?.images?.length > 0 
