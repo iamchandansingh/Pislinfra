@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fetchStrapiData } from '../services/strapi';
 import { formatStrapiBlogs } from '../utils/formatBlog';
-import fallbackDB from '../data/BlogDB';
+import fallbackDB from '../data/Blogdb.js';
 
 const BlogContext = createContext();
 

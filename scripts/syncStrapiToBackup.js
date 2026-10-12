@@ -9,34 +9,77 @@ const BACKUP_PATH = path.resolve(__dirname, '../src/data/MainBackupPislinfra.jso
 const HOSTINGER_BACKUP_PATH = path.resolve(__dirname, '../public/data/live-backup.json');
 const OG_PATH = path.resolve(__dirname, '../src/data/projectsData.js');
 const COMP_PATH = path.resolve(__dirname, '../src/data/completedProjects.js');
+const BLOG_PATH = path.resolve(__dirname, '../src/data/Blogdb.js');
+const LEADERSHIP_PATH = path.resolve(__dirname, '../src/data/leadershipData.js');
+const AWARDS_PATH = path.resolve(__dirname, '../src/data/Awards-&-Certifications.js');
 
-const CANDIDATE_URLS = [
+const HOSTINGER_SYNC_URL = 'https://pislinfra.com/sync-backup.php';
+const STRAPI_CANDIDATE_URLS = [
   'http://localhost:1337',
   process.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'
 ];
 
-const ENDPOINTS = [
+const STRAPI_ENDPOINTS = [
   'ongoing-projects?populate=*&pagination[pageSize]=100',
   'completed-projects?populate=*&pagination[pageSize]=100',
   'home-page?populate=*',
   'clients?pagination[pageSize]=100&sort=order:asc',
-  'awards?populate=*&sort=order:asc',
+  'awards?populate=*&pagination[pageSize]=100&sort=order:asc',
   'coverage-markers?populate=*&pagination[pageSize]=100',
-  'blogs?populate=*&pagination[pageSize]=100'
+  'blogs?populate=*&pagination[pageSize]=100',
+  'job-openings?pagination[limit]=100',
+  'leadership-page?populate[0]=heroImage&populate[1]=seo&populate[2]=topLeaderImage&populate[3]=topLeaderHighlights&populate[4]=executives.image&populate[5]=coreTeam.image',
+  'about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values',
+  'career-page?populate[0]=heroImage&populate[1]=seo&populate[2]=benefits&populate[3]=processSteps',
+  'csr-page?populate=seo,heroImage,philosophyImages,stats,focusAreas.image,givingBackCards.image,environmentCards.image,celebrationCards.image',
+  'ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs',
+  'case-studies?populate=*&pagination[pageSize]=100&sort=createdAt:asc',
+  'case-study-page?populate=seo,heroImage,approachSteps,trustedClients.logo',
+  'annual-report-page?populate[0]=heroImage&populate[1]=seo&populate[2]=reports&populate[3]=reports.pdfFile',
+  'policy-page?populate[0]=heroImage&populate[1]=seo&populate[2]=sections'
 ];
 
-async function fetchFromStrapi(url, endpoint) {
+function unwrap(val) {
+  if (val && typeof val === 'object' && val.data !== undefined) {
+    if (Array.isArray(val.data) || (typeof val.data === 'object' && val.data !== null)) {
+      return val.data;
+    }
+  }
+  return val;
+}
+
+function sanitizeBrand(data) {
+  if (!data) return data;
+  if (typeof data === 'string') {
+    return data
+      .replace(/PISL\s+INFRA\./gi, 'Pislinfra.')
+      .replace(/PISL\s+INFRA/gi, 'Pislinfra')
+      .replace(/PISL\s+Infra\./g, 'Pislinfra.')
+      .replace(/PISL\s+Infra/g, 'Pislinfra')
+      .replace(/Pisl\s+Infra\./g, 'Pislinfra.')
+      .replace(/Pisl\s+Infra/g, 'Pislinfra')
+      .replace(/Pisl\s+infra/g, 'Pislinfra');
+  }
+  if (Array.isArray(data)) return data.map(sanitizeBrand);
+  if (typeof data === 'object') {
+    const clean = {};
+    for (const k in data) clean[k] = sanitizeBrand(data[k]);
+    return clean;
+  }
+  return data;
+}
+
+async function fetchJson(url, timeoutMs = 8000) {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 6000);
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(`${url}/api/${endpoint}`, {
+    const res = await fetch(url, {
       signal: controller.signal,
-      headers: { 'Cache-Control': 'no-cache' }
+      headers: { 'Cache-Control': 'no-cache', 'User-Agent': 'PislinfraSync/2.0' }
     });
     clearTimeout(timeoutId);
     if (!res.ok) return null;
-    const json = await res.json();
-    return json?.data || null;
+    return await res.json();
   } catch (e) {
     clearTimeout(timeoutId);
     return null;
@@ -44,116 +87,222 @@ async function fetchFromStrapi(url, endpoint) {
 }
 
 async function syncBackup() {
-  console.log('🔄 Checking live Strapi connection to sync main DB backup...');
+  console.log('🔄 Checking live Hostinger and Strapi data sources for 100% offline bundling...');
 
-  let activeUrl = null;
-  for (const url of CANDIDATE_URLS) {
+  let masterBackup = {};
+  if (fs.existsSync(BACKUP_PATH)) {
     try {
-      const ping = await fetchFromStrapi(url, 'home-page?populate=*');
+      masterBackup = JSON.parse(fs.readFileSync(BACKUP_PATH, 'utf8'));
+    } catch (e) {
+      masterBackup = {};
+    }
+  }
+
+  // 1. Fetch live master backup directly from Hostinger server disk
+  let hostingerConnected = false;
+  try {
+    console.log(`🌐 Pinging Hostinger Live Disk DB (${HOSTINGER_SYNC_URL})...`);
+    const hostingerMaster = await fetchJson(HOSTINGER_SYNC_URL, 8000);
+    if (hostingerMaster && typeof hostingerMaster === 'object' && Object.keys(hostingerMaster).length > 0) {
+      console.log(`✅ Connected to Hostinger Live DB (${Object.keys(hostingerMaster).length} collections found). Merging live changes...`);
+      for (const [key, val] of Object.entries(hostingerMaster)) {
+        const cleanVal = sanitizeBrand(unwrap(val));
+        if (cleanVal) {
+          masterBackup[key] = cleanVal;
+          const baseKey = key.split('?')[0];
+          masterBackup[baseKey] = cleanVal;
+        }
+      }
+      hostingerConnected = true;
+    }
+  } catch (e) {
+    console.log(`ℹ️ Hostinger fetch skipped (${e.message})`);
+  }
+
+  // 2. Fetch from Strapi CMS instances if available
+  let activeStrapiUrl = null;
+  for (const url of STRAPI_CANDIDATE_URLS) {
+    try {
+      const ping = await fetchJson(`${url}/api/home-page?populate=*`, 5000);
       if (ping) {
-        activeUrl = url;
+        activeStrapiUrl = url;
         break;
       }
     } catch (e) {}
   }
 
-  if (!activeUrl) {
-    console.log('⚠️ Could not connect to Strapi instance. Keeping existing main backup files intact.');
-    return;
-  }
-
-  console.log(`📡 Connected to Strapi at ${activeUrl}. Fetching latest database entries...`);
-
-  let backup = {};
-  if (fs.existsSync(BACKUP_PATH)) {
-    try {
-      backup = JSON.parse(fs.readFileSync(BACKUP_PATH, 'utf8'));
-    } catch (e) {
-      backup = {};
-    }
-  }
-
-  for (const ep of ENDPOINTS) {
-    try {
-      const data = await fetchFromStrapi(activeUrl, ep);
-      if (data) {
-        backup[ep] = data;
-        const baseKey = ep.split('?')[0];
-        backup[baseKey] = data;
-
-        // If ongoing-projects, update projectsData.js (16 projects)
-        if (ep.includes('ongoing-projects') && Array.isArray(data) && data.length > 0) {
-          const filteredOg = data.filter(p => {
-            const n = (p.name || p.title || '').toLowerCase();
-            return !n.includes('humsafar') && !n.includes('logistics park llp');
-          });
-          const formattedOg = filteredOg.map((p, idx) => {
-            const imgs = (p.images || []).map(img => img.formats?.large?.url || img.formats?.medium?.url || img.url).filter(Boolean);
-            return {
-              id: idx + 1,
-              documentId: p.documentId,
-              category: p.category || "Industrial",
-              name: p.name,
-              location: p.location,
-              state: p.state,
-              area: p.area,
-              client: p.client,
-              timeline: p.timeline,
-              status: "Ongoing",
-              scope: p.scope,
-              images: imgs
-            };
-          });
-          fs.writeFileSync(OG_PATH, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
-          console.log(`✅ Synced ongoing projects (${formattedOg.length}) to projectsData.js`);
+  if (activeStrapiUrl) {
+    console.log(`📡 Connected to Strapi CMS at ${activeStrapiUrl}. Updating latest entries...`);
+    for (const ep of STRAPI_ENDPOINTS) {
+      try {
+        const res = await fetchJson(`${activeStrapiUrl}/api/${ep}`, 7000);
+        const data = sanitizeBrand(unwrap(res));
+        if (data) {
+          masterBackup[ep] = data;
+          const baseKey = ep.split('?')[0];
+          masterBackup[baseKey] = data;
         }
-
-        // If completed-projects, update completedProjects.js (27 projects)
-        if (ep.includes('completed-projects') && Array.isArray(data) && data.length > 0) {
-          const formattedComp = data.map((p, idx) => {
-            const imgs = (p.images || []).map(img => img.formats?.large?.url || img.formats?.medium?.url || img.url).filter(Boolean);
-            return {
-              id: idx + 1,
-              documentId: p.documentId,
-              category: p.category || "Warehousing",
-              name: p.name,
-              location: p.location,
-              state: p.state,
-              area: p.area,
-              client: p.client,
-              timeline: p.timeline,
-              status: "Completed",
-              scope: p.scope,
-              images: imgs
-            };
-          });
-
-          let existingComp = [];
-          if (fs.existsSync(COMP_PATH)) {
-            try {
-              const compContent = fs.readFileSync(COMP_PATH, 'utf8');
-              const jsonMatch = compContent.match(/const\s+completedProjects\s*=\s*(\[[\s\S]*?\]);/);
-              if (jsonMatch) existingComp = JSON.parse(jsonMatch[1]);
-            } catch (e) {}
-          }
-          const existingSlugs = new Set(formattedComp.map(p => (p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
-          const missing = existingComp.filter(p => !existingSlugs.has((p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
-          const allComp = [...formattedComp, ...missing].map((p, idx) => ({ ...p, id: idx + 1 }));
-
-          fs.writeFileSync(COMP_PATH, `const completedProjects = ${JSON.stringify(allComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
-          backup[ep] = allComp;
-          backup[baseKey] = allComp;
-          console.log(`✅ Synced completed projects (${allComp.length}) to completedProjects.js`);
-        }
+      } catch (err) {
+        // Continue with other endpoints
       }
-    } catch (err) {
-      console.warn(`Failed to fetch ${ep}:`, err.message);
+    }
+  } else {
+    console.log('ℹ️ Strapi instance offline or sleeping. Relying on Hostinger live backup & local storage.');
+  }
+
+  // 3. Ensure Ongoing Projects (Strictly 16 items; Exclude completed ones like Humsafar / Logistics Park LLP)
+  const rawOngoing = masterBackup['ongoing-projects'] || masterBackup['ongoing-projects?populate=*&pagination[pageSize]=100'];
+  if (Array.isArray(rawOngoing) && rawOngoing.length > 0) {
+    const filteredOg = rawOngoing.filter(p => {
+      const n = (p.name || p.title || '').toLowerCase();
+      return !n.includes('humsafar') && !n.includes('logistics park llp');
+    });
+
+    const formattedOg = filteredOg.map((p, idx) => {
+      const imgs = (p.images || []).map(img => typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url)).filter(Boolean);
+      return {
+        id: idx + 1,
+        documentId: p.documentId || `og_${idx + 1}`,
+        category: p.category || "Industrial",
+        name: p.name,
+        location: p.location,
+        state: p.state,
+        area: p.area,
+        client: p.client,
+        timeline: p.timeline,
+        status: "Ongoing",
+        scope: p.scope,
+        images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
+      };
+    });
+
+    if (formattedOg.length === 16) {
+      fs.writeFileSync(OG_PATH, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
+      masterBackup['ongoing-projects'] = formattedOg;
+      masterBackup['ongoing-projects?populate=*&pagination[pageSize]=100'] = formattedOg;
+      console.log(`✅ Synced ongoing projects (${formattedOg.length}) to projectsData.js`);
+    } else {
+      console.log(`ℹ️ Ongoing projects count is ${formattedOg.length} (expected 16). Preserving verified projectsData.js`);
     }
   }
 
-  fs.writeFileSync(BACKUP_PATH, JSON.stringify(backup, null, 2), 'utf8');
-  fs.writeFileSync(HOSTINGER_BACKUP_PATH, JSON.stringify(backup, null, 2), 'utf8');
-  console.log('✅ Main database backup & Hostinger live backup (live-backup.json) successfully updated!');
+  // 4. Ensure Completed Projects (Strictly 27 items; Include Humsafar, Logistics Park LLP)
+  const rawCompleted = masterBackup['completed-projects'] || masterBackup['completed-projects?populate=*&pagination[pageSize]=100'];
+  if (Array.isArray(rawCompleted) && rawCompleted.length > 0) {
+    let existingComp = [];
+    if (fs.existsSync(COMP_PATH)) {
+      try {
+        const compContent = fs.readFileSync(COMP_PATH, 'utf8');
+        const jsonMatch = compContent.match(/const\s+completedProjects\s*=\s*(\[[\s\S]*?\]);/);
+        if (jsonMatch) existingComp = JSON.parse(jsonMatch[1]);
+      } catch (e) {}
+    }
+
+    const normalize = (name) => (name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const formattedComp = rawCompleted.map((p, idx) => {
+      const imgs = (p.images || []).map(img => typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url)).filter(Boolean);
+      return {
+        id: idx + 1,
+        documentId: p.documentId || `comp_${idx + 1}`,
+        category: p.category || "Warehousing",
+        name: p.name,
+        location: p.location,
+        state: p.state,
+        area: p.area,
+        client: p.client,
+        timeline: p.timeline,
+        status: "Completed",
+        scope: p.scope,
+        images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
+      };
+    });
+
+    const seen = new Set();
+    const mergedComp = [];
+    for (const p of [...formattedComp, ...existingComp]) {
+      const key = normalize(p.name);
+      if (key && !seen.has(key)) {
+        seen.add(key);
+        mergedComp.push(p);
+      }
+    }
+
+    const reindexedComp = mergedComp.map((p, idx) => ({ ...p, id: idx + 1 }));
+    if (reindexedComp.length === 27) {
+      fs.writeFileSync(COMP_PATH, `const completedProjects = ${JSON.stringify(reindexedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
+      masterBackup['completed-projects'] = reindexedComp;
+      masterBackup['completed-projects?populate=*&pagination[pageSize]=100'] = reindexedComp;
+      console.log(`✅ Synced completed projects (${reindexedComp.length}) to completedProjects.js`);
+    } else {
+      console.log(`ℹ️ Completed projects count is ${reindexedComp.length} (expected 27). Preserving verified completedProjects.js`);
+    }
+  }
+
+  // 5. Ensure Awards (Full dataset from live DB & offline file)
+  const rawAwards = masterBackup['awards'] || masterBackup['awards?populate=*&pagination[pageSize]=100&sort=order:asc'];
+  if (Array.isArray(rawAwards) && rawAwards.length > 0) {
+    const formattedAwards = rawAwards.map((item, idx) => {
+      const allImgs = [];
+      const addImg = (img) => {
+        if (!img) return;
+        if (Array.isArray(img)) {
+          img.forEach(addImg);
+          return;
+        }
+        const u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+        if (u && !allImgs.includes(u)) allImgs.push(u);
+      };
+      if (item.images) addImg(item.images);
+      if (item.image) addImg(item.image);
+      if (item.imageUrls) addImg(item.imageUrls);
+      if (item.clientImage) addImg(item.clientImage);
+
+      const primaryImg = allImgs[0] || '/images/awards/certificate.jpg';
+      const clientImg = allImgs[1] || primaryImg;
+
+      return {
+        id: item.documentId || item.id || `award_${idx + 1}`,
+        title: item.title,
+        category: item.category || 'HSE / Safety Excellence',
+        year: String(item.year || '2026'),
+        company: item.company || 'Industry Recognition',
+        location: item.location || 'India',
+        description: item.desc || item.description || '',
+        videoUrl: item.videoUrl || null,
+        image: primaryImg,
+        clientImage: clientImg,
+        images: allImgs.length > 0 ? allImgs : [primaryImg],
+        gallery: allImgs.length > 1 ? allImgs.slice(1) : [],
+        pdf: item.pdf ? (typeof item.pdf === 'string' ? item.pdf : (item.pdf.url || null)) : null
+      };
+    });
+
+    fs.writeFileSync(AWARDS_PATH, `const awardsAndCertifications = ${JSON.stringify(formattedAwards, null, 2)};\n\nexport default awardsAndCertifications;\n`, 'utf8');
+    masterBackup['awards'] = formattedAwards;
+    masterBackup['awards?populate=*&sort=order:asc'] = formattedAwards;
+    masterBackup['awards?populate=*&pagination[pageSize]=100'] = formattedAwards;
+    console.log(`✅ Synced awards (${formattedAwards.length}) into Awards-&-Certifications.js and master backup`);
+  }
+
+  // 5.1 Ensure Leadership Page
+  const rawLeadership = masterBackup['leadership-page'];
+  if (rawLeadership && rawLeadership.topLeaderName) {
+    fs.writeFileSync(LEADERSHIP_PATH, `const leadershipData = ${JSON.stringify(rawLeadership, null, 2)};\n\nexport default leadershipData;\n`, 'utf8');
+    console.log(`✅ Synced leadership data into leadershipData.js`);
+  }
+
+  // 6. Ensure Blogs (35 items)
+  const rawBlogs = masterBackup['blogs'] || masterBackup['blogs?populate=*&pagination[pageSize]=100'];
+  if (Array.isArray(rawBlogs) && rawBlogs.length > 0) {
+    masterBackup['blogs'] = rawBlogs;
+    masterBackup['blogs?populate=*&pagination[pageSize]=100&sort=createdAt:desc'] = rawBlogs;
+    console.log(`✅ Synced blogs (${rawBlogs.length}) into master backup`);
+  }
+
+  // 7. Write Master Backup & Hostinger public static backup
+  fs.writeFileSync(BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');
+  fs.writeFileSync(HOSTINGER_BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');
+  console.log('🌟 Complete offline backup bundle successfully saved to MainBackupPislinfra.json & public/data/live-backup.json!');
 }
 
 syncBackup();

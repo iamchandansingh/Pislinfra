@@ -6,6 +6,7 @@ import BlogSEO from '../../components/Blog/BlogSEO';
 import CoreTeamGrid from '../../components/leadership/CoreTeamGrid';
 import { fetchStrapiData } from '../../services/strapi';
 import Preloader from '../../components/common/Preloader';
+import defaultLeadershipData from '../../data/leadershipData';
 
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
@@ -21,14 +22,17 @@ const getIcon = (name) => {
 };
 
 const Leadership = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(defaultLeadershipData);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
       try {
         const res = await fetchStrapiData('leadership-page?populate[0]=heroImage&populate[1]=seo&populate[2]=topLeaderImage&populate[3]=topLeaderHighlights&populate[4]=executives.image&populate[5]=coreTeam.image');
-        if (res) setData(res);
+        const clean = res?.data || res;
+        if (clean && clean.topLeaderName) {
+          setData(clean);
+        }
       } catch (err) {
         console.error('Error fetching leadership data', err);
       } finally {
@@ -46,8 +50,7 @@ const Leadership = () => {
     return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
   };
 
-  if (loading) return <Preloader />;
-  if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
+  if (loading && !data) return <Preloader />;
 
   const seoData = {
     contentType: 'page',

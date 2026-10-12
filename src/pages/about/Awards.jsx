@@ -43,8 +43,8 @@ const Awards = () => {
     const loadData = async () => {
       try {
         let pageRes = await fetchStrapiData('awards-page?populate[0]=heroImage&populate[1]=seo').catch(() => null);
-        let awardsList = await fetchStrapiData('awards?populate=*&pagination[pageSize]=100&sort=createdAt:desc').catch(() => null);
-        let clientAppreciations = await fetchStrapiData('client-appreciations?populate=*&pagination[pageSize]=100&sort=createdAt:desc').catch(() => null);
+        let awardsList = await fetchStrapiData('awards?populate=*&pagination[pageSize]=100').catch(() => null);
+        let clientAppreciations = await fetchStrapiData('client-appreciations?populate=*&pagination[pageSize]=100').catch(() => null);
         let milestonesRes = await fetchStrapiData('milestones?populate=*&pagination[pageSize]=100&sort=year:asc').catch(() => null)
           || await fetchStrapiData('timeline-milestones?populate=*&pagination[pageSize]=100&sort=year:asc').catch(() => null);
         
@@ -64,8 +64,9 @@ const Awards = () => {
           setMilestonesData(formattedMilestones);
         }
 
-        if (clientAppreciations && clientAppreciations.data) {
-          const formattedClientAppreciations = clientAppreciations.data.map((item, index) => ({
+        const rawClientAppreciations = Array.isArray(clientAppreciations) ? clientAppreciations : (clientAppreciations?.data || null);
+        if (rawClientAppreciations && rawClientAppreciations.length > 0) {
+          const formattedClientAppreciations = rawClientAppreciations.map((item, index) => ({
             id: item.documentId || item.id,
             company: item.company,
             title: item.title,
@@ -83,8 +84,9 @@ const Awards = () => {
           setPageData(pageRes);
         }
 
-        if (awardsList && Array.isArray(awardsList) && awardsList.length > 0) {
-          const mappedAwards = awardsList.map((strapiItem, i) => {
+        const rawAwards = Array.isArray(awardsList) ? awardsList : (awardsList?.data || null);
+        if (rawAwards && rawAwards.length > 0) {
+          const mappedAwards = rawAwards.map((strapiItem, i) => {
             const defaultItem = defaultAwardsData.find(d => 
               (d.title || '').trim().toLowerCase() === (strapiItem.title || '').trim().toLowerCase()
             );
@@ -144,8 +146,10 @@ const Awards = () => {
             };
           });
 
-          // Strapi live CMS is the master single source of truth
-          setAwardsAndCertifications(mappedAwards);
+          // Strapi live CMS is the master single source of truth; guarantee full 43 awards
+          const existingTitles = new Set(mappedAwards.map(a => (a.title || '').trim().toLowerCase()));
+          const missingAwards = defaultAwardsData.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
+          setAwardsAndCertifications([...mappedAwards, ...missingAwards]);
         }
       } catch (err) {
         console.error('Error fetching Awards data', err);

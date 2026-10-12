@@ -156,23 +156,34 @@ const memoryCache = new Map();
 const lastFetchedTime = new Map();
 const inFlightRequests = new Map();
 
+const unwrapData = (val) => {
+  if (val && typeof val === 'object' && val.data !== undefined && (Array.isArray(val.data) || (typeof val.data === 'object' && val.data !== null))) {
+    return val.data;
+  }
+  return val;
+};
+
 const getLocalBackup = (endpoint) => {
   if (!offlineBackup) return null;
+  let raw = null;
   if (offlineBackup[endpoint]) {
-    return sanitizeBrandText(offlineBackup[endpoint]);
-  }
-  const baseKey = endpoint.split('?')[0];
-  if (offlineBackup[baseKey]) {
-    return sanitizeBrandText(offlineBackup[baseKey]);
-  }
-  const slugMatch = endpoint.match(/filters\[slug\](?:\[\$eq\])?=([a-zA-Z0-9_-]+)/);
-  if (slugMatch && slugMatch[1]) {
-    const slugKey = `${baseKey}-${slugMatch[1]}`;
-    if (offlineBackup[slugKey]) {
-      return sanitizeBrandText(offlineBackup[slugKey]);
+    raw = offlineBackup[endpoint];
+  } else {
+    const baseKey = endpoint.split('?')[0];
+    if (offlineBackup[baseKey]) {
+      raw = offlineBackup[baseKey];
+    } else {
+      const slugMatch = endpoint.match(/filters\[slug\](?:\[\$eq\])?=([a-zA-Z0-9_-]+)/);
+      if (slugMatch && slugMatch[1]) {
+        const slugKey = `${baseKey}-${slugMatch[1]}`;
+        if (offlineBackup[slugKey]) {
+          raw = offlineBackup[slugKey];
+        }
+      }
     }
   }
-  return null;
+  if (!raw) return null;
+  return sanitizeBrandText(unwrapData(raw));
 };
 
 // Live fetch directly from Strapi CMS with resilient timeout and fallback
@@ -274,7 +285,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
       if (hostingerRes.ok) {
         const hostingerJson = await hostingerRes.json();
         if (hostingerJson) {
-          const cleanHostinger = sanitizeBrandText(hostingerJson);
+          const cleanHostinger = sanitizeBrandText(unwrapData(hostingerJson));
           memoryCache.set(endpoint, cleanHostinger);
           memoryCache.set(cleanEndpoint, cleanHostinger);
           return cleanHostinger;
@@ -290,7 +301,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
       if (cacheTime && (Date.now() - Number(cacheTime) < CACHE_TTL_MS)) {
         const localCached = window.localStorage.getItem(`pisl_cache_${cleanEndpoint}`) || window.localStorage.getItem(`pisl_cache_${endpoint}`);
         if (localCached) {
-          const parsed = sanitizeBrandText(JSON.parse(localCached));
+          const parsed = sanitizeBrandText(unwrapData(JSON.parse(localCached)));
           memoryCache.set(endpoint, parsed);
           memoryCache.set(cleanEndpoint, parsed);
           return parsed;
@@ -302,7 +313,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
   // 5. FALLBACK: IndexedDB
   const idbData = (await getFromIDB(cleanEndpoint)) || (await getFromIDB(endpoint));
   if (idbData) {
-    const cleanIdb = sanitizeBrandText(idbData);
+    const cleanIdb = sanitizeBrandText(unwrapData(idbData));
     memoryCache.set(endpoint, cleanIdb);
     memoryCache.set(cleanEndpoint, cleanIdb);
     return cleanIdb;

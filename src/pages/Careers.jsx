@@ -26,7 +26,7 @@ const defaultCareerData = {
 const Careers = () => {
   const [selectedPosition, setSelectedPosition] = useState('');
   const [data, setData] = useState(defaultCareerData);
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(jobOpeningsData);
 
   useEffect(() => {
     const loadData = async () => {

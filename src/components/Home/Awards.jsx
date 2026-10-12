@@ -143,11 +143,12 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
         }
 
         const data = await fetchStrapiData('awards?populate=*&sort=order:asc');
-        if (data && Array.isArray(data) && data.length > 0) {
-          const mapped = data.map(processAwardItem);
-          if (mapped.length > 0) {
-            setAwards(mapped);
-          }
+        const rawList = Array.isArray(data) ? data : (data?.data || null);
+        if (rawList && rawList.length > 0) {
+          const mapped = rawList.map(processAwardItem);
+          const existingTitles = new Set(mapped.map(a => (a.title || '').trim().toLowerCase()));
+          const missing = defaultAwards.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
+          setAwards([...mapped, ...missing]);
         }
       } catch (err) {
         console.error("Awards Strapi fetch error:", err);
