@@ -127,25 +127,6 @@ const projectsData = [
   },
   {
     "id": 7,
-    "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
-    "category": "Warehousing",
-    "name": "PMG Logistics Park",
-    "location": "Neemrana",
-    "state": "Rajasthan",
-    "area": "1.75 Lakh Sq. ft",
-    "client": "PMG",
-    "timeline": "2026 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "images": [
-      "/images/projects/large_pmg_logistics_park_neemrana_rj_e1865aef76.png",
-      "/images/projects/optimized_1787755545001_970_large_pmg-logistics-park-neemrana-rj-2_png.webp",
-      "/images/projects/optimized_1787755546849_423_large_pmg-logistics-park-neemrana-rj-3_png.webp",
-      "/images/projects/large_pmg_logistics_park_neemrana_rj_4_ba792fac1a.png"
-    ]
-  },
-  {
-    "id": 8,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
@@ -166,7 +147,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -185,7 +166,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "documentId": "wqd7gr6n1eodf36348atvtn4",
     "category": "Institutional",
     "name": "CPWD – IIT ISM Campus Project",
@@ -204,7 +185,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
     "category": "Industrial",
     "name": "Reliance Solar Unit Manufacturing Plant",
@@ -225,7 +206,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
@@ -244,7 +225,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
@@ -264,7 +245,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
     "category": "Warehousing",
     "name": "HANNO ONE Logistics Park",
@@ -283,7 +264,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
+    "id": 14,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
@@ -302,7 +283,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
     "category": "Industrial",
     "name": "Reliance DMD Plant",
@@ -319,6 +300,25 @@ const projectsData = [
       "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
       "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
       "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
+    "category": "Warehousing",
+    "name": "PMG Logistics Park",
+    "location": "Neemrana",
+    "state": "Rajasthan",
+    "area": "1.75 Lakh Sq. ft",
+    "client": "PMG",
+    "timeline": "2026 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+    "images": [
+      "/images/projects/large_Neemrana_eafebb4ad2.jpeg",
+      "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
+      "/images/projects/large_Neemrana_3_884fd40dde.jpg",
+      "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
     ]
   }
 ];

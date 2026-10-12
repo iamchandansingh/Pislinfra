@@ -24,6 +24,16 @@ function escapeHtml(str) {
 
 const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
+const getProjectSlug = (project) => {
+  if (!project) return '';
+  const base = (project.name || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  if (base === 'pmg-logistics-park' && project.location) {
+    const loc = project.location.toLowerCase().replace(/[,/]/g, ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    return `${base}-${loc}`;
+  }
+  return base || project.id || '';
+};
+
 const clientsList = [
   { id: 1, name: 'Reliance Industries Limited', logoPath: '/assets/images/CLIENTS/Reliance-logo.webp' },
   { id: 2, name: 'AM/NS India (ArcelorMittal Nippon Steel India)', logoPath: '/assets/images/CLIENTS/NSINDIA.png' },
@@ -932,7 +942,7 @@ ${JSON.stringify([articleSchema, breadcrumbSchema], null, 2)}
 
   allProjectsToPrerender.forEach(proj => {
     const projectType = proj.projectType;
-    const projectSlug = slugify(proj.name);
+    const projectSlug = getProjectSlug(proj);
     const title = `${proj.name} - ${proj.category} Construction in ${proj.location}, ${proj.state} | Pislinfra`;
     const description = `${proj.name} in ${proj.location}, ${proj.state}. Client: ${proj.client}, Area: ${proj.area}, Status: ${proj.status}. Scope of work: ${proj.scope}. Delivered by Pislinfra.`;
     const keywords = `${proj.name}, ${proj.client} construction project, ${proj.category} construction ${proj.location}, industrial warehouse ${proj.state}, Pislinfra projects, turnkey civil engineering`;

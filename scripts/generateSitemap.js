@@ -25,6 +25,16 @@ function escapeXml(unsafe) {
 
 const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
+const getProjectSlug = (project) => {
+  if (!project) return '';
+  const base = (project.name || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  if (base === 'pmg-logistics-park' && project.location) {
+    const loc = project.location.toLowerCase().replace(/[,/]/g, ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    return `${base}-${loc}`;
+  }
+  return base || project.id || '';
+};
+
 const clientsList = [
   { id: 1, name: 'Reliance Industries Limited', logoPath: '/assets/images/CLIENTS/Reliance-logo.webp' },
   { id: 2, name: 'AM/NS India (ArcelorMittal Nippon Steel India)', logoPath: '/assets/images/CLIENTS/NSINDIA.png' },
@@ -583,7 +593,7 @@ function generateSitemapsAndFeeds() {
 
   allProjectsList.forEach(proj => {
     const projectType = proj.projectType;
-    const projectSlug = slugify(proj.name);
+    const projectSlug = getProjectSlug(proj);
     const loc = `${SITE_URL}/project/${projectType}/${projectSlug}`;
     const cleanTitle = escapeXml(`${proj.name} - ${proj.category} in ${proj.location}, ${proj.state}`);
     const cleanCaption = escapeXml(`${proj.name} for ${proj.client}. Area: ${proj.area}. Status: ${proj.status}. Delivered by Pislinfra.`);

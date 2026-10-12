@@ -34,8 +34,12 @@ const OngoingProjects = () => {
           });
           const formatted = filtered.map(item => {
             const matchLocal = localProjectsData.find(lp => {
+              if (item.documentId && lp.documentId && item.documentId === lp.documentId) return true;
               const sL = slugify(lp.name);
               const sI = slugify(item.name);
+              const locL = slugify(lp.location);
+              const locI = slugify(item.location);
+              if (sL === sI && locL && locI) return locL === locI;
               return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
             }) || {};
             const rawImgs = Array.isArray(item.images) && item.images.length > 0

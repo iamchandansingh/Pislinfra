@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaMapMarkerAlt, FaBuilding, FaCheckCircle } from 'react-icons/fa';
 import { HiOutlineShieldCheck } from 'react-icons/hi2';
 import clientsData from '../../data/clientsData';
-import { getImageUrl } from '../../utils/imageUrl';
+import { getImageUrl, getProjectSlug } from '../../utils/imageUrl';
 
 const getClientInfo = (clientName) => {
   if (!clientName) return [];
@@ -70,7 +70,7 @@ const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = nu
   const handleClick = (e) => {
     e.stopPropagation();
     const projectType = type || (isOngoing ? 'ongoing' : 'completed');
-    const slug = project.name ? project.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : project.id;
+    const slug = getProjectSlug(project);
     navigate(`/project/${projectType}/${slug}`, { state: { projectData: project } });
   };
 

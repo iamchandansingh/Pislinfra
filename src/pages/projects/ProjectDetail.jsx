@@ -69,6 +69,26 @@ const getClientInfo = (clientName) => {
 
 const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
+const matchProject = (p, target) => {
+  if (!p || !target) return false;
+  const targetStr = target.toString().toLowerCase().trim();
+  const targetClean = targetStr.replace(/[^a-z0-9]/g, '');
+
+  if (p.documentId && p.documentId.toLowerCase() === targetStr) return true;
+  if (p.id && p.id.toString() === targetStr) return true;
+
+  const pNameClean = (p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const pLocClean = (p.location || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  const fullSlugClean = `${pNameClean}${pLocClean}`;
+  if (fullSlugClean === targetClean) return true;
+
+  if (targetClean.includes(pNameClean) && pLocClean && targetClean.includes(pLocClean)) return true;
+  if (pNameClean === targetClean) return true;
+
+  return false;
+};
+
 const ProjectDetail = () => {
   const { id, type } = useParams()
   const location = useLocation()
@@ -94,12 +114,7 @@ const ProjectDetail = () => {
   const projectIdOrSlug = id || ''
 
   const localPool = projectType === 'completed' ? completedProjects : projectsData;
-  const initialMatch = location.state?.projectData || localPool.find(p => {
-    return slugify(p.name) === slugify(projectIdOrSlug) || 
-           (p.id && p.id.toString() === projectIdOrSlug.toString()) ||
-           slugify(p.name).includes(slugify(projectIdOrSlug)) ||
-           slugify(projectIdOrSlug).includes(slugify(p.name));
-  });
+  const initialMatch = location.state?.projectData || localPool.find(p => matchProject(p, projectIdOrSlug));
 
   const [project, setProject] = useState(initialMatch || null)
   const [allProjects, setAllProjects] = useState(localPool)
@@ -124,9 +139,13 @@ const ProjectDetail = () => {
         if (res && Array.isArray(res) && res.length > 0 && isMounted) {
           const formattedAll = res.map(item => {
             const localFallback = localPool.find(lp => {
+              if (item.documentId && lp.documentId && item.documentId === lp.documentId) return true;
               const sL = slugify(lp.name);
               const sI = slugify(item.name);
-              return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
+              const locL = slugify(lp.location);
+              const locI = slugify(item.location);
+              if (sL === sI && locL && locI) return locL === locI;
+              return sL === sI;
             }) || {};
             const rawImgs = Array.isArray(item.images) && item.images.length > 0
               ? item.images
@@ -151,7 +170,7 @@ const ProjectDetail = () => {
           
           setAllProjects(formattedAll);
           
-          let foundProject = formattedAll.find(p => p.id === projectIdOrSlug || p.documentId === projectIdOrSlug);
+          let foundProject = formattedAll.find(p => matchProject(p, projectIdOrSlug));
           if (!foundProject) {
             foundProject = formattedAll.find(p => {
                const s = slugify(p.name);
