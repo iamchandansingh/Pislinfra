@@ -80,7 +80,7 @@ const Home = () => {
             const strapiImgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
             const finalImages = strapiImgs.length > 0 
               ? strapiImgs 
-              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png']));
+              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/hero/Ongoing-Projects.png']));
             return {
               id: p.documentId || p.id,
               name: pName || matchLocal.name,
@@ -116,7 +116,7 @@ const Home = () => {
             const strapiImgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
             const finalImages = strapiImgs.length > 0 
               ? strapiImgs 
-              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/completed/Farrukhnagar/welspun-factory-farrukhnagar-hr-1.png']));
+              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/hero/Completed-Projects.png']));
             return {
               id: p.documentId || p.id,
               name: pName || matchLocal.name,

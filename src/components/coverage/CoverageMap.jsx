@@ -31,7 +31,7 @@ import { getImageUrl } from '../../utils/imageUrl';
 
 const ORANGE = '#f97316';
 const GREEN = '#198847';
-const FALLBACK_IMG = 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=600';
+const FALLBACK_IMG = '/images/hero/Ongoing-Projects.png';
 
 const LOCATIONS = {
   // Gujarat
@@ -340,7 +340,17 @@ const CardProject = ({project,isSelected,onCardClick}) => {
       }}
     >
       <div className="cm-card-image-wrapper">
-        <img src={project.image} alt={project.name} className="cm-card-image"/>
+        <img 
+          src={project.image} 
+          alt={project.name} 
+          className="cm-card-image"
+          onError={(e) => {
+            const fallback = isOngoing ? '/images/hero/Ongoing-Projects.png' : '/images/hero/Completed-Projects.png';
+            if (!e.currentTarget.src.includes(fallback)) {
+              e.currentTarget.src = fallback;
+            }
+          }}
+        />
         <div className="cm-badges-overlay">
           <span className="cm-badge-status" style={{background:accentBg,color:accent,border:`1px solid ${accentBorder}`}}>
             {isOngoing?<Activity size={11}/>:<CheckCircle2 size={11}/>}

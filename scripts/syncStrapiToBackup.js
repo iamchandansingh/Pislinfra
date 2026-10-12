@@ -188,6 +188,7 @@ async function syncBackup() {
       fs.writeFileSync(OG_PATH, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
       masterBackup['ongoing-projects'] = formattedOg;
       masterBackup['ongoing-projects?populate=*&pagination[pageSize]=100'] = formattedOg;
+      masterBackup['ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'] = formattedOg;
       console.log(`✅ Synced ongoing projects (${formattedOg.length}) to projectsData.js`);
     } else {
       console.log(`ℹ️ Ongoing projects count is ${formattedOg.length} (expected 16). Preserving verified projectsData.js`);
@@ -248,6 +249,7 @@ async function syncBackup() {
       fs.writeFileSync(COMP_PATH, `const completedProjects = ${JSON.stringify(reindexedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
       masterBackup['completed-projects'] = reindexedComp;
       masterBackup['completed-projects?populate=*&pagination[pageSize]=100'] = reindexedComp;
+      masterBackup['completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'] = reindexedComp;
       console.log(`✅ Synced completed projects (${reindexedComp.length}) to completedProjects.js`);
     } else {
       console.log(`ℹ️ Completed projects count is ${reindexedComp.length} (expected 27). Preserving verified completedProjects.js`);

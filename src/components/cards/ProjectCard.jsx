@@ -60,19 +60,20 @@ const getClientInfo = (clientName) => {
 const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = null }) => {
   const navigate = useNavigate();
 
+  const isOngoing = project?.status === 'Ongoing' || project?.status === 'ongoing' || type === 'ongoing';
+  const defaultFallback = isOngoing ? '/images/hero/Ongoing-Projects.png' : '/images/hero/Completed-Projects.png';
   const rawCover = project?.images?.[0] || project?.image;
-  const coverImage = getImageUrl(rawCover, '/images/hero/Ongoing-Projects.png');
+  const coverImage = getImageUrl(rawCover, defaultFallback);
 
   const clientInfoList = getClientInfo(project.client);
 
   const handleClick = (e) => {
     e.stopPropagation();
-    const projectType = type || (project.status === 'Ongoing' || project.status === 'ongoing' ? 'ongoing' : 'completed');
+    const projectType = type || (isOngoing ? 'ongoing' : 'completed');
     const slug = project.name ? project.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : project.id;
     navigate(`/project/${projectType}/${slug}`, { state: { projectData: project } });
   };
 
-  const isOngoing = project.status === 'Ongoing' || project.status === 'ongoing' || type === 'ongoing';
   const accentColor = isOngoing ? '#ff8755' : '#198847';
 
   return (
@@ -104,8 +105,8 @@ const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = nu
             alt={project.name || "Project"}
             loading="lazy"
             onError={(e) => {
-              if (!e.currentTarget.src.endsWith('/images/hero/Ongoing-Projects.png')) {
-                e.currentTarget.src = '/images/hero/Ongoing-Projects.png';
+              if (!e.currentTarget.src.includes(defaultFallback)) {
+                e.currentTarget.src = defaultFallback;
               }
             }}
             style={{

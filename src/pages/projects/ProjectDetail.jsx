@@ -73,7 +73,11 @@ const ProjectDetail = () => {
   const { id, type } = useParams()
   const location = useLocation()
 
+  const projectType = type || 'ongoing'
+  const defaultFallback = projectType === 'completed' ? '/images/hero/Completed-Projects.png' : '/images/hero/Ongoing-Projects.png';
+
   const fallbackImages = [
+    defaultFallback,
     'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200',
     'https://images.pexels.com/photos/159306/pexels-photo-159306.jpeg?auto=compress&cs=tinysrgb&w=1200',
     'https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -87,7 +91,6 @@ const ProjectDetail = () => {
   const [isPaused, setIsPaused] = useState(false)
   const [viewedProjects, setViewedProjects] = useState([])
 
-  const projectType = type || 'ongoing'
   const projectIdOrSlug = id || ''
 
   const localPool = projectType === 'completed' ? completedProjects : projectsData;
@@ -320,13 +323,26 @@ const ProjectDetail = () => {
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      backgroundImage: `url(${img})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
                       opacity: currentSlide === index ? 1 : 0,
                       transition: 'opacity 1s ease-in-out',
+                      overflow: 'hidden',
                     }}
-                  />
+                  >
+                    <img
+                      src={img}
+                      alt={project.name}
+                      onError={(e) => {
+                        if (!e.currentTarget.src.includes(defaultFallback)) {
+                          e.currentTarget.src = defaultFallback;
+                        }
+                      }}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  </div>
                 ))}
 
                 <span style={{
