@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaMapMarkerAlt, FaBuilding, FaCheckCircle } from 'react-icons/fa';
 import { HiOutlineShieldCheck } from 'react-icons/hi2';
 import clientsData from '../../data/clientsData';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const getClientInfo = (clientName) => {
   if (!clientName) return [];
@@ -59,9 +60,8 @@ const getClientInfo = (clientName) => {
 const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = null }) => {
   const navigate = useNavigate();
 
-  const coverImage = project?.images?.[0] 
-    || project?.image 
-    || 'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=600';
+  const rawCover = project?.images?.[0] || project?.image;
+  const coverImage = getImageUrl(rawCover, '/images/hero/Ongoing-Projects.png');
 
   const clientInfoList = getClientInfo(project.client);
 
@@ -103,6 +103,11 @@ const ProjectCard = ({ project, type, isSelected = false, onMoveToCompleted = nu
             src={coverImage}
             alt={project.name || "Project"}
             loading="lazy"
+            onError={(e) => {
+              if (!e.currentTarget.src.endsWith('/images/hero/Ongoing-Projects.png')) {
+                e.currentTarget.src = '/images/hero/Ongoing-Projects.png';
+              }
+            }}
             style={{
               position: 'absolute',
               inset: 0,

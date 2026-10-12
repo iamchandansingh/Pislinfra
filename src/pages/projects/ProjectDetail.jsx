@@ -187,9 +187,10 @@ const ProjectDetail = () => {
     return () => { isMounted = false; };
   }, [projectIdOrSlug, projectType]);
 
-  const projectImages = project?.images?.length > 0 
+  const rawImages = project?.images?.length > 0 
     ? project.images 
     : fallbackImages;
+  const projectImages = rawImages.map(img => getImageUrl(img, fallbackImages[0])).filter(Boolean);
 
   const relatedProjects = allProjects.filter(p => p.id !== project?.id);
 

@@ -159,7 +159,15 @@ async function syncBackup() {
     });
 
     const formattedOg = filteredOg.map((p, idx) => {
-      const imgs = (p.images || []).map(img => typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url)).filter(Boolean);
+      const imgs = (p.images || []).map(img => {
+        let u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+        if (!u || typeof u !== 'string') return null;
+        if (u.includes('r2.dev/')) {
+          const fn = u.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+          return `/images/projects/${fn}`;
+        }
+        return u;
+      }).filter(Boolean);
       return {
         id: idx + 1,
         documentId: p.documentId || `og_${idx + 1}`,
@@ -200,7 +208,15 @@ async function syncBackup() {
 
     const normalize = (name) => (name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const formattedComp = rawCompleted.map((p, idx) => {
-      const imgs = (p.images || []).map(img => typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url)).filter(Boolean);
+      const imgs = (p.images || []).map(img => {
+        let u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+        if (!u || typeof u !== 'string') return null;
+        if (u.includes('r2.dev/')) {
+          const fn = u.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+          return `/images/projects/${fn}`;
+        }
+        return u;
+      }).filter(Boolean);
       return {
         id: idx + 1,
         documentId: p.documentId || `comp_${idx + 1}`,
