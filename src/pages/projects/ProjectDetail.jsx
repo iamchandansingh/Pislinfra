@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import { fetchStrapiData } from '../../services/strapi'
+import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
@@ -119,13 +120,17 @@ const ProjectDetail = () => {
         const res = await fetchStrapiData(endpoint);
         if (res && Array.isArray(res) && res.length > 0 && isMounted) {
           const formattedAll = res.map(item => {
-            const localFallback = localPool.find(lp => slugify(lp.name) === slugify(item.name)) || {};
+            const localFallback = localPool.find(lp => {
+              const sL = slugify(lp.name);
+              const sI = slugify(item.name);
+              return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
+            }) || {};
             const imgs = item.images && item.images.length > 0
               ? item.images.map(img => {
-                  const u = img.formats?.large?.url || img.formats?.medium?.url || img.url || '';
-                  return u.startsWith('http') ? u : u;
+                  const u = img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url || '';
+                  return getImageUrl(u);
                 }).filter(Boolean)
-              : (localFallback.images || []);
+              : (item.image ? [getImageUrl(item.image.formats?.large?.url || item.image.url || item.image)] : (localFallback.images || []));
 
             return {
               id: item.documentId || item.id,

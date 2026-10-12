@@ -4,10 +4,11 @@ import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import { HiChevronLeft, HiChevronRight, HiCheckCircle, HiExclamation } from 'react-icons/hi'
 import { fetchStrapiData } from '../../services/strapi'
+import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localProjectsData from '../../data/projectsData'
 
-const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const OngoingProjects = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -28,10 +29,14 @@ const OngoingProjects = () => {
         const projData = await fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
         if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
           const formatted = projData.map(item => {
-            const matchLocal = localProjectsData.find(lp => slugify(lp.name) === slugify(item.name)) || {};
+            const matchLocal = localProjectsData.find(lp => {
+              const sL = slugify(lp.name);
+              const sI = slugify(item.name);
+              return sL === sI || (sL && sI && (sL.includes(sI) || sI.includes(sL)));
+            }) || {};
             const strapiImages = Array.isArray(item.images) && item.images.length > 0
-              ? item.images.map(img => img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url).filter(Boolean)
-              : (item.image?.url ? [item.image.url] : []);
+              ? item.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
+              : (item.image ? [getImageUrl(item.image.formats?.large?.url || item.image.url || item.image)] : []);
             const imgs = strapiImages.length > 0 ? strapiImages : (matchLocal.images || (matchLocal.image ? [matchLocal.image] : []));
 
             return {

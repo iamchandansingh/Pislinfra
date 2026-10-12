@@ -402,142 +402,181 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
   const [customLocations, setCustomLocations] = useState({});
 
   useEffect(() => {
-    const normalizeProject = (p, defaultStatus, idx) => {
-      const cityName = (p.city || p.location || '').trim();
-      const stateName = (p.state || '').trim();
-      const isOg = (p.status || defaultStatus).toLowerCase() === 'ongoing';
-      const loc = getLoc({ ...p, city: cityName, state: stateName }, mapMarkers, customLocations);
-      const images = Array.isArray(p.images) && p.images.length > 0 
-        ? p.images 
-        : (p.image ? [p.image] : [FALLBACK_IMG]);
+    // Helper to normalize strings for robust matching
+    const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
-      return {
-        id: p.id || `${isOg ? 'og' : 'comp'}-${idx}`,
-        name: p.name || p.title || 'Project',
-        city: cityName || stateName || 'Default City',
-        location: cityName || stateName || 'Default City',
-        state: stateName || (isOg ? 'Gujarat' : 'Haryana'),
-        status: isOg ? 'Ongoing' : 'Completed',
-        category: p.category || (isOg ? 'Infrastructure' : 'Industrial'),
-        area: p.area || 'N/A',
-        client: p.client || 'Pislinfra Client',
-        scope: p.scope || (isOg ? 'EPC Services' : 'Full Turnkey Construction'),
-        timeline: p.timeline || (isOg ? '2024 - 2026' : 'Completed'),
-        progress: p.progress != null ? p.progress : (isOg ? 75 : 100),
-        cx: p.cx != null ? Number(p.cx) : loc.cx,
-        cy: p.cy != null ? Number(p.cy) : loc.cy,
-        images: images,
-        image: p.image || images[0] || FALLBACK_IMG,
-      };
+    const findMatch = (name, pool) => {
+      if (!name || !pool || !pool.length) return null;
+      const target = slugify(name);
+      if (!target) return null;
+      let found = pool.find(p => slugify(p.name || p.title) === target);
+      if (found) return found;
+      found = pool.find(p => {
+        const pSlug = slugify(p.name || p.title);
+        return pSlug && (pSlug.includes(target) || target.includes(pSlug));
+      });
+      return found || null;
     };
 
-    if (Array.isArray(mapMarkers) && mapMarkers.length > 0) {
-      const allProjectsFromMarkers = mapMarkers.map((m, i) => {
-        const mName = m.projectName || m.project_name || m.name || '';
-        const mCity = m.city || m.location || '';
-        const mState = m.state || '';
-        const isOngoing = (m.projectType || m.project_type || 'Ongoing').toLowerCase() === 'ongoing';
+    // Ensure we have active markers list (exact markers preserved)
+    const baseMarkers = (Array.isArray(mapMarkers) && mapMarkers.length > 0) ? mapMarkers : coverageMarkersData;
 
-        // Match with ongoing or completed project detailed data if available
-        const detailPool = isOngoing 
-          ? [...(strapiOngoing || []), ...projectsData]
-          : [...(strapiCompleted || []), ...completedProjectsData];
+    // 1. ONGOING PROJECTS
+    const ongoingMarkers = baseMarkers.filter(m => (m.projectType || '').toLowerCase() === 'ongoing');
+    const dbOngoingPool = (strapiOngoing && strapiOngoing.length > 0) ? strapiOngoing : projectsData;
+    const matchedDbOgIds = new Set();
 
-        const lowerName = mName.toLowerCase().trim();
-        const lowerCity = mCity.toLowerCase().trim();
-        const lowerState = mState.toLowerCase().trim();
+    const ogList = ongoingMarkers.map((m, idx) => {
+      const match = findMatch(m.projectName || m.name, dbOngoingPool) || findMatch(m.projectName || m.name, projectsData);
+      if (match) matchedDbOgIds.add(match.id || match.documentId);
 
-        // MATCH BY (Name + Location) FIRST so identical names in different cities never clash!
-        const match = detailPool.find(p => {
-          const pName = (p.name || p.title || '').toLowerCase().trim();
-          const pCity = (p.city || p.location || '').toLowerCase().trim();
-          return pName === lowerName && (pCity === lowerCity || lowerCity.includes(pCity) || pCity.includes(lowerCity));
-        }) || detailPool.find(p => {
-          const pName = (p.name || p.title || '').toLowerCase().trim();
-          const pState = (p.state || '').toLowerCase().trim();
-          return pName === lowerName && (pState === lowerState || lowerState.includes(pState) || pState.includes(lowerState));
-        }) || detailPool.find(p => {
-          const pCity = (p.city || p.location || '').toLowerCase().trim();
-          return pCity && lowerCity && (pCity === lowerCity || lowerCity.includes(pCity) || pCity.includes(lowerCity));
-        }) || detailPool.find(p => {
-          const pName = (p.name || p.title || '').toLowerCase().trim();
-          return pName === lowerName || lowerName.includes(pName) || pName.includes(lowerName);
-        }) || {};
+      // Extract fresh images: priority 1: live database images, priority 2: marker images
+      const rawImgs = (match && Array.isArray(match.images) && match.images.length > 0)
+        ? match.images
+        : (match?.image ? [match.image] : (Array.isArray(m.images) && m.images.length > 0 ? m.images : [FALLBACK_IMG]));
 
-        // Resolve images: prioritize accurate matched project gallery, then marker images
-        let markerImgs = [];
-        if (Array.isArray(match.images) && match.images.length > 0) {
-          markerImgs = match.images.map(img => typeof img === 'string' ? img : (img.url || FALLBACK_IMG));
-        } else if (match.image) {
-          const u = typeof match.image === 'string' ? match.image : (match.image.url || FALLBACK_IMG);
-          markerImgs = [u];
-        } else if (Array.isArray(m.images) && m.images.length > 0) {
-          markerImgs = m.images.map(img => {
-            const url = typeof img === 'string' ? img : (img.url || '');
-            return url.startsWith('http') ? url : `${url}`;
+      const finalImgs = rawImgs.map(img => {
+        if (!img) return FALLBACK_IMG;
+        if (typeof img === 'string') return img;
+        return img.formats?.large?.url || img.formats?.medium?.url || img.url || FALLBACK_IMG;
+      });
+
+      const cityName = (m.city || match?.city || match?.location || '').trim();
+      const stateName = (match?.state || m.state || 'Gujarat').trim();
+
+      return {
+        id: match?.documentId || match?.id || m.documentId || m.id || `og-${idx}`,
+        name: match?.name || m.projectName || 'Project',
+        city: cityName || 'Default City',
+        location: match?.location || cityName || 'Default City',
+        state: stateName || 'Gujarat',
+        status: 'Ongoing',
+        category: match?.category || m.category || 'Industrial',
+        area: match?.area || m.area || 'N/A',
+        client: match?.client || m.client || 'Pislinfra Client',
+        scope: match?.scope || m.scope || 'Civil Work & Infrastructure',
+        timeline: match?.timeline || m.timeline || 'Ongoing',
+        progress: match?.progress != null ? match.progress : 75,
+        cx: Number(m.cx),
+        cy: Number(m.cy),
+        images: finalImgs,
+        image: finalImgs[0] || FALLBACK_IMG,
+      };
+    });
+
+    // Append any extra ongoing projects from DB that don't have a marker
+    if (strapiOngoing && strapiOngoing.length > 0) {
+      strapiOngoing.forEach((p, idx) => {
+        const pId = p.id || p.documentId;
+        if (!matchedDbOgIds.has(pId)) {
+          const pName = p.name || p.title || 'Project';
+          const cityName = (p.city || p.location || '').trim();
+          const stateName = (p.state || '').trim();
+          const loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, baseMarkers, customLocations);
+          const rawImgs = Array.isArray(p.images) && p.images.length > 0
+            ? p.images
+            : (p.image ? [p.image] : [FALLBACK_IMG]);
+          const finalImgs = rawImgs.map(img => typeof img === 'string' ? img : (img.formats?.large?.url || img.url || FALLBACK_IMG));
+          ogList.push({
+            id: pId || `extra-og-${idx}`,
+            name: pName,
+            city: cityName || stateName || 'Default City',
+            location: cityName || stateName || 'Default City',
+            state: stateName || 'Gujarat',
+            status: 'Ongoing',
+            category: p.category || 'Industrial',
+            area: p.area || 'N/A',
+            client: p.client || 'Pislinfra Client',
+            scope: p.scope || 'Civil Work & Infrastructure',
+            timeline: p.timeline || 'Ongoing',
+            progress: p.progress != null ? p.progress : 75,
+            cx: p.cx != null ? Number(p.cx) : loc.cx,
+            cy: p.cy != null ? Number(p.cy) : loc.cy,
+            images: finalImgs,
+            image: finalImgs[0] || FALLBACK_IMG,
           });
-        } else if (m.image?.url) {
-          const url = m.image.url;
-          markerImgs = [url.startsWith('http') ? url : `${url}`];
-        } else {
-          markerImgs = [FALLBACK_IMG];
-        }
-
-        return {
-          id: match.id || m.id || m.documentId || `m-${i}`,
-          name: match.name || mName || 'Project',
-          state: match.state || mState || 'Default State',
-          city: match.city || match.location || mCity || 'Default City',
-          location: match.location || match.city || mCity || 'Default City',
-          status: isOngoing ? 'Ongoing' : 'Completed',
-          category: match.category || (isOngoing ? 'Infrastructure' : 'Industrial'),
-          area: match.area || 'N/A',
-          client: match.client || 'Pislinfra Client',
-          scope: match.scope || (isOngoing ? 'EPC Services' : 'Full Turnkey Construction'),
-          timeline: match.timeline || (isOngoing ? '2024 - 2026' : 'Completed'),
-          progress: match.progress != null ? match.progress : (isOngoing ? 75 : 100),
-          cx: m.cx != null ? Number(m.cx) : (match.cx != null ? Number(match.cx) : 50),
-          cy: m.cy != null ? Number(m.cy) : (match.cy != null ? Number(match.cy) : 50),
-          images: markerImgs,
-          image: markerImgs[0] || FALLBACK_IMG,
-        };
-      });
-
-      const ogList = allProjectsFromMarkers.filter(p => p.status === 'Ongoing');
-      const compList = allProjectsFromMarkers.filter(p => p.status === 'Completed');
-
-      // Seamlessly append any projects from Strapi that were not matched by an existing marker
-      const matchedOgNames = new Set(ogList.map(p => (p.name || '').toLowerCase().trim()));
-      (strapiOngoing || []).forEach((p, idx) => {
-        const pName = (p.name || p.title || '').toLowerCase().trim();
-        if (pName && !matchedOgNames.has(pName)) {
-          matchedOgNames.add(pName);
-          ogList.push(normalizeProject(p, 'Ongoing', `strapi-og-${idx}`));
         }
       });
-
-      const matchedCompNames = new Set(compList.map(p => (p.name || '').toLowerCase().trim()));
-      (strapiCompleted || []).forEach((p, idx) => {
-        const pName = (p.name || p.title || '').toLowerCase().trim();
-        if (pName && !matchedCompNames.has(pName)) {
-          matchedCompNames.add(pName);
-          compList.push(normalizeProject(p, 'Completed', `strapi-comp-${idx}`));
-        }
-      });
-
-      setOngoingProjects(ogList);
-      setCompletedProjects(compList);
-    } else {
-      // 100% RELIABLE OFFLINE CMS FALLBACK
-      const rawOg = (strapiOngoing && strapiOngoing.length > 0) ? strapiOngoing : projectsData;
-      const rawComp = (strapiCompleted && strapiCompleted.length > 0) ? strapiCompleted : completedProjectsData;
-
-      const ogList = rawOg.map((p, idx) => normalizeProject(p, 'Ongoing', idx));
-      const compList = rawComp.map((p, idx) => normalizeProject(p, 'Completed', idx));
-
-      setOngoingProjects(ogList);
-      setCompletedProjects(compList);
     }
+
+    // 2. COMPLETED PROJECTS
+    const completedMarkers = baseMarkers.filter(m => (m.projectType || '').toLowerCase() === 'completed');
+    const dbCompPool = (strapiCompleted && strapiCompleted.length > 0) ? strapiCompleted : completedProjectsData;
+    const matchedDbCompIds = new Set();
+
+    const compList = completedMarkers.map((m, idx) => {
+      const match = findMatch(m.projectName || m.name, dbCompPool) || findMatch(m.projectName || m.name, completedProjectsData);
+      if (match) matchedDbCompIds.add(match.id || match.documentId);
+
+      const rawImgs = (match && Array.isArray(match.images) && match.images.length > 0)
+        ? match.images
+        : (match?.image ? [match.image] : (Array.isArray(m.images) && m.images.length > 0 ? m.images : [FALLBACK_IMG]));
+
+      const finalImgs = rawImgs.map(img => {
+        if (!img) return FALLBACK_IMG;
+        if (typeof img === 'string') return img;
+        return img.formats?.large?.url || img.formats?.medium?.url || img.url || FALLBACK_IMG;
+      });
+
+      const cityName = (m.city || match?.city || match?.location || '').trim();
+      const stateName = (match?.state || m.state || 'Haryana').trim();
+
+      return {
+        id: match?.documentId || match?.id || m.documentId || m.id || `comp-${idx}`,
+        name: match?.name || m.projectName || 'Project',
+        city: cityName || 'Default City',
+        location: match?.location || cityName || 'Default City',
+        state: stateName || 'Haryana',
+        status: 'Completed',
+        category: match?.category || m.category || 'Warehousing',
+        area: match?.area || m.area || 'N/A',
+        client: match?.client || m.client || 'Pislinfra Client',
+        scope: match?.scope || m.scope || 'Turnkey Construction',
+        timeline: match?.timeline || m.timeline || 'Completed',
+        progress: 100,
+        cx: Number(m.cx),
+        cy: Number(m.cy),
+        images: finalImgs,
+        image: finalImgs[0] || FALLBACK_IMG,
+      };
+    });
+
+    if (strapiCompleted && strapiCompleted.length > 0) {
+      strapiCompleted.forEach((p, idx) => {
+        const pId = p.id || p.documentId;
+        if (!matchedDbCompIds.has(pId)) {
+          const pName = p.name || p.title || 'Project';
+          const cityName = (p.city || p.location || '').trim();
+          const stateName = (p.state || '').trim();
+          const loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, baseMarkers, customLocations);
+          const rawImgs = Array.isArray(p.images) && p.images.length > 0
+            ? p.images
+            : (p.image ? [p.image] : [FALLBACK_IMG]);
+          const finalImgs = rawImgs.map(img => typeof img === 'string' ? img : (img.formats?.large?.url || img.url || FALLBACK_IMG));
+          compList.push({
+            id: pId || `extra-comp-${idx}`,
+            name: pName,
+            city: cityName || stateName || 'Default City',
+            location: cityName || stateName || 'Default City',
+            state: stateName || 'Haryana',
+            status: 'Completed',
+            category: p.category || 'Warehousing',
+            area: p.area || 'N/A',
+            client: p.client || 'Pislinfra Client',
+            scope: p.scope || 'Turnkey Construction',
+            timeline: p.timeline || 'Completed',
+            progress: 100,
+            cx: p.cx != null ? Number(p.cx) : loc.cx,
+            cy: p.cy != null ? Number(p.cy) : loc.cy,
+            images: finalImgs,
+            image: finalImgs[0] || FALLBACK_IMG,
+          });
+        }
+      });
+    }
+
+    setOngoingProjects(ogList);
+    setCompletedProjects(compList);
   }, [strapiOngoing, strapiCompleted, mapMarkers, customLocations]);
 
   const gujaratProjectCount = ongoingProjects.filter(p => (p.state || '').toLowerCase() === 'gujarat').length;

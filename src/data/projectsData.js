@@ -201,7 +201,7 @@ const projectsData = [
     id: 11,
     category: 'Warehousing',
     name: 'HANNO ONE Logistics Park',
-    location: 'Coimbatore',
+    location: 'Hosur',
     state: 'Tamil Nadu',
     area: '3.43 Lakh Sq. ft',
     client: 'Hanno One Warehouse Pvt. Ltd.',
@@ -209,12 +209,10 @@ const projectsData = [
     status: 'Ongoing',
     scope: 'Civil Work for Warehousing, Infrastructure & Utilities',
     images: [
-      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn.png',
-      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-2.png',
-      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-3.png',
-      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-4.png',
-      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-5.png',
-      '/images/Project/ongoing/Hosur/hanno-one-logistics-park-hosur-tn-6.png'
+      'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg',
+      'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg',
+      'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg',
+      'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg'
     ]
   },
   {

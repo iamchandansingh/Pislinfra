@@ -7,10 +7,11 @@ const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname.endsWith('.local')
 );
 
-// If on live production (pislinfra.com), NEVER attempt to query localhost/127.0.0.1 (prevents Chrome Private Network Access popup)
-export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL 
-  ? import.meta.env.VITE_STRAPI_URL 
-  : (isLocalhost ? 'http://localhost:1337' : 'https://cms-pislinfra.onrender.com');
+// In development on localhost, prioritize local Strapi (http://localhost:1337) so edits reflect instantly.
+// On live production, use VITE_STRAPI_URL or Render.
+export const STRAPI_URL = isLocalhost
+  ? 'http://localhost:1337'
+  : (import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com');
 
 let cmsOfflineState = false;
 let failedAttempts = 0;
@@ -149,13 +150,18 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
   const { forceFresh = false } = options;
 
   // 1. LIVE NETWORK FETCH FIRST (Always prioritize fresh data from Strapi CMS)
-  if (STRAPI_URL) {
+  const candidateUrls = isLocalhost
+    ? ['http://localhost:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
+    : [import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'];
+
+  for (const baseUrl of candidateUrls) {
+    if (!baseUrl) continue;
     try {
       const controller = new AbortController();
-      // 8 second timeout gives Render and Neon plenty of time even during cold start
-      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      const timeoutMs = baseUrl.includes('localhost') ? 3000 : 10000;
+      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-      const response = await fetch(`${STRAPI_URL}/api/${endpoint}`, {
+      const response = await fetch(`${baseUrl}/api/${endpoint}`, {
         signal: controller.signal,
         headers: {
           'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -180,14 +186,13 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
           notifyStatus(false);
           return cleanData;
         }
-      } else {
-        notifyStatus(true);
       }
     } catch (e) {
-      console.warn(`[Strapi Network] Live fetch for "${endpoint}" failed or timed out. Falling back to cache.`);
-      notifyStatus(true);
+      // Failed on current host, try next candidate
     }
   }
+
+  notifyStatus(true);
 
   // 2. FALLBACK: Memory Cache
   if (memoryCache.has(endpoint)) {

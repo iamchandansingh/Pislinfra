@@ -49,8 +49,8 @@ const Home = () => {
       try {
         const [homeRes, ongoingRes, completedRes, clientsRes, awardsRes, markersRes] = await Promise.all([
           fetchStrapiData('home-page?populate=*'),
-          fetchStrapiData('ongoing-projects?populate=*'),
-          fetchStrapiData('completed-projects?populate=*'),
+          fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'),
+          fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'),
           fetchStrapiData('clients?pagination[pageSize]=100&sort=order:asc'),
           fetchStrapiData('awards?populate=*&sort=order:asc'),
           fetchStrapiData('coverage-markers?populate=*&pagination[pageSize]=100')
@@ -59,28 +59,34 @@ const Home = () => {
         if (homeRes) setData(homeRes);
         if (markersRes && Array.isArray(markersRes)) setMarkers(markersRes);
         
+        const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
         if (ongoingRes && Array.isArray(ongoingRes) && ongoingRes.length > 0) {
           setOngoing(ongoingRes.map(p => {
             const pName = p.name || p.title || '';
-            const matchLocal = projectsData.find(lp => lp.name === pName || lp.name.toLowerCase() === pName.toLowerCase()) || {};
+            const matchLocal = projectsData.find(lp => {
+              const sL = slugify(lp.name);
+              const sP = slugify(pName);
+              return sL === sP || (sL && sP && (sL.includes(sP) || sP.includes(sL)));
+            }) || {};
             const strapiImgs = Array.isArray(p.images) && p.images.length > 0
-              ? p.images.map(img => getImageUrl(img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
-              : (p.image ? [getImageUrl(p.image.url || p.image)] : []);
+              ? p.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
+              : (p.image ? [getImageUrl(p.image.formats?.large?.url || p.image.url || p.image)] : []);
             const finalImages = strapiImgs.length > 0 
               ? strapiImgs 
               : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/ongoing/Mundra/adani-copper-smelter-mundra-gj-1.png']));
             return {
               id: p.documentId || p.id,
-              name: pName,
+              name: pName || matchLocal.name,
               state: p.state || matchLocal.state || 'Gujarat',
               city: p.location || p.city || matchLocal.location || matchLocal.city || 'Gujarat',
               location: p.location || p.city || matchLocal.location || matchLocal.city || 'Gujarat',
               status: 'Ongoing',
-              category: p.category || matchLocal.category,
-              area: p.area || matchLocal.area,
-              client: p.client || matchLocal.client,
-              scope: p.scope || matchLocal.scope,
-              timeline: p.timeline || matchLocal.timeline,
+              category: p.category || matchLocal.category || 'Industrial',
+              area: p.area || matchLocal.area || 'N/A',
+              client: p.client || matchLocal.client || 'Pislinfra Client',
+              scope: p.scope || matchLocal.scope || 'Civil Work & Infrastructure',
+              timeline: p.timeline || matchLocal.timeline || 'Ongoing',
               cx: p.cx != null ? p.cx : matchLocal.cx,
               cy: p.cy != null ? p.cy : matchLocal.cy,
               progress: p.progress != null ? p.progress : (matchLocal.progress || 75),
@@ -93,25 +99,29 @@ const Home = () => {
         if (completedRes && Array.isArray(completedRes) && completedRes.length > 0) {
           setCompleted(completedRes.map(p => {
             const pName = p.name || p.title || '';
-            const matchLocal = completedProjectsData.find(lp => lp.name === pName || lp.name.toLowerCase() === pName.toLowerCase()) || {};
+            const matchLocal = completedProjectsData.find(lp => {
+              const sL = slugify(lp.name);
+              const sP = slugify(pName);
+              return sL === sP || (sL && sP && (sL.includes(sP) || sP.includes(sL)));
+            }) || {};
             const strapiImgs = Array.isArray(p.images) && p.images.length > 0
-              ? p.images.map(img => getImageUrl(img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
-              : (p.image ? [getImageUrl(p.image.url || p.image)] : []);
+              ? p.images.map(img => getImageUrl(img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url || img.url)).filter(Boolean)
+              : (p.image ? [getImageUrl(p.image.formats?.large?.url || p.image.url || p.image)] : []);
             const finalImages = strapiImgs.length > 0 
               ? strapiImgs 
               : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/Project/completed/Farrukhnagar/welspun-factory-farrukhnagar-hr-1.png']));
             return {
               id: p.documentId || p.id,
-              name: pName,
+              name: pName || matchLocal.name,
               state: p.state || matchLocal.state || 'Haryana',
               city: p.location || p.city || matchLocal.location || matchLocal.city || 'Haryana',
               location: p.location || p.city || matchLocal.location || matchLocal.city || 'Haryana',
               status: 'Completed',
-              category: p.category || matchLocal.category,
-              area: p.area || matchLocal.area,
-              client: p.client || matchLocal.client,
-              scope: p.scope || matchLocal.scope,
-              timeline: p.timeline || matchLocal.timeline,
+              category: p.category || matchLocal.category || 'Warehousing',
+              area: p.area || matchLocal.area || 'N/A',
+              client: p.client || matchLocal.client || 'Pislinfra Client',
+              scope: p.scope || matchLocal.scope || 'Turnkey Construction',
+              timeline: p.timeline || matchLocal.timeline || 'Completed',
               cx: p.cx != null ? p.cx : matchLocal.cx,
               cy: p.cy != null ? p.cy : matchLocal.cy,
               progress: 100,
