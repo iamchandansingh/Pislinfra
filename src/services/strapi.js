@@ -73,7 +73,7 @@ export const isCmsOffline = () => cmsOfflineState;
 // 2.1 CACHE VERSIONING & INSTANT PURGE
 // (Busts legacy browser cache so visitors instantly get latest projects)
 // ==========================================
-export const CACHE_VERSION = 'v5_2026_10_12_sanaswadi';
+export const CACHE_VERSION = 'v6_2026_10_12_live_instant';
 
 if (typeof window !== 'undefined' && window.localStorage) {
   try {
@@ -191,7 +191,8 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
   const { forceFresh = false } = options;
 
   // Normalize endpoint: Strip heavy sort=createdAt:* when querying Strapi because Render free tier times out on sorting populated relations
-  const cleanEndpoint = endpoint
+  const trimmed = (endpoint || '').replace(/^\/?(api\/)?/, '');
+  const cleanEndpoint = trimmed
     .replace(/([?&])sort=createdAt:(asc|desc)(&|$)/, (m, p1, p2, p3) => (p1 === '?' && p3 ? '?' : ''))
     .replace(/[?&]$/, '')
     .replace(/&&+/g, '&');
@@ -206,11 +207,11 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
 
     // 1. LIVE NETWORK FETCH FIRST (Always prioritize fresh data from Strapi CMS)
     const candidateUrls = isLocalhost
-      ? ['http://localhost:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
+      ? ['', 'http://localhost:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
       : [import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'];
 
     for (const baseUrl of candidateUrls) {
-      if (!baseUrl) continue;
+      if (baseUrl === undefined || baseUrl === null) continue;
       try {
         const controller = new AbortController();
         // Give local Strapi and remote CMS plenty of time to populate relations
@@ -224,11 +225,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
 
         const response = await fetch(requestUrl, {
           cache: 'no-store',
-          signal: controller.signal,
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache'
-          }
+          signal: controller.signal
         });
         clearTimeout(timeoutId);
 

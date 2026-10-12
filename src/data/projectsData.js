@@ -85,27 +85,6 @@ const projectsData = [
   },
   {
     "id": 5,
-    "documentId": "xhuokr1xr7tncr8i800f3jb2",
-    "category": "Industrial",
-    "name": "Reliance DMD Plant",
-    "location": "Dahej",
-    "state": "Gujarat",
-    "area": "N/A",
-    "client": "Reliance Industries Limited",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Precasting & Erection of 75,000 MT Piperack Structures, CPCV Plant Civil & Structural Works, External Development",
-    "images": [
-      "/images/projects/optimized_1787755113794_27_large_reliance-dmd-plant-dahej-gj_png.webp",
-      "/images/projects/optimized_1787755213515_763_large_reliance-dmd-plant-dahej-gj-2_png.webp",
-      "/images/projects/large_reliance_dmd_plant_dahej_gj_3_d1ba441428.png",
-      "/images/projects/large_reliance_dmd_plant_dahej_gj_4_bc2f27e3c1.png",
-      "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
-      "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
-    ]
-  },
-  {
-    "id": 6,
     "documentId": "n3hwjilrop1oleltf6fwjxmx",
     "category": "Industrial",
     "name": "AMNS SSC GIDC Project",
@@ -126,7 +105,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 7,
+    "id": 6,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -147,7 +126,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 8,
+    "id": 7,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -166,7 +145,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
@@ -187,7 +166,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -206,7 +185,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "documentId": "wqd7gr6n1eodf36348atvtn4",
     "category": "Institutional",
     "name": "CPWD – IIT ISM Campus Project",
@@ -225,7 +204,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
     "category": "Industrial",
     "name": "Reliance Solar Unit Manufacturing Plant",
@@ -246,7 +225,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
@@ -265,7 +244,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
@@ -285,7 +264,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
+    "id": 14,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
     "category": "Warehousing",
     "name": "HANNO ONE Logistics Park",
@@ -304,7 +283,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
@@ -320,6 +299,26 @@ const projectsData = [
       "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
       "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
       "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "xhuokr1xr7tncr8i800f3jb2",
+    "category": "Industrial",
+    "name": "Reliance DMD Plant",
+    "location": "Dahej",
+    "state": "Gujarat",
+    "area": "N/A",
+    "client": "Reliance Industries Limited",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Precasting & Erection of 75,000 MT Piperack Structures, CPCV Plant Civil & Structural Works, External Development",
+    "images": [
+      "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg",
+      "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg",
+      "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
+      "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
+      "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
     ]
   }
 ];
