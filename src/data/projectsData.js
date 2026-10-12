@@ -127,27 +127,6 @@ const projectsData = [
   },
   {
     "id": 7,
-    "documentId": "xy98xvmm6o3y66d62e5p76u8",
-    "category": "Industrial",
-    "name": "Sanaswadi Industrial Project",
-    "location": "Pune",
-    "state": "Maharashtra",
-    "area": "3.91 Lakh Sq. ft",
-    "client": "Pragati",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
-    "images": [
-      "/images/projects/optimized_1787755239207_582_large_sanaswadi-industrial-project-pune-mh_png.webp",
-      "/images/projects/optimized_1787755451754_4_large_sanaswadi-industrial-project-pune-mh-2_png.webp",
-      "/images/projects/optimized_1787755239800_450_large_sanaswadi-industrial-project-pune-mh-3_png.webp",
-      "/images/projects/optimized_1787755451238_175_large_sanaswadi-industrial-project-pune-mh-4_png.webp",
-      "/images/projects/optimized_1787755253399_349_large_sanaswadi-industrial-project-pune-mh-5_png.webp",
-      "/images/projects/optimized_1787755463457_531_large_sanaswadi-industrial-project-pune-mh-6_png.webp"
-    ]
-  },
-  {
-    "id": 8,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -168,7 +147,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -187,7 +166,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
@@ -208,7 +187,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -227,7 +206,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "documentId": "wqd7gr6n1eodf36348atvtn4",
     "category": "Institutional",
     "name": "CPWD – IIT ISM Campus Project",
@@ -246,7 +225,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
     "category": "Industrial",
     "name": "Reliance Solar Unit Manufacturing Plant",
@@ -267,7 +246,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
@@ -286,7 +265,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
+    "id": 14,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
@@ -306,7 +285,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
     "category": "Warehousing",
     "name": "HANNO ONE Logistics Park",
@@ -322,6 +301,25 @@ const projectsData = [
       "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
       "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
       "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "xy98xvmm6o3y66d62e5p76u8",
+    "category": "Industrial",
+    "name": "Sanaswadi Industrial Project",
+    "location": "Pune",
+    "state": "Maharashtra",
+    "area": "3.91 Lakh Sq. Ft",
+    "client": "Pragati",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
+    "images": [
+      "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
     ]
   }
 ];

@@ -86,6 +86,29 @@ async function fetchJson(url, timeoutMs = 8000) {
   }
 }
 
+const projectImagesDir = path.resolve(__dirname, '../public/images/projects');
+if (!fs.existsSync(projectImagesDir)) fs.mkdirSync(projectImagesDir, { recursive: true });
+
+async function ensureLocalProjectImage(url) {
+  if (!url || typeof url !== 'string') return url;
+  if (!url.includes('r2.dev/')) return url;
+  const fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+  const target = path.join(projectImagesDir, fn);
+  if (!fs.existsSync(target)) {
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': 'PislinfraSync/2.0' } });
+      if (res.ok) {
+        const buf = Buffer.from(await res.arrayBuffer());
+        fs.writeFileSync(target, buf);
+        console.log(`📥 Auto-downloaded project image: ${fn}`);
+      }
+    } catch (e) {
+      console.log(`⚠️ Could not auto-download ${fn}: ${e.message}`);
+    }
+  }
+  return `/images/projects/${fn}`;
+}
+
 async function syncBackup() {
   console.log('🔄 Checking live Hostinger and Strapi data sources for 100% offline bundling...');
 
@@ -158,16 +181,16 @@ async function syncBackup() {
       return !n.includes('humsafar') && !n.includes('logistics park llp');
     });
 
-    const formattedOg = filteredOg.map((p, idx) => {
-      const imgs = (p.images || []).map(img => {
+    const formattedOg = await Promise.all(filteredOg.map(async (p, idx) => {
+      const rawImgs = p.images || (p.image ? [p.image] : []);
+      const imgs = (await Promise.all(rawImgs.map(async (img) => {
         let u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
         if (!u || typeof u !== 'string') return null;
         if (u.includes('r2.dev/')) {
-          const fn = u.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
-          return `/images/projects/${fn}`;
+          return await ensureLocalProjectImage(u);
         }
         return u;
-      }).filter(Boolean);
+      }))).filter(Boolean);
       return {
         id: idx + 1,
         documentId: p.documentId || `og_${idx + 1}`,
@@ -182,7 +205,7 @@ async function syncBackup() {
         scope: p.scope,
         images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
       };
-    });
+    }));
 
     if (formattedOg.length === 16) {
       fs.writeFileSync(OG_PATH, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
@@ -208,16 +231,16 @@ async function syncBackup() {
     }
 
     const normalize = (name) => (name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    const formattedComp = rawCompleted.map((p, idx) => {
-      const imgs = (p.images || []).map(img => {
+    const formattedComp = await Promise.all(rawCompleted.map(async (p, idx) => {
+      const rawImgs = p.images || (p.image ? [p.image] : []);
+      const imgs = (await Promise.all(rawImgs.map(async (img) => {
         let u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
         if (!u || typeof u !== 'string') return null;
         if (u.includes('r2.dev/')) {
-          const fn = u.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
-          return `/images/projects/${fn}`;
+          return await ensureLocalProjectImage(u);
         }
         return u;
-      }).filter(Boolean);
+      }))).filter(Boolean);
       return {
         id: idx + 1,
         documentId: p.documentId || `comp_${idx + 1}`,
@@ -232,7 +255,7 @@ async function syncBackup() {
         scope: p.scope,
         images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
       };
-    });
+    }));
 
     const seen = new Set();
     const mergedComp = [];
