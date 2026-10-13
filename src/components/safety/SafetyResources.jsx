@@ -1,357 +1,626 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaDownload, FaFilePdf, FaFileArchive, FaShieldAlt, FaHeadset, FaCheckCircle } from 'react-icons/fa';
+import { 
+  FaShieldAlt, 
+  FaChartLine, 
+  FaUsersCog, 
+  FaFilePdf, 
+  FaFilePowerpoint, 
+  FaEye, 
+  FaDownload 
+} from 'react-icons/fa';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
 const FONT = 'Inter, sans-serif';
 
-const resourcesList = [
-  { 
-    id: 1, 
-    title: 'Site Safety Manual', 
-    desc: 'Comprehensive manual detailing all site-specific safety protocols.', 
-    size: '4.2 MB', 
-    icon: FaFilePdf
+const defaultResourceCards = [
+  {
+    id: 'company-profile',
+    title: 'Company Profile',
+    coverTitle: 'COMPANY PROFILE',
+    coverSubtitle: 'Building Infrastructure for a Better Tomorrow',
+    desc: 'Overview of our company, infrastructure capabilities, key projects and achievements.',
+    type: 'PPT / PPTX',
+    typeIcon: FaFilePowerpoint,
+    typeBg: 'rgba(255, 135, 85, 0.1)',
+    typeColor: ORANGE,
+    typeBorder: 'rgba(255, 135, 85, 0.25)',
+    bgImage: '/images/blogs/optimized_1787755078619_572_Green-Industrial-Park_png.webp',
+    accentColor: NAVY,
+    viewUrl: '/reports/Pragati-Infra-Solutions-2.pdf',
+    downloadUrl: '/reports/Pragati-Infra-Solutions-2.pdf',
+    viewLabel: 'View Presentation',
+    downloadLabel: 'Download PPT',
   },
-  { 
-    id: 2, 
-    title: 'PPE Guidelines 2025', 
-    desc: 'Updated guidelines on mandatory use of Protective Equipment.', 
-    size: '1.8 MB', 
-    icon: FaFilePdf
+  {
+    id: 'safety-manual',
+    title: 'Site Safety Manual',
+    coverTitle: 'SITE SAFETY MANUAL',
+    coverSubtitle: 'Safe People • Safe Projects • Stronger Tomorrow',
+    desc: 'Safety guidelines, procedures and essential information for all project sites.',
+    type: 'PDF',
+    typeIcon: FaFilePdf,
+    typeBg: 'rgba(239, 68, 68, 0.08)',
+    typeColor: '#ef4444',
+    typeBorder: 'rgba(239, 68, 68, 0.2)',
+    bgImage: '/images/EHS/Site-Safety-Inspection.png',
+    accentColor: ORANGE,
+    viewUrl: '/reports/Annual-Reports-2023-2024.pdf',
+    downloadUrl: '/reports/Annual-Reports-2023-2024.pdf',
+    viewLabel: 'View PDF',
+    downloadLabel: 'Download PDF',
   },
-  { 
-    id: 3, 
-    title: 'Emergency Response Plan', 
-    desc: 'Step-by-step action plans for medical and structural incidents.', 
-    size: '3.5 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 4, 
-    title: 'Hazard Identification', 
-    desc: 'Training material for reporting and mitigating potential hazards.', 
-    size: '2.1 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 5, 
-    title: 'Work Permit Procedures', 
-    desc: 'Operating procedures for managing Permit To Work (PTW).', 
-    size: '1.5 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 6, 
-    title: 'Toolbox Talk Resources', 
-    desc: 'A collection of weekly toolbox talk topics for site supervisors.', 
-    size: '5.0 MB', 
-    icon: FaFileArchive
+  {
+    id: 'ehs-policy',
+    title: 'EHS Safety Manual',
+    coverTitle: 'EHS POLICY & SOPS',
+    coverSubtitle: 'Zero-Harm Commitment • ISO 45001 Compliance',
+    desc: 'Comprehensive Environment, Health & Safety protocol handbook and compliance norms.',
+    type: 'PDF',
+    typeIcon: FaFilePdf,
+    typeBg: 'rgba(10, 42, 102, 0.08)',
+    typeColor: NAVY,
+    typeBorder: 'rgba(10, 42, 102, 0.2)',
+    bgImage: '/images/EHS/Heroimages/2.png',
+    accentColor: '#f4b400',
+    viewUrl: '/reports/Annual-Return_2024-25.pdf',
+    downloadUrl: '/reports/Annual-Return_2024-25.pdf',
+    viewLabel: 'View PDF',
+    downloadLabel: 'Download PDF',
   },
 ];
 
-const supportItems = [
-  { icon: FaShieldAlt, title: '24/7 Monitoring' },
-  { icon: FaHeadset, title: 'Rapid Response' },
-  { icon: FaCheckCircle, title: '100% Compliant' },
-];
+const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
+  return (
+    <div style={{
+      width: '100%',
+      height: '140px',
+      borderRadius: '10px',
+      overflow: 'hidden',
+      position: 'relative',
+      backgroundColor: '#f1f5f9',
+      boxShadow: '0 2px 8px rgba(10,42,102,0.06)',
+      display: 'flex',
+    }}>
+      {/* Background Project Photo */}
+      <img
+        src={bgImage}
+        alt={title}
+        loading="lazy"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        }}
+      />
+
+      {/* Angled Accent Trim Layer */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '67%',
+        height: '100%',
+        backgroundColor: accentColor || ORANGE,
+        clipPath: 'polygon(0 0, 100% 0, 75% 100%, 0 100%)',
+        zIndex: 1,
+      }} />
+
+      {/* White Slanted Document Card Overlay */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '65%',
+        height: '100%',
+        backgroundColor: '#ffffff',
+        clipPath: 'polygon(0 0, 100% 0, 75% 100%, 0 100%)',
+        zIndex: 2,
+        padding: '12px 14px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        boxSizing: 'border-box',
+      }}>
+        {/* PISL Logo Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <img 
+            src="/logo.png" 
+            alt="PISL" 
+            style={{ height: '20px', width: 'auto', objectFit: 'contain' }} 
+          />
+        </div>
+
+        {/* Document Header Text */}
+        <div style={{ paddingBottom: '2px' }}>
+          <div style={{
+            fontSize: '11px',
+            fontWeight: '900',
+            color: NAVY,
+            letterSpacing: '0.4px',
+            textTransform: 'uppercase',
+            lineHeight: 1.2,
+          }}>
+            {title}
+          </div>
+          <div style={{
+            fontSize: '8px',
+            fontWeight: '600',
+            color: '#64748b',
+            lineHeight: 1.25,
+            marginTop: '3px',
+          }}>
+            {subtitle}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const SafetyResources = ({ resources, title, subtitle, desc }) => {
-  const activeResources = resources && resources.length > 0 ? resources.map((r, i) => ({ id: r.id || i, title: r.title, desc: r.description || r.desc || resourcesList[i]?.desc, size: resourcesList[i]?.size || "0 MB", icon: resourcesList[i]?.icon })) : resourcesList;
+  const resourceCards = resources && resources.length > 0 
+    ? resources.slice(0, 3).map((r, i) => ({
+        ...defaultResourceCards[i % defaultResourceCards.length],
+        title: r.title || defaultResourceCards[i % defaultResourceCards.length].title,
+        desc: r.description || r.desc || defaultResourceCards[i % defaultResourceCards.length].desc,
+        viewUrl: r.file?.url ? (r.file.url.startsWith('http') ? r.file.url : `${import.meta.env.VITE_STRAPI_URL || ""}${r.file.url}`) : defaultResourceCards[i % defaultResourceCards.length].viewUrl,
+        downloadUrl: r.file?.url ? (r.file.url.startsWith('http') ? r.file.url : `${import.meta.env.VITE_STRAPI_URL || ""}${r.file.url}`) : defaultResourceCards[i % defaultResourceCards.length].downloadUrl,
+      }))
+    : defaultResourceCards;
+
   return (
     <section style={{ 
-      padding: '60px 24px 80px',
+      padding: '70px 20px 90px',
       backgroundColor: '#f8fafc',
       fontFamily: FONT
     }}>
-      <div style={{ maxWidth: '1370px', margin: '0 auto' }}> {/* Matches IndustryRecognition width */}
-
-        {/* The Massive Split-Card Container (Straight Edges) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="split-card-container"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr', 
-            borderRadius: '0px', // No curve
-            overflow: 'hidden',
-            backgroundColor: '#ffffff',
-            border: '1px solid #e2e8f0', // Clean straight border instead of full screen bleed
-            boxShadow: '0 10px 40px rgba(10,42,102,0.05)'
-          }}
-        >
+      <div style={{ maxWidth: '1370px', margin: '0 auto' }}>
+        
+        {/* Split Section Layout */}
+        <div className="safety-resources-split">
           
-          {/* LEFT COLUMN: Visual & Support */}
-          <div 
-            className="left-column"
-            style={{ 
-              position: 'relative', 
-              width: '100%',
-              height: '100%', // Inherits height from grid
-            }}
+          {/* LEFT BANNER: Safety is Our Highest Priority */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="sr-left-banner"
           >
-            {/* Background Image */}
+            {/* Background Construction Image */}
             <img 
-              src="/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(4).png" 
-              alt="Safety Professional" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} 
+              src="/images/EHS/Heroimages/1.png" 
+              alt="PISL Safety Infrastructure" 
+              loading="lazy"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 1,
+              }}
             />
-            {/* Dark Gradient Overlay */}
+
+            {/* Gradient Overlay in PISL Brand Navy */}
             <div style={{
               position: 'absolute',
-              top: 0, left: 0, right: 0, bottom: 0,
-              background: 'linear-gradient(to bottom, rgba(10,42,102,0.1) 0%, rgba(10,42,102,0.95) 100%)'
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'linear-gradient(to right, rgba(10,42,102, 0.95) 0%, rgba(10,42,102, 0.75) 60%, rgba(10,42,102, 0.35) 100%)',
+              zIndex: 2,
             }} />
 
-            {/* Content overlay on Image */}
-            <div className="left-column-content">
-              <div>
-                <h3 style={{ margin: '0 0 8px', fontSize: '28px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }} className="left-column-title">
-                  Safety is our<br />Highest Priority
-                </h3>
-                <p style={{ margin: 0, fontSize: '14px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.5, maxWidth: '90%' }}>
-                  Access our official safety manuals, guidelines, and toolkits used across all PISL project sites.
-                </p>
+            {/* Content Top */}
+            <div style={{ position: 'relative', zIndex: 3 }}>
+              {/* Tag with Orange Bar */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span style={{ 
+                  width: '28px', 
+                  height: '3px', 
+                  backgroundColor: ORANGE, 
+                  borderRadius: '2px', 
+                  display: 'inline-block' 
+                }} />
+                <span style={{ 
+                  fontSize: '11px', 
+                  fontWeight: '800', 
+                  color: '#ffffff', 
+                  letterSpacing: '1.8px', 
+                  textTransform: 'uppercase' 
+                }}>
+                  SAFETY & RESOURCES
+                </span>
               </div>
 
-              {/* Horizontal Support Strip (Left to Right) */}
-              <div style={{ 
-                display: 'flex', 
-                flexDirection: 'row', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                background: 'rgba(10,42,102,0.4)', // Sleek dark navy glass
-                backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                padding: '16px 24px',
-                marginTop: '8px',
-                gap: '12px'
-              }} className="support-strip">
-                {supportItems.map((item, i) => (
-                  <div key={i} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }}>
-                    <item.icon style={{ color: ORANGE, fontSize: '18px' }} />
-                    <span style={{ 
-                      color: '#ffffff', 
-                      fontSize: '12px', 
-                      fontWeight: 700, 
-                      letterSpacing: '0.5px',
-                      textTransform: 'uppercase'
-                    }}>
-                      {item.title}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: Interactive List */}
-          <div 
-            className="right-column"
-            style={{ 
-              padding: '32px 5%', // Tighter padding, % for large screens
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center'
-            }}
-          >
-            {/* Header Text */}
-            <div style={{ marginBottom: '20px' }}> 
-              <h2 style={{ 
-                fontSize: 'clamp(24px, 3.5vw, 32px)', 
-                fontWeight: 800, 
-                color: NAVY, 
-                margin: '0 0 8px',
-                letterSpacing: '-1px'
+              {/* Headline */}
+              <h2 style={{
+                fontSize: 'clamp(28px, 3.2vw, 40px)',
+                fontWeight: '800',
+                color: '#ffffff',
+                lineHeight: 1.15,
+                letterSpacing: '-0.5px',
+                margin: '0 0 14px',
               }}>
-                Safety <span style={{ color: NAVY }}>Resources</span>
+                Safety is Our{' '}
+                <span style={{ color: ORANGE }}>Highest</span>{' '}
+                Priority
               </h2>
-              <p style={{ fontSize: '14px', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
-                Download essential workplace documents and operational guidelines instantly.
+
+              {/* Subtext */}
+              <p style={{
+                fontSize: '14px',
+                color: 'rgba(255, 255, 255, 0.86)',
+                lineHeight: 1.6,
+                margin: 0,
+                maxWidth: '460px',
+              }}>
+                {desc || "Access our official safety guidelines, company profile, and important resources for all project sites."}
               </p>
             </div>
 
-            {/* Highly Styled List View (Descriptions Removed for minimal height) */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}> 
-              {resourcesList.map((resource, i) => (
+            {/* Content Bottom: 3 Circular Badges */}
+            <div style={{ position: 'relative', zIndex: 3 }}>
+              <div className="sr-badges-row">
+                {/* Badge 1 */}
+                <div className="sr-badge-item">
+                  <div className="sr-badge-circle">
+                    <FaShieldAlt style={{ fontSize: '15px' }} />
+                  </div>
+                  <div className="sr-badge-text">
+                    Safe<br />Workplace
+                  </div>
+                </div>
+
+                {/* Badge 2 */}
+                <div className="sr-badge-item">
+                  <div className="sr-badge-circle">
+                    <FaChartLine style={{ fontSize: '15px' }} />
+                  </div>
+                  <div className="sr-badge-text">
+                    Best<br />Practices
+                  </div>
+                </div>
+
+                {/* Badge 3 */}
+                <div className="sr-badge-item">
+                  <div className="sr-badge-circle">
+                    <FaUsersCog style={{ fontSize: '15px' }} />
+                  </div>
+                  <div className="sr-badge-text">
+                    Sustainable<br />Operations
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT COLUMN: Key Resources Header + 3 PDF Cards */}
+          <div className="sr-right-column">
+            
+            {/* Header */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{ marginBottom: '24px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                <span style={{ 
+                  width: '28px', 
+                  height: '3px', 
+                  backgroundColor: ORANGE, 
+                  borderRadius: '2px', 
+                  display: 'inline-block' 
+                }} />
+                <span style={{ 
+                  fontSize: '11px', 
+                  fontWeight: '800', 
+                  color: '#64748b', 
+                  letterSpacing: '1.8px', 
+                  textTransform: 'uppercase' 
+                }}>
+                  DOWNLOAD
+                </span>
+              </div>
+              
+              <h3 style={{
+                fontSize: 'clamp(26px, 3vw, 34px)',
+                fontWeight: '800',
+                color: NAVY,
+                letterSpacing: '-0.5px',
+                margin: '0 0 6px',
+              }}>
+                {title ? title : <>Key <span style={{ color: ORANGE }}>Resources</span></>}
+              </h3>
+
+              <p style={{
+                fontSize: '14px',
+                color: '#64748b',
+                margin: 0,
+                lineHeight: 1.5,
+              }}>
+                {subtitle || "Download official documents and company information."}
+              </p>
+            </motion.div>
+
+            {/* 3 PDF Cards Grid */}
+            <div className="sr-cards-grid">
+              {resourceCards.map((card, idx) => (
                 <motion.div
-                  key={resource.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  key={card.id || idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="resource-row"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '10px 16px', // Minimal padding
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '10px', 
-                    border: '1px solid #f1f5f9',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    gap: '12px' 
-                  }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  className="sr-card"
                 >
-                  {/* Left Icon */}
-                  <div style={{
-                    width: '36px', height: '36px', // Smaller icon box
-                    borderRadius: '8px',
-                    backgroundColor: '#ffffff',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
-                    flexShrink: 0,
-                    transition: 'all 0.3s ease'
-                  }} className="row-icon-box">
-                    <resource.icon style={{ fontSize: '16px', color: '#94a3b8', transition: 'color 0.3s ease' }} className="row-icon" />
-                  </div>
+                  <div>
+                    {/* Top Document Cover */}
+                    <DocumentThumbnail 
+                      title={card.coverTitle}
+                      subtitle={card.coverSubtitle}
+                      bgImage={card.bgImage}
+                      accentColor={card.accentColor}
+                    />
 
-                  {/* Text Content (Title Only) */}
-                  <div style={{ flex: 1, minWidth: 0 }}> 
-                    <h4 style={{ 
-                      margin: 0, 
-                      fontSize: '14px', 
-                      fontWeight: 800, 
-                      color: NAVY,
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}>
-                      {resource.title}
-                    </h4>
-                  </div>
-
-                  {/* Size & Action */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px' 
-                  }} className="row-action-area">
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1', transition: 'color 0.3s' }} className="row-size">
-                      {resource.size}
-                    </span>
+                    {/* Format Pill Badge */}
                     <div style={{
-                      width: '30px', height: '30px', // Minimal button
-                      borderRadius: '50%',
-                      backgroundColor: '#ffffff',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                      transition: 'all 0.3s ease'
-                    }} className="row-download-btn">
-                      <FaDownload style={{ fontSize: '11px', color: NAVY, transition: 'color 0.3s ease' }} className="row-download-icon" />
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      padding: '4px 9px',
+                      borderRadius: '6px',
+                      backgroundColor: card.typeBg,
+                      color: card.typeColor,
+                      border: `1px solid ${card.typeBorder}`,
+                      fontSize: '10px',
+                      fontWeight: '800',
+                      letterSpacing: '0.4px',
+                      marginTop: '12px',
+                      marginBottom: '6px',
+                    }}>
+                      <card.typeIcon style={{ fontSize: '11px' }} />
+                      <span>{card.type}</span>
                     </div>
+
+                    {/* Title */}
+                    <h4 style={{
+                      fontSize: '16.5px',
+                      fontWeight: '800',
+                      color: NAVY,
+                      margin: '0 0 4px',
+                      lineHeight: 1.3,
+                    }}>
+                      {card.title}
+                    </h4>
+
+                    {/* Description */}
+                    <p style={{
+                      fontSize: '12.5px',
+                      color: '#64748b',
+                      lineHeight: 1.5,
+                      margin: '0 0 16px',
+                    }}>
+                      {card.desc}
+                    </p>
+                  </div>
+
+                  {/* Actions: View & Download Buttons */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '10px',
+                    marginTop: 'auto',
+                    paddingTop: '8px',
+                    borderTop: '1px solid #f1f5f9',
+                  }}>
+                    <a 
+                      href={card.viewUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="sr-btn sr-btn-view"
+                    >
+                      <FaEye style={{ fontSize: '13px' }} />
+                      <span>{card.viewLabel}</span>
+                    </a>
+
+                    <a 
+                      href={card.downloadUrl} 
+                      download 
+                      className="sr-btn sr-btn-download"
+                    >
+                      <FaDownload style={{ fontSize: '11px' }} />
+                      <span>{card.downloadLabel}</span>
+                    </a>
                   </div>
                 </motion.div>
               ))}
             </div>
 
           </div>
-        </motion.div>
+
+        </div>
+
       </div>
 
       <style>{`
-        /* Card Row Hover Effects - Ultra Premium */
-        .resource-row:hover {
-          background-color: #ffffff !important;
-          border-color: ${ORANGE} !important;
-          box-shadow: 0 12px 30px rgba(255,135,85,0.12) !important;
-          transform: translateY(-2px);
-        }
-        .resource-row:hover .row-icon-box {
-          background-color: ${ORANGE} !important;
-          transform: scale(1.05);
-        }
-        .resource-row:hover .row-icon {
-          color: #ffffff !important;
-        }
-        .resource-row:hover .row-size {
-          color: ${ORANGE} !important;
-        }
-        .resource-row:hover .row-download-btn {
-          background-color: ${NAVY} !important;
-          box-shadow: 0 6px 16px rgba(10,42,102,0.2) !important;
-          transform: translateY(-2px);
-        }
-        .resource-row:hover .row-download-icon {
-          color: #ffffff !important;
+        .safety-resources-split {
+          display: grid;
+          grid-template-columns: minmax(350px, 420px) 1fr;
+          gap: 32px;
+          align-items: stretch;
         }
 
-        /* Default Desktop */
-        .left-column-content {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          padding: 40px;
-          z-index: 2;
+        .sr-left-banner {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          padding: 44px 34px;
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          justify-content: space-between;
+          min-height: 480px;
+          box-shadow: 0 12px 36px rgba(10, 42, 102, 0.12);
         }
 
-        /* Responsiveness */
-        @media (max-width: 1024px) {
-          .split-card-container {
-            grid-template-columns: 1fr !important;
+        .sr-badges-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+          padding-top: 28px;
+          margin-top: 28px;
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .sr-badge-item {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .sr-badge-circle {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(255, 255, 255, 0.3);
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(8px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: ${ORANGE};
+          transition: all 0.3s ease;
+        }
+
+        .sr-badge-item:hover .sr-badge-circle {
+          border-color: ${ORANGE};
+          background: rgba(255, 135, 85, 0.2);
+          transform: scale(1.08);
+        }
+
+        .sr-badge-text {
+          font-size: 11.5px;
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1.3;
+        }
+
+        .sr-right-column {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .sr-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        .sr-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 16px;
+          box-shadow: 0 6px 20px rgba(10, 42, 102, 0.04);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sr-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 36px rgba(10, 42, 102, 0.1);
+          border-color: rgba(255, 135, 85, 0.4);
+        }
+
+        .sr-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          height: 38px;
+          padding: 0 8px;
+          border-radius: 8px;
+          font-size: 11.5px;
+          font-weight: 700;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          white-space: nowrap;
+        }
+
+        .sr-btn-view {
+          background: #ffffff;
+          border: 1.5px solid ${NAVY};
+          color: ${NAVY};
+        }
+
+        .sr-btn-view:hover {
+          background: ${NAVY};
+          color: #ffffff;
+        }
+
+        .sr-btn-download {
+          background: ${NAVY};
+          border: 1.5px solid ${NAVY};
+          color: #ffffff;
+        }
+
+        .sr-btn-download:hover {
+          background: ${ORANGE};
+          border-color: ${ORANGE};
+          color: #ffffff;
+        }
+
+        @media (max-width: 1200px) {
+          .safety-resources-split {
+            grid-template-columns: 1fr;
+            gap: 36px;
           }
-          .left-column {
-            height: auto !important;
-            min-height: 400px !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-          }
-          .left-column-content {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            padding: 32px 24px !important;
-            margin-top: 100px;
-          }
-          .right-column {
-            padding: 32px 24px !important;
-          }
-          .support-strip {
-            flex-wrap: wrap;
-            justify-content: center !important;
+          .sr-cards-grid {
+            grid-template-columns: repeat(3, 1fr);
           }
         }
-        
+
+        @media (max-width: 900px) {
+          .sr-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
         @media (max-width: 640px) {
-          .left-column-content {
-            padding: 24px !important;
-            gap: 16px !important;
+          .sr-left-banner {
+            padding: 30px 20px;
+            min-height: auto;
           }
-          .left-column-title {
-            font-size: 24px !important;
+          .sr-badges-row {
+            padding-top: 20px;
+            margin-top: 20px;
+            gap: 10px;
           }
-          .support-strip {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            padding: 16px !important;
-            gap: 12px !important;
+          .sr-badge-circle {
+            width: 36px;
+            height: 36px;
           }
-          .support-strip > div {
-            width: 100%;
+          .sr-badge-text {
+            font-size: 10.5px;
           }
-          /* Keep rows horizontal on mobile but adjust gaps */
-          .resource-row {
-            padding: 10px 12px !important;
-            gap: 10px !important;
-          }
-          .row-action-area {
-            gap: 8px !important;
-          }
-          .row-size {
-            display: none; /* Hide size on tiny screens to save space */
+          .sr-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
           }
         }
       `}</style>
