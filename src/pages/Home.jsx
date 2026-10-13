@@ -40,7 +40,7 @@ const Home = () => {
   const [data, setData] = useState(null);
   const [ongoing, setOngoing] = useState(defaultOngoing);
   const [completed, setCompleted] = useState(defaultCompleted);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [clients, setClients] = useState(clientsData);
   const [awards, setAwards] = useState(() => sortAwardsByFeaturedAndDate(awardsAndCertifications));
   const [markers, setMarkers] = useState(coverageMarkersData);
@@ -193,7 +193,7 @@ const Home = () => {
       }
     };
 
-    const intervalId = setInterval(pollFast, 10000);
+    const intervalId = setInterval(pollFast, 60000);
 
     return () => {
       window.removeEventListener('focus', handleFocus);
@@ -201,8 +201,6 @@ const Home = () => {
       clearInterval(intervalId);
     };
   }, []);
-
-  if (loading) return <Preloader />;
 
   const homeSeoData = {
     contentType: 'page',

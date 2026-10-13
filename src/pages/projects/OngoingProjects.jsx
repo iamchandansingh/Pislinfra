@@ -116,7 +116,7 @@ const OngoingProjects = () => {
       }
     };
 
-    const intervalId = setInterval(pollFast, 10000);
+    const intervalId = setInterval(pollFast, 60000);
 
     return () => {
       isMounted = false;
