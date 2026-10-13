@@ -226,12 +226,12 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
               {/* Headline */}
               <h2 style={{
-                fontSize: 'clamp(30px, 3.4vw, 42px)',
+                fontSize: 'clamp(32px, 3.8vw, 46px)',
                 fontWeight: '800',
                 color: '#ffffff',
                 lineHeight: 1.15,
                 letterSpacing: '-0.5px',
-                margin: '0 0 14px',
+                margin: '0 0 16px',
               }}>
                 Safety is Our{' '}
                 <span style={{ color: ORANGE }}>Highest</span>{' '}
@@ -240,11 +240,11 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
               {/* Subtext */}
               <p style={{
-                fontSize: '14.5px',
+                fontSize: '15.5px',
                 color: 'rgba(255, 255, 255, 0.88)',
                 lineHeight: 1.65,
                 margin: 0,
-                maxWidth: '520px',
+                maxWidth: '560px',
               }}>
                 {desc || "Access our official safety guidelines, company profile, and important resources for all project sites."}
               </p>
@@ -256,7 +256,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                 {/* Badge 1 */}
                 <div className="sr-badge-item">
                   <div className="sr-badge-circle">
-                    <FaShieldAlt style={{ fontSize: '15px' }} />
+                    <FaShieldAlt style={{ fontSize: '18px' }} />
                   </div>
                   <div className="sr-badge-text">
                     Safe<br />Workplace
@@ -266,7 +266,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                 {/* Badge 2 */}
                 <div className="sr-badge-item">
                   <div className="sr-badge-circle">
-                    <FaChartLine style={{ fontSize: '15px' }} />
+                    <FaChartLine style={{ fontSize: '18px' }} />
                   </div>
                   <div className="sr-badge-text">
                     Best<br />Practices
@@ -276,7 +276,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                 {/* Badge 3 */}
                 <div className="sr-badge-item">
                   <div className="sr-badge-circle">
-                    <FaUsersCog style={{ fontSize: '15px' }} />
+                    <FaUsersCog style={{ fontSize: '18px' }} />
                   </div>
                   <div className="sr-badge-text">
                     Sustainable<br />Operations
@@ -439,7 +439,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
       <style>{`
         .safety-resources-split {
           display: grid;
-          grid-template-columns: minmax(480px, 560px) 1fr;
+          grid-template-columns: minmax(540px, 630px) 1fr;
           gap: 36px;
           align-items: stretch;
         }
@@ -448,20 +448,20 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           position: relative;
           border-radius: 20px;
           overflow: hidden;
-          padding: 48px 40px;
+          padding: 54px 44px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          min-height: 500px;
+          min-height: 520px;
           box-shadow: 0 14px 40px rgba(10, 42, 102, 0.12);
         }
 
         .sr-badges-row {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 18px;
-          padding-top: 32px;
-          margin-top: 32px;
+          gap: 20px;
+          padding-top: 36px;
+          margin-top: 36px;
           border-top: 1px solid rgba(255, 255, 255, 0.18);
         }
 
@@ -469,12 +469,12 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 10px;
+          gap: 12px;
         }
 
         .sr-badge-circle {
-          width: 48px;
-          height: 48px;
+          width: 52px;
+          height: 52px;
           border-radius: 50%;
           border: 1.5px solid rgba(255, 255, 255, 0.35);
           background: rgba(255, 255, 255, 0.1);
@@ -493,7 +493,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
         }
 
         .sr-badge-text {
-          font-size: 12.5px;
+          font-size: 13px;
           font-weight: 700;
           color: #ffffff;
           line-height: 1.35;
@@ -568,7 +568,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           color: #ffffff;
         }
 
-        @media (max-width: 1180px) {
+        @media (max-width: 1240px) {
           .safety-resources-split {
             grid-template-columns: 1fr;
             gap: 40px;
