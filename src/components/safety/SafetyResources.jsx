@@ -145,16 +145,19 @@ const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
 };
 
 const SafetyResources = ({ resources, title, subtitle, desc }) => {
-  const resourceCards = resources && resources.length > 0 
-    ? resources.slice(0, 2).map((r, i) => ({
-        ...defaultResourceCards[i % defaultResourceCards.length],
-        title: r.title || defaultResourceCards[i % defaultResourceCards.length].title,
-        coverTitle: r.title?.toUpperCase() || defaultResourceCards[i % defaultResourceCards.length].coverTitle,
-        desc: r.description || r.desc || defaultResourceCards[i % defaultResourceCards.length].desc,
-        viewUrl: r.file?.url ? (r.file.url.startsWith('http') ? r.file.url : `${import.meta.env.VITE_STRAPI_URL || ""}${r.file.url}`) : defaultResourceCards[i % defaultResourceCards.length].viewUrl,
-        downloadUrl: r.file?.url ? (r.file.url.startsWith('http') ? r.file.url : `${import.meta.env.VITE_STRAPI_URL || ""}${r.file.url}`) : defaultResourceCards[i % defaultResourceCards.length].downloadUrl,
-      }))
-    : defaultResourceCards;
+  const resourceCards = defaultResourceCards.map((defaultCard, i) => {
+    const strapiItem = resources && resources[i];
+    const fileUrl = strapiItem?.file?.url;
+    return {
+      ...defaultCard,
+      viewUrl: fileUrl 
+        ? (fileUrl.startsWith('http') ? fileUrl : `${import.meta.env.VITE_STRAPI_URL || ""}${fileUrl}`) 
+        : defaultCard.viewUrl,
+      downloadUrl: fileUrl 
+        ? (fileUrl.startsWith('http') ? fileUrl : `${import.meta.env.VITE_STRAPI_URL || ""}${fileUrl}`) 
+        : defaultCard.downloadUrl,
+    };
+  });
 
   return (
     <section style={{ 
