@@ -223,7 +223,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                   letterSpacing: '1.8px', 
                   textTransform: 'uppercase' 
                 }}>
-                  SAFETY & RESOURCES
+                  {title || "SAFETY & RESOURCES"}
                 </span>
               </div>
 
@@ -236,9 +236,15 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                 letterSpacing: '-0.5px',
                 margin: '0 0 16px',
               }}>
-                Safety is Our{' '}
-                <span style={{ color: ORANGE }}>Highest</span>{' '}
-                Priority
+                {subtitle ? (
+                  subtitle
+                ) : (
+                  <>
+                    Safety is Our{' '}
+                    <span style={{ color: ORANGE }}>Highest</span>{' '}
+                    Priority
+                  </>
+                )}
               </h2>
 
               {/* Subtext */}

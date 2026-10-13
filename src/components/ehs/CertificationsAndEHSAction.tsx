@@ -3,17 +3,31 @@ import { FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import clientsData from '../../data/clientsData';
 
-const CertificationsAndEHSAction = ({ gallery, title }) => {
-  const activeGallery = gallery && gallery.length > 0 ? gallery.map((g, i) => ({ id: g.id || i, title: g.title, image: g.image?.url ? "" + g.image.url : g.image?.data?.attributes?.url ? "" + g.image.data.attributes.url : g.image || galleryItems[i]?.image || "" })) : galleryItems;
+const getGalleryUrl = (img: any, fallback: string) => {
+  if (!img) return fallback;
+  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
+  if (!url) return fallback;
+  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
+};
+
+const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title?: string }) => {
+  const galleryItems = [
+    { id: '1', title: 'PPE Training Session',   image: '/images/EHS/PPE-Training-Session.png' },
+    { id: '2', title: 'Site Safety Inspection', image: '/images/EHS/Site-Safety-Inspection.png' },
+    { id: '3', title: 'Fire Safety Drill',      image: '/images/EHS/Fire-Safety-Drill.png' },
+    { id: '4', title: 'Emergency Mock Drill',   image: '/images/EHS/Emergency-Mock-Drill.png' },
+  ];
+
+  const activeGallery = gallery && gallery.length > 0 
+    ? gallery.map((g, i) => ({ 
+        id: g.id || i, 
+        title: g.title || galleryItems[i]?.title, 
+        image: getGalleryUrl(g.image, galleryItems[i]?.image || "") 
+      })) 
+    : galleryItems;
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
-  
-  const galleryItems = [
-  { id: '1', title: 'PPE Training Session',   image: '/images/EHS/PPE-Training-Session.png' },
-  { id: '2', title: 'Site Safety Inspection', image: '/images/EHS/Site-Safety-Inspection.png' },
-  { id: '3', title: 'Fire Safety Drill',      image: '/images/EHS/Fire-Safety-Drill.png' },
-  { id: '4', title: 'Emergency Mock Drill',   image: '/images/EHS/Emergency-Mock-Drill.png' },
-];
 
   const allClients = ['Adani', 'Reliance Industries Limited', 'AM/NS India (ArcelorMittal Nippon Steel India)', 'Flipkart', 'Amazon', 'DHL'];
   const clientLogos = allClients.map(name => clientsData.find(c => c.name === name)).filter(Boolean);
@@ -73,7 +87,7 @@ const CertificationsAndEHSAction = ({ gallery, title }) => {
             
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '16px' }}>
               <div className="cert-clients-grid">
-                {visibleClients.map((client, i) => (
+                {visibleClients.map((client: any, i: number) => (
                   <div key={i} style={{ textAlign: 'center' }}>
                     <div style={{ backgroundColor: '#F8FAFC', border: '1px solid #EEF2F7', borderRadius: '12px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '65px' }}>
                       <img src={client.logo} alt={client.name} style={{ maxWidth: '80%', maxHeight: '40px', objectFit: 'contain' }} />
@@ -99,11 +113,11 @@ const CertificationsAndEHSAction = ({ gallery, title }) => {
 
           {/* RIGHT */}
           <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', borderRadius: '18px', padding: '22px', boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
-            <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, margin: 0, fontFamily: 'Inter, sans-serif' }}>EHS in Action</h2>
+            <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, margin: 0, fontFamily: 'Inter, sans-serif' }}>{title || "EHS in Action"}</h2>
             <p style={{ fontSize: '12px', fontWeight: 400, color: '#64748B', lineHeight: 1.5, margin: '6px 0 0 0', fontFamily: 'Inter, sans-serif' }}>Building a strong safety culture on every site.</p>
             
             <div className="ehs-gallery-grid">
-              {galleryItems.map(item => (
+              {activeGallery.map((item: any) => (
                 <div key={item.id}>
                   <div style={{ height: '160px', borderRadius: '10px', overflow: 'hidden', backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
                   <p style={{ fontSize: '11px', fontWeight: 600, color: '#1E293B', lineHeight: 1.3, margin: '6px 0 0 0', fontFamily: 'Inter, sans-serif' }}>{item.title}</p>

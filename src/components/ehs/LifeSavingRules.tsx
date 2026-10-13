@@ -231,9 +231,9 @@ const LifeSavingRules = ({ rules, title, subtitle }) => {
           
           <div className="bg-[#005BAC] text-white text-center py-6 border-b-[2px] border-black px-4 flex flex-col items-center justify-center relative">
             <h2 className="text-lg sm:text-xl md:text-3xl font-black uppercase tracking-wider leading-relaxed flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 text-center pr-12 md:pr-0">
-              <span>Life Saving Safety Rules (LSSR)</span>
+              <span>{title || "Life Saving Safety Rules (LSSR)"}</span>
               <span className="hidden md:inline">/</span>
-              <span className="font-bold">जीवन रक्षक सुरक्षा नियम</span>
+              <span className="font-bold">{subtitle || "जीवन रक्षक सुरक्षा नियम"}</span>
             </h2>
 
             <button 
@@ -262,9 +262,9 @@ const LifeSavingRules = ({ rules, title, subtitle }) => {
         <div ref={printRef} className="w-[1150px] bg-white border-[2px] border-black flex flex-col">
           <div className="bg-[#005BAC] text-white text-center py-6 border-b-[2px] border-black px-4 flex items-center justify-center">
             <h2 className="text-3xl font-black uppercase tracking-wider leading-relaxed flex flex-row items-center justify-center gap-2 text-center">
-              <span>Life Saving Safety Rules (LSSR)</span>
+              <span>{title || "Life Saving Safety Rules (LSSR)"}</span>
               <span>/</span>
-              <span className="font-bold">जीवन रक्षक सुरक्षा नियम</span>
+              <span className="font-bold">{subtitle || "जीवन रक्षक सुरक्षा नियम"}</span>
             </h2>
           </div>
           {renderGrid(true)}

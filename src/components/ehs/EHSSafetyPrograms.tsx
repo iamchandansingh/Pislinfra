@@ -52,7 +52,7 @@ const EHSSafetyPrograms: React.FC<any> = ({ programs, title }) => {
       <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
         <div style={{ backgroundColor: '#F8FAFC', border: '1px solid #EEF2F7', borderRadius: '18px', padding: '32px' }}>
           
-          <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, letterSpacing: '-0.5px', margin: 0, fontFamily: 'Inter, sans-serif' }}>Our Safety Programs</h2>
+          <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#052A73', lineHeight: 1.2, letterSpacing: '-0.5px', margin: 0, fontFamily: 'Inter, sans-serif' }}>{title || "Our Safety Programs"}</h2>
           <p style={{ fontSize: '13px', fontWeight: 400, color: '#64748B', lineHeight: 1.5, margin: '8px 0 0 0', fontFamily: 'Inter, sans-serif' }}>Structured programs that promote safety culture and drive zero harm.</p>
 
           <div className="programs-grid">
