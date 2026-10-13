@@ -1,6 +1,6 @@
 import offlineBackup from '../data/MainBackupPislinfra.json';
 
-const isLocalhost = typeof window !== 'undefined' && (
+export const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1' ||
   window.location.hostname === '0.0.0.0' ||
@@ -50,6 +50,27 @@ export const sanitizeBrandText = (data) => {
 // 2. REAL-TIME CMS STATUS NOTIFIER
 // ==========================================
 const notifyStatus = (isOffline) => {
+  // Never show offline mode on localhost
+  if (isLocalhost) {
+    if (cmsOfflineState !== false) {
+      cmsOfflineState = false;
+      listeners.forEach((cb) => {
+        try { cb(false); } catch (e) {}
+      });
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('pisl-cms-status', { detail: { offline: false } }));
+      }
+    }
+    return;
+  }
+
+  if (isOffline) {
+    failedAttempts++;
+    if (failedAttempts < 3) return; // Only trigger offline mode after 3 consecutive failures
+  } else {
+    failedAttempts = 0;
+  }
+
   if (cmsOfflineState !== isOffline) {
     cmsOfflineState = isOffline;
     listeners.forEach((cb) => {
@@ -214,8 +235,8 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
       if (baseUrl === undefined || baseUrl === null) continue;
       try {
         const controller = new AbortController();
-        // Give local Strapi and remote CMS plenty of time to populate relations
-        const timeoutMs = isLocalhost ? 35000 : 20000;
+        // Give local Strapi 25s, but on live production failover to Hostinger local DB after 4s
+        const timeoutMs = isLocalhost ? 25000 : 4000;
         const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
         if (forceFresh) {
@@ -255,25 +276,15 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
               } catch (e) {}
             }
 
-            if (typeof window !== 'undefined') {
-              if (isLocalhost) {
-                try {
-                  fetch('/__api/save-main-backup', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
-                  }).catch(() => {});
-                } catch (e) {}
-              } else {
-                // On live Hostinger production: Automatically save live Strapi updates to Hostinger disk DB
-                try {
-                  fetch('/sync-backup.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
-                  }).catch(() => {});
-                } catch (e) {}
-              }
+            if (typeof window !== 'undefined' && !isLocalhost) {
+              // On live Hostinger production: Automatically save live Strapi updates to Hostinger disk DB
+              try {
+                fetch('/sync-backup.php', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
+                }).catch(() => {});
+              } catch (e) {}
             }
             notifyStatus(false);
             return cleanData;

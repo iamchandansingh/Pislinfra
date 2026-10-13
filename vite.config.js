@@ -175,7 +175,6 @@ function autoBackupDevPlugin() {
 
 export default defineConfig({
   plugins: [
-    autoBackupDevPlugin(),
     react(),
     tailwindcss(),
     
@@ -194,6 +193,9 @@ export default defineConfig({
   ],
   
   server: {
+    watch: {
+      ignored: ['**/src/data/**', '**/public/data/**', '**/dist/**', '**/public/images/**'],
+    },
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:1337',

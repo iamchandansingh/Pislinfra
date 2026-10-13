@@ -164,9 +164,11 @@ const Home = () => {
     window.addEventListener('focus', handleFocus);
     window.addEventListener('visibilitychange', handleVisibility);
 
-    // Ultra-fast 2s change detector for ongoing & completed projects on Home page
+    let isPolling = false;
     let lastSig = '';
     const pollFast = async () => {
+      if (isPolling) return;
+      isPolling = true;
       try {
         const [ogRes, compRes] = await Promise.all([
           fetch(`${STRAPI_URL}/api/ongoing-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
@@ -186,11 +188,12 @@ const Home = () => {
           }
           lastSig = currentSig;
         }
-      } catch (e) {}
+      } catch (e) {} finally {
+        isPolling = false;
+      }
     };
 
-    pollFast();
-    const intervalId = setInterval(pollFast, 2000);
+    const intervalId = setInterval(pollFast, 10000);
 
     return () => {
       window.removeEventListener('focus', handleFocus);

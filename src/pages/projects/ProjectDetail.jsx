@@ -221,10 +221,11 @@ const ProjectDetail = () => {
     window.addEventListener('focus', handleFocus);
     window.addEventListener('visibilitychange', handleVisibility);
 
-    // Ultra-fast 2s change detector: polls lightweight updatedAt
+    let isPolling = false;
     let lastSig = '';
     const pollFast = async () => {
-      if (!isMounted || !projectIdOrSlug) return;
+      if (!isMounted || !projectIdOrSlug || isPolling) return;
+      isPolling = true;
       try {
         const ep = projectType === 'completed' ? 'completed-projects' : 'ongoing-projects';
         const res = await fetch(`${STRAPI_URL}/api/${ep}?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
@@ -241,11 +242,12 @@ const ProjectDetail = () => {
           }
           lastSig = currentSig;
         }
-      } catch (e) {}
+      } catch (e) {} finally {
+        isPolling = false;
+      }
     };
 
-    pollFast();
-    const intervalId = setInterval(pollFast, 2000);
+    const intervalId = setInterval(pollFast, 10000);
 
     return () => {
       isMounted = false;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData, subscribeCmsStatus, STRAPI_URL } from '../../services/strapi';
+import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
 import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
@@ -9,12 +9,6 @@ const ORANGE = '#ff904e';
 
 const Footer = () => {
   const [footerData, setFooterData] = useState(null);
-  const [isOffline, setIsOffline] = useState(false);
-
-  useEffect(() => {
-    const unsubscribe = subscribeCmsStatus(setIsOffline);
-    return () => unsubscribe();
-  }, []);
 
   useEffect(() => {
     const loadFooter = async () => {
@@ -215,26 +209,6 @@ const Footer = () => {
           <p style={{ color: '#94a3b8', fontSize: '13.5px', margin: 0, fontWeight: 500 }}>
             &copy; {new Date().getFullYear()} {footerData?.copyrightText ? footerData.copyrightText.replace(/PISL\s+INFRA\./gi, 'Pislinfra.').replace(/PISL\s+INFRA/gi, 'Pislinfra').replace(/PISL\s+Infra/gi, 'Pislinfra') : "Pislinfra. All rights reserved."}
           </p>
-
-          {isOffline && (
-            <span 
-              style={{ 
-                fontSize: '11px', 
-                color: '#94a3b8', 
-                fontWeight: 400,
-                letterSpacing: '0.3px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '5px',
-                marginLeft: 'auto',
-                opacity: 0.8
-              }}
-              title="CMS is currently unreachable. Content is safely running on Local Backup."
-            >
-              <span style={{ width: '4px', height: '4px', backgroundColor: '#94a3b8', borderRadius: '50%', display: 'inline-block' }}></span>
-              <span>Offline Mode</span>
-            </span>
-          )}
         </div>
       </div>
 
