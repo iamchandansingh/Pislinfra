@@ -713,13 +713,25 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
           </div>
           <div className="cm-legend">
             <h4>Infrastructure Network</h4>
-            <div className="cm-legend-item">
-              <span className="cm-legend-dot" style={{ backgroundColor: '#f97316' }} />
-              <span>Ongoing ({ongoingProjects.length})</span>
-            </div>
-            <div className="cm-legend-item">
-              <span className="cm-legend-dot" style={{ backgroundColor: '#198847' }} />
-              <span>Completed ({completedProjects.length})</span>
+            <div className="cm-legend-items-row">
+              <div
+                className="cm-legend-item"
+                onClick={() => setActiveTab('ongoing')}
+                style={{ cursor: 'pointer', opacity: activeTab === 'ongoing' ? 1 : 0.7 }}
+                title="Filter Ongoing Projects"
+              >
+                <span className="cm-legend-dot" style={{ backgroundColor: '#f97316' }} />
+                <span>Ongoing ({ongoingProjects.length})</span>
+              </div>
+              <div
+                className="cm-legend-item"
+                onClick={() => setActiveTab('completed')}
+                style={{ cursor: 'pointer', opacity: activeTab === 'completed' ? 1 : 0.7 }}
+                title="Filter Completed Projects"
+              >
+                <span className="cm-legend-dot" style={{ backgroundColor: '#198847' }} />
+                <span>Completed ({completedProjects.length})</span>
+              </div>
             </div>
           </div>
         </div>
@@ -798,10 +810,50 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         .cm-india-svg{width:100%;height:100%;fill:#28286e;stroke:#3b3b8e;stroke-width:1.2px;}
         .cm-missing-svg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:2px dashed #cbd5e1;border-radius:12px;color:#64748b;font-size:14px;text-align:center;padding:24px;background:#f8fafc;}
         .cm-markers-overlay{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;}
-        .cm-legend{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border:1px solid #e2e8f0;padding:12px 16px;border-radius:12px;}
+        .cm-legend{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border:1px solid #e2e8f0;padding:12px 16px;border-radius:12px;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,0.04);}
         .cm-legend h4{margin:0 0 8px;font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.6px;font-weight:700;}
-        .cm-legend-item{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12px;font-weight:600;color:#28286e;}
+        .cm-legend-items-row{display:flex;flex-direction:column;gap:6px;}
+        .cm-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#28286e;transition:all 0.2s;user-select:none;}
+        .cm-legend-item:hover{opacity:0.85;}
         .cm-legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+
+        @media(max-width:1023px){
+          .cm-left-panel{padding:24px 16px 20px!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;min-height:auto!important;}
+          .cm-map-container{width:100%!important;max-width:380px!important;margin:0 auto!important;}
+          .cm-legend{
+            position:static!important;
+            margin:16px auto 0!important;
+            display:flex!important;
+            flex-direction:column!important;
+            align-items:center!important;
+            background:#ffffff!important;
+            border:1px solid #e2e8f0!important;
+            box-shadow:0 3px 12px rgba(0,0,0,0.04)!important;
+            padding:10px 20px!important;
+            border-radius:14px!important;
+            width:auto!important;
+            max-width:320px!important;
+            text-align:center!important;
+          }
+          .cm-legend h4{
+            margin:0 0 6px 0!important;
+            font-size:10.5px!important;
+            letter-spacing:0.8px!important;
+            text-align:center!important;
+          }
+          .cm-legend-items-row{
+            flex-direction:row!important;
+            align-items:center!important;
+            justify-content:center!important;
+            flex-wrap:wrap!important;
+            gap:18px!important;
+          }
+          .cm-legend-item{
+            font-size:12.5px!important;
+          }
+          .cm-header{padding:20px 20px 16px!important;}
+          .cm-content-area{padding:20px 16px!important;}
+        }
         .cm-right-panel{width:100%;display:flex;flex-direction:column;background:#ffffff;}
         @media(min-width:1024px){.cm-right-panel{width:55%;}}
         .cm-header{flex-shrink:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);padding:24px 40px 20px;border-bottom:1px solid #e2e8f0;}
