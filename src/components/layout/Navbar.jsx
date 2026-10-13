@@ -45,31 +45,7 @@ const defaultNavigationData = [
   { id: 'careers', label: 'Careers', href: '/careers' },
 ]
 
-const TypewriterTagline = ({ tagline }) => {
-  const fullText = tagline || 'Progressive Innovative Sustainable Limitless'
-  const [displayText, setDisplayText] = useState('')
-
-  useEffect(() => {
-    let currentIndex = 0
-    const interval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayText(fullText.substring(0, currentIndex))
-        currentIndex++
-      } else {
-        currentIndex = 0
-      }
-    }, 100)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <span style={{ fontSize: '15px', color: '#ff8d4b', fontWeight: '600', letterSpacing: '0.5px', display: 'none' }} className="tagline">
-      {displayText}
-      <span style={{ display: 'inline-block', width: '2px', height: '16px', background: '#ff8d4b', marginLeft: '2px', verticalAlign: 'middle', animation: 'blink 0.6s infinite' }} />
-      <style>{`@keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }`}</style>
-    </span>
-  )
-}
+const TypewriterTagline = () => null;
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)

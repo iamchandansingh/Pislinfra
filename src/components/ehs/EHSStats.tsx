@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as FiIcons from 'react-icons/fi';
+import { FiShield, FiCheckCircle, FiAward, FiBookOpen, FiCheck } from 'react-icons/fi';
+
+const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+  FiShield,
+  FiCheckCircle,
+  FiAward,
+  FiBookOpen,
+  FiCheck
+};
 
 const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) => {
   const [count, setCount] = useState(0);
@@ -94,7 +102,7 @@ const EHSStats = ({ stats }) => {
         `}</style>
         <div className="ehs-stats-container">
           {statsData.map((stat, index) => {
-            const Icon = FiIcons[stat.iconName] || FiIcons.FiCheck;
+            const Icon = iconMap[stat.iconName] || FiCheck;
             const bg = bgColors[index % bgColors.length];
             return (
               <React.Fragment key={stat.id || index}>

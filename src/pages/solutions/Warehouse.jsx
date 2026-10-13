@@ -3,17 +3,21 @@ import { fetchStrapiData } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import warehouseBg from '../../assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-5.png'
-import * as FaIcons from 'react-icons/fa';
-import * as HiIcons from 'react-icons/hi';
-import * as BiIcons from 'react-icons/bi';
+import { FaCircle, FaCheck, FaBuilding, FaWarehouse, FaTruck, FaIndustry } from 'react-icons/fa';
 import Preloader from '../../components/common/Preloader';
 
+const commonIcons = {
+  FaCircle,
+  FaCheck,
+  FaBuilding,
+  FaWarehouse,
+  FaTruck,
+  FaIndustry,
+};
+
 const getIcon = (iconName) => {
-  if (!iconName) return FaIcons.FaCircle;
-  if (iconName.startsWith('Fa')) return FaIcons[iconName] || FaIcons.FaCircle;
-  if (iconName.startsWith('Hi')) return HiIcons[iconName] || FaIcons.FaCircle;
-  if (iconName.startsWith('Bi')) return BiIcons[iconName] || FaIcons.FaCircle;
-  return FaIcons.FaCircle;
+  if (iconName && commonIcons[iconName]) return commonIcons[iconName];
+  return FaCircle;
 };
 
 

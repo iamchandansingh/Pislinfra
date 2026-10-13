@@ -232,21 +232,27 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            if (id.includes('react-dom') || id.includes('react-router-dom') || id.includes('react/')) {
-              return 'vendor-react';
+            if (id.includes('jspdf') || id.includes('html2canvas') || id.includes('html-to-image')) {
+              return 'vendor-pdf';
             }
-            if (id.includes('react-icons') || id.includes('lucide-react')) {
-              return 'vendor-icons';
+            if (id.includes('framer-motion')) {
+              return 'vendor-motion';
+            }
+            if (id.includes('swiper')) {
+              return 'vendor-swiper';
             }
             if (id.includes('leaflet')) {
               return 'vendor-maps';
             }
-            if (id.includes('html2canvas') || id.includes('dompurify')) {
-              return 'vendor-utils';
+            if (id.includes('react-dom') || id.includes('react-router') || id.includes('react-helmet')) {
+              return 'vendor-react';
             }
             return 'vendor-core';
           }
-          if (id.includes('MainBackupPislinfra.json') || id.includes('coverageMarkersData.js') || id.includes('Awards-&-Certifications.js')) {
+          if (id.includes('MainBackupPislinfra.json')) {
+            return 'backup-data';
+          }
+          if (id.includes('coverageMarkersData.js') || id.includes('Awards-&-Certifications.js')) {
             return 'data-store';
           }
         },

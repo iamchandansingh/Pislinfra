@@ -348,6 +348,8 @@ const CardProject = ({project,isSelected,onCardClick}) => {
           src={project.image} 
           alt={project.name} 
           className="cm-card-image"
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             const fallback = isOngoing ? '/images/hero/Ongoing-Projects.png' : '/images/hero/Completed-Projects.png';
             if (!e.currentTarget.src.includes(fallback)) {

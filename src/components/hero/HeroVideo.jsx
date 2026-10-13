@@ -19,8 +19,8 @@ const HeroVideo = ({ videoSrc }) => {
         muted
         loop
         playsInline
-        defaultMuted
-        preload="auto"
+        preload="metadata"
+        poster="/images/hero/Ongoing-Projects.png"
         className="absolute top-0 left-0 w-full h-full z-0"
         style={{
           width: '100%',

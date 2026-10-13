@@ -345,8 +345,8 @@
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "cx": 30.5,
-    "cy": 85.5,
+    "cx": null,
+    "cy": null,
     "images": [
       "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
       "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",

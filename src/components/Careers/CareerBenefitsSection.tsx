@@ -1,12 +1,20 @@
 import React from 'react';
 
-import * as LucideIcons from 'lucide-react';
+import { Wallet, TrendingUp, GraduationCap, HeartPulse, Scale, Target, Check } from 'lucide-react';
+
+const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; color?: string }>> = {
+  Wallet,
+  TrendingUp,
+  GraduationCap,
+  HeartPulse,
+  Scale,
+  Target,
+  Check
+};
 
 const getLucideIcon = (iconName: string, size = 28, color?: string) => {
-  if (!iconName) return <LucideIcons.Check size={size} strokeWidth={2} color={color} />;
-  const IconComponent = (LucideIcons as any)[iconName];
-  if (IconComponent) return <IconComponent size={size} strokeWidth={2} color={color} />;
-  return <LucideIcons.Check size={size} strokeWidth={2} color={color} />;
+  const IconComponent = iconMap[iconName] || Check;
+  return <IconComponent size={size} strokeWidth={2} color={color} />;
 };
 
 

@@ -50,66 +50,28 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
     loadData();
   }, [propClientsData]);
 
-  const RowSlider = ({ rowClients, direction = 'left', speed = 0.5 }) => {
-    const [position, setPosition] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
-    const containerRef = useRef(null);
-    const [totalWidth, setTotalWidth] = useState(0);
-    const pauseTimeoutRef = useRef(null);
-
-    useEffect(() => {
-      if (containerRef.current) {
-        const singleSetWidth = containerRef.current.scrollWidth / 3;
-        setTotalWidth(singleSetWidth);
-      }
-    }, [rowClients]);
-
-    useEffect(() => {
-      if (isPaused || totalWidth === 0) return;
-      
-      const interval = setInterval(() => {
-        setPosition(prev => {
-          const newPos = direction === 'left' ? prev - speed : prev + speed;
-          if (direction === 'left' && newPos <= -totalWidth) return 0;
-          if (direction === 'right' && newPos >= 0) return -totalWidth;
-          return newPos;
-        });
-      }, 16);
-      return () => clearInterval(interval);
-    }, [totalWidth, direction, speed, isPaused]);
-
-    const handleMouseEnter = () => {
-      setIsPaused(true);
-      if (pauseTimeoutRef.current) {
-        clearTimeout(pauseTimeoutRef.current);
-      }
-    };
-
-    const handleMouseLeave = () => {
-      pauseTimeoutRef.current = setTimeout(() => {
-        setIsPaused(false);
-      }, 3000);
-    };
-
+  const RowSlider = ({ rowClients, direction = 'left', duration = 30 }) => {
     if (!rowClients || rowClients.length === 0) return null;
 
-    const tripleClients = [...rowClients, ...rowClients, ...rowClients];
+    const quadClients = [...rowClients, ...rowClients, ...rowClients, ...rowClients];
+    const animName = direction === 'left' ? 'pislScrollLeft' : 'pislScrollRight';
 
     return (
       <div 
+        className="pisl-marquee-container"
         style={{ overflow: 'hidden', marginBottom: '12px' }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <div
-          ref={containerRef}
+          className="pisl-marquee-track"
           style={{
             display: 'flex',
             gap: '12px',
-            transform: `translateX(${position}px)`,
+            width: 'max-content',
+            animation: `${animName} ${duration}s linear infinite`,
+            willChange: 'transform',
           }}
         >
-          {tripleClients.map((client, idx) => (
+          {quadClients.map((client, idx) => (
             <motion.div
               key={`${client.id}-${idx}`}
               className="client-logo-card"
@@ -157,8 +119,6 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
 
   const rows = [];
   if (clients.length > 0) {
-    // If we have fewer than 7 clients, just make one row
-    // If more, distribute evenly into rows of 7
     for (let i = 0; i < clients.length; i += 7) {
       rows.push(clients.slice(i, i + 7));
     }
@@ -197,13 +157,24 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
             key={idx} 
             rowClients={rowClients} 
             direction={idx % 2 === 0 ? 'left' : 'right'} 
-            speed={0.6 + idx * 0.1}
+            duration={28 + idx * 6}
           />
         ))}
 
       </div>
 
       <style>{`
+        .pisl-marquee-container:hover .pisl-marquee-track {
+          animation-play-state: paused !important;
+        }
+        @keyframes pislScrollLeft {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes pislScrollRight {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
         @media (max-width: 1200px) {
           .clients-grid { grid-template-columns: repeat(4, 1fr) !important; }
         }

@@ -1,5 +1,3 @@
-import offlineBackup from '../data/MainBackupPislinfra.json';
-
 export const isLocalhost = typeof window !== 'undefined' && (
   window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1' ||
@@ -184,21 +182,38 @@ const unwrapData = (val) => {
   return val;
 };
 
-const getLocalBackup = (endpoint) => {
-  if (!offlineBackup) return null;
+let offlineBackupData = null;
+const getLocalBackup = async (endpoint) => {
+  if (!offlineBackupData) {
+    if (typeof window !== 'undefined') {
+      try {
+        const res = await fetch('/data/live-backup.json');
+        if (res.ok) {
+          offlineBackupData = await res.json();
+        }
+      } catch (e) {}
+    }
+    if (!offlineBackupData) {
+      try {
+        const mod = await import('../data/MainBackupPislinfra.json');
+        offlineBackupData = mod.default || mod;
+      } catch (e) {}
+    }
+  }
+  if (!offlineBackupData) return null;
   let raw = null;
-  if (offlineBackup[endpoint]) {
-    raw = offlineBackup[endpoint];
+  if (offlineBackupData[endpoint]) {
+    raw = offlineBackupData[endpoint];
   } else {
     const baseKey = endpoint.split('?')[0];
-    if (offlineBackup[baseKey]) {
-      raw = offlineBackup[baseKey];
+    if (offlineBackupData[baseKey]) {
+      raw = offlineBackupData[baseKey];
     } else {
       const slugMatch = endpoint.match(/filters\[slug\](?:\[\$eq\])?=([a-zA-Z0-9_-]+)/);
       if (slugMatch && slugMatch[1]) {
         const slugKey = `${baseKey}-${slugMatch[1]}`;
-        if (offlineBackup[slugKey]) {
-          raw = offlineBackup[slugKey];
+        if (offlineBackupData[slugKey]) {
+          raw = offlineBackupData[slugKey];
         }
       }
     }
@@ -228,15 +243,14 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
 
     // 1. LIVE NETWORK FETCH FIRST (Always prioritize fresh data from Strapi CMS)
     const candidateUrls = isLocalhost
-      ? ['http://localhost:1337', 'http://127.0.0.1:1337', import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com']
+      ? ['http://127.0.0.1:1337']
       : [import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'];
 
     for (const baseUrl of candidateUrls) {
       if (baseUrl === undefined || baseUrl === null) continue;
       try {
         const controller = new AbortController();
-        // Give local Strapi 25s, but on live production failover to Hostinger local DB after 4s
-        const timeoutMs = isLocalhost ? 25000 : 4000;
+        const timeoutMs = isLocalhost ? 2500 : 3500;
         const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
         if (forceFresh) {
@@ -347,7 +361,7 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
     }
 
     // 6. LAST RESORT FALLBACK: Bundled Offline Fallback (MainBackupPislinfra.json)
-    const localFallback = getLocalBackup(cleanEndpoint) || getLocalBackup(endpoint);
+    const localFallback = (await getLocalBackup(cleanEndpoint)) || (await getLocalBackup(endpoint));
     if (localFallback) {
       memoryCache.set(endpoint, localFallback);
       memoryCache.set(cleanEndpoint, localFallback);

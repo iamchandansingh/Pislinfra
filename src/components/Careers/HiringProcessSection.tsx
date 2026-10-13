@@ -1,12 +1,19 @@
 import React from 'react';
 
-import * as LucideIcons from 'lucide-react';
+import { FileText, ClipboardCheck, Briefcase, Users, BadgeCheck, Check } from 'lucide-react';
+
+const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+  FileText,
+  ClipboardCheck,
+  Briefcase,
+  Users,
+  BadgeCheck,
+  Check
+};
 
 const getLucideIcon = (iconName: string, size = 24) => {
-  if (!iconName) return <LucideIcons.Check size={size} />;
-  const IconComponent = (LucideIcons as any)[iconName];
-  if (IconComponent) return <IconComponent size={size} />;
-  return <LucideIcons.Check size={size} />;
+  const IconComponent = iconMap[iconName] || Check;
+  return <IconComponent size={size} />;
 };
 
 

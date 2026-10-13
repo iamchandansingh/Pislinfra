@@ -65,6 +65,8 @@ const AboutUs = ({ data }) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
+              loading="lazy"
+              decoding="async"
               style={{ 
                 width: '100%', 
                 height: '100%', 

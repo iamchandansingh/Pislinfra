@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as FiIcons from 'react-icons/fi';
+import { FiTarget, FiBookOpen, FiCheckSquare, FiFeather, FiCheck } from 'react-icons/fi';
+
+const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+  FiTarget,
+  FiBookOpen,
+  FiCheckSquare,
+  FiFeather,
+  FiCheck
+};
 
 const chartData = [
   { year: 'Upto 2018', h: 1.8 }, 
@@ -180,7 +188,7 @@ const SafeManHoursAndCommitment = ({ features, title }) => {
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {featuresData.map((f, i) => {
-                const Icon = FiIcons[f.iconName] || FiIcons.FiCheck;
+                const Icon = iconMap[f.iconName] || FiCheck;
                 return (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                     <div style={{ width: '44px', height: '44px', minWidth: '44px', borderRadius: '10px', backgroundColor: '#ECFDF5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
