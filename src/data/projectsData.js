@@ -225,25 +225,6 @@ const projectsData = [
   },
   {
     "id": 12,
-    "documentId": "jaoghcghfrr1twfmyl3x799k",
-    "category": "Warehousing",
-    "name": "HANNO ONE Logistics Park",
-    "location": "Hosur",
-    "state": "Tamil Nadu",
-    "area": "3.43 Lakh Sq. Ft",
-    "client": "Hanno One Warehouse Pvt. Ltd.",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "images": [
-      "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-      "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-      "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-      "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-    ]
-  },
-  {
-    "id": 13,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
@@ -262,7 +243,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
     "category": "Industrial",
     "name": "Reliance DMD Plant",
@@ -282,7 +263,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
+    "id": 14,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -301,7 +282,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "documentId": "n3hwjilrop1oleltf6fwjxmx",
     "category": "Industrial",
     "name": "AMNS SSC GIDC Project",
@@ -320,6 +301,25 @@ const projectsData = [
       "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
       "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
       "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "jaoghcghfrr1twfmyl3x799k",
+    "category": "Warehousing",
+    "name": "HANNO ONE Logistics Park",
+    "location": "Hosur",
+    "state": "Tamil Nadu",
+    "area": "3.43 Lakh Sq. Ft",
+    "client": "Hanno One Warehouse Pvt. Ltd.",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+    "images": [
+      "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+      "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+      "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+      "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
     ]
   }
 ];

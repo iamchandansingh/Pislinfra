@@ -123,28 +123,20 @@ const STATE_FALLBACKS = {
 };
 
 const getLoc = (p0, mapMarkers = [], customLocations = {}) => {
-  if (!p0) return { cx: 50, cy: 50 };
+  if (!p0) return null;
   
-  // Direct cx/cy override if defined on project object
-  if (p0.cx !== undefined && p0.cy !== undefined && p0.cx !== '' && p0.cy !== '') {
-    return { cx: Number(p0.cx), cy: Number(p0.cy) };
-  }
-
+  const pName = (p0.name || p0.title || '').toLowerCase().trim();
   const city = (p0.city || p0.location || '').trim();
-  const state = (p0.state || '').trim();
-  
-  if (!city) return { cx: 50, cy: 50 };
   const lowerCity = city.toLowerCase();
   
   // 1. Custom dynamically added locations state
-  if (customLocations[city]) return customLocations[city];
+  if (city && customLocations[city]) return customLocations[city];
   for (const [key, coords] of Object.entries(customLocations)) {
     if (key.toLowerCase() === lowerCity) return coords;
   }
 
-  // 2. Check Strapi custom mapMarkers
+  // 2. Check Strapi custom mapMarkers (Nationwide Coverage)
   if (Array.isArray(mapMarkers) && mapMarkers.length > 0) {
-    const pName = (p0.name || p0.title || '').toLowerCase().trim();
     const strapiMarker = mapMarkers.find(m => {
       const mName = (m.projectName || m.project_name || m.name || m.title || '').toLowerCase().trim();
       const mCity = (m.city || m.location || '').toLowerCase().trim();
@@ -154,24 +146,35 @@ const getLoc = (p0, mapMarkers = [], customLocations = {}) => {
       const mName = (m.projectName || m.project_name || m.name || m.title || '').toLowerCase().trim();
       return mName && (mName === pName || pName.includes(mName) || mName.includes(pName));
     });
-    if (strapiMarker && strapiMarker.cx != null && strapiMarker.cy != null) {
-      return { cx: Number(strapiMarker.cx), cy: Number(strapiMarker.cy) };
+
+    if (strapiMarker) {
+      if (strapiMarker.showOnMap === false) return null;
+      if (strapiMarker.cx != null && strapiMarker.cy != null && Number(strapiMarker.cx) > 0 && Number(strapiMarker.cy) > 0) {
+        return { cx: Number(strapiMarker.cx), cy: Number(strapiMarker.cy) };
+      }
+      return null;
     }
   }
-  
-  // 3. Check LOCATIONS dictionary
+
+  // 3. Direct cx/cy override if defined on project object
+  if (p0.cx !== undefined && p0.cy !== undefined && p0.cx !== '' && p0.cx !== null && p0.cy !== null && Number(p0.cx) > 0 && Number(p0.cy) > 0) {
+    return { cx: Number(p0.cx), cy: Number(p0.cy) };
+  }
+
+  // 4. Check LOCATIONS dictionary
   for (const [key, coords] of Object.entries(LOCATIONS)) {
     if (key.toLowerCase() === lowerCity || lowerCity.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerCity)) {
       return coords;
     }
   }
-  
-  // 4. Fallback state coordinates
+
+  // 5. Fallback state coordinates
+  const state = (p0.state || '').trim();
   if (state && STATE_FALLBACKS[state]) {
     return STATE_FALLBACKS[state];
   }
-  
-  return { cx: 50, cy: 50 };
+
+  return null;
 };
 
 const POPUP_W = 280, DOT_R = 8, GAP = 6, FLIP_TH = 220;
@@ -261,8 +264,9 @@ const CityProjectsPopup = ({cityProjects,anchorPx,mapSize,onClose,onProjectClick
 const MapMarker = ({cityProjects,isSelected,isHovered,onHover,onLeave,onClick,color,mapMarkers=[],customLocations={}}) => {
   const isActive=isSelected||isHovered;
   const projectCount=cityProjects.length;
-  const p0 = cityProjects[0]; 
+  const p0 = cityProjects.find(cp => cp.cx != null && cp.cy != null) || cityProjects[0]; 
   const loc = getLoc(p0, mapMarkers, customLocations); 
+  if (!loc || loc.cx == null || loc.cy == null) return null;
   const SIZE=26;
   return(
     <div style={{position:'absolute',left:`${loc.cx}%`,top:`${loc.cy}%`,transform:'translate(-50%,-50%)',cursor:'pointer',zIndex:isSelected?60:50,pointerEvents:'all'}} onMouseEnter={onHover} onMouseLeave={onLeave} onClick={onClick}>
@@ -444,8 +448,9 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         scope: p.scope || 'Civil Work & Infrastructure',
         timeline: p.timeline || 'Ongoing',
         progress: p.progress != null ? p.progress : 75,
-        cx: loc.cx,
-        cy: loc.cy,
+        cx: loc ? loc.cx : null,
+        cy: loc ? loc.cy : null,
+        showOnMap: !!(loc && loc.cx && loc.cy),
         images: finalImgs,
         image: finalImgs[0] || FALLBACK_IMG,
       };
@@ -479,8 +484,9 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         scope: p.scope || 'Turnkey Construction',
         timeline: p.timeline || 'Completed',
         progress: 100,
-        cx: loc.cx,
-        cy: loc.cy,
+        cx: loc ? loc.cx : null,
+        cy: loc ? loc.cy : null,
+        showOnMap: !!(loc && loc.cx && loc.cy),
         images: finalImgs,
         image: finalImgs[0] || FALLBACK_IMG,
       };
@@ -513,8 +519,11 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
   const [showAddModal, setShowAddModal] = useState(false);
   const [showMarkersDrawer, setShowMarkersDrawer] = useState(false);
   const [isPickingCoords, setIsPickingCoords] = useState(false);
+  const [pickedCoords, setPickedCoords] = useState(null);
+  const [copiedId, setCopiedId] = useState(null);
   const [copiedCode, setCopiedCode] = useState(false);
   const [drawerFilter, setDrawerFilter] = useState('all');
+  const [drawerSearch, setDrawerSearch] = useState('');
 
   // Add Marker Form State
   const [newMarkerForm, setNewMarkerForm] = useState({
@@ -566,6 +575,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
   const locationCounts = {};
   filteredProjects.forEach(p => {
+    if (p.cx == null || p.cy == null || Number(p.cx) <= 0 || Number(p.cy) <= 0) return;
     const key = (p.city || p.location || '').trim();
     if (!key) return;
     if (activeTab === 'ongoing' && (p.state || '').toLowerCase() === 'gujarat') return;
@@ -578,10 +588,10 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
     if (!selectedCity || mapSize.w === 0) return;
     const cityProjects = locationCounts[selectedCity];
     if (!cityProjects || cityProjects.length === 0) return;
-    const p0 = cityProjects[0];
+    const p0 = cityProjects.find(cp => cp.cx != null && cp.cy != null) || cityProjects[0];
     const loc = getLoc(p0, mapMarkers, customLocations);
     setPopupAnchor({ x: (loc.cx / 100) * mapSize.w, y: (loc.cy / 100) * mapSize.h });
-  }, [mapSize, selectedCity, customLocations]);
+  }, [mapSize, selectedCity, customLocations, mapMarkers, filteredProjects]);
 
   useEffect(() => {
     if (selectedCity) {
@@ -601,19 +611,18 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
   // Click on Map to Pick Coordinates
   const handleMapClickToPickCoords = (e) => {
-    if (!isPickingCoords || !mapRef.current) return;
+    if (!mapRef.current) return;
     const rect = mapRef.current.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
     const cxPct = Number(((clickX / rect.width) * 100).toFixed(1));
     const cyPct = Number(((clickY / rect.height) * 100).toFixed(1));
     
-    setNewMarkerForm(prev => ({
-      ...prev,
-      cx: String(cxPct),
-      cy: String(cyPct)
-    }));
-    setIsPickingCoords(false);
+    setPickedCoords({ cx: cxPct, cy: cyPct });
+    if (isPickingCoords) {
+      setIsPickingCoords(false);
+      setShowMarkersDrawer(true);
+    }
   };
 
   // Add Custom Marker Submission
@@ -672,7 +681,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       setPopupAnchor(null);
       return;
     }
-    const p0 = projects[0];
+    const p0 = projects.find(cp => cp.cx != null && cp.cy != null) || projects[0];
     const loc = getLoc(p0, mapMarkers, customLocations);
     setPopupAnchor({ x: (loc.cx / 100) * mapSize.w, y: (loc.cy / 100) * mapSize.h });
     setSelectedCity(city);
@@ -728,21 +737,33 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
   // Compile all active markers with full info for drawer
   const allPlottedMarkers = [];
-  const processedCities = new Set();
-  
   [...ongoingProjects, ...completedProjects].forEach(p => {
     const loc = getLoc(p, mapMarkers, customLocations);
+    const hasCoords = loc != null && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0;
     allPlottedMarkers.push({
       ...p,
-      cx: loc.cx,
-      cy: loc.cy
+      cx: loc ? loc.cx : (p.cx || null),
+      cy: loc ? loc.cy : (p.cy || null),
+      hasCoords
     });
   });
 
-  // Filtered markers based on drawer dropdown
+  const pendingMarkersCount = allPlottedMarkers.filter(m => !m.hasCoords).length;
+  const activeMarkersCount = allPlottedMarkers.filter(m => m.hasCoords).length;
+
+  // Filtered markers based on drawer dropdown & search
   const filteredDrawerMarkers = allPlottedMarkers.filter(m => {
-    if (drawerFilter === 'ongoing') return m.status === 'Ongoing';
-    if (drawerFilter === 'completed') return m.status === 'Completed';
+    if (drawerFilter === 'ongoing' && m.status !== 'Ongoing') return false;
+    if (drawerFilter === 'completed' && m.status !== 'Completed') return false;
+    if (drawerFilter === 'pending' && m.hasCoords) return false;
+    if (drawerFilter === 'active' && !m.hasCoords) return false;
+    if (drawerSearch) {
+      const q = drawerSearch.toLowerCase();
+      const n = (m.name || '').toLowerCase();
+      const c = (m.city || m.location || '').toLowerCase();
+      const s = (m.state || '').toLowerCase();
+      if (!n.includes(q) && !c.includes(q) && !s.includes(q)) return false;
+    }
     return true;
   });
 
@@ -779,6 +800,69 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       <div className="cm-layout" style={{ marginBottom: "20px" }}>
         <div className="cm-left-panel">
           <div className="cm-map-container" ref={mapRef} onClick={handleMapClickToPickCoords} style={{ cursor: isPickingCoords ? 'crosshair' : 'default' }}>
+            {isPickingCoords && (
+              <div style={{
+                position: 'absolute',
+                top: 12,
+                left: 12,
+                right: 12,
+                zIndex: 60,
+                background: '#0f172a',
+                color: '#ffffff',
+                padding: '9px 12px',
+                borderRadius: 8,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+                border: '1px solid #334155',
+                pointerEvents: 'auto'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 600 }}>
+                  <MousePointer size={14} color="#f97316" />
+                  <span>Click anywhere on India Map to pick coordinates</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPickingCoords(false);
+                    setShowMarkersDrawer(true);
+                  }}
+                  style={{
+                    background: '#334155',
+                    border: 'none',
+                    color: '#e2e8f0',
+                    padding: '3px 8px',
+                    borderRadius: 5,
+                    fontSize: 11,
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
+            {pickedCoords && (
+              <div style={{
+                position: 'absolute',
+                left: `${pickedCoords.cx}%`,
+                top: `${pickedCoords.cy}%`,
+                transform: 'translate(-50%, -50%)',
+                zIndex: 44,
+                pointerEvents: 'none'
+              }}>
+                <div style={{
+                  width: 14,
+                  height: 14,
+                  borderRadius: '50%',
+                  backgroundColor: '#f97316',
+                  border: '2px solid #ffffff',
+                  boxShadow: '0 0 12px #f97316'
+                }} />
+              </div>
+            )}
             {svgContent ? (
               <div className="cm-svg-wrapper" dangerouslySetInnerHTML={{ __html: svgContent }} />
             ) : (
@@ -842,7 +926,54 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
                 </h1>
                 <p className="cm-subtitle">Click marker to highlight city projects</p>
               </div>
-              <div style={{ display: 'flex', gap: 10 }}>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  onClick={() => setShowMarkersDrawer(true)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 7,
+                    padding: '10px 16px',
+                    borderRadius: 10,
+                    border: '1px solid #fed7aa',
+                    background: '#fff7ed',
+                    color: '#ea580c',
+                    fontWeight: 700,
+                    fontSize: 14,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    userSelect: 'none',
+                    boxShadow: '0 1px 2px rgba(234,88,12,0.08)'
+                  }}
+                  title="Align markers & check coordinates for projects on map"
+                >
+                  <MousePointer size={15} color="#ea580c" />
+                  Align Markers
+                  {pendingMarkersCount > 0 ? (
+                    <span style={{
+                      background: '#ea580c',
+                      color: '#ffffff',
+                      borderRadius: 20,
+                      padding: '2px 8px',
+                      fontSize: 11,
+                      fontWeight: 800
+                    }}>
+                      {pendingMarkersCount} Pending
+                    </span>
+                  ) : (
+                    <span style={{
+                      background: '#ffedd5',
+                      color: '#9a3412',
+                      borderRadius: 20,
+                      padding: '2px 8px',
+                      fontSize: 11,
+                      fontWeight: 800
+                    }}>
+                      {activeMarkersCount} Active
+                    </span>
+                  )}
+                </button>
                 <button onClick={() => handleTabChange('ongoing')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'ongoing' ? '2px solid #f97316' : '1px solid #e2e8f0', background: activeTab === 'ongoing' ? '#fff7ed' : '#ffffff', color: activeTab === 'ongoing' ? '#f97316' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
                   <Activity size={15}/>Ongoing
                   <span style={{ background: activeTab === 'ongoing' ? '#f97316' : '#e2e8f0', color: activeTab === 'ongoing' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{ongoingProjects.length}</span>
@@ -892,6 +1023,327 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       {showHaryanaMap && (
         <HaryanaCompletedMap onClose={() => setShowHaryanaMap(false)} />
       )}
+
+      {/* ALIGN MARKERS DRAWER */}
+      <AnimatePresence>
+        {showMarkersDrawer && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', justifyContent: 'flex-end' }}>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowMarkersDrawer(false)}
+              style={{ position: 'absolute', inset: 0, background: 'rgba(15, 23, 42, 0.55)', backdropFilter: 'blur(3px)' }}
+            />
+
+            {/* Slide-in Panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 26, stiffness: 260 }}
+              style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: 620,
+                height: '100%',
+                background: '#ffffff',
+                boxShadow: '-8px 0 32px rgba(0, 0, 0, 0.25)',
+                display: 'flex',
+                flexDirection: 'column',
+                zIndex: 10
+              }}
+            >
+              {/* Header */}
+              <div style={{ padding: '20px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f8fafc' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 8, background: '#ffedd5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <MousePointer size={18} color="#ea580c" />
+                  </div>
+                  <div>
+                    <h2 style={{ margin: 0, fontSize: 17, fontWeight: 800, color: '#0f172a' }}>Marker Alignment & Coordinates</h2>
+                    <p style={{ margin: 0, fontSize: 12, color: '#64748b' }}>Nationwide Coverage coordinate helper</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowMarkersDrawer(false)}
+                  style={{ width: 34, height: 34, borderRadius: 8, border: '1px solid #e2e8f0', background: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b' }}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Interactive Coordinate Picker box */}
+              <div style={{ padding: '16px 24px', background: '#ffffff', borderBottom: '1px solid #f1f5f9' }}>
+                <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12, padding: '14px 16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>
+                        Interactive Map Coordinates
+                      </div>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: pickedCoords ? '#ea580c' : '#64748b' }}>
+                        {pickedCoords ? (
+                          <span>cx: <b>{pickedCoords.cx}%</b> &nbsp;|&nbsp; cy: <b>{pickedCoords.cy}%</b></span>
+                        ) : (
+                          <span style={{ fontSize: 13, fontWeight: 500, color: '#64748b' }}>Click below to pick a point on the India SVG map</span>
+                        )}
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      {pickedCoords && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(`cx: ${pickedCoords.cx}, cy: ${pickedCoords.cy}`);
+                            setCopiedCode(true);
+                            setTimeout(() => setCopiedCode(false), 2000);
+                          }}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 6,
+                            padding: '7px 12px',
+                            background: copiedCode ? '#16a34a' : '#0f172a',
+                            color: '#ffffff',
+                            border: 'none',
+                            borderRadius: 8,
+                            fontSize: 12,
+                            fontWeight: 700,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {copiedCode ? <Check size={14} /> : <Copy size={14} />}
+                          {copiedCode ? 'Copied!' : 'Copy cx & cy'}
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowMarkersDrawer(false);
+                          setIsPickingCoords(true);
+                        }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 6,
+                          padding: '7px 14px',
+                          background: '#ea580c',
+                          color: '#ffffff',
+                          border: 'none',
+                          borderRadius: 8,
+                          fontSize: 12,
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <MousePointer size={14} />
+                        {pickedCoords ? 'Pick Another Point' : 'Pick Point on Map'}
+                      </button>
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 10, fontSize: 11, color: '#64748b', lineHeight: 1.4 }}>
+                    💡 <b>How it works:</b> Projects added in CMS appear in project listings automatically. To display on the map, copy the <code style={{ background: '#e2e8f0', padding: '1px 4px', borderRadius: 4 }}>cx</code> and <code style={{ background: '#e2e8f0', padding: '1px 4px', borderRadius: 4 }}>cy</code> coordinates into Strapi CMS &gt; <b>Nationwide Coverage</b> and toggle <b>Show on Map</b> to ON.
+                  </div>
+                </div>
+
+                {/* Search & Filters */}
+                <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <input
+                    type="text"
+                    placeholder="Search by project name, city, or state..."
+                    value={drawerSearch}
+                    onChange={(e) => setDrawerSearch(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '9px 14px',
+                      borderRadius: 8,
+                      border: '1px solid #cbd5e1',
+                      fontSize: 13,
+                      outline: 'none',
+                      boxSizing: 'border-box'
+                    }}
+                  />
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {[
+                      { id: 'all', label: `All (${allPlottedMarkers.length})` },
+                      { id: 'pending', label: `Pending (${pendingMarkersCount})` },
+                      { id: 'active', label: `Active (${activeMarkersCount})` },
+                      { id: 'ongoing', label: `Ongoing (${ongoingProjects.length})` },
+                      { id: 'completed', label: `Completed (${completedProjects.length})` }
+                    ].map(f => (
+                      <button
+                        key={f.id}
+                        type="button"
+                        onClick={() => setDrawerFilter(f.id)}
+                        style={{
+                          padding: '5px 11px',
+                          borderRadius: 20,
+                          fontSize: 12,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: drawerFilter === f.id ? '1px solid #ea580c' : '1px solid #e2e8f0',
+                          background: drawerFilter === f.id ? '#fff7ed' : '#ffffff',
+                          color: drawerFilter === f.id ? '#ea580c' : '#64748b'
+                        }}
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Projects Table / List */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '14px 24px' }}>
+                {filteredDrawerMarkers.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '40px 20px', color: '#94a3b8' }}>
+                    <p style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>No projects found matching the filter</p>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    {filteredDrawerMarkers.map((proj, idx) => {
+                      const isPending = !proj.hasCoords;
+                      const coordText = proj.cx && proj.cy ? `cx: ${proj.cx}%, cy: ${proj.cy}%` : 'Pending Alignment';
+                      return (
+                        <div
+                          key={`${proj.id}-${idx}`}
+                          style={{
+                            padding: '12px 14px',
+                            borderRadius: 10,
+                            border: isPending ? '1.5px dashed #f97316' : '1px solid #e2e8f0',
+                            background: isPending ? '#fffaf5' : '#ffffff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: 12
+                          }}
+                        >
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+                              <span style={{
+                                fontSize: 10,
+                                fontWeight: 800,
+                                padding: '2px 7px',
+                                borderRadius: 6,
+                                textTransform: 'uppercase',
+                                background: proj.status === 'Ongoing' ? '#ffedd5' : 'rgba(25,136,71,0.1)',
+                                color: proj.status === 'Ongoing' ? '#c2410c' : '#166534'
+                              }}>
+                                {proj.status}
+                              </span>
+                              <span style={{ fontSize: 14, fontWeight: 700, color: '#1e293b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                {proj.name}
+                              </span>
+                            </div>
+                            <div style={{ fontSize: 12, color: '#64748b', display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+                              <span>📍 {proj.city || proj.location}{proj.state ? `, ${proj.state}` : ''}</span>
+                              <span style={{
+                                fontWeight: 700,
+                                color: isPending ? '#ea580c' : '#15803d',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: 4
+                              }}>
+                                {isPending ? '⚠️ Pending Alignment' : `✓ ${coordText}`}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+                            {proj.hasCoords ? (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  navigator.clipboard.writeText(`cx: ${proj.cx}, cy: ${proj.cy}`);
+                                  setCopiedId(proj.id);
+                                  setTimeout(() => setCopiedId(null), 2000);
+                                }}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 5,
+                                  padding: '6px 10px',
+                                  borderRadius: 6,
+                                  border: '1px solid #cbd5e1',
+                                  background: '#ffffff',
+                                  color: '#334155',
+                                  fontSize: 11,
+                                  fontWeight: 700,
+                                  cursor: 'pointer'
+                                }}
+                                title="Copy coordinates"
+                              >
+                                {copiedId === proj.id ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                                {copiedId === proj.id ? 'Copied' : 'Copy'}
+                              </button>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  if (pickedCoords) {
+                                    handleCoordChange(proj.city || proj.name, pickedCoords.cx, pickedCoords.cy);
+                                    navigator.clipboard.writeText(`cx: ${pickedCoords.cx}, cy: ${pickedCoords.cy}`);
+                                    setCopiedId(proj.id);
+                                    setTimeout(() => setCopiedId(null), 2000);
+                                  } else {
+                                    setShowMarkersDrawer(false);
+                                    setIsPickingCoords(true);
+                                  }
+                                }}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 5,
+                                  padding: '6px 10px',
+                                  borderRadius: 6,
+                                  border: 'none',
+                                  background: pickedCoords ? '#16a34a' : '#ea580c',
+                                  color: '#ffffff',
+                                  fontSize: 11,
+                                  fontWeight: 700,
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <MousePointer size={12} />
+                                {pickedCoords ? (copiedId === proj.id ? 'Assigned & Copied!' : 'Apply Picked Coords') : 'Pick on Map'}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Drawer Footer */}
+              <div style={{ padding: '16px 24px', borderTop: '1px solid #e2e8f0', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: 12, color: '#64748b' }}>
+                  Total <b>{allPlottedMarkers.length}</b> projects &bull; <b>{activeMarkersCount}</b> on map &bull; <b>{pendingMarkersCount}</b> pending
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowMarkersDrawer(false)}
+                  style={{
+                    padding: '8px 18px',
+                    borderRadius: 8,
+                    border: '1px solid #cbd5e1',
+                    background: '#ffffff',
+                    color: '#334155',
+                    fontSize: 13,
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <style>{`
         @keyframes mmPing{0%{transform:translate(-50%,-50%) scale(0.5);opacity:0.4;}70%{transform:translate(-50%,-50%) scale(2.3);opacity:0;}100%{transform:translate(-50%,-50%) scale(2.3);opacity:0;}}

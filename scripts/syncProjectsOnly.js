@@ -96,6 +96,15 @@ export async function syncProjectsDirectly() {
         return !n.includes('humsafar') && !n.includes('logistics park llp');
       });
 
+      // Read existing local project datasets for fallback coordinates
+      let existingOgList = [];
+      try {
+        if (fs.existsSync(OG_PATH)) {
+          const mod = await import(`file://${OG_PATH}?t=${Date.now()}`);
+          existingOgList = mod.default || [];
+        }
+      } catch (e) {}
+
       formattedOg = await Promise.all(filteredOg.map(async (p, idx) => {
         const rawImgs = p.images || (p.image ? [p.image] : []);
         const imgs = (await Promise.all(rawImgs.map(async (img) => {
@@ -103,6 +112,10 @@ export async function syncProjectsDirectly() {
           if (!u || typeof u !== 'string') return null;
           return await downloadProjectImg(u);
         }))).filter(Boolean);
+
+        const matchLocal = existingOgList.find(e => (e.name || '').toLowerCase().trim() === (p.name || '').toLowerCase().trim()) || {};
+        const finalCx = p.cx != null ? Number(p.cx) : (matchLocal.cx != null ? Number(matchLocal.cx) : null);
+        const finalCy = p.cy != null ? Number(p.cy) : (matchLocal.cy != null ? Number(matchLocal.cy) : null);
 
         return {
           id: idx + 1,
@@ -116,6 +129,8 @@ export async function syncProjectsDirectly() {
           timeline: p.timeline,
           status: "Ongoing",
           scope: p.scope,
+          cx: finalCx,
+          cy: finalCy,
           images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
         };
       }));
@@ -133,6 +148,14 @@ export async function syncProjectsDirectly() {
       const compJson = await compRes.json();
       const rawComp = compJson.data || [];
 
+      let existingCompList = [];
+      try {
+        if (fs.existsSync(COMP_PATH)) {
+          const mod = await import(`file://${COMP_PATH}?t=${Date.now()}`);
+          existingCompList = mod.default || [];
+        }
+      } catch (e) {}
+
       formattedComp = await Promise.all(rawComp.map(async (p, idx) => {
         const rawImgs = p.images || (p.image ? [p.image] : []);
         const imgs = (await Promise.all(rawImgs.map(async (img) => {
@@ -140,6 +163,10 @@ export async function syncProjectsDirectly() {
           if (!u || typeof u !== 'string') return null;
           return await downloadProjectImg(u);
         }))).filter(Boolean);
+
+        const matchLocal = existingCompList.find(e => (e.name || '').toLowerCase().trim() === (p.name || '').toLowerCase().trim()) || {};
+        const finalCx = p.cx != null ? Number(p.cx) : (matchLocal.cx != null ? Number(matchLocal.cx) : null);
+        const finalCy = p.cy != null ? Number(p.cy) : (matchLocal.cy != null ? Number(matchLocal.cy) : null);
 
         return {
           id: idx + 1,
@@ -153,6 +180,8 @@ export async function syncProjectsDirectly() {
           timeline: p.timeline,
           status: "Completed",
           scope: p.scope,
+          cx: finalCx,
+          cy: finalCy,
           images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
         };
       }));
@@ -163,6 +192,20 @@ export async function syncProjectsDirectly() {
       masterBackup['completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'] = formattedComp;
       console.log(`✅ Synced completed projects (${formattedComp.length}) directly to completedProjects.js`);
     }
+
+    // 2.1 Fetch Coverage Markers
+    try {
+      const markersRes = await fetch(`${activeUrl}/api/coverage-markers?populate=*&pagination[pageSize]=100`, { cache: 'no-store' });
+      if (markersRes.ok) {
+        const markersJson = await markersRes.json();
+        const rawMarkers = markersJson.data || [];
+        masterBackup['coverage-markers'] = rawMarkers;
+        masterBackup['coverage-markers?populate=*&pagination[pageSize]=100'] = rawMarkers;
+        const MARKERS_PATH = path.resolve(__dirname, '../src/data/coverageMarkersData.js');
+        fs.writeFileSync(MARKERS_PATH, `const coverageMarkersData = ${JSON.stringify(rawMarkers, null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
+        console.log(`✅ Synced ${rawMarkers.length} coverage markers to coverageMarkersData.js`);
+      }
+    } catch (e) {}
 
     // 3. Update Backups (Hostinger SSD Local Database & Bundled DB)
     fs.writeFileSync(BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');

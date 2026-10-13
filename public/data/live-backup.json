@@ -3783,25 +3783,6 @@
     },
     {
       "id": 12,
-      "documentId": "jaoghcghfrr1twfmyl3x799k",
-      "category": "Warehousing",
-      "name": "HANNO ONE Logistics Park",
-      "location": "Hosur",
-      "state": "Tamil Nadu",
-      "area": "3.43 Lakh Sq. Ft",
-      "client": "Hanno One Warehouse Pvt. Ltd.",
-      "timeline": "2025 - WIP",
-      "status": "Ongoing",
-      "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-      "images": [
-        "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-        "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-        "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-        "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-      ]
-    },
-    {
-      "id": 13,
       "documentId": "xy98xvmm6o3y66d62e5p76u8",
       "category": "Industrial",
       "name": "Sanaswadi Industrial Project",
@@ -3820,7 +3801,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 13,
       "documentId": "xhuokr1xr7tncr8i800f3jb2",
       "category": "Industrial",
       "name": "Reliance DMD Plant",
@@ -3840,7 +3821,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 14,
       "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
       "category": "Warehousing",
       "name": "PMG Logistics Park",
@@ -3859,7 +3840,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 15,
       "documentId": "n3hwjilrop1oleltf6fwjxmx",
       "category": "Industrial",
       "name": "AMNS SSC GIDC Project",
@@ -3878,6 +3859,25 @@
         "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
         "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
         "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
+      ]
+    },
+    {
+      "id": 16,
+      "documentId": "jaoghcghfrr1twfmyl3x799k",
+      "category": "Warehousing",
+      "name": "HANNO ONE Logistics Park",
+      "location": "Hosur",
+      "state": "Tamil Nadu",
+      "area": "3.43 Lakh Sq. Ft",
+      "client": "Hanno One Warehouse Pvt. Ltd.",
+      "timeline": "2025 - WIP",
+      "status": "Ongoing",
+      "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+      "images": [
+        "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+        "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+        "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+        "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
       ]
     }
   ],
@@ -4108,25 +4108,6 @@
     },
     {
       "id": 12,
-      "documentId": "jaoghcghfrr1twfmyl3x799k",
-      "category": "Warehousing",
-      "name": "HANNO ONE Logistics Park",
-      "location": "Hosur",
-      "state": "Tamil Nadu",
-      "area": "3.43 Lakh Sq. Ft",
-      "client": "Hanno One Warehouse Pvt. Ltd.",
-      "timeline": "2025 - WIP",
-      "status": "Ongoing",
-      "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-      "images": [
-        "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-        "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-        "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-        "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-      ]
-    },
-    {
-      "id": 13,
       "documentId": "xy98xvmm6o3y66d62e5p76u8",
       "category": "Industrial",
       "name": "Sanaswadi Industrial Project",
@@ -4145,7 +4126,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 13,
       "documentId": "xhuokr1xr7tncr8i800f3jb2",
       "category": "Industrial",
       "name": "Reliance DMD Plant",
@@ -4165,7 +4146,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 14,
       "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
       "category": "Warehousing",
       "name": "PMG Logistics Park",
@@ -4184,7 +4165,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 15,
       "documentId": "n3hwjilrop1oleltf6fwjxmx",
       "category": "Industrial",
       "name": "AMNS SSC GIDC Project",
@@ -4203,6 +4184,25 @@
         "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
         "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
         "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
+      ]
+    },
+    {
+      "id": 16,
+      "documentId": "jaoghcghfrr1twfmyl3x799k",
+      "category": "Warehousing",
+      "name": "HANNO ONE Logistics Park",
+      "location": "Hosur",
+      "state": "Tamil Nadu",
+      "area": "3.43 Lakh Sq. Ft",
+      "client": "Hanno One Warehouse Pvt. Ltd.",
+      "timeline": "2025 - WIP",
+      "status": "Ongoing",
+      "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+      "images": [
+        "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+        "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+        "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+        "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
       ]
     }
   ],
@@ -19379,6 +19379,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "GIDC Sanand",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 286,
@@ -19465,6 +19467,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Hazira, Surat",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 243,
@@ -19551,6 +19555,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Mundra",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 226,
@@ -19637,6 +19643,8 @@
       "publishedAt": "2026-08-29T10:46:31.867Z",
       "state": "Uttar Pradesh",
       "city": "Najibabad",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 270,
@@ -20078,6 +20086,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Jharkhand",
       "city": "Dhanbad",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 276,
@@ -20164,6 +20174,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Coimbatore",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 303,
@@ -20250,6 +20262,8 @@
       "publishedAt": "2026-10-06T05:00:28.348Z",
       "state": "Haryana",
       "city": "Delhi-Mumbai Expressway, Nuh",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 325,
@@ -20691,6 +20705,8 @@
       "publishedAt": "2026-10-06T00:39:26.853Z",
       "state": "Punjab",
       "city": "Ludhiana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 9,
@@ -20728,6 +20744,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Karnataka",
       "city": "Bangalore",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 298,
@@ -20814,6 +20832,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Telangana",
       "city": "Hyderabad",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 298,
@@ -20900,6 +20920,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Rajasthan",
       "city": "Neemrana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 298,
@@ -20986,6 +21008,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Dahej",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 280,
@@ -21072,6 +21096,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Jamnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 258,
@@ -21158,6 +21184,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Maharashtra",
       "city": "Pune",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 292,
@@ -21244,6 +21272,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Mappedu, Chennai",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 264,
@@ -21330,6 +21360,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Dahej-02",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 331,
@@ -21416,6 +21448,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Farrukhnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 9,
@@ -21453,6 +21487,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Bilaspur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 7,
@@ -21490,6 +21526,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Manesar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 459,
@@ -21576,6 +21614,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Jamalpur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 449,
@@ -21662,6 +21702,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Farukhnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 391,
@@ -21748,6 +21790,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Bilaspur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 475,
@@ -21834,6 +21878,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Palwal",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 373,
@@ -21920,6 +21966,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Dharuhera",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 470,
@@ -22006,6 +22054,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Pathreri",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 443,
@@ -22092,6 +22142,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Pataudi",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 5,
@@ -22129,6 +22181,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Coimbatore",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 355,
@@ -22215,6 +22269,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Karnataka",
       "city": "Bengaluru",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 367,
@@ -22301,6 +22357,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Maharashtra",
       "city": "Mumbai",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 385,
@@ -22387,6 +22445,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Karnataka",
       "city": "Bengaluru",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 6,
@@ -22495,6 +22555,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Luhari",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 420,
@@ -22581,6 +22643,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Punjab",
       "city": "Ludhiana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 408,
@@ -22667,6 +22731,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Patli",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 343,
@@ -22753,6 +22819,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Pataudi",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 338,
@@ -22839,6 +22907,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Rajasthan",
       "city": "Jaipur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 397,
@@ -22925,6 +22995,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Tauru",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 349,
@@ -23011,6 +23083,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Farrukhnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 414,
@@ -23097,6 +23171,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Khijuri",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 420,
@@ -23183,6 +23259,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Rajasthan",
       "city": "Neemrana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 403,
@@ -23269,6 +23347,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Chennai",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 379,
@@ -23355,6 +23435,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Tuticorin",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 361,
@@ -23443,6 +23525,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "GIDC Sanand",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 286,
@@ -23529,6 +23613,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Hazira, Surat",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 243,
@@ -23615,6 +23701,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Mundra",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 226,
@@ -23701,6 +23789,8 @@
       "publishedAt": "2026-08-29T10:46:31.867Z",
       "state": "Uttar Pradesh",
       "city": "Najibabad",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 270,
@@ -24142,6 +24232,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Jharkhand",
       "city": "Dhanbad",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 276,
@@ -24228,6 +24320,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Coimbatore",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 303,
@@ -24314,6 +24408,8 @@
       "publishedAt": "2026-10-06T05:00:28.348Z",
       "state": "Haryana",
       "city": "Delhi-Mumbai Expressway, Nuh",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 325,
@@ -24755,6 +24851,8 @@
       "publishedAt": "2026-10-06T00:39:26.853Z",
       "state": "Punjab",
       "city": "Ludhiana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 9,
@@ -24792,6 +24890,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Karnataka",
       "city": "Bangalore",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 298,
@@ -24878,6 +24978,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Telangana",
       "city": "Hyderabad",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 298,
@@ -24964,6 +25066,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Rajasthan",
       "city": "Neemrana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 298,
@@ -25050,6 +25154,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Dahej",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 280,
@@ -25136,6 +25242,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Jamnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 258,
@@ -25222,6 +25330,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Maharashtra",
       "city": "Pune",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 292,
@@ -25308,6 +25418,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Mappedu, Chennai",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 264,
@@ -25394,6 +25506,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Gujarat",
       "city": "Dahej-02",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 331,
@@ -25480,6 +25594,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Farrukhnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 9,
@@ -25517,6 +25633,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Bilaspur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 7,
@@ -25554,6 +25672,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Manesar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 459,
@@ -25640,6 +25760,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Jamalpur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 449,
@@ -25726,6 +25848,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Farukhnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 391,
@@ -25812,6 +25936,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Bilaspur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 475,
@@ -25898,6 +26024,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Palwal",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 373,
@@ -25984,6 +26112,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Dharuhera",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 470,
@@ -26070,6 +26200,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Pathreri",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 443,
@@ -26156,6 +26288,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Pataudi",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 5,
@@ -26193,6 +26327,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Coimbatore",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 355,
@@ -26279,6 +26415,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Karnataka",
       "city": "Bengaluru",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 367,
@@ -26365,6 +26503,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Maharashtra",
       "city": "Mumbai",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 385,
@@ -26451,6 +26591,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Karnataka",
       "city": "Bengaluru",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 6,
@@ -26559,6 +26701,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Luhari",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 420,
@@ -26645,6 +26789,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Punjab",
       "city": "Ludhiana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 408,
@@ -26731,6 +26877,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Patli",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 343,
@@ -26817,6 +26965,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Pataudi",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 338,
@@ -26903,6 +27053,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Rajasthan",
       "city": "Jaipur",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 397,
@@ -26989,6 +27141,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Tauru",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 349,
@@ -27075,6 +27229,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Farrukhnagar",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 414,
@@ -27161,6 +27317,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Haryana",
       "city": "Khijuri",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 420,
@@ -27247,6 +27405,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Rajasthan",
       "city": "Neemrana",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 403,
@@ -27333,6 +27493,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Chennai",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 379,
@@ -27419,6 +27581,8 @@
       "publishedAt": "2026-08-29T03:59:03.261Z",
       "state": "Tamil Nadu",
       "city": "Tuticorin",
+      "showOnMap": null,
+      "markerStatus": null,
       "images": [
         {
           "id": 361,
@@ -29435,25 +29599,6 @@
     },
     {
       "id": 12,
-      "documentId": "jaoghcghfrr1twfmyl3x799k",
-      "category": "Warehousing",
-      "name": "HANNO ONE Logistics Park",
-      "location": "Hosur",
-      "state": "Tamil Nadu",
-      "area": "3.43 Lakh Sq. Ft",
-      "client": "Hanno One Warehouse Pvt. Ltd.",
-      "timeline": "2025 - WIP",
-      "status": "Ongoing",
-      "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-      "images": [
-        "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-        "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-        "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-        "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-      ]
-    },
-    {
-      "id": 13,
       "documentId": "xy98xvmm6o3y66d62e5p76u8",
       "category": "Industrial",
       "name": "Sanaswadi Industrial Project",
@@ -29472,7 +29617,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 13,
       "documentId": "xhuokr1xr7tncr8i800f3jb2",
       "category": "Industrial",
       "name": "Reliance DMD Plant",
@@ -29492,7 +29637,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 14,
       "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
       "category": "Warehousing",
       "name": "PMG Logistics Park",
@@ -29511,7 +29656,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 15,
       "documentId": "n3hwjilrop1oleltf6fwjxmx",
       "category": "Industrial",
       "name": "AMNS SSC GIDC Project",
@@ -29530,6 +29675,25 @@
         "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
         "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
         "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
+      ]
+    },
+    {
+      "id": 16,
+      "documentId": "jaoghcghfrr1twfmyl3x799k",
+      "category": "Warehousing",
+      "name": "HANNO ONE Logistics Park",
+      "location": "Hosur",
+      "state": "Tamil Nadu",
+      "area": "3.43 Lakh Sq. Ft",
+      "client": "Hanno One Warehouse Pvt. Ltd.",
+      "timeline": "2025 - WIP",
+      "status": "Ongoing",
+      "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+      "images": [
+        "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+        "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+        "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+        "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
       ]
     }
   ],
