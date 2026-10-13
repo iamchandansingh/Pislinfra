@@ -226,7 +226,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
               {/* Headline */}
               <h2 style={{
-                fontSize: 'clamp(28px, 3.2vw, 40px)',
+                fontSize: 'clamp(30px, 3.4vw, 42px)',
                 fontWeight: '800',
                 color: '#ffffff',
                 lineHeight: 1.15,
@@ -240,11 +240,11 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
               {/* Subtext */}
               <p style={{
-                fontSize: '14px',
-                color: 'rgba(255, 255, 255, 0.86)',
-                lineHeight: 1.6,
+                fontSize: '14.5px',
+                color: 'rgba(255, 255, 255, 0.88)',
+                lineHeight: 1.65,
                 margin: 0,
-                maxWidth: '460px',
+                maxWidth: '520px',
               }}>
                 {desc || "Access our official safety guidelines, company profile, and important resources for all project sites."}
               </p>
@@ -439,8 +439,8 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
       <style>{`
         .safety-resources-split {
           display: grid;
-          grid-template-columns: minmax(360px, 430px) 1fr;
-          gap: 32px;
+          grid-template-columns: minmax(480px, 560px) 1fr;
+          gap: 36px;
           align-items: stretch;
         }
 
@@ -448,35 +448,35 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           position: relative;
           border-radius: 20px;
           overflow: hidden;
-          padding: 44px 34px;
+          padding: 48px 40px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          min-height: 480px;
-          box-shadow: 0 12px 36px rgba(10, 42, 102, 0.12);
+          min-height: 500px;
+          box-shadow: 0 14px 40px rgba(10, 42, 102, 0.12);
         }
 
         .sr-badges-row {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 14px;
-          padding-top: 28px;
-          margin-top: 28px;
-          border-top: 1px solid rgba(255, 255, 255, 0.15);
+          gap: 18px;
+          padding-top: 32px;
+          margin-top: 32px;
+          border-top: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .sr-badge-item {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 8px;
+          gap: 10px;
         }
 
         .sr-badge-circle {
-          width: 42px;
-          height: 42px;
+          width: 48px;
+          height: 48px;
           border-radius: 50%;
-          border: 1.5px solid rgba(255, 255, 255, 0.3);
+          border: 1.5px solid rgba(255, 255, 255, 0.35);
           background: rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(8px);
           display: flex;
@@ -493,10 +493,10 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
         }
 
         .sr-badge-text {
-          font-size: 11.5px;
+          font-size: 12.5px;
           font-weight: 700;
           color: #ffffff;
-          line-height: 1.3;
+          line-height: 1.35;
         }
 
         .sr-right-column {
@@ -568,10 +568,10 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           color: #ffffff;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1180px) {
           .safety-resources-split {
             grid-template-columns: 1fr;
-            gap: 36px;
+            gap: 40px;
           }
         }
 
