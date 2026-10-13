@@ -16,11 +16,11 @@ const FONT = 'Inter, sans-serif';
 
 const defaultResourceCards = [
   {
-    id: 'company-profile',
-    title: 'Company Profile',
-    coverTitle: 'COMPANY PROFILE',
+    id: 'pisl-profile',
+    title: 'PISL Profile',
+    coverTitle: 'PISL PROFILE',
     coverSubtitle: 'Building Infrastructure for a Better Tomorrow',
-    desc: 'Overview of our company, infrastructure capabilities, key projects and achievements.',
+    desc: 'Overview of PISL capabilities, infrastructure projects, client portfolio and achievements.',
     type: 'PPT / PPTX',
     typeIcon: FaFilePowerpoint,
     typeBg: 'rgba(255, 135, 85, 0.1)',
@@ -297,25 +297,6 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
               transition={{ duration: 0.5 }}
               style={{ marginBottom: '24px' }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                <span style={{ 
-                  width: '28px', 
-                  height: '3px', 
-                  backgroundColor: ORANGE, 
-                  borderRadius: '2px', 
-                  display: 'inline-block' 
-                }} />
-                <span style={{ 
-                  fontSize: '11px', 
-                  fontWeight: '800', 
-                  color: '#64748b', 
-                  letterSpacing: '1.8px', 
-                  textTransform: 'uppercase' 
-                }}>
-                  DOWNLOAD
-                </span>
-              </div>
-              
               <h3 style={{
                 fontSize: 'clamp(26px, 3vw, 34px)',
                 fontWeight: '800',
