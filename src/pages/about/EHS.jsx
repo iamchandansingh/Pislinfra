@@ -30,15 +30,7 @@ const EHS = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        let res = null;
-        try {
-          res = await fetchStrapiData('ehs-page?populate=deep');
-        } catch(e) {}
-        
-        if (!res) {
-          res = await fetchStrapiData('ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs');
-        }
-        
+        const res = await fetchStrapiData('ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs');
         setData(res);
       } catch (err) {
         console.error('Error fetching EHS data', err);
