@@ -34,11 +34,11 @@ const defaultResourceCards = [
     downloadLabel: 'Download PPT',
   },
   {
-    id: 'safety-manual',
-    title: 'Site Safety Manual',
-    coverTitle: 'SITE SAFETY MANUAL',
+    id: 'hse-policy',
+    title: 'HSE Policy',
+    coverTitle: 'HSE POLICY',
     coverSubtitle: 'Safe People • Safe Projects • Stronger Tomorrow',
-    desc: 'Safety guidelines, procedures and essential information for all project sites.',
+    desc: 'Official Health, Safety & Environment policies, operational guidelines and zero-harm standards.',
     type: 'PDF',
     typeIcon: FaFilePdf,
     typeBg: 'rgba(239, 68, 68, 0.08)',
@@ -51,31 +51,13 @@ const defaultResourceCards = [
     viewLabel: 'View PDF',
     downloadLabel: 'Download PDF',
   },
-  {
-    id: 'ehs-policy',
-    title: 'EHS Safety Manual',
-    coverTitle: 'EHS POLICY & SOPS',
-    coverSubtitle: 'Zero-Harm Commitment • ISO 45001 Compliance',
-    desc: 'Comprehensive Environment, Health & Safety protocol handbook and compliance norms.',
-    type: 'PDF',
-    typeIcon: FaFilePdf,
-    typeBg: 'rgba(10, 42, 102, 0.08)',
-    typeColor: NAVY,
-    typeBorder: 'rgba(10, 42, 102, 0.2)',
-    bgImage: '/images/EHS/Heroimages/2.png',
-    accentColor: '#f4b400',
-    viewUrl: '/reports/Annual-Return_2024-25.pdf',
-    downloadUrl: '/reports/Annual-Return_2024-25.pdf',
-    viewLabel: 'View PDF',
-    downloadLabel: 'Download PDF',
-  },
 ];
 
 const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
   return (
     <div style={{
       width: '100%',
-      height: '140px',
+      height: '155px',
       borderRadius: '10px',
       overflow: 'hidden',
       position: 'relative',
@@ -120,7 +102,7 @@ const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
         backgroundColor: '#ffffff',
         clipPath: 'polygon(0 0, 100% 0, 75% 100%, 0 100%)',
         zIndex: 2,
-        padding: '12px 14px',
+        padding: '14px 16px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -131,14 +113,14 @@ const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
           <img 
             src="/logo.png" 
             alt="PISL" 
-            style={{ height: '20px', width: 'auto', objectFit: 'contain' }} 
+            style={{ height: '22px', width: 'auto', objectFit: 'contain' }} 
           />
         </div>
 
         {/* Document Header Text */}
         <div style={{ paddingBottom: '2px' }}>
           <div style={{
-            fontSize: '11px',
+            fontSize: '12px',
             fontWeight: '900',
             color: NAVY,
             letterSpacing: '0.4px',
@@ -148,7 +130,7 @@ const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
             {title}
           </div>
           <div style={{
-            fontSize: '8px',
+            fontSize: '8.5px',
             fontWeight: '600',
             color: '#64748b',
             lineHeight: 1.25,
@@ -164,9 +146,10 @@ const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
 
 const SafetyResources = ({ resources, title, subtitle, desc }) => {
   const resourceCards = resources && resources.length > 0 
-    ? resources.slice(0, 3).map((r, i) => ({
+    ? resources.slice(0, 2).map((r, i) => ({
         ...defaultResourceCards[i % defaultResourceCards.length],
         title: r.title || defaultResourceCards[i % defaultResourceCards.length].title,
+        coverTitle: r.title?.toUpperCase() || defaultResourceCards[i % defaultResourceCards.length].coverTitle,
         desc: r.description || r.desc || defaultResourceCards[i % defaultResourceCards.length].desc,
         viewUrl: r.file?.url ? (r.file.url.startsWith('http') ? r.file.url : `${import.meta.env.VITE_STRAPI_URL || ""}${r.file.url}`) : defaultResourceCards[i % defaultResourceCards.length].viewUrl,
         downloadUrl: r.file?.url ? (r.file.url.startsWith('http') ? r.file.url : `${import.meta.env.VITE_STRAPI_URL || ""}${r.file.url}`) : defaultResourceCards[i % defaultResourceCards.length].downloadUrl,
@@ -303,7 +286,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: Key Resources Header + 3 PDF Cards */}
+          {/* RIGHT COLUMN: Key Resources Header + 2 Resource Cards */}
           <div className="sr-right-column">
             
             {/* Header */}
@@ -353,7 +336,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
               </p>
             </motion.div>
 
-            {/* 3 PDF Cards Grid */}
+            {/* 2 PDF Cards Grid */}
             <div className="sr-cards-grid">
               {resourceCards.map((card, idx) => (
                 <motion.div
@@ -378,7 +361,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '5px',
-                      padding: '4px 9px',
+                      padding: '4px 10px',
                       borderRadius: '6px',
                       backgroundColor: card.typeBg,
                       color: card.typeColor,
@@ -386,7 +369,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                       fontSize: '10px',
                       fontWeight: '800',
                       letterSpacing: '0.4px',
-                      marginTop: '12px',
+                      marginTop: '14px',
                       marginBottom: '6px',
                     }}>
                       <card.typeIcon style={{ fontSize: '11px' }} />
@@ -395,7 +378,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
                     {/* Title */}
                     <h4 style={{
-                      fontSize: '16.5px',
+                      fontSize: '17px',
                       fontWeight: '800',
                       color: NAVY,
                       margin: '0 0 4px',
@@ -406,10 +389,10 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
                     {/* Description */}
                     <p style={{
-                      fontSize: '12.5px',
+                      fontSize: '13px',
                       color: '#64748b',
                       lineHeight: 1.5,
-                      margin: '0 0 16px',
+                      margin: '0 0 18px',
                     }}>
                       {card.desc}
                     </p>
@@ -419,9 +402,9 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
                   <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr',
-                    gap: '10px',
+                    gap: '12px',
                     marginTop: 'auto',
-                    paddingTop: '8px',
+                    paddingTop: '10px',
                     borderTop: '1px solid #f1f5f9',
                   }}>
                     <a 
@@ -456,7 +439,7 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
       <style>{`
         .safety-resources-split {
           display: grid;
-          grid-template-columns: minmax(350px, 420px) 1fr;
+          grid-template-columns: minmax(360px, 430px) 1fr;
           gap: 32px;
           align-items: stretch;
         }
@@ -524,15 +507,15 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
 
         .sr-cards-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
         }
 
         .sr-card {
           background: #ffffff;
           border: 1px solid #e2e8f0;
           border-radius: 16px;
-          padding: 16px;
+          padding: 18px;
           box-shadow: 0 6px 20px rgba(10, 42, 102, 0.04);
           display: flex;
           flex-direction: column;
@@ -551,10 +534,10 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           align-items: center;
           justify-content: center;
           gap: 6px;
-          height: 38px;
-          padding: 0 8px;
+          height: 40px;
+          padding: 0 12px;
           border-radius: 8px;
-          font-size: 11.5px;
+          font-size: 12px;
           font-weight: 700;
           text-decoration: none;
           cursor: pointer;
@@ -585,23 +568,14 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           color: #ffffff;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
           .safety-resources-split {
             grid-template-columns: 1fr;
             gap: 36px;
           }
-          .sr-cards-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
         }
 
-        @media (max-width: 900px) {
-          .sr-cards-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 640px) {
+        @media (max-width: 680px) {
           .sr-left-banner {
             padding: 30px 20px;
             min-height: auto;
