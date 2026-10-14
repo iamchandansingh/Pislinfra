@@ -24,19 +24,42 @@ const STRAPI_ENDPOINTS = [
   'completed-projects?populate=*&pagination[pageSize]=100',
   'home-page?populate=*',
   'clients?pagination[pageSize]=100&sort=order:asc',
+  'clients?pagination[pageSize]=100&sort=order:asc&populate=*',
   'awards?populate=*&pagination[pageSize]=100&sort=createdAt:desc',
+  'awards?populate=*&sort=createdAt:desc',
+  'awards-page?populate[0]=heroImage&populate[1]=seo',
+  'client-appreciations?populate=*&pagination[pageSize]=100',
+  'milestones?populate=*&pagination[pageSize]=100&sort=year:asc',
+  'timeline-milestones?populate=*&pagination[pageSize]=100&sort=year:asc',
   'coverage-markers?populate=*&pagination[pageSize]=100',
   'blogs?populate=*&pagination[pageSize]=100',
+  'blogs?populate=*&pagination[pageSize]=100&sort=createdAt:desc',
+  'blog-page?populate=seo,heroImage',
   'job-openings?pagination[limit]=100',
   'leadership-page?populate[0]=heroImage&populate[1]=seo&populate[2]=topLeaderImage&populate[3]=topLeaderHighlights&populate[4]=executives.image&populate[5]=coreTeam.image',
-  'about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values',
+  'about-page',
+  'about-page?populate=*',
+  'about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values&populate[5]=companyProfile.file&populate[6]=companyProfile.coverImage&populate[7]=resources.file&populate[8]=resources.coverImage',
   'career-page?populate[0]=heroImage&populate[1]=seo&populate[2]=benefits&populate[3]=processSteps',
   'csr-page?populate=seo,heroImage,philosophyImages,stats,focusAreas.image,givingBackCards.image,environmentCards.image,celebrationCards.image',
-  'ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs',
+  'ehs-page',
+  'ehs-page?populate=*',
+  'ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs&populate[12]=resources.file&populate[13]=resources.coverImage',
   'case-studies?populate=*&pagination[pageSize]=100&sort=createdAt:asc',
   'case-study-page?populate=seo,heroImage,approachSteps,trustedClients.logo',
   'annual-report-page?populate[0]=heroImage&populate[1]=seo&populate[2]=reports&populate[3]=reports.pdfFile',
-  'policy-page?populate[0]=heroImage&populate[1]=seo&populate[2]=sections'
+  'policy-page?populate[0]=heroImage&populate[1]=seo&populate[2]=sections',
+  'top-header',
+  'header?populate[0]=logo&populate[1]=navigation.subLinks',
+  'footer?populate[0]=logo&populate[1]=companyLinks&populate[2]=resourceLinks&populate[3]=solutionLinks',
+  'contact-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage',
+  'completed-page?populate=seo,heroImage',
+  'ongoing-page?populate=seo,heroImage',
+  'solution-pages?populate=*',
+  'solution-pages?filters[slug]=industrial&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo',
+  'solution-pages?filters[slug]=infrastructure&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo',
+  'solution-pages?filters[slug]=logistic&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo',
+  'solution-pages?filters[slug]=warehouse&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo'
 ];
 
 function unwrap(val) {
@@ -425,9 +448,61 @@ async function syncBackup() {
     console.log(`✅ Synced blogs (${formattedBlogs.length}) into Blogdb.js and master backup`);
   }
 
+  // 6.1 Ensure Coverage Markers
+  const rawMarkers = masterBackup['coverage-markers'] || masterBackup['coverage-markers?populate=*&pagination[pageSize]=100'];
+  if (Array.isArray(rawMarkers) && rawMarkers.length > 0) {
+    const MARKERS_PATH = path.resolve(__dirname, '../src/data/coverageMarkersData.js');
+    fs.writeFileSync(MARKERS_PATH, `const coverageMarkersData = ${JSON.stringify(rawMarkers, null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
+    console.log(`✅ Synced coverage markers (${rawMarkers.length}) into coverageMarkersData.js`);
+  }
+
+  // 6.2 Ensure Client Appreciations
+  const rawApprec = masterBackup['client-appreciations'] || masterBackup['client-appreciations?populate=*&pagination[pageSize]=100'];
+  if (Array.isArray(rawApprec) && rawApprec.length > 0) {
+    const APPREC_PATH = path.resolve(__dirname, '../src/data/clientAppreciationsData.js');
+    fs.writeFileSync(APPREC_PATH, `export const clientAppreciations = ${JSON.stringify(rawApprec, null, 2)};\n\nexport default clientAppreciations;\n`, 'utf8');
+    console.log(`✅ Synced client appreciations (${rawApprec.length}) into clientAppreciationsData.js`);
+  }
+
   // 7. Write Master Backup & Hostinger public static backup
   fs.writeFileSync(BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');
   fs.writeFileSync(HOSTINGER_BACKUP_PATH, JSON.stringify(masterBackup, null, 2), 'utf8');
+
+  // 7.1 Sync individual static JSON collections to public/data/ and dist/data/
+  const publicDataDir = path.resolve(__dirname, '../public/data');
+  const distDataDir = path.resolve(__dirname, '../dist/data');
+  if (!fs.existsSync(publicDataDir)) fs.mkdirSync(publicDataDir, { recursive: true });
+  if (fs.existsSync(path.resolve(__dirname, '../dist')) && !fs.existsSync(distDataDir)) {
+    fs.mkdirSync(distDataDir, { recursive: true });
+  }
+
+  const writePublicAndDist = (filename, dataObj) => {
+    if (!dataObj) return;
+    const jsonStr = JSON.stringify(dataObj, null, 2);
+    fs.writeFileSync(path.join(publicDataDir, filename), jsonStr, 'utf8');
+    if (fs.existsSync(distDataDir)) {
+      fs.writeFileSync(path.join(distDataDir, filename), jsonStr, 'utf8');
+    }
+  };
+
+  writePublicAndDist('live-backup.json', masterBackup);
+  if (masterBackup['ongoing-projects']) {
+    writePublicAndDist('ongoing-projects.json', masterBackup['ongoing-projects']);
+    writePublicAndDist('ongoing_projects.json', masterBackup['ongoing-projects']);
+  }
+  if (masterBackup['completed-projects']) {
+    writePublicAndDist('completed-projects.json', masterBackup['completed-projects']);
+    writePublicAndDist('completed_projects.json', masterBackup['completed-projects']);
+  }
+  if (masterBackup['awards']) {
+    writePublicAndDist('awards.json', masterBackup['awards']);
+  }
+  if (masterBackup['client-appreciations']) {
+    writePublicAndDist('client-appreciations.json', masterBackup['client-appreciations']);
+  }
+  if (masterBackup['coverage-markers']) {
+    writePublicAndDist('coverage-markers.json', masterBackup['coverage-markers']);
+  }
 
   // 8. Auto-update PROJECT_FILES Set in src/utils/imageUrl.js so newly downloaded images are instantly registered
   try {
@@ -445,7 +520,7 @@ async function syncBackup() {
     console.warn('Could not update imageUrl.js:', e.message);
   }
 
-  console.log('🌟 Complete offline backup bundle successfully saved to MainBackupPislinfra.json & public/data/live-backup.json!');
+  console.log('🌟 Complete offline backup bundle successfully saved to MainBackupPislinfra.json, public/data/ & dist/data/!');
 }
 
 syncBackup();

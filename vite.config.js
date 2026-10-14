@@ -105,11 +105,92 @@ function autoBackupDevPlugin() {
                       timeline: p.timeline,
                       status: "Ongoing",
                       scope: p.scope,
+                      cx: p.cx != null ? Number(p.cx) : null,
+                      cy: p.cy != null ? Number(p.cy) : null,
                       images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
                     };
                   }));
                   if (formattedOg.length > 0) {
                     fs.writeFileSync(ogPath, `const projectsData = ${JSON.stringify(formattedOg, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
+                  }
+                }
+
+                if (endpoint.includes('coverage-markers') && Array.isArray(data) && data.length > 0) {
+                  const markersPath = path.resolve(__dirname, 'src/data/coverageMarkersData.js');
+                  fs.writeFileSync(markersPath, `const coverageMarkersData = ${JSON.stringify(data, null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
+
+                  // Also sync cx and cy directly into projectsData.js
+                  const ogPath = path.resolve(__dirname, 'src/data/projectsData.js');
+                  if (fs.existsSync(ogPath)) {
+                    try {
+                      const ogContent = fs.readFileSync(ogPath, 'utf8');
+                      const jsonMatch = ogContent.match(/const\s+projectsData\s*=\s*(\[[\s\S]*?\]);/);
+                      if (jsonMatch) {
+                        const ogList = JSON.parse(jsonMatch[1]);
+                        const slugify = str => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                        let updated = false;
+                        ogList.forEach(p => {
+                          const pSlug = slugify(p.name);
+                          const pCity = slugify(p.location || p.city || '');
+                          const marker = data.find(m => {
+                            const mSlug = slugify(m.projectName || m.name || '');
+                            const mCity = slugify(m.city || m.location || '');
+                            if (mSlug === pSlug) {
+                              if (mCity && pCity) return mCity === pCity;
+                              return true;
+                            }
+                            return false;
+                          });
+                          if (marker && marker.cx != null && marker.cy != null) {
+                            if (p.cx !== Number(marker.cx) || p.cy !== Number(marker.cy)) {
+                              p.cx = Number(marker.cx);
+                              p.cy = Number(marker.cy);
+                              updated = true;
+                            }
+                          }
+                        });
+                        if (updated) {
+                          fs.writeFileSync(ogPath, `const projectsData = ${JSON.stringify(ogList, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
+                        }
+                      }
+                    } catch (e) {}
+                  }
+
+                  // Also sync cx and cy directly into completedProjects.js
+                  const compSyncPath = path.resolve(__dirname, 'src/data/completedProjects.js');
+                  if (fs.existsSync(compSyncPath)) {
+                    try {
+                      const compContent = fs.readFileSync(compSyncPath, 'utf8');
+                      const jsonMatch = compContent.match(/const\s+completedProjects\s*=\s*(\[[\s\S]*?\]);/);
+                      if (jsonMatch) {
+                        const compList = JSON.parse(jsonMatch[1]);
+                        const slugify = str => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                        let updatedComp = false;
+                        compList.forEach(p => {
+                          const pSlug = slugify(p.name);
+                          const pCity = slugify(p.location || p.city || '');
+                          const marker = data.find(m => {
+                            const mSlug = slugify(m.projectName || m.name || '');
+                            const mCity = slugify(m.city || m.location || '');
+                            if (mSlug === pSlug) {
+                              if (mCity && pCity) return mCity === pCity;
+                              return true;
+                            }
+                            return false;
+                          });
+                          if (marker && marker.cx != null && marker.cy != null) {
+                            if (p.cx !== Number(marker.cx) || p.cy !== Number(marker.cy)) {
+                              p.cx = Number(marker.cx);
+                              p.cy = Number(marker.cy);
+                              updatedComp = true;
+                            }
+                          }
+                        });
+                        if (updatedComp) {
+                          fs.writeFileSync(compSyncPath, `const completedProjects = ${JSON.stringify(compList, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
+                        }
+                      }
+                    } catch (e) {}
                   }
                 }
 
@@ -134,6 +215,8 @@ function autoBackupDevPlugin() {
                       timeline: p.timeline,
                       status: "Completed",
                       scope: p.scope,
+                      cx: p.cx != null ? Number(p.cx) : null,
+                      cy: p.cy != null ? Number(p.cy) : null,
                       images: imgs.length > 0 ? imgs : ['/images/projects/default.jpg']
                     };
                   }));
@@ -177,6 +260,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    autoBackupDevPlugin(),
     
     compression({
       algorithm: 'gzip',

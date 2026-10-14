@@ -44,20 +44,18 @@ const philosophyData = [
   },
 ];
 
-const getUrl = (img) => {
-  if (!img) return null;
-  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
-  if (!url) return null;
-  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-};
+import { getStrapiMediaUrl } from '../../services/strapi';
 
 const SafetyPhilosophy = ({ philosophyItems, title }) => {
   const activeData = philosophyItems && philosophyItems.length > 0 
-    ? philosophyItems.map((p, i) => ({ 
-        title: p.title, 
-        description: p.description, 
-        image: getUrl(p.image) || philosophyData[i]?.image 
-      })) 
+    ? philosophyItems.map((p, i) => {
+        const customImg = getStrapiMediaUrl(p.image);
+        return { 
+          title: p.title || philosophyData[i]?.title, 
+          description: p.description || philosophyData[i]?.description, 
+          image: customImg || philosophyData[i]?.image 
+        };
+      }) 
     : philosophyData;
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -150,8 +148,8 @@ const SafetyPhilosophy = ({ philosophyItems, title }) => {
 
               {/* Image Card */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (Math.floor(index / 2)) * 0.1 }}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -171,10 +169,10 @@ const SafetyPhilosophy = ({ philosophyItems, title }) => {
                 <img
                   src={data.image}
                   alt={data.title}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     width: '100%', height: '100%', objectFit: 'cover',
-                    transform: hoveredIndex === index ? 'scale(1.12)' : 'scale(1)',
-                    transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 />
                 <div style={{

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData } from '../services/strapi';
+import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
 
 import ReactMarkdown from 'react-markdown';
 import PageHero from '../components/hero/PageHero';
@@ -26,8 +26,8 @@ const Icon = ({ name, style }) => {
 
 const PrivacyPolicy = () => {
   const [activeTab, setActiveTab] = useState(1);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => getLocalDataSync('policy-page'));
+  const [loading, setLoading] = useState(!data);
 
   const getImageUrl = (imgObj, defaultImg) => {
     if (!imgObj || (!imgObj.url && !imgObj.data?.attributes?.url)) return defaultImg;
@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
     loadData();
   }, []);
 
-  if (loading) return <Preloader />;
+  if (loading && !data) return <Preloader />;
   if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Policy not found.</div>;
 
   const navItems = data.sections?.map((section, index) => ({

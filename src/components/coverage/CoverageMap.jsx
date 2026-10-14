@@ -7,7 +7,7 @@
  * =============================================================================
  */
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -27,11 +27,12 @@ import completedProjectsData from '../../data/completedProjects';
 import coverageMarkersData from '../../data/coverageMarkersData';
 import HaryanaCompletedMap from './HaryanaCompletedMap';
 import GujaratMap from './GujaratMap';
-import { getImageUrl } from '../../utils/imageUrl';
+import { getImageUrl, getProjectSlug } from '../../utils/imageUrl';
 
 const ORANGE = '#f97316';
 const GREEN = '#198847';
 const FALLBACK_IMG = '/images/hero/Ongoing-Projects.png';
+const customLocations = {};
 
 const LOCATIONS = {
   // Gujarat
@@ -108,6 +109,9 @@ const LOCATIONS = {
 const STATE_FALLBACKS = {
   'Gujarat': { cx: 15.0, cy: 50.0 },
   'Haryana': { cx: 28.0, cy: 29.0 },
+  'Delhi': { cx: 29.0, cy: 30.5 },
+  'NCR': { cx: 29.0, cy: 30.5 },
+  'Delhi NCR': { cx: 29.0, cy: 30.5 },
   'Tamil Nadu': { cx: 35.0, cy: 83.0 },
   'Uttar Pradesh': { cx: 40.0, cy: 34.0 },
   'Maharashtra': { cx: 21.0, cy: 60.0 },
@@ -120,58 +124,129 @@ const STATE_FALLBACKS = {
   'Andhra Pradesh': { cx: 44.0, cy: 68.0 },
   'Madhya Pradesh': { cx: 28.0, cy: 48.0 },
   'Odisha': { cx: 58.0, cy: 56.0 },
+  'Bihar': { cx: 55.0, cy: 40.0 },
+  'Uttarakhand': { cx: 33.0, cy: 26.0 },
+  'Himachal Pradesh': { cx: 30.0, cy: 22.0 },
+  'Assam': { cx: 80.0, cy: 38.0 },
+  'Chhattisgarh': { cx: 45.0, cy: 52.0 },
+  'Kerala': { cx: 31.0, cy: 88.0 },
 };
 
 const getLoc = (p0, mapMarkers = [], customLocations = {}) => {
   if (!p0) return null;
-  
-  const pName = (p0.name || p0.title || '').toLowerCase().trim();
+
+  // 1. Direct cx/cy override if already validly defined on project object
+  const directCx = (p0.cx !== undefined && p0.cx !== null && p0.cx !== '') ? Number(p0.cx) : null;
+  const directCy = (p0.cy !== undefined && p0.cy !== null && p0.cy !== '') ? Number(p0.cy) : null;
+  if (directCx != null && directCy != null && !isNaN(directCx) && !isNaN(directCy) && directCx > 0 && directCy > 0) {
+    return { cx: directCx, cy: directCy };
+  }
+
+  const pName = (p0.name || p0.title || p0.projectName || '').toLowerCase().trim();
   const city = (p0.city || p0.location || '').trim();
   const lowerCity = city.toLowerCase();
-  
-  // 1. Custom dynamically added locations state
+
+  // 2. Custom dynamically added locations state
   if (city && customLocations[city]) return customLocations[city];
   for (const [key, coords] of Object.entries(customLocations)) {
     if (key.toLowerCase() === lowerCity) return coords;
   }
 
-  // 2. Check Strapi custom mapMarkers (Nationwide Coverage)
-  if (Array.isArray(mapMarkers) && mapMarkers.length > 0) {
-    const strapiMarker = mapMarkers.find(m => {
-      const mName = (m.projectName || m.project_name || m.name || m.title || '').toLowerCase().trim();
-      const mCity = (m.city || m.location || '').toLowerCase().trim();
-      return (mName && (mName === pName || pName.includes(mName) || mName.includes(pName))) &&
-             (!mCity || !lowerCity || mCity === lowerCity || lowerCity.includes(mCity) || mCity.includes(lowerCity));
-    }) || mapMarkers.find(m => {
-      const mName = (m.projectName || m.project_name || m.name || m.title || '').toLowerCase().trim();
-      return mName && (mName === pName || pName.includes(mName) || mName.includes(pName));
+  // 3. Check Strapi custom mapMarkers (Nationwide Coverage collection)
+  const markerList = Array.isArray(mapMarkers)
+    ? mapMarkers
+    : (mapMarkers?.data && Array.isArray(mapMarkers.data) ? mapMarkers.data : []);
+
+  if (markerList.length > 0) {
+    const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const pSlug = slugify(pName);
+    const pCitySlug = slugify(city);
+    const pStateSlug = slugify(p0.state || p0.attributes?.state || '');
+
+    // 1. Exact Name + City match
+    let strapiMarker = markerList.find(m => {
+      const mName = slugify(m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '');
+      const mCity = slugify(m.city || m.location || m.attributes?.city || '');
+      if (mName === pSlug || (mName && pSlug && (mName.includes(pSlug) || pSlug.includes(mName)))) {
+        if (mCity && pCitySlug && (mCity === pCitySlug || mCity.includes(pCitySlug) || pCitySlug.includes(mCity))) {
+          return true;
+        }
+      }
+      return false;
     });
 
+    // 2. Exact Name + State match
+    if (!strapiMarker) {
+      strapiMarker = markerList.find(m => {
+        const mName = slugify(m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '');
+        const mState = slugify(m.state || m.attributes?.state || '');
+        if (mName === pSlug || (mName && pSlug && (mName.includes(pSlug) || pSlug.includes(mName)))) {
+          if (mState && pStateSlug && (mState === pStateSlug || mState.includes(pStateSlug) || pStateSlug.includes(mState))) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
+
+    // 3. Name match only
+    if (!strapiMarker) {
+      strapiMarker = markerList.find(m => {
+        const mName = slugify(m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '');
+        return mName === pSlug;
+      });
+    }
+
     if (strapiMarker) {
-      if (strapiMarker.showOnMap === false) return null;
-      if (strapiMarker.cx != null && strapiMarker.cy != null && Number(strapiMarker.cx) > 0 && Number(strapiMarker.cy) > 0) {
-        return { cx: Number(strapiMarker.cx), cy: Number(strapiMarker.cy) };
+      const showOnMap = strapiMarker.showOnMap !== undefined ? strapiMarker.showOnMap : (strapiMarker.attributes?.showOnMap !== undefined ? strapiMarker.attributes?.showOnMap : true);
+      if (showOnMap === false) return null;
+      
+      const mcx = (strapiMarker.cx !== undefined && strapiMarker.cx !== null && strapiMarker.cx !== '') ? Number(strapiMarker.cx) : (strapiMarker.attributes?.cx !== undefined && strapiMarker.attributes?.cx !== null && strapiMarker.attributes?.cx !== '' ? Number(strapiMarker.attributes.cx) : null);
+      const mcy = (strapiMarker.cy !== undefined && strapiMarker.cy !== null && strapiMarker.cy !== '') ? Number(strapiMarker.cy) : (strapiMarker.attributes?.cy !== undefined && strapiMarker.attributes?.cy !== null && strapiMarker.attributes?.cy !== '' ? Number(strapiMarker.attributes.cy) : null);
+
+      if (mcx != null && mcy != null && !isNaN(mcx) && !isNaN(mcy) && mcx > 0 && mcy > 0) {
+        return { cx: mcx, cy: mcy };
       }
+      // If coordinates not set in Strapi marker (e.g. Crestway cx=null, cy=null), marker is pending! Do NOT fall through to arbitrary city coordinates.
       return null;
     }
   }
 
-  // 3. Direct cx/cy override if defined on project object
-  if (p0.cx !== undefined && p0.cy !== undefined && p0.cx !== '' && p0.cx !== null && p0.cy !== null && Number(p0.cx) > 0 && Number(p0.cy) > 0) {
-    return { cx: Number(p0.cx), cy: Number(p0.cy) };
-  }
-
-  // 4. Check LOCATIONS dictionary
-  for (const [key, coords] of Object.entries(LOCATIONS)) {
-    if (key.toLowerCase() === lowerCity || lowerCity.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerCity)) {
-      return coords;
+  // 4. Check LOCATIONS dictionary by exact city
+  if (city) {
+    for (const [key, coords] of Object.entries(LOCATIONS)) {
+      if (key.toLowerCase() === lowerCity || lowerCity.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerCity)) {
+        return coords;
+      }
     }
   }
 
-  // 5. Fallback state coordinates
-  const state = (p0.state || '').trim();
-  if (state && STATE_FALLBACKS[state]) {
-    return STATE_FALLBACKS[state];
+  // 5. Check if project name / title contains any known city in LOCATIONS (e.g. "Jamnagar")
+  if (pName) {
+    for (const [key, coords] of Object.entries(LOCATIONS)) {
+      if (pName.includes(key.toLowerCase())) {
+        return coords;
+      }
+    }
+  }
+
+  // 6. Fallback state coordinates
+  const state = (p0.state || p0.attributes?.state || '').trim();
+  if (state) {
+    for (const [stName, coords] of Object.entries(STATE_FALLBACKS)) {
+      if (stName.toLowerCase() === state.toLowerCase()) {
+        return coords;
+      }
+    }
+  }
+
+  // 7. Check if state name is mentioned in project name
+  if (pName) {
+    for (const [stName, coords] of Object.entries(STATE_FALLBACKS)) {
+      if (pName.includes(stName.toLowerCase())) {
+        return coords;
+      }
+    }
   }
 
   return null;
@@ -265,7 +340,9 @@ const MapMarker = ({cityProjects,isSelected,isHovered,onHover,onLeave,onClick,co
   const isActive=isSelected||isHovered;
   const projectCount=cityProjects.length;
   const p0 = cityProjects.find(cp => cp.cx != null && cp.cy != null) || cityProjects[0]; 
-  const loc = getLoc(p0, mapMarkers, customLocations); 
+  const loc = (p0 && p0.cx != null && p0.cy != null && Number(p0.cx) > 0 && Number(p0.cy) > 0)
+    ? { cx: Number(p0.cx), cy: Number(p0.cy) }
+    : getLoc(p0, mapMarkers, customLocations); 
   if (!loc || loc.cx == null || loc.cy == null) return null;
   const SIZE=26;
   return(
@@ -334,7 +411,7 @@ const CardProject = ({project,isSelected,onCardClick}) => {
   return(
     <div
       className={`cm-card ${isSelected?'cm-card-selected':''} ${isOngoing?'cm-card-ongoing':'cm-card-completed'}`}
-      onClick={()=>onCardClick(project)}
+      onClick={(e)=>{e.stopPropagation();onCardClick(project);}}
       style={{
         cursor:'pointer',
         ...(isSelected ? {
@@ -416,26 +493,33 @@ const CardProject = ({project,isSelected,onCardClick}) => {
 export default function CoverageMap({ data, mapMarkers = coverageMarkersData, ongoingProjects: strapiOngoing, completedProjects: strapiCompleted }){
   const navigate = useNavigate();
 
-  // Dynamic state for ongoing & completed project lists
-  const [ongoingProjects, setOngoingProjects] = useState([]);
-  const [completedProjects, setCompletedProjects] = useState([]);
-  const [customLocations, setCustomLocations] = useState({});
+  const rawMarkerList = useMemo(() => {
+    return Array.isArray(mapMarkers)
+      ? mapMarkers
+      : (mapMarkers?.data && Array.isArray(mapMarkers.data) ? mapMarkers.data : []);
+  }, [mapMarkers]);
 
-  useEffect(() => {
-    // 1. ONGOING PROJECTS: 100% Direct from live ongoing database (Zero Duplication)
+  const ongoingProjects = useMemo(() => {
     const rawOg = (strapiOngoing && strapiOngoing.length > 0) ? strapiOngoing : projectsData;
-    const ogList = rawOg.map((p, idx) => {
+    return rawOg.map((p, idx) => {
       const pName = p.name || p.title || 'Project';
       const cityName = (p.city || p.location || '').trim();
       const stateName = (p.state || '').trim();
 
-      const loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, mapMarkers, customLocations);
+      let loc = null;
+      if (p.hasMarker === false) {
+        loc = null;
+      } else if (p.cx != null && p.cy != null && Number(p.cx) > 0 && Number(p.cy) > 0) {
+        loc = { cx: Number(p.cx), cy: Number(p.cy) };
+      } else {
+        loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, rawMarkerList, {});
+      }
 
-      const rawImgs = Array.isArray(p.images) && p.images.length > 0
+      const hasValidMarker = !!(loc && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0);
+
+      const imgs = (Array.isArray(p.images) && p.images.length > 0)
         ? p.images
-        : (p.image ? [p.image] : []);
-      const imgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
-      const finalImgs = imgs.length > 0 ? imgs : [FALLBACK_IMG];
+        : (p.image ? [p.image] : [FALLBACK_IMG]);
 
       return {
         id: p.documentId || p.id || `og-${idx}`,
@@ -452,26 +536,35 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         progress: p.progress != null ? p.progress : 75,
         cx: loc ? loc.cx : null,
         cy: loc ? loc.cy : null,
-        showOnMap: !!(loc && loc.cx && loc.cy),
-        images: finalImgs,
-        image: finalImgs[0] || FALLBACK_IMG,
+        hasMarker: hasValidMarker,
+        showOnMap: hasValidMarker,
+        images: imgs,
+        image: imgs[0] || FALLBACK_IMG,
       };
     });
+  }, [strapiOngoing, rawMarkerList]);
 
-    // 2. COMPLETED PROJECTS: 100% Direct from live completed database (Zero Duplication)
+  const completedProjects = useMemo(() => {
     const rawComp = (strapiCompleted && strapiCompleted.length > 0) ? strapiCompleted : completedProjectsData;
-    const compList = rawComp.map((p, idx) => {
+    return rawComp.map((p, idx) => {
       const pName = p.name || p.title || 'Project';
       const cityName = (p.city || p.location || '').trim();
       const stateName = (p.state || '').trim();
 
-      const loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, mapMarkers, customLocations);
+      let loc = null;
+      if (p.hasMarker === false) {
+        loc = null;
+      } else if (p.cx != null && p.cy != null && Number(p.cx) > 0 && Number(p.cy) > 0) {
+        loc = { cx: Number(p.cx), cy: Number(p.cy) };
+      } else {
+        loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, rawMarkerList, {});
+      }
 
-      const rawImgs = Array.isArray(p.images) && p.images.length > 0
+      const hasValidMarker = !!(loc && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0);
+
+      const imgs = (Array.isArray(p.images) && p.images.length > 0)
         ? p.images
-        : (p.image ? [p.image] : []);
-      const imgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
-      const finalImgs = imgs.length > 0 ? imgs : [FALLBACK_IMG];
+        : (p.image ? [p.image] : ['/images/hero/Completed-Projects.png']);
 
       return {
         id: p.documentId || p.id || `comp-${idx}`,
@@ -488,15 +581,13 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         progress: 100,
         cx: loc ? loc.cx : null,
         cy: loc ? loc.cy : null,
-        showOnMap: !!(loc && loc.cx && loc.cy),
-        images: finalImgs,
-        image: finalImgs[0] || FALLBACK_IMG,
+        hasMarker: hasValidMarker,
+        showOnMap: hasValidMarker,
+        images: imgs,
+        image: imgs[0] || '/images/hero/Completed-Projects.png',
       };
     });
-
-    setOngoingProjects(ogList);
-    setCompletedProjects(compList);
-  }, [strapiOngoing, strapiCompleted, mapMarkers, customLocations]);
+  }, [strapiCompleted, rawMarkerList]);
 
   const gujaratProjectCount = ongoingProjects.filter(p => (p.state || '').toLowerCase() === 'gujarat').length;
   const haryanaProjectCount = completedProjects.filter(p => (p.state || '').toLowerCase() === 'haryana').length;
@@ -547,38 +638,72 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
   const filteredProjects = activeTab === 'ongoing' ? ongoingProjects : completedProjects;
   const currentColor = activeTab === 'ongoing' ? ORANGE : GREEN;
 
-  const locationCounts = {};
-  filteredProjects.forEach(p => {
-    if (p.cx == null || p.cy == null || Number(p.cx) <= 0 || Number(p.cy) <= 0) return;
-    const key = (p.city || p.location || '').trim();
-    if (!key) return;
-    if (activeTab === 'ongoing' && (p.state || '').toLowerCase() === 'gujarat') return;
-    if (activeTab === 'completed' && (p.state || '').toLowerCase() === 'haryana') return;
-    if (!locationCounts[key]) locationCounts[key] = [];
-    locationCounts[key].push(p);
-  });
+  const locationCounts = useMemo(() => {
+    const counts = {};
+    filteredProjects.forEach(p => {
+      if (p.showOnMap === false) return;
+      if (p.cx == null || p.cy == null || Number(p.cx) <= 0 || Number(p.cy) <= 0) return;
+      const baseName = (p.city || p.location || p.state || p.name || 'Location').trim();
+      if (!baseName) return;
+
+      // Gujarat ongoing projects stay inside Gujarat Hub; Haryana completed projects stay inside Haryana Hub
+      if (activeTab === 'ongoing' && (p.state || '').toLowerCase() === 'gujarat') return;
+      if (activeTab === 'completed' && (p.state || '').toLowerCase() === 'haryana') return;
+
+      let key = baseName;
+      if (p.fromCoverageMarker) {
+        const existingInGroup = counts[baseName];
+        if (existingInGroup && existingInGroup.length > 0) {
+          const first = existingInGroup[0];
+          const dist = Math.hypot(Number(p.cx) - Number(first.cx), Number(p.cy) - Number(first.cy));
+          if (dist > 2) {
+            key = `${baseName} - ${p.name}`;
+          }
+        }
+      }
+
+      p.locationKey = key;
+      if (!counts[key]) counts[key] = [];
+      counts[key].push(p);
+    });
+    return counts;
+  }, [filteredProjects, activeTab]);
 
   useEffect(() => {
     if (!selectedCity || mapSize.w === 0) return;
     const cityProjects = locationCounts[selectedCity];
     if (!cityProjects || cityProjects.length === 0) return;
     const p0 = cityProjects.find(cp => cp.cx != null && cp.cy != null) || cityProjects[0];
-    const loc = getLoc(p0, mapMarkers, customLocations);
-    setPopupAnchor({ x: (loc.cx / 100) * mapSize.w, y: (loc.cy / 100) * mapSize.h });
-  }, [mapSize, selectedCity, customLocations, mapMarkers, filteredProjects]);
+    if (p0 && p0.cx != null && p0.cy != null) {
+      const newX = (Number(p0.cx) / 100) * mapSize.w;
+      const newY = (Number(p0.cy) / 100) * mapSize.h;
+      setPopupAnchor(prev => {
+        if (prev && Math.abs(prev.x - newX) < 0.5 && Math.abs(prev.y - newY) < 0.5) return prev;
+        return { x: newX, y: newY };
+      });
+    }
+  }, [mapSize, selectedCity, locationCounts]);
 
   useEffect(() => {
     if (selectedCity) {
-      const projs = filteredProjects.filter(p => (p.city || p.location || '').trim().toLowerCase() === selectedCity.toLowerCase());
-      setHighlightedIds(projs.map(p => p.id));
-      const cardIdx = filteredProjects.findIndex(p => (p.city || p.location || '').trim().toLowerCase() === selectedCity.toLowerCase());
-      setTimeout(() => {
-        if (swiperRef.current && cardIdx >= 0) swiperRef.current.slideTo(cardIdx);
-      }, 80);
+      const cityProjects = locationCounts[selectedCity] || [];
+      const projectIds = cityProjects.map(p => p.id);
+      setHighlightedIds(prev => {
+        if (prev.length === projectIds.length && prev.every((id, idx) => id === projectIds[idx])) {
+          return prev;
+        }
+        return projectIds;
+      });
+      const cardIdx = filteredProjects.findIndex(p => projectIds.includes(p.id));
+      if (cardIdx >= 0) {
+        setTimeout(() => {
+          if (swiperRef.current) swiperRef.current.slideTo(cardIdx);
+        }, 80);
+      }
     } else {
-      setHighlightedIds([]);
+      setHighlightedIds(prev => (prev.length === 0 ? prev : []));
     }
-  }, [selectedCity, activeTab, filteredProjects]);
+  }, [selectedCity, activeTab, filteredProjects, locationCounts]);
 
   const selectedCityProjects = selectedCity ? (locationCounts[selectedCity] || null) : null;
   const isSingleProject = selectedCityProjects && selectedCityProjects.length === 1;
@@ -590,8 +715,9 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       return;
     }
     const p0 = projects.find(cp => cp.cx != null && cp.cy != null) || projects[0];
-    const loc = getLoc(p0, mapMarkers, customLocations);
-    setPopupAnchor({ x: (loc.cx / 100) * mapSize.w, y: (loc.cy / 100) * mapSize.h });
+    if (p0 && p0.cx != null && p0.cy != null) {
+      setPopupAnchor({ x: (Number(p0.cx) / 100) * mapSize.w, y: (Number(p0.cy) / 100) * mapSize.h });
+    }
     setSelectedCity(city);
     setShowGujaratPopup(false);
     setShowHaryanaPopup(false);
@@ -618,18 +744,23 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
     setPopupAnchor(null);
   };
 
-  const handleProjectClickFromPopup = (project) => {
-    setHighlightedIds([project.id]);
-    const cardIdx = filteredProjects.findIndex(p => p.id === project.id);
-    setTimeout(() => {
-      if (swiperRef.current && cardIdx >= 0) swiperRef.current.slideTo(cardIdx);
-    }, 80);
+  const handleCardClick = (project) => {
+    if (!project) return;
+    const type = (project.status || '').toLowerCase() === 'completed' ? 'completed' : 'ongoing';
+    const slug = getProjectSlug(project) || (project.name || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    navigate(`/project/${type}/${slug}`, { state: { projectData: project } });
   };
 
-  const handleCardClick = (project) => {
-    const type = project.status === 'Ongoing' || project.status === 'ongoing' ? 'ongoing' : 'completed';
-    const slug = project.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    navigate(`/project/${type}/${slug}`, { state: { projectData: project } });
+  const handleProjectClickFromPopup = (project) => {
+    if (!project) return;
+    setHighlightedIds([project.id]);
+    const cardIdx = filteredProjects.findIndex(p => p.id === project.id);
+    if (cardIdx >= 0) {
+      setTimeout(() => {
+        if (swiperRef.current) swiperRef.current.slideTo(cardIdx);
+      }, 50);
+    }
   };
 
   const handleTabChange = (tab) => {
@@ -770,7 +901,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
                     <Swiper key={swiperKey} onSwiper={s => { swiperRef.current = s; }} modules={[Navigation, Pagination, Autoplay]} spaceBetween={16} slidesPerView={2} slidesPerGroup={2} navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }} pagination={{ clickable: true, dynamicBullets: true }} autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }} breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 1024: { slidesPerView: 2, slidesPerGroup: 2 } }} onBeforeInit={sw => { sw.params.navigation.prevEl = prevRef.current; sw.params.navigation.nextEl = nextRef.current; }} style={{ paddingBottom: '50px' }}>
                       {filteredProjects.map(project => (
                         <SwiperSlide key={`${project.id}-${project.status}`} style={{ height: 'auto' }}>
-                          <div onMouseEnter={() => setHoveredCity(project.city || project.location)} onMouseLeave={() => setHoveredCity(null)}>
+                          <div onMouseEnter={() => setHoveredCity(project.locationKey || project.city || project.location)} onMouseLeave={() => setHoveredCity(null)}>
                             <CardProject project={project} isSelected={highlightedIds.includes(project.id)} onCardClick={handleCardClick}/>
                           </div>
                         </SwiperSlide>

@@ -3,7 +3,7 @@ import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import { HiChevronLeft, HiChevronRight, HiCheckCircle, HiExclamation } from 'react-icons/hi'
-import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
+import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localProjectsData from '../../data/projectsData'
@@ -13,7 +13,7 @@ const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const OngoingProjects = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [projectsData, setProjectsData] = useState(localProjectsData)
-  const [pageData, setPageData] = useState(null)
+  const [pageData, setPageData] = useState(() => getLocalDataSync('ongoing-page'))
   const [loading, setLoading] = useState(false)
   const itemsPerPage = 16
 

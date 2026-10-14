@@ -77,14 +77,16 @@ const matchProject = (p, target) => {
   if (p.documentId && p.documentId.toLowerCase() === targetStr) return true;
   if (p.id && p.id.toString() === targetStr) return true;
 
-  const pNameClean = (p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  const pLocClean = (p.location || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const pName = p.name || p.projectName || p.project_name || p.title || '';
+  const pNameClean = pName.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const pLoc = p.location || p.city || '';
+  const pLocClean = pLoc.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   const fullSlugClean = `${pNameClean}${pLocClean}`;
   if (fullSlugClean === targetClean) return true;
 
   if (targetClean.includes(pNameClean) && pLocClean && targetClean.includes(pLocClean)) return true;
-  if (pNameClean === targetClean) return true;
+  if (pNameClean && (pNameClean === targetClean || targetClean.includes(pNameClean) || pNameClean.includes(targetClean))) return true;
 
   return false;
 };
@@ -118,14 +120,21 @@ const ProjectDetail = () => {
 
   const [project, setProject] = useState(initialMatch || null)
   const [allProjects, setAllProjects] = useState(localPool)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(!initialMatch)
 
   useEffect(() => {
+    if (location.state?.projectData) {
+      setProject(location.state.projectData);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     let isMounted = true;
 
     const fetchUltraFast = async (forceFresh = false) => {
       let foundFast = false;
-      if (initialMatch && isMounted && !project) {
+      if (initialMatch && isMounted) {
         setProject(initialMatch);
         foundFast = true;
       }
@@ -182,14 +191,43 @@ const ProjectDetail = () => {
                return s === targetS || s.includes(targetS) || targetS.includes(s) || (p.id && p.id.toString() === projectIdOrSlug.toString());
             });
           }
+
+          if (!foundProject) {
+            try {
+              const markersRes = await fetchStrapiData('coverage-markers?populate=*&pagination[pageSize]=100', { forceFresh });
+              const mList = Array.isArray(markersRes) ? markersRes : (markersRes?.data && Array.isArray(markersRes.data) ? markersRes.data : []);
+              const mMatch = mList.find(m => {
+                const mName = m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '';
+                return matchProject({ ...m, name: mName }, projectIdOrSlug) || slugify(mName) === slugify(projectIdOrSlug) || slugify(mName).includes(slugify(projectIdOrSlug)) || slugify(projectIdOrSlug).includes(slugify(mName));
+              });
+              if (mMatch) {
+                const rawImgs = Array.isArray(mMatch.images) && mMatch.images.length > 0 ? mMatch.images : (mMatch.image ? [mMatch.image] : (mMatch.attributes?.images?.data ? mMatch.attributes.images.data : []));
+                const imgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
+                foundProject = {
+                  id: mMatch.documentId || mMatch.id,
+                  documentId: mMatch.documentId,
+                  name: mMatch.projectName || mMatch.project_name || mMatch.name || mMatch.title || 'Project',
+                  location: mMatch.city || mMatch.location || mMatch.state || 'Location',
+                  state: mMatch.state || (projectType === 'completed' ? 'Haryana' : 'Gujarat'),
+                  category: mMatch.category || 'Industrial Infrastructure',
+                  area: mMatch.area || 'N/A',
+                  client: mMatch.client || 'Pislinfra Client',
+                  timeline: mMatch.timeline || (projectType === 'completed' ? 'Completed' : 'Ongoing'),
+                  status: mMatch.projectType || (projectType === 'completed' ? 'Completed' : 'Ongoing'),
+                  scope: mMatch.scope || 'Civil Work & Infrastructure',
+                  images: imgs.length > 0 ? imgs : [fallbackImages[0]]
+                };
+              }
+            } catch (err) {}
+          }
           
           if (foundProject && isMounted) {
             setProject(foundProject);
-          } else if (initialMatch && isMounted && !project) {
+          } else if (initialMatch && isMounted) {
             setProject(initialMatch);
           }
           if (isMounted) setLoading(false);
-        } else if (initialMatch && isMounted && !project) {
+        } else if (initialMatch && isMounted) {
           setProject(initialMatch);
           setLoading(false);
         } else if (isMounted) {
@@ -198,7 +236,7 @@ const ProjectDetail = () => {
       } catch (e) {
         console.error(e);
         if (isMounted) {
-          if (initialMatch && !project) setProject(initialMatch);
+          if (initialMatch) setProject(initialMatch);
           setLoading(false);
         }
       }

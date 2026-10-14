@@ -85,12 +85,7 @@ const awards = [
   },
 ];
 
-const getAwardUrl = (img) => {
-  if (!img) return "";
-  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
-  if (!url) return "";
-  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-};
+import { getStrapiMediaUrl } from '../../services/strapi';
 
 const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
   const swiperRef = useRef(null);
@@ -98,13 +93,16 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
   const nextRef = useRef(null);
 
   const activeAwards = strapiAwards && strapiAwards.length > 0 
-    ? strapiAwards.map((a, i) => ({ 
-        title: a.title || awards[i % awards.length]?.title, 
-        subtitle: a.subtitle || awards[i % awards.length]?.subtitle, 
-        text: a.description ? a.description.substring(0, 20) : (awards[i % awards.length]?.text || 'Safety Milestone'), 
-        description: a.description || awards[i % awards.length]?.description, 
-        image: getAwardUrl(a.image) || awards[i % awards.length]?.image || "" 
-      })) 
+    ? strapiAwards.map((a, i) => {
+        const customImg = getStrapiMediaUrl(a.image);
+        return { 
+          title: a.title || awards[i % awards.length]?.title, 
+          subtitle: a.subtitle || awards[i % awards.length]?.subtitle, 
+          text: a.description ? a.description.substring(0, 20) : (awards[i % awards.length]?.text || 'Safety Milestone'), 
+          description: a.description || awards[i % awards.length]?.description, 
+          image: customImg || awards[i % awards.length]?.image || "" 
+        };
+      }) 
     : awards;
 
   return (
@@ -412,7 +410,7 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
         .ehs-nav-btn:hover {
           background: #0a2a66;
           color: #ffffff;
-          transform: translateY(-50%) scale(1.1);
+          transform: translateY(-50%);
           box-shadow: 0 8px 24px rgba(10, 42, 102, 0.25);
         }
 
@@ -479,7 +477,7 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
         }
 
         @media (hover: hover) {
-          .photo-card:hover .card-image { transform: scale(1.08) !important; }
+          .photo-card:hover .card-image { transform: none !important; }
           .photo-card:hover .card-overlay { 
             opacity: 0.92 !important; 
             background: linear-gradient(to top, rgba(10,42,102, 1) 0%, rgba(10,42,102, 0.7) 60%, transparent 100%) !important; 

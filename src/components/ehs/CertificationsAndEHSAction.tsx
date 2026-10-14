@@ -90,7 +90,7 @@ const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title
                 {visibleClients.map((client: any, i: number) => (
                   <div key={i} style={{ textAlign: 'center' }}>
                     <div style={{ backgroundColor: '#F8FAFC', border: '1px solid #EEF2F7', borderRadius: '12px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '65px' }}>
-                      <img src={client.logo} alt={client.name} style={{ maxWidth: '80%', maxHeight: '40px', objectFit: 'contain' }} />
+                      <img src={client.logo} alt={client.name} loading="lazy" decoding="async" style={{ maxWidth: '80%', maxHeight: '40px', objectFit: 'contain' }} />
                     </div>
                     <p style={{ fontSize: '11px', fontWeight: 600, color: '#1E293B', margin: '4px 0 0 0', fontFamily: 'Inter, sans-serif' }}>{client.name}</p>
                   </div>

@@ -186,22 +186,10 @@ const LifeSavingRules = ({ rules, title, subtitle }) => {
           >
             <div className={`flex flex-col items-center justify-center p-3 sm:p-4 ${isPrint ? 'min-h-[170px]' : 'min-h-[150px] md:min-h-[170px]'} border-b-[1px] border-black bg-white overflow-hidden`}>
               
-              {isPrint ? (
-                // STATIC ICON FOR PDF
-                // Changed back to standard img tag as the massive base64 string issue is now fixed via compression.
-                <div className="flex justify-center items-center h-28 w-full mb-4">
-                  <img src={printIcon} alt={rule.titleEn} className="w-full h-full object-contain" />
-                </div>
-              ) : (
-                // ANIMATED ICON FOR WEBSITE
-                <motion.div 
-                  className="flex justify-center items-center h-20 sm:h-28 w-full mb-2 sm:mb-4"
-                  animate={{ scale: [1, 1.1, 1], opacity: [1, 0.6, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <img src={rule.imgBase64} alt={rule.titleEn} className="w-full h-full object-contain" />
-                </motion.div>
-              )}
+              {/* STATIC ICON */}
+              <div className="flex justify-center items-center h-20 sm:h-28 w-full mb-2 sm:mb-4">
+                <img src={isPrint ? printIcon : rule.imgBase64} alt={rule.titleEn} className="w-full h-full object-contain" />
+              </div>
 
               <h4 className="text-base font-black uppercase text-black text-center tracking-wide">
                 {rule.titleEn}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import industrialBg from '../../assets/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr.png'
@@ -37,8 +37,12 @@ const defaultIndustrialData = {
 };
 
 const Industrial = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => {
+    const raw = getLocalDataSync('solution-pages-industrial') || getLocalDataSync('solution-pages?filters[slug]=industrial');
+    if (raw) return Array.isArray(raw) ? (raw[0] || defaultIndustrialData) : raw;
+    return defaultIndustrialData;
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -46,11 +50,11 @@ const Industrial = () => {
         const response = await fetchStrapiData('solution-pages?filters[slug]=industrial&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo');
         if (response && response.length > 0) {
           setData(response[0]);
-        } else {
-          setData(defaultIndustrialData);
+        } else if (response && !Array.isArray(response)) {
+          setData(response);
         }
       } catch (err) {
-        setData(defaultIndustrialData);
+        // Fallback remains active
       } finally {
         setLoading(false);
       }
@@ -58,7 +62,7 @@ const Industrial = () => {
     loadData();
   }, []);
 
-  if (loading || !data) return <Preloader />;
+  if (loading && !data) return <Preloader />;
 
   const seoData = {
     contentType: 'page',

@@ -2,10 +2,11 @@ import Preloader from '../../components/common/Preloader';
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import OurPresence from '../../components/sections/OurPresence';
+import AboutDocuments from '../../components/about/AboutDocuments';
 import { 
   FaWarehouse, FaCalendar, FaBuilding, FaUsers, 
   FaHardHat, FaIndustry, FaHandshake, FaStar, FaLightbulb, FaShieldAlt,
@@ -59,13 +60,13 @@ const AutoSlidingImages = () => {
 };
 
 const Overview = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => getLocalDataSync('about-page'));
+  const [loading, setLoading] = useState(!data);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values');
+        const response = await fetchStrapiData('about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values&populate[5]=companyProfile.file&populate[6]=companyProfile.coverImage&populate[7]=resources.file&populate[8]=resources.coverImage');
         if (response) {
           setData(response);
         }
@@ -76,6 +77,14 @@ const Overview = () => {
       }
     };
     loadData();
+
+    const handleUpdate = (e) => {
+      if (e.detail?.endpoint?.includes('about-page') && e.detail.data) {
+        setData(e.detail.data);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
   }, []);
 
   const getImageUrl = (imgObj, defaultImg) => {
@@ -86,7 +95,7 @@ const Overview = () => {
     return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
   };
 
-  if (loading) return <Preloader />;
+  if (loading && !data) return <Preloader />;
   if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
 
   const seoData = {
@@ -200,6 +209,7 @@ const Overview = () => {
         </div>
       </section>
 
+      {/* OUR VALUES */}
       <section className="overview-section" style={{ backgroundColor: '#f9fafb' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: NAVY, marginBottom: '48px', textAlign: 'center' }}>
@@ -224,7 +234,11 @@ const Overview = () => {
         </div>
       </section>
 
+      {/* OUR PRESENCE */}
       <OurPresence title={data.presenceTitle} description={data.presenceDescription} />
+
+      {/* Building Infrastructure for a Better Tomorrow (Company Profile) - Sabse Niche */}
+      <AboutDocuments profileData={data?.companyProfile || (data?.resources && data.resources.find(r => (r.title || '').toLowerCase().includes('profile'))) || (data?.resources && data.resources[0])} />
 
       <style>{`
         .overview-section { padding: 80px 24px; }

@@ -31,8 +31,9 @@ const CaseStudyDetail = () => {
   const { slug } = useParams()
   const navigate = useNavigate()
   
-  const [cs, setCs] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const initialLocal = caseStudies.find(lc => lc.slug === slug);
+  const [cs, setCs] = useState(initialLocal || null)
+  const [loading, setLoading] = useState(!initialLocal)
 
   useEffect(() => {
     const getData = async () => {
@@ -78,7 +79,7 @@ const CaseStudyDetail = () => {
     getData();
   }, [slug]);
 
-  if (loading) return <Preloader />
+  if (loading && !cs) return <Preloader />
 
 
   if (!cs) {

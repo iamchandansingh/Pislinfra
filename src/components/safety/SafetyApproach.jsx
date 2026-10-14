@@ -184,18 +184,16 @@ const SafetyApproach = ({ approaches, title, subtitle }) => {
                     zIndex: 3
                   }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-6px)';
+                      e.currentTarget.style.transform = 'translateY(-4px)';
                       e.currentTarget.style.boxShadow = isEven 
                         ? '0 20px 40px rgba(10,42,102,0.25)' 
                         : '0 20px 40px rgba(0,0,0,0.1)';
-                      e.currentTarget.parentElement.querySelector('.timeline-dot').style.transform = 'translateY(-50%) scale(1.3)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
                       e.currentTarget.style.boxShadow = isEven 
                         ? '0 10px 30px rgba(10,42,102,0.15)' 
                         : '0 10px 30px rgba(0,0,0,0.06)';
-                      e.currentTarget.parentElement.querySelector('.timeline-dot').style.transform = 'translateY(-50%) scale(1)';
                     }}
                   >
                     <div style={{ 
@@ -283,8 +281,6 @@ const SafetyApproach = ({ approaches, title, subtitle }) => {
                     width: '100%', 
                     height: '100%',
                     objectFit: 'cover',
-                    transform: currentImg === i ? 'scale(1.05)' : 'scale(1)',
-                    transition: 'transform 4s ease-out'
                   }}
                 />
                 <div style={{

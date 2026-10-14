@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
+import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localCompletedProjects from '../../data/completedProjects'
@@ -10,7 +10,7 @@ import localCompletedProjects from '../../data/completedProjects'
 const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const CompletedProjects = () => {
-  const [pageData, setPageData] = useState(null)
+  const [pageData, setPageData] = useState(() => getLocalDataSync('completed-page'))
   const [projectsList, setProjectsList] = useState(localCompletedProjects)
   const [loading, setLoading] = useState(false)
   

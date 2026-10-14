@@ -5,14 +5,14 @@ import FeaturedCaseStudy from '../../components/case-studies/FeaturedCaseStudy'
 import CaseStudiesGrid from '../../components/case-studies/CaseStudiesGrid'
 import ProjectApproach from '../../components/case-studies/ProjectApproach'
 import TrustedClients from '../../components/case-studies/TrustedClients'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import Preloader from '../../components/common/Preloader'
 import localCaseStudies from '../../data/caseStudies'
 
 const CaseStudy = () => {
-  const [pageData, setPageData] = useState(null)
-  const [caseStudiesList, setCaseStudiesList] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [pageData, setPageData] = useState(() => getLocalDataSync('case-study-page'))
+  const [caseStudiesList, setCaseStudiesList] = useState(localCaseStudies)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
@@ -60,7 +60,7 @@ const CaseStudy = () => {
     getData();
   }, []);
 
-  if (loading) return <Preloader />;
+  if (loading && caseStudiesList.length === 0) return <Preloader />;
 
   const getImageUrl = (img) => {
     if (!img) return null;

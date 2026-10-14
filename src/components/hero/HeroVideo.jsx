@@ -67,7 +67,6 @@ const HeroVideo = ({ videoSrc }) => {
         muted
         loop
         playsInline
-        defaultMuted
         preload="auto"
         onLoadedData={handleVideoReady}
         onCanPlay={handleVideoReady}

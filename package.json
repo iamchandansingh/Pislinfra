@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "node scripts/syncStrapiToBackup.js && node scripts/generateSitemap.js && vite build && node scripts/prerenderBlogs.js",
+    "build": "node scripts/syncStrapiToBackup.js && node scripts/generateSitemap.js && vite build && node scripts/prerenderBlogs.js && node scripts/syncStrapiToBackup.js",
     "sync": "node scripts/syncStrapiToBackup.js",
     "sitemap": "node scripts/generateSitemap.js",
     "prerender": "node scripts/prerenderBlogs.js",

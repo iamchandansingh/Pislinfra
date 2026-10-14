@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fetchStrapiData } from '../services/strapi';
+import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
 import { FaDownload, FaFilePdf, FaCalendar } from 'react-icons/fa';
@@ -11,8 +11,8 @@ const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
 const AnnualReports = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => getLocalDataSync('annual-report-page'));
+  const [loading, setLoading] = useState(!data);
 
   useEffect(() => {
     const loadData = async () => {
@@ -50,7 +50,7 @@ const AnnualReports = () => {
     window.open(url, '_blank');
   };
 
-  if (loading) return <Preloader />;
+  if (loading && !data) return <Preloader />;
   if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Reports not found.</div>;
 
   const seoData = {

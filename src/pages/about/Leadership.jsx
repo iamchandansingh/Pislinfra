@@ -4,7 +4,7 @@ import { FaGraduationCap, FaBriefcase, FaNetworkWired, FaCheckCircle } from 'rea
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import CoreTeamGrid from '../../components/leadership/CoreTeamGrid';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
 import Preloader from '../../components/common/Preloader';
 import defaultLeadershipData from '../../data/leadershipData';
 
@@ -22,7 +22,10 @@ const getIcon = (name) => {
 };
 
 const Leadership = () => {
-  const [data, setData] = useState(defaultLeadershipData);
+  const [data, setData] = useState(() => {
+    const local = getLocalDataSync('leadership-page');
+    return (local && local.topLeaderName) ? local : defaultLeadershipData;
+  });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

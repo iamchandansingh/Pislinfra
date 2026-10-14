@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
 import defaultClientAppreciations from '../../data/clientAppreciationsData';
-import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
+import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi';
 import { getImageUrl } from '../../utils/imageUrl';
 import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
 import PageHero from '../../components/hero/PageHero';
@@ -27,10 +27,27 @@ const Awards = () => {
   const [selectedAward, setSelectedAward] = useState(null);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [activePopupType, setActivePopupType] = useState(null);
-  const [pageData, setPageData] = useState(null);
+  const [pageData, setPageData] = useState(() => getLocalDataSync('awards-page'));
   const [awardsAndCertifications, setAwardsAndCertifications] = useState(() => sortAwardsByFeaturedAndDate(defaultAwardsData));
   const [clientAppreciationsData, setClientAppreciationsData] = useState(defaultClientAppreciations);
-  const [milestonesData, setMilestonesData] = useState([]);
+  const [milestonesData, setMilestonesData] = useState(() => {
+    const raw = getLocalDataSync('milestones') || getLocalDataSync('timeline-milestones');
+    if (Array.isArray(raw) && raw.length > 0) {
+      return raw.map((m, idx) => ({
+        id: m.documentId || m.id || idx + 1,
+        year: String(m.year || ''),
+        tag: m.tag || m.category || 'Milestone',
+        awardsCount: m.awardsCount || `${m.totalAwards || 1} Awards Won`,
+        title: m.title,
+        desc: m.desc || m.description,
+        stats: m.stats || `Total ${m.totalAwards || 1} Awards | Landmark EPC`,
+        highlights: m.highlights ? (Array.isArray(m.highlights) ? m.highlights : [m.highlights]) : [],
+        image: m.image?.url || m.coverImage?.url || '/images/about/sustainable-infra-gold.jpg',
+        color: idx % 2 === 0 ? '#1E2A5A' : '#F37346'
+      }));
+    }
+    return [];
+  });
 
   useEffect(() => {
     const loadData = async () => {

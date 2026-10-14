@@ -1,425 +1,188 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { 
-  FaShieldAlt, 
-  FaChartLine, 
-  FaUsersCog, 
-  FaFilePdf, 
-  FaFilePowerpoint, 
-  FaEye, 
-  FaDownload 
-} from 'react-icons/fa';
+  FileText, 
+  ArrowRight, 
+  Eye 
+} from 'lucide-react';
+import { fetchStrapiData, getStrapiMediaUrl } from '../../services/strapi';
 
-const NAVY = '#0a2a66';
-const ORANGE = '#ff8755';
-const FONT = 'Inter, sans-serif';
-
-const defaultResourceCards = [
-  {
-    id: 'pisl-profile',
-    title: 'PISL Profile',
-    coverTitle: 'PISL PROFILE',
-    coverSubtitle: 'Building Infrastructure for a Better Tomorrow',
-    desc: 'Overview of PISL capabilities, infrastructure projects, client portfolio and achievements.',
-    type: 'PPT / PPTX',
-    typeIcon: FaFilePowerpoint,
-    typeBg: 'rgba(255, 135, 85, 0.1)',
-    typeColor: ORANGE,
-    typeBorder: 'rgba(255, 135, 85, 0.25)',
-    bgImage: '/images/blogs/optimized_1787755078619_572_Green-Industrial-Park_png.webp',
-    accentColor: NAVY,
-    viewUrl: '/reports/Pragati-Infra-Solutions-2.pdf',
-    downloadUrl: '/reports/Pragati-Infra-Solutions-2.pdf',
-    viewLabel: 'View Presentation',
-    downloadLabel: 'Download PPT',
-  },
-  {
-    id: 'hse-policy',
-    title: 'HSE Policy',
-    coverTitle: 'HSE POLICY',
-    coverSubtitle: 'Safe People • Safe Projects • Stronger Tomorrow',
-    desc: 'Official Health, Safety & Environment policies, operational guidelines and zero-harm standards.',
-    type: 'PDF',
-    typeIcon: FaFilePdf,
-    typeBg: 'rgba(239, 68, 68, 0.08)',
-    typeColor: '#ef4444',
-    typeBorder: 'rgba(239, 68, 68, 0.2)',
-    bgImage: '/images/EHS/Site-Safety-Inspection.png',
-    accentColor: ORANGE,
-    viewUrl: '/reports/Annual-Reports-2023-2024.pdf',
-    downloadUrl: '/reports/Annual-Reports-2023-2024.pdf',
-    viewLabel: 'View PDF',
-    downloadLabel: 'Download PDF',
-  },
-];
-
-const DocumentThumbnail = ({ title, subtitle, bgImage, accentColor }) => {
-  return (
-    <div style={{
-      width: '100%',
-      height: '155px',
-      borderRadius: '10px',
-      overflow: 'hidden',
-      position: 'relative',
-      backgroundColor: '#f1f5f9',
-      boxShadow: '0 2px 8px rgba(10,42,102,0.06)',
-      display: 'flex',
-    }}>
-      {/* Background Project Photo */}
-      <img
-        src={bgImage}
-        alt={title}
-        loading="lazy"
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}
-      />
-
-      {/* Angled Accent Trim Layer */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '67%',
-        height: '100%',
-        backgroundColor: accentColor || ORANGE,
-        clipPath: 'polygon(0 0, 100% 0, 75% 100%, 0 100%)',
-        zIndex: 1,
-      }} />
-
-      {/* White Slanted Document Card Overlay */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '65%',
-        height: '100%',
-        backgroundColor: '#ffffff',
-        clipPath: 'polygon(0 0, 100% 0, 75% 100%, 0 100%)',
-        zIndex: 2,
-        padding: '14px 16px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        boxSizing: 'border-box',
-      }}>
-        {/* PISL Logo Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <img 
-            src="/logo.png" 
-            alt="PISL" 
-            style={{ height: '22px', width: 'auto', objectFit: 'contain' }} 
-          />
-        </div>
-
-        {/* Document Header Text */}
-        <div style={{ paddingBottom: '2px' }}>
-          <div style={{
-            fontSize: '12px',
-            fontWeight: '900',
-            color: NAVY,
-            letterSpacing: '0.4px',
-            textTransform: 'uppercase',
-            lineHeight: 1.2,
-          }}>
-            {title}
-          </div>
-          <div style={{
-            fontSize: '8.5px',
-            fontWeight: '600',
-            color: '#64748b',
-            lineHeight: 1.25,
-            marginTop: '3px',
-          }}>
-            {subtitle}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+const DEFAULT_HSE_PDF = 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf';
+const LOCAL_HSE_PDF = '/reports/Annual-Reports-2023-2024.pdf';
+const DEFAULT_HSE_COVER = '/images/hero/safety-Hero-image.png';
+const LOCAL_HSE_FALLBACK = '/images/EHS/Site-Safety-Inspection.png';
 
 const SafetyResources = ({ resources, title, subtitle, desc }) => {
-  const resourceCards = defaultResourceCards.map((defaultCard, i) => {
-    const strapiItem = resources && resources[i];
-    const fileUrl = strapiItem?.file?.url;
-    return {
-      ...defaultCard,
-      viewUrl: fileUrl 
-        ? (fileUrl.startsWith('http') ? fileUrl : `${import.meta.env.VITE_STRAPI_URL || ""}${fileUrl}`) 
-        : defaultCard.viewUrl,
-      downloadUrl: fileUrl 
-        ? (fileUrl.startsWith('http') ? fileUrl : `${import.meta.env.VITE_STRAPI_URL || ""}${fileUrl}`) 
-        : defaultCard.downloadUrl,
+  const [docFileUrl, setDocFileUrl] = useState(DEFAULT_HSE_PDF);
+  const [docCoverUrl, setDocCoverUrl] = useState(DEFAULT_HSE_COVER);
+  const [docTitle, setDocTitle] = useState('HSE Policy');
+  const [docDesc, setDocDesc] = useState('Official Health, Safety & Environment policies, operational guidelines and zero-harm standards. Access our comprehensive workplace safety framework and protocols.');
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    if (downloading) return;
+    setDownloading(true);
+
+    try {
+      // 1. Try fetching target PDF file as a blob to force native browser download
+      const targetUrl = docFileUrl || '/reports/HSE_POLICY_PISL.pdf';
+      const response = await fetch(targetUrl, { mode: 'cors' });
+      if (!response.ok) throw new Error('Download network error');
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = blobUrl;
+      a.download = 'HSE_POLICY_PISL.pdf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(blobUrl);
+      }, 300);
+    } catch (err) {
+      console.warn('Direct blob download failed, falling back to local file:', err);
+      // Fallback: Trigger download via local same-origin copy
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = '/reports/HSE_POLICY_PISL.pdf';
+      a.download = 'HSE_POLICY_PISL.pdf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+      }, 300);
+    } finally {
+      setTimeout(() => setDownloading(false), 800);
+    }
+  };
+
+  useEffect(() => {
+    const applyItem = (item) => {
+      if (!item) return;
+      if (item.title) setDocTitle(item.title);
+      if (item.desc) setDocDesc(item.desc);
+      if (item.file || item.fileUrl) {
+        const u = getStrapiMediaUrl(item.file || item.fileUrl);
+        if (u) setDocFileUrl(u);
+      }
+      if (item.coverImage) {
+        const c = getStrapiMediaUrl(item.coverImage);
+        if (c) setDocCoverUrl(c);
+      }
     };
-  });
+
+    // 1. Check passed resources prop
+    const hseItem = (resources || []).find(r => {
+      const t = (r.title || '').toLowerCase();
+      return t.includes('hse') || t.includes('policy') || t.includes('safety');
+    }) || (resources && resources.length > 0 ? resources[0] : null);
+
+    if (hseItem) applyItem(hseItem);
+
+    // 2. Fetch directly from Strapi CMS for live real-time updates
+    fetchStrapiData('ehs-page?populate[0]=resources&populate[1]=resources.file&populate[2]=resources.coverImage')
+      .then(data => {
+        const items = data?.resources || data?.data?.attributes?.resources || [];
+        const liveItem = items.find(r => {
+          const t = (r.title || '').toLowerCase();
+          return t.includes('hse') || t.includes('policy') || t.includes('safety');
+        });
+        if (liveItem) applyItem(liveItem);
+      })
+      .catch(() => {});
+
+    // 3. Check localStorage for updated strapi cache
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        for (let i = 0; i < window.localStorage.length; i++) {
+          const key = window.localStorage.key(i);
+          if (key && key.includes('ehs-page')) {
+            const raw = window.localStorage.getItem(key);
+            if (raw) {
+              const parsed = JSON.parse(raw);
+              const item = parsed?.resources?.find(r => {
+                const t = (r.title || '').toLowerCase();
+                return t.includes('hse') || t.includes('policy') || t.includes('safety');
+              });
+              if (item) applyItem(item);
+            }
+          }
+        }
+      } catch (e) {}
+    }
+  }, [resources]);
 
   return (
-    <section style={{ 
-      padding: '70px 20px 90px',
-      backgroundColor: '#f8fafc',
-      fontFamily: FONT
+    <section className="ehs-safety-section" style={{
+      padding: '40px 24px 70px',
+      backgroundColor: '#ffffff',
+      fontFamily: '"Inter", sans-serif'
     }}>
-      <div style={{ maxWidth: '1370px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1350px', margin: '0 auto' }}>
         
-        {/* Split Section Layout */}
-        <div className="safety-resources-split">
+        {/* Main Banner Card */}
+        <div className="hse-card">
           
-          {/* LEFT BANNER: Safety is Our Highest Priority */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="sr-left-banner"
-          >
-            {/* Background Construction Image */}
-            <img 
-              src="/images/EHS/Heroimages/1.png" 
-              alt="PISL Safety Infrastructure" 
-              loading="lazy"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                zIndex: 1,
-              }}
-            />
-
-            {/* Gradient Overlay in PISL Brand Navy */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'linear-gradient(to right, rgba(10,42,102, 0.95) 0%, rgba(10,42,102, 0.75) 60%, rgba(10,42,102, 0.35) 100%)',
-              zIndex: 2,
-            }} />
-
-            {/* Content Top */}
-            <div style={{ position: 'relative', zIndex: 3 }}>
-              {/* Tag with Orange Bar */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                <span style={{ 
-                  width: '28px', 
-                  height: '3px', 
-                  backgroundColor: ORANGE, 
-                  borderRadius: '2px', 
-                  display: 'inline-block' 
-                }} />
-                <span style={{ 
-                  fontSize: '11px', 
-                  fontWeight: '800', 
-                  color: '#ffffff', 
-                  letterSpacing: '1.8px', 
-                  textTransform: 'uppercase' 
-                }}>
-                  {title || "SAFETY & RESOURCES"}
-                </span>
-              </div>
-
-              {/* Headline */}
-              <h2 style={{
-                fontSize: 'clamp(32px, 3.8vw, 46px)',
-                fontWeight: '800',
-                color: '#ffffff',
-                lineHeight: 1.15,
-                letterSpacing: '-0.5px',
-                margin: '0 0 16px',
-              }}>
-                {subtitle ? (
-                  subtitle
-                ) : (
-                  <>
-                    Safety is Our{' '}
-                    <span style={{ color: ORANGE }}>Highest</span>{' '}
-                    Priority
-                  </>
-                )}
-              </h2>
-
-              {/* Subtext */}
-              <p style={{
-                fontSize: '15.5px',
-                color: 'rgba(255, 255, 255, 0.88)',
-                lineHeight: 1.65,
-                margin: 0,
-                maxWidth: '560px',
-              }}>
-                {desc || "Access our official safety guidelines, company profile, and important resources for all project sites."}
-              </p>
-            </div>
-
-            {/* Content Bottom: 3 Circular Badges */}
-            <div style={{ position: 'relative', zIndex: 3 }}>
-              <div className="sr-badges-row">
-                {/* Badge 1 */}
-                <div className="sr-badge-item">
-                  <div className="sr-badge-circle">
-                    <FaShieldAlt style={{ fontSize: '18px' }} />
-                  </div>
-                  <div className="sr-badge-text">
-                    Safe<br />Workplace
-                  </div>
-                </div>
-
-                {/* Badge 2 */}
-                <div className="sr-badge-item">
-                  <div className="sr-badge-circle">
-                    <FaChartLine style={{ fontSize: '18px' }} />
-                  </div>
-                  <div className="sr-badge-text">
-                    Best<br />Practices
-                  </div>
-                </div>
-
-                {/* Badge 3 */}
-                <div className="sr-badge-item">
-                  <div className="sr-badge-circle">
-                    <FaUsersCog style={{ fontSize: '18px' }} />
-                  </div>
-                  <div className="sr-badge-text">
-                    Sustainable<br />Operations
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* RIGHT COLUMN: Key Resources Header + 2 Resource Cards */}
-          <div className="sr-right-column">
+          {/* Left Content Area */}
+          <div className="hse-content">
             
-            {/* Header */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              style={{ marginBottom: '24px' }}
-            >
-              <h3 style={{
-                fontSize: 'clamp(26px, 3vw, 34px)',
-                fontWeight: '800',
-                color: NAVY,
-                letterSpacing: '-0.5px',
-                margin: '0 0 6px',
-              }}>
-                {title ? title : <>Key <span style={{ color: ORANGE }}>Resources</span></>}
-              </h3>
+            {/* Headline */}
+            <h3 className="hse-headline">
+              Environment, Health & Safety <br />
+              <span className="hse-highlight">{docTitle}</span>
+            </h3>
 
-              <p style={{
-                fontSize: '14px',
-                color: '#64748b',
-                margin: 0,
-                lineHeight: 1.5,
-              }}>
-                {subtitle || "Download official documents and company information."}
-              </p>
-            </motion.div>
+            {/* Subtitle / Description */}
+            <p className="hse-description">
+              {docDesc}
+            </p>
 
-            {/* 2 PDF Cards Grid */}
-            <div className="sr-cards-grid">
-              {resourceCards.map((card, idx) => (
-                <motion.div
-                  key={card.id || idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  className="sr-card"
-                >
-                  <div>
-                    {/* Top Document Cover */}
-                    <DocumentThumbnail 
-                      title={card.coverTitle}
-                      subtitle={card.coverSubtitle}
-                      bgImage={card.bgImage}
-                      accentColor={card.accentColor}
-                    />
+            {/* Call To Action Buttons */}
+            <div className="hse-actions">
+              <a 
+                href={docFileUrl}
+                download="HSE_POLICY_PISL.pdf"
+                onClick={handleDownload}
+                className="hse-download-btn"
+                title="Download HSE Policy (PDF)"
+              >
+                <div className="hse-btn-body">
+                  <FileText size={18} strokeWidth={2.2} />
+                  <span>{downloading ? 'Downloading...' : 'Download PDF'}</span>
+                </div>
+                <div className="hse-btn-arrow">
+                  <ArrowRight size={18} strokeWidth={2.4} />
+                </div>
+              </a>
 
-                    {/* Format Pill Badge */}
-                    <div style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px',
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      backgroundColor: card.typeBg,
-                      color: card.typeColor,
-                      border: `1px solid ${card.typeBorder}`,
-                      fontSize: '10px',
-                      fontWeight: '800',
-                      letterSpacing: '0.4px',
-                      marginTop: '14px',
-                      marginBottom: '6px',
-                    }}>
-                      <card.typeIcon style={{ fontSize: '11px' }} />
-                      <span>{card.type}</span>
-                    </div>
-
-                    {/* Title */}
-                    <h4 style={{
-                      fontSize: '17px',
-                      fontWeight: '800',
-                      color: NAVY,
-                      margin: '0 0 4px',
-                      lineHeight: 1.3,
-                    }}>
-                      {card.title}
-                    </h4>
-
-                    {/* Description */}
-                    <p style={{
-                      fontSize: '13px',
-                      color: '#64748b',
-                      lineHeight: 1.5,
-                      margin: '0 0 18px',
-                    }}>
-                      {card.desc}
-                    </p>
-                  </div>
-
-                  {/* Actions: View & Download Buttons */}
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '12px',
-                    marginTop: 'auto',
-                    paddingTop: '10px',
-                    borderTop: '1px solid #f1f5f9',
-                  }}>
-                    <a 
-                      href={card.viewUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="sr-btn sr-btn-view"
-                    >
-                      <FaEye style={{ fontSize: '13px' }} />
-                      <span>{card.viewLabel}</span>
-                    </a>
-
-                    <a 
-                      href={card.downloadUrl} 
-                      download 
-                      className="sr-btn sr-btn-download"
-                    >
-                      <FaDownload style={{ fontSize: '11px' }} />
-                      <span>{card.downloadLabel}</span>
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
+              <a 
+                href={docFileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hse-view-btn"
+                title="View PDF in Browser"
+              >
+                <Eye size={16} />
+                <span>View PDF</span>
+              </a>
             </div>
 
+          </div>
+
+          {/* Right Visual Image */}
+          <div className="hse-visual">
+            <img 
+              src={docCoverUrl} 
+              alt="HSE Policy & Safety Standards" 
+              loading="lazy"
+              onError={(e) => {
+                if (e.currentTarget.src !== LOCAL_HSE_FALLBACK && !e.currentTarget.src.endsWith(LOCAL_HSE_FALLBACK)) {
+                  e.currentTarget.src = LOCAL_HSE_FALLBACK;
+                }
+              }}
+              className="hse-image"
+            />
           </div>
 
         </div>
@@ -427,164 +190,185 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
       </div>
 
       <style>{`
-        .safety-resources-split {
-          display: grid;
-          grid-template-columns: minmax(540px, 630px) 1fr;
-          gap: 36px;
-          align-items: stretch;
-        }
-
-        .sr-left-banner {
-          position: relative;
-          border-radius: 20px;
+        .hse-card {
+          background: #ffffff;
+          border-radius: 12px;
+          border: 1px solid #e2e8f0;
+          box-shadow: none !important;
           overflow: hidden;
-          padding: 54px 44px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          min-height: 520px;
-          box-shadow: 0 14px 40px rgba(10, 42, 102, 0.12);
-        }
-
-        .sr-badges-row {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-          padding-top: 36px;
-          margin-top: 36px;
-          border-top: 1px solid rgba(255, 255, 255, 0.18);
+          grid-template-columns: 1.15fr 0.95fr;
+          align-items: stretch;
+          position: relative;
         }
 
-        .sr-badge-item {
+        .hse-content {
+          padding: 34px 32px 30px 38px;
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          gap: 12px;
+          justify-content: center;
+          z-index: 2;
         }
 
-        .sr-badge-circle {
-          width: 52px;
-          height: 52px;
-          border-radius: 50%;
-          border: 1.5px solid rgba(255, 255, 255, 0.35);
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(8px);
+        .hse-headline {
+          font-size: clamp(26px, 2.8vw, 36px);
+          font-weight: 800;
+          color: #0c2356;
+          line-height: 1.18;
+          letter-spacing: -0.5px;
+          margin: 0 0 14px;
+        }
+
+        .hse-highlight {
+          color: #ff733b;
+        }
+
+        .hse-description {
+          font-size: 13.5px;
+          color: #64748b;
+          line-height: 1.6;
+          margin: 0 0 28px;
+          max-width: 520px;
+        }
+
+        .hse-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .hse-download-btn {
+          display: inline-flex;
+          align-items: stretch;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: none !important;
+          text-decoration: none;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+
+        .hse-download-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: none !important;
+        }
+
+        .hse-btn-body {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          padding: 11px 20px;
+          background-color: #0b2865;
+          color: #ffffff;
+          font-size: 13.5px;
+          font-weight: 700;
+          letter-spacing: -0.2px;
+          transition: background-color 0.2s ease;
+        }
+
+        .hse-download-btn:hover .hse-btn-body {
+          background-color: #071c49;
+        }
+
+        .hse-btn-arrow {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: ${ORANGE};
-          transition: all 0.3s ease;
-        }
-
-        .sr-badge-item:hover .sr-badge-circle {
-          border-color: ${ORANGE};
-          background: rgba(255, 135, 85, 0.2);
-          transform: scale(1.08);
-        }
-
-        .sr-badge-text {
-          font-size: 13px;
-          font-weight: 700;
+          padding: 0 14px;
+          background-color: #ff733b;
           color: #ffffff;
-          line-height: 1.35;
+          transition: background-color 0.2s ease;
         }
 
-        .sr-right-column {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+        .hse-download-btn:hover .hse-btn-arrow {
+          background-color: #ff8755;
         }
 
-        .sr-cards-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-        }
-
-        .sr-card {
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
-          border-radius: 16px;
-          padding: 18px;
-          box-shadow: 0 6px 20px rgba(10, 42, 102, 0.04);
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .sr-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px rgba(10, 42, 102, 0.1);
-          border-color: rgba(255, 135, 85, 0.4);
-        }
-
-        .sr-btn {
+        .hse-view-btn {
           display: inline-flex;
           align-items: center;
-          justify-content: center;
-          gap: 6px;
-          height: 40px;
-          padding: 0 12px;
+          gap: 7px;
+          padding: 10px 18px;
           border-radius: 8px;
-          font-size: 12px;
+          border: 1.5px solid #0b2865;
+          background-color: #ffffff;
+          color: #0b2865;
+          font-size: 13px;
           font-weight: 700;
           text-decoration: none;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
-          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-          white-space: nowrap;
         }
 
-        .sr-btn-view {
-          background: #ffffff;
-          border: 1.5px solid ${NAVY};
-          color: ${NAVY};
-        }
-
-        .sr-btn-view:hover {
-          background: ${NAVY};
+        .hse-view-btn:hover {
+          background-color: #0b2865;
           color: #ffffff;
+          transform: translateY(-2px);
         }
 
-        .sr-btn-download {
-          background: ${NAVY};
-          border: 1.5px solid ${NAVY};
-          color: #ffffff;
+        .hse-visual {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          overflow: hidden;
         }
 
-        .sr-btn-download:hover {
-          background: ${ORANGE};
-          border-color: ${ORANGE};
-          color: #ffffff;
+        .hse-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
         }
 
-        @media (max-width: 1240px) {
-          .safety-resources-split {
+        @media (max-width: 1080px) {
+          .hse-card {
             grid-template-columns: 1fr;
-            gap: 40px;
           }
-        }
-
-        @media (max-width: 680px) {
-          .sr-left-banner {
-            padding: 30px 20px;
+          .hse-content {
+            padding: 30px 24px;
+          }
+          .hse-visual {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
             min-height: auto;
           }
-          .sr-badges-row {
-            padding-top: 20px;
-            margin-top: 20px;
-            gap: 10px;
+        }
+
+        @media (max-width: 640px) {
+          .ehs-safety-section {
+            padding: 24px 14px 44px;
           }
-          .sr-badge-circle {
-            width: 36px;
-            height: 36px;
+          .hse-card {
+            border-radius: 10px;
           }
-          .sr-badge-text {
-            font-size: 10.5px;
+          .hse-content {
+            padding: 22px 16px;
           }
-          .sr-cards-grid {
-            grid-template-columns: 1fr;
-            gap: 16px;
+          .hse-headline {
+            font-size: 24px;
+          }
+          .hse-actions {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .hse-download-btn,
+          .hse-view-btn {
+            width: 100%;
+            justify-content: center;
+          }
+          .hse-btn-body {
+            justify-content: center;
+            flex: 1;
+          }
+          .hse-visual {
+            aspect-ratio: 16 / 9;
           }
         }
       `}</style>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import warehouseBg from '../../assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-5.png'
@@ -31,8 +31,12 @@ const defaultWarehouseData = {
 };
 
 const Warehouse = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => {
+    const raw = getLocalDataSync('solution-pages-warehouse') || getLocalDataSync('solution-pages?filters[slug]=warehouse');
+    if (raw) return Array.isArray(raw) ? (raw[0] || defaultWarehouseData) : raw;
+    return defaultWarehouseData;
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -40,11 +44,11 @@ const Warehouse = () => {
         const response = await fetchStrapiData('solution-pages?filters[slug]=warehouse&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo');
         if (response && response.length > 0) {
           setData(response[0]);
-        } else {
-          setData(defaultWarehouseData);
+        } else if (response && !Array.isArray(response)) {
+          setData(response);
         }
       } catch (err) {
-        setData(defaultWarehouseData);
+        // Fallback remains active
       } finally {
         setLoading(false);
       }
@@ -52,7 +56,7 @@ const Warehouse = () => {
     loadData();
   }, []);
 
-  if (loading || !data) return <Preloader />;
+  if (loading && !data) return <Preloader />;
 
   const seoData = {
     contentType: 'page',

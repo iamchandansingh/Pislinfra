@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import logisticBg from '../../assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-2.png'
@@ -31,8 +31,12 @@ const defaultLogisticData = {
 };
 
 const Logistic = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => {
+    const raw = getLocalDataSync('solution-pages-logistic') || getLocalDataSync('solution-pages?filters[slug]=logistic');
+    if (raw) return Array.isArray(raw) ? (raw[0] || defaultLogisticData) : raw;
+    return defaultLogisticData;
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -40,11 +44,11 @@ const Logistic = () => {
         const response = await fetchStrapiData('solution-pages?filters[slug]=logistic&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo');
         if (response && response.length > 0) {
           setData(response[0]);
-        } else {
-          setData(defaultLogisticData);
+        } else if (response && !Array.isArray(response)) {
+          setData(response);
         }
       } catch (err) {
-        setData(defaultLogisticData);
+        // Fallback remains active
       } finally {
         setLoading(false);
       }
@@ -52,7 +56,7 @@ const Logistic = () => {
     loadData();
   }, []);
 
-  if (loading || !data) return <Preloader />;
+  if (loading && !data) return <Preloader />;
 
   const seoData = {
     contentType: 'page',
