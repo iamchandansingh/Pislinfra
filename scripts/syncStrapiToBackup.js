@@ -451,9 +451,24 @@ async function syncBackup() {
   // 6.1 Ensure Coverage Markers
   const rawMarkers = masterBackup['coverage-markers'] || masterBackup['coverage-markers?populate=*&pagination[pageSize]=100'];
   if (Array.isArray(rawMarkers) && rawMarkers.length > 0) {
+    const formattedMarkers = await Promise.all(rawMarkers.map(async (m) => {
+      if (Array.isArray(m.images) && m.images.length > 0) {
+        const localImgs = await Promise.all(m.images.map(async (img) => {
+          let u = typeof img === 'string' ? img : (img.formats?.large?.url || img.formats?.medium?.url || img.url);
+          if (u && typeof u === 'string' && u.includes('r2.dev/')) {
+            return await ensureLocalProjectImage(u);
+          }
+          return u;
+        }));
+        return { ...m, images: localImgs.filter(Boolean) };
+      }
+      return m;
+    }));
     const MARKERS_PATH = path.resolve(__dirname, '../src/data/coverageMarkersData.js');
-    fs.writeFileSync(MARKERS_PATH, `const coverageMarkersData = ${JSON.stringify(rawMarkers, null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
-    console.log(`✅ Synced coverage markers (${rawMarkers.length}) into coverageMarkersData.js`);
+    fs.writeFileSync(MARKERS_PATH, `const coverageMarkersData = ${JSON.stringify(formattedMarkers, null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
+    masterBackup['coverage-markers'] = formattedMarkers;
+    masterBackup['coverage-markers?populate=*&pagination[pageSize]=100'] = formattedMarkers;
+    console.log(`✅ Synced coverage markers (${formattedMarkers.length}) into coverageMarkersData.js`);
   }
 
   // 6.2 Ensure Client Appreciations

@@ -168,10 +168,13 @@ const Home = () => {
               return false;
             }) || {};
 
-            const localImgs = matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/hero/Ongoing-Projects.png']);
+            const markerMatch = matchMarker(p, parsedMarkers);
+            const markerImgs = (markerMatch?.images && Array.isArray(markerMatch.images) && markerMatch.images.length > 0) ? markerMatch.images : [];
+            const localImgs = markerImgs.length > 0
+              ? markerImgs
+              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/hero/Ongoing-Projects.png']));
             const finalImages = extractProjectImages(p, localImgs);
 
-            const markerMatch = matchMarker(p, parsedMarkers);
             const mCx = markerMatch ? (markerMatch.cx ?? markerMatch.attributes?.cx) : null;
             const mCy = markerMatch ? (markerMatch.cy ?? markerMatch.attributes?.cy) : null;
             const hasValidMarker = (mCx != null && mCx !== '' && !isNaN(Number(mCx)) && Number(mCx) > 0 && mCy != null && mCy !== '' && !isNaN(Number(mCy)) && Number(mCy) > 0);
@@ -218,10 +221,13 @@ const Home = () => {
               return false;
             }) || {};
 
-            const localImgs = matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/hero/Completed-Projects.png']);
+            const markerMatch = matchMarker(p, parsedMarkers);
+            const markerImgs = (markerMatch?.images && Array.isArray(markerMatch.images) && markerMatch.images.length > 0) ? markerMatch.images : [];
+            const localImgs = markerImgs.length > 0
+              ? markerImgs
+              : (matchLocal.images && matchLocal.images.length > 0 ? matchLocal.images : (matchLocal.image ? [matchLocal.image] : ['/images/hero/Completed-Projects.png']));
             const finalImages = extractProjectImages(p, localImgs);
 
-            const markerMatch = matchMarker(p, parsedMarkers);
             const mCx = markerMatch ? (markerMatch.cx ?? markerMatch.attributes?.cx) : null;
             const mCy = markerMatch ? (markerMatch.cy ?? markerMatch.attributes?.cy) : null;
             const hasValidMarker = (mCx != null && mCx !== '' && !isNaN(Number(mCx)) && Number(mCx) > 0 && mCy != null && mCy !== '' && !isNaN(Number(mCy)) && Number(mCy) > 0);
@@ -294,8 +300,19 @@ const Home = () => {
         loadData(true);
       }
     };
+    const handleDataUpdate = (e) => {
+      const { cleanEndpoint, data: updatedData } = e.detail || {};
+      if (!updatedData) return;
+      if (cleanEndpoint && (cleanEndpoint.startsWith('ongoing-projects') || cleanEndpoint.startsWith('completed-projects') || cleanEndpoint.startsWith('coverage-markers'))) {
+        loadData(false);
+      } else if (cleanEndpoint && cleanEndpoint.startsWith('home-page')) {
+        setData(updatedData);
+      }
+    };
+
     window.addEventListener('focus', handleFocus);
     window.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('pisl-data-update', handleDataUpdate);
 
     let isPolling = false;
     let lastSig = '';
@@ -339,6 +356,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('focus', handleFocus);
       window.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('pisl-data-update', handleDataUpdate);
       clearInterval(intervalId);
     };
   }, []);

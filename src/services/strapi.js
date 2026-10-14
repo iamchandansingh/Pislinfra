@@ -92,7 +92,7 @@ export const isCmsOffline = () => cmsOfflineState;
 // 2.1 CACHE VERSIONING & INSTANT PURGE
 // (Busts legacy browser cache so visitors instantly get latest projects)
 // ==========================================
-export const CACHE_VERSION = 'v7_2026_10_12_pmg_neemrana_fix';
+export const CACHE_VERSION = 'v8_2026_10_14_nationwide_sync';
 
 if (typeof window !== 'undefined' && window.localStorage) {
   try {
@@ -102,7 +102,7 @@ if (typeof window !== 'undefined' && window.localStorage) {
       const keysToRemove = [];
       for (let i = 0; i < window.localStorage.length; i++) {
         const k = window.localStorage.key(i);
-        if (k && (k.startsWith('pisl_cache_') || k.startsWith('strapi_'))) {
+        if (k && k !== 'pisl_cache_version' && (k.startsWith('pisl_') || k.startsWith('strapi_'))) {
           keysToRemove.push(k);
         }
       }

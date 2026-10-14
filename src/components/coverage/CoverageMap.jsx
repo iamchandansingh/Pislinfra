@@ -205,7 +205,7 @@ const getLoc = (p0, mapMarkers = [], customLocations = {}) => {
       const mcy = (strapiMarker.cy !== undefined && strapiMarker.cy !== null && strapiMarker.cy !== '') ? Number(strapiMarker.cy) : (strapiMarker.attributes?.cy !== undefined && strapiMarker.attributes?.cy !== null && strapiMarker.attributes?.cy !== '' ? Number(strapiMarker.attributes.cy) : null);
 
       if (mcx != null && mcy != null && !isNaN(mcx) && !isNaN(mcy) && mcx > 0 && mcy > 0) {
-        return { cx: mcx, cy: mcy };
+        return { cx: mcx, cy: mcy, marker: strapiMarker };
       }
       // If coordinates not set in Strapi marker (e.g. Crestway cx=null, cy=null), marker is pending! Do NOT fall through to arbitrary city coordinates.
       return null;
@@ -422,7 +422,7 @@ const CardProject = ({project,isSelected,onCardClick}) => {
     >
       <div className="cm-card-image-wrapper">
         <img 
-          src={project.image} 
+          src={getImageUrl(project.image, isOngoing ? '/images/hero/Ongoing-Projects.png' : '/images/hero/Completed-Projects.png')} 
           alt={project.name} 
           className="cm-card-image"
           loading="lazy"
@@ -510,16 +510,33 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       if (p.hasMarker === false) {
         loc = null;
       } else if (p.cx != null && p.cy != null && Number(p.cx) > 0 && Number(p.cy) > 0) {
-        loc = { cx: Number(p.cx), cy: Number(p.cy) };
+        loc = { cx: Number(p.cx), cy: Number(p.cy), marker: null };
       } else {
         loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, rawMarkerList, {});
       }
 
       const hasValidMarker = !!(loc && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0);
 
-      const imgs = (Array.isArray(p.images) && p.images.length > 0)
-        ? p.images
-        : (p.image ? [p.image] : [FALLBACK_IMG]);
+      let rawImgs = [];
+      if (Array.isArray(p.images) && p.images.length > 0) {
+        rawImgs = p.images;
+      } else if (p.image) {
+        rawImgs = [p.image];
+      }
+
+      const markerImgs = (loc?.marker?.images && Array.isArray(loc.marker.images) && loc.marker.images.length > 0)
+        ? loc.marker.images
+        : [];
+
+      if (rawImgs.length === 0 && markerImgs.length > 0) {
+        rawImgs = markerImgs;
+      }
+
+      const validImgs = (rawImgs.length > 0 ? rawImgs : (markerImgs.length > 0 ? markerImgs : [FALLBACK_IMG]))
+        .map(img => getImageUrl(img))
+        .filter(Boolean);
+
+      const finalImages = validImgs.length > 0 ? validImgs : [FALLBACK_IMG];
 
       return {
         id: p.documentId || p.id || `og-${idx}`,
@@ -538,8 +555,8 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         cy: loc ? loc.cy : null,
         hasMarker: hasValidMarker,
         showOnMap: hasValidMarker,
-        images: imgs,
-        image: imgs[0] || FALLBACK_IMG,
+        images: finalImages,
+        image: finalImages[0] || FALLBACK_IMG,
       };
     });
   }, [strapiOngoing, rawMarkerList]);
@@ -555,16 +572,33 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       if (p.hasMarker === false) {
         loc = null;
       } else if (p.cx != null && p.cy != null && Number(p.cx) > 0 && Number(p.cy) > 0) {
-        loc = { cx: Number(p.cx), cy: Number(p.cy) };
+        loc = { cx: Number(p.cx), cy: Number(p.cy), marker: null };
       } else {
         loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, rawMarkerList, {});
       }
 
       const hasValidMarker = !!(loc && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0);
 
-      const imgs = (Array.isArray(p.images) && p.images.length > 0)
-        ? p.images
-        : (p.image ? [p.image] : ['/images/hero/Completed-Projects.png']);
+      let rawImgs = [];
+      if (Array.isArray(p.images) && p.images.length > 0) {
+        rawImgs = p.images;
+      } else if (p.image) {
+        rawImgs = [p.image];
+      }
+
+      const markerImgs = (loc?.marker?.images && Array.isArray(loc.marker.images) && loc.marker.images.length > 0)
+        ? loc.marker.images
+        : [];
+
+      if (rawImgs.length === 0 && markerImgs.length > 0) {
+        rawImgs = markerImgs;
+      }
+
+      const validImgs = (rawImgs.length > 0 ? rawImgs : (markerImgs.length > 0 ? markerImgs : ['/images/hero/Completed-Projects.png']))
+        .map(img => getImageUrl(img))
+        .filter(Boolean);
+
+      const finalImages = validImgs.length > 0 ? validImgs : ['/images/hero/Completed-Projects.png'];
 
       return {
         id: p.documentId || p.id || `comp-${idx}`,
@@ -583,8 +617,8 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         cy: loc ? loc.cy : null,
         hasMarker: hasValidMarker,
         showOnMap: hasValidMarker,
-        images: imgs,
-        image: imgs[0] || '/images/hero/Completed-Projects.png',
+        images: finalImages,
+        image: finalImages[0] || '/images/hero/Completed-Projects.png',
       };
     });
   }, [strapiCompleted, rawMarkerList]);
