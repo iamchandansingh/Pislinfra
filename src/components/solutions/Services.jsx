@@ -82,6 +82,31 @@ const SquareServiceCard = ({ data, index }) => {
   );
 };
 
+const renderCapabilitiesTitle = (title) => {
+  if (!title) {
+    return <>Our Strategic <span style={{ color: ORANGE }}>Capabilities.</span></>;
+  }
+  if (typeof title === 'string' && title.includes('<')) {
+    return <span dangerouslySetInnerHTML={{ __html: title }} />;
+  }
+  const marker = "capabilities";
+  const lower = String(title).toLowerCase();
+  if (lower.includes(marker)) {
+    const idx = lower.indexOf(marker);
+    const before = title.substring(0, idx);
+    const matched = title.substring(idx, idx + marker.length);
+    const after = title.substring(idx + marker.length);
+    return <>{before}<span style={{ color: ORANGE }}>{matched}</span>{after}</>;
+  }
+  const words = String(title).trim().split(' ');
+  if (words.length > 1) {
+    const first = words.slice(0, -1).join(' ');
+    const last = words.slice(-1).join(' ');
+    return <>{first} <span style={{ color: ORANGE }}>{last}</span></>;
+  }
+  return title;
+};
+
 const Services = ({ data }) => {
   const servicesDataMapped = [
     {
@@ -119,7 +144,7 @@ const Services = ({ data }) => {
             fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800,
             color: '#FFFFFF', margin: 0, letterSpacing: '-1px', lineHeight: 1.2,
           }}>
-            Our Strategic <span style={{ color: ORANGE }}>Capabilities.</span>
+            {renderCapabilitiesTitle(data?.capabilitiesTitle || data?.servicesTitle)}
           </h2>
         </motion.div>
 

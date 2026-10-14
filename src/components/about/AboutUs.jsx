@@ -6,6 +6,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
+const renderAboutTitle = (title) => {
+  if (!title) {
+    return <>About <span style={{ color: ORANGE }}>Our Expertise</span></>;
+  }
+  if (typeof title === 'string' && title.includes('<')) {
+    return <span dangerouslySetInnerHTML={{ __html: title }} />;
+  }
+  const marker = "our expertise";
+  const lower = String(title).toLowerCase();
+  if (lower.includes(marker)) {
+    const idx = lower.indexOf(marker);
+    const before = title.substring(0, idx);
+    const matched = title.substring(idx, idx + marker.length);
+    const after = title.substring(idx + marker.length);
+    return <>{before}<span style={{ color: ORANGE }}>{matched}</span>{after}</>;
+  }
+  const words = String(title).trim().split(' ');
+  if (words.length > 1) {
+    const first = words[0];
+    const rest = words.slice(1).join(' ');
+    return <>{first} <span style={{ color: ORANGE }}>{rest}</span></>;
+  }
+  return title;
+};
+
 /* ─── MAIN ABOUT US COMPONENT ────────────────────────────────────────────── */
 const AboutUs = ({ data }) => {
   const navigate = useNavigate();
@@ -114,7 +139,7 @@ const AboutUs = ({ data }) => {
             margin: '0 0 18px 0',
             transition: 'opacity 0.3s ease'
           }}>
-            {data?.aboutTitle ? <span dangerouslySetInnerHTML={{__html: data.aboutTitle}} /> : <>About <span style={{ color: ORANGE }}> Our Expertise </span></>}
+            {renderAboutTitle(data?.aboutTitle)}
           </h2>
 
           {/* Content Paragraphs */}

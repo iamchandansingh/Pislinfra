@@ -11,6 +11,8 @@ const completedProjects = [
     "timeline": "2024 - 2025",
     "status": "Completed",
     "scope": "Design & Build",
+    "cx": 28.2,
+    "cy": 30.2,
     "images": [
       "/images/projects/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
       "/images/projects/optimized_1787755591950_425_large_om-sukh-logistics-park-pataudi-hr-2_png.webp",
@@ -31,6 +33,8 @@ const completedProjects = [
     "timeline": "2022 - 2026",
     "status": "Completed",
     "scope": "Civil & PHE Work",
+    "cx": 28.3,
+    "cy": 30.1,
     "images": [
       "/images/projects/large_ncr_bigbox_patli_hr_61fcc6ba59.png",
       "/images/projects/large_ncr_bigbox_patli_hr_2_fa19e0116e.png",
@@ -52,6 +56,8 @@ const completedProjects = [
     "timeline": "2023 - 2025",
     "status": "Completed",
     "scope": "Design & Build",
+    "cx": 28.4,
+    "cy": 30.4,
     "images": [
       "/images/projects/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
       "/images/projects/large_prr_warehousing_pvt_ltd_tauru_hr_2_23df44b440.png",
@@ -73,6 +79,8 @@ const completedProjects = [
     "timeline": "2024 - 2025",
     "status": "Completed",
     "scope": "Design & Build",
+    "cx": 30.5,
+    "cy": 85.5,
     "images": [
       "/images/projects/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
       "/images/projects/optimized_1787755238494_389_large_gmr-coimbatore-logistics-park-coimbatore-tn-2_png.webp",
@@ -94,6 +102,8 @@ const completedProjects = [
     "timeline": "2024 - 2025",
     "status": "Completed",
     "scope": "Design & Build",
+    "cx": 36,
+    "cy": 90.5,
     "images": [
       "/images/projects/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
       "/images/projects/optimized_1787755732557_487_large_vinfast-factory-phase-1-thoothukudi-tn-2_png.webp",
@@ -115,6 +125,8 @@ const completedProjects = [
     "timeline": "2023 - 2024",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 32.5,
+    "cy": 79.5,
     "images": [
       "/images/projects/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp",
       "/images/projects/optimized_1787755213253_866_large_gmr-hoskote-logistics-park-ka-2_png.webp",
@@ -136,6 +148,8 @@ const completedProjects = [
     "timeline": "2022 - 2024",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 29.8,
+    "cy": 31.2,
     "images": [
       "/images/projects/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
       "/images/projects/large_bluestar_realtors_ltd_palwal_hr_2_c75493593e.png",
@@ -157,6 +171,8 @@ const completedProjects = [
     "timeline": "2022 - 2024",
     "status": "Completed",
     "scope": "Civil Work & External Development Work",
+    "cx": 41,
+    "cy": 78,
     "images": [
       "/images/projects/large_rajratan_global_wires_chennai_tn_75e18124c0.png",
       "/images/projects/large_rajratan_global_wires_chennai_tn_2_ff63f8d056.png",
@@ -178,6 +194,8 @@ const completedProjects = [
     "timeline": "2022 - 2023",
     "status": "Completed",
     "scope": "Civil Work & Unity Building",
+    "cx": 17,
+    "cy": 62,
     "images": [
       "/images/projects/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
       "/images/projects/large_lodha_industrial_park_development_a5_mumbai_mh_2_d8d776d4aa.png",
@@ -199,6 +217,8 @@ const completedProjects = [
     "timeline": "2022 - 2023",
     "status": "Completed",
     "scope": "Industrial Building & Admin Building",
+    "cx": 27.5,
+    "cy": 30,
     "images": [
       "/images/projects/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
       "/images/projects/large_avitech_nutrition_farukhnager_hr_2_115ef01bfe.png",
@@ -220,6 +240,8 @@ const completedProjects = [
     "timeline": "2022 - 2022",
     "status": "Completed",
     "scope": "Civil Work & External Development Work",
+    "cx": 25.5,
+    "cy": 36,
     "images": [
       "/images/projects/large_oswal_logistics_park_jaipur_hr_41a8d15490.png",
       "/images/projects/large_oswal_logistics_park_jaipur_hr_2_2b2d7f3917.png",
@@ -241,6 +263,8 @@ const completedProjects = [
     "timeline": "2022 - 2022",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28,
+    "cy": 32.5,
     "images": [
       "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
       "/images/projects/optimized_1787755269561_31_large_pragati-prathamus-logistics-park-neemrana-rj-2_png.webp",
@@ -261,6 +285,8 @@ const completedProjects = [
     "timeline": "2022 - 2022",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 25.5,
+    "cy": 23.1,
     "images": [
       "/images/projects/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp",
       "/images/projects/large_ludhiana_logistics_park_pb_2_1cc5d647ab.png",
@@ -282,6 +308,8 @@ const completedProjects = [
     "timeline": "2021 - 2022",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 27.5,
+    "cy": 30,
     "images": [
       "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
       "/images/projects/optimized_1787755268839_900_large_pragati-farrukhnagar-logistics-park-hr-2_png.webp",
@@ -303,6 +331,8 @@ const completedProjects = [
     "timeline": "2020 - 2021",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.1,
+    "cy": 30.6,
     "images": [
       "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
       "/images/projects/optimized_1787755358411_467_large_pragati-one-logistics-park-khijuri-hr-2_png.webp",
@@ -323,6 +353,8 @@ const completedProjects = [
     "timeline": "2020 - 2021",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 32.5,
+    "cy": 79.5,
     "images": [
       "/images/projects/large_logos_india_industrial_park_bengaluru_ka_4df1caedcf.png",
       "/images/projects/large_logos_india_industrial_park_bengaluru_ka_2_393ad417ab.png",
@@ -345,6 +377,8 @@ const completedProjects = [
     "timeline": "2020 - 2021",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.2,
+    "cy": 30.2,
     "images": [
       "/images/projects/optimized_1787755082970_50_large_flipkart-sampka-ptaudi-hr_png.webp",
       "/images/projects/optimized_1787755432834_746_large_flipkart-sampka-ptaudi-hr-2_png.webp",
@@ -365,6 +399,8 @@ const completedProjects = [
     "timeline": "2020 - 2021",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.5,
+    "cy": 30.5,
     "images": [
       "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
       "/images/projects/optimized_1787755358411_467_large_pragati-one-logistics-park-khijuri-hr-2_png.webp",
@@ -386,6 +422,8 @@ const completedProjects = [
     "timeline": "2019 - 2021",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.3,
+    "cy": 30.3,
     "images": [
       "/images/projects/large_ecom_express_india_one_pathreri_hr_f04011dd73.png",
       "/images/projects/large_ecom_express_india_one_pathreri_hr_2_ad2ce8bcbe.png",
@@ -407,6 +445,8 @@ const completedProjects = [
     "timeline": "2019 - 2019",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.2,
+    "cy": 30.4,
     "images": [
       "/images/projects/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp",
       "/images/projects/optimized_1787755329637_690_large_amazon-ncrun-jamalpur-hr-2_png.webp",
@@ -427,6 +467,8 @@ const completedProjects = [
     "timeline": "2018 - 2020",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 27.5,
+    "cy": 30,
     "images": [
       "/images/projects/large_all_cargo_logistics_park_farrukhnagar_hr_9429b75b58.png",
       "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
@@ -447,6 +489,8 @@ const completedProjects = [
     "timeline": "2018 - 2018",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.6,
+    "cy": 30.4,
     "images": [
       "/images/projects/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp",
       "/images/projects/large_amazon_delu_manesar_hr_2_703371239d.png",
@@ -467,6 +511,8 @@ const completedProjects = [
     "timeline": "2017 - 2018",
     "status": "Completed",
     "scope": "Design & Civil Work for External Development",
+    "cx": 28.4,
+    "cy": 30.6,
     "images": [
       "/images/projects/optimized_1787755379749_965_large_amazon-del5-billaspur-hr_png.webp",
       "/images/projects/optimized_1787755047655_963_large_amazon-del5-billaspur-hr-2_png.webp",
@@ -488,6 +534,8 @@ const completedProjects = [
     "timeline": "2014 - 2015",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.2,
+    "cy": 30.8,
     "images": [
       "/images/projects/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
       "/images/projects/optimized_1787755080058_327_large_cadbury-warehouse-dharuhera-hr-2_png.webp",
@@ -508,6 +556,8 @@ const completedProjects = [
     "timeline": "2008 - 2009",
     "status": "Completed",
     "scope": "Design & Build Contract",
+    "cx": 28.4,
+    "cy": 30.6,
     "images": [
       "/images/projects/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
       "/images/projects/large_blue_dart_warehouse_bilaspur_hr_2_cd3114de67.png",
@@ -528,6 +578,8 @@ const completedProjects = [
     "timeline": "2025 -2026",
     "status": "Completed",
     "scope": "Construction work of Retail Arcade & allied services including Civil, Electrical, Firefighting, Plumbing, Security Works, Interiors & PEB.",
+    "cx": 27,
+    "cy": 42,
     "images": [
       "/images/projects/large_Highway_1_0f80b91f8c.png",
       "/images/projects/large_Highway_2_327c66d033.png",
@@ -548,6 +600,8 @@ const completedProjects = [
     "timeline": "2026 ",
     "status": "Completed",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
+    "cx": 25.5,
+    "cy": 23.1,
     "images": [
       "/images/projects/large_3_Ludhiana_08fe0ac214.jpeg",
       "/images/projects/large_2_Ludhiana_30fd41522e.jpeg",

@@ -156,46 +156,104 @@ const StatCard = ({ icon: Icon, end, suffix, label, delay, color, number, bgIcon
   );
 };
 
+const parseStatValue = (val, defaultEnd = '0', defaultSuffix = '+') => {
+  if (!val) return { end: defaultEnd, suffix: defaultSuffix };
+  const str = String(val).trim();
+  const match = str.match(/^([0-9]+)\s*(.*)$/);
+  if (match) {
+    return { end: match[1], suffix: match[2] || defaultSuffix };
+  }
+  const digits = str.replace(/[^0-9]/g, '') || defaultEnd;
+  const suffix = str.replace(/[0-9]/g, '').trim() || defaultSuffix;
+  return { end: digits, suffix };
+};
+
+const renderStatsTitle = (title) => {
+  if (!title) {
+    return <>Building Global-Standard <span style={{ color: ORANGE }}>Industrial & Logistics Parks.</span></>;
+  }
+  if (typeof title === 'string' && title.includes('<')) {
+    return <span dangerouslySetInnerHTML={{ __html: title }} />;
+  }
+  const marker = "Industrial & Logistics Parks";
+  if (title.includes(marker)) {
+    const parts = title.split(marker);
+    return <>{parts[0]}<span style={{ color: ORANGE }}>{marker}</span>{parts.slice(1).join(marker)}</>;
+  }
+  const words = String(title).trim().split(' ');
+  if (words.length > 2) {
+    const mid = Math.ceil(words.length / 2);
+    const firstHalf = words.slice(0, mid).join(' ');
+    const secondHalf = words.slice(mid).join(' ');
+    return <>{firstHalf} <span style={{ color: ORANGE }}>{secondHalf}</span></>;
+  }
+  return title;
+};
+
 /* ─── MAIN STATS COMPONENT ────────────────────────────────────────── */
-const StatsSection = () => {
+const StatsSection = ({ data }) => {
   const mainRef = useRef(null);
   const mainInView = useInView(mainRef, { once: true });
-  const legacyCount = useCountUp('17', 2.5, mainInView);
   
+  const rawLegacy = data?.legacyYears || data?.statLegacy || '17';
+  const legacyNumeric = parseInt(String(rawLegacy).replace(/[^0-9]/g, '')) || 17;
+  const legacyCount = useCountUp(legacyNumeric, 2.5, mainInView);
+  
+  // 4 Stats as configured in Strapi CMS:
+  // Stat 1: 25+ Locations Covered
+  const s1Val = data?.stat1Value || data?.statLocations || '25+';
+  const s1Label = data?.stat1Label || 'Locations Covered';
+  const parsed1 = parseStatValue(s1Val, '25', '+');
+
+  // Stat 2: 16+ Million Sq. Ft. Constructed
+  const s2Val = data?.stat2Value || data?.statSqFt || '16+';
+  const s2Label = data?.stat2Label || 'Million Sq. Ft. Constructed';
+  const parsed2 = parseStatValue(s2Val, '16', '+');
+
+  // Stat 3: 600+ Employee Strength
+  const s3Val = data?.stat3Value || data?.statEmployees || '600+';
+  const s3Label = data?.stat3Label || 'Employee Strength';
+  const parsed3 = parseStatValue(s3Val, '600', '+');
+
+  // Stat 4: 10+ Upcoming Projects
+  const s4Val = data?.stat4Value || data?.statProjects || '10+';
+  const s4Label = data?.stat4Label || 'Upcoming Projects';
+  const parsed4 = parseStatValue(s4Val, '10', '+');
+
   const dataset = [
     {
-      icon: BiBuildings,
-      bgIcon: FaCity,
-      end: '10',
-      suffix: 'M+',
-      label: 'Million Sq. Ft of Optimally-Designed Spaces',
+      icon: BiMap,
+      bgIcon: FaMapMarkedAlt,
+      end: parsed1.end,
+      suffix: parsed1.suffix,
+      label: s1Label,
       color: NAVY,
       number: '01'
     },
     {
-      icon: BiMap,
-      bgIcon: FaMapMarkedAlt,
-      end: '25',
-      suffix: '+',
-      label: 'Key Micro Markets Signify Our PAN-India Presence',
+      icon: BiBuildings,
+      bgIcon: FaCity,
+      end: parsed2.end,
+      suffix: parsed2.suffix,
+      label: s2Label,
       color: ORANGE,
       number: '02'
     },
     {
-      icon: BiTrendingUp,
-      bgIcon: FaChartLine,
-      end: '20',
-      suffix: 'M',
-      label: 'Million Sq. Ft Development Pipeline Over Next 3 Years',
+      icon: BiGroup,
+      bgIcon: FaUsersCog,
+      end: parsed3.end,
+      suffix: parsed3.suffix,
+      label: s3Label,
       color: PURPLE,
       number: '03'
     },
     {
-      icon: BiGroup,
-      bgIcon: FaUsersCog,
-      end: '100',
-      suffix: '+',
-      label: 'Visionaries Bringing Forth Decades of Expertise',
+      icon: BiTrendingUp,
+      bgIcon: FaChartLine,
+      end: parsed4.end,
+      suffix: parsed4.suffix,
+      label: s4Label,
       color: GREEN,
       number: '04'
     }
@@ -256,7 +314,7 @@ const StatsSection = () => {
               margin: '0 0 20px 0', 
               letterSpacing: '-1px'
             }}>
-              Building Global-Standard <span style={{ color: ORANGE }}>Industrial & Logistics Parks.</span>
+              {renderStatsTitle(data?.aboutSubtitle || data?.statsTitle)}
             </h2>
 
             {/* Decorative Line */}
@@ -269,7 +327,7 @@ const StatsSection = () => {
               fontSize: '14.5px', color: '#4B5563', lineHeight: '1.7',
               margin: 0, fontWeight: 500, maxWidth: '480px'
             }}>
-              When you choose PISL, you gain a partner dedicated to understanding your business needs to support your growth — because your success is our relentless pursuit.
+              {data?.statsDesc || 'When you choose PISL, you gain a partner dedicated to understanding your business needs to support your growth — because your success is our relentless pursuit.'}
             </p>
             
 

@@ -11,6 +11,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "GIDC Sanand",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp"
     ]
@@ -27,6 +29,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Hazira, Surat",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp"
     ]
@@ -43,6 +47,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Mundra",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp"
     ]
@@ -59,6 +65,8 @@
     "publishedAt": "2026-08-29T10:46:31.867Z",
     "state": "Uttar Pradesh",
     "city": "Najibabad",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755484148_143_large_cbg-plant-najibabad-up_png.webp",
       "/images/projects/large_cbg_plant_najibabad_up_2_8bff055186.png",
@@ -80,6 +88,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Jharkhand",
     "city": "Dhanbad",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png"
     ]
@@ -96,6 +106,8 @@
     "publishedAt": "2026-10-14T07:28:07.625Z",
     "state": "Tamil Nadu",
     "city": "Hosur",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
       "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
@@ -115,6 +127,8 @@
     "publishedAt": "2026-10-06T05:00:28.348Z",
     "state": "Haryana",
     "city": "Delhi-Mumbai Expressway, Nuh",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755732015_768_large_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
       "/images/projects/large_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
@@ -136,6 +150,8 @@
     "publishedAt": "2026-10-06T00:39:26.853Z",
     "state": "Punjab",
     "city": "Ludhiana",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp"
     ]
@@ -152,6 +168,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Karnataka",
     "city": "Bangalore",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
     ]
@@ -168,6 +186,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Telangana",
     "city": "Hyderabad",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
     ]
@@ -184,6 +204,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Rajasthan",
     "city": "Neemrana",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
     ]
@@ -200,6 +222,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Dahej",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755113794_27_large_reliance-dmd-plant-dahej-gj_png.webp"
     ]
@@ -216,6 +240,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Jamnagar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755241070_281_large_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp"
     ]
@@ -232,6 +258,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Maharashtra",
     "city": "Pune",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755239207_582_large_sanaswadi-industrial-project-pune-mh_png.webp"
     ]
@@ -248,6 +276,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Mappedu, Chennai",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png"
     ]
@@ -264,6 +294,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Dahej-02",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp"
     ]
@@ -280,6 +312,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Farrukhnagar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp"
     ]
@@ -296,6 +330,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Bilaspur",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp"
     ]
@@ -312,6 +348,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Manesar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp"
     ]
@@ -328,6 +366,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Jamalpur",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp"
     ]
@@ -344,6 +384,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Farukhnagar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png"
     ]
@@ -360,6 +402,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Bilaspur",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png"
     ]
@@ -376,6 +420,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Palwal",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png"
     ]
@@ -392,6 +438,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Dharuhera",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png"
     ]
@@ -408,6 +456,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Pathreri",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_ecom_express_india_one_pathreri_hr_f04011dd73.png"
     ]
@@ -424,6 +474,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Pataudi",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/compressed_1787754805351.webp"
     ]
@@ -440,6 +492,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Coimbatore",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp"
     ]
@@ -456,6 +510,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Karnataka",
     "city": "Bengaluru",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp"
     ]
@@ -472,6 +528,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Maharashtra",
     "city": "Mumbai",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp"
     ]
@@ -488,6 +546,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Karnataka",
     "city": "Bengaluru",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/compressed_1787754806543.webp",
       "/images/projects/large_CSR_7_c15937b80b.png"
@@ -505,6 +565,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Luhari",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp"
     ]
@@ -521,6 +583,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Punjab",
     "city": "Ludhiana",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp"
     ]
@@ -537,6 +601,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Patli",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_ncr_bigbox_patli_hr_61fcc6ba59.png"
     ]
@@ -553,6 +619,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Pataudi",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png"
     ]
@@ -569,6 +637,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Rajasthan",
     "city": "Jaipur",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_oswal_logistics_park_jaipur_hr_41a8d15490.png"
     ]
@@ -585,6 +655,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Tauru",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp"
     ]
@@ -601,6 +673,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Farrukhnagar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png"
     ]
@@ -617,6 +691,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Khijuri",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp"
     ]
@@ -633,6 +709,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Rajasthan",
     "city": "Neemrana",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png"
     ]
@@ -649,6 +727,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Chennai",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_rajratan_global_wires_chennai_tn_75e18124c0.png"
     ]
@@ -665,6 +745,8 @@
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Tuticorin",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png"
     ]
@@ -681,6 +763,8 @@
     "publishedAt": "2026-10-14T04:49:06.871Z",
     "state": "Haryana",
     "city": "Farrukhnagar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
       "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
@@ -700,6 +784,8 @@
     "publishedAt": "2026-10-13T18:12:32.927Z",
     "state": "Gujarat",
     "city": "Jamnagar",
+    "showOnMap": null,
+    "markerStatus": null,
     "images": [
       "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
       "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",

@@ -11,6 +11,31 @@ const fallbackImages = [
   '/images/EHS/Heroimages/2.png',
 ];
 
+const renderHseTitle = (title) => {
+  if (!title) {
+    return <>Health, Safety & <span style={{ color: ORANGE }}>Environment</span></>;
+  }
+  if (typeof title === 'string' && title.includes('<')) {
+    return <span dangerouslySetInnerHTML={{ __html: title }} />;
+  }
+  const marker = "environment";
+  const lower = String(title).toLowerCase();
+  if (lower.includes(marker)) {
+    const idx = lower.indexOf(marker);
+    const before = title.substring(0, idx);
+    const matched = title.substring(idx, idx + marker.length);
+    const after = title.substring(idx + marker.length);
+    return <>{before}<span style={{ color: ORANGE }}>{matched}</span>{after}</>;
+  }
+  const words = String(title).trim().split(' ');
+  if (words.length > 1) {
+    const first = words.slice(0, -1).join(' ');
+    const last = words.slice(-1).join(' ');
+    return <>{first} <span style={{ color: ORANGE }}>{last}</span></>;
+  }
+  return title;
+};
+
 const HSESection = ({ data }) => {
   const navigate = useNavigate();
   const [currentImg, setCurrentImg] = useState(0);
@@ -45,11 +70,7 @@ const HSESection = ({ data }) => {
             fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800, color: NAVY,
             margin: '0 0 6px', letterSpacing: '-1px'
           }}>
-            {data?.hseTitle ? (
-              <span dangerouslySetInnerHTML={{ __html: data.hseTitle }} />
-            ) : (
-              <>Health, Safety & <span style={{ color: NAVY }}>Environment</span></>
-            )}
+            {renderHseTitle(data?.hseTitle)}
           </h2>
           <p style={{ fontSize: 14, color: '#64748b', maxWidth: 550, margin: '0 auto', lineHeight: 1.6 }}>
             {data?.hseDesc || 'Providing a safe workplace to our workers & protection of the environment is our topmost priority.'}
