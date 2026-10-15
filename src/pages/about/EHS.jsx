@@ -12,45 +12,59 @@ import SafetyCulture from '../../components/safety/SafetyCulture';
 import SafetyPhilosophy from '../../components/safety/SafetyPhilosophy';
 import IndustryRecognition from '../../components/safety/IndustryRecognition';
 import SafetyResources from '../../components/safety/SafetyResources';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchStrapiData, getStrapiMediaUrl, getLocalDataSync } from '../../services/strapi';
 import Preloader from '../../components/common/Preloader';
 
 const getImageUrl = (imgObj, defaultImg) => {
-  if (!imgObj) return defaultImg;
-  const url = imgObj.url || imgObj.data?.attributes?.url;
-  if (!url) return defaultImg;
-  if (url.startsWith('http')) return url;
-  return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
+  return getStrapiMediaUrl(imgObj, defaultImg);
+};
+
+const defaultEHSData = {
+  title: 'Environment, Health & Safety',
+  subtitle: 'Committed to Zero-Harm Standards and Sustainable Infrastructure',
+  breadcrumb: 'About Us / EHS',
+  heroImage: '/images/hero/EHS.png',
+  commitmentTitle: 'Safe Man-Hours & Uncompromising Safety Commitment',
+  philosophySectionTitle: 'Latest HSE Statistics',
+  approachesSectionTitle: 'Our Safety Approach',
+  approachesSectionSubtitle: 'Systematic Protocols Across Construction Operations',
+  rulesSectionTitle: '12 Life-Saving Rules',
+  rulesSectionSubtitle: 'Mandatory Standards For Zero Accidents On Every Site',
+  safetyCultureTitle: 'Fostering a Zero-Harm Culture',
+  safetyCultureDesc: 'Safety is a core value woven into every project lifecycle from planning to execution.',
+  pillarsSectionTitle: 'Core Safety Pillars',
+  programsSectionTitle: 'Comprehensive Safety Programs',
+  gallerySectionTitle: 'EHS in Action',
+  awardsSectionTitle: 'Photography With Client',
+  awardsSectionSubtitle: 'Our commitment to safety, quality, and operational excellence continues to earn recognition across infrastructure and industrial projects.',
+  resourcesSectionTitle: 'Key Documents & Downloads',
+  resourcesSectionSubtitle: 'Safety is Our Highest Priority',
+  resourcesSectionDesc: 'Access our official safety guidelines, comprehensive operational protocols, and essential resources for all project sites.',
 };
 
 const EHS = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // Stale-While-Revalidate: Instant synchronous render from localStorage cache or defaults (0ms load!)
+  const [data, setData] = useState(() => {
+    const local = getLocalDataSync('ehs-page');
+    if (local && typeof local === 'object') return local;
+    return defaultEHSData;
+  });
 
   useEffect(() => {
+    let isMounted = true;
     const loadData = async () => {
       try {
-        let res = null;
-        try {
-          res = await fetchStrapiData('ehs-page?populate=deep');
-        } catch(e) {}
-        
-        if (!res) {
-          res = await fetchStrapiData('ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs');
+        const res = await fetchStrapiData('ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs&populate[12]=resources.file&populate[13]=resources.coverImage');
+        if (res && isMounted) {
+          setData(res);
         }
-        
-        setData(res);
       } catch (err) {
         console.error('Error fetching EHS data', err);
-      } finally {
-        setLoading(false);
       }
     };
     loadData();
+    return () => { isMounted = false; };
   }, []);
-
-  if (loading) return <Preloader />;
-  if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
 
   const seoData = {
     contentType: 'page',

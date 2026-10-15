@@ -2,37 +2,54 @@ import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi'
+import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localCompletedProjects from '../../data/completedProjects'
 
-const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const CompletedProjects = () => {
-  const [pageData, setPageData] = useState(null)
+  const [pageData, setPageData] = useState(() => getLocalDataSync('completed-page'))
   const [projectsList, setProjectsList] = useState(localCompletedProjects)
   const [loading, setLoading] = useState(false)
   
   useEffect(() => {
     let isMounted = true;
-    const getData = async () => {
-      setLoading(true);
+    const getData = async (forceFresh = false) => {
       try {
-        const pData = await fetchStrapiData('completed-page?populate=seo,heroImage');
+        const [pData, projData] = await Promise.all([
+          fetchStrapiData('completed-page?populate=seo,heroImage', { forceFresh }),
+          fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100', { forceFresh })
+        ]);
+
         if (pData && isMounted) {
           setPageData(pData);
         }
 
-        const projData = await fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
         if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
           const formatted = projData.map(item => {
-            const matchLocal = localCompletedProjects.find(lp => slugify(lp.name) === slugify(item.name)) || {};
-            const imgs = item.images && item.images.length > 0 
-              ? item.images.map(img => { const optimal = img.formats?.medium?.url || img.formats?.small?.url || img.url; return optimal?.startsWith('http') ? optimal : optimal })
-              : (matchLocal.images || []);
+            const matchLocal = localCompletedProjects.find(lp => {
+              if (item.documentId && lp.documentId && item.documentId === lp.documentId) return true;
+              const sL = slugify(lp.name);
+              const sI = slugify(item.name);
+              const locL = slugify(lp.location);
+              const locI = slugify(item.location);
+              if (sL === sI) {
+                if (locL && locI) return locL === locI;
+                return true;
+              }
+              return (sL && sI && (sL.includes(sI) || sI.includes(sL)));
+            }) || {};
+            const rawImgs = Array.isArray(item.images) && item.images.length > 0
+              ? item.images
+              : (item.image ? [item.image] : []);
+            const strapiImages = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
+            const imgs = strapiImages.length > 0 ? strapiImages : (matchLocal.images || (matchLocal.image ? [matchLocal.image] : []));
 
             return {
               id: item.documentId || item.id,
+              documentId: item.documentId,
               category: item.category || matchLocal.category,
               name: item.name || matchLocal.name,
               location: item.location || matchLocal.location,
@@ -45,7 +62,10 @@ const CompletedProjects = () => {
               images: imgs.length > 0 ? imgs : (matchLocal.images || [])
             };
           });
-          setProjectsList(formatted);
+
+          const existingSlugs = new Set(formatted.map(p => slugify(p.name)));
+          const missingCompleted = localCompletedProjects.filter(p => !existingSlugs.has(slugify(p.name)));
+          setProjectsList([...formatted, ...missingCompleted]);
         }
       } catch (err) {
         console.error("Error fetching completed projects:", err);
@@ -55,20 +75,18 @@ const CompletedProjects = () => {
     };
     
     getData();
-    return () => { isMounted = false; };
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (loading) return <Preloader />;
-  
-  const getImageUrl = (img) => {
-    if (!img) return null;
-    return img.url?.startsWith('http') ? img.url : `${img.url}`;
-  };
 
   const heroTitle = pageData?.heroTitle || "Completed Projects";
   const heroSubtitle = pageData?.heroSubtitle || "Successfully delivered infrastructure projects across India";
   const heroBreadcrumb = pageData?.heroBreadcrumb || "Projects / Completed";
-  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/Completed-Projects.png";
+  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Completed-Projects.png") : "/images/hero/Completed-Projects.png";
 
   const seoData = pageData?.seo || {
     contentType: 'page',

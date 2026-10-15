@@ -2,7 +2,9 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
 import defaultClientAppreciations from '../../data/clientAppreciationsData';
-import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
+import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi';
+import { getImageUrl } from '../../utils/imageUrl';
+import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import AwardsYearFilter from '../../components/Awards-Componet/AwardsYearFilter';
@@ -18,15 +20,6 @@ const ArrowUpIcon = () => (
   </svg>
 );
 
-const getImageUrl = (imgObj, defaultImg = '') => {
-  if (!imgObj) return defaultImg;
-  let url = typeof imgObj === 'string' ? imgObj : (imgObj.url || imgObj.data?.attributes?.url);
-  if (!url || typeof url !== 'string') return defaultImg;
-  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('blob:')) return url;
-  if (url.startsWith('/uploads')) return STRAPI_URL ? `${STRAPI_URL}${url}` : (defaultImg || url);
-  return url;
-};
-
 const Awards = () => {
   const navigate = useNavigate();
 
@@ -34,17 +27,34 @@ const Awards = () => {
   const [selectedAward, setSelectedAward] = useState(null);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [activePopupType, setActivePopupType] = useState(null);
-  const [pageData, setPageData] = useState(null);
-  const [awardsAndCertifications, setAwardsAndCertifications] = useState(defaultAwardsData);
+  const [pageData, setPageData] = useState(() => getLocalDataSync('awards-page'));
+  const [awardsAndCertifications, setAwardsAndCertifications] = useState(() => sortAwardsByFeaturedAndDate(defaultAwardsData));
   const [clientAppreciationsData, setClientAppreciationsData] = useState(defaultClientAppreciations);
-  const [milestonesData, setMilestonesData] = useState([]);
+  const [milestonesData, setMilestonesData] = useState(() => {
+    const raw = getLocalDataSync('milestones') || getLocalDataSync('timeline-milestones');
+    if (Array.isArray(raw) && raw.length > 0) {
+      return raw.map((m, idx) => ({
+        id: m.documentId || m.id || idx + 1,
+        year: String(m.year || ''),
+        tag: m.tag || m.category || 'Milestone',
+        awardsCount: m.awardsCount || `${m.totalAwards || 1} Awards Won`,
+        title: m.title,
+        desc: m.desc || m.description,
+        stats: m.stats || `Total ${m.totalAwards || 1} Awards | Landmark EPC`,
+        highlights: m.highlights ? (Array.isArray(m.highlights) ? m.highlights : [m.highlights]) : [],
+        image: m.image?.url || m.coverImage?.url || '/images/about/sustainable-infra-gold.jpg',
+        color: idx % 2 === 0 ? '#1E2A5A' : '#F37346'
+      }));
+    }
+    return [];
+  });
 
   useEffect(() => {
     const loadData = async () => {
       try {
         let pageRes = await fetchStrapiData('awards-page?populate[0]=heroImage&populate[1]=seo').catch(() => null);
-        let awardsList = await fetchStrapiData('awards?populate=*&pagination[pageSize]=100&sort=createdAt:desc').catch(() => null);
-        let clientAppreciations = await fetchStrapiData('client-appreciations?populate=*&pagination[pageSize]=100&sort=createdAt:desc').catch(() => null);
+        let awardsList = await fetchStrapiData('awards?populate=*&pagination[pageSize]=100').catch(() => null);
+        let clientAppreciations = await fetchStrapiData('client-appreciations?populate=*&pagination[pageSize]=100').catch(() => null);
         let milestonesRes = await fetchStrapiData('milestones?populate=*&pagination[pageSize]=100&sort=year:asc').catch(() => null)
           || await fetchStrapiData('timeline-milestones?populate=*&pagination[pageSize]=100&sort=year:asc').catch(() => null);
         
@@ -64,8 +74,9 @@ const Awards = () => {
           setMilestonesData(formattedMilestones);
         }
 
-        if (clientAppreciations && clientAppreciations.data) {
-          const formattedClientAppreciations = clientAppreciations.data.map((item, index) => ({
+        const rawClientAppreciations = Array.isArray(clientAppreciations) ? clientAppreciations : (clientAppreciations?.data || null);
+        if (rawClientAppreciations && rawClientAppreciations.length > 0) {
+          const formattedClientAppreciations = rawClientAppreciations.map((item, index) => ({
             id: item.documentId || item.id,
             company: item.company,
             title: item.title,
@@ -83,8 +94,9 @@ const Awards = () => {
           setPageData(pageRes);
         }
 
-        if (awardsList && Array.isArray(awardsList) && awardsList.length > 0) {
-          const mappedAwards = awardsList.map((strapiItem, i) => {
+        const rawAwards = Array.isArray(awardsList) ? awardsList : (awardsList?.data || null);
+        if (rawAwards && rawAwards.length > 0) {
+          const mappedAwards = rawAwards.map((strapiItem, i) => {
             const defaultItem = defaultAwardsData.find(d => 
               (d.title || '').trim().toLowerCase() === (strapiItem.title || '').trim().toLowerCase()
             );
@@ -136,6 +148,9 @@ const Awards = () => {
               location: strapiItem.location || (defaultItem ? defaultItem.location : 'India'),
               description: strapiItem.desc || strapiItem.description || (defaultItem ? defaultItem.description : ''),
               videoUrl: strapiItem.videoUrl || (defaultItem ? defaultItem.videoUrl : null),
+              featured: Boolean(strapiItem.featured || strapiItem.isFeatured || defaultItem?.featured || defaultItem?.isFeatured),
+              isFeatured: Boolean(strapiItem.featured || strapiItem.isFeatured || defaultItem?.featured || defaultItem?.isFeatured),
+              createdAt: strapiItem.createdAt || defaultItem?.createdAt || null,
               image: primaryImg,
               clientImage: secondaryImg,
               images: allImgs.length > 0 ? allImgs : [primaryImg],
@@ -144,8 +159,10 @@ const Awards = () => {
             };
           });
 
-          // Strapi live CMS is the master single source of truth
-          setAwardsAndCertifications(mappedAwards);
+          // Strapi live CMS is the master single source of truth; sort by featured and newest date
+          const existingTitles = new Set(mappedAwards.map(a => (a.title || '').trim().toLowerCase()));
+          const missingAwards = defaultAwardsData.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
+          setAwardsAndCertifications(sortAwardsByFeaturedAndDate([...mappedAwards, ...missingAwards]));
         }
       } catch (err) {
         console.error('Error fetching Awards data', err);
@@ -355,15 +372,7 @@ const Awards = () => {
           (a.title && a.title.toLowerCase() === decodeURIComponent(awardParam).toLowerCase())
         );
         if (found) {
-          setSelectedAward({
-            name: found.title,
-            image: found.image || found.clientImage,
-            certificate: found.clientImage || found.image,
-            description: found.description,
-            date: found.year,
-            location: found.location || 'India',
-            organization: found.company || 'Industry Leaders'
-          });
+          setSelectedAward(found);
           setActivePopupType('award');
         }
       } else if (certParam) {
@@ -372,13 +381,7 @@ const Awards = () => {
           (a.title && a.title.toLowerCase() === decodeURIComponent(certParam).toLowerCase())
         );
         if (found) {
-          setSelectedCertificate({
-            name: found.title,
-            image: found.image || found.clientImage,
-            description: found.description,
-            issueDate: found.year,
-            issuer: found.company || 'Industry Authority'
-          });
+          setSelectedCertificate(found);
           setActivePopupType('certificate');
         }
       }
@@ -427,7 +430,13 @@ const Awards = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  const pageStyle = { fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", background: '#FFFFFF' };
+  const pageStyle = { 
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", 
+    background: '#FFFFFF',
+    width: '100%',
+    maxWidth: '100vw',
+    overflowX: 'hidden'
+  };
   const scrollBtnStyle = { position: 'fixed', bottom: '32px', right: '32px', width: '48px', height: '48px', borderRadius: '16px', background: '#2A2A75', color: '#FFFFFF', border: 'none', boxShadow: '0 8px 24px rgba(42,42,117,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 999 };
 
   return (
@@ -451,7 +460,7 @@ const Awards = () => {
       <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={getImageUrl(pageData?.heroImage, "/images/hero/Awards-Certification.png")} />
       {latestAchievementData && (
         <LatestAchievement 
-          achievements={awardsAndCertifications.filter(a => a.category !== 'Certification').slice(0, 5)} 
+          achievements={(filteredData.length > 0 ? filteredData : awardsAndCertifications).filter(a => a.category !== 'Certification').slice(0, 5)} 
           achievementData={latestAchievementData} 
           onViewDetails={handleViewAwardDetails} 
           onDownload={handleDownload} 
@@ -475,10 +484,21 @@ const Awards = () => {
       <AwardsJourney statsData={{ awardsWon: pageData?.awardsWon || 50, certificates: pageData?.certificates || 25, yearsOfExcellence: pageData?.yearsOfExcellence || 15, projectsDelivered: pageData?.projectsDelivered || 500 }} onContactClick={handleContactClick} onViewProjects={handleViewProjects} title={pageData?.journeyTitle} desc={pageData?.journeyDesc} />
 
       {activePopupType === 'award' && selectedAward && (
-        <AwardPopup isOpen={true} onClose={handleClosePopup} type="award" awardData={selectedAward} />
+        <AwardPopup 
+          key={`award-popup-${selectedAward.id || selectedAward.title}`}
+          isOpen={true} 
+          onClose={handleClosePopup} 
+          type="award" 
+          awardData={selectedAward} 
+        />
       )}
       {activePopupType === 'certificate' && selectedCertificate && (
-        <CertificatePopup isOpen={true} onClose={handleClosePopup} certificateData={selectedCertificate} />
+        <CertificatePopup 
+          key={`cert-popup-${selectedCertificate.id || selectedCertificate.title}`}
+          isOpen={true} 
+          onClose={handleClosePopup} 
+          certificateData={selectedCertificate} 
+        />
       )}
 
       {showScrollTop && (

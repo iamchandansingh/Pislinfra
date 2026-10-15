@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isset($decoded['endpoint']) && isset($decoded['data'])) {
                 $existing[$decoded['endpoint']] = $decoded['data'];
+                $baseKey = explode('?', (string)$decoded['endpoint'])[0];
+                $existing[$baseKey] = $decoded['data'];
             } else {
                 $existing = array_merge($existing, $decoded);
             }
@@ -82,14 +84,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $endpointName = sanitizeEndpointName($requestedEndpoint);
         $chunkFile = $dataDir . '/' . $endpointName . '.json';
         if (file_exists($chunkFile)) {
+            $chunkData = json_decode(file_get_contents($chunkFile), true);
+            if (is_array($chunkData) && isset($chunkData['data'])) {
+                $chunkData = $chunkData['data'];
+            }
             header('Content-Type: application/json');
-            readfile($chunkFile);
+            echo json_encode($chunkData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+        $baseName = sanitizeEndpointName(explode('?', (string)$requestedEndpoint)[0]);
+        $baseChunkFile = $dataDir . '/' . $baseName . '.json';
+        if (file_exists($baseChunkFile)) {
+            $chunkData = json_decode(file_get_contents($baseChunkFile), true);
+            if (is_array($chunkData) && isset($chunkData['data'])) {
+                $chunkData = $chunkData['data'];
+            }
+            header('Content-Type: application/json');
+            echo json_encode($chunkData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             exit;
         }
     }
 
-    // 2. Try serving master backup
+    // 2. Try serving from master backup file
     if (file_exists($backupFile)) {
+        if ($requestedEndpoint) {
+            $master = json_decode(file_get_contents($backupFile), true);
+            if (is_array($master)) {
+                $baseKey = explode('?', (string)$requestedEndpoint)[0];
+                if (isset($master[$requestedEndpoint])) {
+                    $item = $master[$requestedEndpoint];
+                    if (is_array($item) && isset($item['data'])) {
+                        $item = $item['data'];
+                    }
+                    header('Content-Type: application/json');
+                    echo json_encode($item, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    exit;
+                }
+                if (isset($master[$baseKey])) {
+                    $item = $master[$baseKey];
+                    if (is_array($item) && isset($item['data'])) {
+                        $item = $item['data'];
+                    }
+                    header('Content-Type: application/json');
+                    echo json_encode($item, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    exit;
+                }
+            }
+            // Endpoint requested but not found in backup: return 404, do not dump full master backup!
+            http_response_code(404);
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'not_found', 'message' => "Endpoint not found: {$requestedEndpoint}"]);
+            exit;
+        }
         header('Content-Type: application/json');
         readfile($backupFile);
         exit;

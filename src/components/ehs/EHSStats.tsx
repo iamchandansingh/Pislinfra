@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as FiIcons from 'react-icons/fi';
+import { FiShield, FiCheckCircle, FiAward, FiBookOpen, FiCheck } from 'react-icons/fi';
+
+const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+  FiShield,
+  FiCheckCircle,
+  FiAward,
+  FiBookOpen,
+  FiCheck
+};
 
 const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) => {
   const [count, setCount] = useState(0);
@@ -29,8 +37,14 @@ const CounterAnimation = ({ value, suffix }: { value: number; suffix: string }) 
     return () => clearInterval(interval);
   }, [started, value]);
 
+  const isLong = String(value).length > 6;
+
   return (
-    <div ref={ref} style={{ fontSize: '28px', fontWeight: 800, color: '#052A73', lineHeight: 1, fontFamily: 'Inter, sans-serif', marginBottom: '2px' }}>
+    <div 
+      ref={ref} 
+      className={`ehs-stat-counter ${isLong ? 'ehs-stat-counter-long' : ''}`}
+      style={{ fontSize: '28px', fontWeight: 800, color: '#052A73', lineHeight: 1, fontFamily: 'Inter, sans-serif', marginBottom: '2px' }}
+    >
       {count}{suffix}
     </div>
   );
@@ -49,7 +63,7 @@ const EHSStats = ({ stats }) => {
   const statsData = stats && stats.length > 0 ? stats : defaultStats;
 
   return (
-    <div style={{ width: '100%', backgroundColor: '#FFFFFF' }}>
+    <div className="ehs-stats-wrapper" style={{ width: '100%', backgroundColor: '#FFFFFF' }}>
       <div style={{ width: '98%', maxWidth: '1370px', margin: '0 auto' }}>
         <style>{`
           .ehs-stats-container {
@@ -75,37 +89,122 @@ const EHSStats = ({ stats }) => {
             flex-shrink: 0;
           }
           @media (max-width: 768px) {
-            .ehs-stats-container {
-              flex-direction: column;
-              padding: 24px 16px;
-              gap: 16px;
+            .ehs-stats-wrapper {
+              padding: 0 16px 24px 16px !important;
+              box-sizing: border-box !important;
             }
-            .ehs-stat-item {
-              width: 100%;
-              justify-content: flex-start;
-              padding: 0 10px;
+            .ehs-stats-container {
+              display: grid !important;
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+              gap: 12px !important;
+              padding: 0 !important;
+              background-color: transparent !important;
+              border: none !important;
+              box-shadow: none !important;
             }
             .ehs-stat-divider {
-              width: 100%;
-              height: 1px;
-              margin: 4px 0;
+              display: none !important;
+            }
+            .ehs-stat-item {
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              text-align: center !important;
+              background: #f8fafc !important;
+              border: 1.5px solid #e2e8f0 !important;
+              border-bottom: 3.5px solid var(--stat-accent, #052A73) !important;
+              border-radius: 14px !important;
+              padding: 16px 10px 14px 10px !important;
+              width: 100% !important;
+              height: 100% !important;
+              box-sizing: border-box !important;
+              gap: 8px !important;
+              box-shadow: 0 2px 10px rgba(5, 42, 115, 0.04) !important;
+            }
+            .ehs-stat-icon-wrap {
+              width: 44px !important;
+              height: 44px !important;
+              min-width: 44px !important;
+              border-radius: 12px !important;
+              margin-bottom: 2px !important;
+            }
+            .ehs-stat-icon-wrap svg {
+              width: 20px !important;
+              height: 20px !important;
+            }
+            .ehs-stat-content {
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              text-align: center !important;
+              width: 100% !important;
+            }
+            .ehs-stat-counter {
+              font-size: clamp(21px, 5.5vw, 25px) !important;
+              line-height: 1.1 !important;
+              margin-bottom: 4px !important;
+            }
+            .ehs-stat-counter-long {
+              font-size: clamp(15px, 4.2vw, 18px) !important;
+              letter-spacing: -0.4px !important;
+            }
+            .ehs-stat-label {
+              font-size: 11.5px !important;
+              font-weight: 700 !important;
+              line-height: 1.35 !important;
+              color: #1e293b !important;
+              margin-bottom: 3px !important;
+            }
+            .ehs-stat-sub {
+              font-size: 10.5px !important;
+              color: #64748b !important;
+              line-height: 1.25 !important;
+            }
+          }
+          @media (max-width: 360px) {
+            .ehs-stats-wrapper {
+              padding: 0 10px 20px 10px !important;
+            }
+            .ehs-stats-container {
+              gap: 8px !important;
+            }
+            .ehs-stat-item {
+              padding: 12px 6px 10px 6px !important;
+              border-radius: 12px !important;
+            }
+            .ehs-stat-icon-wrap {
+              width: 38px !important;
+              height: 38px !important;
+              min-width: 38px !important;
+            }
+            .ehs-stat-counter {
+              font-size: 19px !important;
+            }
+            .ehs-stat-counter-long {
+              font-size: 14px !important;
+            }
+            .ehs-stat-label {
+              font-size: 10.5px !important;
+            }
+            .ehs-stat-sub {
+              font-size: 9.5px !important;
             }
           }
         `}</style>
         <div className="ehs-stats-container">
           {statsData.map((stat, index) => {
-            const Icon = FiIcons[stat.iconName] || FiIcons.FiCheck;
+            const Icon = iconMap[stat.iconName] || FiCheck;
             const bg = bgColors[index % bgColors.length];
             return (
               <React.Fragment key={stat.id || index}>
-                <div className="ehs-stat-item">
-                  <div style={{ width: '50px', height: '50px', minWidth: '50px', borderRadius: '50%', backgroundColor: bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="ehs-stat-item" style={{ '--stat-accent': bg } as React.CSSProperties}>
+                  <div className="ehs-stat-icon-wrap" style={{ width: '50px', height: '50px', minWidth: '50px', borderRadius: '50%', backgroundColor: bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span style={{ color: '#FFFFFF', display: 'flex', lineHeight: 0 }}><Icon size={24} /></span>
                   </div>
-                  <div>
+                  <div className="ehs-stat-content">
                     <CounterAnimation value={parseFloat(stat.value)} suffix={stat.suffix || ''} />
-                    <p style={{ fontSize: '12px', fontWeight: 600, color: '#1E293B', margin: '0 0 1px 0', fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>
-                    <p style={{ fontSize: '11px', color: '#94A3B8', margin: 0, fontFamily: 'Inter, sans-serif' }}>{stat.sub}</p>
+                    <p className="ehs-stat-label" style={{ fontSize: '12px', fontWeight: 600, color: '#1E293B', margin: '0 0 1px 0', fontFamily: 'Inter, sans-serif' }}>{stat.label}</p>
+                    <p className="ehs-stat-sub" style={{ fontSize: '11px', color: '#94A3B8', margin: 0, fontFamily: 'Inter, sans-serif' }}>{stat.sub}</p>
                   </div>
                 </div>
                 {index < statsData.length - 1 && <div className="ehs-stat-divider" />}

@@ -1,1 +1,0 @@
-var a="/assets/flipkart-sampka-pataudi-hr-C5B35WjI.png";export{a as t};

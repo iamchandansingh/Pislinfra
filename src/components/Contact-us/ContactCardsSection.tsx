@@ -1,52 +1,64 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
-const ContactCard = ({ card }) => {
+interface ContactCardData {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  iconBg: string;
+  iconColor: string;
+  primaryText: string;
+  secondaryText?: string;
+  href?: string;
+}
+
+const ContactCard: React.FC<{ card: ContactCardData }> = ({ card }) => {
   const isLink = Boolean(card.href);
   const Component = isLink ? 'a' : 'div';
-  const linkProps = isLink ? { href: card.href, target: '_blank', rel: 'noopener noreferrer' } : {};
+  const isExternal = Boolean(card.href && card.href.startsWith('http'));
+  const linkProps = isLink
+    ? {
+        href: card.href,
+        ...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}),
+      }
+    : {};
 
   return (
     <Component
       {...linkProps}
-      style={{
-        display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none', color: 'inherit',
-        backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #E5E7EB',
-        padding: '20px', boxShadow: '0 4px 12px rgba(15,23,42,0.04)',
-        transition: 'all 0.3s ease', cursor: isLink ? 'pointer' : 'default', boxSizing: 'border-box',
-        width: '100%', height: '100%', minHeight: '110px',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-3px)';
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(15,23,42,0.08)';
-        e.currentTarget.style.borderColor = '#D1D5DB';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 12px rgba(15,23,42,0.04)';
-        e.currentTarget.style.borderColor = '#E5E7EB';
-      }}
+      className="contact-card-item"
     >
-      <div style={{
-        width: '48px', height: '48px', minWidth: '48px', borderRadius: '50%',
-        backgroundColor: card.iconBg, display: 'flex', alignItems: 'center',
-        justifyContent: 'center', flexShrink: 0,
-      }}>
-        <span style={{ color: card.iconColor, display: 'flex', lineHeight: 0 }}>{card.icon}</span>
+      <div 
+        className="contact-card-icon-wrap" 
+        style={{ backgroundColor: card.iconBg }}
+      >
+        <span style={{ color: card.iconColor, display: 'flex', lineHeight: 0 }}>
+          {card.icon}
+        </span>
       </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#1E2A5A', margin: '0 0 4px 0', lineHeight: 1.3, fontFamily: 'Inter, sans-serif' }}>{card.title}</h3>
-        <p style={{ fontSize: '13px', fontWeight: 600, color: '#334155', margin: '0 0 4px 0', lineHeight: 1.4, wordBreak: 'break-word', fontFamily: 'Inter, sans-serif' }}>{card.primaryText}</p>
+
+      <div className="contact-card-content">
+        <h3 className="contact-card-title">{card.title}</h3>
+        <p className="contact-card-primary">{card.primaryText}</p>
         {card.secondaryText && (
-          <p style={{ fontSize: '12px', fontWeight: 400, color: '#64748B', margin: 0, lineHeight: 1.4, fontFamily: 'Inter, sans-serif' }}>{card.secondaryText}</p>
+          <p className="contact-card-secondary">{card.secondaryText}</p>
         )}
       </div>
     </Component>
   );
 };
 
-const ContactCardsSection = ({ pageData }) => {
-  const contactCards = [
+interface ContactCardsSectionProps {
+  pageData?: {
+    phone?: string;
+    email?: string;
+    address?: string;
+    mapUrl?: string;
+  };
+}
+
+const ContactCardsSection: React.FC<ContactCardsSectionProps> = ({ pageData }) => {
+  const contactCards: ContactCardData[] = [
     {
       id: 'call',
       title: 'Call Us',
@@ -72,23 +84,201 @@ const ContactCardsSection = ({ pageData }) => {
       title: 'Visit Us',
       icon: <MapPin size={22} />,
       iconBg: '#EEFDF3',
-      iconColor: '#22C55E',
+      iconColor: '#16A34A',
       primaryText: pageData?.address || '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
       href: pageData?.mapUrl || 'https://maps.app.goo.gl/yrFiVHJsAwLp461c9',
     },
   ];
 
   return (
-    <div className="contact-cards-wrapper" style={{ width: '95%', maxWidth: '1100px', margin: '0 auto', padding: '24px 0 0 0', position: 'relative', zIndex: 10 }}>
-      <div className="cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '12px', alignItems: 'stretch' }}>
+    <div className="contact-cards-wrapper">
+      <div className="cards-grid">
         {contactCards.map((card) => (
-          <div key={card.id} style={{ display: 'flex' }}><ContactCard card={card} /></div>
+          <div key={card.id} className="card-cell">
+            <ContactCard card={card} />
+          </div>
         ))}
       </div>
+
       <style>{`
-        @media (max-width: 639px) { .contact-cards-wrapper { padding-bottom: 24px !important; } }
-        @media (min-width: 550px) { .cards-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; } }
-        @media (min-width: 900px) { .cards-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 18px !important; justify-content: center !important; } }
+        .contact-cards-wrapper {
+          width: 95%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 16px;
+          position: relative;
+          z-index: 10;
+          box-sizing: border-box;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .cards-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 14px;
+          align-items: stretch;
+          box-sizing: border-box;
+        }
+
+        .card-cell {
+          display: flex;
+          width: 100%;
+        }
+
+        .contact-card-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          text-decoration: none;
+          color: inherit;
+          background-color: #FFFFFF;
+          border-radius: 16px;
+          border: 1px solid #EAEFF5;
+          padding: 20px 18px;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+          cursor: pointer;
+          box-sizing: border-box;
+          width: 100%;
+          min-height: 100px;
+          transition: none !important;
+          transform: none !important;
+        }
+
+        .contact-card-item:hover {
+          transform: none !important;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
+          border-color: #EAEFF5 !important;
+        }
+
+        .contact-card-icon-wrap {
+          width: 48px;
+          height: 48px;
+          min-width: 48px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .contact-card-content {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .contact-card-title {
+          font-size: 15px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0 0 5px 0;
+          line-height: 1.3;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .contact-card-primary {
+          font-size: 14px;
+          font-weight: 600;
+          color: #334155;
+          margin: 0 0 4px 0;
+          line-height: 1.45;
+          word-break: break-word;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .contact-card-secondary {
+          font-size: 12.5px;
+          font-weight: 400;
+          color: #64748B;
+          margin: 0;
+          line-height: 1.4;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* ===== Tablet (>= 768px) ===== */
+        @media (min-width: 768px) {
+          .cards-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 16px !important;
+          }
+        }
+
+        /* ===== Desktop (>= 1024px) ===== */
+        @media (min-width: 1024px) {
+          .cards-grid {
+            gap: 20px !important;
+          }
+          .contact-card-item {
+            padding: 22px 20px;
+          }
+        }
+
+        /* ===== Mobile (<= 767px) ===== */
+        @media (max-width: 767px) {
+          .contact-cards-wrapper {
+            padding: 0 14px !important;
+          }
+          .cards-grid {
+            gap: 12px !important;
+          }
+          .contact-card-item {
+            padding: 16px 14px !important;
+            border-radius: 14px !important;
+            gap: 14px !important;
+            min-height: auto !important;
+          }
+          .contact-card-icon-wrap {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            border-radius: 10px !important;
+          }
+          .contact-card-icon-wrap svg {
+            width: 20px !important;
+            height: 20px !important;
+          }
+          .contact-card-title {
+            font-size: 14.5px !important;
+            margin-bottom: 4px !important;
+          }
+          .contact-card-primary {
+            font-size: 13.5px !important;
+            margin-bottom: 3px !important;
+            line-height: 1.4 !important;
+          }
+          .contact-card-secondary {
+            font-size: 12px !important;
+          }
+        }
+
+        /* Small Phones (<= 360px) */
+        @media (max-width: 360px) {
+          .contact-cards-wrapper {
+            padding: 0 10px !important;
+          }
+          .contact-card-item {
+            padding: 14px 10px !important;
+            gap: 10px !important;
+          }
+          .contact-card-icon-wrap {
+            width: 40px !important;
+            height: 40px !important;
+            min-width: 40px !important;
+          }
+          .contact-card-icon-wrap svg {
+            width: 18px !important;
+            height: 18px !important;
+          }
+          .contact-card-title {
+            font-size: 13.5px !important;
+          }
+          .contact-card-primary {
+            font-size: 12.5px !important;
+          }
+          .contact-card-secondary {
+            font-size: 11px !important;
+          }
+        }
       `}</style>
     </div>
   );

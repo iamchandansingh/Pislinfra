@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import logisticBg from '../../assets/images/Project/complete/Farrukhnagar,NCR-2/all-cargo-logistics-park-farrukhnagar-hr-2.png'
-import * as FaIcons from 'react-icons/fa';
-import * as HiIcons from 'react-icons/hi';
-import * as BiIcons from 'react-icons/bi';
+import { FaCircle, FaCheck, FaBuilding, FaWarehouse, FaTruck, FaIndustry } from 'react-icons/fa';
 import Preloader from '../../components/common/Preloader';
 
+const commonIcons = {
+  FaCircle,
+  FaCheck,
+  FaBuilding,
+  FaWarehouse,
+  FaTruck,
+  FaIndustry,
+};
+
 const getIcon = (iconName) => {
-  if (!iconName) return FaIcons.FaCircle;
-  if (iconName.startsWith('Fa')) return FaIcons[iconName] || FaIcons.FaCircle;
-  if (iconName.startsWith('Hi')) return HiIcons[iconName] || FaIcons.FaCircle;
-  if (iconName.startsWith('Bi')) return BiIcons[iconName] || FaIcons.FaCircle;
-  return FaIcons.FaCircle;
+  if (iconName && commonIcons[iconName]) return commonIcons[iconName];
+  return FaCircle;
 };
 
 
@@ -27,8 +31,12 @@ const defaultLogisticData = {
 };
 
 const Logistic = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => {
+    const raw = getLocalDataSync('solution-pages-logistic') || getLocalDataSync('solution-pages?filters[slug]=logistic');
+    if (raw) return Array.isArray(raw) ? (raw[0] || defaultLogisticData) : raw;
+    return defaultLogisticData;
+  });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -36,11 +44,11 @@ const Logistic = () => {
         const response = await fetchStrapiData('solution-pages?filters[slug]=logistic&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo');
         if (response && response.length > 0) {
           setData(response[0]);
-        } else {
-          setData(defaultLogisticData);
+        } else if (response && !Array.isArray(response)) {
+          setData(response);
         }
       } catch (err) {
-        setData(defaultLogisticData);
+        // Fallback remains active
       } finally {
         setLoading(false);
       }
@@ -48,7 +56,7 @@ const Logistic = () => {
     loadData();
   }, []);
 
-  if (loading || !data) return <Preloader />;
+  if (loading && !data) return <Preloader />;
 
   const seoData = {
     contentType: 'page',

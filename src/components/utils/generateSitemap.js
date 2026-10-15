@@ -1,6 +1,6 @@
 // src/utils/generateSitemap.js
 
-import BlogDB from '../data/BlogDB';
+import BlogDB from '../../data/Blogdb.js';
 
 const generateSitemap = () => {
   const baseUrl = 'https://pisl.in';

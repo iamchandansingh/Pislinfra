@@ -14,26 +14,10 @@ const AwardsJourney = ({ onContactClick, onViewProjects, title, desc }) => {
     <div className="bg-white">
 
       {/* CTA Section */}
-      <section className="py-0 pb-0" style={{ paddingBottom: '80px', paddingTop: '40px' }}>
-        <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '0 20px' }}>
+      <section className="awards-journey-section">
+        <div className="awards-journey-wrapper">
           
-          <div className="awards-journey-container" style={{
-            width: '100%',
-            backgroundColor: '#12163E', // Very dark blue from screenshot
-            backgroundImage: `radial-gradient(circle at 70% 30%, rgba(255,255,255,0.03) 0%, transparent 40%)`,
-            borderRadius: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            textAlign: 'left',
-            padding: '20px 24px',
-            position: 'relative',
-            overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: '40px'
-          }}>
+          <div className="awards-journey-container">
             {/* Background Elements (Confetti & Buildings Simulation) */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
               {/* Confetti */}
@@ -55,28 +39,28 @@ const AwardsJourney = ({ onContactClick, onViewProjects, title, desc }) => {
             </div>
 
             {/* Left Trophy Image */}
-            <div className="awards-journey-image" style={{ position: 'relative', zIndex: 1, width: '140px', height: '140px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/golden_trophy.png" alt="Trophy" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', borderRadius: '12px' }} />
+            <div className="awards-journey-image">
+              <img src="/golden_trophy.png" alt="Trophy" />
               {/* Simple Pedestal base shadow */}
-              <div style={{ position: 'absolute', bottom: '-5px', left: '50%', transform: 'translateX(-50%)', width: '100px', height: '15px', background: 'rgba(0,0,0,0.4)', borderRadius: '50%', filter: 'blur(8px)', zIndex: -1 }}></div>
+              <div className="awards-pedestal-shadow"></div>
             </div>
 
             {/* Center Text */}
-            <div className="awards-journey-text" style={{ position: 'relative', zIndex: 1, flex: '0 1 auto', padding: '0 20px', minWidth: '300px' }}>
-              <h4 style={{ color: '#F37346', fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px', fontFamily: "'Inter', sans-serif" }}>
+            <div className="awards-journey-text">
+              <span className="awards-journey-eyebrow">
                 PARTNER WITH AN
-              </h4>
-              <h2 style={{ color: '#FFFFFF', fontSize: '38px', fontWeight: 600, fontFamily: "'Georgia', serif", lineHeight: 1.15, marginBottom: '16px', letterSpacing: '-0.5px' }} dangerouslySetInnerHTML={{ __html: title || "Award-Winning<br />Organization" }} />
-              <p style={{ color: '#E5E7EB', fontSize: '15px', fontWeight: 400, fontFamily: "'Inter', sans-serif", margin: 0, maxWidth: '400px' }}>{desc || "Let's build a stronger, smarter and sustainable future together."}</p>
+              </span>
+              <h2 className="awards-journey-heading" dangerouslySetInnerHTML={{ __html: title || "Award-Winning<br />Organization" }} />
+              <p className="awards-journey-desc">{desc || "Let's build a stronger, smarter and sustainable future together."}</p>
             </div>
 
             {/* Right Buttons */}
-            <div className="awards-journey-buttons" style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '12px', flexShrink: 0, minWidth: '220px', marginLeft: 'auto' }}>
-              <button onClick={onContactClick} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#F37346', color: '#FFFFFF', padding: '14px 24px', borderRadius: '6px', border: 'none', fontSize: '15px', fontWeight: 600, cursor: 'pointer', fontFamily: "'Inter', sans-serif", transition: 'all 0.3s' }}>
-                Contact Us Today <ArrowRightIcon />
+            <div className="awards-journey-buttons">
+              <button onClick={onContactClick} className="awards-cta-btn primary" type="button">
+                <span>Contact Us Today</span> <ArrowRightIcon />
               </button>
-              <button onClick={onViewProjects} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'transparent', color: '#FFFFFF', padding: '14px 24px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.6)', fontSize: '15px', fontWeight: 600, cursor: 'pointer', fontFamily: "'Inter', sans-serif", transition: 'all 0.3s' }}>
-                View Our Projects <ArrowRightIcon />
+              <button onClick={onViewProjects} className="awards-cta-btn secondary" type="button">
+                <span>View Our Projects</span> <ArrowRightIcon />
               </button>
             </div>
             
@@ -85,25 +69,202 @@ const AwardsJourney = ({ onContactClick, onViewProjects, title, desc }) => {
       </section>
 
       <style>{`
-        @media (max-width: 768px) {
+        .awards-journey-section {
+          padding: 40px 0 80px 0;
+          background: #FFFFFF;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .awards-journey-wrapper {
+          max-width: 1300px;
+          margin: 0 auto;
+          padding: 0 20px;
+          box-sizing: border-box;
+          width: 100%;
+        }
+        .awards-journey-container {
+          width: 100%;
+          background-color: #12163E;
+          background-image: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.03) 0%, transparent 40%);
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          text-align: left;
+          padding: 30px 36px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 16px 36px rgba(0,0,0,0.12);
+          box-sizing: border-box;
+          gap: 36px;
+        }
+        .awards-journey-image {
+          position: relative;
+          z-index: 1;
+          width: 130px;
+          height: 130px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .awards-journey-image img {
+          max-height: 100%;
+          max-width: 100%;
+          object-fit: contain;
+          border-radius: 12px;
+        }
+        .awards-pedestal-shadow {
+          position: absolute;
+          bottom: -5px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 15px;
+          background: rgba(0,0,0,0.4);
+          border-radius: 50%;
+          filter: blur(8px);
+          z-index: -1;
+        }
+        .awards-journey-text {
+          position: relative;
+          z-index: 1;
+          flex: 1;
+          min-width: 0;
+          box-sizing: border-box;
+        }
+        .awards-journey-eyebrow {
+          display: block;
+          color: #F37346;
+          font-size: 12.5px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          margin-bottom: 8px;
+          font-family: 'Inter', sans-serif;
+        }
+        .awards-journey-heading {
+          color: #FFFFFF;
+          font-size: clamp(26px, 3.2vw, 38px);
+          font-weight: 700;
+          font-family: 'Georgia', serif;
+          line-height: 1.2;
+          margin: 0 0 12px 0;
+          letter-spacing: -0.4px;
+        }
+        .awards-journey-desc {
+          color: #E2E8F0;
+          font-size: 14.5px;
+          font-weight: 400;
+          font-family: 'Inter', sans-serif;
+          margin: 0;
+          max-width: 440px;
+          line-height: 1.55;
+        }
+        .awards-journey-buttons {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          flex-shrink: 0;
+          min-width: 200px;
+          margin-left: auto;
+          box-sizing: border-box;
+        }
+        .awards-cta-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 13px 24px;
+          border-radius: 8px;
+          font-size: 14.5px;
+          font-weight: 600;
+          cursor: pointer;
+          font-family: 'Inter', sans-serif;
+          transition: none !important;
+          box-sizing: border-box;
+          text-decoration: none;
+        }
+        .awards-cta-btn.primary {
+          background: #F37346;
+          color: #FFFFFF;
+          border: none;
+        }
+        .awards-cta-btn.secondary {
+          background: transparent;
+          color: #FFFFFF;
+          border: 1px solid rgba(255,255,255,0.45);
+        }
+
+        @media (max-width: 900px) {
           .awards-journey-container {
-            padding: 20px 16px !important;
             flex-direction: column !important;
             text-align: center !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 24px !important;
+            padding: 28px 20px !important;
+            gap: 22px !important;
+          }
+          .awards-journey-image {
+            width: 100px !important;
+            height: 100px !important;
+            margin: 0 auto !important;
           }
           .awards-journey-text {
-            min-width: 100% !important;
+            width: 100% !important;
             padding: 0 !important;
+          }
+          .awards-journey-desc {
+            max-width: 100% !important;
+            margin: 0 auto !important;
           }
           .awards-journey-buttons {
             margin-left: 0 !important;
             width: 100% !important;
+            max-width: 360px !important;
+            gap: 10px !important;
           }
-          .awards-journey-buttons button {
+          .awards-cta-btn {
             width: 100% !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .awards-journey-section {
+            padding: 25px 0 50px 0 !important;
+          }
+          .awards-journey-wrapper {
+            padding: 0 16px !important;
+          }
+          .awards-journey-container {
+            padding: 24px 16px !important;
+            border-radius: 14px !important;
+          }
+          .awards-journey-heading {
+            font-size: clamp(22px, 6vw, 30px) !important;
+          }
+          .awards-journey-buttons {
+            max-width: 100% !important;
+          }
+        }
+
+        @media (max-width: 500px) {
+          .awards-journey-wrapper {
+            padding: 0 12px !important;
+          }
+          .awards-journey-container {
+            padding: 20px 14px !important;
+            gap: 18px !important;
+          }
+          .awards-journey-heading {
+            font-size: clamp(21px, 6.5vw, 26px) !important;
+          }
+          .awards-journey-desc {
+            font-size: 13.5px !important;
+          }
+          .awards-cta-btn {
+            padding: 12px 18px !important;
+            font-size: 14px !important;
           }
         }
       `}</style>

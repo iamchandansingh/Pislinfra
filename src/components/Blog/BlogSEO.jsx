@@ -20,9 +20,18 @@ const BlogSEO = ({ blog }) => {
     const seoTitle = blog.seoTitle || `${blog.title} | Pislinfra`;
     const rawExcerpt = blog.seoDescription || blog.excerpt || (typeof blog.content === 'string' ? blog.content.substring(0, 160) : '');
     const seoDescription = rawExcerpt.replace(/[\n\r]+/g, ' ').trim().substring(0, 160);
+    const extractUrl = (img) => {
+      if (!img) return null;
+      if (typeof img === 'string') return img;
+      if (typeof img === 'object') {
+        return img.url || img.data?.attributes?.url || img.data?.url || img.formats?.large?.url || img.formats?.medium?.url || null;
+      }
+      return null;
+    };
+
     const ogTitle = blog.ogTitle || blog.seoTitle || blog.title;
     const ogDescription = blog.ogDescription || seoDescription;
-    const rawImage = blog.ogImage || blog.featuredImage || blog.image || '/images/hero/Blog.png';
+    const rawImage = extractUrl(blog.ogImage) || extractUrl(blog.featuredImage) || extractUrl(blog.image) || '/images/hero/Blog.png';
     const absoluteImage = rawImage.startsWith('http') ? rawImage : `${siteUrl}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
     
     // Canonical URL
@@ -35,9 +44,10 @@ const BlogSEO = ({ blog }) => {
       }
     }
     
+    const rawTwitterImage = extractUrl(blog.twitterImage) || absoluteImage;
+    const twitterImage = rawTwitterImage.startsWith('http') ? rawTwitterImage : `${siteUrl}${rawTwitterImage.startsWith('/') ? '' : '/'}${rawTwitterImage}`;
     const twitterTitle = blog.twitterTitle || seoTitle;
     const twitterDescription = blog.twitterDescription || seoDescription;
-    const twitterImage = blog.twitterImage || absoluteImage;
     const publishDate = blog.publishDate || '2026-01-01';
     const updatedDate = blog.updatedDate || blog.publishDate || new Date().toISOString().split('T')[0];
     const authorName = blog.authorName || blog.author?.name || 'Pragati Infra Solutions Pvt. Ltd.';

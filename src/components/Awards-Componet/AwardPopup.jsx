@@ -65,25 +65,52 @@ const LocationIcon = () => (
 const AwardPopup = ({ isOpen, onClose, data: fallbackData, awardData }) => {
   const data = awardData || fallbackData;
   const [activeImageIndex, setActiveImageIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setActiveImageIndex(0);
+  }, [data]);
+
   if (!isOpen || !data) return null;
 
-  const images = (data.images && data.images.length > 0)
-    ? data.images
-    : (data.gallery && data.gallery.length > 0)
-      ? [data.image, ...data.gallery]
-      : (data.image ? [data.image] : []);
+  const fallbackDefaultImg = '/images/awards/certificate.jpg';
 
-  const currentImg = images[activeImageIndex] || images[0] || data.image;
+  const images = React.useMemo(() => {
+    const list = [];
+    const add = (u) => {
+      if (!u || typeof u !== 'string') return;
+      if (!list.includes(u)) list.push(u);
+    };
+    if (Array.isArray(data.images) && data.images.length > 0) {
+      data.images.forEach(add);
+    }
+    if (data.image) add(data.image);
+    if (data.awardImage) add(data.awardImage);
+    if (data.certificate) add(data.certificate);
+    if (data.clientImage) add(data.clientImage);
+    if (Array.isArray(data.gallery)) {
+      data.gallery.forEach(add);
+    }
+    return list.length > 0 ? list : [fallbackDefaultImg];
+  }, [data]);
+
+  const currentImg = images[activeImageIndex] || images[0] || fallbackDefaultImg;
 
   const handleDownload = () => {
-    window.open(currentImg || data.image, '_blank');
+    window.open(currentImg, '_blank');
   };
 
+  const title = data.title || data.name || 'Award Recognition';
+  const category = data.category || 'Excellence Award';
+  const year = String(data.year || data.date || '2026');
+  const presentedBy = data.presentedBy || data.company || data.organization || 'Industry Authority';
+  const location = data.location || 'India';
+  const description = data.description || data.desc || '';
+
   const infoItems = [
-    { icon: StarIcon, label: 'Category', value: data.category || 'Excellence', color: '#F59E0B' },
-    { icon: CalendarIcon, label: 'Year', value: data.year, color: '#3B82F6' },
-    { icon: BuildingIcon, label: 'Presented By', value: data.presentedBy || 'Industry Authority', color: '#8B5CF6' },
-    { icon: LocationIcon, label: 'Location', value: data.location || 'Global', color: '#10B981' }
+    { icon: StarIcon, label: 'Category', value: category, color: '#F59E0B' },
+    { icon: CalendarIcon, label: 'Year', value: year, color: '#3B82F6' },
+    { icon: BuildingIcon, label: 'Presented By', value: presentedBy, color: '#8B5CF6' },
+    { icon: LocationIcon, label: 'Location', value: location, color: '#10B981' }
   ];
 
   return (
@@ -174,8 +201,13 @@ const AwardPopup = ({ isOpen, onClose, data: fallbackData, awardData }) => {
             }}>
               <img 
                 src={currentImg} 
-                alt={data.title} 
+                alt={title} 
                 style={{ maxWidth: '100%', maxHeight: '330px', objectFit: 'contain', display: 'block' }}
+                onError={(e) => {
+                  if (e.target.src !== window.location.origin + fallbackDefaultImg && !e.target.src.endsWith(fallbackDefaultImg)) {
+                    e.target.src = fallbackDefaultImg;
+                  }
+                }}
               />
             </div>
 
@@ -238,7 +270,7 @@ const AwardPopup = ({ isOpen, onClose, data: fallbackData, awardData }) => {
               marginBottom: '10px', fontFamily: "'Inter', sans-serif",
               lineHeight: 1.25, letterSpacing: '-0.3px'
             }}>
-              {data.title || data.name}
+              {title}
             </h2>
 
             {/* Description */}
@@ -246,7 +278,7 @@ const AwardPopup = ({ isOpen, onClose, data: fallbackData, awardData }) => {
               fontSize: '14px', color: '#64748B', lineHeight: 1.6,
               marginBottom: '24px', fontFamily: "'Inter', sans-serif"
             }}>
-              {data.description}
+              {description}
             </p>
 
             {/* Info Grid */}

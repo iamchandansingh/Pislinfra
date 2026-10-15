@@ -1,10 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData } from '../services/strapi';
-
+import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
 import ReactMarkdown from 'react-markdown';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
 import Preloader from '../components/common/Preloader';
+
+const fallbackPolicyData = {
+  title: 'Privacy Policy',
+  heroSubtitle: 'Learn how we collect, use, and protect your data.',
+  breadcrumb: 'Privacy Policy',
+  lastUpdated: '2024-03-15',
+  sections: [
+    {
+      title: 'Introduction',
+      icon: 'overview',
+      content: 'Welcome to Pragati Infra Solutions Private Limited ("Pislinfra", "we", "our", or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or interact with our services.'
+    },
+    {
+      title: 'Information We Collect',
+      icon: 'file',
+      content: 'We may collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our services, when you participate in activities on the Website, or when you contact us.\n\n*   **Personal Data:** Name, email address, phone number, and job title when submitted through contact or career forms.\n*   **Usage Data:** Information automatically collected by our servers, such as your IP address, browser type, operating system, and pages viewed.'
+    },
+    {
+      title: 'How We Use Your Information',
+      icon: 'users',
+      content: 'We use personal information collected via our Website for a variety of business purposes, including to respond to user inquiries, provide customer support, deliver requested project and service updates, process job applications, and comply with legal, regulatory, and audit obligations.'
+    },
+    {
+      title: 'Sharing Your Information',
+      icon: 'share',
+      content: 'We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations. We do not sell or rent your personal information to third parties for marketing purposes.'
+    },
+    {
+      title: 'Data Security',
+      icon: 'lock',
+      content: 'We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure.'
+    },
+    {
+      title: 'Cookies and Tracking',
+      icon: 'cookie',
+      content: 'We may use cookies and similar tracking technologies to access or store information. You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies.'
+    },
+    {
+      title: 'Contact Us',
+      icon: 'mail',
+      content: 'If you have questions or comments about this Privacy Policy, you may contact us at:\n\n**Company Address**\n31 P, adj. to Medanta, Medicity,\nIslampur Colony, Sector 38\nGurugram, Haryana 122018\n\n**Contact Details**\nPhone: 085270 40411\nEmail: info@pislinfra.com'
+    }
+  ]
+};
 
 const Icon = ({ name, style }) => {
   const icons = {
@@ -26,8 +69,8 @@ const Icon = ({ name, style }) => {
 
 const PrivacyPolicy = () => {
   const [activeTab, setActiveTab] = useState(1);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => getLocalDataSync('policy-page') || fallbackPolicyData);
+  const [loading, setLoading] = useState(false);
 
   const getImageUrl = (imgObj, defaultImg) => {
     if (!imgObj || (!imgObj.url && !imgObj.data?.attributes?.url)) return defaultImg;
@@ -37,142 +80,532 @@ const PrivacyPolicy = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    let isMounted = true;
+
     const loadData = async () => {
       try {
         const response = await fetchStrapiData('policy-page?populate[0]=heroImage&populate[1]=seo&populate[2]=sections');
-        if (response) {
+        if (response && isMounted) {
           setData(response);
         }
       } catch (error) {
         console.error('Error fetching policy page:', error);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     loadData();
+    return () => { isMounted = false; };
   }, []);
 
-  if (loading) return <Preloader />;
-  if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Policy not found.</div>;
+  if (loading && !data) return <Preloader />;
 
-  const navItems = data.sections?.map((section, index) => ({
-    id: index + 1,
-    title: section.title,
-    icon: section.icon || 'file'
-  })) || [];
+  const currentData = data || fallbackPolicyData;
+
+  const navItems = (currentData.sections && currentData.sections.length > 0)
+    ? currentData.sections.map((section, index) => ({
+        id: index + 1,
+        title: section.title,
+        icon: section.icon || 'file'
+      }))
+    : fallbackPolicyData.sections.map((section, index) => ({
+        id: index + 1,
+        title: section.title,
+        icon: section.icon || 'file'
+      }));
 
   const scrollToSection = (id) => {
     setActiveTab(id);
     const element = document.getElementById(`section-${id}`);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const yOffset = -90;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
+  const sectionsList = (currentData.sections && currentData.sections.length > 0)
+    ? currentData.sections
+    : fallbackPolicyData.sections;
+
   return (
-    <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', paddingBottom: '60px' }}>
-      {data.seo && <BlogSEO seo={data.seo} />}
+    <div className="policy-page-wrapper">
+      {currentData.seo && <BlogSEO blog={currentData.seo} />}
       
       <PageHero
-        title={data.title || "Privacy Policy"}
-        subtitle={data.heroSubtitle || "Learn how we collect, use, and protect your data."}
-        breadcrumb={data.breadcrumb || "Privacy Policy"}
-        bgImage={getImageUrl(data.heroImage, "/images/hero/Extra-2.png")}
+        title={currentData.title || "Privacy Policy"}
+        subtitle={currentData.heroSubtitle || "Learn how we collect, use, and protect your data."}
+        breadcrumb={currentData.breadcrumb || "Privacy Policy"}
+        bgImage={getImageUrl(currentData.heroImage, "/images/hero/Extra-2.png")}
       />
 
-      
-      <style>
-        {`
-          .policy-container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-          }
-          .policy-sidebar {
-            display: none;
-            width: 100%;
-            max-width: 300px;
-            flex-shrink: 0;
-          }
-          .policy-content {
-            flex: 1;
-          }
-          @media (min-width: 992px) {
-            .policy-container {
-              flex-direction: row;
-            }
-            .policy-sidebar {
-              display: block;
-            }
-          }
-        `}
-      </style>
+      <div className="policy-main-container">
+        
+        {/* Mobile Horizontal Section Jump Bar */}
+        <div className="policy-mobile-nav">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`policy-mobile-pill ${activeTab === item.id ? 'active' : ''}`}
+            >
+              <Icon name={item.icon} style={{ width: '14px', height: '14px' }} />
+              <span>{item.id}. {item.title}</span>
+            </button>
+          ))}
+        </div>
 
-      <div style={{ width: '100%', maxWidth: '1200px', margin: '20px auto 0', padding: '0 20px', position: 'relative', zIndex: 10, boxSizing: 'border-box' }}>
-        <div className="policy-container">
+        <div className="policy-layout-grid">
           
-          <div className="policy-sidebar">
-            <div style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)', position: 'sticky', top: '100px' }}>
-              
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {/* Desktop Sticky Sidebar */}
+          <aside className="policy-sidebar">
+            <div className="policy-sidebar-card">
+              <div className="sidebar-header-label">TABLE OF CONTENTS</div>
+              <ul className="sidebar-nav-list">
                 {navItems.map((item) => (
                   <li key={item.id}>
                     <button
                       onClick={() => scrollToSection(item.id)}
-                      style={{
-                        width: '100%', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px',
-                        borderRadius: '8px', border: 'none', cursor: 'pointer', transition: 'all 0.2s', fontSize: '14px', fontWeight: 500,
-                        backgroundColor: activeTab === item.id ? '#f0f2fb' : 'transparent',
-                        color: activeTab === item.id ? '#FF6B35' : '#475569',
-                      }}
+                      className={`sidebar-nav-btn ${activeTab === item.id ? 'active' : ''}`}
                     >
-                      <span style={{ color: activeTab === item.id ? '#FF6B35' : '#94a3b8', display: 'flex' }}>
+                      <span className="sidebar-btn-icon">
                         <Icon name={item.icon} />
                       </span>
-                      {item.title}
+                      <span className="sidebar-btn-text">{item.id}. {item.title}</span>
                     </button>
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
+          </aside>
 
-          <div style={{ flex: 1 }}>
-            <div style={{ backgroundColor: '#ffffff', borderRadius: '16px', padding: '15px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)' }}>
+          {/* Policy Document Content Area */}
+          <main className="policy-content-area">
+            <div className="policy-content-card">
               
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', paddingBottom: '10px', borderBottom: '1px solid #e2e8f0' }}>
-                <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 800, color: '#1E2A5A', margin: 0 }}>
-                  {data.title || "Privacy Policy"}
+              <div className="policy-card-header">
+                <h1 className="policy-doc-title">
+                  {currentData.title || "Privacy Policy"}
                 </h1>
-                <span style={{ fontSize: '14px', color: '#64748B', backgroundColor: '#f8fafc', padding: '6px 12px', borderRadius: '999px', fontWeight: 500 }}>
-                  Last updated: {data.lastUpdated ? new Date(data.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'March 15, 2024'}
+                <span className="policy-updated-badge">
+                  Last updated: {currentData.lastUpdated ? new Date(currentData.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'March 15, 2024'}
                 </span>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                {data.sections?.map((section, index) => (
-                  <div key={index} id={`section-${index + 1}`} style={{ paddingBottom: '0px', paddingTop: '5px' }}>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '10px' }}>
-                      <div style={{ flexShrink: 0, width: '40px', height: '40px', borderRadius: '12px', backgroundColor: '#f0f2fb', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#28296F' }}>
+              <div className="policy-sections-wrapper">
+                {sectionsList.map((section, index) => (
+                  <section 
+                    key={index} 
+                    id={`section-${index + 1}`} 
+                    className="policy-section-block"
+                  >
+                    <div className="policy-section-header">
+                      <div className="policy-section-icon-wrap">
                         <Icon name={section.icon || 'file'} />
                       </div>
-                      <div>
-                        <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#28296F', margin: '0 0 5px 0', padding: '0' }}>{index + 1}. {section.title}</h2>
-                      </div>
+                      <h2 className="policy-section-heading">
+                        {index + 1}. {section.title}
+                      </h2>
                     </div>
-                    {/* Render Markdown or Rich Text */}
-                    <div className="rich-text-content" style={{ lineHeight: '1.5', color: '#475569', marginBottom: '0px' }}>
+
+                    <div className="rich-text-content">
                       <ReactMarkdown>{section.content || ''}</ReactMarkdown>
                     </div>
-                  </div>
+                  </section>
                 ))}
               </div>
 
             </div>
-          </div>
+          </main>
 
         </div>
       </div>
+
+      <style>{`
+        .policy-page-wrapper {
+          background-color: #f8fafc;
+          min-height: 100vh;
+          padding-bottom: 70px;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        .policy-main-container {
+          width: 95%;
+          max-width: 1240px;
+          margin: 30px auto 0;
+          padding: 0 16px;
+          box-sizing: border-box;
+        }
+
+        /* Mobile Quick Jump Pills */
+        .policy-mobile-nav {
+          display: none;
+          gap: 8px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          padding-bottom: 8px;
+          margin-bottom: 18px;
+          scrollbar-width: none;
+        }
+
+        .policy-mobile-nav::-webkit-scrollbar {
+          display: none;
+        }
+
+        .policy-mobile-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 7px 14px;
+          border-radius: 999px;
+          border: 1px solid #e2e8f0;
+          background-color: #ffffff;
+          color: #475569;
+          font-size: 12.5px;
+          font-weight: 600;
+          white-space: nowrap;
+          cursor: pointer;
+          flex-shrink: 0;
+          transition: background-color 0.2s, color 0.2s, border-color 0.2s !important;
+          transform: none !important;
+        }
+
+        .policy-mobile-pill.active {
+          background-color: #1E2A5A;
+          color: #ffffff;
+          border-color: #1E2A5A;
+        }
+
+        .policy-mobile-pill.active svg {
+          color: #FF6B35;
+        }
+
+        /* Layout Grid */
+        .policy-layout-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+          .policy-layout-grid {
+            flex-direction: row;
+            align-items: flex-start;
+          }
+        }
+
+        /* Desktop Sidebar */
+        .policy-sidebar {
+          display: none;
+          width: 290px;
+          flex-shrink: 0;
+        }
+
+        @media (min-width: 992px) {
+          .policy-sidebar {
+            display: block;
+          }
+        }
+
+        .policy-sidebar-card {
+          background-color: #ffffff;
+          border-radius: 16px;
+          padding: 22px 18px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+          position: sticky;
+          top: 100px;
+        }
+
+        .sidebar-header-label {
+          font-size: 11.5px;
+          font-weight: 800;
+          color: #94a3b8;
+          letter-spacing: 0.8px;
+          margin-bottom: 12px;
+          padding: 0 10px;
+        }
+
+        .sidebar-nav-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .sidebar-nav-btn {
+          width: 100%;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 10px 14px;
+          border-radius: 10px;
+          border: none;
+          cursor: pointer;
+          font-size: 13.5px;
+          font-weight: 600;
+          background-color: transparent;
+          color: #475569;
+          transition: background-color 0.2s, color 0.2s !important;
+          transform: none !important;
+        }
+
+        .sidebar-nav-btn:hover {
+          background-color: #f1f5f9;
+          color: #1E2A5A;
+        }
+
+        .sidebar-nav-btn.active {
+          background-color: #f0f2fb;
+          color: #FF6B35;
+          font-weight: 700;
+        }
+
+        .sidebar-btn-icon {
+          color: #94a3b8;
+          display: flex;
+          flex-shrink: 0;
+        }
+
+        .sidebar-nav-btn.active .sidebar-btn-icon {
+          color: #FF6B35;
+        }
+
+        .sidebar-btn-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        /* Content Area */
+        .policy-content-area {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .policy-content-card {
+          background-color: #ffffff;
+          border-radius: 18px;
+          border: 1px solid #e2e8f0;
+          padding: 36px 40px;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+          box-sizing: border-box;
+        }
+
+        .policy-card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+          padding-bottom: 18px;
+          border-bottom: 1px solid #e2e8f0;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .policy-doc-title {
+          font-size: clamp(24px, 3.5vw, 32px);
+          font-weight: 900;
+          color: #1E2A5A;
+          margin: 0;
+          letter-spacing: -0.5px;
+          line-height: 1.25;
+        }
+
+        .policy-updated-badge {
+          font-size: 13px;
+          color: #64748B;
+          background-color: #f8fafc;
+          border: 1px solid #e2e8f0;
+          padding: 6px 14px;
+          border-radius: 999px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+
+        /* Sections */
+        .policy-sections-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 36px;
+        }
+
+        .policy-section-block {
+          padding-bottom: 28px;
+          border-bottom: 1px solid #f1f5f9;
+        }
+
+        .policy-section-block:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        .policy-section-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 14px;
+        }
+
+        .policy-section-icon-wrap {
+          flex-shrink: 0;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background-color: rgba(40, 41, 111, 0.07);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #28296F;
+        }
+
+        .policy-section-heading {
+          font-size: 19px;
+          font-weight: 800;
+          color: #1E2A5A;
+          margin: 0;
+          letter-spacing: -0.3px;
+          line-height: 1.35;
+        }
+
+        /* Rich Text / Markdown Styling */
+        .rich-text-content {
+          color: #475569;
+          font-size: 14.5px;
+          line-height: 1.7;
+          word-break: break-word;
+        }
+
+        .rich-text-content p {
+          margin: 0 0 12px 0;
+        }
+
+        .rich-text-content p:last-child {
+          margin-bottom: 0;
+        }
+
+        .rich-text-content ul, .rich-text-content ol {
+          padding-left: 22px;
+          margin: 8px 0 14px 0;
+        }
+
+        .rich-text-content li {
+          margin-bottom: 6px;
+          line-height: 1.6;
+        }
+
+        .rich-text-content strong {
+          color: #1E2A5A;
+          font-weight: 700;
+        }
+
+        .rich-text-content a {
+          color: #FF6B35;
+          text-decoration: underline;
+          font-weight: 600;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 991px) {
+          .policy-mobile-nav {
+            display: flex;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .policy-main-container {
+            margin-top: 18px;
+            padding: 0 12px;
+          }
+
+          .policy-content-card {
+            padding: 22px 16px !important;
+            border-radius: 14px !important;
+          }
+
+          .policy-card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+          }
+
+          .policy-doc-title {
+            font-size: 22px !important;
+          }
+
+          .policy-updated-badge {
+            font-size: 12px !important;
+            padding: 4px 10px !important;
+          }
+
+          .policy-sections-wrapper {
+            gap: 26px !important;
+          }
+
+          .policy-section-block {
+            padding-bottom: 20px !important;
+          }
+
+          .policy-section-header {
+            gap: 10px !important;
+            margin-bottom: 10px !important;
+          }
+
+          .policy-section-icon-wrap {
+            width: 34px !important;
+            height: 34px !important;
+            border-radius: 8px !important;
+          }
+
+          .policy-section-icon-wrap svg {
+            width: 17px !important;
+            height: 17px !important;
+          }
+
+          .policy-section-heading {
+            font-size: 16.5px !important;
+          }
+
+          .rich-text-content {
+            font-size: 13.5px !important;
+            line-height: 1.6 !important;
+          }
+
+          .rich-text-content ul, .rich-text-content ol {
+            padding-left: 18px !important;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .policy-main-container {
+            padding: 0 8px;
+          }
+
+          .policy-content-card {
+            padding: 16px 12px !important;
+          }
+
+          .policy-doc-title {
+            font-size: 20px !important;
+          }
+
+          .policy-section-heading {
+            font-size: 15.5px !important;
+          }
+
+          .rich-text-content {
+            font-size: 13px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

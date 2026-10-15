@@ -1,357 +1,424 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaDownload, FaFilePdf, FaFileArchive, FaShieldAlt, FaHeadset, FaCheckCircle } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { 
+  FileText, 
+  ArrowRight, 
+  Eye 
+} from 'lucide-react';
+import { fetchStrapiData, getStrapiMediaUrl } from '../../services/strapi';
 
-const NAVY = '#0a2a66';
-const ORANGE = '#ff8755';
-const FONT = 'Inter, sans-serif';
-
-const resourcesList = [
-  { 
-    id: 1, 
-    title: 'Site Safety Manual', 
-    desc: 'Comprehensive manual detailing all site-specific safety protocols.', 
-    size: '4.2 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 2, 
-    title: 'PPE Guidelines 2025', 
-    desc: 'Updated guidelines on mandatory use of Protective Equipment.', 
-    size: '1.8 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 3, 
-    title: 'Emergency Response Plan', 
-    desc: 'Step-by-step action plans for medical and structural incidents.', 
-    size: '3.5 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 4, 
-    title: 'Hazard Identification', 
-    desc: 'Training material for reporting and mitigating potential hazards.', 
-    size: '2.1 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 5, 
-    title: 'Work Permit Procedures', 
-    desc: 'Operating procedures for managing Permit To Work (PTW).', 
-    size: '1.5 MB', 
-    icon: FaFilePdf
-  },
-  { 
-    id: 6, 
-    title: 'Toolbox Talk Resources', 
-    desc: 'A collection of weekly toolbox talk topics for site supervisors.', 
-    size: '5.0 MB', 
-    icon: FaFileArchive
-  },
-];
-
-const supportItems = [
-  { icon: FaShieldAlt, title: '24/7 Monitoring' },
-  { icon: FaHeadset, title: 'Rapid Response' },
-  { icon: FaCheckCircle, title: '100% Compliant' },
-];
+const DEFAULT_HSE_PDF = 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf';
+const LOCAL_HSE_PDF = '/reports/Annual-Reports-2023-2024.pdf';
+const DEFAULT_HSE_COVER = '/images/hero/safety-Hero-image.png';
+const LOCAL_HSE_FALLBACK = '/images/EHS/Site-Safety-Inspection.png';
 
 const SafetyResources = ({ resources, title, subtitle, desc }) => {
-  const activeResources = resources && resources.length > 0 ? resources.map((r, i) => ({ id: r.id || i, title: r.title, desc: r.description || r.desc || resourcesList[i]?.desc, size: resourcesList[i]?.size || "0 MB", icon: resourcesList[i]?.icon })) : resourcesList;
+  const [docFileUrl, setDocFileUrl] = useState(DEFAULT_HSE_PDF);
+  const [docCoverUrl, setDocCoverUrl] = useState(DEFAULT_HSE_COVER);
+  const [docTitle, setDocTitle] = useState('HSE Policy');
+  const [docDesc, setDocDesc] = useState('Official Health, Safety & Environment policies, operational guidelines and zero-harm standards. Access our comprehensive workplace safety framework and protocols.');
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = async (e) => {
+    e.preventDefault();
+    if (downloading) return;
+    setDownloading(true);
+
+    try {
+      // 1. Try fetching target PDF file as a blob to force native browser download
+      const targetUrl = docFileUrl || '/reports/HSE_POLICY_PISL.pdf';
+      const response = await fetch(targetUrl, { mode: 'cors' });
+      if (!response.ok) throw new Error('Download network error');
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = blobUrl;
+      a.download = 'HSE_POLICY_PISL.pdf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(blobUrl);
+      }, 300);
+    } catch (err) {
+      console.warn('Direct blob download failed, falling back to local file:', err);
+      // Fallback: Trigger download via local same-origin copy
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = '/reports/HSE_POLICY_PISL.pdf';
+      a.download = 'HSE_POLICY_PISL.pdf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+      }, 300);
+    } finally {
+      setTimeout(() => setDownloading(false), 800);
+    }
+  };
+
+  useEffect(() => {
+    const applyItem = (item) => {
+      if (!item) return;
+      if (item.title) setDocTitle(item.title);
+      if (item.desc) setDocDesc(item.desc);
+      if (item.file || item.fileUrl) {
+        const u = getStrapiMediaUrl(item.file || item.fileUrl);
+        if (u) setDocFileUrl(u);
+      }
+      if (item.coverImage) {
+        const c = getStrapiMediaUrl(item.coverImage);
+        if (c) setDocCoverUrl(c);
+      }
+    };
+
+    // 1. Check passed resources prop
+    const hseItem = (resources || []).find(r => {
+      const t = (r.title || '').toLowerCase();
+      return t.includes('hse') || t.includes('policy') || t.includes('safety');
+    }) || (resources && resources.length > 0 ? resources[0] : null);
+
+    if (hseItem) applyItem(hseItem);
+
+    // 2. Fetch directly from Strapi CMS for live real-time updates
+    fetchStrapiData('ehs-page?populate[0]=resources&populate[1]=resources.file&populate[2]=resources.coverImage')
+      .then(data => {
+        const items = data?.resources || data?.data?.attributes?.resources || [];
+        const liveItem = items.find(r => {
+          const t = (r.title || '').toLowerCase();
+          return t.includes('hse') || t.includes('policy') || t.includes('safety');
+        });
+        if (liveItem) applyItem(liveItem);
+      })
+      .catch(() => {});
+
+    // 3. Check localStorage for updated strapi cache
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        for (let i = 0; i < window.localStorage.length; i++) {
+          const key = window.localStorage.key(i);
+          if (key && key.includes('ehs-page')) {
+            const raw = window.localStorage.getItem(key);
+            if (raw) {
+              const parsed = JSON.parse(raw);
+              const item = parsed?.resources?.find(r => {
+                const t = (r.title || '').toLowerCase();
+                return t.includes('hse') || t.includes('policy') || t.includes('safety');
+              });
+              if (item) applyItem(item);
+            }
+          }
+        }
+      } catch (e) {}
+    }
+  }, [resources]);
+
   return (
-    <section style={{ 
-      padding: '60px 24px 80px',
-      backgroundColor: '#f8fafc',
-      fontFamily: FONT
+    <section className="ehs-safety-section" style={{
+      padding: '40px 24px 70px',
+      backgroundColor: '#ffffff',
+      fontFamily: '"Inter", sans-serif'
     }}>
-      <div style={{ maxWidth: '1370px', margin: '0 auto' }}> {/* Matches IndustryRecognition width */}
-
-        {/* The Massive Split-Card Container (Straight Edges) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="split-card-container"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr', 
-            borderRadius: '0px', // No curve
-            overflow: 'hidden',
-            backgroundColor: '#ffffff',
-            border: '1px solid #e2e8f0', // Clean straight border instead of full screen bleed
-            boxShadow: '0 10px 40px rgba(10,42,102,0.05)'
-          }}
-        >
+      <div style={{ maxWidth: '1350px', margin: '0 auto' }}>
+        
+        {/* Main Banner Card */}
+        <div className="hse-card">
           
-          {/* LEFT COLUMN: Visual & Support */}
-          <div 
-            className="left-column"
-            style={{ 
-              position: 'relative', 
-              width: '100%',
-              height: '100%', // Inherits height from grid
-            }}
-          >
-            {/* Background Image */}
+          {/* Left Content Area */}
+          <div className="hse-content">
+            
+            {/* Headline */}
+            <h3 className="hse-headline">
+              Environment, Health & Safety <br />
+              <span className="hse-highlight">{docTitle}</span>
+            </h3>
+
+            {/* Subtitle / Description */}
+            <p className="hse-description">
+              {docDesc}
+            </p>
+
+            {/* Call To Action Buttons */}
+            <div className="hse-actions">
+              <a 
+                href={docFileUrl}
+                download="HSE_POLICY_PISL.pdf"
+                onClick={handleDownload}
+                className="hse-download-btn"
+                title="Download HSE Policy (PDF)"
+              >
+                <div className="hse-btn-body">
+                  <FileText size={18} strokeWidth={2.2} />
+                  <span>{downloading ? 'Downloading...' : 'Download PDF'}</span>
+                </div>
+                <div className="hse-btn-arrow">
+                  <ArrowRight size={18} strokeWidth={2.4} />
+                </div>
+              </a>
+
+              <a 
+                href={docFileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hse-view-btn"
+                title="View PDF in Browser"
+              >
+                <Eye size={16} />
+                <span>View PDF</span>
+              </a>
+            </div>
+
+          </div>
+
+          {/* Right Visual Image */}
+          <div className="hse-visual">
             <img 
-              src="/images/awards/Celebrated-National-Safety-PRR-Jhamuwas-(4).png" 
-              alt="Safety Professional" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} 
+              src={docCoverUrl} 
+              alt="HSE Policy & Safety Standards" 
+              loading="lazy"
+              onError={(e) => {
+                if (e.currentTarget.src !== LOCAL_HSE_FALLBACK && !e.currentTarget.src.endsWith(LOCAL_HSE_FALLBACK)) {
+                  e.currentTarget.src = LOCAL_HSE_FALLBACK;
+                }
+              }}
+              className="hse-image"
             />
-            {/* Dark Gradient Overlay */}
-            <div style={{
-              position: 'absolute',
-              top: 0, left: 0, right: 0, bottom: 0,
-              background: 'linear-gradient(to bottom, rgba(10,42,102,0.1) 0%, rgba(10,42,102,0.95) 100%)'
-            }} />
-
-            {/* Content overlay on Image */}
-            <div className="left-column-content">
-              <div>
-                <h3 style={{ margin: '0 0 8px', fontSize: '28px', fontWeight: 800, color: '#ffffff', lineHeight: 1.2 }} className="left-column-title">
-                  Safety is our<br />Highest Priority
-                </h3>
-                <p style={{ margin: 0, fontSize: '14px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.5, maxWidth: '90%' }}>
-                  Access our official safety manuals, guidelines, and toolkits used across all PISL project sites.
-                </p>
-              </div>
-
-              {/* Horizontal Support Strip (Left to Right) */}
-              <div style={{ 
-                display: 'flex', 
-                flexDirection: 'row', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                background: 'rgba(10,42,102,0.4)', // Sleek dark navy glass
-                backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                padding: '16px 24px',
-                marginTop: '8px',
-                gap: '12px'
-              }} className="support-strip">
-                {supportItems.map((item, i) => (
-                  <div key={i} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px'
-                  }}>
-                    <item.icon style={{ color: ORANGE, fontSize: '18px' }} />
-                    <span style={{ 
-                      color: '#ffffff', 
-                      fontSize: '12px', 
-                      fontWeight: 700, 
-                      letterSpacing: '0.5px',
-                      textTransform: 'uppercase'
-                    }}>
-                      {item.title}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* RIGHT COLUMN: Interactive List */}
-          <div 
-            className="right-column"
-            style={{ 
-              padding: '32px 5%', // Tighter padding, % for large screens
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center'
-            }}
-          >
-            {/* Header Text */}
-            <div style={{ marginBottom: '20px' }}> 
-              <h2 style={{ 
-                fontSize: 'clamp(24px, 3.5vw, 32px)', 
-                fontWeight: 800, 
-                color: NAVY, 
-                margin: '0 0 8px',
-                letterSpacing: '-1px'
-              }}>
-                Safety <span style={{ color: NAVY }}>Resources</span>
-              </h2>
-              <p style={{ fontSize: '14px', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
-                Download essential workplace documents and operational guidelines instantly.
-              </p>
-            </div>
+        </div>
 
-            {/* Highly Styled List View (Descriptions Removed for minimal height) */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}> 
-              {resourcesList.map((resource, i) => (
-                <motion.div
-                  key={resource.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="resource-row"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '10px 16px', // Minimal padding
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '10px', 
-                    border: '1px solid #f1f5f9',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    gap: '12px' 
-                  }}
-                >
-                  {/* Left Icon */}
-                  <div style={{
-                    width: '36px', height: '36px', // Smaller icon box
-                    borderRadius: '8px',
-                    backgroundColor: '#ffffff',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
-                    flexShrink: 0,
-                    transition: 'all 0.3s ease'
-                  }} className="row-icon-box">
-                    <resource.icon style={{ fontSize: '16px', color: '#94a3b8', transition: 'color 0.3s ease' }} className="row-icon" />
-                  </div>
-
-                  {/* Text Content (Title Only) */}
-                  <div style={{ flex: 1, minWidth: 0 }}> 
-                    <h4 style={{ 
-                      margin: 0, 
-                      fontSize: '14px', 
-                      fontWeight: 800, 
-                      color: NAVY,
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}>
-                      {resource.title}
-                    </h4>
-                  </div>
-
-                  {/* Size & Action */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px' 
-                  }} className="row-action-area">
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1', transition: 'color 0.3s' }} className="row-size">
-                      {resource.size}
-                    </span>
-                    <div style={{
-                      width: '30px', height: '30px', // Minimal button
-                      borderRadius: '50%',
-                      backgroundColor: '#ffffff',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                      transition: 'all 0.3s ease'
-                    }} className="row-download-btn">
-                      <FaDownload style={{ fontSize: '11px', color: NAVY, transition: 'color 0.3s ease' }} className="row-download-icon" />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </motion.div>
       </div>
 
       <style>{`
-        /* Card Row Hover Effects - Ultra Premium */
-        .resource-row:hover {
-          background-color: #ffffff !important;
-          border-color: ${ORANGE} !important;
-          box-shadow: 0 12px 30px rgba(255,135,85,0.12) !important;
-          transform: translateY(-2px);
-        }
-        .resource-row:hover .row-icon-box {
-          background-color: ${ORANGE} !important;
-          transform: scale(1.05);
-        }
-        .resource-row:hover .row-icon {
-          color: #ffffff !important;
-        }
-        .resource-row:hover .row-size {
-          color: ${ORANGE} !important;
-        }
-        .resource-row:hover .row-download-btn {
-          background-color: ${NAVY} !important;
-          box-shadow: 0 6px 16px rgba(10,42,102,0.2) !important;
-          transform: translateY(-2px);
-        }
-        .resource-row:hover .row-download-icon {
-          color: #ffffff !important;
+        .hse-card {
+          background: #ffffff;
+          border-radius: 12px;
+          border: 1px solid #e2e8f0;
+          box-shadow: none !important;
+          overflow: hidden;
+          display: grid;
+          grid-template-columns: 1.15fr 0.95fr;
+          align-items: stretch;
+          position: relative;
         }
 
-        /* Default Desktop */
-        .left-column-content {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          padding: 40px;
-          z-index: 2;
+        .hse-content {
+          padding: 34px 32px 30px 38px;
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          justify-content: center;
+          z-index: 2;
         }
 
-        /* Responsiveness */
-        @media (max-width: 1024px) {
-          .split-card-container {
-            grid-template-columns: 1fr !important;
+        .hse-headline {
+          font-size: clamp(26px, 2.8vw, 36px);
+          font-weight: 800;
+          color: #0c2356;
+          line-height: 1.18;
+          letter-spacing: -0.5px;
+          margin: 0 0 14px;
+        }
+
+        .hse-highlight {
+          color: #ff733b;
+        }
+
+        .hse-description {
+          font-size: 13.5px;
+          color: #64748b;
+          line-height: 1.6;
+          margin: 0 0 28px;
+          max-width: 520px;
+        }
+
+        .hse-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .hse-download-btn {
+          display: inline-flex;
+          align-items: stretch;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: none !important;
+          text-decoration: none;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+
+        .hse-download-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: none !important;
+        }
+
+        .hse-btn-body {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          padding: 11px 20px;
+          background-color: #0b2865;
+          color: #ffffff;
+          font-size: 13.5px;
+          font-weight: 700;
+          letter-spacing: -0.2px;
+          transition: background-color 0.2s ease;
+        }
+
+        .hse-download-btn:hover .hse-btn-body {
+          background-color: #071c49;
+        }
+
+        .hse-btn-arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 14px;
+          background-color: #ff733b;
+          color: #ffffff;
+          transition: background-color 0.2s ease;
+        }
+
+        .hse-download-btn:hover .hse-btn-arrow {
+          background-color: #ff8755;
+        }
+
+        .hse-view-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          padding: 10px 18px;
+          border-radius: 8px;
+          border: 1.5px solid #0b2865;
+          background-color: #ffffff;
+          color: #0b2865;
+          font-size: 13px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+
+        .hse-view-btn:hover {
+          background-color: #0b2865;
+          color: #ffffff;
+          transform: translateY(-2px);
+        }
+
+        .hse-visual {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          overflow: hidden;
+        }
+
+        .hse-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+        }
+
+        @media (max-width: 1080px) {
+          .hse-card {
+            grid-template-columns: 1fr;
           }
-          .left-column {
-            height: auto !important;
-            min-height: 400px !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+          .hse-content {
+            padding: 30px 24px;
           }
-          .left-column-content {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            padding: 32px 24px !important;
-            margin-top: 100px;
-          }
-          .right-column {
-            padding: 32px 24px !important;
-          }
-          .support-strip {
-            flex-wrap: wrap;
-            justify-content: center !important;
+          .hse-visual {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            min-height: auto;
           }
         }
-        
-        @media (max-width: 640px) {
-          .left-column-content {
-            padding: 24px !important;
-            gap: 16px !important;
+
+        @media (max-width: 768px) {
+          .ehs-safety-section {
+            padding: 20px 16px 44px 16px !important;
+            box-sizing: border-box !important;
           }
-          .left-column-title {
-            font-size: 24px !important;
+          .hse-card {
+            border-radius: 16px !important;
+            border: 1px solid #EEF2F7 !important;
+            background-color: #FFFFFF !important;
           }
-          .support-strip {
+          .hse-content {
+            padding: 24px 18px 20px 18px !important;
+          }
+          .hse-headline {
+            font-size: clamp(21px, 5.6vw, 26px) !important;
+            line-height: 1.22 !important;
+            letter-spacing: -0.4px !important;
+            margin-bottom: 10px !important;
+          }
+          .hse-description {
+            font-size: 13px !important;
+            line-height: 1.55 !important;
+            margin-bottom: 20px !important;
+          }
+          .hse-actions {
             flex-direction: column !important;
-            align-items: flex-start !important;
-            padding: 16px !important;
-            gap: 12px !important;
-          }
-          .support-strip > div {
-            width: 100%;
-          }
-          /* Keep rows horizontal on mobile but adjust gaps */
-          .resource-row {
-            padding: 10px 12px !important;
+            align-items: stretch !important;
             gap: 10px !important;
           }
-          .row-action-area {
-            gap: 8px !important;
+          .hse-download-btn {
+            width: 100% !important;
+            height: 44px !important;
+            border-radius: 9px !important;
           }
-          .row-size {
-            display: none; /* Hide size on tiny screens to save space */
+          .hse-btn-body {
+            justify-content: center !important;
+            flex: 1 !important;
+            font-size: 13.5px !important;
+            padding: 0 16px !important;
+          }
+          .hse-btn-arrow {
+            padding: 0 14px !important;
+          }
+          .hse-view-btn {
+            width: 100% !important;
+            height: 44px !important;
+            justify-content: center !important;
+            font-size: 13px !important;
+            border-radius: 9px !important;
+            box-sizing: border-box !important;
+          }
+          .hse-download-btn:hover,
+          .hse-view-btn:hover {
+            transform: none !important;
+          }
+          .hse-visual {
+            aspect-ratio: 16 / 9 !important;
+            border-top: 1px solid #EEF2F7 !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .hse-content {
+            padding: 20px 14px 16px 14px !important;
+          }
+          .hse-headline {
+            font-size: 20px !important;
+          }
+          .hse-description {
+            font-size: 12px !important;
+          }
+          .hse-download-btn,
+          .hse-view-btn {
+            height: 42px !important;
+          }
+          .hse-btn-body,
+          .hse-view-btn {
+            font-size: 12.5px !important;
           }
         }
       `}</style>

@@ -26,7 +26,7 @@ const defaultCareerData = {
 const Careers = () => {
   const [selectedPosition, setSelectedPosition] = useState('');
   const [data, setData] = useState(defaultCareerData);
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(jobOpeningsData);
 
   useEffect(() => {
     const loadData = async () => {
@@ -131,7 +131,7 @@ const Careers = () => {
         bgImage={getImageUrl(data?.heroImage, "/images/hero/Careers.png")}
       />
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '80px', paddingBottom: '80px' }}>
+      <div className="careers-content-stack" style={{ display: 'flex', flexDirection: 'column', gap: '80px', paddingBottom: '80px' }}>
         <CareerBenefitsSection title={data?.benefitsTitle} benefits={data?.benefits?.length > 0 ? data.benefits.map(b => {
           const defaultIcons = {
             'Competitive Salary': 'Wallet',
@@ -172,6 +172,15 @@ const Careers = () => {
           <CareerApplicationSection preSelectedPosition={selectedPosition} jobPositionsList={jobs.length > 0 ? jobs.map(j => j.title) : undefined} title={data?.formTitle} subtitle={data?.formSubtitle} />
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .careers-content-stack {
+            gap: 40px !important;
+            padding-bottom: 48px !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

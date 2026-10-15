@@ -6,12 +6,12 @@ import CSRPhilosophy from '../../components/csr/CSRPhilosophy';
 import CSRFocusAreas from '../../components/csr/CSRFocusAreas';
 import CSRInitiatives from '../../components/csr/CSRInitiatives';
 import CSRCTA from '../../components/csr/CSRCTA';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
 import Preloader from '../../components/common/Preloader';
 
 const CSR = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(() => getLocalDataSync('csr-page'));
+  const [loading, setLoading] = useState(!data);
 
   useEffect(() => {
     const getData = async () => {
@@ -27,9 +27,17 @@ const CSR = () => {
       }
     };
     getData();
+
+    const handleUpdate = (e) => {
+      if (e.detail?.endpoint?.includes('csr-page') && e.detail.data) {
+        setData(e.detail.data);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
   }, []);
 
-  if (loading) return <Preloader />;
+  if (loading && !data) return <Preloader />;
 
   const pageData = data || {};
   const seoData = {

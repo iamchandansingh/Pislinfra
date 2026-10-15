@@ -5,13 +5,14 @@ import FeaturedCaseStudy from '../../components/case-studies/FeaturedCaseStudy'
 import CaseStudiesGrid from '../../components/case-studies/CaseStudiesGrid'
 import ProjectApproach from '../../components/case-studies/ProjectApproach'
 import TrustedClients from '../../components/case-studies/TrustedClients'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import Preloader from '../../components/common/Preloader'
+import localCaseStudies from '../../data/caseStudies'
 
 const CaseStudy = () => {
-  const [pageData, setPageData] = useState(null)
-  const [caseStudiesList, setCaseStudiesList] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [pageData, setPageData] = useState(() => getLocalDataSync('case-study-page'))
+  const [caseStudiesList, setCaseStudiesList] = useState(localCaseStudies)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getData = async () => {
@@ -23,27 +24,30 @@ const CaseStudy = () => {
 
         const csData = await fetchStrapiData('case-studies?populate=*&pagination[pageSize]=100&sort=createdAt:asc');
         if (csData) {
-          const formatted = csData.map(item => ({
-            id: item.documentId || item.id,
-            slug: item.slug,
-            title: item.title,
-            project: item.project,
-            developer: item.developer,
-            location: item.location,
-            plinthArea: item.plinthArea,
-            buildUpArea: item.buildUpArea,
-            introduction: item.introduction,
-            overview: item.overview,
-            engagement: item.engagement,
-            challenges: item.challenges,
-            achievements: item.achievements,
-            conclusion: item.conclusion,
-            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `${item.image.url}`) : null,
-            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `${item.engagementImage.url}`) : null,
-            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `${item.challengesImage.url}`) : null,
-            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `${item.achievementsImage.url}`) : null,
-            seo: item.seo,
-          }));
+          const formatted = csData.map(item => {
+            const matchLocal = localCaseStudies.find(lc => lc.slug === item.slug) || {};
+            return {
+              id: item.documentId || item.id,
+              slug: item.slug,
+              title: item.title,
+              project: item.project,
+              developer: item.developer,
+              location: item.location,
+              plinthArea: item.plinthArea,
+              buildUpArea: item.buildUpArea,
+              introduction: item.introduction,
+              overview: item.overview,
+              engagement: item.engagement,
+              challenges: item.challenges,
+              achievements: item.achievements,
+              conclusion: item.conclusion,
+              image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `${item.image.url}`) : matchLocal.image || null,
+              engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `${item.engagementImage.url}`) : matchLocal.engagementImage || null,
+              challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `${item.challengesImage.url}`) : matchLocal.challengesImage || null,
+              achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `${item.achievementsImage.url}`) : matchLocal.achievementsImage || null,
+              seo: item.seo,
+            };
+          });
           setCaseStudiesList(formatted);
         }
       } catch (err) {
@@ -56,7 +60,7 @@ const CaseStudy = () => {
     getData();
   }, []);
 
-  if (loading) return <Preloader />;
+  if (loading && caseStudiesList.length === 0) return <Preloader />;
 
   const getImageUrl = (img) => {
     if (!img) return null;

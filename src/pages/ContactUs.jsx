@@ -5,10 +5,10 @@ import ContactCardsSection from '../components/Contact-us/ContactCardsSection';
 import ContactInquirySection from '../components/Contact-us/ContactInquirySection';
 import ContactMapSection from '../components/Contact-us/ContactMapSection';
 import Preloader from '../components/common/Preloader';
-import { fetchStrapiData, STRAPI_URL } from '../services/strapi';
+import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../services/strapi';
 
 const ContactUs = () => {
-  const [pageData, setPageData] = useState(null);
+  const [pageData, setPageData] = useState(() => getLocalDataSync('contact-page'));
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -90,7 +90,13 @@ const ContactUs = () => {
       </div>
 
       <style>{`
-
+        @media (max-width: 768px) {
+          .contact-sections {
+            gap: 32px !important;
+            padding-top: 24px !important;
+            padding-bottom: 40px !important;
+          }
+        }
       `}</style>
     </div>
   )

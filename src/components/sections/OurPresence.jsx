@@ -192,26 +192,33 @@ const OurPresence = ({ title, description }) => {
     );
   };
 
+  const activeLocObj = locations.find(l => l.id === activeLocation);
+  const activeInfo = activeLocObj?.info;
+
   return (
-    <section style={{ padding: '100px 24px', backgroundColor: '#fafafa', overflow: 'hidden' }} onClick={() => setActiveLocation(null)}>
+    <section 
+      className="pisl-presence-section"
+      style={{ padding: '100px 24px', backgroundColor: '#fafafa', overflow: 'hidden' }} 
+      onClick={() => setActiveLocation(null)}
+    >
       <div style={{ maxWidth: '1300px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '120px', alignItems: 'start' }} className="presence-grid" onClick={(e) => e.stopPropagation()}>
         
         {/* LEFT */}
         <div>
-          <h2 style={{ fontSize: '30px', fontWeight: '750', color: '#0f172a', marginBottom: '12px', letterSpacing: '-1px', lineHeight: 1.1 }}>{title ? (
-    <span>{title.split(' ')[0]} <span style={{ color: '#ff8755' }}>{title.split(' ').slice(1).join(' ')}</span></span>
-  ) : (
-    <span>OUR <span style={{ color: '#ff8755' }}>PRESENCE</span></span>
-  )}</h2>
-          <p style={{ color: '#64748b', fontSize: '15.5px', lineHeight: '1.65', marginBottom: '36px' }}>{description || 'Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring'}</p>
+          <h2 className="pisl-presence-title" style={{ fontSize: '30px', fontWeight: '750', color: '#0f172a', marginBottom: '12px', letterSpacing: '-1px', lineHeight: 1.1 }}>{title ? (
+            <span>{title.split(' ')[0]} <span style={{ color: '#ff8755' }}>{title.split(' ').slice(1).join(' ')}</span></span>
+          ) : (
+            <span>OUR <span style={{ color: '#ff8755' }}>PRESENCE</span></span>
+          )}</h2>
+          <p className="pisl-presence-desc" style={{ color: '#64748b', fontSize: '15.5px', lineHeight: '1.65', marginBottom: '36px' }}>{description || 'Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring'}</p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div className="pisl-presence-regions" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             {regions.map((region) => {
               const list = locations.filter(loc => loc.region === region.id);
               if (!list.length) return null;
               return (
-                <div key={region.id} style={{ padding: '14px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px' }}>
-                  <div style={{ fontSize: '10px', color: region.color, fontWeight: '900', marginBottom: '8px', letterSpacing: '0.8px' }}>{region.title}</div>
+                <div key={region.id} className="pisl-region-card" style={{ padding: '14px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px' }}>
+                  <div className="pisl-region-title" style={{ fontSize: '10px', color: region.color, fontWeight: '900', marginBottom: '8px', letterSpacing: '0.8px' }}>{region.title}</div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 6px', fontSize: '12px' }}>
                     {list.map((loc, i, arr) => (
                       <span key={loc.id} style={{ display: 'inline-flex', alignItems: 'center' }}>
@@ -240,6 +247,83 @@ const OurPresence = ({ title, description }) => {
               );
             })}
           </div>
+
+          {/* MOBILE ONLY: Selected Project Detail Card */}
+          {activeInfo && (
+            <div 
+              className="presence-mobile-detail-card"
+              style={{
+                marginTop: '16px',
+                background: '#ffffff',
+                border: '1.5px solid #ff8755',
+                borderRadius: '12px',
+                padding: '14px 16px',
+                boxShadow: '0 8px 24px rgba(255,135,85,0.12)',
+                position: 'relative',
+                animation: 'popIn 0.22s cubic-bezier(0.34, 1.4, 0.64, 1)'
+              }}
+            >
+              <button
+                onClick={() => setActiveLocation(null)}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  border: 'none',
+                  background: '#f1f5f9',
+                  borderRadius: '50%',
+                  width: '24px',
+                  height: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  color: '#64748b',
+                  fontSize: '12px',
+                  fontWeight: '700'
+                }}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+              <div style={{ display: 'inline-block', backgroundColor: '#fff5f0', color: '#ff8755', fontSize: '9px', fontWeight: '800', padding: '2px 6px', borderRadius: '4px', textTransform: 'uppercase', marginBottom: '6px' }}>
+                {activeLocObj.region} GRID • PROJECT DETAILS
+              </div>
+              <h4 style={{ margin: '0 0 8px', fontSize: '13px', fontWeight: '800', color: '#0f172a', lineHeight: 1.3, paddingRight: '20px' }}>
+                {activeInfo.title}
+              </h4>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px 10px', borderTop: '1px solid #f1f5f9', paddingTop: '8px', fontSize: '10.5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <MapPin size={11} style={{ color: '#ff8755', flexShrink: 0 }} />
+                  <span style={{ color: '#64748b' }}>Loc:</span>
+                  <strong style={{ color: '#1e293b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{activeInfo.location}</strong>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <User size={11} style={{ color: '#ff8755', flexShrink: 0 }} />
+                  <span style={{ color: '#64748b' }}>Client:</span>
+                  <strong style={{ color: '#1e293b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{activeInfo.client}</strong>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <Maximize2 size={11} style={{ color: '#ff8755', flexShrink: 0 }} />
+                  <span style={{ color: '#64748b' }}>Area:</span>
+                  <strong style={{ color: '#1e293b' }}>{activeInfo.area}</strong>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <Calendar size={11} style={{ color: '#ff8755', flexShrink: 0 }} />
+                  <span style={{ color: '#64748b' }}>Timeline:</span>
+                  <strong style={{ color: '#1e293b' }}>{activeInfo.timeline}</strong>
+                </div>
+              </div>
+
+              {activeInfo.scope && (
+                <div style={{ marginTop: '8px', backgroundColor: '#f8fafc', padding: '6px 8px', borderRadius: '6px', fontSize: '10px', color: '#334155', lineHeight: 1.35, border: '1px solid #f1f5f9' }}>
+                  <strong style={{ color: '#64748b', fontSize: '8.5px', textTransform: 'uppercase', display: 'block', marginBottom: '2px' }}>Project Scope</strong>
+                  {activeInfo.scope}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* RIGHT - MAP (Phone pe hide) */}
@@ -255,8 +339,60 @@ const OurPresence = ({ title, description }) => {
       </div>
 
       <style>{`
-        @media (max-width: 1024px) { .presence-grid { grid-template-columns: 1fr !important; gap: 50px !important; } }
-        @media (max-width: 768px) { .map-wrapper { display: none !important; } }
+        .presence-mobile-detail-card {
+          display: none;
+        }
+        @media (max-width: 1024px) { 
+          .presence-grid { 
+            grid-template-columns: 1fr !important; 
+            gap: 40px !important; 
+          } 
+        }
+        @media (max-width: 768px) { 
+          .pisl-presence-section {
+            padding: 36px 16px 40px 16px !important;
+          }
+          .pisl-presence-title {
+            font-size: clamp(22px, 6vw, 28px) !important;
+            margin-bottom: 8px !important;
+            letter-spacing: -0.5px !important;
+          }
+          .pisl-presence-desc {
+            font-size: 13.5px !important;
+            line-height: 1.55 !important;
+            margin-bottom: 20px !important;
+          }
+          .pisl-presence-regions {
+            gap: 10px !important;
+          }
+          .pisl-region-card {
+            padding: 10px 10px !important;
+            border-radius: 10px !important;
+          }
+          .pisl-region-title {
+            font-size: 9.5px !important;
+            margin-bottom: 6px !important;
+          }
+          .region-pill-trigger {
+            font-size: 11px !important;
+            padding: 2px 5px !important;
+          }
+          .map-wrapper { 
+            display: none !important; 
+          }
+          .presence-mobile-detail-card {
+            display: block !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .pisl-presence-regions {
+            grid-template-columns: 1fr !important;
+            gap: 8px !important;
+          }
+          .pisl-region-card {
+            padding: 10px 10px !important;
+          }
+        }
         @keyframes popIn { 0% { opacity: 0; transform: translateY(10px) scale(0.97); filter: blur(2px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
         
         @keyframes glowNormal { 0%,100%{transform:scale(1); opacity:0.25} 50%{transform:scale(1.35); opacity:0.45} }

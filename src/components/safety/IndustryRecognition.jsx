@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { FaTrophy, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
@@ -80,88 +85,28 @@ const awards = [
   },
 ];
 
-const getAwardUrl = (img) => {
-  if (!img) return "";
-  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
-  if (!url) return "";
-  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-};
+import { getStrapiMediaUrl } from '../../services/strapi';
 
 const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
+  const swiperRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   const activeAwards = strapiAwards && strapiAwards.length > 0 
-    ? strapiAwards.map((a, i) => ({ 
-        title: a.title, 
-        subtitle: a.subtitle, 
-        text: a.description ? a.description.substring(0, 20) : awards[i]?.text, 
-        description: a.description, 
-        image: getAwardUrl(a.image) || awards[i]?.image || "" 
-      })) 
+    ? strapiAwards.map((a, i) => {
+        const customImg = getStrapiMediaUrl(a.image);
+        return { 
+          title: a.title || awards[i % awards.length]?.title, 
+          subtitle: a.subtitle || awards[i % awards.length]?.subtitle, 
+          text: a.description ? a.description.substring(0, 20) : (awards[i % awards.length]?.text || 'Safety Milestone'), 
+          description: a.description || awards[i % awards.length]?.description, 
+          image: customImg || awards[i % awards.length]?.image || "" 
+        };
+      }) 
     : awards;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [cardsPerView, setCardsPerView] = useState(4);
-  const [isHovered, setIsHovered] = useState(false);
-  const totalPosts = activeAwards.length;
-
-  // Responsive cards per view
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 640) setCardsPerView(1);
-      else if (window.innerWidth <= 1024) setCardsPerView(2);
-      else setCardsPerView(4);
-    };
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % totalPosts);
-  };
-
-  const handlePrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + totalPosts) % totalPosts);
-  };
-
-  // Auto-slide effect with pause-on-hover and 3s resume delay
-  useEffect(() => {
-    let timeoutId;
-    let intervalId;
-
-    if (!isHovered) {
-      // Wait 3s after hover ends (or on mount) before sliding
-      timeoutId = setTimeout(() => {
-        setDirection(1);
-        setCurrentIndex((prev) => (prev + 1) % totalPosts);
-
-        // Then continue sliding every 2 seconds
-        intervalId = setInterval(() => {
-          setDirection(1);
-          setCurrentIndex((prev) => (prev + 1) % totalPosts);
-        }, 2000);
-      }, 3000);
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-      clearInterval(intervalId);
-    };
-  }, [isHovered, totalPosts]);
-
-  // Generate visible awards dynamically based on index and screen size
-  const visibleAwards = Array.from({ length: cardsPerView }).map((_, i) => {
-    return awards[(currentIndex + i) % totalPosts];
-  });
 
   return (
-    <section style={{
-      padding: '80px 24px 60px',
-      backgroundColor: '#f8fafc',
-      fontFamily: FONT,
-      overflow: 'hidden',
-    }}>
+    <section className="ehs-awards-section">
       <div style={{ maxWidth: '1370px', margin: '0 auto', position: 'relative' }}>
 
         {/* Section Header */}
@@ -169,312 +114,427 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '40px' }}
+          transition={{ duration: 0.5 }}
+          className="ehs-awards-header"
         >
-          <h2 style={{
-            fontSize: 'clamp(24px, 3.5vw, 36px)',
-            fontWeight: '800',
-            color: NAVY,
-            margin: '0 0 6px',
-            letterSpacing: '-1px',
-            fontFamily: FONT,
-          }}>
-            Photography <span style={{ color: NAVY }}> With Client</span>
+          <h2 className="ehs-awards-title">
+            {title ? title : <>Photography <span style={{ color: NAVY }}>With Client</span></>}
           </h2>
-          <p style={{
-            fontSize: '14px',
-            color: '#64748b',
-            maxWidth: '600px',
-            margin: '0 auto',
-            lineHeight: 1.6,
-            fontFamily: FONT,
-          }}>
-            Our commitment to safety, quality, and operational excellence continues to earn recognition across infrastructure and industrial projects.
+          <p className="ehs-awards-subtitle">
+            {subtitle || "Our commitment to safety, quality, and operational excellence continues to earn recognition across infrastructure and industrial projects."}
           </p>
         </motion.div>
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={handlePrev}
-          className="nav-arrow left-arrow"
-          style={{
-            position: 'absolute',
-            left: '-20px',
-            top: '55%',
-            transform: 'translateY(-50%)',
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            background: '#ffffff',
-            border: `none`,
-            boxShadow: '0 8px 24px rgba(10,42,102,0.12)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            zIndex: 10,
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = NAVY;
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-            e.currentTarget.querySelector('svg').style.color = '#ffffff';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#ffffff';
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-            e.currentTarget.querySelector('svg').style.color = NAVY;
-          }}
-        >
-          <FaChevronLeft style={{ fontSize: '16px', color: NAVY, transition: 'color 0.3s ease' }} />
-        </button>
-
-        <button
-          onClick={handleNext}
-          className="nav-arrow right-arrow"
-          style={{
-            position: 'absolute',
-            right: '-20px',
-            top: '55%',
-            transform: 'translateY(-50%)',
-            width: '48px',
-            height: '48px',
-            borderRadius: '50%',
-            background: '#ffffff',
-            border: `none`,
-            boxShadow: '0 8px 24px rgba(10,42,102,0.12)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            zIndex: 10,
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = NAVY;
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-            e.currentTarget.querySelector('svg').style.color = '#ffffff';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#ffffff';
-            e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-            e.currentTarget.querySelector('svg').style.color = NAVY;
-          }}
-        >
-          <FaChevronRight style={{ fontSize: '16px', color: NAVY, transition: 'color 0.3s ease' }} />
-        </button>
-
         {/* Awards Slider Container */}
-        <div 
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          style={{
-            position: 'relative',
-            padding: '0px', // Absolutely 0 padding
-            height: '350px', // Exact height of the cards, no extra space
-            overflow: 'hidden', // Contains sliding items
-          }}
-        >
-          <div style={{
-            display: 'flex',
-            gap: '24px',
-            width: '100%',
-          }}>
-            <AnimatePresence mode="popLayout" initial={false} custom={direction}>
-              {visibleAwards.map((award) => (
-                <motion.div
-                  layout // This is the magic for sliding items!
-                  key={award.title} // Must be unique for AnimatePresence tracking
-                  custom={direction}
-                  initial={(d) => ({ opacity: 0, x: d > 0 ? 50 : -50, scale: 0.98 })}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={(d) => ({ opacity: 0, x: d > 0 ? -50 : 50, scale: 0.98 })}
-                  transition={{ type: "tween", ease: "easeInOut", duration: 0.7 }}
-                  style={{
-                    borderRadius: '8px', 
-                    boxShadow: '0 10px 30px rgba(10,42,102,0.1)',
-                    cursor: 'pointer',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    height: '350px',
-                  }}
-                  className="photo-card group slider-card"
-                >
+        <div className="ehs-slider-wrapper">
+          {/* Navigation Arrows */}
+          <button
+            ref={prevRef}
+            className="ehs-nav-btn ehs-nav-prev"
+            aria-label="Previous slide"
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
+            <FaChevronLeft style={{ fontSize: '15px' }} />
+          </button>
+
+          <button
+            ref={nextRef}
+            className="ehs-nav-btn ehs-nav-next"
+            aria-label="Next slide"
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <FaChevronRight style={{ fontSize: '15px' }} />
+          </button>
+
+          <Swiper
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            modules={[Navigation, Pagination, Autoplay]}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onBeforeInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }}
+            pagination={{
+              clickable: true,
+              el: '.ehs-awards-pagination',
+            }}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            loop={activeAwards.length > 4}
+            speed={600}
+            spaceBetween={24}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 14,
+              },
+              480: {
+                slidesPerView: 1.35,
+                spaceBetween: 16,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 24,
+              },
+            }}
+            style={{
+              paddingTop: '6px',
+              paddingBottom: '8px',
+            }}
+          >
+            {activeAwards.map((award, index) => (
+              <SwiperSlide key={`${award.title}-${index}`} style={{ height: 'auto' }}>
+                <div className="photo-card group slider-card">
                   {/* Background Image */}
-                  <div style={{
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    zIndex: 1,
-                    overflow: 'hidden',
-                    backgroundColor: '#e2e8f0'
-                  }}>
+                  <div className="card-image-wrap">
                     <img 
                       src={award.image} 
                       alt={award.title}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-                      }}
+                      loading="lazy"
                       className="card-image"
                     />
                   </div>
 
                   {/* Gradient Overlay */}
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(to top, rgba(10,42,102, 0.95) 0%, rgba(10,42,102, 0.5) 45%, transparent 80%)',
-                    zIndex: 2,
-                    transition: 'opacity 0.4s ease',
-                  }}
-                  className="card-overlay" />
+                  <div className="card-overlay" />
 
-                  {/* Sleek Industrial Ribbon Tag */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '16px',
-                    right: '0px',
-                    background: ORANGE,
-                    padding: '6px 14px',
-                    borderRadius: '4px 0 0 4px',
-                    boxShadow: '0 4px 12px rgba(255,135,85,0.4)',
-                    zIndex: 3,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  className="ribbon-tag"
-                  >
+                  {/* Ribbon Tag */}
+                  <div className="ribbon-tag">
                     <FaTrophy style={{ fontSize: '10px', color: '#fff' }} />
-                    <span style={{ fontSize: '9px', fontWeight: '800', color: '#fff', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    <span className="ribbon-text">
                       {award.text}
                     </span>
                   </div>
 
                   {/* Content (Bottom) */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '0',
-                    width: '100%',
-                    padding: '24px',
-                    zIndex: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '6px',
-                    transform: 'translateY(85px)',
-                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                  }}
-                  className="card-content">
-                    <h4 style={{
-                      fontSize: '15px',
-                      fontWeight: '800',
-                      color: '#ffffff',
-                      margin: '0 0 2px',
-                      lineHeight: 1.3,
-                      textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-                    }}>
+                  <div className="card-content">
+                    <h4 className="card-title">
                       {award.title}
                     </h4>
 
-                    <p style={{
-                      fontSize: '11px',
-                      fontWeight: '700',
-                      color: GOLD,
-                      margin: 0,
-                      lineHeight: 1.4,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
-                    }}>
+                    <p className="card-subtitle">
                       {award.subtitle}
                     </p>
 
-                    {/* New Description (Visible on Hover) */}
-                    <div style={{
-                      marginTop: '6px',
-                      opacity: 0,
-                      transition: 'opacity 0.4s ease, transform 0.4s ease',
-                      transform: 'translateY(15px)',
-                    }}
-                    className="card-description"
-                    >
-                      <p style={{
-                        fontSize: '12px',
-                        color: 'rgba(255,255,255,0.85)',
-                        lineHeight: 1.5,
-                        margin: 0,
-                        fontWeight: '400'
-                      }}>
+                    {/* Description (Reveals on Hover / Visible on Mobile) */}
+                    <div className="card-description">
+                      <p className="card-desc-text">
                         {award.description}
                       </p>
                     </div>
                     
                     {/* Hover Accent Line */}
-                    <div 
-                      className="hover-line"
-                      style={{
-                        height: '3px',
-                        width: '0%',
-                        backgroundColor: ORANGE,
-                        marginTop: '10px',
-                        borderRadius: '2px',
-                        transition: 'width 0.4s ease'
-                      }}
-                    />
+                    <div className="hover-line" />
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Pagination Bullets */}
+          <div className="ehs-awards-pagination" />
         </div>
 
       </div>
 
       <style>{`
-        /* Dynamic Flex Widths for Responsiveness */
+        .ehs-awards-section {
+          padding: 64px 20px 48px;
+          background-color: #f8fafc;
+          font-family: ${FONT};
+          overflow: hidden;
+        }
+        .ehs-awards-header {
+          text-align: center;
+          margin-bottom: 36px;
+        }
+        .ehs-awards-title {
+          font-size: clamp(24px, 3.5vw, 36px);
+          font-weight: 800;
+          color: ${NAVY};
+          margin: 0 0 6px 0;
+          letter-spacing: -1px;
+          font-family: ${FONT};
+        }
+        .ehs-awards-subtitle {
+          font-size: 14px;
+          color: #64748b;
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.6;
+          font-family: ${FONT};
+        }
+        .ehs-slider-wrapper {
+          position: relative;
+          padding: 0 10px;
+        }
+        .ehs-nav-btn {
+          position: absolute;
+          top: calc(50% - 20px);
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: #ffffff;
+          border: 1px solid rgba(10, 42, 102, 0.08);
+          box-shadow: 0 6px 20px rgba(10, 42, 102, 0.14);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          color: #0a2a66;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateY(-50%);
+        }
+        .ehs-nav-prev {
+          left: -20px;
+        }
+        .ehs-nav-next {
+          right: -20px;
+        }
+        .ehs-nav-btn:hover {
+          background: #0a2a66;
+          color: #ffffff;
+          transform: translateY(-50%);
+          box-shadow: 0 8px 24px rgba(10, 42, 102, 0.25);
+        }
+        .ehs-nav-btn.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
         .slider-card {
-          flex: 0 0 calc(25% - 18px); /* 4 items: 3 gaps of 24px = 72px / 4 = 18px */
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(10,42,102,0.1);
+          cursor: pointer;
+          overflow: hidden;
+          position: relative;
+          height: 350px;
+          background-color: #0a2a66;
         }
-        
+        .card-image-wrap {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          overflow: hidden;
+          background-color: #e2e8f0;
+        }
+        .card-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(to top, rgba(10,42,102, 0.95) 0%, rgba(10,42,102, 0.5) 45%, transparent 80%);
+          z-index: 2;
+          transition: opacity 0.4s ease;
+        }
+        .ribbon-tag {
+          position: absolute;
+          top: 16px;
+          right: 0px;
+          background: ${ORANGE};
+          padding: 6px 14px;
+          border-radius: 4px 0 0 4px;
+          box-shadow: 0 4px 12px rgba(255,135,85,0.4);
+          z-index: 3;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: transform 0.3s ease;
+        }
+        .ribbon-text {
+          font-size: 9px;
+          font-weight: 800;
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .card-content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 24px;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          transform: translateY(85px);
+          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          box-sizing: border-box;
+        }
+        .card-title {
+          font-size: 15px;
+          font-weight: 800;
+          color: #ffffff;
+          margin: 0 0 2px 0;
+          line-height: 1.3;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .card-subtitle {
+          font-size: 11px;
+          font-weight: 700;
+          color: ${GOLD};
+          margin: 0;
+          line-height: 1.4;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .card-description {
+          margin-top: 6px;
+          opacity: 0;
+          transition: opacity 0.4s ease, transform 0.4s ease;
+          transform: translateY(15px);
+        }
+        .card-desc-text {
+          font-size: 12px;
+          color: rgba(255,255,255,0.88);
+          line-height: 1.5;
+          margin: 0;
+          font-weight: 400;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .hover-line {
+          height: 3px;
+          width: 0%;
+          background-color: ${ORANGE};
+          margin-top: 10px;
+          border-radius: 2px;
+          transition: width 0.4s ease;
+        }
+        .ehs-awards-pagination {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 24px;
+          gap: 6px;
+        }
+        .ehs-awards-pagination .swiper-pagination-bullet {
+          background: #cbd5e1;
+          width: 8px;
+          height: 8px;
+          opacity: 1;
+          border-radius: 999px;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          margin: 0 !important;
+        }
+        .ehs-awards-pagination .swiper-pagination-bullet-active {
+          background: ${ORANGE};
+          width: 24px;
+          border-radius: 4px;
+        }
+
         @media (max-width: 1024px) {
-          .slider-card { 
-            flex: 0 0 calc(50% - 12px); /* 2 items: 1 gap of 24px = 24px / 2 = 12px */
-          }
-          .nav-arrow { 
-            display: flex !important; 
-            width: 36px !important; 
-            height: 36px !important; 
-            opacity: 0.9;
-          }
-          .left-arrow { left: 8px !important; }
-          .right-arrow { right: 8px !important; }
+          .ehs-nav-prev { left: 4px; }
+          .ehs-nav-next { right: 4px; }
         }
-        
-        @media (max-width: 640px) {
-          .slider-card { 
-            flex: 0 0 100%; /* 1 item: no gaps */
+
+        @media (max-width: 768px) {
+          .ehs-awards-section {
+            padding: 28px 16px 36px 16px !important;
           }
-          /* On mobile, there is no true hover, so show the description and overlay by default */
-          .card-overlay { opacity: 0.9 !important; background: linear-gradient(to top, rgba(10,42,102, 1) 0%, rgba(10,42,102, 0.7) 60%, transparent 100%) !important; }
-          .card-content { transform: translateY(0) !important; }
-          .hover-line { width: 40px !important; }
-          .card-description { opacity: 1 !important; transform: translateY(0) !important; }
-          .ribbon-tag { transform: translateX(-4px) !important; }
+          .ehs-awards-header {
+            margin-bottom: 20px !important;
+          }
+          .ehs-awards-title {
+            font-size: clamp(20px, 5.2vw, 25px) !important;
+            margin-bottom: 4px !important;
+          }
+          .ehs-awards-subtitle {
+            font-size: 12.5px !important;
+            line-height: 1.5 !important;
+          }
+          .ehs-slider-wrapper {
+            padding: 0 !important;
+          }
+          .ehs-nav-btn {
+            display: none !important;
+          }
+          .slider-card {
+            height: clamp(320px, 84vw, 360px) !important;
+            border-radius: 12px !important;
+          }
+          .card-overlay { 
+            opacity: 0.9 !important; 
+            background: linear-gradient(to top, rgba(10,42,102, 0.98) 0%, rgba(10,42,102, 0.75) 45%, rgba(10,42,102, 0.2) 75%, transparent 100%) !important; 
+          }
+          .card-content { 
+            transform: translateY(0) !important;
+            padding: 16px 14px 18px 14px !important;
+            gap: 4px !important;
+          }
+          .card-title {
+            font-size: 14.5px !important;
+            line-height: 1.25 !important;
+            margin-bottom: 2px !important;
+          }
+          .card-subtitle {
+            font-size: 10.5px !important;
+            letter-spacing: 0.4px !important;
+          }
+          .card-description { 
+            opacity: 1 !important; 
+            transform: translateY(0) !important;
+            margin-top: 4px !important;
+          }
+          .card-desc-text {
+            font-size: 11.5px !important;
+            line-height: 1.4 !important;
+            -webkit-line-clamp: 2 !important;
+          }
+          .hover-line { 
+            width: 32px !important; 
+            margin-top: 6px !important;
+          }
+          .ribbon-tag { 
+            top: 12px !important;
+            padding: 5px 10px !important;
+            gap: 5px !important;
+          }
+          .ribbon-text {
+            font-size: 8.5px !important;
+          }
+          .ehs-awards-pagination {
+            margin-top: 18px !important;
+          }
         }
-        
-        /* Desktop Hover Effects */
+
         @media (hover: hover) {
-          .photo-card:hover .card-image { transform: scale(1.08) !important; }
-          .photo-card:hover .card-overlay { opacity: 0.9 !important; background: linear-gradient(to top, rgba(10,42,102, 1) 0%, rgba(10,42,102, 0.7) 60%, transparent 100%) !important; }
+          .photo-card:hover .card-image { transform: none !important; }
+          .photo-card:hover .card-overlay { 
+            opacity: 0.92 !important; 
+            background: linear-gradient(to top, rgba(10,42,102, 1) 0%, rgba(10,42,102, 0.7) 60%, transparent 100%) !important; 
+          }
           .photo-card:hover .card-content { transform: translateY(0) !important; }
           .photo-card:hover .hover-line { width: 40px !important; }
           .photo-card:hover .card-description { opacity: 1 !important; transform: translateY(0) !important; }
