@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
@@ -11,8 +11,14 @@ import completedProjects from '../../data/completedProjects'
 import clientsData from '../../data/clientsData'
 import { 
   FaMapMarkerAlt, FaCalendarAlt, FaRulerCombined, 
-  FaClipboardList, FaArrowLeft, FaEye, FaBuilding
+  FaClipboardList, FaArrowLeft, FaEye, FaBuilding,
+  FaChevronLeft, FaChevronRight
 } from 'react-icons/fa'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 const getClientInfo = (clientName) => {
   if (!clientName) return []
@@ -109,9 +115,8 @@ const ProjectDetail = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
-  const [sliderIndex, setSliderIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
   const [viewedProjects, setViewedProjects] = useState([])
+  const swiperRef = useRef(null)
 
   const projectIdOrSlug = id || ''
 
@@ -248,50 +253,8 @@ const ProjectDetail = () => {
       setLoading(false);
     }
 
-    const handleFocus = () => {
-      if (projectIdOrSlug) fetchUltraFast(true);
-    };
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible' && projectIdOrSlug) {
-        fetchUltraFast(true);
-      }
-    };
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('visibilitychange', handleVisibility);
-
-    let isPolling = false;
-    let lastSig = '';
-    const pollFast = async () => {
-      if (!isMounted || !projectIdOrSlug || isPolling) return;
-      isPolling = true;
-      try {
-        const ep = projectType === 'completed' ? 'completed-projects' : 'ongoing-projects';
-        const res = await fetch(`${STRAPI_URL}/api/${ep}?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache, no-store' }
-        });
-        if (res.ok) {
-          const json = await res.json();
-          const latestTs = json?.data?.[0]?.updatedAt;
-          const total = json?.meta?.pagination?.total;
-          const currentSig = `${latestTs}_${total}`;
-          if (lastSig && lastSig !== currentSig) {
-            fetchUltraFast(true);
-          }
-          lastSig = currentSig;
-        }
-      } catch (e) {} finally {
-        isPolling = false;
-      }
-    };
-
-    const intervalId = setInterval(pollFast, 10000);
-
     return () => {
       isMounted = false;
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('visibilitychange', handleVisibility);
-      clearInterval(intervalId);
     };
   }, [projectIdOrSlug, projectType]);
 
@@ -312,27 +275,12 @@ const ProjectDetail = () => {
   }, [project]);
 
   useEffect(() => {
-    if (isPaused || relatedProjects.length === 0) return;
-    const interval = setInterval(() => {
-      setSliderIndex((prev) => (prev + 1) % relatedProjects.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isPaused, relatedProjects.length]);
-
-  useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || projectImages.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % projectImages.length);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [isHovered, projectImages.length]);
-
-  const visibleProjects = [];
-  if (relatedProjects.length > 0) {
-    for (let i = 0; i < Math.min(4, relatedProjects.length); i++) {
-      visibleProjects.push(relatedProjects[(sliderIndex + i) % relatedProjects.length]);
-    }
-  }
 
   if (loading) return <Preloader />;
 
@@ -412,12 +360,12 @@ const ProjectDetail = () => {
               <div className="project-image-slider"
                 style={{ 
                   position: 'relative', 
-                  borderRadius: '12px', 
+                  borderRadius: '16px', 
                   overflow: 'hidden', 
-                  border: '1px solid #f0f0f0',
-                  borderLeft: '4px solid #ff8755',
+                  border: '1px solid #EAEFF5',
                   height: '420px',
                   cursor: 'default',
+                  boxShadow: '0 4px 14px rgba(15, 23, 42, 0.04)',
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -480,7 +428,7 @@ const ProjectDetail = () => {
             </div>
 
             <div>
-              <h2 className="project-title" style={{ fontSize: '36px', fontWeight: '800', color: '#2a2a75', marginBottom: '24px', lineHeight: '1.2' }}>
+              <h2 className="project-title" style={{ fontSize: '34px', fontWeight: '800', color: '#1E2A5A', marginBottom: '22px', lineHeight: '1.25' }}>
                 {project.name}
               </h2>
 
@@ -609,25 +557,16 @@ const ProjectDetail = () => {
               </div>
 
               {/* Scope of Work */}
-              <div className="scope-card" style={{
-                padding: '28px', backgroundColor: '#ffffff',
-                borderRadius: '12px', border: '1px solid #e2e8f0',
-                borderLeft: '4px solid #ff8755',
-                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-                  <div style={{
-                    width: 36, height: 36, borderRadius: '8px',
-                    background: '#ff8755', display: 'flex',
-                    alignItems: 'center', justifyContent: 'center',
-                  }}>
-                    <FaClipboardList style={{ color: '#ffffff', fontSize: '16px' }} />
+              <div className="scope-card">
+                <div className="scope-card-header">
+                  <div className="scope-icon-wrap">
+                    <FaClipboardList style={{ color: '#ffffff', fontSize: '15px' }} />
                   </div>
-                  <h4 style={{ fontWeight: '800', color: '#0f172a', fontSize: '18px', margin: 0 }}>
+                  <h4 className="scope-card-title">
                     Scope of Work
                   </h4>
                 </div>
-                <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.8', margin: 0 }}>
+                <p className="scope-card-text">
                   {project.scope}
                 </p>
               </div>
@@ -637,50 +576,124 @@ const ProjectDetail = () => {
       </section>
 
       {/* More Projects */}
-      <section 
-        className="more-projects-section"
-        style={{ padding: '60px 16px 80px', backgroundColor: '#f9fafb' }}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-          
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            marginBottom: '40px'
-          }}>
-            <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
-              More Projects
-            </h2>
-          </div>
+      {relatedProjects.length > 0 && (
+        <section 
+          className="more-projects-section"
+          style={{ padding: '60px 16px 80px', backgroundColor: '#f9fafb' }}
+        >
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              marginBottom: '32px'
+            }}>
+              <h2 className="more-projects-title" style={{ fontSize: '32px', fontWeight: '800', color: '#1E2A5A', margin: 0 }}>
+                More Projects
+              </h2>
+              {relatedProjects.length > 1 && (
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    onClick={() => swiperRef.current?.slidePrev()}
+                    aria-label="Previous Projects"
+                    className="more-projects-nav-btn"
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      border: '1px solid #e2e8f0',
+                      backgroundColor: '#ffffff',
+                      color: '#1E2A5A',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                    }}
+                  >
+                    <FaChevronLeft style={{ fontSize: '14px' }} />
+                  </button>
+                  <button
+                    onClick={() => swiperRef.current?.slideNext()}
+                    aria-label="Next Projects"
+                    className="more-projects-nav-btn"
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      border: '1px solid #e2e8f0',
+                      backgroundColor: '#ffffff',
+                      color: '#1E2A5A',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                    }}
+                  >
+                    <FaChevronRight style={{ fontSize: '14px' }} />
+                  </button>
+                </div>
+              )}
+            </div>
 
-          <div className="more-projects-grid" style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
-            gap: '20px',
-          }}>
-            {visibleProjects.map((proj) => (
-              <div key={proj.id} style={{ position: 'relative' }}>
-                {viewedProjects.includes(proj.id) && (
-                  <div style={{
-                    position: 'absolute', top: '8px', right: '8px', zIndex: 3,
-                    display: 'flex', alignItems: 'center', gap: '4px',
-                    padding: '3px 10px', backgroundColor: 'rgba(0,0,0,0.7)',
-                    color: 'white', borderRadius: '20px', fontSize: '10px',
-                    fontWeight: '500',
-                  }}>
-                    <FaEye style={{ fontSize: '10px' }} /> Viewed
+            <Swiper
+              onSwiper={(swiper) => { swiperRef.current = swiper; }}
+              modules={[Autoplay, Navigation, Pagination]}
+              spaceBetween={20}
+              slidesPerView={4}
+              loop={relatedProjects.length > 4}
+              speed={800}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true,
+              }}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 20,
+                },
+              }}
+              style={{ paddingBottom: '45px' }}
+              className="more-projects-swiper"
+            >
+              {relatedProjects.map((proj) => (
+                <SwiperSlide key={proj.id} style={{ height: 'auto', display: 'flex' }}>
+                  <div style={{ position: 'relative', width: '100%', display: 'flex', flexDirection: 'column' }}>
+                    {viewedProjects.includes(proj.id) && (
+                      <div style={{
+                        position: 'absolute', top: '8px', right: '8px', zIndex: 3,
+                        display: 'flex', alignItems: 'center', gap: '4px',
+                        padding: '3px 10px', backgroundColor: 'rgba(0,0,0,0.7)',
+                        color: 'white', borderRadius: '20px', fontSize: '10px',
+                        fontWeight: '500',
+                      }}>
+                        <FaEye style={{ fontSize: '10px' }} /> Viewed
+                      </div>
+                    )}
+                    <ProjectCard project={proj || {}} type={projectType} />
                   </div>
-                )}
-                <ProjectCard project={proj || {}} type={projectType} />
-              </div>
-            ))}
-          </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Responsive Styles */}
       <style>{`
@@ -688,44 +701,190 @@ const ProjectDetail = () => {
           background-color: #e2e8f0 !important;
           color: #1e293b !important;
         }
+
+        .scope-card {
+          padding: 24px;
+          background-color: #ffffff;
+          border-radius: 14px;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #ff8755;
+          box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+          box-sizing: border-box;
+          transition: none !important;
+          transform: none !important;
+        }
+
+        .scope-card-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 14px;
+        }
+
+        .scope-icon-wrap {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          background-color: #ff8755;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .scope-card-title {
+          font-weight: 800;
+          color: #1E2A5A;
+          font-size: 18px;
+          margin: 0;
+          line-height: 1.3;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .scope-card-text {
+          color: #475569;
+          font-size: 14.5px;
+          line-height: 1.7;
+          margin: 0;
+          font-family: 'Inter', sans-serif;
+          word-break: break-word;
+        }
+
+        /* Zero hover transitions and movement */
+        .back-btn,
+        .info-card,
+        .scope-card,
+        .project-image-slider,
+        .more-projects-swiper .premium-project-card {
+          transition: none !important;
+          transform: none !important;
+        }
+        .back-btn:hover,
+        .info-card:hover,
+        .scope-card:hover,
+        .more-projects-swiper .premium-project-card:hover {
+          transform: none !important;
+        }
+
+        /* More Projects Swiper & Nav */
+        .more-projects-nav-btn {
+          transition: background-color 0.2s, color 0.2s, border-color 0.2s !important;
+          transform: none !important;
+        }
+        .more-projects-nav-btn:hover {
+          background-color: #ff8755 !important;
+          color: #ffffff !important;
+          border-color: #ff8755 !important;
+          transform: none !important;
+        }
+        .more-projects-swiper .swiper-slide {
+          height: auto !important;
+          display: flex !important;
+        }
+        .more-projects-swiper .premium-project-card {
+          height: 100% !important;
+          flex: 1 !important;
+        }
+        .more-projects-swiper .swiper-pagination-bullet {
+          background: #cbd5e1;
+          opacity: 1;
+          width: 8px;
+          height: 8px;
+          transition: all 0.3s ease;
+        }
+        .more-projects-swiper .swiper-pagination-bullet-active {
+          background: #ff8755 !important;
+          width: 24px;
+          border-radius: 4px;
+        }
         
         @media (max-width: 768px) {
+          .project-detail-section {
+            padding: 28px 14px !important;
+          }
           .project-detail-grid {
             grid-template-columns: 1fr !important;
-            gap: 32px !important;
+            gap: 24px !important;
           }
           .project-image-slider {
-            height: 280px !important;
+            height: clamp(220px, 62vw, 290px) !important;
+            border-radius: 12px !important;
           }
           .project-title {
-            font-size: 28px !important;
+            font-size: clamp(21px, 5.2vw, 26px) !important;
+            margin-bottom: 16px !important;
           }
           .project-info-grid {
             grid-template-columns: 1fr !important;
+            gap: 10px !important;
+            margin-bottom: 20px !important;
           }
-          .more-projects-grid {
-            grid-template-columns: repeat(1, 1fr) !important;
+          .info-card {
+            padding: 14px 12px !important;
+            border-radius: 10px !important;
+            gap: 12px !important;
           }
-          .project-detail-section {
-            padding: 40px 16px !important;
+          .scope-card {
+            padding: 16px 14px !important;
+            border-radius: 12px !important;
+          }
+          .scope-card-header {
+            margin-bottom: 10px !important;
+            gap: 10px !important;
+          }
+          .scope-icon-wrap {
+            width: 32px !important;
+            height: 32px !important;
+          }
+          .scope-card-title {
+            font-size: 16px !important;
+          }
+          .scope-card-text {
+            font-size: 13.5px !important;
+            line-height: 1.6 !important;
+          }
+          .back-btn {
+            margin-bottom: 18px !important;
+            font-size: 13px !important;
+            padding: 6px 12px !important;
           }
           .more-projects-section {
-            padding: 40px 16px 60px !important;
+            padding: 32px 14px 48px !important;
+          }
+          .more-projects-section > div > div:first-child {
+            margin-bottom: 20px !important;
+          }
+          .more-projects-title {
+            font-size: clamp(22px, 5vw, 28px) !important;
+          }
+          .more-projects-nav-btn {
+            width: 34px !important;
+            height: 34px !important;
           }
         }
 
         @media (min-width: 768px) and (max-width: 1024px) {
-          .more-projects-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+          .project-detail-grid {
+            gap: 28px !important;
           }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 360px) {
           .project-detail-section {
-            padding: 32px 12px !important;
+            padding: 20px 10px !important;
           }
           .more-projects-section {
-            padding: 32px 12px 48px !important;
+            padding: 24px 10px 40px !important;
+          }
+          .project-image-slider {
+            height: 210px !important;
+          }
+          .info-card {
+            padding: 12px 10px !important;
+            gap: 10px !important;
+          }
+          .scope-card {
+            padding: 14px 12px !important;
           }
         }
       `}</style>

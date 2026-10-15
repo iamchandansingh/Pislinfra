@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Briefcase, ChevronLeft, ChevronRight, Search, Filter, ChevronDown } from 'lucide-react';
+import { Briefcase, ChevronLeft, ChevronRight, Search, Filter, ChevronDown, MapPin, GraduationCap, Clock } from 'lucide-react';
 
 // Types
 interface JobOpening {
@@ -17,8 +17,8 @@ interface Props {
   onApplyNow: (position: string) => void;
 }
 
-// Job Data
-const jobOpenings: JobOpening[] = [
+// Default Job Data
+const defaultJobOpenings: JobOpening[] = [
   { id: 1, title: 'Planning & MIS Engineer', department: 'Civil', experience: '2–4 Years', qualification: 'BE – Civil', location: 'PAN India' },
   { id: 2, title: 'Planning & MIS Manager', department: 'Civil', experience: '8–12 Years', qualification: 'BE – Civil | PGP Advantage', location: 'PAN India' },
   { id: 3, title: 'Costing Engineer', department: 'Civil', experience: '0–3 Years', qualification: 'BE – Civil', location: 'PAN India' },
@@ -51,7 +51,6 @@ const jobOpenings: JobOpening[] = [
 const columns = ['Job Title', 'Department', 'Experience', 'Qualification', 'Location', 'Action'];
 
 const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }) => {
-  const [isMobile, setIsMobile] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const itemsPerPage = 10;
@@ -59,23 +58,16 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
   const [searchQuery, setSearchQuery] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
   
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const allJobs = openings && openings.length > 0 ? openings : defaultJobOpenings;
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, departmentFilter]);
 
-  const departments = Array.from(new Set((openings || jobOpenings).map(job => job.department))).sort();
+  const departments = Array.from(new Set(allJobs.map(job => job.department))).sort();
 
-  const filteredJobs = (openings || jobOpenings).filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredJobs = allJobs.filter(job => {
+    const matchesSearch = (job.title || '').toLowerCase().includes(searchQuery.toLowerCase());
     const matchesDepartment = departmentFilter === '' || job.department === departmentFilter;
     return matchesSearch && matchesDepartment;
   });
@@ -88,7 +80,7 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
     currentPage * itemsPerPage
   );
 
-  const startEntry = ((currentPage - 1) * itemsPerPage) + 1;
+  const startEntry = totalEntries === 0 ? 0 : ((currentPage - 1) * itemsPerPage) + 1;
   const endEntry = Math.min(currentPage * itemsPerPage, totalEntries);
 
   const getPageNumbers = (): (number | 'ellipsis')[] => {
@@ -108,289 +100,197 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
   };
 
   return (
-    <section style={{ width: '100%', marginTop: isMobile ? '10px' : '15px', marginBottom: isMobile ? '40px' : '60px' }}>
-      <div style={{ 
-        width: '100%', 
-        maxWidth: '1200px', 
-        margin: '0 auto',
-        paddingLeft: isMobile ? '16px' : '20px', 
-        paddingRight: isMobile ? '16px' : '20px',
-        boxSizing: 'border-box'
-      }}>
+    <section className="current-openings-section">
+      <div className="current-openings-container">
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: isMobile ? '20px' : '25px' }}>
-          <h2 style={{
-            fontSize: isMobile ? '26px' : '32px',
-            fontWeight: 700,
-            color: '#1E2A5A',
-            margin: '0 0 8px 0',
-            lineHeight: 1.2,
-          }}>
+        <div className="openings-header">
+          <h2 className="openings-title">
             Current <span style={{ color: '#FF6B35' }}>Openings</span>
           </h2>
-          <div style={{
-            width: '40px',
-            height: '3px',
-            backgroundColor: '#FF6B35',
-            borderRadius: '999px',
-            margin: '0 auto',
-          }} />
+          <div className="openings-divider" />
         </div>
 
         {/* Filters Section */}
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: isMobile ? 'column' : 'row', 
-          gap: '16px', 
-          marginBottom: '24px',
-          backgroundColor: '#FFFFFF',
-          padding: '20px',
-          borderRadius: '10px',
-          border: '1px solid #E5EAF2',
-          boxShadow: '0 2px 12px rgba(15,23,42,0.02)'
-        }}>
+        <div className="openings-filter-card">
           {/* Search Input */}
-          <div style={{ flex: 1, position: 'relative' }}>
-            <Search size={18} color="#64748B" style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)' }} />
+          <div className="openings-search-wrap">
+            <Search size={18} color="#64748B" className="search-icon" />
             <input
               type="text"
               placeholder="Search job title..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                width: '100%',
-                height: '46px',
-                padding: '0 16px 0 44px',
-                borderRadius: '8px',
-                border: '1px solid #E5EAF2',
-                fontSize: '14px',
-                color: '#1E2A5A',
-                outline: 'none',
-                boxSizing: 'border-box',
-                transition: 'border-color 0.2s',
-              }}
-              onFocus={(e) => e.target.style.borderColor = '#FF6B35'}
-              onBlur={(e) => e.target.style.borderColor = '#E5EAF2'}
+              className="openings-search-input"
             />
           </div>
 
           {/* Department Filter */}
-          <div style={{ flex: isMobile ? '1' : '0 0 300px', position: 'relative' }}>
-            <Filter size={18} color="#64748B" style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)' }} />
+          <div className="openings-select-wrap">
+            <Filter size={18} color="#64748B" className="filter-icon" />
             <select
               value={departmentFilter}
               onChange={(e) => setDepartmentFilter(e.target.value)}
-              style={{
-                width: '100%',
-                height: '46px',
-                padding: '0 16px 0 44px',
-                borderRadius: '8px',
-                border: '1px solid #E5EAF2',
-                fontSize: '14px',
-                color: '#1E2A5A',
-                outline: 'none',
-                boxSizing: 'border-box',
-                backgroundColor: '#FFFFFF',
-                cursor: 'pointer',
-                appearance: 'none',
-              }}
-              onFocus={(e) => e.target.style.borderColor = '#FF6B35'}
-              onBlur={(e) => e.target.style.borderColor = '#E5EAF2'}
+              className="openings-select"
             >
               <option value="">All Departments</option>
               {departments.map(dept => (
                 <option key={dept} value={dept}>{dept}</option>
               ))}
             </select>
-            {/* Custom dropdown arrow */}
-            <div style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
+            <div className="select-arrow">
               <ChevronDown size={16} color="#64748B" />
             </div>
           </div>
         </div>
 
-        {/* Container */}
-        <div style={{
-          backgroundColor: isMobile ? 'transparent' : '#FFFFFF',
-          border: isMobile ? 'none' : '1px solid #E5EAF2',
-          borderRadius: '10px',
-          overflow: 'hidden',
-          boxShadow: isMobile ? 'none' : '0 2px 12px rgba(15,23,42,0.03)',
-        }}>
+        {/* Main Content Container */}
+        <div className="openings-content-box">
           
-          {isMobile ? (
-            /* Mobile Cards */
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {paginatedJobs.map((job) => (
-                <div key={job.id} style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid #E5EAF2',
-                  borderRadius: '10px',
-                  padding: '16px',
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '10px' }}>
-                    <Briefcase size={16} color="#FF6B35" style={{ marginTop: '1px', flexShrink: 0 }} />
-                    <span style={{ fontSize: '15px', fontWeight: 700, color: '#1E2A5A', lineHeight: 1.3 }}>
-                      {job.title}
-                    </span>
+          {/* 1. Mobile Cards View (CSS handled, zero hydration flash) */}
+          <div className="openings-mobile-cards">
+            {paginatedJobs.length === 0 ? (
+              <div className="no-jobs-box">
+                <p>No job openings found matching your criteria.</p>
+              </div>
+            ) : (
+              paginatedJobs.map((job) => (
+                <div key={job.id} className="opening-mobile-card">
+                  <div className="opening-mobile-card-header">
+                    <div className="opening-mobile-title-wrap">
+                      <Briefcase size={16} color="#FF6B35" style={{ marginTop: '2px', flexShrink: 0 }} />
+                      <span className="opening-mobile-title">{job.title}</span>
+                    </div>
+                    <span className="opening-dept-badge">{job.department}</span>
                   </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '12px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                      <span style={{ color: '#64748B' }}>Department:</span>
-                      <span style={{ color: '#1E2A5A', fontWeight: 600 }}>{job.department}</span>
+                  <div className="opening-mobile-meta-grid">
+                    <div className="opening-meta-item">
+                      <Clock size={13} color="#64748B" style={{ flexShrink: 0 }} />
+                      <span className="meta-text">{job.experience}</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                      <span style={{ color: '#64748B' }}>Experience:</span>
-                      <span style={{ color: '#475569', fontWeight: 500 }}>{job.experience}</span>
+                    <div className="opening-meta-item">
+                      <MapPin size={13} color="#64748B" style={{ flexShrink: 0 }} />
+                      <span className="meta-text">{job.location}</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                      <span style={{ color: '#64748B' }}>Qualification:</span>
-                      <span style={{ color: '#475569', fontWeight: 500, textAlign: 'right', maxWidth: '60%' }}>{job.qualification}</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                      <span style={{ color: '#64748B' }}>Location:</span>
-                      <span style={{ color: '#475569', fontWeight: 500 }}>{job.location}</span>
+                    <div className="opening-meta-item full-width">
+                      <GraduationCap size={13} color="#64748B" style={{ flexShrink: 0 }} />
+                      <span className="meta-text">{job.qualification}</span>
                     </div>
                   </div>
 
                   <button 
-                    onClick={() => onApplyNow(job.title)}  // 🔥 CALL PARENT FUNCTION
-                    style={{
-                      width: '100%',
-                      height: '34px',
-                      backgroundColor: '#1E2A5A',
-                      color: '#FFFFFF',
-                      border: 'none',
-                      borderRadius: '6px',
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      fontFamily: 'Inter, sans-serif',
-                    }}
+                    type="button"
+                    onClick={() => onApplyNow(job.title)}
+                    className="opening-apply-btn"
                   >
                     Apply Now
                   </button>
                 </div>
-              ))}
-            </div>
-          ) : (
-            /* Desktop Table */
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '850px' }}>
-                <thead>
-                  <tr style={{ height: '44px', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E5EAF2' }}>
-                    {columns.map((col, index) => (
-                      <th key={index} style={{
-                        fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
-                        color: '#1E2A5A', padding: '0 16px', textAlign: 'left', whiteSpace: 'nowrap',
-                      }}>
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {paginatedJobs.map((job) => (
-                    <tr 
-                      key={job.id} 
-                      style={{ 
-                        height: '46px', 
-                        borderBottom: '1px solid #EEF2F7', 
-                        backgroundColor: hoveredRow === job.id ? '#FAFBFD' : '#FFFFFF', 
-                        transition: 'background 200ms',
-                      }}
-                      onMouseEnter={() => setHoveredRow(job.id)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                    >
-                      <td style={{ padding: '0 16px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                          <Briefcase size={14} color="#64748B" />
-                          <span style={{ fontSize: '13px', fontWeight: 600, color: '#1E2A5A' }}>{job.title}</span>
-                        </div>
-                      </td>
-                      <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px' }}>{job.department}</td>
-                      <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px' }}>{job.experience}</td>
-                      <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px' }}>{job.qualification}</td>
-                      <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px' }}>{job.location}</td>
-                      <td style={{ padding: '0 16px' }}>
-                        <button 
-                          onClick={() => onApplyNow(job.title)}  // 🔥 CALL PARENT FUNCTION
-                          style={{
-                            height: '30px', 
-                            padding: '0 14px', 
-                            backgroundColor: '#1E2A5A', 
-                            color: '#FFFFFF',
-                            border: 'none', 
-                            borderRadius: '5px', 
-                            fontSize: '12px', 
-                            fontWeight: 600, 
-                            cursor: 'pointer',
-                            fontFamily: 'Inter, sans-serif', 
-                          }}
-                        >
-                          Apply Now
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+              ))
+            )}
+          </div>
 
-          {/* Footer */}
-          <div style={{
-            height: '50px',
-            borderTop: isMobile ? 'none' : '1px solid #E5EAF2',
-            backgroundColor: isMobile ? 'transparent' : '#FFFFFF',
-            display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: isMobile ? '20px 0 0 0' : '0 16px',
-            gap: isMobile ? '12px' : '0',
-          }}>
-            <span style={{ fontSize: '13px', fontWeight: 500, color: '#64748B' }}>
+          {/* 2. Desktop Table View */}
+          <div className="openings-desktop-table">
+            {paginatedJobs.length === 0 ? (
+              <div className="no-jobs-box">
+                <p>No job openings found matching your criteria.</p>
+              </div>
+            ) : (
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '850px' }}>
+                  <thead>
+                    <tr style={{ height: '44px', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E5EAF2' }}>
+                      {columns.map((col, index) => (
+                        <th key={index} style={{
+                          fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em',
+                          color: '#1E2A5A', padding: '0 16px', textAlign: 'left', whiteSpace: 'nowrap',
+                          fontFamily: 'Inter, sans-serif'
+                        }}>
+                          {col}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paginatedJobs.map((job) => (
+                      <tr 
+                        key={job.id} 
+                        style={{ 
+                          height: '46px', 
+                          borderBottom: '1px solid #EEF2F7', 
+                          backgroundColor: hoveredRow === job.id ? '#FAFBFD' : '#FFFFFF', 
+                        }}
+                        onMouseEnter={() => setHoveredRow(job.id)}
+                        onMouseLeave={() => setHoveredRow(null)}
+                      >
+                        <td style={{ padding: '0 16px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                            <Briefcase size={14} color="#64748B" />
+                            <span style={{ fontSize: '13px', fontWeight: 600, color: '#1E2A5A', fontFamily: 'Inter, sans-serif' }}>{job.title}</span>
+                          </div>
+                        </td>
+                        <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.department}</td>
+                        <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.experience}</td>
+                        <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.qualification}</td>
+                        <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.location}</td>
+                        <td style={{ padding: '0 16px' }}>
+                          <button 
+                            type="button"
+                            onClick={() => onApplyNow(job.title)}
+                            style={{
+                              height: '30px', 
+                              padding: '0 14px', 
+                              backgroundColor: '#1E2A5A', 
+                              color: '#FFFFFF',
+                              border: 'none', 
+                              borderRadius: '5px', 
+                              fontSize: '12px', 
+                              fontWeight: 600, 
+                              cursor: 'pointer',
+                              fontFamily: 'Inter, sans-serif', 
+                              transition: 'none',
+                            }}
+                          >
+                            Apply Now
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Pagination Footer */}
+          <div className="openings-footer">
+            <span className="openings-entries-count">
               Showing {startEntry}-{endEntry} of {totalEntries} entries
             </span>
 
             {totalPages > 1 && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <div className="openings-pagination-btns">
                 <button 
+                  type="button"
                   onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                   disabled={currentPage === 1}
-                  style={{
-                    width: '32px', height: '32px', borderRadius: '6px', 
-                    border: '1px solid #E5EAF2',
-                    backgroundColor: currentPage === 1 ? '#F8FAFC' : '#FFFFFF', 
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                    cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                    opacity: currentPage === 1 ? 0.5 : 1,
-                  }}
+                  className="page-step-btn"
+                  aria-label="Previous page"
                 >
-                  <ChevronLeft size={14} color="#1E2A5A" />
+                  <ChevronLeft size={15} color="#1E2A5A" />
                 </button>
 
                 {getPageNumbers().map((page, index) => (
                   page === 'ellipsis' ? (
-                    <span key={`e-${index}`} style={{ 
-                      width: '32px', height: '32px', display: 'flex', 
-                      alignItems: 'center', justifyContent: 'center',
-                      fontSize: '13px', color: '#64748B',
-                    }}>...</span>
+                    <span key={`e-${index}`} className="page-ellipsis">...</span>
                   ) : (
                     <button
                       key={page}
+                      type="button"
                       onClick={() => setCurrentPage(page)}
-                      style={{
-                        width: '32px', height: '32px', borderRadius: '6px', 
-                        border: currentPage === page ? 'none' : '1px solid #E5EAF2',
-                        backgroundColor: currentPage === page ? '#FF6B35' : '#FFFFFF', 
-                        color: currentPage === page ? '#FFFFFF' : '#1E2A5A', 
-                        fontSize: '13px', fontWeight: 600, cursor: 'pointer',
-                      }}
+                      className={`page-index-btn ${currentPage === page ? 'active' : ''}`}
                     >
                       {page}
                     </button>
@@ -398,18 +298,13 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
                 ))}
 
                 <button 
+                  type="button"
                   onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                   disabled={currentPage === totalPages}
-                  style={{
-                    width: '32px', height: '32px', borderRadius: '6px', 
-                    border: '1px solid #E5EAF2',
-                    backgroundColor: currentPage === totalPages ? '#F8FAFC' : '#FFFFFF', 
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                    cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                    opacity: currentPage === totalPages ? 0.5 : 1,
-                  }}
+                  className="page-step-btn"
+                  aria-label="Next page"
                 >
-                  <ChevronRight size={14} color="#1E2A5A" />
+                  <ChevronRight size={15} color="#1E2A5A" />
                 </button>
               </div>
             )}
@@ -417,6 +312,364 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
 
         </div>
       </div>
+
+      <style>{`
+        .current-openings-section {
+          width: 100%;
+          padding: 10px 0 20px 0;
+          font-family: 'Inter', sans-serif;
+        }
+        .current-openings-container {
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 16px;
+          box-sizing: border-box;
+        }
+        .openings-header {
+          text-align: center;
+          margin-bottom: 24px;
+        }
+        .openings-title {
+          font-size: clamp(24px, 3.5vw, 32px);
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0 0 8px 0;
+          line-height: 1.2;
+          letter-spacing: -0.4px;
+          font-family: 'Inter', sans-serif;
+        }
+        .openings-divider {
+          width: 40px;
+          height: 3px;
+          background-color: #FF6B35;
+          border-radius: 999px;
+          margin: 0 auto;
+        }
+
+        /* Filter Section */
+        .openings-filter-card {
+          display: flex;
+          gap: 16px;
+          margin-bottom: 20px;
+          background-color: #FFFFFF;
+          padding: 16px 20px;
+          border-radius: 12px;
+          border: 1px solid #E5EAF2;
+          box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
+          box-sizing: border-box;
+        }
+        .openings-search-wrap {
+          flex: 1;
+          position: relative;
+        }
+        .search-icon {
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+        }
+        .openings-search-input {
+          width: 100%;
+          height: 44px;
+          padding: 0 16px 0 42px;
+          border-radius: 8px;
+          border: 1px solid #E5EAF2;
+          font-size: 14px;
+          color: #1E2A5A;
+          outline: none;
+          box-sizing: border-box;
+          font-family: 'Inter', sans-serif;
+          background-color: #FAFBFC;
+        }
+        .openings-search-input:focus {
+          border-color: #FF6B35;
+          background-color: #FFFFFF;
+        }
+
+        .openings-select-wrap {
+          flex: 0 0 280px;
+          position: relative;
+        }
+        .filter-icon {
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+        }
+        .openings-select {
+          width: 100%;
+          height: 44px;
+          padding: 0 36px 0 42px;
+          border-radius: 8px;
+          border: 1px solid #E5EAF2;
+          font-size: 14px;
+          color: #1E2A5A;
+          outline: none;
+          box-sizing: border-box;
+          background-color: #FAFBFC;
+          cursor: pointer;
+          appearance: none;
+          font-family: 'Inter', sans-serif;
+        }
+        .openings-select:focus {
+          border-color: #FF6B35;
+          background-color: #FFFFFF;
+        }
+        .select-arrow {
+          position: absolute;
+          right: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+        }
+
+        /* Content Box */
+        .openings-content-box {
+          background-color: #FFFFFF;
+          border: 1px solid #E5EAF2;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 2px 12px rgba(15, 23, 42, 0.03);
+          box-sizing: border-box;
+        }
+
+        /* Desktop Table View */
+        .openings-desktop-table {
+          display: block;
+        }
+        .openings-mobile-cards {
+          display: none;
+        }
+
+        .no-jobs-box {
+          padding: 36px 20px;
+          text-align: center;
+          color: #64748B;
+          font-size: 14px;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* Mobile Card Styling */
+        .opening-mobile-card {
+          background-color: #FFFFFF;
+          border: 1px solid #EEF2F7;
+          border-radius: 12px;
+          padding: 16px 14px;
+          box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          box-sizing: border-box;
+          transition: none !important;
+        }
+        .opening-mobile-card-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 10px;
+        }
+        .opening-mobile-title-wrap {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          min-width: 0;
+          flex: 1;
+        }
+        .opening-mobile-title {
+          font-size: 15px;
+          font-weight: 700;
+          color: #1E2A5A;
+          line-height: 1.35;
+          font-family: 'Inter', sans-serif;
+        }
+        .opening-dept-badge {
+          font-size: 11px;
+          font-weight: 700;
+          color: #FF6B35;
+          background: #FFF4EE;
+          padding: 3px 9px;
+          border-radius: 6px;
+          flex-shrink: 0;
+          font-family: 'Inter', sans-serif;
+        }
+        .opening-mobile-meta-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+          background: #F8FAFC;
+          border: 1px solid #EEF2F7;
+          border-radius: 8px;
+          padding: 10px 12px;
+          box-sizing: border-box;
+        }
+        .opening-meta-item {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          min-width: 0;
+        }
+        .opening-meta-item.full-width {
+          grid-column: span 2;
+        }
+        .meta-text {
+          font-size: 12px;
+          color: #475569;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-family: 'Inter', sans-serif;
+        }
+        .opening-apply-btn {
+          width: 100%;
+          height: 42px;
+          background-color: #1E2A5A;
+          color: #FFFFFF;
+          border: none;
+          border-radius: 8px;
+          font-size: 13.5px;
+          font-weight: 700;
+          cursor: pointer;
+          font-family: 'Inter', sans-serif;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: none !important;
+        }
+
+        /* Footer & Pagination */
+        .openings-footer {
+          min-height: 52px;
+          border-top: 1px solid #E5EAF2;
+          background-color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 18px;
+          box-sizing: border-box;
+          gap: 12px;
+        }
+        .openings-entries-count {
+          font-size: 13px;
+          font-weight: 500;
+          color: #64748B;
+          font-family: 'Inter', sans-serif;
+        }
+        .openings-pagination-btns {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          flex-wrap: wrap;
+        }
+        .page-step-btn {
+          width: 32px;
+          height: 32px;
+          border-radius: 6px;
+          border: 1px solid #E5EAF2;
+          background-color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: none !important;
+        }
+        .page-step-btn:disabled {
+          background-color: #F8FAFC;
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+        .page-index-btn {
+          width: 32px;
+          height: 32px;
+          border-radius: 6px;
+          border: 1px solid #E5EAF2;
+          background-color: #FFFFFF;
+          color: #1E2A5A;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: none !important;
+          font-family: 'Inter', sans-serif;
+        }
+        .page-index-btn.active {
+          border: none;
+          background-color: #FF6B35;
+          color: #FFFFFF;
+        }
+        .page-ellipsis {
+          width: 28px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+          color: #64748B;
+        }
+
+        /* Mobile Breakpoint (<= 768px) */
+        @media (max-width: 768px) {
+          .current-openings-container {
+            padding: 0 12px !important;
+          }
+          .openings-filter-card {
+            flex-direction: column !important;
+            gap: 10px !important;
+            padding: 14px !important;
+            border-radius: 10px !important;
+          }
+          .openings-select-wrap {
+            flex: 1 1 100% !important;
+          }
+          .openings-content-box {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+          }
+          .openings-desktop-table {
+            display: none !important;
+          }
+          .openings-mobile-cards {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+          }
+          .openings-footer {
+            flex-direction: column !important;
+            align-items: center !important;
+            border-top: none !important;
+            background-color: transparent !important;
+            padding: 16px 0 0 0 !important;
+            gap: 12px !important;
+          }
+          .openings-pagination-btns {
+            justify-content: center !important;
+          }
+        }
+
+        /* Extra small phones (<= 380px) */
+        @media (max-width: 380px) {
+          .current-openings-container {
+            padding: 0 10px !important;
+          }
+          .opening-mobile-card {
+            padding: 14px 12px !important;
+          }
+          .opening-mobile-title {
+            font-size: 14px !important;
+          }
+          .meta-text {
+            font-size: 11px !important;
+          }
+          .page-index-btn, .page-step-btn {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 12px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

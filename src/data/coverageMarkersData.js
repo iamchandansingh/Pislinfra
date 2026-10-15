@@ -11,8 +11,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "GIDC Sanand",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 286,
@@ -99,8 +97,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Hazira, Surat",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 243,
@@ -187,8 +183,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Mundra",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 226,
@@ -275,8 +269,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T10:46:31.867Z",
     "state": "Uttar Pradesh",
     "city": "Najibabad",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 270,
@@ -718,8 +710,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Jharkhand",
     "city": "Dhanbad",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 276,
@@ -806,8 +796,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-10-14T07:28:07.625Z",
     "state": "Tamil Nadu",
     "city": "Hosur",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 802,
@@ -1123,8 +1111,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-10-06T05:00:28.348Z",
     "state": "Haryana",
     "city": "Delhi-Mumbai Expressway, Nuh",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 325,
@@ -1566,8 +1552,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-10-06T00:39:26.853Z",
     "state": "Punjab",
     "city": "Ludhiana",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 9,
@@ -1605,8 +1589,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Karnataka",
     "city": "Bangalore",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 298,
@@ -1693,8 +1675,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Telangana",
     "city": "Hyderabad",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 298,
@@ -1781,8 +1761,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Rajasthan",
     "city": "Neemrana",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 298,
@@ -1869,8 +1847,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Dahej",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 280,
@@ -1957,8 +1933,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Jamnagar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 258,
@@ -2045,8 +2019,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Maharashtra",
     "city": "Pune",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 292,
@@ -2133,8 +2105,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Mappedu, Chennai",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 264,
@@ -2221,8 +2191,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Gujarat",
     "city": "Dahej-02",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 331,
@@ -2309,8 +2277,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Farrukhnagar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 9,
@@ -2348,8 +2314,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Bilaspur",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 7,
@@ -2387,8 +2351,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Manesar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 459,
@@ -2475,8 +2437,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Jamalpur",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 449,
@@ -2563,8 +2523,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Farukhnagar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 391,
@@ -2651,8 +2609,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Bilaspur",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 475,
@@ -2739,8 +2695,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Palwal",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 373,
@@ -2827,8 +2781,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Dharuhera",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 470,
@@ -2915,8 +2867,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Pathreri",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 443,
@@ -3003,8 +2953,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Pataudi",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 5,
@@ -3042,8 +2990,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Coimbatore",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 355,
@@ -3130,8 +3076,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Karnataka",
     "city": "Bengaluru",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 367,
@@ -3218,8 +3162,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Maharashtra",
     "city": "Mumbai",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 385,
@@ -3306,8 +3248,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Karnataka",
     "city": "Bengaluru",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 6,
@@ -3416,8 +3356,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Luhari",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 420,
@@ -3504,8 +3442,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Punjab",
     "city": "Ludhiana",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 408,
@@ -3592,8 +3528,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Patli",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 343,
@@ -3680,8 +3614,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Pataudi",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 338,
@@ -3768,8 +3700,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Rajasthan",
     "city": "Jaipur",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 397,
@@ -3856,8 +3786,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Tauru",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 349,
@@ -3944,8 +3872,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Farrukhnagar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 414,
@@ -4032,8 +3958,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Haryana",
     "city": "Khijuri",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 420,
@@ -4120,8 +4044,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Rajasthan",
     "city": "Neemrana",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 403,
@@ -4208,8 +4130,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Chennai",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 379,
@@ -4296,8 +4216,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-08-29T03:59:03.261Z",
     "state": "Tamil Nadu",
     "city": "Tuticorin",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 361,
@@ -4384,8 +4302,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-10-14T04:49:06.871Z",
     "state": "Haryana",
     "city": "Farrukhnagar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 781,
@@ -4701,8 +4617,6 @@ const coverageMarkersData = [
     "publishedAt": "2026-10-13T18:12:32.927Z",
     "state": "Gujarat",
     "city": "Jamnagar",
-    "showOnMap": null,
-    "markerStatus": null,
     "images": [
       {
         "id": 787,

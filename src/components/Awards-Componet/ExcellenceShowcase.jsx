@@ -590,73 +590,27 @@ const ExcellenceShowcase = ({
         {/* AWARDS SECTION */}
         <section ref={awardsSectionRef} style={s.awardsSection}>
           {/* 1. Header with Left Title and Right Year Filter Pills */}
-          <div 
-            style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'flex-end', 
-              marginBottom: '24px', 
-              gap: '20px', 
-              flexWrap: 'wrap' 
-            }}
-          >
+          <div className="legacy-awards-header">
             {/* Left Side: Title & Eyebrow */}
-            <div style={{ minWidth: '260px' }}>
-              <span style={{ display: 'inline-block', fontSize: '11.5px', fontWeight: 800, color: '#F37346', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '6px', fontFamily: "'Inter', sans-serif" }}>
+            <div className="legacy-title-col">
+              <span className="legacy-eyebrow">
                 OUR PRESTIGIOUS AWARDS
               </span>
-              <h2 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, color: '#1E2A5A', margin: 0, letterSpacing: '-0.3px', lineHeight: 1.25, fontFamily: "'Inter', sans-serif" }}>
+              <h2 className="legacy-heading">
                 A Legacy of Excellence
               </h2>
             </div>
 
             {/* Right Side: Year Filter Pills (All, 2026, 2025, 2024 ... 2018) */}
-            <div 
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                flexWrap: 'wrap',
-                maxWidth: '100%',
-                overflowX: 'auto',
-                paddingBottom: '4px'
-              }}
-            >
+            <div className="awards-year-filter-row">
               {years.map((year) => {
                 const isSelected = selectedYear === year;
                 return (
                   <button
                     key={year}
                     onClick={() => onYearChange && onYearChange(year)}
-                    style={{
-                      padding: '6px 14px',
-                      borderRadius: '100px',
-                      border: isSelected ? '1.5px solid #1E2A5A' : '1px solid #E2E8F0',
-                      backgroundColor: isSelected ? '#1E2A5A' : '#FFFFFF',
-                      color: isSelected ? '#FFFFFF' : '#64748B',
-                      fontSize: '12px',
-                      fontWeight: isSelected ? 800 : 600,
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: isSelected ? '0 3px 10px rgba(30,42,90,0.15)' : 'none',
-                      fontFamily: "'Inter', sans-serif",
-                      transition: 'all 0.15s ease',
-                      flexShrink: 0
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isSelected) {
-                        e.currentTarget.style.borderColor = '#F37346';
-                        e.currentTarget.style.color = '#F37346';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isSelected) {
-                        e.currentTarget.style.borderColor = '#E2E8F0';
-                        e.currentTarget.style.color = '#64748B';
-                      }
-                    }}
+                    className={`year-filter-pill ${isSelected ? 'active' : ''}`}
+                    type="button"
                   >
                     {year}
                   </button>
@@ -665,10 +619,10 @@ const ExcellenceShowcase = ({
             </div>
           </div>
 
-          <div className="responsive-slider-wrapper" style={{ position: 'relative', margin: '0 -16px', padding: '0 20px' }}>
+          <div className="responsive-slider-wrapper">
             {awardsData.length === 0 ? (
-              <div style={{ padding: '40px 20px', textAlign: 'center', background: '#F8FAFC', borderRadius: '16px', border: '1px dashed #CBD5E1', margin: '0 16px' }}>
-                <p style={{ margin: 0, fontSize: '14px', fontWeight: 600, color: '#64748B' }}>
+              <div className="awards-empty-box">
+                <p>
                   No awards found for {selectedYear === 'All' ? 'the selected filter' : selectedYear}.
                 </p>
               </div>
@@ -684,12 +638,13 @@ const ExcellenceShowcase = ({
                 grabCursor={true}
                 navigation={{ prevEl: '.awards-prev', nextEl: '.awards-next' }}
                 breakpoints={{ 
-                  0: { slidesPerView: 1.15, spaceBetween: 16 },
+                  0: { slidesPerView: 1.12, spaceBetween: 14 },
+                  480: { slidesPerView: 1.35, spaceBetween: 16 },
                   640: { slidesPerView: 2, spaceBetween: 20 }, 
                   1024: { slidesPerView: 3, spaceBetween: 24 }, 
                   1280: { slidesPerView: 4, spaceBetween: 24 }
                 }}
-                style={{ padding: '12px 6px 20px 6px' }}
+                style={{ padding: '8px 2px 20px 2px' }}
               >
                 {awardsData.map((award, awardIdx) => (
                 <SwiperSlide key={`award-${award.id || 'award'}-${awardIdx}`}>
@@ -698,16 +653,7 @@ const ExcellenceShowcase = ({
                     onClick={() => handleAwardClick(award)}
                   >
                     {/* 1. IMAGE AT TOP (Full Cover Fit inside box) */}
-                    <div style={{ 
-                      height: '235px', 
-                      width: '100%', 
-                      background: '#F8FAFC',
-                      borderRadius: '12px',
-                      border: '1px solid #EEF2F6',
-                      overflow: 'hidden',
-                      position: 'relative',
-                      padding: 0
-                    }}>
+                    <div className="award-card-img-wrap">
                       <img 
                         src={award.image} 
                         alt={`${award.name || award.title || 'Pislinfra Award'} - ${award.category || 'Excellence'} Recognition ${award.year || ''} | Pislinfra Infrastructure Excellence`} 
@@ -721,38 +667,11 @@ const ExcellenceShowcase = ({
                             e.target.src = '/images/awards/certificate.jpg';
                           }
                         }}
-                        style={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          objectFit: 'cover',
-                          objectPosition: 'center',
-                          display: 'block',
-                          transition: 'transform 0.35s ease'
-                        }} 
                       />
                       {award.category && (
                         <div 
                           title={award.category}
-                          style={{
-                            position: 'absolute',
-                            top: '10px',
-                            right: '10px',
-                            background: 'rgba(255, 255, 255, 0.95)',
-                            backdropFilter: 'blur(6px)',
-                            color: '#F37346',
-                            fontSize: '11px',
-                            fontWeight: 700,
-                            padding: '3px 9px',
-                            borderRadius: '6px',
-                            border: '1px solid rgba(243, 115, 70, 0.25)',
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
-                            textTransform: 'uppercase',
-                            maxWidth: '135px',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            zIndex: 2
-                          }}
+                          className="award-card-category-badge"
                         >
                           {award.category}
                         </div>
@@ -760,49 +679,22 @@ const ExcellenceShowcase = ({
                     </div>
 
                     {/* 2. TITLE IN MIDDLE */}
-                    <div style={{ padding: '14px 2px 6px 2px' }}>
-                      <h3 style={{ 
-                        fontSize: '15.5px', 
-                        fontWeight: 800, 
-                        color: '#1E2A5A', 
-                        margin: 0, 
-                        lineHeight: 1.35, 
-                        fontFamily: "'Inter', sans-serif", 
-                        display: '-webkit-box', 
-                        WebkitLineClamp: 2, 
-                        WebkitBoxOrient: 'vertical', 
-                        overflow: 'hidden' 
-                      }}>
+                    <div className="award-card-title-wrap">
+                      <h3 className="award-card-title-text">
                         {award.name}
                       </h3>
                     </div>
 
                     {/* 3. YEAR & ACTION AT BOTTOM */}
-                    <div style={{ 
-                      marginTop: 'auto', 
-                      paddingTop: '12px', 
-                      borderTop: '1px solid #F1F5F9', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'space-between',
-                      width: '100%'
-                    }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <div className="award-card-footer">
+                      <div className="award-card-year">
                         <CalendarIcon size={15} color="#F37346" />
-                        <span style={{ fontSize: '13.5px', fontWeight: 800, color: '#F37346' }}>
+                        <span>
                           {award.year}
                         </span>
                       </div>
 
-                      <div style={{ 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '4px',
-                        color: hoveredAward === award.id ? '#F37346' : '#1E2A5A',
-                        fontSize: '12.5px', 
-                        fontWeight: 700,
-                        transition: 'color 0.2s ease'
-                      }}>
+                      <div className="award-card-action">
                         <span>View Details</span>
                         <ArrowRightIcon size={13} color={hoveredAward === award.id ? '#F37346' : '#1E2A5A'} />
                       </div>
@@ -815,10 +707,10 @@ const ExcellenceShowcase = ({
             )}
             {awardsData.length > 0 && (
               <>
-                <button className="awards-prev" style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: 0, width: '40px', height: '40px', borderRadius: '50%', background: '#FFFFFF', border: '1px solid #E5EAF2', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10, color: '#1E2A5A' }}>
+                <button className="awards-prev" aria-label="Previous Award">
                   <ArrowLeftIcon size={18} />
                 </button>
-                <button className="awards-next" style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: 0, width: '40px', height: '40px', borderRadius: '50%', background: '#FFFFFF', border: '1px solid #E5EAF2', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10, color: '#1E2A5A' }}>
+                <button className="awards-next" aria-label="Next Award">
                   <ArrowRightIcon size={18} />
                 </button>
               </>
@@ -827,20 +719,18 @@ const ExcellenceShowcase = ({
         </section>
 
         {/* TIMELINE SECTION (Clean Alternating Center-Spine Corporate Roadmap) */}
-        <section ref={certificatesSectionRef} style={{ marginTop: '90px', marginBottom: '80px' }}>
-          <div 
-            style={{ textAlign: 'left', marginBottom: '28px' }}
-          >
-            <span style={{ display: 'inline-block', fontSize: '11.5px', fontWeight: 800, color: '#F37346', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '6px', fontFamily: "'Inter', sans-serif" }}>
+        <section ref={certificatesSectionRef} className="journey-timeline-section">
+          <div className="journey-header">
+            <span className="journey-eyebrow">
               OUR JOURNEY OF EXCELLENCE
             </span>
-            <h2 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, color: '#1E2A5A', margin: 0, letterSpacing: '-0.3px', lineHeight: 1.25, fontFamily: "'Inter', sans-serif" }}>
+            <h2 className="journey-heading">
               Milestones of Growth, Safety & Innovation
             </h2>
           </div>
 
-          {/* WINDING SNAKE ROADMAP CONTAINER */}
-          <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '20px 10px' }}>
+          {/* WINDING SNAKE ROADMAP CONTAINER (DESKTOP) */}
+          <div className="desktop-timeline" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '20px 10px' }}>
             {milestoneRows.map((rowItems, rowIdx) => {
               const isReverse = rowIdx % 2 === 1;
               const hasNextRow = rowIdx < milestoneRows.length - 1;
@@ -1039,64 +929,73 @@ const ExcellenceShowcase = ({
             })}
           </div>
 
-          {/* Instant 0ms Zero-Animation CSS Styles */}
-          <style>{`
-            .award-showcase-card {
-              background: #FFFFFF;
-              border-radius: 16px;
-              border: 1px solid #E2E8F0;
-              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-              padding: 16px;
-              height: 390px;
-              display: flex;
-              flex-direction: column;
-              cursor: pointer;
-              position: relative;
-              overflow: hidden;
-              transition: none !important;
-            }
-            .award-showcase-card:hover {
-              border-color: #F37346 !important;
-              box-shadow: 0 8px 24px rgba(30, 42, 90, 0.08) !important;
-            }
+          {/* CONNECTED VERTICAL TIMELINE (MOBILE & TABLET) */}
+          <div className="mobile-timeline">
+            <div className="mobile-timeline-track">
+              {dynamicTimelineMilestones.map((item, idx) => {
+                const isLast = idx === dynamicTimelineMilestones.length - 1;
 
-            .roadmap-milestone-card {
-              background: #FFFFFF;
-              border-radius: 16px;
-              border: 1px solid #E2E8F0;
-              box-shadow: 0 4px 16px rgba(30, 42, 90, 0.04);
-              padding: 16px;
-              display: flex;
-              flex-direction: column;
-              position: relative;
-              transition: none !important;
-            }
-            .roadmap-milestone-card:hover {
-              border-color: #F37346 !important;
-              box-shadow: 0 8px 20px rgba(30, 42, 90, 0.08) !important;
-            }
+                return (
+                  <div key={item.id || item.year} className="mobile-timeline-item">
+                    {/* Spine Node */}
+                    <div className="mobile-timeline-node-wrap">
+                      <div className="mobile-timeline-node">
+                        <span className="mobile-node-dot" />
+                      </div>
+                      {!isLast && <div className="mobile-timeline-line" />}
+                    </div>
 
-            @media (max-width: 900px) {
-              .roadmap-grid {
-                grid-template-columns: 1fr !important;
-                gap: 18px !important;
-              }
-              .roadmap-h-line, .roadmap-u-turn-right, .roadmap-u-turn-left {
-                display: none !important;
-              }
-            }
-          `}</style>
+                    {/* Milestone Card */}
+                    <div className="mobile-milestone-card">
+                      {/* Top Header Banner */}
+                      <div className="mobile-milestone-banner">
+                        <div className="mobile-milestone-banner-overlay">
+                          <div className="mobile-milestone-top-row">
+                            <span className="mobile-milestone-year-badge">
+                              {item.year}
+                            </span>
+                            <span className="mobile-milestone-tag" title={item.tag}>
+                              {item.tag}
+                            </span>
+                          </div>
+
+                          <div className="mobile-milestone-awards-row">
+                            <TrophyIcon size={18} color="#FFD700" />
+                            <span className="mobile-milestone-awards-count">
+                              {item.awardsCount}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="mobile-milestone-body">
+                        <h4 className="mobile-milestone-title">{item.title}</h4>
+                        <p className="mobile-milestone-desc">{item.desc}</p>
+                        
+                        <div className="mobile-milestone-footer">
+                          <TrophyIcon size={12} color="#F37346" />
+                          <span>{item.stats}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </section>
 
         {/* Old Recognitions and Certifications sections removed as requested */}
 
         {/* NEW SECTION: CLIENT APPRECIATIONS & SAFETY AWARDS */}
-        <section className="responsive-bottom-section" style={{ width: '100%', maxWidth: '1400px', margin: '70px auto 0', padding: '0 24px' }}>
-          <div style={{ marginBottom: '24px' }}>
-            <span style={{ display: 'inline-block', fontSize: '11.5px', fontWeight: 800, color: '#F37346', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '6px', fontFamily: "'Inter', sans-serif" }}>
+        {/* NEW SECTION: CLIENT APPRECIATIONS & SAFETY AWARDS */}
+        <section className="responsive-bottom-section client-testimonials-section">
+          <div className="client-testimonials-header">
+            <span className="client-testimonials-eyebrow">
               CLIENT TESTIMONIALS & RECOGNITION
             </span>
-            <h2 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: 800, color: '#1E2A5A', margin: 0, letterSpacing: '-0.3px', lineHeight: 1.25, fontFamily: "'Inter', sans-serif" }}>
+            <h2 className="client-testimonials-heading">
               Client Appreciations & Safety Awards
             </h2>
           </div>
@@ -1106,16 +1005,18 @@ const ExcellenceShowcase = ({
             autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
             loop={true}
             spaceBetween={20}
-            slidesPerView={1}
+            slidesPerView={1.12}
             freeMode={false}
             grabCursor={true}
             pagination={{ clickable: true, bulletClass: 'swiper-custom-bullet', bulletActiveClass: 'swiper-custom-bullet-active' }}
             breakpoints={{ 
-              640: { slidesPerView: 2 }, 
-              1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 4 }
+              0: { slidesPerView: 1.12, spaceBetween: 14 },
+              480: { slidesPerView: 1.3, spaceBetween: 16 },
+              640: { slidesPerView: 2, spaceBetween: 18 }, 
+              1024: { slidesPerView: 3, spaceBetween: 20 },
+              1280: { slidesPerView: 4, spaceBetween: 24 }
             }}
-            style={{ padding: '10px 4px 50px 4px' }}
+            style={{ padding: '10px 2px 45px 2px' }}
           >
             {(clientAppreciations && clientAppreciations.length > 0 ? clientAppreciations : safetyAwardsData).map((item, idx) => {
               // fallback logic for images if missing from Strapi
@@ -1131,19 +1032,6 @@ const ExcellenceShowcase = ({
               <SwiperSlide key={`client-${item.id || 'item'}-${idx}`}>
                 <div
                   className="client-appreciation-card"
-                  style={{
-                    background: '#FFFFFF',
-                    borderRadius: '6px',
-                    border: '1px solid #F3F4F6',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    height: '100%',
-                    minHeight: '520px',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
-                    cursor: 'pointer',
-                    overflow: 'hidden'
-                  }}
                   onClick={() => {
                      if (onViewAward) {
                        onViewAward({
@@ -1158,7 +1046,7 @@ const ExcellenceShowcase = ({
                 >
                   {/* Image Header inside the Card */}
                   {itemImages && itemImages.length > 0 && (
-                    <div style={{ width: '100%', height: '300px', backgroundColor: '#F9FAFB', overflow: 'hidden', borderBottom: '1px solid #F3F4F6' }}>
+                    <div className="client-card-img-wrap">
                       <img 
                         src={itemImages[0]} 
                         alt={`${item.title || 'Client Appreciation'} - ${item.company || 'Industry Partner'} Recognition ${item.year || ''} | Pislinfra`} 
@@ -1171,33 +1059,32 @@ const ExcellenceShowcase = ({
                             e.target.src = '/images/awards/certificate.jpg';
                           }
                         }}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                       />
                     </div>
                   )}
 
-                  <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, width: '100%' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', gap: '12px' }}>
-                       <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#F4F6F8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1E2A5A', flexShrink: 0, overflow: 'hidden' }}>
+                  <div className="client-card-body">
+                    <div className="client-card-company-row">
+                       <div className="client-card-logo-wrap">
                           {getClientLogo(item.company) ? (
-                            <img src={getClientLogo(item.company)} alt={item.company} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '6px' }} />
+                            <img src={getClientLogo(item.company)} alt={item.company} />
                           ) : (
-                            <item.icon size={24} />
+                            <ItemIcon size={24} />
                           )}
                        </div>
-                       <div>
-                         <h5 style={{ margin: 0, fontSize: '14px', fontWeight: 700, color: '#111827', fontFamily: "'Inter', sans-serif" }}>{item.company}</h5>
-                         <span style={{ fontSize: '11px', color: '#6B7280', fontFamily: "'Inter', sans-serif", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                       <div className="client-card-company-info">
+                         <h5 className="client-card-company-name">{item.company}</h5>
+                         <span className="client-card-location-year">
                            {item.location} • {item.year}
                          </span>
                        </div>
                     </div>
-                    <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#1E2A5A', margin: '0 0 12px 0', fontFamily: "'Inter', sans-serif", lineHeight: 1.3 }}>{item.title}</h4>
-                    <p style={{ fontSize: '13px', color: '#4B5563', margin: 0, lineHeight: 1.5, fontFamily: "'Inter', sans-serif" }}>
+                    <h4 className="client-card-title">{item.title}</h4>
+                    <p className="client-card-desc">
                       {item.desc}
                     </p>
                     
-                    <div style={{ marginTop: 'auto', paddingTop: '20px', display: 'flex', alignItems: 'center', color: '#F37346', fontSize: '13px', fontWeight: 600 }}>
+                    <div className="client-card-action">
                       View Award <ArrowRightIcon size={14} style={{ marginLeft: '4px' }} />
                     </div>
                   </div>
@@ -1209,45 +1096,749 @@ const ExcellenceShowcase = ({
 
       </div>
       <style>{`
+        /* ========================================================
+           A LEGACY OF EXCELLENCE - SECTION & HEADER
+           ======================================================== */
+        .legacy-awards-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 20px;
+          margin-bottom: 24px;
+          flex-wrap: wrap;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .legacy-title-col {
+          flex: 1;
+          min-width: 260px;
+        }
+        .legacy-eyebrow {
+          display: inline-block;
+          font-size: 11.5px;
+          font-weight: 800;
+          color: #F37346;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 6px;
+          font-family: 'Inter', sans-serif;
+        }
+        .legacy-heading {
+          font-size: clamp(22px, 3vw, 32px);
+          font-weight: 800;
+          color: #1E2A5A;
+          margin: 0;
+          letter-spacing: -0.4px;
+          line-height: 1.25;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* Year Filter Pills */
+        .awards-year-filter-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        .year-filter-pill {
+          padding: 7px 16px;
+          border-radius: 9999px;
+          font-size: 13px;
+          font-weight: 600;
+          font-family: 'Inter', sans-serif;
+          border: 1px solid #E2E8F0;
+          background: #FFFFFF;
+          color: #475569;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: none !important;
+        }
+        .year-filter-pill:hover {
+          background: #F8FAFC;
+          color: #1E2A5A;
+        }
+        .year-filter-pill.active {
+          background: #F37346 !important;
+          color: #FFFFFF !important;
+          border-color: #F37346 !important;
+        }
+
+        /* Empty State */
+        .awards-empty-box {
+          padding: 40px 20px;
+          text-align: center;
+          background: #F8FAFC;
+          border-radius: 14px;
+          border: 1px dashed #CBD5E1;
+          color: #64748B;
+          font-size: 14px;
+          font-family: 'Inter', sans-serif;
+          margin: 16px 0;
+        }
+
+        /* Responsive Slider & Navigation */
+        .responsive-slider-wrapper {
+          position: relative;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        .responsive-slider-wrapper .swiper {
+          width: 100%;
+          max-width: 100%;
+          overflow: hidden;
+        }
+        .responsive-slider-wrapper .swiper-slide {
+          height: auto !important;
+          display: flex;
+        }
+        .awards-prev, .awards-next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          color: #1E2A5A;
+          transition: none !important;
+        }
+        .awards-prev {
+          left: -18px;
+        }
+        .awards-next {
+          right: -18px;
+        }
+        .awards-prev.swiper-button-disabled,
+        .awards-next.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        /* Award Showcase Card */
+        .award-showcase-card {
+          background: #FFFFFF;
+          border-radius: 14px;
+          border: 1px solid #E2E8F0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          min-height: 350px;
+          box-sizing: border-box;
+          transition: none !important;
+        }
+        .award-showcase-card:hover {
+          box-shadow: 0 6px 20px rgba(30, 42, 90, 0.08) !important;
+        }
+
+        .award-card-img-wrap {
+          width: 100%;
+          height: 215px;
+          background: #F8FAFC;
+          border-radius: 10px;
+          overflow: hidden;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #F1F5F9;
+          flex-shrink: 0;
+        }
+        .award-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+        }
+        .award-card-category-badge {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          background: rgba(255, 255, 255, 0.96);
+          backdrop-filter: blur(6px);
+          color: #F37346;
+          font-size: 11px;
+          font-weight: 700;
+          padding: 3px 9px;
+          border-radius: 6px;
+          border: 1px solid rgba(243, 115, 70, 0.25);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+          text-transform: uppercase;
+          max-width: 140px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          z-index: 2;
+          font-family: 'Inter', sans-serif;
+        }
+        .award-card-title-wrap {
+          padding: 12px 2px 6px 2px;
+          flex: 1;
+          display: flex;
+          align-items: flex-start;
+          min-height: 48px;
+        }
+        .award-card-title-text {
+          font-size: 15px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0;
+          line-height: 1.35;
+          font-family: 'Inter', sans-serif;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .award-card-footer {
+          margin-top: auto;
+          padding-top: 12px;
+          border-top: 1px solid #F1F5F9;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+        .award-card-year {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .award-card-year span {
+          font-size: 13px;
+          font-weight: 700;
+          color: #F37346;
+          font-family: 'Inter', sans-serif;
+        }
+        .award-card-action {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 12.5px;
+          font-weight: 700;
+          color: #1E2A5A;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* ========================================================
+           OUR JOURNEY OF EXCELLENCE (TIMELINE)
+           ======================================================== */
+        .journey-timeline-section {
+          margin-top: 80px;
+          margin-bottom: 75px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .journey-header {
+          text-align: left;
+          margin-bottom: 28px;
+        }
+        .journey-eyebrow {
+          display: inline-block;
+          font-size: 11.5px;
+          font-weight: 800;
+          color: #F37346;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 6px;
+          font-family: 'Inter', sans-serif;
+        }
+        .journey-heading {
+          font-size: clamp(20px, 2.5vw, 26px);
+          font-weight: 800;
+          color: #1E2A5A;
+          margin: 0;
+          letter-spacing: -0.3px;
+          line-height: 1.25;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* Desktop Serpentine Roadmap */
         .desktop-timeline {
           display: block;
         }
+        .roadmap-milestone-card {
+          background: #FFFFFF;
+          border-radius: 16px;
+          border: 1px solid #E2E8F0;
+          box-shadow: 0 4px 16px rgba(30, 42, 90, 0.04);
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          transition: none !important;
+        }
+        .roadmap-milestone-card:hover {
+          box-shadow: 0 6px 18px rgba(30, 42, 90, 0.06) !important;
+        }
+
+        /* Mobile Timeline Default Hidden on Desktop */
         .mobile-timeline {
           display: none;
         }
-        .mobile-only-heading {
-          display: none;
+
+        /* Mobile Connected Vertical Timeline Styles */
+        .mobile-timeline-track {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .mobile-timeline-item {
+          position: relative;
+          display: flex;
+          gap: 12px;
+          align-items: stretch;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .mobile-timeline-node-wrap {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 24px;
+          flex-shrink: 0;
+        }
+        .mobile-timeline-node {
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: #FFFFFF;
+          border: 2px solid #F37346;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 8px rgba(243, 115, 70, 0.2);
+          z-index: 2;
+          margin-top: 14px;
+          flex-shrink: 0;
+        }
+        .mobile-node-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #1E2A5A;
+        }
+        .mobile-timeline-line {
+          position: absolute;
+          top: 36px;
+          bottom: -18px;
+          width: 2px;
+          background: #E2E8F0;
+          z-index: 1;
+        }
+        .mobile-milestone-card {
+          flex: 1;
+          min-width: 0;
+          background: #FFFFFF;
+          border-radius: 14px;
+          border: 1px solid #E2E8F0;
+          box-shadow: 0 4px 14px rgba(30, 42, 90, 0.04);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          box-sizing: border-box;
+          transition: none !important;
+        }
+        .mobile-milestone-banner {
+          height: 90px;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          background-image: url('https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/years_2e23ba7341.avif');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          border-bottom: 1px solid rgba(243, 115, 70, 0.2);
+        }
+        .mobile-milestone-banner-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.88) 100%);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 9px 12px;
+        }
+        .mobile-milestone-top-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+        }
+        .mobile-milestone-year-badge {
+          display: inline-flex;
+          align-items: center;
+          background: #F37346;
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          color: #FFFFFF;
+          padding: 2.5px 9px;
+          border-radius: 9999px;
+          font-size: 11.5px;
+          font-weight: 800;
+          font-family: 'Inter', sans-serif;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .mobile-milestone-tag {
+          font-size: 10px;
+          font-weight: 800;
+          text-transform: uppercase;
+          color: #FFD700;
+          letter-spacing: 0.6px;
+          background: rgba(15, 23, 42, 0.8);
+          padding: 2.5px 8px;
+          border-radius: 9999px;
+          border: 1px solid rgba(255, 215, 0, 0.35);
+          max-width: 140px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-family: 'Inter', sans-serif;
+        }
+        .mobile-milestone-awards-row {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          color: #FFD700;
+          font-size: 16px;
+          font-weight: 800;
+          font-family: 'Inter', sans-serif;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+        }
+        .mobile-milestone-body {
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+        .mobile-milestone-title {
+          font-size: 13.5px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0 0 4px 0;
+          line-height: 1.35;
+          font-family: 'Inter', sans-serif;
+        }
+        .mobile-milestone-desc {
+          font-size: 11.5px;
+          color: #64748B;
+          line-height: 1.45;
+          margin: 0 0 10px 0;
+          font-family: 'Inter', sans-serif;
+        }
+        .mobile-milestone-footer {
+          margin-top: auto;
+          padding-top: 8px;
+          border-top: 1px solid #F1F5F9;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 10.5px;
+          font-weight: 700;
+          color: #1E2A5A;
+          font-family: 'Inter', sans-serif;
         }
 
-        .timeline-item:hover .timeline-content-box {
-          box-shadow: 0 12px 30px rgba(0,0,0,0.08) !important;
-          border-color: #F37346 !important;
-          transform: translateX(5px);
+        /* ========================================================
+           CLIENT TESTIMONIALS & RECOGNITION (SECTION & CARDS)
+           ======================================================== */
+        .client-testimonials-section {
+          width: 100%;
+          max-width: 1400px;
+          margin: 70px auto 0;
+          padding: 0;
+          box-sizing: border-box;
         }
-        .timeline-item:hover .timeline-icon {
-          transform: scale(1.1);
+        .client-testimonials-header {
+          margin-bottom: 24px;
+        }
+        .client-testimonials-eyebrow {
+          display: inline-block;
+          font-size: 11.5px;
+          font-weight: 800;
+          color: #F37346;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 6px;
+          font-family: 'Inter', sans-serif;
+        }
+        .client-testimonials-heading {
+          font-size: clamp(20px, 2.5vw, 26px);
+          font-weight: 800;
+          color: #1E2A5A;
+          margin: 0;
+          letter-spacing: -0.3px;
+          line-height: 1.25;
+          font-family: 'Inter', sans-serif;
         }
 
-        @media (max-width: 768px) {
+        .client-testimonials-section .swiper-slide {
+          height: auto !important;
+          display: flex;
+        }
+        .client-appreciation-card {
+          background: #FFFFFF;
+          border-radius: 14px;
+          border: 1px solid #E2E8F0;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          height: 100%;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+          cursor: pointer;
+          overflow: hidden;
+          transition: none !important;
+          box-sizing: border-box;
+        }
+        .client-appreciation-card:hover {
+          box-shadow: 0 8px 22px rgba(30, 42, 90, 0.08) !important;
+        }
+        .client-card-img-wrap {
+          width: 100%;
+          height: 240px;
+          background-color: #F8FAFC;
+          overflow: hidden;
+          border-bottom: 1px solid #F1F5F9;
+          flex-shrink: 0;
+        }
+        .client-card-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .client-card-body {
+          padding: 18px;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .client-card-company-row {
+          display: flex;
+          align-items: center;
+          margin-bottom: 14px;
+          gap: 12px;
+          width: 100%;
+        }
+        .client-card-logo-wrap {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background-color: #F8FAFC;
+          border: 1px solid #F1F5F9;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #1E2A5A;
+          flex-shrink: 0;
+          overflow: hidden;
+        }
+        .client-card-logo-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: 6px;
+        }
+        .client-card-company-info {
+          flex: 1;
+          min-width: 0;
+        }
+        .client-card-company-name {
+          margin: 0;
+          font-size: 14px;
+          font-weight: 700;
+          color: #111827;
+          font-family: 'Inter', sans-serif;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .client-card-location-year {
+          font-size: 11px;
+          color: #6B7280;
+          font-family: 'Inter', sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+        }
+        .client-card-title {
+          font-size: 15.5px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0 0 8px 0;
+          font-family: 'Inter', sans-serif;
+          line-height: 1.35;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .client-card-desc {
+          font-size: 12.5px;
+          color: #4B5563;
+          margin: 0;
+          line-height: 1.5;
+          font-family: 'Inter', sans-serif;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .client-card-action {
+          margin-top: auto;
+          padding-top: 16px;
+          display: flex;
+          align-items: center;
+          color: #F37346;
+          font-size: 13px;
+          font-weight: 700;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* Swiper Custom Bullets */
+        .swiper-custom-bullet {
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #CBD5E1;
+          margin: 0 4px;
+          cursor: pointer;
+          transition: none !important;
+        }
+        .swiper-custom-bullet-active {
+          background: #F37346 !important;
+          width: 22px !important;
+          border-radius: 4px !important;
+        }
+
+        @media (max-width: 900px) {
           .desktop-timeline {
             display: none !important;
           }
           .mobile-timeline {
             display: block !important;
           }
-          .mobile-only-heading {
-            display: block !important;
+          .journey-timeline-section {
+            margin-top: 45px !important;
+            margin-bottom: 45px !important;
+          }
+          .journey-header {
+            margin-bottom: 20px !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .responsive-wrapper {
+            padding: 0 16px !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            box-sizing: border-box !important;
+          }
+          .legacy-awards-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 14px !important;
+            margin-bottom: 18px !important;
+          }
+          .legacy-title-col {
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+          .legacy-heading {
+            font-size: clamp(20px, 5.5vw, 25px) !important;
+          }
+          .awards-year-filter-row {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 2px 2px 6px 2px !important;
+            gap: 8px !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+          }
+          .awards-year-filter-row::-webkit-scrollbar {
+            display: none !important;
+          }
+          .year-filter-pill {
+            flex-shrink: 0 !important;
+            padding: 6px 14px !important;
+            font-size: 12.5px !important;
+          }
+          .awards-prev, .awards-next {
+            display: none !important;
           }
           .award-showcase-card {
-            height: 375px !important;
-            padding: 14px !important;
+            min-height: 285px !important;
+            padding: 12px !important;
+            border-radius: 12px !important;
           }
-          .roadmap-milestone-card {
-            padding: 14px !important;
+          .award-card-img-wrap {
+            height: clamp(155px, 46vw, 185px) !important;
+          }
+          .award-card-title-text {
+            font-size: 14px !important;
+            line-height: 1.3 !important;
+          }
+          .award-card-title-wrap {
+            min-height: 40px !important;
+            padding: 10px 2px 4px 2px !important;
+          }
+          .award-card-footer {
+            padding-top: 10px !important;
           }
           .responsive-bottom-section {
             margin-top: 45px !important;
-            padding: 0 16px !important;
+            padding: 0 !important;
+          }
+          .client-testimonials-section {
+            margin-top: 45px !important;
+          }
+          .client-appreciation-card {
+            min-height: auto !important;
+            border-radius: 12px !important;
+          }
+          .client-card-img-wrap {
+            height: clamp(165px, 48vw, 200px) !important;
+          }
+          .client-card-body {
+            padding: 14px !important;
+          }
+          .client-card-title {
+            font-size: 14.5px !important;
+          }
+          .client-card-desc {
+            font-size: 12px !important;
+          }
+          .client-card-action {
+            padding-top: 12px !important;
           }
         }
 
@@ -1256,40 +1847,65 @@ const ExcellenceShowcase = ({
             padding: 0 12px !important;
           }
           .responsive-slider-wrapper {
-            padding: 0 4px !important;
+            padding: 0 !important;
             margin: 0 !important;
           }
           .responsive-bottom-section {
-            padding: 0 12px !important;
+            padding: 0 !important;
           }
           .timeline-prev, .timeline-next, .awards-prev, .awards-next {
             display: none !important;
           }
           .award-showcase-card {
-            height: 360px !important;
+            min-height: 275px !important;
+            padding: 11px !important;
+          }
+          .award-card-img-wrap {
+            height: clamp(150px, 45vw, 175px) !important;
+          }
+          /* Mobile Timeline 500px Compact Adjustments */
+          .mobile-timeline-item {
+            gap: 10px !important;
+          }
+          .mobile-timeline-node-wrap {
+            width: 20px !important;
+          }
+          .mobile-timeline-node {
+            width: 18px !important;
+            height: 18px !important;
+            margin-top: 12px !important;
+          }
+          .mobile-node-dot {
+            width: 6px !important;
+            height: 6px !important;
+          }
+          .mobile-timeline-line {
+            top: 30px !important;
+          }
+          .mobile-milestone-banner {
+            height: 80px !important;
+          }
+          .mobile-milestone-awards-row {
+            font-size: 15px !important;
+          }
+          .mobile-milestone-body {
+            padding: 10px !important;
+          }
+          .client-testimonials-section {
+            margin-top: 36px !important;
+          }
+          .client-card-img-wrap {
+            height: clamp(150px, 46vw, 180px) !important;
+          }
+          .client-card-body {
             padding: 12px !important;
           }
-          .roadmap-milestone-card {
-            padding: 12px !important;
+          .client-card-logo-wrap {
+            width: 38px !important;
+            height: 38px !important;
           }
-          /* Vertical Timeline Mobile Adjustments */
-          .timeline-vertical-line {
-            left: 28px !important;
-          }
-          .timeline-icon {
-            left: 4px !important;
-            width: 48px !important;
-            height: 48px !important;
-          }
-          .timeline-content-box {
-            margin-left: 70px !important;
-            padding: 14px !important;
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 8px !important;
-          }
-          .timeline-divider {
-            display: none !important;
+          .client-card-title {
+            font-size: 14px !important;
           }
         }
       `}</style>

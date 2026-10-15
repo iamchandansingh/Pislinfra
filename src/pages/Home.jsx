@@ -292,14 +292,6 @@ const Home = () => {
     };
     loadData();
 
-    const handleFocus = () => {
-      loadData(true);
-    };
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        loadData(true);
-      }
-    };
     const handleDataUpdate = (e) => {
       const { cleanEndpoint, data: updatedData } = e.detail || {};
       if (!updatedData) return;
@@ -310,54 +302,10 @@ const Home = () => {
       }
     };
 
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('visibilitychange', handleVisibility);
     window.addEventListener('pisl-data-update', handleDataUpdate);
 
-    let isPolling = false;
-    let lastSig = '';
-    const pollFast = async () => {
-      if (isPolling) return;
-      isPolling = true;
-      try {
-        const [ogRes, compRes, markRes] = await Promise.all([
-          fetch(`${STRAPI_URL}/api/ongoing-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
-            cache: 'no-store',
-            headers: { 'Cache-Control': 'no-cache, no-store' }
-          }),
-          fetch(`${STRAPI_URL}/api/completed-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
-            cache: 'no-store',
-            headers: { 'Cache-Control': 'no-cache, no-store' }
-          }),
-          fetch(`${STRAPI_URL}/api/coverage-markers?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
-            cache: 'no-store',
-            headers: { 'Cache-Control': 'no-cache, no-store' }
-          })
-        ]);
-        if (ogRes.ok && compRes.ok) {
-          const [ogJson, compJson, markJson] = await Promise.all([
-            ogRes.json(),
-            compRes.json(),
-            markRes && markRes.ok ? markRes.json() : Promise.resolve(null)
-          ]);
-          const currentSig = `${ogJson?.data?.[0]?.updatedAt}_${ogJson?.meta?.pagination?.total}_${compJson?.data?.[0]?.updatedAt}_${compJson?.meta?.pagination?.total}_${markJson?.data?.[0]?.updatedAt}_${markJson?.meta?.pagination?.total}`;
-          if (lastSig && lastSig !== currentSig) {
-            loadData(true);
-          }
-          lastSig = currentSig;
-        }
-      } catch (e) {} finally {
-        isPolling = false;
-      }
-    };
-
-    const intervalId = setInterval(pollFast, 60000);
-
     return () => {
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('pisl-data-update', handleDataUpdate);
-      clearInterval(intervalId);
     };
   }, []);
 

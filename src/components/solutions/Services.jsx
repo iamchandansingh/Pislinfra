@@ -32,26 +32,26 @@ const SquareServiceCard = ({ data, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
-      whileHover={{ y: -6 }}
       onClick={() => navigate(data.link)}
+      className="pisl-service-card"
       style={{
         background: '#FFFFFF',
-        borderRadius: '2px',
+        borderRadius: '12px',
         overflow: 'hidden',
         boxShadow: '0 16px 32px rgba(0,0,0,0.25)',
         width: '100%',
         maxWidth: '400px',
         display: 'flex',
         flexDirection: 'column',
-        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         fontFamily: 'Inter, sans-serif',
         cursor: 'pointer',
       }}
     >
-      <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
+      <div className="pisl-service-img-wrap" style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
         <img
           src={data.img}
           alt={data.title}
+          loading="lazy"
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
         <div style={{
@@ -59,10 +59,10 @@ const SquareServiceCard = ({ data, index }) => {
           background: `linear-gradient(to top, ${NAVY}cc 0%, transparent 60%)`,
           pointerEvents: 'none',
         }} />
-        <div style={{
+        <div className="pisl-service-badge" style={{
           position: 'absolute', bottom: '12px', left: '16px',
           background: ORANGE, color: '#FFFFFF',
-          padding: '5px 14px', borderRadius: '2px',
+          padding: '5px 14px', borderRadius: '4px',
           fontSize: '12px', fontWeight: 800,
           letterSpacing: '1px',
         }}>
@@ -70,7 +70,7 @@ const SquareServiceCard = ({ data, index }) => {
         </div>
       </div>
 
-      <div style={{ padding: '16px 20px' }}>
+      <div className="pisl-service-content" style={{ padding: '16px 20px' }}>
         <p style={{
           fontSize: '13px', color: '#475569', lineHeight: 1.6,
           margin: 0,
@@ -126,8 +126,8 @@ const Services = ({ data }) => {
   ];
 
   return (
-    <section style={{
-      padding: '40px 20px',
+    <section className="pisl-services-section" style={{
+      padding: '44px 20px',
       background: NAVY,
       fontFamily: 'Inter, sans-serif',
     }}>
@@ -138,9 +138,10 @@ const Services = ({ data }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="pisl-services-header"
           style={{ textAlign: 'center', marginBottom: '32px' }}
         >
-          <h2 style={{
+          <h2 className="pisl-services-title" style={{
             fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800,
             color: '#FFFFFF', margin: 0, letterSpacing: '-1px', lineHeight: 1.2,
           }}>
@@ -160,8 +161,46 @@ const Services = ({ data }) => {
       </div>
 
       <style>{`
+        .pisl-service-card:hover {
+          transform: none !important;
+        }
+
         @media (max-width: 768px) {
-          .services-cards { gap: 16px !important; }
+          .pisl-services-section {
+            padding: 34px 16px 38px 16px !important;
+          }
+          .pisl-services-header {
+            margin-bottom: 20px !important;
+          }
+          .pisl-services-title {
+            font-size: clamp(21px, 5.8vw, 26px) !important;
+            letter-spacing: -0.5px !important;
+          }
+          .services-cards { 
+            gap: 16px !important;
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          .pisl-service-card {
+            max-width: 100% !important;
+            border-radius: 12px !important;
+          }
+          .pisl-service-img-wrap {
+            height: clamp(160px, 46vw, 190px) !important;
+          }
+          .pisl-service-badge {
+            font-size: 11.5px !important;
+            padding: 5px 12px !important;
+            bottom: 10px !important;
+            left: 12px !important;
+          }
+          .pisl-service-content {
+            padding: 15px 16px !important;
+          }
+          .pisl-service-content p {
+            font-size: 13.5px !important;
+            line-height: 1.65 !important;
+          }
         }
       `}</style>
     </section>

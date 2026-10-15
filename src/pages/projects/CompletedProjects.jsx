@@ -76,49 +76,8 @@ const CompletedProjects = () => {
     
     getData();
 
-    const handleFocus = () => {
-      getData(true);
-    };
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        getData(true);
-      }
-    };
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('visibilitychange', handleVisibility);
-
-    let isPolling = false;
-    let lastSig = '';
-    const pollFast = async () => {
-      if (!isMounted || isPolling) return;
-      isPolling = true;
-      try {
-        const res = await fetch(`${STRAPI_URL}/api/completed-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache, no-store' }
-        });
-        if (res.ok) {
-          const json = await res.json();
-          const latestTs = json?.data?.[0]?.updatedAt;
-          const total = json?.meta?.pagination?.total;
-          const currentSig = `${latestTs}_${total}`;
-          if (lastSig && lastSig !== currentSig) {
-            getData(true);
-          }
-          lastSig = currentSig;
-        }
-      } catch (e) {} finally {
-        isPolling = false;
-      }
-    };
-
-    const intervalId = setInterval(pollFast, 60000);
-
     return () => {
       isMounted = false;
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('visibilitychange', handleVisibility);
-      clearInterval(intervalId);
     };
   }, []);
 

@@ -430,7 +430,13 @@ const Awards = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  const pageStyle = { fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", background: '#FFFFFF' };
+  const pageStyle = { 
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", 
+    background: '#FFFFFF',
+    width: '100%',
+    maxWidth: '100vw',
+    overflowX: 'hidden'
+  };
   const scrollBtnStyle = { position: 'fixed', bottom: '32px', right: '32px', width: '48px', height: '48px', borderRadius: '16px', background: '#2A2A75', color: '#FFFFFF', border: 'none', boxShadow: '0 8px 24px rgba(42,42,117,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 999 };
 
   return (

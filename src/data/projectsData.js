@@ -11,8 +11,6 @@ const projectsData = [
     "timeline": "2022 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for CRM, Packaging Line, Admin Building, Cooling Tower",
-    "cx": 5,
-    "cy": 49,
     "images": [
       "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
       "/images/projects/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
@@ -20,7 +18,9 @@ const projectsData = [
       "/images/projects/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
       "/images/projects/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
       "/images/projects/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
-    ]
+    ],
+    "cx": 5,
+    "cy": 49
   },
   {
     "id": 2,
@@ -34,8 +34,6 @@ const projectsData = [
     "timeline": "2023 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for CRM, Packaging Line, Admin Building, Cooling Tower",
-    "cx": 16,
-    "cy": 54,
     "images": [
       "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
       "/images/projects/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
@@ -43,7 +41,9 @@ const projectsData = [
       "/images/projects/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
       "/images/projects/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
       "/images/projects/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
-    ]
+    ],
+    "cx": 16,
+    "cy": 54
   },
   {
     "id": 3,
@@ -57,8 +57,6 @@ const projectsData = [
     "timeline": "2023 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "cx": 41,
-    "cy": 78,
     "images": [
       "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
       "/images/projects/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
@@ -66,7 +64,9 @@ const projectsData = [
       "/images/projects/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
       "/images/projects/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
       "/images/projects/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
-    ]
+    ],
+    "cx": 41,
+    "cy": 78
   },
   {
     "id": 4,
@@ -80,8 +80,6 @@ const projectsData = [
     "timeline": "2022 - WIP",
     "status": "Ongoing",
     "scope": "Excavation, Concreting, Shuttering, Reinforcement",
-    "cx": 36,
-    "cy": 29,
     "images": [
       "/images/projects/optimized_1787755484148_143_large_cbg-plant-najibabad-up_png.webp",
       "/images/projects/large_cbg_plant_najibabad_up_2_8bff055186.png",
@@ -89,7 +87,9 @@ const projectsData = [
       "/images/projects/optimized_1787755569711_553_large_cbg-plant-najibabad-up-4_png.webp",
       "/images/projects/optimized_1787755011529_929_large_cbg-plant-najibabad-up-5_png.webp",
       "/images/projects/optimized_1787755429455_7_large_cbg-plant-najibabad-up-6_png.webp"
-    ]
+    ],
+    "cx": 36,
+    "cy": 29
   },
   {
     "id": 5,
@@ -103,8 +103,6 @@ const projectsData = [
     "timeline": "2026 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "cx": 35.5,
-    "cy": 65,
     "images": [
       "/images/projects/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
       "/images/projects/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
@@ -112,7 +110,9 @@ const projectsData = [
       "/images/projects/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
       "/images/projects/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
       "/images/projects/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
-    ]
+    ],
+    "cx": 35.5,
+    "cy": 65
   },
   {
     "id": 6,
@@ -126,8 +126,6 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Construction Work of pipe rack, sleeper, and foundations, Utility Building, Water Reservoir, Pump House",
-    "cx": 13,
-    "cy": 52,
     "images": [
       "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
       "/images/projects/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
@@ -135,7 +133,9 @@ const projectsData = [
       "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
       "/images/projects/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
       "/images/projects/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
-    ]
+    ],
+    "cx": 13,
+    "cy": 52
   },
   {
     "id": 7,
@@ -149,8 +149,6 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "cx": null,
-    "cy": null,
     "images": [
       "/images/projects/large_3_PISL_f570401ce9.jpg",
       "/images/projects/large_2_PISL_40549a305b.jpg",
@@ -170,14 +168,14 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development",
-    "cx": 61.55,
-    "cy": 46.1,
     "images": [
       "/images/projects/large_1_0af1e34235.png",
       "/images/projects/large_2_1ed9fbb57a.png",
       "/images/projects/large_3_99b906acc0.png",
       "/images/projects/large_4_006c5ffb41.png"
-    ]
+    ],
+    "cx": 61.55,
+    "cy": 46.1
   },
   {
     "id": 9,
@@ -191,8 +189,6 @@ const projectsData = [
     "timeline": "2022 - WIP",
     "status": "Ongoing",
     "scope": "Excavation, Concreting, Shuttering, Reinforcement",
-    "cx": 7,
-    "cy": 51,
     "images": [
       "/images/projects/large_1_fec39f116d.png",
       "/images/projects/large_3_318cf6a93d.png",
@@ -200,7 +196,9 @@ const projectsData = [
       "/images/projects/large_4_9fb455d2e9.png",
       "/images/projects/large_2_761b33d651.png",
       "/images/projects/large_6_dfe6b76dab.png"
-    ]
+    ],
+    "cx": 7,
+    "cy": 51
   },
   {
     "id": 10,
@@ -214,14 +212,14 @@ const projectsData = [
     "timeline": "2025 WIP",
     "status": "Ongoing",
     "scope": "Design and Build",
-    "cx": 28,
-    "cy": 28,
     "images": [
       "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
       "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
       "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
       "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
-    ]
+    ],
+    "cx": 28,
+    "cy": 28
   },
   {
     "id": 11,
@@ -235,15 +233,15 @@ const projectsData = [
     "timeline": "2026 WIP",
     "status": "Ongoing",
     "scope": "Civil Construction Works for Core & Shell of TR Type Buildings No. 105 & 106.",
-    "cx": 16,
-    "cy": 50,
     "images": [
       "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
       "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
       "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
       "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
       "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
-    ]
+    ],
+    "cx": 16,
+    "cy": 50
   },
   {
     "id": 12,
@@ -257,14 +255,14 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
-    "cx": 20,
-    "cy": 63,
     "images": [
       "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
       "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
       "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
       "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
-    ]
+    ],
+    "cx": 20,
+    "cy": 63
   },
   {
     "id": 13,
@@ -278,15 +276,15 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Precasting & Erection of 75,000 MT Piperack Structures, CPCV Plant Civil & Structural Works, External Development",
-    "cx": 13,
-    "cy": 52,
     "images": [
       "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg",
       "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg",
       "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
       "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
       "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
-    ]
+    ],
+    "cx": 13,
+    "cy": 52
   },
   {
     "id": 14,
@@ -300,14 +298,14 @@ const projectsData = [
     "timeline": "2026 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "cx": 28,
-    "cy": 32.5,
     "images": [
       "/images/projects/large_Neemrana_eafebb4ad2.jpeg",
       "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
       "/images/projects/large_Neemrana_3_884fd40dde.jpg",
       "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
-    ]
+    ],
+    "cx": 28,
+    "cy": 32.5
   },
   {
     "id": 15,
@@ -321,8 +319,6 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
-    "cx": 17.5,
-    "cy": 48.5,
     "images": [
       "/images/projects/large_Screenshot_2026_10_12_at_11_53_30_PM_04b1b4e0d3.png",
       "/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp",
@@ -331,7 +327,9 @@ const projectsData = [
       "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
       "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
       "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
-    ]
+    ],
+    "cx": 17.5,
+    "cy": 48.5
   },
   {
     "id": 16,
@@ -345,14 +343,14 @@ const projectsData = [
     "timeline": "2025 - WIP",
     "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
-    "cx": 30.5,
-    "cy": 85.5,
     "images": [
       "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
       "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
       "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
       "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-    ]
+    ],
+    "cx": 30.5,
+    "cy": 85.5
   }
 ];
 

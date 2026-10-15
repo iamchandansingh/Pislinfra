@@ -19,18 +19,18 @@ const HeroVideo = ({ videoSrc }) => {
   };
 
   return (
-    <section className="relative w-full h-[40vh] md:h-[70vh] overflow-hidden bg-[#07132b]">
+    <section className="pisl-hero-container relative w-full overflow-hidden bg-[#07132b]">
       {/* Loading Animation until video is loaded */}
       {!isVideoLoaded && (
         <div
           className="absolute inset-0 z-20 flex items-center justify-center bg-[#07132b]"
           style={{ transition: 'opacity 0.4s ease' }}
         >
-          <div className="relative w-[130px] h-[130px] flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm shadow-xl">
+          <div className="pisl-hero-spinner relative flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm shadow-xl">
             <img
               src="/logo.png"
               alt="Pislinfra Logo"
-              className="w-[65px] h-auto z-10"
+              className="pisl-hero-logo h-auto z-10"
               style={{ animation: 'hero-pulse-logo 1.8s ease-in-out infinite' }}
             />
             <svg
@@ -71,11 +71,8 @@ const HeroVideo = ({ videoSrc }) => {
         onLoadedData={handleVideoReady}
         onCanPlay={handleVideoReady}
         onPlaying={handleVideoReady}
-        className="absolute top-0 left-0 w-full h-full z-0"
+        className="pisl-hero-video absolute top-0 left-0 w-full h-full z-0"
         style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
           opacity: isVideoLoaded ? 1 : 0,
           transition: 'opacity 0.6s ease-in-out',
         }}
@@ -84,9 +81,54 @@ const HeroVideo = ({ videoSrc }) => {
       </video>
 
       {/* Dark Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black/35 z-10 pointer-events-none"></div>
 
       <style>{`
+        /* Mobile: Reduced size (~180px) with object-fit contain so all text and video edges fit 100% without cut-off */
+        @media (max-width: 768px) {
+          .pisl-hero-container {
+            width: 100%;
+            height: clamp(170px, 22vh, 195px);
+            min-height: 170px;
+            max-height: 195px;
+          }
+          .pisl-hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+          }
+          .pisl-hero-spinner {
+            width: 80px;
+            height: 80px;
+          }
+          .pisl-hero-logo {
+            width: 40px;
+          }
+        }
+
+        /* Desktop: Cinematic high-impact view */
+        @media (min-width: 769px) {
+          .pisl-hero-container {
+            height: 70vh;
+            min-height: 480px;
+            max-height: 720px;
+          }
+          .pisl-hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+          .pisl-hero-spinner {
+            width: 130px;
+            height: 130px;
+          }
+          .pisl-hero-logo {
+            width: 65px;
+          }
+        }
+
         @keyframes hero-spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }

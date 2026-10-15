@@ -341,34 +341,84 @@ const SafetyResources = ({ resources, title, subtitle, desc }) => {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .ehs-safety-section {
-            padding: 24px 14px 44px;
+            padding: 20px 16px 44px 16px !important;
+            box-sizing: border-box !important;
           }
           .hse-card {
-            border-radius: 10px;
+            border-radius: 16px !important;
+            border: 1px solid #EEF2F7 !important;
+            background-color: #FFFFFF !important;
           }
           .hse-content {
-            padding: 22px 16px;
+            padding: 24px 18px 20px 18px !important;
           }
           .hse-headline {
-            font-size: 24px;
+            font-size: clamp(21px, 5.6vw, 26px) !important;
+            line-height: 1.22 !important;
+            letter-spacing: -0.4px !important;
+            margin-bottom: 10px !important;
+          }
+          .hse-description {
+            font-size: 13px !important;
+            line-height: 1.55 !important;
+            margin-bottom: 20px !important;
           }
           .hse-actions {
-            flex-direction: column;
-            align-items: stretch;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 10px !important;
+          }
+          .hse-download-btn {
+            width: 100% !important;
+            height: 44px !important;
+            border-radius: 9px !important;
+          }
+          .hse-btn-body {
+            justify-content: center !important;
+            flex: 1 !important;
+            font-size: 13.5px !important;
+            padding: 0 16px !important;
+          }
+          .hse-btn-arrow {
+            padding: 0 14px !important;
+          }
+          .hse-view-btn {
+            width: 100% !important;
+            height: 44px !important;
+            justify-content: center !important;
+            font-size: 13px !important;
+            border-radius: 9px !important;
+            box-sizing: border-box !important;
+          }
+          .hse-download-btn:hover,
+          .hse-view-btn:hover {
+            transform: none !important;
+          }
+          .hse-visual {
+            aspect-ratio: 16 / 9 !important;
+            border-top: 1px solid #EEF2F7 !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .hse-content {
+            padding: 20px 14px 16px 14px !important;
+          }
+          .hse-headline {
+            font-size: 20px !important;
+          }
+          .hse-description {
+            font-size: 12px !important;
           }
           .hse-download-btn,
           .hse-view-btn {
-            width: 100%;
-            justify-content: center;
+            height: 42px !important;
           }
-          .hse-btn-body {
-            justify-content: center;
-            flex: 1;
-          }
-          .hse-visual {
-            aspect-ratio: 16 / 9;
+          .hse-btn-body,
+          .hse-view-btn {
+            font-size: 12.5px !important;
           }
         }
       `}</style>

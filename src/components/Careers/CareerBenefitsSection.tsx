@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Wallet, TrendingUp, GraduationCap, HeartPulse, Scale, Target, Check } from 'lucide-react';
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; color?: string }>> = {
@@ -12,11 +11,10 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?:
   Check
 };
 
-const getLucideIcon = (iconName: string, size = 28, color?: string) => {
+const getLucideIcon = (iconName: string, size = 26, color?: string) => {
   const IconComponent = iconMap[iconName] || Check;
   return <IconComponent size={size} strokeWidth={2} color={color} />;
 };
-
 
 const defaultBenefitsData = [
   { id: 'salary', icon: "Wallet", iconColor: '#FF6B35', title: 'Competitive Salary', description: 'Industry-leading pay and performance incentives.' },
@@ -28,38 +26,209 @@ const defaultBenefitsData = [
 ];
 
 const CareerBenefitsSection = ({ title, benefits }: { title?: string, benefits?: any[] }) => {
+  const benefitsList = (benefits && benefits.length > 0) ? benefits : defaultBenefitsData;
+
   return (
-    <section style={{ width: '100%', backgroundColor: '#FFFFFF', padding: '48px 0', fontFamily: 'Inter, sans-serif' }}>
-      <div style={{ width: '95%', maxWidth: '1370px', margin: '0 auto', paddingLeft: '12px', paddingRight: '12px', boxSizing: 'border-box' }}>
+    <section className="career-benefits-section">
+      <div className="career-benefits-container">
         
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 style={{ fontSize: 'clamp(26px, 4vw, 36px)', fontWeight: 800, color: '#1E2A5A', margin: '0 0 10px 0', lineHeight: 1.2 }} dangerouslySetInnerHTML={{ __html: title || 'Why Join <span style="color: #FF6B35">PISL?</span>' }} />
-          <div style={{ width: '40px', height: '3px', backgroundColor: '#FF6B35', borderRadius: '999px', margin: '0 auto' }} />
+        <div className="career-benefits-header">
+          <h2 
+            className="career-benefits-title"
+            dangerouslySetInnerHTML={{ __html: title || 'Why Join <span style="color: #FF6B35">PISL?</span>' }} 
+          />
+          <div className="career-benefits-divider" />
         </div>
 
         <div className="benefits-grid">
-          {(benefits || defaultBenefitsData).map((benefit) => (
-            <div key={benefit.id} style={{
-              backgroundColor: '#FFFFFF', border: '1px solid #EAEFF5', borderRadius: '14px',
-              padding: '20px 14px', textAlign: 'center', boxShadow: '0 4px 16px rgba(15,23,42,0.03)',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', boxSizing: 'border-box',
-            }}>
-              <div style={{ width: '52px', height: '52px', borderRadius: '50%', backgroundColor: '#FFFFFF', border: '1px solid #EEF2F7', boxShadow: '0 3px 10px rgba(15,23,42,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <span style={{ color: benefit.iconColor, display: 'flex', lineHeight: 0 }}>{typeof benefit.icon === "string" ? getLucideIcon(benefit.icon, 28, benefit.iconColor || "#FF6B35") : benefit.icon}</span>
+          {benefitsList.map((benefit) => {
+            const isOrange = benefit.iconColor === '#FF6B35';
+            const bgTint = isOrange ? 'rgba(255, 107, 53, 0.08)' : 'rgba(30, 42, 90, 0.08)';
+            const iconCol = benefit.iconColor || (isOrange ? '#FF6B35' : '#1E2A5A');
+
+            return (
+              <div key={benefit.id} className="benefit-card">
+                <div 
+                  className="benefit-icon-wrap"
+                  style={{ backgroundColor: bgTint }}
+                >
+                  <span style={{ color: iconCol, display: 'flex', lineHeight: 0 }}>
+                    {typeof benefit.icon === "string" 
+                      ? getLucideIcon(benefit.icon, 24, iconCol) 
+                      : benefit.icon}
+                  </span>
+                </div>
+                <h3 className="benefit-title">{benefit.title}</h3>
+                <p className="benefit-desc">{benefit.description}</p>
               </div>
-              <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#1E2A5A', marginTop: '12px', marginBottom: '6px' }}>{benefit.title}</h3>
-              <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#64748B', margin: 0 }}>{benefit.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
 
       <style>{`
-        .benefits-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 14px; }
-        @media (min-width: 480px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 768px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
-        @media (min-width: 1100px) { .benefits-grid { grid-template-columns: repeat(6, 1fr); gap: 18px; } }
+        .career-benefits-section {
+          width: 100%;
+          background-color: #FFFFFF;
+          padding: 40px 0;
+          font-family: 'Inter', sans-serif;
+        }
+        .career-benefits-container {
+          width: 95%;
+          max-width: 1370px;
+          margin: 0 auto;
+          padding: 0 16px;
+          box-sizing: border-box;
+        }
+        .career-benefits-header {
+          text-align: center;
+          margin-bottom: 34px;
+        }
+        .career-benefits-title {
+          font-size: clamp(24px, 3.5vw, 36px);
+          font-weight: 800;
+          color: #1E2A5A;
+          margin: 0 0 10px 0;
+          line-height: 1.2;
+          letter-spacing: -0.5px;
+        }
+        .career-benefits-divider {
+          width: 44px;
+          height: 3px;
+          background-color: #FF6B35;
+          border-radius: 999px;
+          margin: 0 auto;
+        }
+
+        /* Desktop Grid */
+        .benefits-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 16px;
+          box-sizing: border-box;
+        }
+
+        .benefit-card {
+          background-color: #FFFFFF;
+          border: 1px solid #EAEFF5;
+          border-radius: 14px;
+          padding: 22px 14px 18px 14px;
+          text-align: center;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          box-sizing: border-box;
+          height: 100%;
+          transition: none !important;
+          transform: none !important;
+        }
+        .benefit-card:hover {
+          transform: none !important;
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03) !important;
+          border-color: #EAEFF5 !important;
+        }
+        .benefit-icon-wrap {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 1px solid rgba(0,0,0,0.04);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-bottom: 12px;
+        }
+        .benefit-title {
+          font-size: 15px;
+          font-weight: 700;
+          color: #1E2A5A;
+          margin: 0 0 6px 0;
+          line-height: 1.3;
+        }
+        .benefit-desc {
+          font-size: 12px;
+          line-height: 1.5;
+          color: #64748B;
+          margin: 0;
+        }
+
+        /* Tablet (768px - 1100px) */
+        @media (max-width: 1100px) {
+          .benefits-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 16px !important;
+          }
+        }
+
+        /* Mobile (<= 768px): 2x3 Grid */
+        @media (max-width: 768px) {
+          .career-benefits-section {
+            padding: 24px 0 !important;
+          }
+          .career-benefits-container {
+            padding: 0 14px !important;
+          }
+          .career-benefits-header {
+            margin-bottom: 22px !important;
+          }
+          .career-benefits-title {
+            font-size: clamp(22px, 5.5vw, 28px) !important;
+          }
+          .benefits-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+          }
+          .benefit-card {
+            padding: 16px 10px 14px 10px !important;
+            border-radius: 12px !important;
+          }
+          .benefit-icon-wrap {
+            width: 44px !important;
+            height: 44px !important;
+            margin-bottom: 10px !important;
+          }
+          .benefit-icon-wrap svg {
+            width: 22px !important;
+            height: 22px !important;
+          }
+          .benefit-title {
+            font-size: clamp(13px, 3.6vw, 14.5px) !important;
+            margin-bottom: 4px !important;
+          }
+          .benefit-desc {
+            font-size: clamp(11px, 2.8vw, 11.5px) !important;
+            line-height: 1.45 !important;
+          }
+        }
+
+        /* Small Phones (<= 360px) */
+        @media (max-width: 360px) {
+          .career-benefits-container {
+            padding: 0 10px !important;
+          }
+          .benefits-grid {
+            gap: 8px !important;
+          }
+          .benefit-card {
+            padding: 14px 8px 12px 8px !important;
+          }
+          .benefit-icon-wrap {
+            width: 38px !important;
+            height: 38px !important;
+          }
+          .benefit-icon-wrap svg {
+            width: 19px !important;
+            height: 19px !important;
+          }
+          .benefit-title {
+            font-size: 12.5px !important;
+          }
+          .benefit-desc {
+            font-size: 10.5px !important;
+          }
+        }
       `}</style>
     </section>
   );

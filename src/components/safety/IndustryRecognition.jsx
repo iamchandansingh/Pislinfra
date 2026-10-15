@@ -106,12 +106,7 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
     : awards;
 
   return (
-    <section style={{
-      padding: '80px 20px 60px',
-      backgroundColor: '#f8fafc',
-      fontFamily: FONT,
-      overflow: 'hidden',
-    }}>
+    <section className="ehs-awards-section">
       <div style={{ maxWidth: '1370px', margin: '0 auto', position: 'relative' }}>
 
         {/* Section Header */}
@@ -120,26 +115,12 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          style={{ textAlign: 'center', marginBottom: '40px' }}
+          className="ehs-awards-header"
         >
-          <h2 style={{
-            fontSize: 'clamp(24px, 3.5vw, 36px)',
-            fontWeight: '800',
-            color: NAVY,
-            margin: '0 0 6px',
-            letterSpacing: '-1px',
-            fontFamily: FONT,
-          }}>
+          <h2 className="ehs-awards-title">
             {title ? title : <>Photography <span style={{ color: NAVY }}>With Client</span></>}
           </h2>
-          <p style={{
-            fontSize: '14px',
-            color: '#64748b',
-            maxWidth: '600px',
-            margin: '0 auto',
-            lineHeight: 1.6,
-            fontFamily: FONT,
-          }}>
+          <p className="ehs-awards-subtitle">
             {subtitle || "Our commitment to safety, quality, and operational excellence continues to earn recognition across infrastructure and industrial projects."}
           </p>
         </motion.div>
@@ -193,6 +174,10 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
             breakpoints={{
               0: {
                 slidesPerView: 1,
+                spaceBetween: 14,
+              },
+              480: {
+                slidesPerView: 1.35,
                 spaceBetween: 16,
               },
               640: {
@@ -215,153 +200,47 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
           >
             {activeAwards.map((award, index) => (
               <SwiperSlide key={`${award.title}-${index}`} style={{ height: 'auto' }}>
-                <div
-                  style={{
-                    borderRadius: '8px', 
-                    boxShadow: '0 10px 30px rgba(10,42,102,0.1)',
-                    cursor: 'pointer',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    height: '350px',
-                    backgroundColor: '#0a2a66',
-                  }}
-                  className="photo-card group slider-card"
-                >
+                <div className="photo-card group slider-card">
                   {/* Background Image */}
-                  <div style={{
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    zIndex: 1,
-                    overflow: 'hidden',
-                    backgroundColor: '#e2e8f0'
-                  }}>
+                  <div className="card-image-wrap">
                     <img 
                       src={award.image} 
                       alt={award.title}
                       loading="lazy"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-                      }}
                       className="card-image"
                     />
                   </div>
 
                   {/* Gradient Overlay */}
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(to top, rgba(10,42,102, 0.95) 0%, rgba(10,42,102, 0.5) 45%, transparent 80%)',
-                    zIndex: 2,
-                    transition: 'opacity 0.4s ease',
-                  }}
-                  className="card-overlay" />
+                  <div className="card-overlay" />
 
                   {/* Ribbon Tag */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '16px',
-                    right: '0px',
-                    background: ORANGE,
-                    padding: '6px 14px',
-                    borderRadius: '4px 0 0 4px',
-                    boxShadow: '0 4px 12px rgba(255,135,85,0.4)',
-                    zIndex: 3,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  className="ribbon-tag"
-                  >
+                  <div className="ribbon-tag">
                     <FaTrophy style={{ fontSize: '10px', color: '#fff' }} />
-                    <span style={{ fontSize: '9px', fontWeight: '800', color: '#fff', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    <span className="ribbon-text">
                       {award.text}
                     </span>
                   </div>
 
                   {/* Content (Bottom) */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '0',
-                    width: '100%',
-                    padding: '24px',
-                    zIndex: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '6px',
-                    transform: 'translateY(85px)',
-                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                  }}
-                  className="card-content">
-                    <h4 style={{
-                      fontSize: '15px',
-                      fontWeight: '800',
-                      color: '#ffffff',
-                      margin: '0 0 2px',
-                      lineHeight: 1.3,
-                      textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-                    }}>
+                  <div className="card-content">
+                    <h4 className="card-title">
                       {award.title}
                     </h4>
 
-                    <p style={{
-                      fontSize: '11px',
-                      fontWeight: '700',
-                      color: GOLD,
-                      margin: 0,
-                      lineHeight: 1.4,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
-                    }}>
+                    <p className="card-subtitle">
                       {award.subtitle}
                     </p>
 
                     {/* Description (Reveals on Hover / Visible on Mobile) */}
-                    <div style={{
-                      marginTop: '6px',
-                      opacity: 0,
-                      transition: 'opacity 0.4s ease, transform 0.4s ease',
-                      transform: 'translateY(15px)',
-                    }}
-                    className="card-description"
-                    >
-                      <p style={{
-                        fontSize: '12px',
-                        color: 'rgba(255,255,255,0.88)',
-                        lineHeight: 1.5,
-                        margin: 0,
-                        fontWeight: '400',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden',
-                      }}>
+                    <div className="card-description">
+                      <p className="card-desc-text">
                         {award.description}
                       </p>
                     </div>
                     
                     {/* Hover Accent Line */}
-                    <div 
-                      className="hover-line"
-                      style={{
-                        height: '3px',
-                        width: '0%',
-                        backgroundColor: ORANGE,
-                        marginTop: '10px',
-                        borderRadius: '2px',
-                        transition: 'width 0.4s ease'
-                      }}
-                    />
+                    <div className="hover-line" />
                   </div>
                 </div>
               </SwiperSlide>
@@ -375,11 +254,36 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
       </div>
 
       <style>{`
+        .ehs-awards-section {
+          padding: 64px 20px 48px;
+          background-color: #f8fafc;
+          font-family: ${FONT};
+          overflow: hidden;
+        }
+        .ehs-awards-header {
+          text-align: center;
+          margin-bottom: 36px;
+        }
+        .ehs-awards-title {
+          font-size: clamp(24px, 3.5vw, 36px);
+          font-weight: 800;
+          color: ${NAVY};
+          margin: 0 0 6px 0;
+          letter-spacing: -1px;
+          font-family: ${FONT};
+        }
+        .ehs-awards-subtitle {
+          font-size: 14px;
+          color: #64748b;
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.6;
+          font-family: ${FONT};
+        }
         .ehs-slider-wrapper {
           position: relative;
           padding: 0 10px;
         }
-
         .ehs-nav-btn {
           position: absolute;
           top: calc(50% - 20px);
@@ -398,28 +302,135 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
           transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
           transform: translateY(-50%);
         }
-
         .ehs-nav-prev {
           left: -20px;
         }
-
         .ehs-nav-next {
           right: -20px;
         }
-
         .ehs-nav-btn:hover {
           background: #0a2a66;
           color: #ffffff;
           transform: translateY(-50%);
           box-shadow: 0 8px 24px rgba(10, 42, 102, 0.25);
         }
-
         .ehs-nav-btn.swiper-button-disabled {
           opacity: 0.35;
           cursor: not-allowed;
           pointer-events: none;
         }
-
+        .slider-card {
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(10,42,102,0.1);
+          cursor: pointer;
+          overflow: hidden;
+          position: relative;
+          height: 350px;
+          background-color: #0a2a66;
+        }
+        .card-image-wrap {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          overflow: hidden;
+          background-color: #e2e8f0;
+        }
+        .card-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(to top, rgba(10,42,102, 0.95) 0%, rgba(10,42,102, 0.5) 45%, transparent 80%);
+          z-index: 2;
+          transition: opacity 0.4s ease;
+        }
+        .ribbon-tag {
+          position: absolute;
+          top: 16px;
+          right: 0px;
+          background: ${ORANGE};
+          padding: 6px 14px;
+          border-radius: 4px 0 0 4px;
+          box-shadow: 0 4px 12px rgba(255,135,85,0.4);
+          z-index: 3;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: transform 0.3s ease;
+        }
+        .ribbon-text {
+          font-size: 9px;
+          font-weight: 800;
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .card-content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 24px;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          transform: translateY(85px);
+          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          box-sizing: border-box;
+        }
+        .card-title {
+          font-size: 15px;
+          font-weight: 800;
+          color: #ffffff;
+          margin: 0 0 2px 0;
+          line-height: 1.3;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .card-subtitle {
+          font-size: 11px;
+          font-weight: 700;
+          color: ${GOLD};
+          margin: 0;
+          line-height: 1.4;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .card-description {
+          margin-top: 6px;
+          opacity: 0;
+          transition: opacity 0.4s ease, transform 0.4s ease;
+          transform: translateY(15px);
+        }
+        .card-desc-text {
+          font-size: 12px;
+          color: rgba(255,255,255,0.88);
+          line-height: 1.5;
+          margin: 0;
+          font-weight: 400;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .hover-line {
+          height: 3px;
+          width: 0%;
+          background-color: ${ORANGE};
+          margin-top: 10px;
+          border-radius: 2px;
+          transition: width 0.4s ease;
+        }
         .ehs-awards-pagination {
           display: flex;
           align-items: center;
@@ -427,7 +438,6 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
           margin-top: 24px;
           gap: 6px;
         }
-
         .ehs-awards-pagination .swiper-pagination-bullet {
           background: #cbd5e1;
           width: 8px;
@@ -438,9 +448,8 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
           cursor: pointer;
           margin: 0 !important;
         }
-
         .ehs-awards-pagination .swiper-pagination-bullet-active {
-          background: #ff8755;
+          background: ${ORANGE};
           width: 24px;
           border-radius: 4px;
         }
@@ -451,28 +460,72 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
         }
 
         @media (max-width: 768px) {
+          .ehs-awards-section {
+            padding: 28px 16px 36px 16px !important;
+          }
+          .ehs-awards-header {
+            margin-bottom: 20px !important;
+          }
+          .ehs-awards-title {
+            font-size: clamp(20px, 5.2vw, 25px) !important;
+            margin-bottom: 4px !important;
+          }
+          .ehs-awards-subtitle {
+            font-size: 12.5px !important;
+            line-height: 1.5 !important;
+          }
           .ehs-slider-wrapper {
-            padding: 0;
+            padding: 0 !important;
           }
           .ehs-nav-btn {
             display: none !important;
           }
+          .slider-card {
+            height: clamp(320px, 84vw, 360px) !important;
+            border-radius: 12px !important;
+          }
           .card-overlay { 
-            opacity: 0.92 !important; 
-            background: linear-gradient(to top, rgba(10,42,102, 1) 0%, rgba(10,42,102, 0.65) 60%, transparent 100%) !important; 
+            opacity: 0.9 !important; 
+            background: linear-gradient(to top, rgba(10,42,102, 0.98) 0%, rgba(10,42,102, 0.75) 45%, rgba(10,42,102, 0.2) 75%, transparent 100%) !important; 
           }
           .card-content { 
-            transform: translateY(0) !important; 
+            transform: translateY(0) !important;
+            padding: 16px 14px 18px 14px !important;
+            gap: 4px !important;
           }
-          .hover-line { 
-            width: 40px !important; 
+          .card-title {
+            font-size: 14.5px !important;
+            line-height: 1.25 !important;
+            margin-bottom: 2px !important;
+          }
+          .card-subtitle {
+            font-size: 10.5px !important;
+            letter-spacing: 0.4px !important;
           }
           .card-description { 
             opacity: 1 !important; 
-            transform: translateY(0) !important; 
+            transform: translateY(0) !important;
+            margin-top: 4px !important;
+          }
+          .card-desc-text {
+            font-size: 11.5px !important;
+            line-height: 1.4 !important;
+            -webkit-line-clamp: 2 !important;
+          }
+          .hover-line { 
+            width: 32px !important; 
+            margin-top: 6px !important;
           }
           .ribbon-tag { 
-            transform: translateX(-4px) !important; 
+            top: 12px !important;
+            padding: 5px 10px !important;
+            gap: 5px !important;
+          }
+          .ribbon-text {
+            font-size: 8.5px !important;
+          }
+          .ehs-awards-pagination {
+            margin-top: 18px !important;
           }
         }
 

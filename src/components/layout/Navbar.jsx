@@ -45,7 +45,41 @@ const defaultNavigationData = [
   { id: 'careers', label: 'Careers', href: '/careers' },
 ]
 
-const TypewriterTagline = () => null;
+const TypewriterTagline = ({ tagline }) => {
+  const fullText = tagline || 'Progressive Innovative Sustainable Limitless'
+  const [displayText, setDisplayText] = useState('')
+
+  useEffect(() => {
+    let currentIndex = 0
+    let timer = null
+    const charDelay = Math.round(8000 / Math.max(fullText.length, 1)) // ~182ms per char = 8s total typing
+    
+    const typeNext = () => {
+      if (currentIndex <= fullText.length) {
+        setDisplayText(fullText.substring(0, currentIndex))
+        currentIndex++
+        timer = setTimeout(typeNext, charDelay)
+      } else {
+        // Hold full text for 2.5s so user can comfortably read it, then repeat
+        timer = setTimeout(() => {
+          currentIndex = 0
+          typeNext()
+        }, 2500)
+      }
+    }
+
+    timer = setTimeout(typeNext, 400)
+    return () => clearTimeout(timer)
+  }, [fullText])
+
+  return (
+    <span style={{ fontSize: '17px', color: '#ff8d4b', fontWeight: '600', letterSpacing: '0.4px' }} className="tagline">
+      {displayText}
+      <span style={{ display: 'inline-block', width: '2px', height: '18px', background: '#ff8d4b', marginLeft: '3px', verticalAlign: 'middle', animation: 'pisl-blink 0.7s infinite' }} />
+      <style>{`@keyframes pisl-blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }`}</style>
+    </span>
+  )
+}
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -229,7 +263,9 @@ const Navbar = () => {
 
         <style>{`
           .top-header { display: none; }
-          @media (min-width: 1024px) { .top-header { display: block !important; } .tagline { display: inline !important; } }
+          .tagline { display: none; }
+          @media (min-width: 768px) { .tagline { display: inline !important; font-size: 15px !important; } }
+          @media (min-width: 1024px) { .top-header { display: block !important; } .tagline { display: inline !important; font-size: 17px !important; } }
           @media (max-width: 1023px) { .lg-menu { display: none !important; } }
           @media (min-width: 1024px) { .lg-menu { display: flex !important; } .lg-menu-btn { display: none !important; } .lg-menu-container { display: none !important; } }
         `}</style>

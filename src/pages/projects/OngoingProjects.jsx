@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import { HiChevronLeft, HiChevronRight, HiCheckCircle, HiExclamation } from 'react-icons/hi'
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
@@ -80,58 +80,17 @@ const OngoingProjects = () => {
 
     getData();
 
-    const handleFocus = () => {
-      getData(true);
-    };
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        getData(true);
-      }
-    };
-    window.addEventListener('focus', handleFocus);
-    window.addEventListener('visibilitychange', handleVisibility);
-
-    let isPolling = false;
-    let lastSig = '';
-    const pollFast = async () => {
-      if (!isMounted || isPolling) return;
-      isPolling = true;
-      try {
-        const res = await fetch(`${STRAPI_URL}/api/ongoing-projects?fields[0]=updatedAt&sort=updatedAt:desc&pagination[pageSize]=1`, {
-          cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache, no-store' }
-        });
-        if (res.ok) {
-          const json = await res.json();
-          const latestTs = json?.data?.[0]?.updatedAt;
-          const total = json?.meta?.pagination?.total;
-          const currentSig = `${latestTs}_${total}`;
-          if (lastSig && lastSig !== currentSig) {
-            getData(true);
-          }
-          lastSig = currentSig;
-        }
-      } catch (e) {} finally {
-        isPolling = false;
-      }
-    };
-
-    const intervalId = setInterval(pollFast, 60000);
-
     return () => {
       isMounted = false;
-      window.removeEventListener('focus', handleFocus);
-      window.removeEventListener('visibilitychange', handleVisibility);
-      clearInterval(intervalId);
     };
   }, []);
 
   if (loading) return <Preloader />;
 
-  const totalPages = Math.ceil(projectsData.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage
-  const currentProjects = projectsData.slice(startIndex, endIndex)
+  const totalPages = Math.ceil(projectsData.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProjects = projectsData.slice(startIndex, endIndex);
 
   const seoData = {
     contentType: 'page',
@@ -156,9 +115,9 @@ const OngoingProjects = () => {
   };
 
   const handlePageChange = (page) => {
-    setCurrentPage(page)
-    window.scrollTo({ top: 400, behavior: 'smooth' })
-  }
+    setCurrentPage(page);
+    window.scrollTo({ top: 350, behavior: 'smooth' });
+  };
 
   const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Ongoing-Projects.png") : "/images/hero/Ongoing-Projects.png";
 
@@ -173,41 +132,27 @@ const OngoingProjects = () => {
         bgImage={heroImage}
       />
       
-      <section style={{ padding: '60px 16px', backgroundColor: '#f9fafb', minHeight: '60vh' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+      <section className="ongoing-projects-section">
+        <div className="ongoing-projects-container">
           
           {pageData?.description && (
-            <div style={{ marginBottom: '40px', fontSize: '16px', color: '#475569', lineHeight: 1.6, fontFamily: 'Inter, sans-serif' }} dangerouslySetInnerHTML={{ __html: pageData.description.replace(/\n/g, '<br />') }} />
+            <div className="ongoing-desc-box" dangerouslySetInnerHTML={{ __html: pageData.description.replace(/\n/g, '<br />') }} />
           )}
 
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            marginBottom: '40px',
-            flexWrap: 'wrap',
-            gap: '16px'
-          }}>
-            <h2 style={{ fontSize: '36px', fontWeight: 'bold', color: '#2a2a75', margin: 0 }}>
+          <div className="ongoing-header">
+            <h2 className="ongoing-title">
               {pageData?.heroTitle || "Ongoing Projects"}
             </h2>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              backgroundColor: '#f8fafc',
-              padding: '8px 16px',
-              borderRadius: '8px',
-              border: '1px solid #e2e8f0'
-            }}>
-              <span style={{ fontSize: '14px', color: '#64748b', fontWeight: '500' }}>Total Projects:</span>
-              <span style={{ fontSize: '16px', color: '#0a2a66', fontWeight: '700' }}>
+            
+            <div className="ongoing-counter-badge">
+              <span className="counter-label">Total Projects:</span>
+              <span className="counter-val">
                 {projectsData.length}
               </span>
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="projects-grid">
+          <div className="projects-grid">
             {currentProjects.map((project) => (
               <ProjectCard 
                 key={project.id} 
@@ -218,23 +163,31 @@ const OngoingProjects = () => {
           </div>
 
           {totalPages > 1 && (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '48px' }}>
-              <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
-                style={{ width: '40px', height: '40px', borderRadius: '8px', border: '1px solid #e5e7eb', backgroundColor: currentPage === 1 ? '#f9fafb' : 'white', color: currentPage === 1 ? '#d1d5db' : '#374151', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            <div className="ongoing-pagination">
+              <button 
+                onClick={() => handlePageChange(currentPage - 1)} 
+                disabled={currentPage === 1}
+                className="page-nav-btn"
+                aria-label="Previous page"
               >
-                <HiChevronLeft style={{ fontSize: '18px' }} />
+                <HiChevronLeft size={18} />
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button key={page} onClick={() => handlePageChange(page)}
-                  style={{ width: '40px', height: '40px', borderRadius: '8px', border: page === currentPage ? '2px solid #ff8755' : '1px solid #e5e7eb', backgroundColor: page === currentPage ? '#fff5f0' : 'white', color: page === currentPage ? '#ff8755' : '#374151', fontWeight: page === currentPage ? '700' : '500', fontSize: '14px', cursor: 'pointer' }}
+                <button 
+                  key={page} 
+                  onClick={() => handlePageChange(page)}
+                  className={`page-num-btn ${page === currentPage ? 'active' : ''}`}
                 >
                   {page}
                 </button>
               ))}
-              <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}
-                style={{ width: '40px', height: '40px', borderRadius: '8px', border: '1px solid #e5e7eb', backgroundColor: currentPage === totalPages ? '#f9fafb' : 'white', color: currentPage === totalPages ? '#d1d5db' : '#374151', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              <button 
+                onClick={() => handlePageChange(currentPage + 1)} 
+                disabled={currentPage === totalPages}
+                className="page-nav-btn"
+                aria-label="Next page"
               >
-                <HiChevronRight style={{ fontSize: '18px' }} />
+                <HiChevronRight size={18} />
               </button>
             </div>
           )}
@@ -242,12 +195,162 @@ const OngoingProjects = () => {
       </section>
 
       <style>{`
-        @media (max-width: 1200px) { .projects-grid { grid-template-columns: repeat(3, 1fr) !important; } }
-        @media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        @media (max-width: 600px) { .projects-grid { grid-template-columns: repeat(1, 1fr) !important; } }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
+        .ongoing-projects-section {
+          padding: 40px 16px 60px 16px;
+          background-color: #f8fafc;
+          min-height: 60vh;
+        }
+        .ongoing-projects-container {
+          max-width: 1400px;
+          margin: 0 auto;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .ongoing-desc-box {
+          margin-bottom: 24px;
+          font-size: 15px;
+          color: #475569;
+          line-height: 1.65;
+          font-family: 'Inter', sans-serif;
+        }
+        .ongoing-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 28px;
+          flex-wrap: wrap;
+          gap: 14px;
+        }
+        .ongoing-title {
+          font-size: clamp(24px, 3.2vw, 36px);
+          font-weight: 800;
+          color: #2a2a75;
+          line-height: 1.2;
+          margin: 0;
+          font-family: 'Inter', sans-serif;
+        }
+        .ongoing-counter-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background-color: #f8fafc;
+          padding: 8px 16px;
+          border-radius: 8px;
+          border: 1px solid #e2e8f0;
+          font-family: 'Inter', sans-serif;
+        }
+        .counter-label {
+          font-size: 14px;
+          color: #64748b;
+          font-weight: 500;
+        }
+        .counter-val {
+          font-size: 16px;
+          color: #0a2a66;
+          font-weight: 700;
+        }
+
+        /* Grid */
+        .projects-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          box-sizing: border-box;
+        }
+
+        /* Pagination */
+        .ongoing-pagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          margin-top: 40px;
+          flex-wrap: wrap;
+        }
+        .page-nav-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
+          background-color: #ffffff;
+          color: #374151;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: none !important;
+        }
+        .page-nav-btn:disabled {
+          background-color: #f9fafb;
+          color: #d1d5db;
+          cursor: not-allowed;
+        }
+        .page-num-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
+          background-color: #ffffff;
+          color: #374151;
+          font-weight: 500;
+          font-size: 14px;
+          cursor: pointer;
+          transition: none !important;
+        }
+        .page-num-btn.active {
+          border: 2px solid #ff8755;
+          background-color: #fff5f0;
+          color: #ff8755;
+          font-weight: 700;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+          .projects-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 18px !important;
+          }
+        }
+        @media (max-width: 900px) {
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .ongoing-projects-section {
+            padding: 24px 14px 40px 14px !important;
+          }
+          .ongoing-header {
+            margin-bottom: 20px !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+          }
+          .ongoing-title {
+            font-size: clamp(22px, 5.5vw, 26px) !important;
+          }
+          .projects-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .ongoing-pagination {
+            margin-top: 30px !important;
+            gap: 6px !important;
+          }
+          .page-nav-btn, .page-num-btn {
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 13px !important;
+          }
+        }
+        @media (max-width: 380px) {
+          .ongoing-projects-section {
+            padding: 18px 10px 32px 10px !important;
+          }
+          .ongoing-title {
+            font-size: 20px !important;
+          }
         }
       `}</style>
     </div>

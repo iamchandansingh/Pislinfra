@@ -50,11 +50,12 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
     loadData();
   }, [propClientsData]);
 
-  const RowSlider = ({ rowClients, direction = 'left', duration = 30 }) => {
+  const RowSlider = ({ rowClients, direction = 'left', duration = 32 }) => {
     if (!rowClients || rowClients.length === 0) return null;
 
-    const quadClients = [...rowClients, ...rowClients, ...rowClients, ...rowClients];
-    const animName = direction === 'left' ? 'pislScrollLeft' : 'pislScrollRight';
+    // Duplicate clients inside each group (14 cards each) so group is wider than any screen
+    const duplicatedClients = [...rowClients, ...rowClients];
+    const isLeft = direction === 'left';
 
     return (
       <div 
@@ -62,56 +63,44 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
         style={{ overflow: 'hidden', marginBottom: '12px' }}
       >
         <div
-          className="pisl-marquee-track"
+          className={`pisl-marquee-track ${isLeft ? 'scroll-left' : 'scroll-right'}`}
           style={{
-            display: 'flex',
-            gap: '12px',
-            width: 'max-content',
-            animation: `${animName} ${duration}s linear infinite`,
-            willChange: 'transform',
+            '--marquee-duration': `${duration}s`,
           }}
         >
-          {quadClients.map((client, idx) => (
-            <motion.div
-              key={`${client.id}-${idx}`}
-              className="client-logo-card"
-              whileHover={{ 
-                y: -4,
-                boxShadow: '0 12px 28px rgba(0,0,0,0.10)',
-              }}
-              style={{
-                background: '#ffffff',
-                borderRadius: 12,
-                padding: '16px 20px',
-                minWidth: 'calc((1370px - 72px) / 7)',
-                maxWidth: 'calc((1370px - 72px) / 7)',
-                minHeight: 90,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'default',
-                border: '1px solid #f1f5f9',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-                flexShrink: 0,
-              }}
-            >
-              <img
-                className="client-logo-img"
-                src={client.logo}
-                alt={`${client.name} - Pislinfra Industrial Client & Warehousing Partner`}
-                title={`${client.name} - Turnkey Infrastructure & Construction Client of Pislinfra`}
-                loading="lazy"
-                decoding="async"
-                style={{
-                  maxWidth: '90%',
-                  maxHeight: 60,
-                  objectFit: 'contain',
-                  transition: 'all 0.35s ease',
-                }}
-              />
-            </motion.div>
-          ))}
+          {/* Group 1 */}
+          <div className="pisl-marquee-group">
+            {duplicatedClients.map((client, idx) => (
+              <div
+                key={`g1-${client.id || client.name}-${idx}`}
+                className="client-logo-card"
+              >
+                <img
+                  className="client-logo-img"
+                  src={client.logo}
+                  alt={`${client.name} - Pislinfra Client`}
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Group 2 (Exact mirror copy for 100% seamless glitch-free infinite loop) */}
+          <div className="pisl-marquee-group" aria-hidden="true">
+            {duplicatedClients.map((client, idx) => (
+              <div
+                key={`g2-${client.id || client.name}-${idx}`}
+                className="client-logo-card"
+              >
+                <img
+                  className="client-logo-img"
+                  src={client.logo}
+                  alt=""
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -127,10 +116,13 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
   if (clients.length === 0) return null;
 
   return (
-    <section style={{
-      padding: '24px',
-      background: '#f8fafc',
-    }}>
+    <section 
+      className="pisl-clients-section"
+      style={{
+        padding: '40px 24px',
+        background: '#f8fafc',
+      }}
+    >
       <div style={{ maxWidth: 1370, margin: '0 auto' }}>
 
         <motion.div
@@ -138,16 +130,20 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="pisl-clients-header"
           style={{ textAlign: 'center', marginBottom: 32 }}
         >
-          <h2 style={{
-            fontSize: 'clamp(22px, 3vw, 30px)',
-            fontWeight: 800,
-            color: NAVY,
-            margin: 0,
-            letterSpacing: '-0.5px',
-            padding: '0 16px',
-          }}>
+          <h2 
+            className="pisl-clients-title"
+            style={{
+              fontSize: 'clamp(22px, 3vw, 30px)',
+              fontWeight: 800,
+              color: NAVY,
+              margin: 0,
+              letterSpacing: '-0.5px',
+              padding: '0 16px',
+            }}
+          >
             CLIENTS THAT <span style={{ color: NAVY }}>TRUST US</span>
           </h2>
         </motion.div>
@@ -157,41 +153,153 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
             key={idx} 
             rowClients={rowClients} 
             direction={idx % 2 === 0 ? 'left' : 'right'} 
-            duration={28 + idx * 6}
+            duration={30 + idx * 5}
           />
         ))}
 
       </div>
 
       <style>{`
-        .pisl-marquee-container:hover .pisl-marquee-track {
-          animation-play-state: paused !important;
+        .pisl-marquee-container {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          margin-bottom: 12px;
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+          transform: translateZ(0);
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          contain: paint;
         }
-        @keyframes pislScrollLeft {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
+
+        .pisl-marquee-track {
+          display: flex;
+          width: max-content;
+          user-select: none;
+          transform: translateZ(0);
         }
-        @keyframes pislScrollRight {
-          0% { transform: translate3d(-50%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
+
+        .pisl-marquee-group {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding-right: 12px;
+          flex-shrink: 0;
+          will-change: transform;
+          transform: translateZ(0);
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
         }
-        @media (max-width: 1200px) {
-          .clients-grid { grid-template-columns: repeat(4, 1fr) !important; }
+
+        .scroll-left .pisl-marquee-group {
+          animation: pislMarqueeLeft var(--marquee-duration, 32s) linear infinite;
         }
-        @media (max-width: 900px) {
-          .clients-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+        .scroll-right .pisl-marquee-group {
+          animation: pislMarqueeRight var(--marquee-duration, 32s) linear infinite;
         }
-        @media (max-width: 600px) {
-          .clients-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+        @keyframes pislMarqueeLeft {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(-100%, 0, 0);
+          }
+        }
+
+        @keyframes pislMarqueeRight {
+          0% {
+            transform: translate3d(-100%, 0, 0);
+          }
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
+        }
+
+        .client-logo-card {
+          background: #ffffff;
+          border-radius: 12px;
+          padding: 16px 20px;
+          min-width: calc((1370px - 72px) / 7);
+          max-width: calc((1370px - 72px) / 7);
+          min-height: 90px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: default;
+          border: 1px solid #f1f5f9;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          flex-shrink: 0;
+        }
+
+        .client-logo-img {
+          max-width: 90%;
+          max-height: 60px;
+          object-fit: contain;
+          display: block;
+        }
+
+        /* Desktop only: pause and subtle lift on mouse hover */
+        @media (hover: hover) and (pointer: fine) {
+          .pisl-marquee-container:hover .pisl-marquee-group {
+            animation-play-state: paused !important;
+          }
+          .client-logo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.09) !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .pisl-clients-section {
+            padding: 34px 16px 36px 16px !important;
+          }
+          .pisl-clients-header {
+            margin-bottom: 20px !important;
+          }
+          .pisl-clients-title {
+            font-size: clamp(21px, 5.8vw, 26px) !important;
+            letter-spacing: -0.5px !important;
+          }
+          .pisl-marquee-container {
+            margin-bottom: 10px !important;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%) !important;
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%) !important;
+          }
+          .pisl-marquee-group {
+            gap: 10px !important;
+            padding-right: 10px !important;
+          }
           .client-logo-card {
-            min-width: 100px !important;
-            max-width: 100px !important;
-            min-height: 60px !important;
-            padding: 8px 12px !important;
-            border-radius: 8px !important;
+            min-width: 124px !important;
+            max-width: 124px !important;
+            min-height: 64px !important;
+            padding: 8px 14px !important;
+            border-radius: 10px !important;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
           }
           .client-logo-img {
-            max-height: 35px !important;
+            max-height: 38px !important;
+            max-width: 92% !important;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .pisl-marquee-group {
+            gap: 8px !important;
+            padding-right: 8px !important;
+          }
+          .client-logo-card {
+            min-width: 114px !important;
+            max-width: 114px !important;
+            min-height: 60px !important;
+            padding: 7px 12px !important;
+          }
+          .client-logo-img {
+            max-height: 34px !important;
           }
         }
       `}</style>

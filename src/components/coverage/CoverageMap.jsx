@@ -910,12 +910,12 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
                 </h1>
                 <p className="cm-subtitle">Click marker to highlight city projects</p>
               </div>
-              <div style={{ display: 'flex', gap: 10 }}>
-                <button onClick={() => handleTabChange('ongoing')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'ongoing' ? '2px solid #f97316' : '1px solid #e2e8f0', background: activeTab === 'ongoing' ? '#fff7ed' : '#ffffff', color: activeTab === 'ongoing' ? '#f97316' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
+              <div className="cm-tabs-wrap" style={{ display: 'flex', gap: 10 }}>
+                <button className="cm-tab-btn" onClick={() => handleTabChange('ongoing')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'ongoing' ? '2px solid #f97316' : '1px solid #e2e8f0', background: activeTab === 'ongoing' ? '#fff7ed' : '#ffffff', color: activeTab === 'ongoing' ? '#f97316' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
                   <Activity size={15}/>Ongoing
                   <span style={{ background: activeTab === 'ongoing' ? '#f97316' : '#e2e8f0', color: activeTab === 'ongoing' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{ongoingProjects.length}</span>
                 </button>
-                <button onClick={() => handleTabChange('completed')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'completed' ? '2px solid #198847' : '1px solid #e2e8f0', background: activeTab === 'completed' ? 'rgba(25,136,71,0.08)' : '#ffffff', color: activeTab === 'completed' ? '#166534' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
+                <button className="cm-tab-btn" onClick={() => handleTabChange('completed')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'completed' ? '2px solid #198847' : '1px solid #e2e8f0', background: activeTab === 'completed' ? 'rgba(25,136,71,0.08)' : '#ffffff', color: activeTab === 'completed' ? '#166534' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
                   <CheckCircle2 size={15}/>Completed
                   <span style={{ background: activeTab === 'completed' ? '#198847' : '#e2e8f0', color: activeTab === 'completed' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{completedProjects.length}</span>
                 </button>
@@ -927,7 +927,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
             <AnimatePresence mode="wait">
               {filteredProjects.length > 0 ? (
                 <motion.div key={`sw-${activeTab}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div className="cm-slider-wrapper">
+                  <div className={`cm-slider-wrapper ${activeTab === 'ongoing' ? 'cm-ongoing-active' : 'cm-completed-active'}`}>
                     <div className="cm-nav-arrows">
                       <button ref={prevRef} className="cm-nav-btn cm-nav-prev-btn" onClick={() => swiperRef.current?.slidePrev()}><ChevronLeft size={20}/></button>
                       <button ref={nextRef} className="cm-nav-btn cm-nav-next-btn" onClick={() => swiperRef.current?.slideNext()}><ChevronRight size={20}/></button>
@@ -1019,6 +1019,65 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
           .cm-header{padding:20px 20px 16px!important;}
           .cm-content-area{padding:20px 16px!important;}
         }
+
+        @media(max-width:640px){
+          .cm-layout{min-height:auto!important;margin-bottom:12px!important;}
+          .cm-left-panel{padding:18px 12px 14px!important;}
+          .cm-map-container{max-width:340px!important;}
+          .cm-legend{
+            margin:12px auto 0!important;
+            padding:8px 14px!important;
+            max-width:280px!important;
+            border-radius:10px!important;
+          }
+          .cm-legend h4{font-size:9.5px!important;margin-bottom:3px!important;}
+          .cm-legend-items-row{gap:12px!important;}
+          .cm-legend-item{font-size:11.5px!important;gap:6px!important;}
+          .cm-legend-dot{width:7px!important;height:7px!important;}
+
+          .cm-header{padding:16px 14px 12px!important;}
+          .cm-header-top{
+            flex-direction:column!important;
+            align-items:stretch!important;
+            gap:10px!important;
+          }
+          .cm-main-title{
+            font-size:clamp(20px, 5.5vw, 24px)!important;
+            letter-spacing:-0.5px!important;
+          }
+          .cm-subtitle{font-size:11.5px!important;margin-top:2px!important;}
+          .cm-tabs-wrap{
+            width:100%!important;
+            display:flex!important;
+            gap:8px!important;
+          }
+          .cm-tab-btn{
+            flex:1!important;
+            justify-content:center!important;
+            padding:8px 8px!important;
+            font-size:12.5px!important;
+            border-radius:8px!important;
+            gap:6px!important;
+          }
+
+          .cm-content-area{padding:14px 14px 20px!important;}
+          .cm-card{border-radius:12px!important;}
+          .cm-card-image-wrapper{height:clamp(170px, 48vw, 205px)!important;}
+          .cm-card-content{padding:12px 14px 14px!important;gap:8px!important;}
+          .cm-card-title{font-size:14px!important;}
+          .cm-labels-grid{gap:6px!important;}
+          .cm-label-item{padding:5px 7px!important;gap:5px!important;border-radius:6px!important;}
+          .cm-label-head{font-size:7.5px!important;}
+          .cm-label-val{font-size:10px!important;}
+          .cm-card-bottom{padding-top:2px!important;}
+        }
+
+        @media(max-width:360px){
+          .cm-map-container{max-width:300px!important;}
+          .cm-tab-btn{font-size:11.5px!important;padding:7px 4px!important;}
+          .cm-card-title{font-size:13.5px!important;}
+        }
+
         .cm-right-panel{width:100%;display:flex;flex-direction:column;background:#ffffff;}
         @media(min-width:1024px){.cm-right-panel{width:55%;}}
         .cm-header{flex-shrink:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);padding:24px 40px 20px;border-bottom:1px solid #e2e8f0;}
@@ -1059,7 +1118,8 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         .swiper-slide{height:auto!important;}
         .swiper-pagination{position:relative!important;bottom:auto!important;margin-top:16px!important;text-align:center!important;}
         .swiper-pagination-bullet{background:#cbd5e1!important;width:8px!important;height:8px!important;opacity:1!important;transition:all 0.3s!important;margin:0 4px!important;}
-        .swiper-pagination-bullet-active{background:#198847!important;width:24px!important;border-radius:4px!important;}
+        .cm-ongoing-active .swiper-pagination-bullet-active{background:#f97316!important;width:24px!important;border-radius:4px!important;}
+        .cm-completed-active .swiper-pagination-bullet-active{background:#198847!important;width:24px!important;border-radius:4px!important;}
       `}</style>
     </div>
   );

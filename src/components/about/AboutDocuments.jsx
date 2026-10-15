@@ -43,16 +43,8 @@ const AboutDocuments = ({ profileData }) => {
         window.URL.revokeObjectURL(blobUrl);
       }, 300);
     } catch (err) {
-      console.warn('Direct blob download failed, falling back to local file:', err);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = '/reports/Pragati-Infra-Solutions-Corporate-Profile.pdf';
-      a.download = 'Pragati_Infra_Solutions_Corporate_Profile.pdf';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => {
-        document.body.removeChild(a);
-      }, 300);
+      console.warn('Direct blob download failed, opening file directly:', err);
+      window.open(targetUrl || '/reports/Pragati-Infra-Solutions-Corporate-Profile.pdf', '_blank');
     } finally {
       setTimeout(() => setDownloading(false), 800);
     }
@@ -118,13 +110,32 @@ const AboutDocuments = ({ profileData }) => {
     if (!text) {
       return (
         <>
-          Building Infrastructure <br />
+          Building Infrastructure <br className="ap-title-br" />
           for a <span className="ap-highlight">Better Tomorrow</span>
         </>
       );
     }
     if (text.includes('Better Tomorrow')) {
       const parts = text.split('Better Tomorrow');
+      const cleanBefore = parts[0].trim();
+      if (cleanBefore.includes('\n')) {
+        const lines = cleanBefore.split('\n');
+        return (
+          <>
+            {lines[0]} <br className="ap-title-br" />
+            {lines.slice(1).join(' ')} <span className="ap-highlight">Better Tomorrow</span> {parts[1]}
+          </>
+        );
+      }
+      if (cleanBefore.toLowerCase().endsWith('for a')) {
+        const mainPart = cleanBefore.slice(0, -5).trim();
+        return (
+          <>
+            {mainPart} <br className="ap-title-br" />
+            for a <span className="ap-highlight">Better Tomorrow</span> {parts[1]}
+          </>
+        );
+      }
       return (
         <>
           {parts[0]} <span className="ap-highlight">Better Tomorrow</span> {parts[1]}
@@ -135,7 +146,7 @@ const AboutDocuments = ({ profileData }) => {
       const lines = text.split('\n');
       return (
         <>
-          {lines.slice(0, -1).join(' ')} <br />
+          {lines.slice(0, -1).join(' ')} <br className="ap-title-br" />
           <span className="ap-highlight">{lines[lines.length - 1]}</span>
         </>
       );
@@ -382,9 +393,31 @@ const AboutDocuments = ({ profileData }) => {
           cursor: pointer;
         }
 
-        .ap-download-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: none !important;
+        @media (hover: hover) and (pointer: fine) {
+          .ap-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(11, 40, 101, 0.16) !important;
+          }
+          .ap-download-btn:hover .ap-btn-body {
+            background-color: #071c49;
+          }
+          .ap-download-btn:hover .ap-btn-arrow {
+            background-color: #ff8755;
+          }
+          .ap-view-btn:hover {
+            background-color: #0b2865;
+            color: #ffffff;
+            transform: translateY(-2px);
+          }
+        }
+
+        .ap-download-btn:active {
+          transform: scale(0.98);
+        }
+
+        .ap-view-btn:active {
+          transform: scale(0.98);
+          background-color: #f1f5f9;
         }
 
         .ap-btn-body {
@@ -400,10 +433,6 @@ const AboutDocuments = ({ profileData }) => {
           transition: background-color 0.2s ease;
         }
 
-        .ap-download-btn:hover .ap-btn-body {
-          background-color: #071c49;
-        }
-
         .ap-btn-arrow {
           display: flex;
           align-items: center;
@@ -412,10 +441,6 @@ const AboutDocuments = ({ profileData }) => {
           background-color: #ff733b;
           color: #ffffff;
           transition: background-color 0.2s ease;
-        }
-
-        .ap-download-btn:hover .ap-btn-arrow {
-          background-color: #ff8755;
         }
 
         .ap-view-btn {
@@ -432,12 +457,6 @@ const AboutDocuments = ({ profileData }) => {
           text-decoration: none;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           cursor: pointer;
-        }
-
-        .ap-view-btn:hover {
-          background-color: #0b2865;
-          color: #ffffff;
-          transform: translateY(-2px);
         }
 
         .ap-visual {
@@ -471,47 +490,151 @@ const AboutDocuments = ({ profileData }) => {
             height: auto;
             aspect-ratio: 16 / 9;
             min-height: auto;
+            border-top: 1px solid #e2e8f0;
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .about-profile-section {
-            padding: 24px 14px 44px;
+            padding: 34px 16px 48px 16px !important;
           }
           .ap-card {
-            border-radius: 10px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
           }
           .ap-content {
-            padding: 22px 16px;
+            padding: 24px 16px 22px 16px;
           }
           .ap-headline {
-            font-size: 24px;
+            font-size: clamp(21px, 5.8vw, 26px);
+            line-height: 1.22;
+            margin: 0 0 12px;
+            letter-spacing: -0.4px;
+          }
+          .ap-description {
+            font-size: 13px;
+            line-height: 1.55;
+            margin: 0 0 18px;
+            color: #64748b;
           }
           .ap-stats-row {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 8px !important;
+            margin-bottom: 20px !important;
+            width: 100% !important;
           }
           .ap-stat-item {
-            border-right: none;
-            padding-right: 0;
-            width: 100%;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 10px 4px !important;
+            background: #f8fafc !important;
+            border-radius: 10px !important;
+            border: 1px solid #edf2f7 !important;
+            border-right: 1px solid #edf2f7 !important;
+            width: 100% !important;
+            gap: 6px !important;
+          }
+          .ap-stat-item-last {
+            border-right: 1px solid #edf2f7 !important;
+            padding-right: 4px !important;
+          }
+          .ap-stat-icon {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 8px !important;
+          }
+          .ap-stat-title {
+            font-size: 12.5px !important;
+            font-weight: 800 !important;
+            line-height: 1.2 !important;
+            color: #0c2356 !important;
+          }
+          .ap-stat-sub {
+            font-size: 10px !important;
+            font-weight: 500 !important;
+            color: #64748b !important;
+            line-height: 1.2 !important;
           }
           .ap-actions {
-            flex-direction: column;
-            align-items: stretch;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 10px !important;
+            width: 100% !important;
           }
-          .ap-download-btn,
-          .ap-view-btn {
-            width: 100%;
-            justify-content: center;
+          .ap-download-btn {
+            width: 100% !important;
+            min-height: 46px !important;
+            border-radius: 8px !important;
           }
           .ap-btn-body {
-            justify-content: center;
-            flex: 1;
+            justify-content: center !important;
+            flex: 1 !important;
+            padding: 12px 14px !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+          }
+          .ap-btn-arrow {
+            padding: 0 14px !important;
+          }
+          .ap-view-btn {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 11px 16px !important;
+            font-size: 13px !important;
+            min-height: 44px !important;
+            box-sizing: border-box !important;
+            border-radius: 8px !important;
           }
           .ap-visual {
-            aspect-ratio: 16 / 9;
+            width: 100% !important;
+            aspect-ratio: 16 / 9 !important;
+            border-top: 1px solid #e2e8f0 !important;
+            background-color: #f8fafc !important;
+          }
+          .ap-image {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .about-profile-section {
+            padding: 28px 12px 40px 12px !important;
+          }
+          .ap-content {
+            padding: 20px 12px 18px 12px !important;
+          }
+          .ap-headline {
+            font-size: 20px !important;
+          }
+          .ap-description {
+            font-size: 12px !important;
+          }
+          .ap-stats-row {
+            gap: 6px !important;
+          }
+          .ap-stat-item {
+            padding: 8px 2px !important;
+          }
+          .ap-stat-icon {
+            width: 32px !important;
+            height: 32px !important;
+          }
+          .ap-stat-title {
+            font-size: 11.5px !important;
+          }
+          .ap-stat-sub {
+            font-size: 9.5px !important;
+          }
+          .ap-btn-body {
+            font-size: 12px !important;
+            padding: 10px 8px !important;
           }
         }
       `}</style>

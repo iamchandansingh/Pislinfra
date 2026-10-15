@@ -90,7 +90,13 @@ const ContactUs = () => {
       </div>
 
       <style>{`
-
+        @media (max-width: 768px) {
+          .contact-sections {
+            gap: 32px !important;
+            padding-top: 24px !important;
+            padding-bottom: 40px !important;
+          }
+        }
       `}</style>
     </div>
   )

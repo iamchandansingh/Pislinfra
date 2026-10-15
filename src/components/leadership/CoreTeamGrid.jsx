@@ -31,15 +31,18 @@ const TeamMemberCard = ({ member, index }) => {
       }}
       className="pisl-passport-member-card"
     >
-      <div style={{
-        width: '100%',
-        paddingTop: '133.33%',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        background: '#f8fafc',
-        position: 'relative',
-        marginBottom: '16px'
-      }}>
+      <div 
+        className="pisl-passport-img-box"
+        style={{
+          width: '100%',
+          paddingTop: '133.33%',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          background: '#f8fafc',
+          position: 'relative',
+          marginBottom: '16px'
+        }}
+      >
         <img 
           src={getImageUrl(member.image)} 
           alt={member.name} 
@@ -55,14 +58,14 @@ const TeamMemberCard = ({ member, index }) => {
         />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', flex: 1, textAlign: 'left' }}>
-        <h4 style={{ fontSize: '15px', fontWeight: 800, color: NAVY, margin: '0 0 2px 0', letterSpacing: '-0.3px' }}>
+      <div className="pisl-passport-info" style={{ display: 'flex', flexDirection: 'column', flex: 1, textAlign: 'left' }}>
+        <h4 className="pisl-passport-name" style={{ fontSize: '15px', fontWeight: 800, color: NAVY, margin: '0 0 2px 0', letterSpacing: '-0.3px' }}>
           {member.name}
         </h4>
-        <p style={{ fontSize: '12px', color: ORANGE, fontWeight: 700, margin: '0 0 10px 0', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
+        <p className="pisl-passport-designation" style={{ fontSize: '12px', color: ORANGE, fontWeight: 700, margin: '0 0 10px 0', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
           {member.designation} {member.department && <span style={{ color: '#64748b', fontWeight: 500 }}>• {member.department}</span>}
         </p>
-        <p style={{ fontSize: '13px', color: '#475569', fontWeight: 500, lineHeight: '1.45', margin: '0', flex: 1 }}>
+        <p className="pisl-passport-bio" style={{ fontSize: '13px', color: '#475569', fontWeight: 500, lineHeight: '1.45', margin: '0', flex: 1 }}>
           {member.bio}
         </p>
       </div>
@@ -72,17 +75,23 @@ const TeamMemberCard = ({ member, index }) => {
 
 const CoreTeamGrid = ({ title, members }) => {
   return (
-    <section style={{
-      padding: '100px 24px',
-      background: '#ffffff',
-      fontFamily: '"Inter", "-apple-system", sans-serif'
-    }}>
+    <section 
+      className="pisl-core-team-section"
+      style={{
+        padding: '100px 24px',
+        background: '#ffffff',
+        fontFamily: '"Inter", "-apple-system", sans-serif'
+      }}
+    >
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
-        <h2 style={{
-          fontSize: '28px', fontWeight: 900, color: NAVY,
-          margin: '0 0 48px 0', letterSpacing: '-0.5px'
-        }}>
+        <h2 
+          className="pisl-core-team-title"
+          style={{
+            fontSize: '28px', fontWeight: 900, color: NAVY,
+            margin: '0 0 48px 0', letterSpacing: '-0.5px'
+          }}
+        >
           {title || 'Our Core Team'}
         </h2>
 
@@ -102,11 +111,14 @@ const CoreTeamGrid = ({ title, members }) => {
       </div>
 
       <style>{`
-        .pisl-passport-member-card:hover .pisl-passport-img {
-          transform: scale(1.04);
-        }
-        .pisl-passport-member-card:hover {
-          border-color: rgba(40, 41, 111, 0.12) !important;
+        @media (hover: hover) and (pointer: fine) {
+          .pisl-passport-member-card:hover .pisl-passport-img {
+            transform: scale(1.04);
+          }
+          .pisl-passport-member-card:hover {
+            border-color: rgba(40, 41, 111, 0.16) !important;
+            box-shadow: 0 12px 28px rgba(40, 41, 111, 0.08) !important;
+          }
         }
         @media (max-width: 1100px) {
           .pisl-passport-grid {
@@ -115,14 +127,66 @@ const CoreTeamGrid = ({ title, members }) => {
           }
         }
         @media (max-width: 768px) {
+          section.pisl-core-team-section {
+            padding: 36px 16px 44px 16px !important;
+          }
+          .pisl-core-team-title {
+            font-size: clamp(22px, 6vw, 28px) !important;
+            margin-bottom: 20px !important;
+            letter-spacing: -0.4px !important;
+          }
           .pisl-passport-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 16px !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+          }
+          .pisl-passport-member-card {
+            padding: 10px 10px 12px 10px !important;
+            border-radius: 14px !important;
+            box-shadow: 0 2px 10px rgba(40, 41, 111, 0.04) !important;
+          }
+          .pisl-passport-img-box {
+            padding-top: 130% !important;
+            border-radius: 10px !important;
+            margin-bottom: 8px !important;
+          }
+          .pisl-passport-img {
+            object-position: center 20% !important;
+          }
+          .pisl-passport-name {
+            font-size: 13.5px !important;
+            margin-bottom: 2px !important;
+            line-height: 1.3 !important;
+          }
+          .pisl-passport-designation {
+            font-size: 10.5px !important;
+            margin-bottom: 6px !important;
+            letter-spacing: 0.2px !important;
+            line-height: 1.3 !important;
+          }
+          .pisl-passport-bio {
+            font-size: 11.5px !important;
+            line-height: 1.45 !important;
           }
         }
-        @media (max-width: 440px) {
+        @media (max-width: 360px) {
+          section.pisl-core-team-section {
+            padding: 28px 10px 36px 10px !important;
+          }
           .pisl-passport-grid {
-            grid-template-columns: 1fr !important;
+            gap: 8px !important;
+          }
+          .pisl-passport-member-card {
+            padding: 8px 8px 10px 8px !important;
+            border-radius: 12px !important;
+          }
+          .pisl-passport-name {
+            font-size: 12px !important;
+          }
+          .pisl-passport-designation {
+            font-size: 9.5px !important;
+          }
+          .pisl-passport-bio {
+            font-size: 10.5px !important;
           }
         }
       `}</style>

@@ -175,19 +175,20 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
   if (awards.length === 0) return null;
 
   return (
-    <section style={{ padding: '45px 24px', background: '#f4f6fa' }}>
+    <section className="pisl-awards-section" style={{ padding: '45px 24px', background: '#f4f6fa' }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }}
+          className="pisl-awards-header"
           style={{ 
             marginBottom: 24, 
             textAlign: 'center' 
           }}
         >
-          <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 32px)', fontWeight: 800, color: NAVY, margin: 0, letterSpacing: '-1px' }}>
+          <h2 className="pisl-awards-title" style={{ fontSize: 'clamp(24px, 3.5vw, 32px)', fontWeight: 800, color: NAVY, margin: 0, letterSpacing: '-1px' }}>
             Awards and <span style={{ color: ORANGE }}>Certification</span>
           </h2>
         </motion.div>
@@ -277,40 +278,65 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
           })}
         </div>
 
-        {/* MOBILE: Grid */}
+        {/* MOBILE: 2x2 Clean Grid */}
         <div className="awards-all-mobile" style={{ display: 'none' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-            {awards.slice(0, 5).map((award) => (
+          <div className="awards-mobile-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '12px' }}>
+            {awards.slice(0, 4).map((award) => (
               <div 
                 key={award.id} 
                 onClick={() => navigate('/about/awards')}
+                className="awards-mobile-card"
                 style={{ 
                   background: '#ffffff', 
                   borderRadius: '12px', 
                   overflow: 'hidden', 
                   border: '1px solid #e2e8f0', 
                   boxShadow: '0 4px 12px rgba(10,42,102,0.06)',
-                  cursor: 'pointer' 
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column'
                 }}
               >
-                <div style={{ height: '160px', overflow: 'hidden', position: 'relative' }}>
+                <div className="awards-mobile-img-wrap" style={{ height: '135px', overflow: 'hidden', position: 'relative', background: '#f1f5f9' }}>
                   {award.images && award.images.length > 0 ? (
-                    <img src={award.images[0]} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={award.images[0]} alt={award.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   ) : (
                     <div style={{ width: '100%', height: '100%', background: '#eee' }} />
                   )}
-                </div>
-                <div style={{ padding: '10px 12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                    <img src={award.logo} alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '4px' }} />
-                    <span style={{ fontSize: '10px', fontWeight: '700', color: NAVY }}>{award.company}</span>
-                  </div>
-                  <h4 style={{ fontSize: '12px', fontWeight: '800', color: '#1e293b', margin: '0 0 4px', lineHeight: '1.3' }}>{award.title}</h4>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '10px', color: '#94a3b8' }}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <FaMapMarkerAlt size={9} style={{ color: ORANGE }} />{award.location}
+                  {award.category && (
+                    <span style={{ 
+                      position: 'absolute', top: '8px', left: '8px', 
+                      background: 'rgba(10,42,102,0.88)', backdropFilter: 'blur(4px)', 
+                      color: '#fff', padding: '3px 8px', borderRadius: '4px', 
+                      fontSize: '9px', fontWeight: '800', textTransform: 'uppercase', 
+                      letterSpacing: '0.4px', zIndex: 2 
+                    }}>
+                      {award.category}
                     </span>
-                    <span style={{ color: ORANGE, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '2px' }}>
+                  )}
+                </div>
+                <div className="awards-mobile-card-content" style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+                    <img src={award.logo} alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '4px', background: '#fff', border: '1px solid #e2e8f0', padding: '2px', flexShrink: 0 }} />
+                    <span style={{ fontSize: '11px', fontWeight: '800', color: NAVY, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{award.company}</span>
+                  </div>
+                  <h4 style={{ 
+                    fontSize: '12px', fontWeight: '800', color: '#1e293b', 
+                    margin: '0 0 6px', lineHeight: '1.35', 
+                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', 
+                    overflow: 'hidden', minHeight: '32px' 
+                  }}>
+                    {award.title}
+                  </h4>
+                  <div style={{ 
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+                    fontSize: '10px', color: '#64748b', marginTop: 'auto', paddingTop: '6px', 
+                    borderTop: '1px solid #f1f5f9' 
+                  }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '3px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '65%' }}>
+                      <FaMapMarkerAlt size={9} style={{ color: ORANGE, flexShrink: 0 }} />{award.location}
+                    </span>
+                    <span style={{ color: ORANGE, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '2px', flexShrink: 0 }}>
                       View <ChevronRight size={11} />
                     </span>
                   </div>
@@ -318,17 +344,81 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
               </div>
             ))}
           </div>
+
+          {/* View All Button on Mobile */}
+          <div className="awards-mobile-btn-wrap" style={{ marginTop: '18px', textAlign: 'center' }}>
+            <button
+              onClick={() => navigate('/about/awards')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '11px 22px',
+                backgroundColor: NAVY,
+                color: '#FFFFFF',
+                borderRadius: '8px',
+                border: 'none',
+                fontSize: '13px',
+                fontWeight: 700,
+                letterSpacing: '0.2px',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(10,42,102,0.18)',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <span>View All Awards & Certifications</span>
+              <ArrowRight size={14} />
+            </button>
+          </div>
         </div>
 
       </div>
 
       <style>{`
         @media (max-width: 768px) {
+          .pisl-awards-section {
+            padding: 34px 16px 38px 16px !important;
+          }
+          .pisl-awards-header {
+            margin-bottom: 20px !important;
+          }
+          .pisl-awards-title {
+            font-size: clamp(21px, 5.8vw, 26px) !important;
+            letter-spacing: -0.5px !important;
+          }
           .awards-expand-desktop { display: none !important; }
           .awards-all-mobile { display: block !important; }
         }
-        @media (max-width: 480px) {
-          .awards-all-mobile > div { grid-template-columns: 1fr !important; }
+
+        @media (max-width: 640px) {
+          .awards-mobile-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 10px !important;
+          }
+          .awards-mobile-card {
+            border-radius: 12px !important;
+          }
+          .awards-mobile-img-wrap {
+            height: clamp(115px, 32vw, 135px) !important;
+          }
+          .awards-mobile-btn-wrap button {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 11px 16px !important;
+            font-size: 13px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .awards-mobile-grid {
+            gap: 8px !important;
+          }
+          .awards-mobile-img-wrap {
+            height: 105px !important;
+          }
+          .awards-mobile-card-content {
+            padding: 8px 8px !important;
+          }
         }
       `}</style>
     </section>

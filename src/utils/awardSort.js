@@ -8,14 +8,18 @@
 export const sortAwardsByFeaturedAndDate = (awardsList) => {
   if (!Array.isArray(awardsList)) return [];
 
-  // Deduplicate by normalized title
+  // Deduplicate by unique documentId, id, or normalized title + year + company
   const seen = new Set();
   const deduped = [];
   for (const a of awardsList) {
     if (!a) continue;
     const rawTitle = a.title || a.name || '';
     if (!rawTitle) continue;
-    const key = rawTitle.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    const key = a.documentId
+      ? `doc_${a.documentId}`
+      : (a.id
+          ? `id_${a.id}`
+          : `${rawTitle.trim().toLowerCase().replace(/[^a-z0-9]/g, '')}_${a.year || ''}_${(a.company || '').trim().toLowerCase()}`);
     if (!seen.has(key)) {
       seen.add(key);
       deduped.push(a);

@@ -224,20 +224,6 @@ function autoBackupDevPlugin() {
                     fs.writeFileSync(compPath, `const completedProjects = ${JSON.stringify(formattedComp, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
                   }
                 }
-
-                // Auto-sync PROJECT_FILES Set in imageUrl.js
-                try {
-                  const imgUrlPath = path.resolve(__dirname, 'src/utils/imageUrl.js');
-                  const projDir = path.resolve(__dirname, 'public/images/projects');
-                  if (fs.existsSync(imgUrlPath) && fs.existsSync(projDir)) {
-                    const pFiles = fs.readdirSync(projDir).filter(f => !f.startsWith('.') && (f.endsWith('.jpg') || f.endsWith('.jpeg') || f.endsWith('.png') || f.endsWith('.webp') || f.endsWith('.avif') || f.endsWith('.svg')));
-                    pFiles.sort();
-                    let imgUrlContent = fs.readFileSync(imgUrlPath, 'utf8');
-                    const setStr = `const PROJECT_FILES = new Set(${JSON.stringify(pFiles)});`;
-                    imgUrlContent = imgUrlContent.replace(/const PROJECT_FILES = new Set\(\[[\s\S]*?\]\);/, setStr);
-                    fs.writeFileSync(imgUrlPath, imgUrlContent, 'utf8');
-                  }
-                } catch (e) {}
               }
               res.statusCode = 200;
               res.setHeader('Content-Type', 'application/json');
@@ -278,7 +264,7 @@ export default defineConfig({
   
   server: {
     watch: {
-      ignored: ['**/src/data/**', '**/public/data/**', '**/dist/**', '**/public/images/**'],
+      ignored: ['**/src/data/**', '**/public/data/**', '**/dist/**', '**/public/images/**', '**/src/utils/imageUrl.js'],
     },
     proxy: {
       '/api': {

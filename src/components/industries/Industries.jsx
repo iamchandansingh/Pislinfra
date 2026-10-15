@@ -51,46 +51,56 @@ const Counter = ({ end, suffix = '', duration = 4000 }) => {
 const TextStat = ({ icon: Icon, end, suffix, label, color, delay }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+      className="pisl-text-stat-item"
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '8px', 
+        gap: '6px', 
       }}
     >
-      <div style={{
-        fontSize: 'clamp(32px, 3.5vw, 48px)', 
-        fontWeight: 900,
-        color: color,
-        lineHeight: 1,
-        letterSpacing: '-1px',
-      }}>
-        <Counter end={end} suffix={suffix} duration={4000} />
+      <div 
+        className="pisl-stat-num"
+        style={{
+          fontSize: 'clamp(32px, 3.5vw, 48px)', 
+          fontWeight: 900,
+          color: color,
+          lineHeight: 1,
+          letterSpacing: '-1px',
+        }}
+      >
+        <Counter end={end} suffix={suffix} duration={2500} />
       </div>
 
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '8px',
-        color: NAVY,
-      }}>
-        <Icon style={{ fontSize: '14px', color: ORANGE }} />
-        <span style={{
-          fontSize: '12px', 
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '1px',
-          lineHeight: 1.4,
-          whiteSpace: 'pre-line',
-          textAlign: 'center',
-        }}>
+      <div 
+        className="pisl-stat-label-wrap"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '7px',
+          color: NAVY,
+        }}
+      >
+        <Icon className="pisl-stat-icon" style={{ fontSize: '14px', color: ORANGE, flexShrink: 0 }} />
+        <span 
+          className="pisl-stat-text-label"
+          style={{
+            fontSize: '12px', 
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            lineHeight: 1.35,
+            whiteSpace: 'pre-line',
+            textAlign: 'center',
+          }}
+        >
           {label}
         </span>
       </div>
@@ -98,48 +108,71 @@ const TextStat = ({ icon: Icon, end, suffix, label, color, delay }) => {
   );
 };
 
-const Industries = () => {
+const parseStat = (val, defaultEnd, defaultSuffix = '+') => {
+  if (!val) return { end: defaultEnd, suffix: defaultSuffix };
+  const str = String(val).trim();
+  const digits = parseInt(str.replace(/[^0-9]/g, '')) || defaultEnd;
+  const suffix = str.replace(/[0-9]/g, '').trim() || defaultSuffix;
+  return { end: digits, suffix };
+};
+
+const formatLabel = (lbl, defaultText) => {
+  if (!lbl) return defaultText;
+  const words = lbl.trim().split(' ');
+  if (words.length <= 1) return lbl;
+  const mid = Math.ceil(words.length / 2);
+  return words.slice(0, mid).join(' ') + '\n' + words.slice(mid).join(' ');
+};
+
+const Industries = ({ data }) => {
+  const p1 = parseStat(data?.statLocations, 27, '+');
+  const p2 = parseStat(data?.statSqFt, 16, '+');
+  const p3 = parseStat(data?.statEmployees, 700, '+');
+  const p4 = parseStat(data?.statProjects, 10, '+');
+
   const stats = [
     {
       icon: FaMapMarkerAlt,
-      end: 25,
-      suffix: '+',
-      label: 'Locations\nCovered',
+      end: p1.end,
+      suffix: p1.suffix,
+      label: formatLabel(data?.statLocationsLabel, 'Locations\nCovered'),
       color: NAVY,
       delay: 0,
     },
     {
       icon: FaRulerCombined,
-      end: 16,
-      suffix: '+',
-      label: 'Million Sq. Ft.\nConstructed',
+      end: p2.end,
+      suffix: p2.suffix,
+      label: formatLabel(data?.statSqFtLabel, 'Million Sq. Ft.\nConstructed'),
       color: ORANGE,
-      delay: 0.15,
+      delay: 0.1,
     },
     {
       icon: FaUsers,
-      end: 600,
-      suffix: '+',
-      label: 'Employee\nStrength',
+      end: p3.end,
+      suffix: p3.suffix,
+      label: formatLabel(data?.statEmployeesLabel, 'Employee\nStrength'),
       color: NAVY,
-      delay: 0.3,
+      delay: 0.2,
     },
     {
       icon: FaBuilding,
-      end: 10,
-      suffix: '+',
-      label: 'Upcoming\nProjects',
+      end: p4.end,
+      suffix: p4.suffix,
+      label: formatLabel(data?.statProjectsLabel, 'Upcoming\nProjects'),
       color: ORANGE,
-      delay: 0.45,
+      delay: 0.3,
     },
   ];
 
   return (
-    <section style={{
-      padding: '30px 24px',
+    <section className="pisl-industries-stats-section" style={{
+      padding: '36px 24px',
       background: '#f8fafc',
       fontFamily: '"Inter", "Helvetica Neue", sans-serif',
       overflow: 'hidden',
+      borderTop: '1px solid #eef2f6',
+      borderBottom: '1px solid #eef2f6',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
@@ -164,13 +197,42 @@ const Industries = () => {
         @media (max-width: 1024px) {
           .text-stats-layout { 
             grid-template-columns: repeat(2, 1fr) !important; 
-            row-gap: 40px !important;
+            row-gap: 32px !important;
+            column-gap: 24px !important;
           }
         }
         @media (max-width: 640px) {
+          .pisl-industries-stats-section {
+            padding: 28px 16px !important;
+          }
           .text-stats-layout { 
-            grid-template-columns: 1fr !important; 
-            row-gap: 32px !important;
+            grid-template-columns: repeat(2, 1fr) !important; 
+            row-gap: 24px !important;
+            column-gap: 16px !important;
+          }
+          .pisl-stat-num {
+            font-size: clamp(28px, 7.5vw, 34px) !important;
+            letter-spacing: -0.5px !important;
+          }
+          .pisl-stat-icon {
+            font-size: 12px !important;
+          }
+          .pisl-stat-text-label {
+            font-size: 10.5px !important;
+            letter-spacing: 0.5px !important;
+            line-height: 1.3 !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .text-stats-layout {
+            column-gap: 10px !important;
+            row-gap: 20px !important;
+          }
+          .pisl-stat-num {
+            font-size: 24px !important;
+          }
+          .pisl-stat-text-label {
+            font-size: 9.5px !important;
           }
         }
       `}</style>

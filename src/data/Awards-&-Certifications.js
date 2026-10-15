@@ -1,6 +1,101 @@
 const awardsAndCertifications = [
   {
+    "id": "f7utydakaom915cr495x4fuj",
+    "documentId": "f7utydakaom915cr495x4fuj",
+    "title": "Five Star Safety Award  15 Million Safe Man-Hours",
+    "category": " Awards & Recognition",
+    "year": "2026",
+    "company": "Reliance Project Management Group",
+    "location": "NEI–Glass Factory Project, Jamnagar",
+    "description": "Recognized for our contribution towards achieving 15 million safe man-hours at the NEI–Glass Factory Project, Jamnagar, reflecting our commitment to workplace safety and excellence.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-10-12T09:13:12.182Z",
+    "image": "/images/awards/large_PISL_3f05c00f1e.png",
+    "clientImage": "/images/awards/large_Award_0041713e17.jpeg",
+    "images": [
+      "/images/awards/large_PISL_3f05c00f1e.png",
+      "/images/awards/large_Award_0041713e17.jpeg",
+      "/images/awards/large_Certificate_c2b0dd8bb2.jpeg",
+      "/images/awards/medium_jamnagar_6764b3e849.jpeg"
+    ],
+    "gallery": [
+      "/images/awards/large_Award_0041713e17.jpeg",
+      "/images/awards/large_Certificate_c2b0dd8bb2.jpeg",
+      "/images/awards/medium_jamnagar_6764b3e849.jpeg"
+    ],
+    "pdf": null
+  },
+  {
+    "id": "spuqphdpjz1zht6gd4wtwd1d",
+    "documentId": "spuqphdpjz1zht6gd4wtwd1d",
+    "title": "🏆 Best Contractor of the Month – June 2026 at Jamnagar Battery Project",
+    "category": "Best Safety Performance Excellence Award",
+    "year": "2026",
+    "company": "Reliance Industries Limited",
+    "location": "Jamnagar Battery Project, Gujarat",
+    "description": "Proud to share that PISL has been recognized by Reliance Industries Limited as the Best Contractor for the Month of June 2026 for outstanding Safety Performance at the Jamnagar Battery Project. PISL received the Monthly HSE Excellence Award Shield and Certificate of Achievement from the client in recognition of its continued commitment to Health, Safety & Environment.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-10-03T00:56:24.232Z",
+    "image": "/images/awards/large_Corporate_Excellence_Award_Display_102c19dcdd.png",
+    "clientImage": "/images/awards/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg",
+    "images": [
+      "/images/awards/large_Corporate_Excellence_Award_Display_102c19dcdd.png",
+      "/images/awards/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg"
+    ],
+    "gallery": [
+      "/images/awards/medium_Whats_App_Image_2026_09_28_at_17_08_56_e67e5b31ba.jpeg"
+    ],
+    "pdf": null
+  },
+  {
+    "id": "b15ig5jf2wgozrhui3dwr9ms",
+    "documentId": "b15ig5jf2wgozrhui3dwr9ms",
+    "title": "2.0 Million Safe Man-Hours – Certification of Appreciation",
+    "category": "HSE / Safety Excellence",
+    "year": "2026",
+    "company": "Adani Petrochemicals",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. received a Certification of Appreciation from Mundra Petrochem Limited for achieving 2.0 Million Safe Man-Hours at the Green PVC Project, Mundra. The recognition reflects the project's strong focus on safe work practices and HSE performance.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:29:07.237Z",
+    "image": "/images/awards/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg",
+    "clientImage": "/images/awards/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg",
+    "images": [
+      "/images/awards/large_2_0_Million_Safe_Man_Hours_ca47844a2d.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "rjkddwpqc2ox2imwuvhyr5ni",
+    "documentId": "rjkddwpqc2ox2imwuvhyr5ni",
+    "title": "Best Safety Professional Certification of Appreciation",
+    "category": " HSE / Safety Excellence",
+    "year": "2026",
+    "company": "Adani Petrochemicals",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. received a Certification of Appreciation from Mundra Petrochem Limited for Sh. Natwar Singh, recognizing him as “Best Safety Professional” for his contribution towards excellent safety practices at the Green PVC Project, Mundra.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:24:44.839Z",
+    "image": "/images/awards/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg",
+    "clientImage": "/images/awards/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg",
+    "images": [
+      "/images/awards/large_Mundra_Gujarat_India2026_872f6b19e1.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
     "id": "sfvk5nj7yabyn12p9d23z9nl",
+    "documentId": "sfvk5nj7yabyn12p9d23z9nl",
     "title": "Best Safety Professional – Certification of Appreciation",
     "category": "Awards & Recognition",
     "year": "2026",
@@ -21,6 +116,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "pgcjstzg134mpgfdhv3exohv",
+    "documentId": "pgcjstzg134mpgfdhv3exohv",
     "title": "Safety-Conscious Construction Partner Award AMNS India",
     "category": "Quarterly",
     "year": "2026",
@@ -44,6 +140,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "lm513ipm405nlxva3hnm5ppj",
+    "documentId": "lm513ipm405nlxva3hnm5ppj",
     "title": "Certificate of Appreciation Mr. Venkatesan",
     "category": "Certificate of Appreciation",
     "year": "2026",
@@ -67,6 +164,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "ejytq3udm719dht65wuus1vm",
+    "documentId": "ejytq3udm719dht65wuus1vm",
     "title": "ArcelorMittal Nippon Steel India – Sanand Service Centre",
     "category": "Safety",
     "year": "2026",
@@ -95,7 +193,92 @@ const awardsAndCertifications = [
     "pdf": null
   },
   {
+    "id": "rt6qe6vp35eba8c5vu0siyt4",
+    "documentId": "rt6qe6vp35eba8c5vu0siyt4",
+    "title": "Best Safety Professional Certification of Appreciation",
+    "category": "HSE / Safety Excellence",
+    "year": "2025",
+    "company": "Adani Petrochemicals",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. received a Certification of Appreciation from Mundra Petrochem Limited recognizing Sh. Tarkeshwar Mishra as “Best Safety Professional” for his contribution towards excellent safety practices at the Green PVC Project, Mundra.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:19:52.033Z",
+    "image": "/images/awards/large_Mundra_Gujarat_India_c4c59ce5a4.jpeg",
+    "clientImage": "/images/awards/large_Mundra_Gujarat_India_c4c59ce5a4.jpeg",
+    "images": [
+      "/images/awards/large_Mundra_Gujarat_India_c4c59ce5a4.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "umaznadgnotky8t4mhbtxhvq",
+    "documentId": "umaznadgnotky8t4mhbtxhvq",
+    "title": "Best Safety Conscious Contractor  Certification of Appreciation",
+    "category": "HSE / Safety Excellence",
+    "year": "2025",
+    "company": "Adani Petrochemicals",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. was awarded a Certification of Appreciation by Mundra Petrochem Limited for its contribution towards excellent safety practices at the Green PVC Project, Mundra. The recognition highlights the company's commitment to maintaining strong HSE standards and promoting a safety-conscious work environment.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:17:41.253Z",
+    "image": "/images/awards/large_Adani_2025_9cc1db32a0.jpeg",
+    "clientImage": "/images/awards/large_Adani_2025_9cc1db32a0.jpeg",
+    "images": [
+      "/images/awards/large_Adani_2025_9cc1db32a0.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "w4o9f3gohabhchsosm0a43pr",
+    "documentId": "w4o9f3gohabhchsosm0a43pr",
+    "title": "Certification of Appreciation – 1.0 Million Safe Man Hours",
+    "category": "HSE",
+    "year": "2025",
+    "company": "Adani Petrochemicals",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solution Pvt. Ltd. received a Certification of Appreciation from Mundra Petrochem Limited for achieving 1.0 Million Safe Man Hours at the Green PVC Project, Mundra.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:15:09.303Z",
+    "image": "/images/awards/large_Adani_Petrochemicals_4b8d3aee71.jpeg",
+    "clientImage": "/images/awards/large_Adani_Petrochemicals_4b8d3aee71.jpeg",
+    "images": [
+      "/images/awards/large_Adani_Petrochemicals_4b8d3aee71.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "phaeieorczp4teogndcr1yzy",
+    "documentId": "phaeieorczp4teogndcr1yzy",
+    "title": "Safety Excellence Award – LTI-Free Project Completion",
+    "category": "HSE",
+    "year": "2025",
+    "company": "Adani – AIIL Project, Mundra",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. was presented with the Safety Excellence Award in appreciation of its well-established HSE Management Systems and their implementation during project execution. The recognition also highlights the dedication of the team and the successful LTI-Free completion of the Copper Smelter Project.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:08:56.542Z",
+    "image": "/images/awards/large_June_2022_July_2025_336c680b3b.jpeg",
+    "clientImage": "/images/awards/large_June_2022_July_2025_336c680b3b.jpeg",
+    "images": [
+      "/images/awards/large_June_2022_July_2025_336c680b3b.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
     "id": "wli976gmf12ljolpgzmzwqk2",
+    "documentId": "wli976gmf12ljolpgzmzwqk2",
     "title": "Safety Excellence Award - Adani KCL Project",
     "category": "Award",
     "year": "2025",
@@ -119,6 +302,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "pi1s4coyq4zmmgajuo9lcae0",
+    "documentId": "pi1s4coyq4zmmgajuo9lcae0",
     "title": "Certificate of Appreciation  Mr. Surendra Kumar",
     "category": "Certificate of Appreciation",
     "year": "2025",
@@ -142,6 +326,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "7b7f9325eb38221ae78541ba",
+    "documentId": "7b7f9325eb38221ae78541ba",
     "title": "Best Safety Conscious Contractor Recognition",
     "category": "Safety Excellence",
     "year": "2025",
@@ -165,6 +350,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "8025d861fd2350e5f4a2e1cf",
+    "documentId": "8025d861fd2350e5f4a2e1cf",
     "title": "Best Safety Conscious Contractor Award",
     "category": "Safety Excellence",
     "year": "2025",
@@ -187,7 +373,113 @@ const awardsAndCertifications = [
     "pdf": null
   },
   {
+    "id": "ylftj832pm7x6x8geaz0v58u",
+    "documentId": "ylftj832pm7x6x8geaz0v58u",
+    "title": "Best Safety Professional – Certification of Appreciation",
+    "category": "HSE",
+    "year": "2024",
+    "company": "Adani Petrochemicals",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. was awarded a Certification of Appreciation by Mundra Petrochem Limited for his contribution towards excellent safety practices at the Green PVC Project, Mundra. He was recognized as “Best Safety Professional” for his contribution to maintaining strong safety standards at the project.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:05:47.009Z",
+    "image": "/images/awards/large_Certification_of_Appreciation_2ecd3f7ed3.jpeg",
+    "clientImage": "/images/awards/large_Certification_of_Appreciation_2ecd3f7ed3.jpeg",
+    "images": [
+      "/images/awards/large_Certification_of_Appreciation_2ecd3f7ed3.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "c47rerkrev3fdc49ogs4f2vy",
+    "documentId": "c47rerkrev3fdc49ogs4f2vy",
+    "title": "Safety Excellence Award – 2 Million LTI-Free Man-Hours",
+    "category": "HSE",
+    "year": "2024",
+    "company": "Adani – AIILC Project, Mundra",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. was presented with the Safety Excellence Award in appreciation of its well-established HSE Management Systems and their implementation during project execution. The recognition highlights the dedication and cooperation of the team in achieving 02 Million LTI-Free Man-Hours at the AIILC Mundra, Gujarat site during the development of the Copper Smelter Project.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:03:14.929Z",
+    "image": "/images/awards/large_HSE_2024_58e975a8f3.jpeg",
+    "clientImage": "/images/awards/large_HSE_2024_58e975a8f3.jpeg",
+    "images": [
+      "/images/awards/large_HSE_2024_58e975a8f3.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "qq8br7vura9kh2ck81bo5nl4",
+    "documentId": "qq8br7vura9kh2ck81bo5nl4",
+    "title": "Excellent HSE Performance",
+    "category": "HSE",
+    "year": "2024",
+    "company": "Adani / AIILC Project, Mundra",
+    "location": "Mundra, Gujarat, India",
+    "description": "M/s. Pragati Infra Solutions Pvt. Ltd. was presented with the Safety Excellence Award in appreciation of his efforts in implementing HSE management systems during project execution and his continuous dedication towards achieving LTI-free man-hours with excellent HSE performance at the Copper Smelter Project, Mundra, Gujarat (KCL)",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T13:00:42.386Z",
+    "image": "/images/awards/large_HSE_e66fd4c36c.jpeg",
+    "clientImage": "/images/awards/large_HSE_e66fd4c36c.jpeg",
+    "images": [
+      "/images/awards/large_HSE_e66fd4c36c.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "fi7jtz2432llancp8ht8q2k1",
+    "documentId": "fi7jtz2432llancp8ht8q2k1",
+    "title": "Best HSE Award – Excellence in Safety",
+    "category": "Awards & Recognition",
+    "year": "2024",
+    "company": "Adani",
+    "location": "Mundra",
+    "description": "We are proud to receive the Best HSE Award from Adani in recognition of our outstanding commitment to Health, Safety & Environment.\n\nThis recognition was awarded to M/s Pragati Infra Solutions Pvt. Ltd. for achieving 2 Million Safe Man-Hours at the Copper Smelter Project (KCL), Mundra, Gujarat in October 2024.\n\nA proud milestone that reflects our continued commitment to Safety, Excellence & Zero Harm.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T11:46:48.836Z",
+    "image": "/images/awards/5_Pragati_8ec3d6d39f.avif",
+    "clientImage": "/images/awards/5_Pragati_8ec3d6d39f.avif",
+    "images": [
+      "/images/awards/5_Pragati_8ec3d6d39f.avif"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "jp7f3btonhw1srb2xn51cx4x",
+    "documentId": "jp7f3btonhw1srb2xn51cx4x",
+    "title": "Best HSE Award – Excellence in Safety",
+    "category": "Awards & Recognition",
+    "year": "2024",
+    "company": "Adani",
+    "location": "Mundra, Gujarat",
+    "description": "We are proud to receive the Best HSE Award from Adani in recognition of our outstanding commitment to Health, Safety & Environment.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T11:42:54.385Z",
+    "image": "/images/awards/2_Pragati_5734cde39e.avif",
+    "clientImage": "/images/awards/2_Pragati_5734cde39e.avif",
+    "images": [
+      "/images/awards/2_Pragati_5734cde39e.avif"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
     "id": "xp1aq8dhk3yb28mi2u3fvk7o",
+    "documentId": "xp1aq8dhk3yb28mi2u3fvk7o",
     "title": "US LEED Gold Certification",
     "category": "Certification",
     "year": "2024",
@@ -208,6 +500,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "8g8yiy4q50rjd228ee3ca555",
+    "documentId": "8g8yiy4q50rjd228ee3ca555",
     "title": "LEED Gold Certification",
     "category": "Certification",
     "year": "2024",
@@ -231,6 +524,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "kjyk1k9ym60bo4nytyh43k53",
+    "documentId": "kjyk1k9ym60bo4nytyh43k53",
     "title": "Entrepreneur of the Year",
     "category": "Award",
     "year": "2024",
@@ -254,6 +548,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "6r724bo95h3nvyvj8mjucaer",
+    "documentId": "6r724bo95h3nvyvj8mjucaer",
     "title": "Purpose-Driven Infrastructure",
     "category": "Report",
     "year": "2024",
@@ -283,6 +578,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "3e59623659339c76386539a7",
+    "documentId": "3e59623659339c76386539a7",
     "title": "Safety Skid Awareness Program",
     "category": "Safety Training",
     "year": "2024",
@@ -303,6 +599,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "dc62a7549d0384ec4347e644",
+    "documentId": "dc62a7549d0384ec4347e644",
     "title": "Early Morning Safety Walk",
     "category": "Safety Initiative",
     "year": "2024",
@@ -326,6 +623,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "e4c9de840832faa0977603b5",
+    "documentId": "e4c9de840832faa0977603b5",
     "title": "Blood Donation Camp Initiative",
     "category": "CSR Initiative",
     "year": "2024",
@@ -349,6 +647,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "fa974c8e9b093e148f9d560c",
+    "documentId": "fa974c8e9b093e148f9d560c",
     "title": "National Safety Week Appreciation",
     "category": "Safety Week",
     "year": "2024",
@@ -372,6 +671,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "b383d6d4ec95b606f1da9935",
+    "documentId": "b383d6d4ec95b606f1da9935",
     "title": "1 Million Safe Hours Milestone",
     "category": "Safety Milestone",
     "year": "2024",
@@ -395,6 +695,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "485f0ac05517d9067e617ca4",
+    "documentId": "485f0ac05517d9067e617ca4",
     "title": "Flipkart Safety Excellence Appreciation",
     "category": "Safety Appreciation",
     "year": "2024",
@@ -415,6 +716,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "9c4d20c8cf077f543113d758",
+    "documentId": "9c4d20c8cf077f543113d758",
     "title": "2 Million Safe Man-Hours Award",
     "category": "Safety Milestone",
     "year": "2024",
@@ -440,6 +742,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "5c038fe826d2e6f65f3ef4e4",
+    "documentId": "5c038fe826d2e6f65f3ef4e4",
     "title": "2 Million LTI-Free Safe Manhours Achievement",
     "category": "HSE Excellence",
     "year": "2024",
@@ -462,7 +765,92 @@ const awardsAndCertifications = [
     "pdf": null
   },
   {
+    "id": "ihpvryhmrj28w9m43k0pqegw",
+    "documentId": "ihpvryhmrj28w9m43k0pqegw",
+    "title": "Certificate of Appreciation  Quality Safety Training",
+    "category": "Safety Training & HSE",
+    "year": "2023",
+    "company": "HOWE Engineering India Pvt. Ltd.",
+    "location": "Mundra, Gujarat, India",
+    "description": "Mr. Tarkeshwar Mishra was presented with a Certificate of Appreciation for imparting quality safety training to the P3 category at the Mundra Site during July 2023. The recognition highlights his contribution towards safety training and capability building",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T12:56:26.556Z",
+    "image": "/images/awards/large_Quality_Safety_Training_9cd487d2ab.jpeg",
+    "clientImage": "/images/awards/large_Quality_Safety_Training_9cd487d2ab.jpeg",
+    "images": [
+      "/images/awards/large_Quality_Safety_Training_9cd487d2ab.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "afwlb83ihmiduoh8dk8rag4z",
+    "documentId": "afwlb83ihmiduoh8dk8rag4z",
+    "title": "Safety Excellence Award – Best HSE Performance",
+    "category": "HSE",
+    "year": "2023",
+    "company": "Adani / HEPI PCL, Mundra",
+    "location": "Adani / HEPI PCL, Mundra",
+    "description": "Mr. Tarkeshwar Mishra was presented with the Safety Excellence Award in appreciation of his best HSE performance and contribution towards the establishment of Adani OHS Management Systems and statutory-level compliances at the Copper Smelter Project, PISL Mundra Site.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T12:53:49.535Z",
+    "image": "/images/awards/large_Adani_8212684d8e.jpeg",
+    "clientImage": "/images/awards/large_Adani_8212684d8e.jpeg",
+    "images": [
+      "/images/awards/large_Adani_8212684d8e.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "fvzeyfhwtc48tkd07i0j61pp",
+    "documentId": "fvzeyfhwtc48tkd07i0j61pp",
+    "title": "Safety Excellence Award Zero Harm Achievement",
+    "category": "Safety Excellence Award",
+    "year": "2023",
+    "company": "Adani Mundra Port & HEPI PCL",
+    "location": "Mundra, Gujarat, India",
+    "description": "Proud to be recognized with the Safety Excellence Award for our commitment to HSE excellence and the ZERO HARM vision at the Adani–Mundra Copper Smelter Project.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T12:49:44.133Z",
+    "image": "/images/awards/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg",
+    "clientImage": "/images/awards/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg",
+    "images": [
+      "/images/awards/large_SAFETY_EXCELLENCE_AWARD_bc882229ac.jpeg"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "zemyrzop5vsh4rvldclrlyji",
+    "documentId": "zemyrzop5vsh4rvldclrlyji",
+    "title": "Best Safety Conscious Contractor – Certification of Appreciation",
+    "category": "Health, Safety & Environment (HSE)",
+    "year": "2023",
+    "company": "Adani Petrochemicals",
+    "location": "Green PVC Project, Mundra",
+    "description": "Pragati Infra Solutions Pvt. Ltd. was recognized with a Certification of Appreciation by Mundra Petrochem Limited for its contribution towards excellent safety practices at the Green PVC Project, Mundra. The recognition highlights the company’s commitment to maintaining a strong safety culture and ensuring a safe working environment.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T12:00:26.212Z",
+    "image": "/images/awards/2_Pragati_5734cde39e.avif",
+    "clientImage": "/images/awards/2_Pragati_5734cde39e.avif",
+    "images": [
+      "/images/awards/2_Pragati_5734cde39e.avif"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
     "id": "us82xmb8cl54y5v2es9np51i",
+    "documentId": "us82xmb8cl54y5v2es9np51i",
     "title": "Zero-Incident Safety & Quality Benchmark Accolade",
     "category": "Award",
     "year": "2023",
@@ -486,6 +874,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "pcxsrzq498bywxurn4unhca3",
+    "documentId": "pcxsrzq498bywxurn4unhca3",
     "title": "Heavy Industrial EPC & Infrastructure Excellence Award",
     "category": "Award",
     "year": "2023",
@@ -508,7 +897,29 @@ const awardsAndCertifications = [
     "pdf": null
   },
   {
+    "id": "lqb2letbsk2pyvdqra7f2eap",
+    "documentId": "lqb2letbsk2pyvdqra7f2eap",
+    "title": "Gratitude – Covid Plasma Donor Life-Saviour Recognition",
+    "category": "Social Responsibility & Community Service",
+    "year": "2022",
+    "company": "Rotary Blood Bank, Gurgaon",
+    "location": "Gurgaon",
+    "description": "Pragati Infra Solutions was honored with a Gratitude recognition by Rotary Blood Bank, Gurgaon for its contribution towards the Covid Plasma Donor – Life Saviour initiative. The recognition reflects the organization’s support for community welfare and life-saving efforts during the COVID-19 period.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T11:56:32.320Z",
+    "image": "/images/awards/4_Pragati_1e9b6445d4.avif",
+    "clientImage": "/images/awards/4_Pragati_1e9b6445d4.avif",
+    "images": [
+      "/images/awards/4_Pragati_1e9b6445d4.avif"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
     "id": "g66v5emep68n2uff0apa43x6",
+    "documentId": "g66v5emep68n2uff0apa43x6",
     "title": "The Economic Times Real Estate Conclave & Awards",
     "category": "Award",
     "year": "2022",
@@ -529,6 +940,7 @@ const awardsAndCertifications = [
   },
   {
     "id": "ck1r6rqqsdw47fvgxkg7hpw7",
+    "documentId": "ck1r6rqqsdw47fvgxkg7hpw7",
     "title": "The Economic Times Real Estate Awards 2022 – North",
     "category": "Award",
     "year": "2022",
@@ -553,7 +965,50 @@ const awardsAndCertifications = [
     "pdf": null
   },
   {
+    "id": "iyvv1pkun9zkwnahdvkidt3e",
+    "documentId": "iyvv1pkun9zkwnahdvkidt3e",
+    "title": "EHS Award 2021 – Outstanding Safety Performance",
+    "category": "Health, Safety & Environment (HSE)",
+    "year": "2021",
+    "company": "APG Industrial Estate",
+    "location": "Bangalore",
+    "description": "We are proud to be recognized with the EHS Award 2021 for Outstanding Safety Performance at APG Industrial Estate, Devanahalli Bangalore Logistics Park.",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T12:07:03.696Z",
+    "image": "/images/awards/3_Pragati_57962644f1.avif",
+    "clientImage": "/images/awards/3_Pragati_57962644f1.avif",
+    "images": [
+      "/images/awards/3_Pragati_57962644f1.avif"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
+    "id": "fppry6cti3zkej58lfh1a8iu",
+    "documentId": "fppry6cti3zkej58lfh1a8iu",
+    "title": "EHS Award 2021 – Outstanding Safety Performance",
+    "category": "Health, Safety & Environment (HSE)",
+    "year": "2021",
+    "company": "Adani",
+    "location": "Bangalore",
+    "description": "Recognized with the EHS Award 2021 for outstanding safety performance at APG Industrial Estate, Devanahalli Bangalore Logistics Park. The recognition reflects Pragati Infra Solution Pvt. Ltd.’s commitment to maintaining strong Environment, Health & Safety (EHS) standards and promoting a safe",
+    "videoUrl": null,
+    "featured": false,
+    "isFeatured": false,
+    "createdAt": "2026-08-31T11:52:51.851Z",
+    "image": "/images/awards/6_Pragati_c805c2e1e6.avif",
+    "clientImage": "/images/awards/6_Pragati_c805c2e1e6.avif",
+    "images": [
+      "/images/awards/6_Pragati_c805c2e1e6.avif"
+    ],
+    "gallery": [],
+    "pdf": null
+  },
+  {
     "id": "kxm8r7jd29ygeio6nfiosxrj",
+    "documentId": "kxm8r7jd29ygeio6nfiosxrj",
     "title": "EHS Award 2021 – Outstanding Safety Performance",
     "category": "Awards & Recognition",
     "year": "2021",

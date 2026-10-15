@@ -14,6 +14,9 @@ const blogDB = [
     "author": {},
     "featured": false,
     "status": "published",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": null,
     "faqSchema": []
   },
   {
@@ -38,6 +41,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "MEP Planning Mistakes That Increase Factory Operating Costs",
+    "seoDescription": "Learn how MEP planning mistakes can increase factory operating costs and how disciplined industrial MEP planning can improve efficiency and reduce long-term expenses.\n",
+    "seoKeywords": "industrial MEP planning, factory operating costs, MEP planning mistakes",
     "faqSchema": "FAQ 1\nQuestion:\nWhat is industrial MEP planning?\n\nAnswer:\nIndustrial MEP planning is the coordinated planning of mechanical, electrical and plumbing systems according to a facility's process requirements, energy needs, maintenance requirements and future capacity.\n\nFAQ 2\nQuestion:\nWhy are HVAC load calculations important in factory planning?\n\nAnswer:\nAccurate HVAC load calculations help size systems according to actual process loads, equipment heat gains, occupancy, building-envelope performance and seasonal conditions.\n\nFAQ 3\nQuestion:\nWhy should electrical capacity account for future factory expansion?\n\nAnswer:\nPlanning for future capacity can reduce the need for disruptive substation upgrades, panel replacements and other major electrical infrastructure modifications as production requirements increase.\n\nFAQ 4\nQuestion:\nWhy is coordination between MEP and structural design important?\n\nAnswer:\nCoordinating MEP and structural design during the design stage helps identify clashes before construction, reducing rework, delays and costly field modifications.\n\nFAQ 5\nQuestion:\nHow does integrated EPC delivery improve MEP planning?\n\nAnswer:\nIntegrated EPC delivery allows MEP, structural and ci"
   },
   {
@@ -64,6 +70,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "Industrial Flooring Options for Manufacturing Plants",
+    "seoDescription": "Explore industrial flooring options for manufacturing plants, including epoxy, polished concrete, anti-static flooring and heavy-duty industrial screed.",
+    "seoKeywords": "industrial flooring for factories, industrial flooring, factory flooring, manufacturing plant flooring, epoxy flooring, polished concrete flooring, anti-static flooring, heavy-duty industrial flooring",
     "faqSchema": "FAQ Schema — 5 FAQs\nFAQ 1\n\nQuestion: What type of flooring is best for manufacturing plants?\n\nAnswer:\nThe best flooring depends on the facility's operational requirements, including load, forklift traffic, chemical exposure, hygiene, static-control needs and machinery requirements. Epoxy, polished concrete, anti-static flooring and heavy-duty screed can each be suitable for different areas.\n\nFAQ 2\n\nQuestion: Is epoxy flooring suitable for factories?\n\nAnswer:\nYes. Epoxy flooring can provide a seamless, durable and easy-to-maintain surface with good chemical resistance, making it suitable for applications where cleanliness and chemical exposure are important.\n\nFAQ 3\n\nQuestion: What flooring is suitable for heavy forklift traffic?\n\nAnswer:\nPolished and hardened concrete or appropriately designed heavy-duty industrial screed can be suitable for areas exposed to frequent forklift movement, heavy loads and industrial equipment.\n\nFAQ 4\n\nQuestion: When is anti-static flooring required?\n\nAnswer:\nAnti-static flooring is used where electrostatic discharge must be controlled, particularly in electronics manufacturing and other environments where static electricity can affect sensitive equipment or processes.\n\nFAQ 5\n\nQuestion: Why should industrial flooring be planned during factory design?\n\nAnswer:\nIndustrial flooring is connected to the sub-base, drainage, joints, moisture protection and curing schedule. Planning it early helps ensure that the floor specification matches the facility's operational loads and reduces the risk of costly repairs later."
   },
   {
@@ -90,6 +99,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "Choosing the Right Industrial Construction Company",
+    "seoDescription": "Ask these 12 questions before choosing an industrial construction company, covering experience, EPC delivery, safety, quality, sustainability and project execution.",
+    "seoKeywords": "industrial construction company, industrial construction partner, industrial EPC contractor, EPC contractor, industrial construction services, factory construction, industrial project management",
     "faqSchema": "FAQ 1\n\nQuestion: What should I look for in an industrial construction company?\n\nAnswer:\nLook for relevant industry experience, integrated EPC capabilities, strong safety and quality systems, financial stability, proven project delivery and transparent communication.\n\nFAQ 2\n\nQuestion: Why is sector experience important when choosing an industrial construction company?\n\nAnswer:\nDifferent industries have different requirements for safety, compliance, utilities, production layouts and facility design. Relevant sector experience helps a contractor understand these requirements before construction begins.\n\nFAQ 3\n\nQuestion: What is single-point responsibility in industrial construction?\n\nAnswer:\nSingle-point responsibility means one contractor coordinates key engineering, procurement and construction activities, helping reduce coordination gaps between multiple independent vendors.\n\nFAQ 4\n\nQuestion: Why should I ask an industrial contractor about previous project delays?\n\nAnswer:\nPrevious project challenges can reveal how effectively a contractor identifies risks, manages delays and implements corrective actions. Transparency about past issues can be more valuable than claims of a perfect record.\n\nFAQ 5\n\nQuestion: What should an industrial construction contract cover?\n\nAnswer:\nThe contract should clearly define project scope, responsibilities, quality requirements, timelines, change-management procedures, commercial terms, warranties, safety requirements and post-completion support."
   },
   {
@@ -116,6 +128,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "Factory Expansion Checklist Before Civil Construction",
+    "seoDescription": "Use this factory expansion checklist to plan site assessment, approvals, utilities, budget, timelines, safety and contractor selection before civil construction.",
+    "seoKeywords": "factory construction checklist, factory expansion, industrial construction company, civil construction, factory expansion planning, industrial facility expansion, construction planning",
     "faqSchema": "FAQ 1\n\nQuestion: What should be checked before starting a factory expansion?\n\nAnswer:\nBefore starting a factory expansion, assess soil conditions, drainage, statutory approvals, utility capacity, budget, construction timelines, safety requirements and the contractor's relevant industrial experience.\n\nFAQ 2\n\nQuestion: Why is a soil test important for factory expansion?\n\nAnswer:\nA geotechnical survey identifies soil conditions, load-bearing characteristics, compaction requirements and groundwater conditions, helping engineers develop an appropriate foundation design and reduce the risk of costly redesign.\n\nFAQ 3\n\nQuestion: What approvals are required for factory expansion?\n\nAnswer:\nDepending on the location, industry and project scope, factory expansion may require environmental clearances, fire safety approvals, building-plan approvals, labour-related permissions and other statutory approvals.\n\nFAQ 4\n\nQuestion: How much contingency should be included in a factory expansion budget?\n\nAnswer:\nA contingency allowance of around 10–15% can be considered as an initial planning benchmark, although the appropriate amount depends on the project's scope, location, site conditions and overall risk profile.\n\nFAQ 5\n\nQuestion: How do I choose an industrial construction company for factory expansion?\n\nAnswer:\nEvaluate the company's experience with similar industrial projects, technical capabilities, safety record, project delivery experience, multidisciplinary expertise, understanding of live-site operations and ability to manage engineering and construction requirements."
   },
   {
@@ -142,6 +157,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "How Industrial EPC Projects Reduce Long-Term Costs",
+    "seoDescription": "Learn how an industrial EPC contractor can reduce long-term operational costs through value engineering, energy-efficient design, integrated delivery and maintenance planning.",
+    "seoKeywords": "industrial EPC contractor, industrial EPC projects, operational costs, value engineering, energy efficient design, industrial construction, lifecycle cost, EPC contractor",
     "faqSchema": "FAQ 1\n\nQuestion: How can an industrial EPC contractor reduce long-term operational costs?\n\nAnswer:\nAn industrial EPC contractor can reduce long-term costs through integrated engineering, value engineering, energy-efficient design, appropriate equipment selection and maintenance-focused planning.\n\nFAQ 2\n\nQuestion: Why is lifecycle cost important in industrial construction?\n\nAnswer:\nLifecycle cost considers not only the initial construction investment but also energy consumption, maintenance, equipment replacement and operational expenses throughout the facility's useful life.\n\nFAQ 3\n\nQuestion: What is value engineering in industrial EPC projects?\n\nAnswer:\nValue engineering evaluates materials, systems, equipment and design options before construction to achieve the required performance while avoiding unnecessary capital and future operating costs.\n\nFAQ 4\n\nQuestion: How does energy-efficient design reduce factory operating costs?\n\nAnswer:\nEnergy-efficient building envelopes, correctly sized HVAC systems, efficient lighting and properly planned utilities can reduce energy consumption and help lower recurring facility operating expenses.\n\nFAQ 5\n\nQuestion: What should manufacturers ask an industrial EPC contractor before selecting one?\n\nAnswer:\nManufacturers should ask how the contractor evaluates lifecycle costs, energy performance, maintenance requirements, value engineering opportunities, project risks and the long-term impact of design decisions."
   },
   {
@@ -168,6 +186,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "Build-to-Suit Industrial Facilities: Customised Infrastructure",
+    "seoDescription": "Discover how build-to-suit industrial facilities help manufacturers improve efficiency, compliance, sustainability and long-term expansion.",
+    "seoKeywords": "Build-to-Suit Industrial Facilities, Customised Infrastructure, Manufacturing Plants, Industrial Construction, Manufacturing Facility Design, Industrial EPC, Purpose-Built Facilities",
     "faqSchema": "FAQ 1\n\nQuestion: What is a build-to-suit industrial facility?\n\nAnswer:\nA build-to-suit industrial facility is a purpose-built manufacturing or industrial facility designed around the specific operational, production, equipment and expansion requirements of its future occupant.\n\nFAQ 2\n\nQuestion: Why are manufacturers choosing build-to-suit facilities?\n\nAnswer:\nManufacturers are choosing build-to-suit facilities to optimise production flow, integrate equipment more effectively, improve safety and compliance, reduce operational bottlenecks and create infrastructure that supports future growth.\n\nFAQ 3\n\nQuestion: What are the benefits of customised manufacturing infrastructure?\n\nAnswer:\nCustomised infrastructure can provide better space utilisation, improved equipment integration, efficient utility planning, enhanced safety, stronger sustainability performance and greater flexibility for future expansion.\n\nFAQ 4\n\nQuestion: What should be considered when designing a build-to-suit manufacturing plant?\n\nAnswer:\nKey considerations include production flow, structural requirements, equipment loads, floor specifications, MEP systems, utilities, safety, environmental compliance, material movement and future expansion requirements.\n\nFAQ 5\n\nQuestion: Why is EPC expertise important for build-to-suit projects?\n\nAnswer:\nAn experienced EPC partner can coordinate engineering, procurement and construction under a single delivery model, helping maintain design alignment, control project risks, manage schedules and deliver the facility according to the manufacturer's requirements."
   },
   {
@@ -193,6 +214,9 @@ const blogDB = [
     "author": "Pragati Infra Solutions Limited",
     "featured": true,
     "status": "published",
+    "seoTitle": "Industrial Corridors in India: New Growth Opportunities",
+    "seoDescription": "Explore how India's industrial corridors are creating new growth opportunities for manufacturers, developers and logistics businesses through integrated infrastructure.",
+    "seoKeywords": "Industrial Corridor, Industrial Corridors in India, Manufacturing Growth, Logistics Infrastructure, Industrial Development, Manufacturing in India, Industrial Real Estate, EPC Construction, Industrial Parks India",
     "faqSchema": "FAQ 1\n\nQuestion: What is an industrial corridor in India?\n\nAnswer:\nAn industrial corridor is a planned development region built around high-capacity transport infrastructure to connect manufacturing, logistics and supporting industries.\n\nFAQ 2\n\nQuestion: How do industrial corridors support manufacturing growth?\n\nAnswer:\nIndustrial corridors provide better connectivity, freight infrastructure, industrial land, power access and logistics networks, helping manufacturers improve efficiency and expand operations.\n\nFAQ 3\n\nQuestion: What are the major industrial corridors in India?\n\nAnswer:\nMajor industrial corridors include the Delhi-Mumbai Industrial Corridor, Chennai-Bengaluru Industrial Corridor, Amritsar-Kolkata Industrial Corridor, Vizag-Chennai Industrial Corridor and Bengaluru-Mumbai Economic Corridor.\n\nFAQ 4\n\nQuestion: Why are industrial corridors important for developers?\n\nAnswer:\nIndustrial corridors create demand for manufacturing facilities, warehouses, logistics parks and supporting industrial infrastructure, giving developers opportunities to build around growing economic hubs.\n\nFAQ 5\n\nQuestion: Why is choosing the right EPC partner important for industrial corridor projects?\n\nAnswer:\nIndustrial corridor projects often involve strict timelines, complex infrastructure requirements and international quality standards. An experienced EPC partner can coordinate engineering, procurement and construction under a single delivery model."
   },
   {
@@ -220,6 +244,9 @@ const blogDB = [
     "author": "Pisl Team",
     "featured": true,
     "status": "published",
+    "seoTitle": "Smart Warehouses in 2026: Transforming Supply Chain Efficiency",
+    "seoDescription": "Discover how smart warehouses are transforming supply chain efficiency in 2026 through AI, IoT, robotics, automation and intelligent infrastructure.",
+    "seoKeywords": "Smart Warehouse, Smart Warehouses 2026, Warehouse Automation, Supply Chain Management, Automated Warehouse, Warehouse Robotics, AI in Warehousing, IoT Warehouse, AMR, AGV",
     "faqSchema": "FAQ 1\n\nQuestion: What is a smart warehouse?\n\nAnswer:\nA smart warehouse uses technologies such as IoT sensors, AI, warehouse management systems, robotics, AGVs and AMRs to automate and optimise inventory, storage, picking and material-handling operations.\n\nFAQ 2\n\nQuestion: How does warehouse automation improve supply chain efficiency?\n\nAnswer:\nWarehouse automation improves efficiency by increasing throughput, reducing manual errors, accelerating order processing and providing real-time inventory visibility while helping businesses handle peak demand more effectively.\n\nFAQ 3\n\nQuestion: Why are smart warehouses becoming important in 2026?\n\nAnswer:\nSmart warehouses are becoming increasingly important in 2026 because automation costs are becoming more accessible, logistics infrastructure is improving, and businesses need faster, more resilient and efficient supply chains.\n\nFAQ 4\n\nQuestion: What technologies are used in smart warehouses?\n\nAnswer:\nSmart warehouses commonly use IoT sensors, AI-powered forecasting, Warehouse Management Systems (WMS), ERP integration, Automated Guided Vehicles (AGVs), Autonomous Mobile Robots (AMRs), conveyors and automated storage systems.\n\nFAQ 5\n\nQuestion: Why is warehouse construction important for automation?\n\nAnswer:\nWarehouse construction must consider automation from the beginning, including floor flatness, column spacing, ceiling height, rack layouts, power requirements and MEP systems. Designing these elements early helps avoid costly modifications later."
   },
   {
@@ -244,6 +271,9 @@ const blogDB = [
     "author": "PISL Team",
     "featured": true,
     "status": "published",
+    "seoTitle": "Data Centre Construction",
+    "seoDescription": "Explore how data centre construction is becoming India's next infrastructure boom, driven by AI, cloud adoption, digitalisation, investment and EPC expertise.",
+    "seoKeywords": "Data Centre Construction, Data Centre Construction India, Data Centres India, AI Infrastructure, Data Centre Industry, EPC Construction, Digital Infrastructure, Industrial Projects",
     "faqSchema": "FAQ 1\nQuestion: Why is data centre construction growing in India?\nAnswer: India's data centre construction market is growing due to increasing digitalisation, cloud adoption, AI workloads, internet usage, private investment and government support.\n\nFAQ 2\nQuestion: How is AI changing data centre construction?\nAnswer: AI workloads require higher power density and advanced cooling systems, changing requirements for electrical infrastructure, load planning, cooling and facility engineering.\n\nFAQ 3\nQuestion: Which cities are emerging as data centre hubs in India?\nAnswer: Mumbai, Chennai, Hyderabad, Pune and Delhi-NCR are established markets, while Tier-II cities are also emerging as data centre development locations.\n\nFAQ 4\nQuestion: Why is EPC important for data centre construction?\nAnswer: Data centres require close coordination between civil, mechanical and electrical systems, strict timelines, high reliability and complex commissioning. An integrated EPC approach helps manage these requirements.\n\nFAQ 5\nQuestion: Is sustainability important for data centres?\nAnswer: Yes. Energy efficiency, renewable power, efficient cooling, water management, waste management and green-building practices are increasingly important in data centre design and construction."
   },
   {
@@ -268,6 +298,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Water Management System: Sustainable & Resilient Future | Pislinfra",
+    "seoDescription": "Learn about modern water management systems, components, technology integration, and sustainable practices for building a resilient water future with Pislinfra.",
+    "seoKeywords": "water management system, sustainable water management, rainwater harvesting, wastewater treatment, smart water systems, IoT water monitoring, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -292,6 +325,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Construction Safety Guide | Safer, Smarter Project Sites | Pislinfra",
+    "seoDescription": "Complete guide to construction safety for contractors. Learn about safety rules, equipment, training, compliance, and how PISL builds safer construction sites.",
+    "seoKeywords": "construction safety, construction site safety, safety equipment, contractor safety, workplace safety, fall protection, PPE, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -316,6 +352,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Phases of Construction Project | Complete Guide 2026 | Pislinfra",
+    "seoDescription": "Complete guide to the 6 phases of a construction project. Learn about pre-construction, design, procurement, construction, commissioning, and post-construction from PISL's 16+ years of expertise.",
+    "seoKeywords": "phases of construction project, construction project management, pre-construction phase, procurement phase, commissioning, construction stages, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -340,6 +379,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Green Industrial Park: Sustainable Industry & Smart Growth | Pislinfra",
+    "seoDescription": "Discover how Green Industrial Parks combine sustainability with smart growth. Learn about renewable energy, water stewardship, circular economy, and PISL's expertise.",
+    "seoKeywords": "green industrial park, sustainable industrial development, eco-friendly infrastructure, renewable energy, circular economy, smart growth, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -364,6 +406,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Warehouse Construction Cost in India 2026 | PEB, RCC & Grade-A Guide | PISL",
+    "seoDescription": "Complete guide to warehouse construction costs in India for 2026. Compare PEB, RCC, and Grade-A costs per sq ft. Expert insights from Pislinfra with 16+ years of experience.",
+    "seoKeywords": "warehouse construction cost India, warehouse cost per sq ft 2026, PEB warehouse cost, RCC warehouse cost, Grade-A warehouse construction, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -388,6 +433,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Best Logistics Park Companies in India | PISL Leading the Way",
+    "seoDescription": "Discover the top logistics park companies in India. Learn how PISL leads with Grade-A warehousing, BTS solutions, and 16+ years of proven expertise across NCR and beyond.",
+    "seoKeywords": "logistics park companies India, best logistics park India, warehouse infrastructure, BTS warehousing, industrial contracting, logistics parks NCR, Pislinfra",
     "faqSchema": "[{\"answer\": \"DHL, Delhivery, Blue Dart, Allcargo, Gati, and Mahindra Logistics are among the top logistics companies in India. PISL plays a key role in building the logistics infrastructure that powers their operations with safe, efficient, and modern facilities.\", \"question\": \"Best logistics companies in India.\"}, {\"answer\": \"ESR India, IndoSpace, Agility Logistics Parks, and PISL are leading names shaping India's logistics infrastructure. PISL stands among the top contracting partners for e-commerce and industrial clients.\", \"question\": \"Top logistics park companies in India.\"}]"
   },
   {
@@ -412,6 +460,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Best EPC Contractors in India | Why Pislinfra Leads | 2025",
+    "seoDescription": "Looking for the best EPC contractors in India? Discover why Pislinfra leads with end-to-end engineering, procurement, and construction services for industrial and infrastructure projects.",
+    "seoKeywords": "best EPC contractors India, EPC companies India, engineering procurement construction, turnkey projects, industrial infrastructure, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -438,6 +489,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Types of Purlins in Construction: C, Z, Box & Sigma | Pislinfra",
+    "seoDescription": "Learn about different types of purlins used in construction—C purlins, Z purlins, Box purlins, Sigma purlins & Eave struts. Expert guide on selection and applications.",
+    "seoKeywords": "types of purlins, C purlins, Z purlins, box purlins, sigma purlins, eave struts, steel roof purlins, PEB purlins, Pislinfra",
     "faqSchema": "[{\"answer\": \"The most common purlin shapes used in construction are C, Z, Box, Sigma purlins, and Eave struts. They are mainly applied to give structural support to walls and roofs in most building applications.\", \"question\": \"What are the types of purlins in construction?\"}, {\"answer\": \"Z, Sigma, and Box purlins are commonly found in steel structures as they possess a better load-bearing capacity, are light in weight, and can support longer spans.\", \"question\": \"What are the types of purlins in steel structures?\"}, {\"answer\": \"For sheds, C purlins are suitable for small structures, whereas Z or Box purlins are best for big sheds where strength and structural stability are needed.\", \"question\": \"What are shed purlins?\"}]"
   },
   {
@@ -464,6 +518,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Key Challenges in Industrial Construction & How to Overcome | Pislinfra",
+    "seoDescription": "Explore the key challenges in industrial construction—cost overruns, supply chain, compliance, labor shortage—and proven strategies to overcome them. Expert insights from Pislinfra.",
+    "seoKeywords": "industrial construction challenges, cost overruns construction, supply chain disruptions, regulatory compliance, skilled labor shortage, PEB systems, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -489,6 +546,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "8 Best Practices to Improve Construction Site Safety | Pislinfra",
+    "seoDescription": "Learn 8 essential best practices for construction site safety. Expert guide covering OSHA standards, PPE, safety checklists, and compliance for industrial projects in India.",
+    "seoKeywords": "construction site safety, construction safety practices, OSHA standards, PPE safety, site safety checklist, industrial construction safety, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -513,6 +573,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Logistics Infrastructure in India: Opportunities & Challenges | Pislinfra",
+    "seoDescription": "Explore the opportunities and challenges in India's logistics infrastructure. Learn about logistics parks, multi-modal transport, and how Pislinfra is transforming the sector.",
+    "seoKeywords": "logistics infrastructure India, logistics parks, supply chain management, multi-modal transport, e-commerce logistics, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -538,6 +601,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Innovative Materials & Techniques in Industrial Park Construction | Pislinfra",
+    "seoDescription": "Discover innovative materials like self-healing concrete and CLT, plus advanced techniques like modular construction, 3D printing, and BIM in industrial park development.",
+    "seoKeywords": "innovative materials, industrial park construction, self-healing concrete, cross-laminated timber, modular construction, 3D printing, BIM, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -562,6 +628,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Sustainable Warehouse Construction: Best Practices & Benefits | Pislinfra",
+    "seoDescription": "Discover best practices for sustainable warehouse construction. Learn about energy efficiency, green materials, water management, and the benefits of eco-friendly warehousing.",
+    "seoKeywords": "sustainable warehouse construction, green warehouse, eco-friendly design, energy efficient warehouse, LEED certification, green building, Pislinfra",
     "faqSchema": "[]"
   },
   {
@@ -586,6 +655,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Maximising Land Use in Industrial Parks | Strategies & Solutions | Pislinfra",
+    "seoDescription": "Learn how to maximise land use in industrial parks through strategic zoning, vertical expansion, shared infrastructure, and sustainable design. Expert guide by Pislinfra.",
+    "seoKeywords": "industrial parks, maximising land use, vertical expansion, shared infrastructure, sustainable industrial design, warehouse efficiency, Pislinfra",
     "faqSchema": "[{\"answer\": \"An industrial park is an area that is zoned and planned for industrial development. It provides infrastructure such as power, water, logistics, and utilities, enabling manufacturing and logistics companies to function efficiently.\", \"question\": \"What does the term 'industrial park' mean?\"}, {\"answer\": \"Pislinfra's Pragati Farrukhnagar Logistics Park in Haryana and LI Industrial Park in Bengaluru are great examples. Both show how well-thought-out zoning, common infrastructure, and efficient layout make optimum use of land.\", \"question\": \"Provide an example of an industrial park?\"}, {\"answer\": \"Industrial parks can be classified as: Logistics and Warehousing Parks, Manufacturing Parks, Integrated Industrial Parks, and Built-to-Suit (BTS) Parks designed according to specific tenant needs.\", \"question\": \"What are the categories of industrial parks?\"}]"
   },
   {
@@ -611,6 +683,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Role of Technology in Modern Warehouse Construction | Pislinfra",
+    "seoDescription": "Discover how BIM, prefabrication, sustainable materials, and data analytics are transforming modern warehouse construction. Learn why Pislinfra leads in tech-driven warehousing.",
+    "seoKeywords": "modern warehouse construction, warehouse technology, BIM warehouse, prefabrication warehouse, sustainable warehouse, data analytics warehousing, Pislinfra",
     "faqSchema": "[{\"answer\": \"A modern warehouse is a technology-oriented facility beyond storage, using BIM, automation, and green materials to enhance efficiency, reduce costs, and ensure seamless logistics.\", \"question\": \"What do you consider a modern warehouse?\"}, {\"answer\": \"Amazon's automated fulfillment centers and Flipkart's AI-powered distribution hubs are two examples, both meant for massive volumes, speed, and precision.\", \"question\": \"Give examples of some modern warehouses.\"}, {\"answer\": \"In India, modern warehouses are mushrooming at full speed, with companies like Pislinfra spearheading through innovative construction, intelligent layout, and state-of-the-art technology integration.\", \"question\": \"What is a modern warehouse in India?\"}]"
   },
   {
@@ -635,6 +710,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Optimizing Warehouse Layout for Maximum Efficiency & Safety | Pislinfra",
+    "seoDescription": "Learn how to optimize your warehouse layout for efficiency and safety. Expert guide covering layout components, design steps, common mistakes, and future-ready solutions.",
+    "seoKeywords": "warehouse layout, warehouse efficiency, warehouse safety, layout optimization, warehouse floor plan, AGVs, IoT sensors, Pislinfra",
     "faqSchema": "[{\"answer\": \"The common types include the U shape, I shape, L shape, and modular layouts. Each one corresponds to a different operation flow and space regime.\", \"question\": \"What are the main warehouse layout types?\"}, {\"answer\": \"U-shaped layout: for high-volume throughput. I-shaped layout: for continuous straight-line movement. L-shaped layout: for irregular or compact spaces. Modular layouts: flexible with scale options for growing businesses.\", \"question\": \"What are the four types of warehouse layout?\"}, {\"answer\": \"The main factors include type and size of inventory, number of SKU variations, equipment in use, picking strategies, safety, growth potential, land availability, transportation access, and customer demand.\", \"question\": \"What factors really affect the warehouse layout?\"}]"
   },
   {
@@ -659,6 +737,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "How to Evaluate the Best Warehouse Contractors in India | Pislinfra",
+    "seoDescription": "Learn how to evaluate and choose the best warehouse contractors for your business. Expert guide covering key considerations, industry trends, and why Pislinfra leads.",
+    "seoKeywords": "best warehouse contractors India, warehouse contractor evaluation, industrial warehouse construction, Grade-A warehousing, Pislinfra",
     "faqSchema": "[{\"answer\": \"Pislinfra is a prominent name providing some of the best Grade-A warehouses customized to the diverse needs of various industries across India.\", \"question\": \"Who are the top warehouse contractors in India?\"}, {\"answer\": \"Yes. Pislinfra has provided, and does provide, warehouse facilities from small to large industrial complexes, with the same emphasis on efficiency and customization.\", \"question\": \"Do warehouse contractors manage small projects?\"}, {\"answer\": \"Warehouse manufacturing companies produce prefabricated materials and components, while contractors like Pislinfra design, construct, and integrate end-to-end warehouse facilities.\", \"question\": \"How do warehouse manufacturing companies differ from warehouse contractors?\"}]"
   },
   {
@@ -684,6 +765,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Warehouse Design & Layout Complete Guide 2024 | Pislinfra",
+    "seoDescription": "Complete guide to warehouse design and layout. Learn about U-shaped, L-shaped, straight-through, cross-dock & modular layouts. Expert tips for optimal warehouse planning.",
+    "seoKeywords": "warehouse design, warehouse layout, warehouse design guide, U-shaped layout, warehouse construction, warehouse planning, Pislinfra",
     "faqSchema": "[{\"answer\": \"A warehouse must have an established and uninterrupted workflow, maximize the space available for storage, include clearly defined and safe traffic routes, adhere to all safety regulations, and be compatible with technology such as warehouse management systems (WMS) or other automation tools.\", \"question\": \"What are the fundamental warehouse design considerations?\"}, {\"answer\": \"The novel designs feature modular setups that change based on requirements, cross-docking to speed up turnaround, multi-level storage to maximise vertical space, robots and automation, and eco-friendly designs that help reduce operating costs.\", \"question\": \"Could you provide some innovative warehouse design ideas?\"}, {\"answer\": \"The outer design of a warehouse impacts security, accessibility, loading/unloading efficiency, and overall integration with the supply chain network. A well-designed exterior ensures smooth traffic flow and operational safety.\", \"question\": \"What is the significance of the outer design of a warehouse?\"}]"
   },
   {
@@ -708,6 +792,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "Benefits of a Built-to-Suit Warehouse for Your Business | Pislinfra",
+    "seoDescription": "Discover the key benefits of built-to-suit warehouses. Learn how custom BTS warehousing improves efficiency, reduces costs, and supports long-term business growth.",
+    "seoKeywords": "built-to-suit warehouse, BTS warehouse, custom warehouse construction, warehousing solutions, supply chain optimization, Pislinfra",
     "faqSchema": "[{\"answer\": \"Purchasing existing warehouses is less expensive initially, but involves additional costs like modification and inefficiency. Building a built-to-suit warehouse is a worthwhile long-term investment built per your specifications.\", \"question\": \"Is it more economical to purchase or construct a warehouse?\"}, {\"answer\": \"Costs vary by location, size, customization, and technology. It should be considered an ongoing investment that covers operations and future adjustments.\", \"question\": \"How much does it cost to build a warehouse?\"}, {\"answer\": \"A built-to-suit warehouse is a custom-designed facility built to match a company's specific operational requirements, from layout and storage systems to technology integration and location.\", \"question\": \"What is a built-to-suit warehouse?\"}]"
   },
   {
@@ -732,6 +819,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "5+ Ultimate Benefits of Working with an EPC Company | Pislinfra",
+    "seoDescription": "Discover the top benefits of partnering with an EPC company. Learn how turnkey engineering, procurement, and construction services save costs, improve quality, and ensure on-time delivery.",
+    "seoKeywords": "EPC company, engineering procurement construction, EPC contractors India, turnkey infrastructure projects, project management, Pislinfra",
     "faqSchema": "[{\"answer\": \"EPC stands for Engineering, Procurement, and Construction. It refers to a contract procedure by which one party incorporates the performance of all three services under one single agreement.\", \"question\": \"What does EPC mean?\"}, {\"answer\": \"An EPC company in the construction industry refers to super turnkey contractors who design, source, build, and commission assignments delivered on time and within budget.\", \"question\": \"What is an EPC company for construction activities?\"}, {\"answer\": \"There are plenty of EPC companies in India, but Pislinfra is well-regarded for delivering innovative, sustainable, and high-quality infrastructure projects across various sectors.\", \"question\": \"Who are the top EPC companies in India?\"}]"
   },
   {
@@ -756,6 +846,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "10+ Advantages of Industrial Logistics Parks in India | Pislinfra",
+    "seoDescription": "Discover the major benefits of Industrial Logistic Parks (ILPs). Learn how shared infrastructure, multimodal hubs, and green designs optimize logistics costs and supply chain efficiency.",
+    "seoKeywords": "industrial logistics park, logistics parks in India, shared infrastructure warehousing, intermodal transport hub, logistics cost optimization, supply chain efficiency, PISL",
     "faqSchema": "[{\"answer\": \"India's Industrial Logistics Park is a specialised type of hub that combines warehousing, transport, and distribution facilities, often linked by railways and customs clearance opportunities to enable more efficient supply chain management.\", \"question\": \"What defines an Industrial Logistics Park in India?\"}, {\"answer\": \"The Industrial Logistics Park uplifts businesses by reducing logistics costs through shared infrastructure, fast transit via integrated transport links, value-added logistic tools such as cold storage facilities, and expeditious customs clearance within the park.\", \"question\": \"How does an industrial logistics park bring about business development?\"}, {\"answer\": \"Pislinfra is one of the leaders with well-equipped, strategically located logistic parks, where each park is designed factoring in multimodal connectivities, sustainability, and warehousing excellence at the core.\", \"question\": \"What are the best logistics park companies in India?\"}]"
   },
   {
@@ -780,6 +873,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "How to Choose the Right Contractor for Warehouse Construction | PISL",
+    "seoDescription": "Learn how to select the best contractor for your warehouse project. Guide on warehouse construction costs, types, compliance, and why Pislinfra is a top choice in India.",
+    "seoKeywords": "warehouse construction contractor, warehouse construction cost per square foot, PEB warehouse builders, industrial contractor India, warehouse builder, PISL",
     "faqSchema": "[{\"answer\": \"The cost usually varies from ₹1,000 to ₹1,800 per sq. ft., depending on construction materials, features, and location.\", \"question\": \"What is the average construction cost for a warehouse in India per square foot?\"}, {\"answer\": \"Pislinfra-type companies lead with specialized know-how for warehouse design, execution, and regulatory compliance.\", \"question\": \"Who are the top warehouse builders in India?\"}, {\"answer\": \"Common types include distribution centers, cold storage units, e-commerce fulfillment hubs, rural/agricultural warehouses, and fully automated smart facilities.\", \"question\": \"What are the construction types of warehouses?\"}, {\"answer\": \"Through value engineering, better layout, and cost-effective materials – the primary services offered by Pislinfra.\", \"question\": \"How can I reduce the cost of my warehouse construction?\"}, {\"answer\": \"Specialists understand operational flows, safety norms, tech readiness, and legal standards that ensure better performance of the warehouse in times to come.\", \"question\": \"Why would I hire a specialist contractor for my warehouse?\"}]"
   },
   {
@@ -804,6 +900,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "7 Proven Principles for Best Warehouse Design & Operation | PISL",
+    "seoDescription": "Master warehouse design and operation with 7 proven principles. Optimize layout planning, vertical space, technology, safety, and sustainability for maximum efficiency.",
+    "seoKeywords": "warehouse design and operation, warehouse management principles, industrial layout planning, supply chain efficiency, warehouse automation, PISL",
     "faqSchema": "[{\"answer\": \"The basic operations include: Receiving, Put-away, Storage, Picking, Packing, and Shipping. Each activity has to be managed and organized to make the warehouse design and operation fully functional.\", \"question\": \"What are the core warehouse operations?\"}, {\"answer\": \"The warehouse design process involves considering business requirements, laying out efficient arrangements, selecting proper storage systems, considering automation, following safety regulations, and allowing for scalability and growth.\", \"question\": \"What is the warehouse designing process?\"}, {\"answer\": \"Warehouse design and operation refer to the strategic planning and management of a warehouse for efficient material flow, accurate inventory handling, and on-demand order fulfillment. It encompasses layout, storage systems, technology, staffing, and sustainability.\", \"question\": \"What is warehouse design and operation?\"}]"
   },
   {
@@ -828,6 +927,9 @@ const blogDB = [
     "author": "{\"bio\": \"Expert construction professionals at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": false,
     "status": "published",
+    "seoTitle": "What is Industrial Construction? Complete Guide 2024 | PISL",
+    "seoDescription": "Learn what industrial construction means, its history, types, stages, and why PISL is India's top choice. Expert guide covering factories, warehouses, and manufacturing plants.",
+    "seoKeywords": "industrial construction, what is industrial construction, factory construction, warehouse construction, construction industry India, PISL, manufacturing plants",
     "faqSchema": "[{\"answer\": \"It's the process of designing, building, and maintaining large facilities, factories, warehouses, refineries, and power plants where heavy machines and continuous processes take place.\", \"question\": \"What does industrial construction mean?\"}, {\"answer\": \"Projects range from laying the first foundation for a car assembly plant to erecting a logistics warehouse with automated conveyors all the way through testing, safety checks, and handover.\", \"question\": \"What are industrial construction projects?\"}, {\"answer\": \"India boasts many strong players, but PISL stands out for its twelve-year track record, a 98% on-time delivery rate, and a flawless safety record.\", \"question\": \"Which industrial companies in India are top choices?\"}]"
   },
   {
@@ -852,6 +954,9 @@ const blogDB = [
     "author": "{\"bio\": \"Industrial infrastructure development experts at PISL\", \"name\": \"PISL Team\", \"avatar\": \"/images/team/author.jpg\"}",
     "featured": true,
     "status": "published",
+    "seoTitle": "7 Key Factors for Efficient Warehouse Design & Layout | Pislinfra",
+    "seoDescription": "Discover the 7 essential factors for optimizing warehouse design. Expert strategies on space utilization, workflow layout, smart automation, safety and green infrastructure.",
+    "seoKeywords": "warehouse design, warehouse layout optimization, industrial logistics park, warehouse construction India, factory storage systems, PISL, supply chain efficiency",
     "faqSchema": "[{\"answer\": \"The design of a warehouse involves strategic considerations in arranging space, equipment, and processes inside a storage facility. It includes considerations for storage systems, material handling methods, safety issues, and technology that qualify and enable the operations.\", \"question\": \"What is warehouse design?\"}, {\"answer\": \"Main considerations include space utilization and storage systems; workflow optimization and material handling; integration of technology (WMS, RFID, automation); safety provisions and ergonomic layouts; scalability for future changes; energy conservation and sustainability; and strategic location near transport routes and labor pools.\", \"question\": \"What Are the Main Considerations in Warehouse Design?\"}, {\"answer\": \"U-shaped: Shipping and receiving docks are co-located, ideal for cross-docking. L-shaped: Separate inbound and outbound zones. Straight-through (I-shaped): One-way goods flow for high-volume operations. Modular blocks: Independent rack blocks for different product categories. Each layout aligns with specific operational priorities.\", \"question\": \"What Are the Different Types of Warehouse Layouts?\"}]"
   }
 ];

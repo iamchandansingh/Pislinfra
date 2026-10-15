@@ -172,69 +172,84 @@ const LifeSavingRules = ({ rules, title, subtitle }) => {
     }, 50); 
   };
 
-  const renderGrid = (isPrint = false) => (
-    <div className={`grid ${isPrint ? 'grid-cols-5' : 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-5'} bg-black gap-[1px]`}>
-      {ruleData.map((rule) => {
-        // Use the highly-compressed optimized icon for the print poster to avoid crashing the SVG renderer.
-        // Use the high-res icon for the live website for best quality.
-        const printIcon = optimizedIcons[rule.id] || rule.imgBase64;
-        
-        return (
-          <div 
-            key={rule.id}
-            className={`bg-white flex flex-col h-full ${isPrint ? 'min-h-[350px]' : 'min-h-full md:min-h-[350px]'}`}
-          >
-            <div className={`flex flex-col items-center justify-center p-3 sm:p-4 ${isPrint ? 'min-h-[170px]' : 'min-h-[150px] md:min-h-[170px]'} border-b-[1px] border-black bg-white overflow-hidden`}>
-              
-              {/* STATIC ICON */}
-              <div className="flex justify-center items-center h-20 sm:h-28 w-full mb-2 sm:mb-4">
-                <img src={isPrint ? printIcon : rule.imgBase64} alt={rule.titleEn} className="w-full h-full object-contain" />
+  const renderGrid = (isPrint = false) => {
+    return (
+      <div className={`grid ${isPrint ? 'grid-cols-5' : 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-5'} bg-black gap-[1px]`}>
+        {ruleData.map((rule) => {
+          // Use the highly-compressed optimized icon for the print poster to avoid crashing the SVG renderer.
+          // Use the high-res icon for the live website for best quality.
+          const iconSrc = isPrint ? (optimizedIcons[rule.id] || rule.imgBase64) : rule.imgBase64;
+          
+          return (
+            <div 
+              key={rule.id}
+              className={`bg-white flex flex-col h-full ${isPrint ? 'min-h-[350px]' : 'min-h-full lg:min-h-[350px]'}`}
+            >
+              {/* TOP: ICON & TITLE */}
+              <div className={`flex flex-col items-center justify-center ${isPrint ? 'p-4 min-h-[170px]' : 'p-2 sm:p-3 lg:p-4 min-h-[125px] sm:min-h-[145px] lg:min-h-[170px]'} border-b-[1px] border-black bg-white overflow-hidden`}>
+                
+                {/* STATIC ICON */}
+                <div className={`flex justify-center items-center ${isPrint ? 'h-28 mb-4' : 'h-16 sm:h-20 lg:h-28 mb-1.5 sm:mb-3'} w-full`}>
+                  <img 
+                    src={iconSrc} 
+                    alt={rule.titleEn} 
+                    className="w-full h-full object-contain"
+                    loading="lazy" 
+                  />
+                </div>
+
+                <h4 className={`${isPrint ? 'text-base' : 'text-[11.5px] sm:text-sm lg:text-base'} font-black uppercase text-black text-center tracking-tight sm:tracking-wide leading-tight px-1`}>
+                  {rule.titleEn}
+                </h4>
               </div>
 
-              <h4 className="text-base font-black uppercase text-black text-center tracking-wide">
-                {rule.titleEn}
-              </h4>
-            </div>
+              {/* BOTTOM: ENGLISH & HINDI DESCRIPTIONS */}
+              <div className={`flex flex-col flex-1 items-center justify-center ${isPrint ? 'p-4' : 'p-2 sm:p-3 lg:p-4'} text-center bg-gray-50`}>
+                <p className={`${isPrint ? 'text-xs mb-3' : 'text-[9.5px] sm:text-[11px] lg:text-xs mb-1.5 sm:mb-2'} font-semibold text-gray-800 leading-snug`}>
+                  {rule.descEn}
+                </p>
 
-            <div className="flex flex-col flex-1 items-center justify-center p-2 sm:p-4 text-center bg-gray-50">
-              <p className="text-[10px] sm:text-xs font-bold text-gray-800 leading-snug mb-2 sm:mb-3">
-                {rule.descEn}
-              </p>
-              <p className="text-[11px] sm:text-sm font-extrabold text-gray-900 leading-snug">
-                {rule.descHi}
-              </p>
+                {!isPrint && (
+                  <div className="w-6 sm:w-8 h-[1px] bg-gray-300 my-1 sm:my-1.5 opacity-60" />
+                )}
+
+                <p className={`${isPrint ? 'text-sm' : 'text-[10.5px] sm:text-xs lg:text-sm'} font-bold text-gray-900 leading-snug`}>
+                  {rule.descHi}
+                </p>
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
-    <section className="py-16 bg-white w-full font-sans flex justify-center relative">
+    <section className="py-8 sm:py-14 bg-white w-full font-sans flex justify-center relative">
       
       {/* 1. LIVE VISIBLE POSTER */}
-      <div className="w-full max-w-[1150px] px-4">
-        <div className="bg-white border-[2px] border-black shadow-2xl flex flex-col relative">
+      <div className="w-full max-w-[1150px] px-2.5 sm:px-4">
+        <div className="bg-white border-[2px] border-black rounded-lg sm:rounded-xl overflow-hidden shadow-xl sm:shadow-2xl flex flex-col relative">
           
-          <div className="bg-[#005BAC] text-white text-center py-6 border-b-[2px] border-black px-4 flex flex-col items-center justify-center relative">
-            <h2 className="text-lg sm:text-xl md:text-3xl font-black uppercase tracking-wider leading-relaxed flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 text-center pr-12 md:pr-0">
-              <span>{title || "Life Saving Safety Rules (LSSR)"}</span>
-              <span className="hidden md:inline">/</span>
-              <span className="font-bold">{subtitle || "जीवन रक्षक सुरक्षा नियम"}</span>
+          <div className="bg-[#005BAC] text-white text-center py-4 sm:py-6 border-b-[2px] border-black px-3 sm:px-6 flex flex-col items-center justify-center relative">
+            <h2 className="text-sm sm:text-lg lg:text-2xl xl:text-3xl font-black uppercase tracking-wider leading-snug flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-2 text-center pr-10 sm:pr-12 lg:pr-0">
+              <span className="text-white drop-shadow-sm">{title || "Life Saving Safety Rules (LSSR)"}</span>
+              <span className="hidden lg:inline text-white/60">/</span>
+              <span className="font-extrabold text-white/95">{subtitle || "जीवन रक्षक सुरक्षा नियम"}</span>
             </h2>
 
             <button 
               id="download-btn"
               onClick={downloadPDF}
               title="Download Poster as PDF"
-              className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 hover:bg-white/40 transition-colors rounded-full flex items-center justify-center cursor-pointer disabled:opacity-50"
+              aria-label="Download Poster as PDF"
+              className="absolute right-2.5 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 lg:p-3 bg-white/20 hover:bg-white/30 active:scale-95 transition-all rounded-full flex items-center justify-center cursor-pointer disabled:opacity-50 shadow-sm"
               disabled={isDownloading || Object.keys(optimizedIcons).length < 10}
             >
               {isDownloading ? (
-                <span className="text-xs md:text-sm font-bold">...</span>
+                <span className="text-xs sm:text-sm font-bold animate-pulse">...</span>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               )}
