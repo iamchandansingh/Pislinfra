@@ -1,0 +1,145 @@
+[
+  {
+    "id": 1,
+    "documentId": "ffbl22kicwenl1297j5wffay",
+    "tagline": "Progressive Innovative Sustainable Limitless",
+    "createdAt": "2026-08-21T11:19:15.973Z",
+    "updatedAt": "2026-08-21T16:53:08.661Z",
+    "publishedAt": "2026-08-21T16:52:18.144Z",
+    "logo": {
+      "id": 3,
+      "documentId": "logo_doc_id_123",
+      "name": "logo.png",
+      "alternativeText": "PISL Logo",
+      "caption": "",
+      "focalPoint": null,
+      "width": 500,
+      "height": 150,
+      "formats": null,
+      "hash": "logo_1787309259783",
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 1.79,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754971329_755_logo_png.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-21T05:31:35.455Z",
+      "updatedAt": "2026-08-26T13:40:50.725Z",
+      "publishedAt": null
+    },
+    "navigation": [
+      {
+        "id": 127,
+        "label": "Home",
+        "href": "/",
+        "subLinks": []
+      },
+      {
+        "id": 130,
+        "label": "About Us",
+        "href": "/about",
+        "subLinks": [
+          {
+            "id": 253,
+            "label": "Overview / Profile",
+            "href": "/about",
+            "icon": "FaBuilding"
+          },
+          {
+            "id": 254,
+            "label": "Leadership",
+            "href": "/about/leadership",
+            "icon": "FaUsers"
+          },
+          {
+            "id": 255,
+            "label": "EHS",
+            "href": "/about/ehs",
+            "icon": "FaShieldAlt"
+          },
+          {
+            "id": 256,
+            "label": "Awards & Certification",
+            "href": "/about/awards",
+            "icon": "FaAward"
+          },
+          {
+            "id": 257,
+            "label": "CSR",
+            "href": "/about/csr",
+            "icon": "FaHeart"
+          }
+        ]
+      },
+      {
+        "id": 131,
+        "label": "Projects",
+        "href": "/projects",
+        "subLinks": [
+          {
+            "id": 258,
+            "label": "Ongoing Projects",
+            "href": "/projects/ongoing",
+            "icon": "FaBuilding"
+          },
+          {
+            "id": 259,
+            "label": "Completed Projects",
+            "href": "/projects/completed",
+            "icon": "FaBuilding"
+          },
+          {
+            "id": 260,
+            "label": "Case Study",
+            "href": "/projects/case-study",
+            "icon": "FaBuilding"
+          }
+        ]
+      },
+      {
+        "id": 132,
+        "label": "Our Solutions",
+        "href": "/solutions",
+        "subLinks": [
+          {
+            "id": 261,
+            "label": "Industrial Development",
+            "href": "/solutions/industrial",
+            "icon": "FaBuilding"
+          },
+          {
+            "id": 262,
+            "label": "Infrastructure Development",
+            "href": "/solutions/infrastructure",
+            "icon": "FaBuilding"
+          },
+          {
+            "id": 263,
+            "label": "Logistic Park Development",
+            "href": "/solutions/logistic",
+            "icon": "FaBuilding"
+          },
+          {
+            "id": 264,
+            "label": "Warehouse Contractors",
+            "href": "/solutions/warehouse",
+            "icon": "FaBuilding"
+          }
+        ]
+      },
+      {
+        "id": 128,
+        "label": "Blog",
+        "href": "/blog",
+        "subLinks": []
+      },
+      {
+        "id": 129,
+        "label": "Careers",
+        "href": "/careers",
+        "subLinks": []
+      }
+    ]
+  }
+]

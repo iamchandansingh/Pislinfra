@@ -40,6 +40,57 @@ const defaultEHSData = {
   resourcesSectionTitle: 'Key Documents & Downloads',
   resourcesSectionSubtitle: 'Safety is Our Highest Priority',
   resourcesSectionDesc: 'Access our official safety guidelines, comprehensive operational protocols, and essential resources for all project sites.',
+  resourcesCoverImage: {
+    id: 823,
+    name: 'pisl_EHS-100kb.jpeg',
+    url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pisl_EHS_100kb_82653bd4f2.jpeg'
+  },
+  resources: [
+    {
+      id: 18,
+      title: 'HSE Policy',
+      desc: 'Official Health, Safety & Environment policies, operational guidelines and zero-harm standards.',
+      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf',
+      file: {
+        id: 819,
+        name: 'HSE POLICY PISL.pdf',
+        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf'
+      }
+    },
+    {
+      id: 22,
+      title: 'Risk Management Policy',
+      desc: 'Structured framework for identifying, assessing, and mitigating operational and project risks.',
+      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Risk_Management_Policy_PISL_37fe051837.pdf',
+      file: {
+        id: 821,
+        name: 'Risk Management Policy-PISL.pdf',
+        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Risk_Management_Policy_PISL_37fe051837.pdf'
+      }
+    },
+    {
+      id: 23,
+      title: 'Vigil Mechanism Policy',
+      desc: 'Whistleblower mechanism ensuring corporate transparency, ethical conduct, and accountability.',
+      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf',
+      file: {
+        id: 820,
+        name: 'Vigil Mechanism Policy-PISL.pdf',
+        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf'
+      }
+    },
+    {
+      id: 24,
+      title: 'CSR Policy',
+      desc: 'Corporate Social Responsibility commitments towards community welfare and sustainable development.',
+      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_Policy_PISL_2e584fd56d.pdf',
+      file: {
+        id: 822,
+        name: 'CSR_Policy-PISL.pdf',
+        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_Policy_PISL_2e584fd56d.pdf'
+      }
+    }
+  ]
 };
 
 const EHS = () => {
@@ -52,9 +103,9 @@ const EHS = () => {
 
   useEffect(() => {
     let isMounted = true;
-    const loadData = async () => {
+    const loadData = async (forceFresh = false) => {
       try {
-        const res = await fetchStrapiData('ehs-page?populate[0]=heroImage&populate[1]=seo&populate[2]=gallery.image&populate[3]=stats&populate[4]=features&populate[5]=philosophy.image&populate[6]=awards.image&populate[7]=rules&populate[8]=resources&populate[9]=approaches&populate[10]=pillars&populate[11]=programs&populate[12]=resources.file&populate[13]=resources.coverImage');
+        const res = await fetchStrapiData('ehs-page', { forceFresh });
         if (res && isMounted) {
           setData(res);
         }
@@ -62,8 +113,31 @@ const EHS = () => {
         console.error('Error fetching EHS data', err);
       }
     };
-    loadData();
-    return () => { isMounted = false; };
+    loadData(true);
+
+    // Instant update when SWR revalidation resolves fresh data in background
+    const handleDataUpdate = (e) => {
+      if (e.detail?.cleanEndpoint?.includes('ehs-page') && e.detail?.data && isMounted) {
+        setData(e.detail.data);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleDataUpdate);
+
+    // Auto-refresh from CMS on tab visibility
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && isMounted) {
+        loadData(true);
+      }
+    };
+    window.addEventListener('visibilitychange', handleVisibility);
+    window.addEventListener('focus', handleVisibility);
+
+    return () => { 
+      isMounted = false;
+      window.removeEventListener('pisl-data-update', handleDataUpdate);
+      window.removeEventListener('visibilitychange', handleVisibility);
+      window.removeEventListener('focus', handleVisibility);
+    };
   }, []);
 
   const seoData = {
@@ -147,6 +221,7 @@ const EHS = () => {
         title={data.resourcesSectionTitle} 
         subtitle={data.resourcesSectionSubtitle} 
         desc={data.resourcesSectionDesc} 
+        coverImage={data.resourcesCoverImage}
       />
     </div>
   )

@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const HeroVideo = ({ videoSrc }) => {
+const HeroVideo = ({ videoSrc, bannerImage, heroImage }) => {
   const videoRef = useRef(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const activeBanner = bannerImage || heroImage || '/images/hero/11.png';
 
   useEffect(() => {
     if (videoRef.current) {
@@ -20,13 +21,24 @@ const HeroVideo = ({ videoSrc }) => {
 
   return (
     <section className="pisl-hero-container relative w-full overflow-hidden bg-[#07132b]">
+      {/* 1. Hero Banner Image: Always visible immediately (0ms paint) */}
+      <div 
+        className="pisl-hero-banner absolute inset-0 z-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${activeBanner})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          filter: 'brightness(0.9)'
+        }}
+      />
+
       {/* Loading Animation until video is loaded */}
       {!isVideoLoaded && (
         <div
-          className="absolute inset-0 z-20 flex items-center justify-center bg-[#07132b]"
+          className="absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[2px]"
           style={{ transition: 'opacity 0.4s ease' }}
         >
-          <div className="pisl-hero-spinner relative flex items-center justify-center rounded-full bg-white/5 backdrop-blur-sm shadow-xl">
+          <div className="pisl-hero-spinner relative flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md shadow-xl">
             <img
               src="/logo.png"
               alt="Pislinfra Logo"
@@ -61,24 +73,28 @@ const HeroVideo = ({ videoSrc }) => {
       )}
 
       {/* Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        onLoadedData={handleVideoReady}
-        onCanPlay={handleVideoReady}
-        onPlaying={handleVideoReady}
-        className="pisl-hero-video absolute top-0 left-0 w-full h-full z-0"
-        style={{
-          opacity: isVideoLoaded ? 1 : 0,
-          transition: 'opacity 0.6s ease-in-out',
-        }}
-      >
-        <source src={videoSrc || "/videos/PISL-WEBSITE.mp4"} type="video/mp4" />
-      </video>
+      {videoSrc !== null && videoSrc !== false && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={activeBanner}
+          onLoadedData={handleVideoReady}
+          onCanPlay={handleVideoReady}
+          onPlaying={handleVideoReady}
+          onError={() => setIsVideoLoaded(false)}
+          className="pisl-hero-video absolute top-0 left-0 w-full h-full z-0"
+          style={{
+            opacity: isVideoLoaded ? 1 : 0,
+            transition: 'opacity 0.6s ease-in-out',
+          }}
+        >
+          <source src={videoSrc || "/videos/PISL-WEBSITE.mp4"} type="video/mp4" />
+        </video>
+      )}
 
       {/* Dark Overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/35 z-10 pointer-events-none"></div>

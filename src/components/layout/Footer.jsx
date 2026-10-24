@@ -27,13 +27,28 @@ const Footer = () => {
     { label: 'Blog', href: '/blog' },
   ];
 
-  const resourceLinks = footerData?.resourceLinks || [
+  const defaultResourceLinks = [
     { label: 'Careers', href: '/careers' },
     { label: 'Annual Reports', href: '/annual-reports' },
     { label: 'Contact Us', href: '/contact-us' },
     { label: 'Sitemap', href: '/sitemap' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Company Policy', href: '/company-policy' },
   ];
+
+  const resourceLinks = (() => {
+    const links = footerData?.resourceLinks ? [...footerData.resourceLinks] : defaultResourceLinks;
+    const hasCompanyPolicy = links.some(l => l.href === '/company-policy' || l.href === '/about/company-policy');
+    if (!hasCompanyPolicy) {
+      const privacyIdx = links.findIndex(l => l.href === '/privacy-policy');
+      if (privacyIdx !== -1) {
+        links.splice(privacyIdx + 1, 0, { label: 'Company Policy', href: '/company-policy' });
+      } else {
+        links.push({ label: 'Company Policy', href: '/company-policy' });
+      }
+    }
+    return links;
+  })();
 
   const solutionLinks = footerData?.solutionLinks || [
     { label: 'Industrial Build', href: '/solutions/industrial' },

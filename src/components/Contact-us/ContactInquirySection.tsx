@@ -526,7 +526,7 @@ const ContactInquirySection: React.FC<ContactInquirySectionProps> = ({ pageData 
         }
 
         .sidebar-card {
-          background: linear-gradient(135deg, #1E2A5A 0%, #0F172A 100%);
+          background-color: #1E2A5A;
           border-radius: 16px;
           padding: 24px 20px;
           color: #FFFFFF;

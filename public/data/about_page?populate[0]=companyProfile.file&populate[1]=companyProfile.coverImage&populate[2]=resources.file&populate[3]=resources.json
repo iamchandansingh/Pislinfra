@@ -1,0 +1,440 @@
+[
+  {
+    "id": 1,
+    "documentId": "gr018xkstf9uiwm06mcuwfx6",
+    "title": "About Us",
+    "subtitle": "Building excellence through innovation and dedication",
+    "overviewTitle": "OVERVIEW",
+    "overviewText": "<p>We at PISL are recognised as India's leading construction company, providing services to well-reputed clientele in various sectors.</p><p>PISL is the product of passion, hard work, and integrity. To us, excellence is a habit, and we always strive to do our best. We are an organisation with a strong ethical compass and a spectacular track record of excellence in the industry. Over the past 17+ years, our proven expertise has led us to build multiple projects covering millions of square meters in the construction industry.</p><p>We are present across various sectors like copper smelting, food processing, radial wires, automobile, heavy engineering, MSME, chemical, and other sectors.</p><p>With a strong background in engineering and construction, we know how to make ideas and plans become real things. We are in the relentless pursuit of value creation, skill-building, and strengthening the infrastructural fabric of the nation with our passion and commitment.</p>",
+    "capabilitiesTitle": "OUR CAPABILITIES",
+    "valuesTitle": "OUR VALUES",
+    "createdAt": "2026-08-22T09:53:42.036Z",
+    "updatedAt": "2026-10-23T17:06:23.537Z",
+    "publishedAt": "2026-10-23T17:05:57.740Z",
+    "presenceTitle": "OUR PRESENCE",
+    "presenceDescription": "Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring",
+    "heroImage": {
+      "id": 27,
+      "documentId": "ypl944dm5jy7vo2n1c9v4ysa",
+      "name": "11.png",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": 2240,
+      "height": 700,
+      "formats": {
+        "large": {
+          "ext": ".png",
+          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_11_70052d09da.png",
+          "hash": "large_11_70052d09da",
+          "mime": "image/png",
+          "name": "large_11.png",
+          "path": null,
+          "size": 614.44,
+          "width": 1000,
+          "height": 312,
+          "sizeInBytes": 614443
+        },
+        "small": {
+          "ext": ".png",
+          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_11_70052d09da.png",
+          "hash": "small_11_70052d09da",
+          "mime": "image/png",
+          "name": "small_11.png",
+          "path": null,
+          "size": 162.85,
+          "width": 500,
+          "height": 156,
+          "sizeInBytes": 162845
+        },
+        "medium": {
+          "ext": ".png",
+          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_11_70052d09da.png",
+          "hash": "medium_11_70052d09da",
+          "mime": "image/png",
+          "name": "medium_11.png",
+          "path": null,
+          "size": 350.52,
+          "width": 750,
+          "height": 234,
+          "sizeInBytes": 350515
+        },
+        "thumbnail": {
+          "ext": ".png",
+          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_11_70052d09da.png",
+          "hash": "thumbnail_11_70052d09da",
+          "mime": "image/png",
+          "name": "thumbnail_11.png",
+          "path": null,
+          "size": 44.28,
+          "width": 245,
+          "height": 77,
+          "sizeInBytes": 44284
+        }
+      },
+      "hash": "11_70052d09da",
+      "ext": ".png",
+      "mime": "image/png",
+      "size": 710.71,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/11_70052d09da.png",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-22T09:58:56.183Z",
+      "updatedAt": "2026-08-26T12:37:38.310Z",
+      "publishedAt": "2026-08-22T09:58:56.183Z"
+    },
+    "stats": [
+      {
+        "id": 388,
+        "title": "WAREHOUSE",
+        "description": "One of the prominent leaders in BTS warehouse & industrial solutions across India",
+        "iconName": "FaWarehouse"
+      },
+      {
+        "id": 389,
+        "title": "ESTABLISHED",
+        "description": "Established in 2009",
+        "iconName": "FaCalendar"
+      },
+      {
+        "id": 390,
+        "title": "PORTFOLIO",
+        "description": "Portfolio of over 16+ Million sq. ft.",
+        "iconName": "FaBuilding"
+      },
+      {
+        "id": 391,
+        "title": "EMPLOYEE",
+        "description": "600+ Employee Strength",
+        "iconName": "FaUsers"
+      }
+    ],
+    "capabilities": [
+      {
+        "id": 392,
+        "title": "Industrial Construction",
+        "description": "Expertise in building state-of-the-art manufacturing facilities, processing plants, and heavy engineering setups with precision.",
+        "iconName": "FaHardHat"
+      },
+      {
+        "id": 393,
+        "title": "BTS Warehousing",
+        "description": "End-to-end built-to-suit warehousing solutions designed for optimal logistics and supply chain efficiency.",
+        "iconName": "FaWarehouse"
+      },
+      {
+        "id": 394,
+        "title": "Commercial Spaces",
+        "description": "Creating modern, sustainable, and intelligent commercial infrastructures that redefine workspaces.",
+        "iconName": "FaBuilding"
+      },
+      {
+        "id": 395,
+        "title": "Infrastructure Projects",
+        "description": "Developing robust civil infrastructure including roads, bridges, and utility networks for rapid urban growth.",
+        "iconName": "FaIndustry"
+      }
+    ],
+    "values": [
+      {
+        "id": 396,
+        "title": "INTEGRITY",
+        "description": "We believe in absolute transparency and ethical practices in all our dealings.",
+        "iconName": "FaHandshake"
+      },
+      {
+        "id": 397,
+        "title": "EXCELLENCE",
+        "description": "Delivering exceptional quality that exceeds client expectations every single time.",
+        "iconName": "FaStar"
+      },
+      {
+        "id": 398,
+        "title": "INNOVATION",
+        "description": "Embracing new technologies and modern construction methods.",
+        "iconName": "FaLightbulb"
+      },
+      {
+        "id": 399,
+        "title": "SAFETY",
+        "description": "Zero compromise on the safety of our workforce and project sites.",
+        "iconName": "FaShieldAlt"
+      }
+    ],
+    "resources": [],
+    "seo": {
+      "id": 78,
+      "seoTitle": "About Pislinfra | Industrial & Warehouse EPC Contractor",
+      "seoDescription": "Learn about Pislinfra, a leading industrial and warehouse EPC contractor delivering construction, logistics and infrastructure solutions across India.",
+      "seoKeywords": "pislinfra; industrial construction company India; warehouse construction company India",
+      "canonicalUrl": "https://pislinfra.com/about-us",
+      "ogTitle": "About Us | Industrial & Warehouse Construction | Pislinfra",
+      "ogDescription": "Learn about Pislinfra’s expertise, capabilities and approach to industrial, warehouse, logistics and infrastructure construction across India.",
+      "ogType": "website",
+      "twitterTitle": "About Us | Construction & Infrastructure Experts | Pislinfra ",
+      "twitterDescription": "Discover Pislinfra’s industrial, warehouse, logistics and infrastructure construction expertise and project capabilities across India.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "Organization + AboutPage",
+      "structuredData": "Organization; AboutPage; WebPage",
+      "breadcrumbSchema": true,
+      "organizationSchema": false,
+      "tags": "Pislinfra; About Pislinfra; industrial construction; warehouse construction; infrastructure development; logistics infrastructure; construction company India",
+      "noIndex": false,
+      "noFollow": false,
+      "ogImage": {
+        "id": 776,
+        "documentId": "xp9rr62x1jrn112uz033tcvr",
+        "name": "imgi_48_11_70052d09da.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 2240,
+        "height": 700,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "7a81e4c16d3cb2d67122c0603050038b",
+            "hash": "large_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "large_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 609.42,
+            "width": 1000,
+            "height": 312,
+            "sizeInBytes": 609422
+          },
+          "small": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "93452ed71681fabe34b683801ad29df3",
+            "hash": "small_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "small_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 161.53,
+            "width": 500,
+            "height": 156,
+            "sizeInBytes": 161533
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "8e9c1e0e5d68916b182795a28c6e12ad",
+            "hash": "medium_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "medium_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 347.17,
+            "width": 750,
+            "height": 234,
+            "sizeInBytes": 347167
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "0800980ea091889ff480303b6f7092d4",
+            "hash": "thumbnail_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "thumbnail_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 43.96,
+            "width": 245,
+            "height": 77,
+            "sizeInBytes": 43961
+          }
+        },
+        "hash": "imgi_48_11_70052d09da_5ddacdd692",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 625.79,
+        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/imgi_48_11_70052d09da_5ddacdd692.png",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-09-16T05:47:04.641Z",
+        "updatedAt": "2026-09-16T05:47:48.028Z",
+        "publishedAt": "2026-09-16T05:47:04.641Z"
+      },
+      "twitterImage": {
+        "id": 776,
+        "documentId": "xp9rr62x1jrn112uz033tcvr",
+        "name": "imgi_48_11_70052d09da.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 2240,
+        "height": 700,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "7a81e4c16d3cb2d67122c0603050038b",
+            "hash": "large_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "large_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 609.42,
+            "width": 1000,
+            "height": 312,
+            "sizeInBytes": 609422
+          },
+          "small": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "93452ed71681fabe34b683801ad29df3",
+            "hash": "small_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "small_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 161.53,
+            "width": 500,
+            "height": 156,
+            "sizeInBytes": 161533
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "8e9c1e0e5d68916b182795a28c6e12ad",
+            "hash": "medium_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "medium_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 347.17,
+            "width": 750,
+            "height": 234,
+            "sizeInBytes": 347167
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_imgi_48_11_70052d09da_5ddacdd692.png",
+            "etag": "0800980ea091889ff480303b6f7092d4",
+            "hash": "thumbnail_imgi_48_11_70052d09da_5ddacdd692",
+            "mime": "image/png",
+            "name": "thumbnail_imgi_48_11_70052d09da.png",
+            "path": null,
+            "size": 43.96,
+            "width": 245,
+            "height": 77,
+            "sizeInBytes": 43961
+          }
+        },
+        "hash": "imgi_48_11_70052d09da_5ddacdd692",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 625.79,
+        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/imgi_48_11_70052d09da_5ddacdd692.png",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-09-16T05:47:04.641Z",
+        "updatedAt": "2026-09-16T05:47:48.028Z",
+        "publishedAt": "2026-09-16T05:47:04.641Z"
+      }
+    },
+    "companyProfile": {
+      "id": 21,
+      "title": "Building Infrastructure for a Better Tomorrow",
+      "desc": "Download our official company profile to explore Pislinfra's turnkey EPC capabilities, extensive industrial and warehousing portfolio, engineering expertise, and client partnerships across India.",
+      "fileUrl": null,
+      "file": {
+        "id": 817,
+        "documentId": "zugz32k9cbxqerp4wygd107j",
+        "name": "Pragati-Infra-Solutions.pdf",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": null,
+        "height": null,
+        "formats": null,
+        "hash": "Pragati_Infra_Solutions_2d2730c93f",
+        "ext": ".pdf",
+        "mime": "application/pdf",
+        "size": 30995.21,
+        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Pragati_Infra_Solutions_2d2730c93f.pdf",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-13T17:27:18.521Z",
+        "updatedAt": "2026-10-13T17:27:18.521Z",
+        "publishedAt": "2026-10-13T17:27:18.521Z"
+      },
+      "coverImage": {
+        "id": 818,
+        "documentId": "a09aa2vne6qez1l61vl57d8t",
+        "name": "Screenshot 2026-10-13 at 10.58.08 PM.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 2240,
+        "height": 1268,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "etag": "f98e95550b82df34462d31871eda1dec",
+            "hash": "large_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
+            "mime": "image/png",
+            "name": "large_Screenshot 2026-10-13 at 10.58.08 PM.png",
+            "path": null,
+            "size": 994.96,
+            "width": 1000,
+            "height": 566,
+            "sizeInBytes": 994964
+          },
+          "small": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "etag": "0148b807a8b5caddb14ad31c0ea146a9",
+            "hash": "small_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
+            "mime": "image/png",
+            "name": "small_Screenshot 2026-10-13 at 10.58.08 PM.png",
+            "path": null,
+            "size": 265.36,
+            "width": 500,
+            "height": 283,
+            "sizeInBytes": 265358
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "etag": "8c533d2e3ed794fb7fbf0f3589dbfc2c",
+            "hash": "medium_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
+            "mime": "image/png",
+            "name": "medium_Screenshot 2026-10-13 at 10.58.08 PM.png",
+            "path": null,
+            "size": 573.11,
+            "width": 750,
+            "height": 425,
+            "sizeInBytes": 573107
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "etag": "c364a9ca7f4fd0f99adeb5a0f6128950",
+            "hash": "thumbnail_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
+            "mime": "image/png",
+            "name": "thumbnail_Screenshot 2026-10-13 at 10.58.08 PM.png",
+            "path": null,
+            "size": 71.49,
+            "width": 245,
+            "height": 139,
+            "sizeInBytes": 71485
+          }
+        },
+        "hash": "Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 1105.57,
+        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-13T17:28:21.493Z",
+        "updatedAt": "2026-10-13T17:28:21.493Z",
+        "publishedAt": "2026-10-13T17:28:21.493Z"
+      }
+    }
+  }
+]

@@ -50,6 +50,11 @@ const defaultJobOpenings: JobOpening[] = [
 
 const columns = ['Job Title', 'Department', 'Experience', 'Qualification', 'Location', 'Action'];
 
+const cleanTitle = (rawTitle?: string) => {
+  if (!rawTitle) return 'Current Openings';
+  return rawTitle.replace(/<[^>]*>?/gm, '').trim();
+};
+
 const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -106,9 +111,8 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
         {/* Section Header */}
         <div className="openings-header">
           <h2 className="openings-title">
-            Current <span style={{ color: '#FF6B35' }}>Openings</span>
+            {cleanTitle(title)}
           </h2>
-          <div className="openings-divider" />
         </div>
 
         {/* Filters Section */}
@@ -331,20 +335,13 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
           margin-bottom: 24px;
         }
         .openings-title {
-          font-size: clamp(24px, 3.5vw, 32px);
-          font-weight: 700;
+          font-size: clamp(28px, 4vw, 42px);
+          font-weight: 800;
           color: #1E2A5A;
-          margin: 0 0 8px 0;
+          margin: 0;
           line-height: 1.2;
-          letter-spacing: -0.4px;
+          letter-spacing: -0.5px;
           font-family: 'Inter', sans-serif;
-        }
-        .openings-divider {
-          width: 40px;
-          height: 3px;
-          background-color: #FF6B35;
-          border-radius: 999px;
-          margin: 0 auto;
         }
 
         /* Filter Section */

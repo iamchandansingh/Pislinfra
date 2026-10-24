@@ -25,6 +25,11 @@ const defaultBenefitsData = [
   { id: 'impact', icon: "Target", iconColor: '#FF6B35', title: 'Make an Impact', description: 'Work on meaningful projects that build a better India.' },
 ];
 
+const cleanTitle = (rawTitle?: string) => {
+  if (!rawTitle) return 'Why Join PISL?';
+  return rawTitle.replace(/<[^>]*>?/gm, '').trim();
+};
+
 const CareerBenefitsSection = ({ title, benefits }: { title?: string, benefits?: any[] }) => {
   const benefitsList = (benefits && benefits.length > 0) ? benefits : defaultBenefitsData;
 
@@ -33,11 +38,9 @@ const CareerBenefitsSection = ({ title, benefits }: { title?: string, benefits?:
       <div className="career-benefits-container">
         
         <div className="career-benefits-header">
-          <h2 
-            className="career-benefits-title"
-            dangerouslySetInnerHTML={{ __html: title || 'Why Join <span style="color: #FF6B35">PISL?</span>' }} 
-          />
-          <div className="career-benefits-divider" />
+          <h2 className="career-benefits-title">
+            {cleanTitle(title)}
+          </h2>
         </div>
 
         <div className="benefits-grid">
@@ -86,19 +89,12 @@ const CareerBenefitsSection = ({ title, benefits }: { title?: string, benefits?:
           margin-bottom: 34px;
         }
         .career-benefits-title {
-          font-size: clamp(24px, 3.5vw, 36px);
+          font-size: clamp(28px, 4vw, 42px);
           font-weight: 800;
           color: #1E2A5A;
-          margin: 0 0 10px 0;
+          margin: 0;
           line-height: 1.2;
           letter-spacing: -0.5px;
-        }
-        .career-benefits-divider {
-          width: 44px;
-          height: 3px;
-          background-color: #FF6B35;
-          border-radius: 999px;
-          margin: 0 auto;
         }
 
         /* Desktop Grid */
@@ -174,7 +170,7 @@ const CareerBenefitsSection = ({ title, benefits }: { title?: string, benefits?:
             margin-bottom: 22px !important;
           }
           .career-benefits-title {
-            font-size: clamp(22px, 5.5vw, 28px) !important;
+            font-size: clamp(24px, 6vw, 32px) !important;
           }
           .benefits-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;

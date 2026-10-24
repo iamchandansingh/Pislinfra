@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "documentId": "ysq9fysrn5c7sb6mtiyrkq40",
+    "description": "Leading infrastructure development company delivering world-class industrial, logistics, and warehouse solutions across India.",
+    "linkedinUrl": "https://www.linkedin.com/company/pislinfra",
+    "phone": "085270 40411",
+    "email": "info@pislinfra.com",
+    "address": "31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018",
+    "mapUrl": "https://maps.app.goo.gl/yrFiVHJsAwLp461c9",
+    "businessHours": "Mon - Sat: 9:00 AM - 6:00 PM\nSunday: Closed",
+    "copyrightText": "Pislinfra. All rights reserved.",
+    "createdAt": "2026-08-21T12:13:22.932Z",
+    "updatedAt": "2026-08-21T16:43:28.712Z",
+    "publishedAt": "2026-08-21T16:42:46.534Z",
+    "logo": {
+      "id": 4,
+      "documentId": "wdovt2illg3yqxrihxlzjk2c",
+      "name": "White Logo.png",
+      "alternativeText": "Pislinfra Logo White",
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": "footer_logo_1787314393101",
+      "ext": ".png",
+      "mime": "image/png",
+      "size": 99.42,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/footer_logo_1787314393098.png",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-21T12:13:13.101Z",
+      "updatedAt": "2026-08-26T12:35:46.003Z",
+      "publishedAt": "2026-08-21T12:13:13.102Z"
+    },
+    "companyLinks": [
+      {
+        "id": 213,
+        "label": "Profile",
+        "href": "/about"
+      },
+      {
+        "id": 214,
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "id": 215,
+        "label": "Our Solutions",
+        "href": "/solutions"
+      },
+      {
+        "id": 216,
+        "label": "Blog",
+        "href": "/blog"
+      }
+    ],
+    "resourceLinks": [
+      {
+        "id": 217,
+        "label": "Careers",
+        "href": "/careers"
+      },
+      {
+        "id": 218,
+        "label": "Annual Reports",
+        "href": "/annual-reports"
+      },
+      {
+        "id": 219,
+        "label": "Contact Us",
+        "href": "/contact-us"
+      },
+      {
+        "id": 220,
+        "label": "Sitemap",
+        "href": "/sitemap"
+      },
+      {
+        "id": 221,
+        "label": "Privacy Policy",
+        "href": "/privacy-policy"
+      }
+    ],
+    "solutionLinks": [
+      {
+        "id": 222,
+        "label": "Industrial Build",
+        "href": "/solutions/industrial"
+      },
+      {
+        "id": 223,
+        "label": "Infrastructure Development",
+        "href": "/solutions/infrastructure"
+      },
+      {
+        "id": 224,
+        "label": "Logistic Parks",
+        "href": "/solutions/logistic"
+      },
+      {
+        "id": 225,
+        "label": "Warehouse Contractors",
+        "href": "/solutions/warehouse"
+      }
+    ]
+  }
+]

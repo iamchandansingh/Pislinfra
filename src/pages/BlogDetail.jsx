@@ -34,7 +34,7 @@ const BlogDetail = () => {
     if (!blog && !contextLoading && !hasAttemptedDirect) {
       setDirectLoading(true);
       setHasAttemptedDirect(true);
-      fetchStrapiData(`blogs?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`)
+      fetchStrapiData(`blogs?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`, { forceFresh: true })
         .then(res => {
           if (res && res.length > 0) {
             const formatted = formatStrapiBlogs(res);

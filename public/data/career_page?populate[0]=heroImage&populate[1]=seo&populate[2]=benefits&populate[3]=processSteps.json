@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "documentId": "kt5snwntwen5zdwwz7oi3xtr",
+    "title": "Careers",
+    "heroSubtitle": "Join Pragti infra  and build tomorrow's India with us.",
+    "breadcrumb": "Careers",
+    "benefitsTitle": "Why Join <span style=\"color: #FF6B35\">PISL?</span>",
+    "processTitle": "Our Hiring <span style=\"color: #FF6B35\">Process</span>",
+    "createdAt": "2026-08-22T04:38:54.563Z",
+    "updatedAt": "2026-10-09T01:10:55.294Z",
+    "publishedAt": "2026-10-09T01:10:52.511Z",
+    "formTitle": null,
+    "formSubtitle": null,
+    "heroImage": {
+      "id": 670,
+      "documentId": null,
+      "name": "Careers.png",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": "Careers_1787753365022",
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 155.5,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755327658_561_Careers_png.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-26T08:39:25.262Z",
+      "updatedAt": "2026-08-26T08:39:25.262Z",
+      "publishedAt": null
+    },
+    "seo": {
+      "id": 75,
+      "seoTitle": "Careers at Pislinfra | Build Your Future With Us",
+      "seoDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
+      "seoKeywords": "careers, infrastructure jobs, construction jobs, civil engineering jobs, project manager jobs, warehouse construction careers, hiring, Pislinfra jobs",
+      "canonicalUrl": "https://pislinfra.com/careers",
+      "ogTitle": "Careers at Pislinfra - Build Your Future",
+      "ogDescription": "Join Pislinfra team. Explore jobs in industrial construction, engineering & project management.",
+      "ogType": "website",
+      "twitterTitle": "Careers at Pislinfra - Infrastructure Jobs",
+      "twitterDescription": "Build tomorrow's India with us. Apply now for construction & engineering roles.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": true,
+      "tags": "Careers, Jobs, Hiring, Construction, Engineering, Infrastructure",
+      "noIndex": false,
+      "noFollow": false
+    },
+    "benefits": [
+      {
+        "id": 259,
+        "title": "Competitive Salary",
+        "description": "Industry-leading pay and performance incentives.",
+        "iconName": null
+      },
+      {
+        "id": 260,
+        "title": "Career Growth",
+        "description": "Clear career path and opportunities for advancement.",
+        "iconName": null
+      },
+      {
+        "id": 261,
+        "title": "Learning Programs",
+        "description": "Continuous learning through training and certifications.",
+        "iconName": null
+      },
+      {
+        "id": 262,
+        "title": "Health Benefits",
+        "description": "Comprehensive health insurance for you and your family.",
+        "iconName": null
+      },
+      {
+        "id": 263,
+        "title": "Work-Life Balance",
+        "description": "Flexible policies and support for personal well-being.",
+        "iconName": null
+      },
+      {
+        "id": 264,
+        "title": "Make an Impact",
+        "description": "Work on meaningful projects that build a better India.",
+        "iconName": null
+      }
+    ],
+    "processSteps": [
+      {
+        "id": 575,
+        "title": "Apply Online",
+        "description": "Submit your application through our career portal with updated resume.",
+        "iconName": null
+      },
+      {
+        "id": 576,
+        "title": "Initial Screening",
+        "description": "We review your profile and conduct a shortlisting assessment.",
+        "iconName": null
+      },
+      {
+        "id": 577,
+        "title": "Technical Interview",
+        "description": "Discussion with our technical team to assess your skills and experience.",
+        "iconName": null
+      },
+      {
+        "id": 578,
+        "title": "HR Discussion",
+        "description": "HR round to understand your goals, expectations and cultural fit.",
+        "iconName": null
+      },
+      {
+        "id": 579,
+        "title": "Offer Letter",
+        "description": "Successful candidates receive the offer letter within 2-5 working days.",
+        "iconName": null
+      }
+    ]
+  }
+]

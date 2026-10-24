@@ -110,121 +110,405 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $fromEmail = "info@pislinfra.com"; 
         
         // ==========================================
-        // 1. PREMIUM EXECUTIVE HTML EMAIL TEMPLATE
+        // 1. PREMIUM BRANDED HTML EMAIL TEMPLATE (MATCHING EXACT PISL DESIGN)
         // ==========================================
-        $email_subject = "New Inquiry: {$subject} - {$fullName} [{$companyName}]";
-        $currentDate = date('d M Y, h:i A') . ' IST';
+        $email_subject = "New Contact Enquiry Received - {$fullName} [{$companyName}]";
+        $currentDate = date('d M Y, h:i A');
         
         $email_body = "<!DOCTYPE html>
         <html lang='en'>
         <head>
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>New Website Inquiry</title>
+            <title>New Contact Enquiry Received</title>
+            <style>
+                body { margin: 0; padding: 30px 15px; background-color: #E2E8F0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+                table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+                img { border: 0; outline: none; text-decoration: none; }
+            </style>
         </head>
-        <body style='margin: 0; padding: 0; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; -webkit-font-smoothing: antialiased;'>
-            <table role='presentation' width='100%' cellspacing='0' cellpadding='0' border='0' style='background-color: #f1f5f9; padding: 40px 15px;'>
+        <body style='margin: 0; padding: 30px 15px; background-color: #E2E8F0; font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;'>
+            <table role='presentation' width='100%' cellspacing='0' cellpadding='0' border='0'>
                 <tr>
                     <td align='center'>
-                        <table role='presentation' width='100%' style='max-width: 620px; background-color: #ffffff; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); border: 1px solid #e2e8f0;' cellspacing='0' cellpadding='0' border='0'>
+                        <!-- CONTAINER (Max 660px) -->
+                        <table role='presentation' width='100%' style='max-width: 660px; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12); border: 1px solid #CBD5E1;' cellspacing='0' cellpadding='0' border='0'>
                             
-                            <!-- BRAND HEADER -->
+                            <!-- 1. TOP BRAND HEADER -->
                             <tr>
-                                <td style='background: linear-gradient(135deg, #0B132B 0%, #1E2A5A 100%); padding: 32px 36px 28px; text-align: left; border-bottom: 3px solid #ff904e;'>
+                                <td style='background-color: #FFFFFF; padding: 26px 36px 22px 36px;'>
                                     <table width='100%' cellspacing='0' cellpadding='0' border='0'>
                                         <tr>
-                                            <td>
-                                                <div style='font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;'>
-                                                    <img src='https://pislinfra.com/White%20Logo.png' alt='Pislinfra' style='height: 35px; width: auto; display: block;' />
-                                                </div>
-                                                <div style='font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; font-weight: 600;'>
-                                                    Industrial & Infrastructure EPC
-                                                </div>
+                                            <!-- Left: Logo & Company Name -->
+                                            <td valign='middle' align='left'>
+                                                <table cellspacing='0' cellpadding='0' border='0'>
+                                                    <tr>
+                                                        <td>
+                                                            <img src='https://pislinfra.com/logo.png' alt='PISL' height='38' style='height: 38px; width: auto; display: block;' />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style='padding-top: 6px;'>
+                                                            <div style='font-size: 10px; font-weight: 800; color: #1E2A5A; letter-spacing: 2px; text-transform: uppercase;'>
+                                                                PRAGATI INFRA SOLUTIONS
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
-                                            <td align='right'>
-                                                <span style='display: inline-block; background-color: rgba(255, 144, 78, 0.18); border: 1px solid rgba(255, 144, 78, 0.4); color: #ffaa75; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;'>
-                                                    Website Lead
-                                                </span>
+
+                                            <!-- Right: Slogan with Orange Bar -->
+                                            <td valign='middle' align='right'>
+                                                <table cellspacing='0' cellpadding='0' border='0'>
+                                                    <tr>
+                                                        <td style='width: 3px; height: 32px; background-color: #FF6B35; border-radius: 2px;'></td>
+                                                        <td style='padding-left: 12px; font-size: 15px; font-weight: 600; color: #1E2A5A; white-space: nowrap;'>
+                                                            Building Better Tomorrow
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
 
-                            <!-- MAIN CONTENT AREA -->
+                            <!-- 2. HERO BANNER (Navy with Construction Image) -->
                             <tr>
-                                <td style='padding: 36px 36px 28px;'>
-                                    <h2 style='margin: 0 0 8px 0; font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.3px;'>
-                                        New Client Inquiry Received
-                                    </h2>
-                                    <p style='margin: 0 0 24px 0; font-size: 14px; line-height: 1.6; color: #64748b;'>
-                                        A potential client has submitted a contact inquiry on <strong style='color: #0f172a;'>pislinfra.com</strong>. Quick details and requirements are summarized below:
-                                    </p>
+                                <td style='background-color: #0A1C3E; padding: 0;'>
+                                    <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tr>
+                                            <!-- Left Content -->
+                                            <td valign='middle' style='padding: 34px 24px 34px 36px; width: 56%;'>
+                                                <div style='font-size: 11px; font-weight: 800; color: #8FA6CD; letter-spacing: 2.2px; text-transform: uppercase; margin-bottom: 8px;'>
+                                                    CONTACT US
+                                                </div>
+                                                <div style='font-size: 27px; line-height: 1.15; font-weight: 800; color: #FFFFFF; margin: 0;'>
+                                                    New Contact Enquiry
+                                                </div>
+                                                <div style='font-size: 27px; line-height: 1.15; font-weight: 800; color: #FF6B35; margin-top: 2px;'>
+                                                    Received
+                                                </div>
+                                                <!-- Orange Underline -->
+                                                <div style='width: 44px; height: 3.5px; background-color: #FF6B35; border-radius: 2px; margin: 10px 0 16px 0;'></div>
+                                                <div style='font-size: 13px; line-height: 1.55; color: #C5D4EC;'>
+                                                    A new project enquiry has been submitted through the PISL website contact form.
+                                                </div>
+                                            </td>
 
-                                    <!-- CLIENT OVERVIEW CARD -->
-                                    <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background-color: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 24px;'>
-                                        <tr>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; width: 35%; font-size: 13px; font-weight: 600; color: #64748b;'>Client Name</td>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 700; color: #0f172a;'>{$fullName}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Company / Org</td>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 600; color: #0f172a;'>{$companyName}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Direct Phone</td>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: 600;'>
-                                                <a href='tel:{$phone}' style='color: #2563eb; text-decoration: none; font-weight: 700;'>{$phone}</a>
+                                            <!-- Right Image -->
+                                            <td valign='middle' align='right' style='width: 44%; padding: 0; line-height: 0;'>
+                                                <img src='https://pislinfra.com/images/email-hero-construction.jpg' alt='PISL Warehouse Construction' style='width: 100%; max-width: 290px; height: 100%; min-height: 220px; display: block; object-fit: cover;' />
                                             </td>
                                         </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <!-- 3. ENQUIRY DETAILS CARD AREA -->
+                            <tr>
+                                <td style='background-color: #F8FAFC; padding: 28px 28px 30px 28px;'>
+                                    
+                                    <!-- White Inner Card -->
+                                    <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E2E8F0; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04); overflow: hidden;'>
+                                        
+                                        <!-- Card Header -->
                                         <tr>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Email Address</td>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 14px;'>
-                                                <a href='mailto:{$email}' style='color: #2563eb; text-decoration: none; font-weight: 600;'>{$email}</a>
+                                            <td style='padding: 22px 24px 18px 24px; border-bottom: 1px solid #EDF2F7;'>
+                                                <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                                    <tr>
+                                                        <td valign='middle' style='width: 46px;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' style='width: 44px; height: 44px; background-color: #FF6B35; border-radius: 10px; text-align: center;'>
+                                                                <tr>
+                                                                    <td align='center' valign='middle'>
+                                                                        <img src='https://pislinfra.com/images/email-icons/enquiry-mail.png' width='22' height='22' alt='Mail' style='display: block;' />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td valign='middle' style='padding-left: 14px;'>
+                                                            <div style='font-size: 20px; font-weight: 800; color: #0F1E3D; line-height: 1.2;'>
+                                                                Enquiry Details
+                                                            </div>
+                                                            <div style='font-size: 12.5px; color: #64748B; margin-top: 3px; font-weight: 500;'>
+                                                                Received on {$currentDate}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
+
+                                        <!-- 2-Column Grid (6 Fields) -->
                                         <tr>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;'>Solution Required</td>
-                                            <td style='padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13.5px; font-weight: 700; color: #0284c7;'>{$serviceRequired}</td>
+                                            <td style='padding: 0;'>
+                                                <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                                    
+                                                    <!-- Row 1: Full Name & Company Name -->
+                                                    <tr>
+                                                        <!-- Field 1: Full Name -->
+                                                        <td width='50%' valign='top' style='padding: 18px 20px; border-bottom: 1px solid #EDF2F7; border-right: 1px solid #EDF2F7;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+                                                                <tr>
+                                                                    <td valign='middle' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #EDF4FC; border-radius: 8px; text-align: center;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/user.png' width='18' height='18' alt='User' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='middle' style='padding-left: 12px;'>
+                                                                        <div style='font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 3px;'>Full Name</div>
+                                                                        <div style='font-size: 14.5px; font-weight: 700; color: #0F1E3D;'>{$fullName}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+                                                        <!-- Field 2: Company Name -->
+                                                        <td width='50%' valign='top' style='padding: 18px 20px; border-bottom: 1px solid #EDF2F7;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+                                                                <tr>
+                                                                    <td valign='middle' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #EDF4FC; border-radius: 8px; text-align: center;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/company.png' width='18' height='18' alt='Company' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='middle' style='padding-left: 12px;'>
+                                                                        <div style='font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 3px;'>Company Name</div>
+                                                                        <div style='font-size: 14.5px; font-weight: 700; color: #0F1E3D;'>{$companyName}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Row 2: Email & Phone -->
+                                                    <tr>
+                                                        <!-- Field 3: Email -->
+                                                        <td width='50%' valign='top' style='padding: 18px 20px; border-bottom: 1px solid #EDF2F7; border-right: 1px solid #EDF2F7;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+                                                                <tr>
+                                                                    <td valign='middle' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #EDF4FC; border-radius: 8px; text-align: center;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/email.png' width='18' height='18' alt='Email' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='middle' style='padding-left: 12px;'>
+                                                                        <div style='font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 3px;'>Email</div>
+                                                                        <div style='font-size: 14px; font-weight: 700; color: #0F1E3D;'>
+                                                                            <a href='mailto:{$email}' style='color: #0F1E3D; text-decoration: none;'>{$email}</a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+                                                        <!-- Field 4: Phone -->
+                                                        <td width='50%' valign='top' style='padding: 18px 20px; border-bottom: 1px solid #EDF2F7;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+                                                                <tr>
+                                                                    <td valign='middle' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #EDF4FC; border-radius: 8px; text-align: center;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/phone.png' width='18' height='18' alt='Phone' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='middle' style='padding-left: 12px;'>
+                                                                        <div style='font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 3px;'>Phone</div>
+                                                                        <div style='font-size: 14.5px; font-weight: 700; color: #0F1E3D;'>
+                                                                            <a href='tel:{$phone}' style='color: #0F1E3D; text-decoration: none;'>{$phone}</a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Row 3: Service Required & Subject -->
+                                                    <tr>
+                                                        <!-- Field 5: Service Required -->
+                                                        <td width='50%' valign='top' style='padding: 18px 20px; border-right: 1px solid #EDF2F7;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+                                                                <tr>
+                                                                    <td valign='middle' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #EDF4FC; border-radius: 8px; text-align: center;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/service.png' width='18' height='18' alt='Service' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='middle' style='padding-left: 12px;'>
+                                                                        <div style='font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 3px;'>Service Required</div>
+                                                                        <div style='font-size: 14px; font-weight: 700; color: #0F1E3D;'>{$serviceRequired}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+
+                                                        <!-- Field 6: Subject -->
+                                                        <td width='50%' valign='top' style='padding: 18px 20px;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' width='100%'>
+                                                                <tr>
+                                                                    <td valign='middle' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #EDF4FC; border-radius: 8px; text-align: center;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/subject.png' width='18' height='18' alt='Subject' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='middle' style='padding-left: 12px;'>
+                                                                        <div style='font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 3px;'>Subject</div>
+                                                                        <div style='font-size: 14px; font-weight: 700; color: #0F1E3D;'>{$subject}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </td>
                                         </tr>
+
+                                        <!-- Bottom: Project Details Box -->
                                         <tr>
-                                            <td style='padding: 14px 18px; font-size: 13px; font-weight: 600; color: #64748b;'>Submission Time</td>
-                                            <td style='padding: 14px 18px; font-size: 13px; color: #64748b;'>{$currentDate}</td>
+                                            <td style='padding: 0 20px 22px 20px;'>
+                                                <table width='100%' cellspacing='0' cellpadding='0' border='0' style='background-color: #F0F5FA; border-radius: 10px; border: 1px solid #E2EEF8;'>
+                                                    <tr>
+                                                        <td style='padding: 18px 20px;'>
+                                                            <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                                                <tr>
+                                                                    <td valign='top' style='width: 40px;'>
+                                                                        <table cellspacing='0' cellpadding='0' border='0' style='width: 36px; height: 36px; background-color: #FFFFFF; border-radius: 8px; text-align: center; border: 1px solid #D6E4F5;'>
+                                                                            <tr>
+                                                                                <td align='center' valign='middle'>
+                                                                                    <img src='https://pislinfra.com/images/email-icons/details.png' width='18' height='18' alt='Details' style='display: block;' />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td valign='top' style='padding-left: 14px;'>
+                                                                        <div style='font-size: 13.5px; font-weight: 700; color: #0F1E3D; margin-bottom: 6px;'>
+                                                                            Project Details
+                                                                        </div>
+                                                                        <div style='font-size: 13px; line-height: 1.6; color: #2D3E5E;'>
+                                                                            " . nl2br($projectDetails) . "
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <!-- 4. FOOTER (Deep Corporate Navy) -->
+                            <tr>
+                                <td style='background-color: #06122B; padding: 32px 30px 24px 30px;'>
+                                    
+                                    <!-- 3 Contact Columns -->
+                                    <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                        <tr>
+                                            <!-- Column 1: Call Us -->
+                                            <td width='33%' valign='top' style='padding-right: 12px;'>
+                                                <table cellspacing='0' cellpadding='0' border='0'>
+                                                    <tr>
+                                                        <td valign='middle' style='width: 42px;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #FF6B35; border-radius: 50%; text-align: center;'>
+                                                                <tr>
+                                                                    <td align='center' valign='middle'>
+                                                                        <img src='https://pislinfra.com/images/email-icons/phone-white.png' width='17' height='17' alt='Call' style='display: block;' />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td valign='middle' style='padding-left: 10px;'>
+                                                            <div style='font-size: 11px; font-weight: 600; color: #8FA6CD;'>Call Us</div>
+                                                            <a href='tel:08527040411' style='font-size: 13.5px; font-weight: 700; color: #FFFFFF; text-decoration: none; display: block; margin-top: 2px; white-space: nowrap;'>085270 40411</a>
+                                                            <div style='font-size: 10px; color: #8FA6CD; margin-top: 3px; line-height: 1.3;'>Mon – Sat: 9:00 AM – 6:00 PM</div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                            <!-- Column 2: Email Us -->
+                                            <td width='33%' valign='top' style='padding: 0 10px; border-left: 1px solid rgba(255, 255, 255, 0.08); border-right: 1px solid rgba(255, 255, 255, 0.08);'>
+                                                <table cellspacing='0' cellpadding='0' border='0'>
+                                                    <tr>
+                                                        <td valign='middle' style='width: 42px;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #FF6B35; border-radius: 50%; text-align: center;'>
+                                                                <tr>
+                                                                    <td align='center' valign='middle'>
+                                                                        <img src='https://pislinfra.com/images/email-icons/mail-white.png' width='17' height='17' alt='Email' style='display: block;' />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td valign='middle' style='padding-left: 10px;'>
+                                                            <div style='font-size: 11px; font-weight: 600; color: #8FA6CD;'>Email Us</div>
+                                                            <a href='mailto:info@pislinfra.com' style='font-size: 13.5px; font-weight: 700; color: #FFFFFF; text-decoration: none; display: block; margin-top: 2px;'>info@pislinfra.com</a>
+                                                            <div style='font-size: 10px; color: #8FA6CD; margin-top: 3px;'>We reply within 24 hours</div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                            <!-- Column 3: Visit Us -->
+                                            <td width='34%' valign='top' style='padding-left: 12px;'>
+                                                <table cellspacing='0' cellpadding='0' border='0'>
+                                                    <tr>
+                                                        <td valign='top' style='width: 42px; padding-top: 2px;'>
+                                                            <table cellspacing='0' cellpadding='0' border='0' style='width: 38px; height: 38px; background-color: #FF6B35; border-radius: 50%; text-align: center;'>
+                                                                <tr>
+                                                                    <td align='center' valign='middle'>
+                                                                        <img src='https://pislinfra.com/images/email-icons/pin-white.png' width='18' height='18' alt='Visit' style='display: block;' />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td valign='top' style='padding-left: 10px;'>
+                                                            <div style='font-size: 11px; font-weight: 600; color: #8FA6CD;'>Visit Us</div>
+                                                            <div style='font-size: 10.5px; line-height: 1.45; color: #C5D4EC; margin-top: 2px;'>
+                                                                31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
                                         </tr>
                                     </table>
 
-                                    <!-- PROJECT DETAILS MESSAGE BOX -->
-                                    <div style='margin-bottom: 28px;'>
-                                        <div style='font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #475569; margin-bottom: 10px;'>
-                                            📋 Project Scope & Details:
-                                        </div>
-                                        <div style='background-color: #ffffff; border-left: 4px solid #ff904e; border-top: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 18px 20px; border-radius: 0 8px 8px 0; font-size: 14.5px; line-height: 1.7; color: #1e293b;'>
-                                            " . nl2br($projectDetails) . "
-                                        </div>
+                                    <!-- Horizontal Divider -->
+                                    <div style='height: 1px; background-color: rgba(255, 255, 255, 0.12); margin: 26px 0 18px 0;'></div>
+
+                                    <!-- Footer Automated Message Note -->
+                                    <div style='text-align: center; font-size: 11px; line-height: 1.6; color: #8FA6CD;'>
+                                        This is an automated email generated from the PISL website contact form.<br>
+                                        Please do not reply to this email.
                                     </div>
 
-                                    <!-- ACTION BUTTON -->
-                                    <table width='100%' cellspacing='0' cellpadding='0' border='0'>
-                                        <tr>
-                                            <td align='center'>
-                                                <a href='mailto:{$email}?subject=Re:%20Pislinfra%20Inquiry%20-%20{$subject}' style='display: inline-block; background-color: #ff904e; color: #ffffff; font-size: 14px; font-weight: 700; text-decoration: none; padding: 12px 28px; border-radius: 8px; box-shadow: 0 4px 12px rgba(255, 144, 78, 0.35); text-transform: uppercase; letter-spacing: 0.5px;'>
-                                                    ✉️ Reply Directly to {$fullName}
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-                            <!-- FOOTER -->
-                            <tr>
-                                <td style='background-color: #0B132B; padding: 24px 36px; text-align: center; border-top: 1px solid #1E2A5A;'>
-                                    <p style='margin: 0 0 6px 0; font-size: 12.5px; color: #94a3b8;'>
-                                        Auto-generated notification from the <strong style='color: #ffffff;'>Pislinfra</strong> website contact system.
-                                    </p>
-                                    <p style='margin: 0; font-size: 11.5px; color: #64748b;'>
-                                        CC: aayush@pislinfra.com | Gurugram, Haryana, India
-                                    </p>
                                 </td>
                             </tr>
 

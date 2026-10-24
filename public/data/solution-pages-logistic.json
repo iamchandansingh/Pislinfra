@@ -1,0 +1,153 @@
+[
+  {
+    "id": 3,
+    "documentId": "zx8v9bwbcluk3zmibaw3gdjc",
+    "slug": "logistic",
+    "title": "Logistic Park Development",
+    "heroSubtitle": "Modern logistics & warehousing solutions",
+    "breadcrumb": "Solutions / Logistic",
+    "introText": "",
+    "mainFeatureTitle": "Introduction",
+    "mainFeatureText": "PISL stands as India's premier construction company, renowned for delivering exceptional services across diverse sectors. With a vast portfolio exceeding 8 million sq. ft., PISL embodies enthusiasm, hard work, and integrity. Committed to excellence, we've successfully crafted numerous projects, spanning millions of square metres, over our 13-year journey. Our unwavering ethical standards and strong track record make us a trusted industry leader in logistic park development.",
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "createdAt": "2026-08-21T14:02:34.249Z",
+    "updatedAt": "2026-08-21T16:46:26.610Z",
+    "publishedAt": "2026-08-21T16:45:40.843Z",
+    "heroImage": {
+      "id": 9,
+      "documentId": "e7mwgr3jqi80ipy8mk53izxc",
+      "name": "all-cargo-logistics-park-farrukhnagar-hr-2.png",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": "log_bg_1787320943420",
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 162.81,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-21T14:02:23.420Z",
+      "updatedAt": "2026-08-26T13:40:56.662Z",
+      "publishedAt": "2026-08-21T14:02:23.422Z"
+    },
+    "mainFeatureImage": {
+      "id": 9,
+      "documentId": "e7mwgr3jqi80ipy8mk53izxc",
+      "name": "all-cargo-logistics-park-farrukhnagar-hr-2.png",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": "log_bg_1787320943420",
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 162.81,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-21T14:02:23.420Z",
+      "updatedAt": "2026-08-26T13:40:56.662Z",
+      "publishedAt": "2026-08-21T14:02:23.422Z"
+    },
+    "grids": [
+      {
+        "id": 31,
+        "title": "Services (Design, Procurement & Construction)",
+        "description": null,
+        "vertical": true,
+        "minWidth": "300px",
+        "cardBg": null,
+        "cardBorder": null,
+        "iconBg": null,
+        "iconColor": null,
+        "items": [
+          {
+            "id": 243,
+            "title": "Design",
+            "description": "PISL's design expertise transcends aesthetics, focusing on robust foundations that endure the test of time. Our dedicated architects envision and execute projects that redefine skylines, represent architectural excellence and enrich lives.",
+            "iconName": null
+          },
+          {
+            "id": 244,
+            "title": "Construction",
+            "description": "Pislinfra specialises in constructing industrial backbones with a keen eye on functionality, durability, and space optimisation. Our experienced team ensures meticulous planning and execution, delivering exceptional results. Whether it is large-scale warehouses or specialised facilities, our warehouse contractors contribute to streamlined operations and business growth.",
+            "iconName": null
+          },
+          {
+            "id": 245,
+            "title": "Procurement",
+            "description": "Through smart sourcing, efficient procedures, and high-quality products, PISL's procurement sector offers considerable value. We ensure timely and cost-effective procurement with our vast network and industry experience, facilitating the flawless execution of warehousing and industrial initiatives.",
+            "iconName": null
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "What Makes Us Different (Our Capabilities)",
+        "description": null,
+        "vertical": false,
+        "minWidth": "340px",
+        "cardBg": null,
+        "cardBorder": null,
+        "iconBg": null,
+        "iconColor": null,
+        "items": [
+          {
+            "id": 246,
+            "title": "Cutting-Edge Industrial and Warehousing Spaces",
+            "description": "PISL sets itself apart by delivering top-notch Grade-A infrastructure tailored for our BTS (Built-To-Suit) clients. Our commitment to excellence permeates every aspect, guaranteeing efficiency and quality in both design and construction for every project.",
+            "iconName": null
+          },
+          {
+            "id": 247,
+            "title": "Tech-Driven Innovation",
+            "description": "PISL welcomes the future through the strategic integration of information technology. We use cutting-edge techniques to expedite procurement procedures and efficiently manage construction timelines. This technological integration allows us to deliver projects with more precision and agility.",
+            "iconName": null
+          },
+          {
+            "id": 248,
+            "title": "Precision in Execution",
+            "description": "At PISL, execution is at the heart of our services. We guarantee our clients a smooth and accurate execution across all of our solutions, ensuring that their investment is maximised and their vision is fulfilled.",
+            "iconName": null
+          },
+          {
+            "id": 249,
+            "title": "Strategic Financial Approach",
+            "description": "PISL is at the forefront of India's thriving warehousing industry, providing not just secure but also profitable financial opportunities. Our dedication to a balanced and prosperous financial perspective is in sync with the industry's rapid expansion, assuring a safe investment for our clients.",
+            "iconName": null
+          }
+        ]
+      }
+    ],
+    "seo": {
+      "id": 72,
+      "seoTitle": "Logistic Park Development Solutions | Pislinfra",
+      "seoDescription": "Pislinfra specializes in logistic park development across India. Design, procurement & construction of modern warehousing & logistics facilities. 8M+ sq ft delivered.",
+      "seoKeywords": "logistic park development, logistics park construction, warehouse logistics, industrial logistics, supply chain infrastructure, logistics hub, Pislinfra",
+      "canonicalUrl": "https://pislinfra.com/solutions/logistic",
+      "ogTitle": "Logistic Park Development - Warehousing Solutions | Pislinfra",
+      "ogDescription": "Expert logistic park development services. Design, procurement & construction of modern logistics facilities.",
+      "ogType": "website",
+      "twitterTitle": "Logistic Park Development | Pislinfra",
+      "twitterDescription": "Modern logistics & warehousing solutions across India.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": true,
+      "tags": "Logistics, Warehouse, Supply Chain, Industrial, Construction",
+      "noIndex": false,
+      "noFollow": false
+    }
+  }
+]

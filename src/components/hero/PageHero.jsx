@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { HiHome } from 'react-icons/hi'
 
-const PageHero = ({ title, subtitle, breadcrumb, bgImage }) => {
+const PageHero = ({ title, subtitle, breadcrumb, bgImage, image }) => {
+  const activeBg = bgImage || image || '/images/hero/EHS.png';
   return (
     <section className="page-hero-section" style={{
       position: 'relative',
@@ -15,7 +16,7 @@ const PageHero = ({ title, subtitle, breadcrumb, bgImage }) => {
     }}>
       <div style={{
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center',
+        backgroundImage: `url(${activeBg})`, backgroundSize: 'cover', backgroundPosition: 'center',
         filter: 'brightness(0.4)', zIndex: 0,
       }} />
       <div style={{

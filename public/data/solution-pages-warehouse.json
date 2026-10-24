@@ -1,0 +1,165 @@
+[
+  {
+    "id": 4,
+    "documentId": "fvtfie7wh0gb9clr3u5o1hmn",
+    "slug": "warehouse",
+    "title": "Warehouse Contractors",
+    "heroSubtitle": "State-of-the-art storage & distribution centers",
+    "breadcrumb": "Solutions / Warehouse",
+    "introText": "",
+    "mainFeatureTitle": "Design-Build Solutions",
+    "mainFeatureText": "PISL stands as the leading warehouse contractor and distribution space nationwide, serving as a reliable contractor for clients nationwide. We are highly competent in offering the best and most cost-effective warehouse design and construction solutions for our clients. This holds true whether it's speculative developments or expansive distribution centres catering to e-commerce end-users, Consumer Packaged Goods (CPGs), and Third-Party Logistics (3PL) providers.",
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "createdAt": "2026-08-21T14:31:31.272Z",
+    "updatedAt": "2026-08-21T14:52:37.879Z",
+    "publishedAt": "2026-08-21T14:52:18.950Z",
+    "heroImage": {
+      "id": 10,
+      "documentId": "zohe0i2vpwzb0qrcf0lylxxu",
+      "name": "amazon-del5-billaspur-hr-5.png",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": "wh_bg_1787322680933",
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 124.11,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-21T14:31:20.933Z",
+      "updatedAt": "2026-08-26T13:40:58.020Z",
+      "publishedAt": "2026-08-21T14:31:20.934Z"
+    },
+    "mainFeatureImage": {
+      "id": 10,
+      "documentId": "zohe0i2vpwzb0qrcf0lylxxu",
+      "name": "amazon-del5-billaspur-hr-5.png",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": "wh_bg_1787322680933",
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 124.11,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-21T14:31:20.933Z",
+      "updatedAt": "2026-08-26T13:40:58.020Z",
+      "publishedAt": "2026-08-21T14:31:20.934Z"
+    },
+    "grids": [
+      {
+        "id": 25,
+        "title": "Construction (Considerations)",
+        "description": "When undertaking warehouse construction, numerous warehouse design and construction intricacies must be taken into account to achieve a successful development. Working with an experienced contractor who is actively involved in the design and early stages of a project ensures optimal results.",
+        "vertical": false,
+        "minWidth": "400px",
+        "cardBg": null,
+        "cardBorder": null,
+        "iconBg": null,
+        "iconColor": null,
+        "items": [
+          {
+            "id": 200,
+            "title": "1. Floor Systems",
+            "description": "Choosing the right warehouse floor system necessitates an understanding of concrete kinds, site dynamics, and how a space will be used. Concrete floors can be reinforced or unreinforced, freezer/cooler compatible, shrinkage compensating, and tailored to the user's floor loads and equipment route requirements.",
+            "iconName": null
+          },
+          {
+            "id": 201,
+            "title": "2. Exterior Wall Types",
+            "description": "Selecting warehouse exterior walls considers factors like size and schedule. Large facilities often opt for on-site poured concrete panels, which are cost-effective and have versatile finishes. Precast panels, produced offsite, suit tight schedules and are ideal for installation before the floor slab.",
+            "iconName": null
+          },
+          {
+            "id": 202,
+            "title": "3. Building Structure",
+            "description": "In planning a warehouse, factors like roof loads, wall cladding, and storage heights must be factored in. Engineered steel joists, rafters, and columns can span considerable distances and support substantial roof loads. For tall storage needs, rack-supported structures optimise space.",
+            "iconName": null
+          },
+          {
+            "id": 203,
+            "title": "4. Bay Sizing",
+            "description": "Bay sizing and rack design are critical elements in the warehouse building. The width and clear height of the structure are used to determine forklift travel pathways, aisle widths and racking layouts. A skilled warehouse contractor is critical to guaranteeing successful construction.",
+            "iconName": null
+          },
+          {
+            "id": 204,
+            "title": "5. Building Systems",
+            "description": "Decisions on dock types, sizes, and specifications have significance throughout the design phase. The functional requirements dictate whether mechanical or hydraulic docks are used. Electrical service, HVAC, fire protection, and lighting are all factors to consider with strict adherence to code standards.",
+            "iconName": null
+          },
+          {
+            "id": 205,
+            "title": "6. Site Design & Selection",
+            "description": "Guidelines dictate parking ratios, dock size, and office space distribution. PISL's expertise guarantees efficient and functional space utilisation. Our site feasibility services empower clients to make informed decisions by providing cost information and aiding in schedule considerations before construction.",
+            "iconName": null
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "The PISL (Infra Advantage)",
+        "description": null,
+        "vertical": true,
+        "minWidth": "300px",
+        "cardBg": "#fff5f0",
+        "cardBorder": "#ffd5c2",
+        "iconBg": "#ff8755",
+        "iconColor": "white",
+        "items": [
+          {
+            "id": 206,
+            "title": "Design-Build Strategy",
+            "description": "PISL's distinctive design-build strategy eliminates the risk of upfront costs by providing customers with a complimentary preliminary design.",
+            "iconName": null
+          },
+          {
+            "id": 207,
+            "title": "Integrated Project Delivery",
+            "description": "Our integrated project delivery strategy unifies design and construction quality, capital expenditure management, and schedule adherence under a single point of contact.",
+            "iconName": null
+          },
+          {
+            "id": 208,
+            "title": "Risk Minimisation",
+            "description": "Our team of construction experts deeply understands each business, strategically minimising risk exposure and delivering optimal value.",
+            "iconName": null
+          }
+        ]
+      }
+    ],
+    "seo": {
+      "id": 63,
+      "seoTitle": "Warehouse",
+      "seoDescription": "Pislinfra is a leading warehouse contractor in India. Expert design-build solutions for industrial storage & distribution centers. Cost-effective warehouse construction.",
+      "seoKeywords": "warehouse contractors, warehouse construction, industrial storage, distribution center, design build warehouse, warehouse design, logistics facility, Pislinfra",
+      "canonicalUrl": "https://pislinfra.com/solutions/warehouse",
+      "ogTitle": "Warehouse Contractors - Industrial Storage Solutions | Pislinfra",
+      "ogDescription": "Leading warehouse contractor in India. Design-build solutions for storage & distribution centers.",
+      "ogType": "website",
+      "twitterTitle": "Warehouse Contractors | Pislinfra",
+      "twitterDescription": "Expert warehouse construction & design-build solutions.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": true,
+      "tags": "Warehouse, Construction, Design Build, Industrial, Storage, Logistics",
+      "noIndex": false,
+      "noFollow": false
+    }
+  }
+]

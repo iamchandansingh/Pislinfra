@@ -266,7 +266,7 @@ const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition, jobPos
             borderRadius: '16px',
             padding: '48px 32px',
             textAlign: 'center',
-            boxShadow: '0 4px 20px rgba(15,23,42,0.04)',
+            boxShadow: 'none',
           }}>
             <div style={{
               width: '72px',
@@ -326,7 +326,7 @@ const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition, jobPos
             border: '1px solid #E5EAF2',
             borderRadius: '16px',
             padding: '24px',
-            boxShadow: '0 4px 20px rgba(15,23,42,0.04)',
+            boxShadow: 'none',
           }}>
             {/* Form Header */}
             <div style={{ marginBottom: '24px' }}>
@@ -574,7 +574,7 @@ const CareerApplicationSection: React.FC<Props> = ({ preSelectedPosition, jobPos
           </div>
 
           {/* RIGHT - Info Card */}
-          <div style={{ background: 'linear-gradient(180deg, #081C66 0%, #0B1450 100%)', borderRadius: '16px', padding: '24px', color: '#FFFFFF' }}>
+          <div style={{ background: 'linear-gradient(180deg, #081C66 0%, #0B1450 100%)', borderRadius: '16px', padding: '24px', color: '#FFFFFF', boxShadow: 'none' }}>
             <div style={{ marginBottom: '24px' }}>
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#FF6B35', margin: '0 0 4px 0' }}>Have Questions?</h3>
               <h2 style={{ fontSize: '26px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 8px 0' }}>We're Here to Help!</h2>

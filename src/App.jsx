@@ -14,6 +14,7 @@ const Leadership = lazy(() => import('./pages/about/Leadership'))
 const EHS = lazy(() => import('./pages/about/EHS'))
 const Awards = lazy(() => import('./pages/about/Awards'))
 const CSR = lazy(() => import('./pages/about/CSR'))
+const PoliciesGovernance = lazy(() => import('./pages/about/PoliciesGovernance'))
 
 // Project Pages
 const OngoingProjects = lazy(() => import('./pages/projects/OngoingProjects'))
@@ -59,6 +60,8 @@ function App() {
             <Route path="about/ehs" element={<EHS />} />
             <Route path="about/awards" element={<Awards />} />
             <Route path="about/csr" element={<CSR />} />
+            {/* Policies & Governance; slug is managed in Strapi (static about/* routes above take precedence) */}
+            <Route path="about/:slug" element={<PoliciesGovernance />} />
             <Route path="projects" element={<OngoingProjects />} />
             <Route path="projects/ongoing" element={<OngoingProjects />} />
             <Route path="projects/completed" element={<CompletedProjects />} />
@@ -78,6 +81,8 @@ function App() {
             <Route path="sitemap" element={<Sitemap />} />
             <Route path="project/:type/:id" element={<ProjectDetail />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="company-policy" element={<PoliciesGovernance />} />
+            <Route path="policies-governance" element={<Navigate to="/company-policy" replace />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

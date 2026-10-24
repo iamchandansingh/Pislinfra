@@ -1,0 +1,99 @@
+[
+  {
+    "id": 1,
+    "documentId": "wafbqiz1kjs4oleeso0i84an",
+    "title": "Privacy Policy",
+    "lastUpdated": "2024-03-15",
+    "heroSubtitle": "Learn how we collect, use, and protect your data.",
+    "breadcrumb": "Privacy Policy",
+    "createdAt": "2026-08-22T06:47:37.734Z",
+    "updatedAt": "2026-10-09T01:13:51.359Z",
+    "publishedAt": "2026-10-09T01:13:49.299Z",
+    "heroImage": {
+      "id": 671,
+      "documentId": "rqctebpp4njwh7h6zhwn7",
+      "name": "Extra-2.webp",
+      "alternativeText": null,
+      "caption": null,
+      "focalPoint": null,
+      "width": null,
+      "height": null,
+      "formats": null,
+      "hash": null,
+      "ext": ".webp",
+      "mime": "image/webp",
+      "size": 133.49,
+      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787756480751_Extra-2.webp",
+      "previewUrl": null,
+      "provider": "aws-s3",
+      "provider_metadata": null,
+      "createdAt": "2026-08-26T09:31:21.944Z",
+      "updatedAt": "2026-08-26T09:31:21.944Z",
+      "publishedAt": null
+    },
+    "seo": {
+      "id": 76,
+      "seoTitle": "Privacy Policy | Pislinfra",
+      "seoDescription": "Read Pislinfra’s Privacy Policy to understand how we collect, use, protect and manage personal information when you use our website and services.",
+      "seoKeywords": null,
+      "canonicalUrl": "https://pislinfra.com/privacy-policy",
+      "ogTitle": "Privacy Policy - Pragati Infra Solutions",
+      "ogDescription": "Read the privacy policy of Pragati Infra Solutions.",
+      "ogType": "website",
+      "twitterTitle": null,
+      "twitterDescription": null,
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": false,
+      "tags": null,
+      "noIndex": false,
+      "noFollow": false
+    },
+    "sections": [
+      {
+        "id": 337,
+        "title": "Introduction",
+        "icon": "overview",
+        "content": "Welcome to Pragati Infra Solutions (\"we,\" \"our,\" or \"us\"). As a leading industrial infrastructure and EPC company in India, we are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website pislinfra.com."
+      },
+      {
+        "id": 338,
+        "title": "Information We Collect",
+        "icon": "file",
+        "content": "We may collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our services, when you participate in activities on the Website, or when you contact us.\n\n*   **Personal Data:** Name, email address, phone number, and job title when submitted through contact or career forms.\n*   **Usage Data:** Information automatically collected by our servers, such as your IP address, browser type, operating system, and pages viewed."
+      },
+      {
+        "id": 339,
+        "title": "How We Use Your Information",
+        "icon": "users",
+        "content": "We use the information we collect or receive to:\n\n*   Respond to your inquiries and offer customer support.\n*   Process job applications submitted through our careers page.\n*   Send administrative information, updates, or marketing communications.\n*   Improve our website, services, and overall user experience."
+      },
+      {
+        "id": 340,
+        "title": "Sharing Your Information",
+        "icon": "share",
+        "content": "We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information with our business partners and trusted affiliates for the purposes outlined above."
+      },
+      {
+        "id": 341,
+        "title": "Data Security",
+        "icon": "lock",
+        "content": "We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure."
+      },
+      {
+        "id": 342,
+        "title": "Cookies and Tracking",
+        "icon": "cookie",
+        "content": "We may use cookies and similar tracking technologies to access or store information. You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies."
+      },
+      {
+        "id": 343,
+        "title": "Contact Us",
+        "icon": "mail",
+        "content": "If you have questions or comments about this Privacy Policy, you may contact us at:\n\n**Company Address**\n31 P, adj. to Medanta, Medicity,\nIslampur Colony, Sector 38\nGurugram, Haryana 122018\n\n**Contact Details**\nPhone: 085270 40411\nEmail: info@pislinfra.com"
+      }
+    ]
+  }
+]

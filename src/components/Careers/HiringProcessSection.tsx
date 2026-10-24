@@ -84,31 +84,9 @@ const defaultProcessSteps: ProcessStep[] = [
   },
 ];
 
-const renderTitle = (titleText?: string) => {
-  if (!titleText) {
-    return (
-      <>
-        Our Hiring <span style={{ color: '#FF6B35' }}>Process</span>
-      </>
-    );
-  }
-
-  if (titleText.toLowerCase().includes('process')) {
-    const parts = titleText.split(/(process)/i);
-    return (
-      <>
-        {parts.map((part, idx) =>
-          part.toLowerCase() === 'process' ? (
-            <span key={idx} style={{ color: '#FF6B35' }}>{part}</span>
-          ) : (
-            <span key={idx}>{part}</span>
-          )
-        )}
-      </>
-    );
-  }
-
-  return titleText;
+const cleanTitle = (rawTitle?: string): string => {
+  if (!rawTitle) return 'Our Hiring Process';
+  return rawTitle.replace(/<[^>]*>?/gm, '').trim();
 };
 
 // Main Component
@@ -129,9 +107,8 @@ const HiringProcessSection: React.FC<HiringProcessSectionProps> = ({ title, step
         {/* Section Header */}
         <div className="hiring-process-header">
           <h2 className="hiring-process-title">
-            {renderTitle(title)}
+            {cleanTitle(title)}
           </h2>
-          <div className="hiring-process-divider" />
         </div>
 
         {/* Desktop Horizontal Timeline (>= 1024px) */}
@@ -190,6 +167,7 @@ const HiringProcessSection: React.FC<HiringProcessSectionProps> = ({ title, step
         .hiring-process-section {
           width: 100%;
           background-color: #FFFFFF;
+          padding: 60px 0 70px 0;
           font-family: 'Inter', sans-serif;
           box-sizing: border-box;
         }
@@ -205,24 +183,16 @@ const HiringProcessSection: React.FC<HiringProcessSectionProps> = ({ title, step
         /* Header */
         .hiring-process-header {
           text-align: center;
-          margin-bottom: 38px;
+          margin-bottom: 48px;
         }
 
         .hiring-process-title {
-          font-size: clamp(24px, 3.5vw, 36px);
+          font-size: clamp(28px, 4vw, 42px);
           font-weight: 800;
           color: #1E2A5A;
-          margin: 0 0 10px 0;
+          margin: 0;
           line-height: 1.2;
           letter-spacing: -0.5px;
-        }
-
-        .hiring-process-divider {
-          width: 44px;
-          height: 3px;
-          background-color: #FF6B35;
-          border-radius: 999px;
-          margin: 0 auto;
         }
 
         /* ===== Desktop Timeline (>= 1024px) ===== */
@@ -435,6 +405,9 @@ const HiringProcessSection: React.FC<HiringProcessSectionProps> = ({ title, step
         }
 
         @media (max-width: 768px) {
+          .hiring-process-section {
+            padding: 40px 0 50px 0 !important;
+          }
           .hiring-process-container {
             padding: 0 14px !important;
           }
@@ -442,7 +415,7 @@ const HiringProcessSection: React.FC<HiringProcessSectionProps> = ({ title, step
             margin-bottom: 26px !important;
           }
           .hiring-process-title {
-            font-size: clamp(22px, 5.5vw, 28px) !important;
+            font-size: clamp(24px, 6vw, 32px) !important;
           }
         }
 

@@ -1,13 +1,16 @@
-export const isLocalhost = typeof window !== 'undefined' && (
-  window.location.hostname === 'localhost' ||
-  window.location.hostname === '127.0.0.1' ||
-  window.location.hostname === '0.0.0.0' ||
-  window.location.hostname.endsWith('.local')
+export const isLocalhost = Boolean(
+  import.meta.env.DEV &&
+  typeof window !== 'undefined' && (
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '0.0.0.0' ||
+    window.location.hostname.endsWith('.local')
+  )
 );
 
 // In development on localhost, prioritize local Strapi (http://127.0.0.1:1337) so edits reflect instantly.
 // On live production, use VITE_STRAPI_URL or Render.
-export const STRAPI_URL = isLocalhost
+export const STRAPI_URL = (import.meta.env.DEV && isLocalhost)
   ? 'http://127.0.0.1:1337'
   : (import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com');
 
@@ -92,7 +95,7 @@ export const isCmsOffline = () => cmsOfflineState;
 // 2.1 CACHE VERSIONING & INSTANT PURGE
 // (Busts legacy browser cache so visitors instantly get latest projects)
 // ==========================================
-export const CACHE_VERSION = 'v9_2026_10_14_homepage_sections';
+export const CACHE_VERSION = 'v12_2026_10_23_cover_fix';
 
 if (typeof window !== 'undefined' && window.localStorage) {
   try {
@@ -254,15 +257,16 @@ export const getLocalDataSync = (endpoint) => {
 const revalidateInBackground = (endpoint, cleanEndpoint) => {
   if (typeof window === 'undefined') return;
 
-  // Avoid spamming requests: Revalidate at most once every 60 seconds per endpoint
+  // Revalidate cooldown: 0ms on localhost for instant CMS edits, 30s on production
+  const cooldown = isLocalhost ? 0 : 30000;
   const lastTime = lastFetchedTime.get(cleanEndpoint) || lastFetchedTime.get(endpoint) || 0;
-  if (Date.now() - lastTime < 60000) return;
+  if (!isLocalhost && Date.now() - lastTime < cooldown) return;
   if (backgroundRevalidating.has(cleanEndpoint)) return;
   backgroundRevalidating.add(cleanEndpoint);
 
   (async () => {
     try {
-      const cleanData = await fetchFromNetwork(endpoint, cleanEndpoint, false, 6000);
+      const cleanData = await fetchFromNetwork(endpoint, cleanEndpoint, isLocalhost, 6000);
       if (cleanData) {
         lastFetchedTime.set(endpoint, Date.now());
         lastFetchedTime.set(cleanEndpoint, Date.now());
@@ -288,7 +292,7 @@ const fetchFromNetwork = async (endpoint, cleanEndpoint, forceFresh = false, cus
   }
 
   const fetchPromise = (async () => {
-    const candidateUrls = isLocalhost
+    const candidateUrls = (import.meta.env.DEV && isLocalhost)
       ? ['http://127.0.0.1:1337']
       : [import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'];
 
@@ -297,7 +301,7 @@ const fetchFromNetwork = async (endpoint, cleanEndpoint, forceFresh = false, cus
       let timeoutId = null;
       try {
         const controller = new AbortController();
-        const timeoutMs = customTimeoutMs || (isLocalhost ? 6000 : 5000);
+        const timeoutMs = customTimeoutMs || (isLocalhost ? 30000 : 15000);
         timeoutId = setTimeout(() => {
           try { controller.abort(); } catch (e) {}
         }, timeoutMs);

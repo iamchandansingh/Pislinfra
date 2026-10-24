@@ -47,12 +47,22 @@ const AutoSlidingImages = () => {
   ];
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    const timer = setInterval(() => setCurrent((prev) => (prev + 1) % images.length), 4000);
+    const timer = setInterval(() => setCurrent((prev) => (prev + 1) % images.length), 5000);
     return () => clearInterval(timer);
   }, [images.length]);
 
   return (
-    <div className="overview-slider-wrap" style={{ borderRadius: '20px', overflow: 'hidden', boxShadow: '0 20px 48px rgba(40,40,110,0.1)', height: '340px', position: 'relative' }}>
+    <div 
+      className="overview-slider-wrap" 
+      style={{ 
+        borderRadius: '12px', 
+        border: `2px solid ${NAVY}`,
+        overflow: 'hidden', 
+        boxShadow: '0 14px 36px rgba(40,40,110,0.12)', 
+        height: '340px', 
+        position: 'relative' 
+      }}
+    >
       {images.map((img, i) => (
         <img 
           key={i} 
@@ -76,12 +86,14 @@ const AutoSlidingImages = () => {
         {images.map((_, i) => (
           <span 
             key={i} 
+            onClick={() => setCurrent(i)}
             style={{ 
               width: current === i ? '18px' : '6px', 
               height: '6px', 
               borderRadius: '3px', 
               backgroundColor: current === i ? ORANGE : 'rgba(255,255,255,0.7)', 
               boxShadow: '0 1px 3px rgba(0,0,0,0.3)',
+              cursor: 'pointer',
               transition: 'all 0.3s ease' 
             }} 
           />
@@ -155,13 +167,13 @@ const Overview = () => {
 
   const overviewTitle = data?.overviewTitle ? data.overviewTitle.toUpperCase() : 'OVERVIEW';
 
-  const capabilitiesTitleSplit = data.capabilitiesTitle ? data.capabilitiesTitle.split(' ') : ['OUR', 'CAPABILITIES'];
-  const c1 = capabilitiesTitleSplit.slice(0, -1).join(' ') || 'OUR';
-  const c2 = capabilitiesTitleSplit.slice(-1) || 'CAPABILITIES';
+  const capabilitiesTitleSplit = (data?.capabilitiesTitle || 'OUR CAPABILITIES').trim().split(/\s+/);
+  const c1 = capabilitiesTitleSplit.length > 1 ? capabilitiesTitleSplit.slice(0, -1).join(' ') : 'OUR';
+  const c2 = capabilitiesTitleSplit.length > 1 ? capabilitiesTitleSplit.slice(-1)[0] : (capabilitiesTitleSplit[0] || 'CAPABILITIES');
 
-  const valuesTitleSplit = data.valuesTitle ? data.valuesTitle.split(' ') : ['OUR', 'VALUES'];
-  const v1 = valuesTitleSplit.slice(0, -1).join(' ') || 'OUR';
-  const v2 = valuesTitleSplit.slice(-1) || 'VALUES';
+  const valuesTitleSplit = (data?.valuesTitle || 'OUR VALUES').trim().split(/\s+/);
+  const v1 = valuesTitleSplit.length > 1 ? valuesTitleSplit.slice(0, -1).join(' ') : 'OUR';
+  const v2 = valuesTitleSplit.length > 1 ? valuesTitleSplit.slice(-1)[0] : (valuesTitleSplit[0] || 'VALUES');
 
   return (
     <div style={{ background: '#ffffff', fontFamily: '"Inter", "Helvetica Neue", sans-serif' }}>
@@ -413,7 +425,7 @@ const Overview = () => {
           }
           .overview-slider-wrap {
             height: clamp(200px, 56vw, 250px) !important;
-            border-radius: 14px !important;
+            border-radius: 10px !important;
           }
 
           /* Stats Section Mobile (2x2 Grid) */

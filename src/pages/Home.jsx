@@ -337,7 +337,11 @@ const Home = () => {
       <BlogSEO blog={homeSeoData} />
 
       <div>
-        <HeroVideo />
+        <HeroVideo 
+          bannerImage={getImageUrl(data?.heroImage, '/images/hero/11.png')}
+          heroImage={getImageUrl(data?.heroImage, '/images/hero/11.png')}
+          videoSrc={getImageUrl(data?.heroVideo, '/videos/PISL-WEBSITE.mp4')}
+        />
         <AboutUs data={data} />
         <StatsSection data={data} />
         <Services data={data} />

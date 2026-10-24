@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import notFoundIllustration from '../assets/images/page-not-found.jpg';
 
 /* ─── CORPORATE BRAND COLORS ─────────────────────────────────────────────── */
 const NAVY = '#28286e';
@@ -9,14 +10,14 @@ const ORANGE = '#ff8755';
 const NotFound = () => {
   return (
     <section style={{
-      height: '100vh',
+      minHeight: '55vh',
       width: '100%',
       backgroundColor: '#ffffff',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       fontFamily: '"Inter", "-apple-system", sans-serif',
-      padding: '0 24px',
+      padding: '40px 24px 50px 24px',
       overflow: 'hidden',
       position: 'relative'
     }}>
@@ -29,39 +30,31 @@ const NotFound = () => {
         zIndex: 1
       }}>
         
-        {/* Massive Monolith 404 Number */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          style={{
-            fontSize: 'clamp(100px, 15vw, 160px)',
-            fontWeight: 900,
-            color: NAVY,
-            margin: '0 0 12px 0',
-            letterSpacing: '-6px',
-            lineHeight: 1
-          }}
+        {/* Page Not Found Illustration */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          style={{ marginBottom: '16px' }}
         >
-          404<span style={{ color: ORANGE }}>.</span>
-        </motion.h1>
-
-        {/* Crisp Error Title */}
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          style={{
-            fontSize: '20px',
-            fontWeight: 800,
-            color: NAVY,
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            margin: '0 0 16px 0'
-          }}
-        >
-          Page Not Found
-        </motion.h2>
+          <img
+            src={notFoundIllustration}
+            onError={(e) => {
+              if (!e.currentTarget.dataset.fallback) {
+                e.currentTarget.dataset.fallback = 'true';
+                e.currentTarget.src = '/images/page-not-found.jpg';
+              }
+            }}
+            alt="Page Not Found"
+            style={{
+              maxWidth: '380px',
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              margin: '0 auto'
+            }}
+          />
+        </motion.div>
 
         {/* Clean Description */}
         <motion.p
@@ -72,7 +65,7 @@ const NotFound = () => {
             fontSize: '15px',
             color: '#64748b',
             lineHeight: '1.6',
-            margin: '0 0 40px 0',
+            margin: '0 0 24px 0',
             fontWeight: 500
           }}
         >
