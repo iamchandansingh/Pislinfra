@@ -1,3 +1,5 @@
+import { getImageUrl } from '../utils/imageUrl.js';
+
 export const isLocalhost = Boolean(
   import.meta.env.DEV &&
   typeof window !== 'undefined' && (
@@ -227,16 +229,25 @@ export const getLocalDataSync = (endpoint) => {
       raw = mainBackupData[cleanEndpoint];
     } else {
       const baseKey = cleanEndpoint.split('?')[0];
-      if (mainBackupData[baseKey]) {
-        raw = mainBackupData[baseKey];
-      } else {
-        const slugMatch = cleanEndpoint.match(/filters\[slug\](?:\[\$eq\])?=([a-zA-Z0-9_-]+)/);
-        if (slugMatch && slugMatch[1]) {
-          const slugKey = `${baseKey}-${slugMatch[1]}`;
-          if (mainBackupData[slugKey]) {
-            raw = mainBackupData[slugKey];
+      const slugMatch = cleanEndpoint.match(/filters\[slug\](?:\[\$eq\]|\[\])?=([^&]+)/);
+      if (slugMatch && slugMatch[1]) {
+        const slugVal = decodeURIComponent(slugMatch[1]).trim().toLowerCase();
+        const slugKey = `${baseKey}-${slugVal}`;
+        if (mainBackupData[slugKey]) {
+          raw = mainBackupData[slugKey];
+        } else if (mainBackupData[baseKey]) {
+          const pool = unwrapData(mainBackupData[baseKey]);
+          if (Array.isArray(pool)) {
+            const matched = pool.find(item => {
+              const s = (item.slug || item.attributes?.slug || '').toLowerCase();
+              const docId = (item.documentId || item.id || '').toString().toLowerCase();
+              return s === slugVal || docId === slugVal;
+            });
+            if (matched) raw = [matched];
           }
         }
+      } else if (mainBackupData[baseKey]) {
+        raw = mainBackupData[baseKey];
       }
     }
 
@@ -252,168 +263,8 @@ export const getLocalDataSync = (endpoint) => {
 };
 
 // ==========================================
-// 5. BACKGROUND NETWORK REVALIDATION (Stale-While-Revalidate)
-// ==========================================
-const revalidateInBackground = (endpoint, cleanEndpoint) => {
-  if (typeof window === 'undefined') return;
-
-  // Revalidate cooldown: 0ms on localhost for instant CMS edits, 30s on production
-  const cooldown = isLocalhost ? 0 : 30000;
-  const lastTime = lastFetchedTime.get(cleanEndpoint) || lastFetchedTime.get(endpoint) || 0;
-  if (!isLocalhost && Date.now() - lastTime < cooldown) return;
-  if (backgroundRevalidating.has(cleanEndpoint)) return;
-  backgroundRevalidating.add(cleanEndpoint);
-
-  (async () => {
-    try {
-      const cleanData = await fetchFromNetwork(endpoint, cleanEndpoint, isLocalhost, 6000);
-      if (cleanData) {
-        lastFetchedTime.set(endpoint, Date.now());
-        lastFetchedTime.set(cleanEndpoint, Date.now());
-        // Notify components of background live data update
-        window.dispatchEvent(new CustomEvent('pisl-data-update', {
-          detail: { endpoint, cleanEndpoint, data: cleanData }
-        }));
-      }
-    } catch (e) {
-      // Background revalidation failed silently, user already has local data
-    } finally {
-      backgroundRevalidating.delete(cleanEndpoint);
-    }
-  })();
-};
-
-// ==========================================
-// 6. LOW-LEVEL NETWORK FETCHER
-// ==========================================
-const fetchFromNetwork = async (endpoint, cleanEndpoint, forceFresh = false, customTimeoutMs = null) => {
-  if (inFlightRequests.has(cleanEndpoint)) {
-    return inFlightRequests.get(cleanEndpoint);
-  }
-
-  const fetchPromise = (async () => {
-    const candidateUrls = (import.meta.env.DEV && isLocalhost)
-      ? ['http://127.0.0.1:1337']
-      : [import.meta.env.VITE_STRAPI_URL || 'https://cms-pislinfra.onrender.com'];
-
-    for (const baseUrl of candidateUrls) {
-      if (!baseUrl) continue;
-      let timeoutId = null;
-      try {
-        const controller = new AbortController();
-        const timeoutMs = customTimeoutMs || (isLocalhost ? 30000 : 15000);
-        timeoutId = setTimeout(() => {
-          try { controller.abort(); } catch (e) {}
-        }, timeoutMs);
-
-        if (forceFresh) {
-          memoryCache.delete(endpoint);
-          memoryCache.delete(cleanEndpoint);
-        }
-
-        const requestUrl = `${baseUrl}/api/${cleanEndpoint}`;
-        const response = await fetch(requestUrl, {
-          cache: 'no-store',
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache'
-          },
-          signal: controller.signal
-        });
-
-        if (response.ok) {
-          const json = await response.json();
-          if (json && json.data) {
-            const cleanData = sanitizeBrandText(unwrapData(json.data));
-            memoryCache.set(endpoint, cleanData);
-            memoryCache.set(cleanEndpoint, cleanData);
-            lastFetchedTime.set(endpoint, Date.now());
-            lastFetchedTime.set(cleanEndpoint, Date.now());
-            saveToIDB(cleanEndpoint, cleanData);
-            saveToIDB(endpoint, cleanData);
-
-            if (typeof window !== 'undefined' && window.localStorage) {
-              try {
-                window.localStorage.setItem(`pisl_cache_${cleanEndpoint}`, JSON.stringify(cleanData));
-                window.localStorage.setItem(`pisl_cache_${endpoint}`, JSON.stringify(cleanData));
-                window.localStorage.setItem(`pisl_cache_time_${cleanEndpoint}`, Date.now().toString());
-                window.localStorage.setItem(`pisl_cache_time_${endpoint}`, Date.now().toString());
-              } catch (e) {}
-            }
-
-            if (typeof window !== 'undefined') {
-              if (isLocalhost) {
-                try {
-                  fetch('/__api/save-main-backup', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
-                  }).catch(() => {});
-                } catch (e) {}
-              } else {
-                try {
-                  fetch('/sync-backup.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ endpoint: cleanEndpoint, data: cleanData })
-                  }).catch(() => {});
-                } catch (e) {}
-              }
-            }
-
-            notifyStatus(false);
-            return cleanData;
-          }
-        }
-      } catch (e) {
-        // Continue to fallback
-      } finally {
-        if (timeoutId) clearTimeout(timeoutId);
-      }
-    }
-
-    // Secondary fallback: Hostinger disk backup on live production
-    if (typeof window !== 'undefined' && !isLocalhost) {
-      try {
-        const hostingerRes = await fetch(`/sync-backup.php?endpoint=${encodeURIComponent(cleanEndpoint)}`, { cache: 'no-cache' });
-        if (hostingerRes.ok) {
-          const hostingerJson = await hostingerRes.json();
-          if (hostingerJson) {
-            const cleanHostinger = sanitizeBrandText(unwrapData(hostingerJson));
-            memoryCache.set(endpoint, cleanHostinger);
-            memoryCache.set(cleanEndpoint, cleanHostinger);
-            return cleanHostinger;
-          }
-        }
-      } catch (e) {}
-    }
-
-    // Tertiary fallback: IndexedDB
-    const idbData = (await getFromIDB(cleanEndpoint)) || (await getFromIDB(endpoint));
-    if (idbData) {
-      const cleanIdb = sanitizeBrandText(unwrapData(idbData));
-      memoryCache.set(endpoint, cleanIdb);
-      memoryCache.set(cleanEndpoint, cleanIdb);
-      return cleanIdb;
-    }
-
-    // Final fallback: Local synchronous database
-    const localFallback = getLocalDataSync(cleanEndpoint) || getLocalDataSync(endpoint);
-    if (localFallback) return localFallback;
-
-    return null;
-  })();
-
-  inFlightRequests.set(cleanEndpoint, fetchPromise);
-  try {
-    return await fetchPromise;
-  } finally {
-    inFlightRequests.delete(cleanEndpoint);
-  }
-};
-
-// ==========================================
-// 7. PRIMARY FAST DATA FETCHER (0ms Local-First + SWR)
+// 5. 100% LOCAL-FIRST PRODUCTION DATA FETCHER (0ms)
+// Zero visitor-side Strapi dependency, zero polling, zero external latency
 // ==========================================
 export const fetchStrapiData = async (endpoint, options = {}) => {
   const { forceFresh = false } = options;
@@ -425,17 +276,80 @@ export const fetchStrapiData = async (endpoint, options = {}) => {
     .replace(/&&+/g, '&');
 
   // FAST PATH: Return immediately from local backup/cache in 0ms!
-  if (!forceFresh) {
-    const instantLocal = getLocalDataSync(cleanEndpoint) || getLocalDataSync(endpoint);
-    if (instantLocal) {
-      // Revalidate in background so live CMS updates still propagate without delaying page paint
-      revalidateInBackground(endpoint, cleanEndpoint);
-      return instantLocal;
-    }
+  const instantLocal = (!forceFresh || !isLocalhost)
+    ? (getLocalDataSync(cleanEndpoint) || getLocalDataSync(endpoint))
+    : null;
+
+  if (instantLocal) {
+    return instantLocal;
   }
 
-  // SLOW PATH: Await network only when forced fresh or when local data is absent
-  return await fetchFromNetwork(endpoint, cleanEndpoint, forceFresh);
+  // SECONDARY PATH: In browser, check local static file (/data/<baseKey>.json) with 2500ms safety timeout
+  if (typeof window !== 'undefined') {
+    const baseKey = cleanEndpoint.split('?')[0];
+    try {
+      const controller = new AbortController();
+      const tId = setTimeout(() => {
+        try { controller.abort(); } catch (_) {}
+      }, 2500);
+      const resp = await fetch(`/data/${baseKey}.json`, { cache: 'no-cache', signal: controller.signal });
+      clearTimeout(tId);
+      if (resp.ok) {
+        const json = await resp.json();
+        if (json) {
+          let resolved = unwrapData(json);
+          const slugMatch = cleanEndpoint.match(/filters\[slug\](?:\[\$eq\]|\[\])?=([^&]+)/);
+          if (slugMatch && slugMatch[1] && Array.isArray(resolved)) {
+            const slugVal = decodeURIComponent(slugMatch[1]).trim().toLowerCase();
+            const matched = resolved.find(item => {
+              const s = (item.slug || item.attributes?.slug || '').toLowerCase();
+              const docId = (item.documentId || item.id || '').toString().toLowerCase();
+              return s === slugVal || docId === slugVal;
+            });
+            if (matched) resolved = [matched];
+          }
+          const clean = sanitizeBrandText(resolved);
+          memoryCache.set(endpoint, clean);
+          memoryCache.set(cleanEndpoint, clean);
+          return clean;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // TERTIARY PATH: In local dev only (localhost:5173), if developer explicitly passed forceFresh: true
+  // and local Strapi is running on 127.0.0.1:1337, try fetching with 2500ms timeout
+  if (import.meta.env.DEV && isLocalhost && forceFresh) {
+    try {
+      const controller = new AbortController();
+      const tId = setTimeout(() => {
+        try { controller.abort(); } catch (_) {}
+      }, 2500);
+      try {
+        const res = await fetch(`http://127.0.0.1:1337/api/${cleanEndpoint}`, {
+          signal: controller.signal
+        });
+        clearTimeout(tId);
+        if (res.ok) {
+          const json = await res.json();
+          if (json && json.data) {
+            const cleanData = sanitizeBrandText(unwrapData(json.data));
+            memoryCache.set(endpoint, cleanData);
+            memoryCache.set(cleanEndpoint, cleanData);
+            return cleanData;
+          }
+        }
+      } catch (_) {
+        clearTimeout(tId);
+      }
+    } catch (e) {}
+  }
+
+  // FINAL FALLBACK: Local synchronous data
+  const fallback = getLocalDataSync(cleanEndpoint) || getLocalDataSync(endpoint);
+  if (fallback) return fallback;
+
+  return null;
 };
 
 export const getStrapiMediaUrl = (img, fallback = '') => {
@@ -444,14 +358,6 @@ export const getStrapiMediaUrl = (img, fallback = '') => {
     if (img.length === 0) return fallback;
     img = img[0];
   }
-  if (typeof img === 'string') {
-    if (!img.trim()) return fallback;
-    if (img.startsWith('http') || img.startsWith('//')) return img;
-    return img.startsWith('/') ? `${STRAPI_URL}${img}` : `${STRAPI_URL}/${img}`;
-  }
-  const rawUrl = img.url || img.data?.attributes?.url || img.data?.url || img.formats?.large?.url || img.formats?.medium?.url || img.formats?.small?.url;
-  if (!rawUrl || typeof rawUrl !== 'string') return fallback;
-  if (rawUrl.startsWith('http') || rawUrl.startsWith('//')) return rawUrl;
-  return rawUrl.startsWith('/') ? `${STRAPI_URL}${rawUrl}` : `${STRAPI_URL}/${rawUrl}`;
+  return getImageUrl(img, fallback);
 };
 

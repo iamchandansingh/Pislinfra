@@ -12,8 +12,8 @@
     "executiveSubtitle": "Steering large enterprise operations with highly structured corporate delivery models.",
     "coreTeamTitle": "Our Core Team",
     "createdAt": "2026-08-22T10:37:29.211Z",
-    "updatedAt": "2026-10-09T01:43:20.852Z",
-    "publishedAt": "2026-10-09T01:43:13.827Z",
+    "updatedAt": "2026-11-09T13:39:44.226Z",
+    "publishedAt": "2026-11-09T13:39:00.251Z",
     "heroImage": {
       "id": 49,
       "documentId": "bt09tryru4lkbgr5k5qm1lh8",
@@ -26,7 +26,7 @@
       "formats": {
         "large": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_leadership_e1cdd98d80.png",
+          "url": "/images/leadership/large_leadership_e1cdd98d80.png",
           "hash": "large_leadership_e1cdd98d80",
           "mime": "image/png",
           "name": "large_leadership.png",
@@ -38,7 +38,7 @@
         },
         "small": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_leadership_e1cdd98d80.png",
+          "url": "/images/leadership/small_leadership_e1cdd98d80.png",
           "hash": "small_leadership_e1cdd98d80",
           "mime": "image/png",
           "name": "small_leadership.png",
@@ -50,7 +50,7 @@
         },
         "medium": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_leadership_e1cdd98d80.png",
+          "url": "/images/leadership/medium_leadership_e1cdd98d80.png",
           "hash": "medium_leadership_e1cdd98d80",
           "mime": "image/png",
           "name": "medium_leadership.png",
@@ -62,7 +62,7 @@
         },
         "thumbnail": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_leadership_e1cdd98d80.png",
+          "url": "/images/leadership/thumbnail_leadership_e1cdd98d80.png",
           "hash": "thumbnail_leadership_e1cdd98d80",
           "mime": "image/png",
           "name": "thumbnail_leadership.png",
@@ -77,7 +77,7 @@
       "ext": ".png",
       "mime": "image/png",
       "size": 753.15,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/leadership_e1cdd98d80.png",
+      "url": "/images/leadership/leadership_e1cdd98d80.png",
       "previewUrl": null,
       "provider": "aws-s3",
       "provider_metadata": null,
@@ -117,7 +117,7 @@
       "formats": {
         "small": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Shubhendra_Mittal_124689ebd2.png",
+          "url": "/images/uploads/small_Shubhendra_Mittal_124689ebd2.png",
           "hash": "small_Shubhendra_Mittal_124689ebd2",
           "mime": "image/png",
           "name": "small_Shubhendra-Mittal.png",
@@ -129,7 +129,7 @@
         },
         "medium": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Shubhendra_Mittal_124689ebd2.png",
+          "url": "/images/uploads/medium_Shubhendra_Mittal_124689ebd2.png",
           "hash": "medium_Shubhendra_Mittal_124689ebd2",
           "mime": "image/png",
           "name": "medium_Shubhendra-Mittal.png",
@@ -141,7 +141,7 @@
         },
         "thumbnail": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Shubhendra_Mittal_124689ebd2.png",
+          "url": "/images/uploads/thumbnail_Shubhendra_Mittal_124689ebd2.png",
           "hash": "thumbnail_Shubhendra_Mittal_124689ebd2",
           "mime": "image/png",
           "name": "thumbnail_Shubhendra-Mittal.png",
@@ -156,7 +156,7 @@
       "ext": ".png",
       "mime": "image/png",
       "size": 269.92,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Shubhendra_Mittal_124689ebd2.png",
+      "url": "/images/uploads/Shubhendra_Mittal_124689ebd2.png",
       "previewUrl": null,
       "provider": "aws-s3",
       "provider_metadata": null,
@@ -203,7 +203,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755011936_527_large_Yash_png.webp",
+              "url": "/images/uploads/optimized_1787755011936_527_large_Yash_png.webp",
               "hash": "large_Yash_6ede8c09e1",
               "mime": "image/webp",
               "name": "large_Yash.png",
@@ -215,7 +215,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755013089_309_small_Yash_png.webp",
+              "url": "/images/uploads/optimized_1787755013089_309_small_Yash_png.webp",
               "hash": "small_Yash_6ede8c09e1",
               "mime": "image/webp",
               "name": "small_Yash.png",
@@ -227,7 +227,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755014565_710_medium_Yash_png.webp",
+              "url": "/images/uploads/optimized_1787755014565_710_medium_Yash_png.webp",
               "hash": "medium_Yash_6ede8c09e1",
               "mime": "image/webp",
               "name": "medium_Yash.png",
@@ -239,7 +239,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755015576_525_thumbnail_Yash_png.webp",
+              "url": "/images/uploads/optimized_1787755015576_525_thumbnail_Yash_png.webp",
               "hash": "thumbnail_Yash_6ede8c09e1",
               "mime": "image/webp",
               "name": "thumbnail_Yash.png",
@@ -254,7 +254,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 38.92,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755009637_344_Yash_png.webp",
+          "url": "/images/uploads/optimized_1787755009637_344_Yash_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -281,7 +281,7 @@
           "formats": {
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_1_2cab33be28.png",
+              "url": "/images/uploads/small_1_2cab33be28.png",
               "hash": "small_1_2cab33be28",
               "mime": "image/png",
               "name": "small_1.png",
@@ -293,7 +293,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_1_2cab33be28.png",
+              "url": "/images/uploads/medium_1_2cab33be28.png",
               "hash": "medium_1_2cab33be28",
               "mime": "image/png",
               "name": "medium_1.png",
@@ -305,7 +305,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_1_2cab33be28.png",
+              "url": "/images/uploads/thumbnail_1_2cab33be28.png",
               "hash": "thumbnail_1_2cab33be28",
               "mime": "image/png",
               "name": "thumbnail_1.png",
@@ -320,7 +320,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 183.53,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_2cab33be28.png",
+          "url": "/images/uploads/1_2cab33be28.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -347,7 +347,7 @@
           "formats": {
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_2_98134e6941.png",
+              "url": "/images/uploads/small_2_98134e6941.png",
               "hash": "small_2_98134e6941",
               "mime": "image/png",
               "name": "small_2.png",
@@ -359,7 +359,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_2_98134e6941.png",
+              "url": "/images/uploads/medium_2_98134e6941.png",
               "hash": "medium_2_98134e6941",
               "mime": "image/png",
               "name": "medium_2.png",
@@ -371,7 +371,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_2_98134e6941.png",
+              "url": "/images/uploads/thumbnail_2_98134e6941.png",
               "hash": "thumbnail_2_98134e6941",
               "mime": "image/png",
               "name": "thumbnail_2.png",
@@ -386,7 +386,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 140.01,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_98134e6941.png",
+          "url": "/images/uploads/2_98134e6941.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -415,7 +415,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Pankaj_Sood_2deaaf74b9.png",
+              "url": "/images/uploads/large_Pankaj_Sood_2deaaf74b9.png",
               "hash": "large_Pankaj_Sood_2deaaf74b9",
               "mime": "image/png",
               "name": "large_Pankaj-Sood.png",
@@ -427,7 +427,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Pankaj_Sood_2deaaf74b9.png",
+              "url": "/images/uploads/small_Pankaj_Sood_2deaaf74b9.png",
               "hash": "small_Pankaj_Sood_2deaaf74b9",
               "mime": "image/png",
               "name": "small_Pankaj-Sood.png",
@@ -439,7 +439,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Pankaj_Sood_2deaaf74b9.png",
+              "url": "/images/uploads/medium_Pankaj_Sood_2deaaf74b9.png",
               "hash": "medium_Pankaj_Sood_2deaaf74b9",
               "mime": "image/png",
               "name": "medium_Pankaj-Sood.png",
@@ -451,7 +451,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Pankaj_Sood_2deaaf74b9.png",
+              "url": "/images/uploads/thumbnail_Pankaj_Sood_2deaaf74b9.png",
               "hash": "thumbnail_Pankaj_Sood_2deaaf74b9",
               "mime": "image/png",
               "name": "thumbnail_Pankaj-Sood.png",
@@ -466,7 +466,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 252.98,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Pankaj_Sood_2deaaf74b9.png",
+          "url": "/images/uploads/Pankaj_Sood_2deaaf74b9.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -493,7 +493,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Ramdhan_Yadav_168b7a2ecd.png",
+              "url": "/images/uploads/large_Ramdhan_Yadav_168b7a2ecd.png",
               "hash": "large_Ramdhan_Yadav_168b7a2ecd",
               "mime": "image/png",
               "name": "large_Ramdhan-Yadav.png",
@@ -505,7 +505,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Ramdhan_Yadav_168b7a2ecd.png",
+              "url": "/images/uploads/small_Ramdhan_Yadav_168b7a2ecd.png",
               "hash": "small_Ramdhan_Yadav_168b7a2ecd",
               "mime": "image/png",
               "name": "small_Ramdhan-Yadav.png",
@@ -517,7 +517,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Ramdhan_Yadav_168b7a2ecd.png",
+              "url": "/images/uploads/medium_Ramdhan_Yadav_168b7a2ecd.png",
               "hash": "medium_Ramdhan_Yadav_168b7a2ecd",
               "mime": "image/png",
               "name": "medium_Ramdhan-Yadav.png",
@@ -529,7 +529,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Ramdhan_Yadav_168b7a2ecd.png",
+              "url": "/images/uploads/thumbnail_Ramdhan_Yadav_168b7a2ecd.png",
               "hash": "thumbnail_Ramdhan_Yadav_168b7a2ecd",
               "mime": "image/png",
               "name": "thumbnail_Ramdhan-Yadav.png",
@@ -544,7 +544,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 277.37,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Ramdhan_Yadav_168b7a2ecd.png",
+          "url": "/images/uploads/Ramdhan_Yadav_168b7a2ecd.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -571,7 +571,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755047584_218_large_Rajesh-Yada_png.webp",
+              "url": "/images/uploads/optimized_1787755047584_218_large_Rajesh-Yada_png.webp",
               "hash": "large_Rajesh_Yada_d9e286d1df",
               "mime": "image/webp",
               "name": "large_Rajesh-Yada.png",
@@ -583,7 +583,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755049378_864_small_Rajesh-Yada_png.webp",
+              "url": "/images/uploads/optimized_1787755049378_864_small_Rajesh-Yada_png.webp",
               "hash": "small_Rajesh_Yada_d9e286d1df",
               "mime": "image/webp",
               "name": "small_Rajesh-Yada.png",
@@ -595,7 +595,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050440_212_medium_Rajesh-Yada_png.webp",
+              "url": "/images/uploads/optimized_1787755050440_212_medium_Rajesh-Yada_png.webp",
               "hash": "medium_Rajesh_Yada_d9e286d1df",
               "mime": "image/webp",
               "name": "medium_Rajesh-Yada.png",
@@ -607,7 +607,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755051528_167_thumbnail_Rajesh-Yada_png.webp",
+              "url": "/images/uploads/optimized_1787755051528_167_thumbnail_Rajesh-Yada_png.webp",
               "hash": "thumbnail_Rajesh_Yada_d9e286d1df",
               "mime": "image/webp",
               "name": "thumbnail_Rajesh-Yada.png",
@@ -622,7 +622,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 68.12,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755046112_535_Rajesh-Yada_png.webp",
+          "url": "/images/uploads/optimized_1787755046112_535_Rajesh-Yada_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -649,7 +649,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Brigadier_Surinder_Singh_6636464756.png",
+              "url": "/images/uploads/large_Brigadier_Surinder_Singh_6636464756.png",
               "hash": "large_Brigadier_Surinder_Singh_6636464756",
               "mime": "image/png",
               "name": "large_Brigadier-Surinder-Singh.png",
@@ -661,7 +661,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Brigadier_Surinder_Singh_6636464756.png",
+              "url": "/images/uploads/small_Brigadier_Surinder_Singh_6636464756.png",
               "hash": "small_Brigadier_Surinder_Singh_6636464756",
               "mime": "image/png",
               "name": "small_Brigadier-Surinder-Singh.png",
@@ -673,7 +673,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Brigadier_Surinder_Singh_6636464756.png",
+              "url": "/images/uploads/medium_Brigadier_Surinder_Singh_6636464756.png",
               "hash": "medium_Brigadier_Surinder_Singh_6636464756",
               "mime": "image/png",
               "name": "medium_Brigadier-Surinder-Singh.png",
@@ -685,7 +685,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Brigadier_Surinder_Singh_6636464756.png",
+              "url": "/images/uploads/thumbnail_Brigadier_Surinder_Singh_6636464756.png",
               "hash": "thumbnail_Brigadier_Surinder_Singh_6636464756",
               "mime": "image/png",
               "name": "thumbnail_Brigadier-Surinder-Singh.png",
@@ -700,7 +700,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 416.25,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Brigadier_Surinder_Singh_6636464756.png",
+          "url": "/images/uploads/Brigadier_Surinder_Singh_6636464756.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -727,7 +727,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Arnab_Bose_e08543a7b2.png",
+              "url": "/images/uploads/large_Arnab_Bose_e08543a7b2.png",
               "hash": "large_Arnab_Bose_e08543a7b2",
               "mime": "image/png",
               "name": "large_Arnab-Bose.png",
@@ -739,7 +739,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Arnab_Bose_e08543a7b2.png",
+              "url": "/images/uploads/small_Arnab_Bose_e08543a7b2.png",
               "hash": "small_Arnab_Bose_e08543a7b2",
               "mime": "image/png",
               "name": "small_Arnab-Bose.png",
@@ -751,7 +751,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Arnab_Bose_e08543a7b2.png",
+              "url": "/images/uploads/medium_Arnab_Bose_e08543a7b2.png",
               "hash": "medium_Arnab_Bose_e08543a7b2",
               "mime": "image/png",
               "name": "medium_Arnab-Bose.png",
@@ -763,7 +763,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Arnab_Bose_e08543a7b2.png",
+              "url": "/images/uploads/thumbnail_Arnab_Bose_e08543a7b2.png",
               "hash": "thumbnail_Arnab_Bose_e08543a7b2",
               "mime": "image/png",
               "name": "thumbnail_Arnab-Bose.png",
@@ -778,7 +778,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 301.36,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Arnab_Bose_e08543a7b2.png",
+          "url": "/images/uploads/Arnab_Bose_e08543a7b2.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -805,7 +805,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_JITENDER_SINGH_1b2eed43d1.png",
+              "url": "/images/uploads/large_JITENDER_SINGH_1b2eed43d1.png",
               "hash": "large_JITENDER_SINGH_1b2eed43d1",
               "mime": "image/png",
               "name": "large_JITENDER-SINGH.png",
@@ -817,7 +817,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_JITENDER_SINGH_1b2eed43d1.png",
+              "url": "/images/uploads/small_JITENDER_SINGH_1b2eed43d1.png",
               "hash": "small_JITENDER_SINGH_1b2eed43d1",
               "mime": "image/png",
               "name": "small_JITENDER-SINGH.png",
@@ -829,7 +829,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_JITENDER_SINGH_1b2eed43d1.png",
+              "url": "/images/uploads/medium_JITENDER_SINGH_1b2eed43d1.png",
               "hash": "medium_JITENDER_SINGH_1b2eed43d1",
               "mime": "image/png",
               "name": "medium_JITENDER-SINGH.png",
@@ -841,7 +841,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_JITENDER_SINGH_1b2eed43d1.png",
+              "url": "/images/uploads/thumbnail_JITENDER_SINGH_1b2eed43d1.png",
               "hash": "thumbnail_JITENDER_SINGH_1b2eed43d1",
               "mime": "image/png",
               "name": "thumbnail_JITENDER-SINGH.png",
@@ -856,7 +856,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 163.31,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/JITENDER_SINGH_1b2eed43d1.png",
+          "url": "/images/uploads/JITENDER_SINGH_1b2eed43d1.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -883,7 +883,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Sumit_Gupta_c33f5d1dbb.png",
+              "url": "/images/uploads/large_Sumit_Gupta_c33f5d1dbb.png",
               "hash": "large_Sumit_Gupta_c33f5d1dbb",
               "mime": "image/png",
               "name": "large_Sumit-Gupta.png",
@@ -895,7 +895,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Sumit_Gupta_c33f5d1dbb.png",
+              "url": "/images/uploads/small_Sumit_Gupta_c33f5d1dbb.png",
               "hash": "small_Sumit_Gupta_c33f5d1dbb",
               "mime": "image/png",
               "name": "small_Sumit-Gupta.png",
@@ -907,7 +907,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Sumit_Gupta_c33f5d1dbb.png",
+              "url": "/images/uploads/medium_Sumit_Gupta_c33f5d1dbb.png",
               "hash": "medium_Sumit_Gupta_c33f5d1dbb",
               "mime": "image/png",
               "name": "medium_Sumit-Gupta.png",
@@ -919,7 +919,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Sumit_Gupta_c33f5d1dbb.png",
+              "url": "/images/uploads/thumbnail_Sumit_Gupta_c33f5d1dbb.png",
               "hash": "thumbnail_Sumit_Gupta_c33f5d1dbb",
               "mime": "image/png",
               "name": "thumbnail_Sumit-Gupta.png",
@@ -934,7 +934,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 316.56,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Sumit_Gupta_c33f5d1dbb.png",
+          "url": "/images/uploads/Sumit_Gupta_c33f5d1dbb.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -961,7 +961,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_OP_Tiwari_3d61c18c6b.png",
+              "url": "/images/uploads/large_OP_Tiwari_3d61c18c6b.png",
               "hash": "large_OP_Tiwari_3d61c18c6b",
               "mime": "image/png",
               "name": "large_OP-Tiwari.png",
@@ -973,7 +973,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_OP_Tiwari_3d61c18c6b.png",
+              "url": "/images/uploads/small_OP_Tiwari_3d61c18c6b.png",
               "hash": "small_OP_Tiwari_3d61c18c6b",
               "mime": "image/png",
               "name": "small_OP-Tiwari.png",
@@ -985,7 +985,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_OP_Tiwari_3d61c18c6b.png",
+              "url": "/images/uploads/medium_OP_Tiwari_3d61c18c6b.png",
               "hash": "medium_OP_Tiwari_3d61c18c6b",
               "mime": "image/png",
               "name": "medium_OP-Tiwari.png",
@@ -997,7 +997,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_OP_Tiwari_3d61c18c6b.png",
+              "url": "/images/uploads/thumbnail_OP_Tiwari_3d61c18c6b.png",
               "hash": "thumbnail_OP_Tiwari_3d61c18c6b",
               "mime": "image/png",
               "name": "thumbnail_OP-Tiwari.png",
@@ -1012,7 +1012,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 151.98,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/OP_Tiwari_3d61c18c6b.png",
+          "url": "/images/uploads/OP_Tiwari_3d61c18c6b.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1039,7 +1039,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Manoj_Kumar_b18fcd067d.png",
+              "url": "/images/uploads/large_Manoj_Kumar_b18fcd067d.png",
               "hash": "large_Manoj_Kumar_b18fcd067d",
               "mime": "image/png",
               "name": "large_Manoj-Kumar.png",
@@ -1051,7 +1051,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Manoj_Kumar_b18fcd067d.png",
+              "url": "/images/uploads/small_Manoj_Kumar_b18fcd067d.png",
               "hash": "small_Manoj_Kumar_b18fcd067d",
               "mime": "image/png",
               "name": "small_Manoj-Kumar.png",
@@ -1063,7 +1063,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Manoj_Kumar_b18fcd067d.png",
+              "url": "/images/uploads/medium_Manoj_Kumar_b18fcd067d.png",
               "hash": "medium_Manoj_Kumar_b18fcd067d",
               "mime": "image/png",
               "name": "medium_Manoj-Kumar.png",
@@ -1075,7 +1075,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Manoj_Kumar_b18fcd067d.png",
+              "url": "/images/uploads/thumbnail_Manoj_Kumar_b18fcd067d.png",
               "hash": "thumbnail_Manoj_Kumar_b18fcd067d",
               "mime": "image/png",
               "name": "thumbnail_Manoj-Kumar.png",
@@ -1090,7 +1090,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 286.87,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Manoj_Kumar_b18fcd067d.png",
+          "url": "/images/uploads/Manoj_Kumar_b18fcd067d.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1117,7 +1117,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755046809_767_large_Prince-Arora_png.webp",
+              "url": "/images/uploads/optimized_1787755046809_767_large_Prince-Arora_png.webp",
               "hash": "large_Prince_Arora_364fb6b157",
               "mime": "image/webp",
               "name": "large_Prince-Arora.png",
@@ -1129,7 +1129,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755048187_757_small_Prince-Arora_png.webp",
+              "url": "/images/uploads/optimized_1787755048187_757_small_Prince-Arora_png.webp",
               "hash": "small_Prince_Arora_364fb6b157",
               "mime": "image/webp",
               "name": "small_Prince-Arora.png",
@@ -1141,7 +1141,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050351_413_medium_Prince-Arora_png.webp",
+              "url": "/images/uploads/optimized_1787755050351_413_medium_Prince-Arora_png.webp",
               "hash": "medium_Prince_Arora_364fb6b157",
               "mime": "image/webp",
               "name": "medium_Prince-Arora.png",
@@ -1153,7 +1153,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755051311_527_thumbnail_Prince-Arora_png.webp",
+              "url": "/images/uploads/optimized_1787755051311_527_thumbnail_Prince-Arora_png.webp",
               "hash": "thumbnail_Prince_Arora_364fb6b157",
               "mime": "image/webp",
               "name": "thumbnail_Prince-Arora.png",
@@ -1168,7 +1168,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 40.97,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755045785_317_Prince-Arora_png.webp",
+          "url": "/images/uploads/optimized_1787755045785_317_Prince-Arora_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1195,7 +1195,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Kartik_Dara_17acef1e54.png",
+              "url": "/images/uploads/large_Kartik_Dara_17acef1e54.png",
               "hash": "large_Kartik_Dara_17acef1e54",
               "mime": "image/png",
               "name": "large_Kartik-Dara.png",
@@ -1207,7 +1207,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Kartik_Dara_17acef1e54.png",
+              "url": "/images/uploads/small_Kartik_Dara_17acef1e54.png",
               "hash": "small_Kartik_Dara_17acef1e54",
               "mime": "image/png",
               "name": "small_Kartik-Dara.png",
@@ -1219,7 +1219,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Kartik_Dara_17acef1e54.png",
+              "url": "/images/uploads/medium_Kartik_Dara_17acef1e54.png",
               "hash": "medium_Kartik_Dara_17acef1e54",
               "mime": "image/png",
               "name": "medium_Kartik-Dara.png",
@@ -1231,7 +1231,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Kartik_Dara_17acef1e54.png",
+              "url": "/images/uploads/thumbnail_Kartik_Dara_17acef1e54.png",
               "hash": "thumbnail_Kartik_Dara_17acef1e54",
               "mime": "image/png",
               "name": "thumbnail_Kartik-Dara.png",
@@ -1246,7 +1246,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 339.3,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Kartik_Dara_17acef1e54.png",
+          "url": "/images/uploads/Kartik_Dara_17acef1e54.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1273,7 +1273,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755049590_291_large_Ravinder-Toma_png.webp",
+              "url": "/images/uploads/optimized_1787755049590_291_large_Ravinder-Toma_png.webp",
               "hash": "large_Ravinder_Toma_9d586b1f4e",
               "mime": "image/webp",
               "name": "large_Ravinder-Toma.png",
@@ -1285,7 +1285,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050999_711_small_Ravinder-Toma_png.webp",
+              "url": "/images/uploads/optimized_1787755050999_711_small_Ravinder-Toma_png.webp",
               "hash": "small_Ravinder_Toma_9d586b1f4e",
               "mime": "image/webp",
               "name": "small_Ravinder-Toma.png",
@@ -1297,7 +1297,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755052175_197_medium_Ravinder-Toma_png.webp",
+              "url": "/images/uploads/optimized_1787755052175_197_medium_Ravinder-Toma_png.webp",
               "hash": "medium_Ravinder_Toma_9d586b1f4e",
               "mime": "image/webp",
               "name": "medium_Ravinder-Toma.png",
@@ -1309,7 +1309,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755053125_376_thumbnail_Ravinder-Toma_png.webp",
+              "url": "/images/uploads/optimized_1787755053125_376_thumbnail_Ravinder-Toma_png.webp",
               "hash": "thumbnail_Ravinder_Toma_9d586b1f4e",
               "mime": "image/webp",
               "name": "thumbnail_Ravinder-Toma.png",
@@ -1324,7 +1324,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 52.04,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755045783_89_Ravinder-Toma_png.webp",
+          "url": "/images/uploads/optimized_1787755045783_89_Ravinder-Toma_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1351,7 +1351,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Amit_Dubey_8a7a267fe5.png",
+              "url": "/images/uploads/large_Amit_Dubey_8a7a267fe5.png",
               "hash": "large_Amit_Dubey_8a7a267fe5",
               "mime": "image/png",
               "name": "large_Amit-Dubey.png",
@@ -1363,7 +1363,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Amit_Dubey_8a7a267fe5.png",
+              "url": "/images/uploads/small_Amit_Dubey_8a7a267fe5.png",
               "hash": "small_Amit_Dubey_8a7a267fe5",
               "mime": "image/png",
               "name": "small_Amit-Dubey.png",
@@ -1375,7 +1375,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Amit_Dubey_8a7a267fe5.png",
+              "url": "/images/uploads/medium_Amit_Dubey_8a7a267fe5.png",
               "hash": "medium_Amit_Dubey_8a7a267fe5",
               "mime": "image/png",
               "name": "medium_Amit-Dubey.png",
@@ -1387,7 +1387,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Amit_Dubey_8a7a267fe5.png",
+              "url": "/images/uploads/thumbnail_Amit_Dubey_8a7a267fe5.png",
               "hash": "thumbnail_Amit_Dubey_8a7a267fe5",
               "mime": "image/png",
               "name": "thumbnail_Amit-Dubey.png",
@@ -1402,7 +1402,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 307.2,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Amit_Dubey_8a7a267fe5.png",
+          "url": "/images/uploads/Amit_Dubey_8a7a267fe5.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1429,7 +1429,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Mohsin_Khan_5aa6f2faed.png",
+              "url": "/images/uploads/large_Mohsin_Khan_5aa6f2faed.png",
               "hash": "large_Mohsin_Khan_5aa6f2faed",
               "mime": "image/png",
               "name": "large_Mohsin-Khan.png",
@@ -1441,7 +1441,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Mohsin_Khan_5aa6f2faed.png",
+              "url": "/images/uploads/small_Mohsin_Khan_5aa6f2faed.png",
               "hash": "small_Mohsin_Khan_5aa6f2faed",
               "mime": "image/png",
               "name": "small_Mohsin-Khan.png",
@@ -1453,7 +1453,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Mohsin_Khan_5aa6f2faed.png",
+              "url": "/images/uploads/medium_Mohsin_Khan_5aa6f2faed.png",
               "hash": "medium_Mohsin_Khan_5aa6f2faed",
               "mime": "image/png",
               "name": "medium_Mohsin-Khan.png",
@@ -1465,7 +1465,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Mohsin_Khan_5aa6f2faed.png",
+              "url": "/images/uploads/thumbnail_Mohsin_Khan_5aa6f2faed.png",
               "hash": "thumbnail_Mohsin_Khan_5aa6f2faed",
               "mime": "image/png",
               "name": "thumbnail_Mohsin-Khan.png",
@@ -1480,7 +1480,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 366.61,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Mohsin_Khan_5aa6f2faed.png",
+          "url": "/images/uploads/Mohsin_Khan_5aa6f2faed.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1491,80 +1491,84 @@
       },
       {
         "id": 18,
-        "name": "SONIA AHUJA",
-        "designation": "Sr. Manager Design",
-        "department": "Design",
-        "bio": "Developing smart architectural and engineering design solutions.",
+        "name": "HITENDRA PLASS",
+        "designation": "General Manager ",
+        "department": "PMO",
+        "bio": "Driving multi-project execution, cost optimization, and strategic planning.",
         "image": {
-          "id": 68,
-          "documentId": "ev47os29sj2ojfy4rqcxy8tl",
-          "name": "Sonia-Ahuja.png",
+          "id": 842,
+          "documentId": "t9xmqkw4acgv565w37d1y4jt",
+          "name": "Hitendra.jpeg",
           "alternativeText": null,
           "caption": null,
           "focalPoint": null,
-          "width": 900,
-          "height": 1200,
+          "width": 1495,
+          "height": 1600,
           "formats": {
             "large": {
-              "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755059395_905_large_Sonia-Ahuja_png.webp",
-              "hash": "large_Sonia_Ahuja_4d32f823c6",
-              "mime": "image/webp",
-              "name": "large_Sonia-Ahuja.png",
+              "ext": ".jpeg",
+              "url": "/images/uploads/large_Hitendra_6ce0672aa2.jpeg",
+              "etag": "50768687c2450e9a7a2cb2f4a4c7deea",
+              "hash": "large_Hitendra_6ce0672aa2",
+              "mime": "image/jpeg",
+              "name": "large_Hitendra.jpeg",
               "path": null,
-              "size": 25.234375,
-              "width": 750,
+              "size": 58.83,
+              "width": 934,
               "height": 1000,
-              "sizeInBytes": 25840
+              "sizeInBytes": 58827
             },
             "small": {
-              "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755060605_519_small_Sonia-Ahuja_png.webp",
-              "hash": "small_Sonia_Ahuja_4d32f823c6",
-              "mime": "image/webp",
-              "name": "small_Sonia-Ahuja.png",
+              "ext": ".jpeg",
+              "url": "/images/uploads/small_Hitendra_6ce0672aa2.jpeg",
+              "etag": "548cba6bd1f6eb2802ec5410a626dd26",
+              "hash": "small_Hitendra_6ce0672aa2",
+              "mime": "image/jpeg",
+              "name": "small_Hitendra.jpeg",
               "path": null,
-              "size": 9.216796875,
-              "width": 375,
+              "size": 19.76,
+              "width": 467,
               "height": 500,
-              "sizeInBytes": 9438
+              "sizeInBytes": 19764
             },
             "medium": {
-              "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755061621_508_medium_Sonia-Ahuja_png.webp",
-              "hash": "medium_Sonia_Ahuja_4d32f823c6",
-              "mime": "image/webp",
-              "name": "medium_Sonia-Ahuja.png",
+              "ext": ".jpeg",
+              "url": "/images/uploads/medium_Hitendra_6ce0672aa2.jpeg",
+              "etag": "122b899e8499ffe39f99d537322d09df",
+              "hash": "medium_Hitendra_6ce0672aa2",
+              "mime": "image/jpeg",
+              "name": "medium_Hitendra.jpeg",
               "path": null,
-              "size": 16.134765625,
-              "width": 563,
+              "size": 37.26,
+              "width": 701,
               "height": 750,
-              "sizeInBytes": 16522
+              "sizeInBytes": 37262
             },
             "thumbnail": {
-              "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755062641_582_thumbnail_Sonia-Ahuja_png.webp",
-              "hash": "thumbnail_Sonia_Ahuja_4d32f823c6",
-              "mime": "image/webp",
-              "name": "thumbnail_Sonia-Ahuja.png",
+              "ext": ".jpeg",
+              "url": "/images/uploads/thumbnail_Hitendra_6ce0672aa2.jpeg",
+              "etag": "47964146079a14fd3865e0dc87dd4a35",
+              "hash": "thumbnail_Hitendra_6ce0672aa2",
+              "mime": "image/jpeg",
+              "name": "thumbnail_Hitendra.jpeg",
               "path": null,
-              "size": 2.205078125,
-              "width": 117,
+              "size": 3.33,
+              "width": 145,
               "height": 156,
-              "sizeInBytes": 2258
+              "sizeInBytes": 3329
             }
           },
-          "hash": "Sonia_Ahuja_4d32f823c6",
-          "ext": ".webp",
-          "mime": "image/webp",
-          "size": 36.23,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755056871_835_Sonia-Ahuja_png.webp",
+          "hash": "Hitendra_6ce0672aa2",
+          "ext": ".jpeg",
+          "mime": "image/jpeg",
+          "size": 106.9,
+          "url": "/images/uploads/Hitendra_6ce0672aa2.jpeg",
           "previewUrl": null,
-          "provider": "aws-s3",
+          "provider": "@strapi/provider-upload-aws-s3",
           "provider_metadata": null,
-          "createdAt": "2026-08-22T10:37:02.619Z",
-          "updatedAt": "2026-08-26T13:42:03.438Z",
-          "publishedAt": "2026-08-22T10:37:02.620Z"
+          "createdAt": "2026-11-09T13:38:46.177Z",
+          "updatedAt": "2026-11-09T13:38:46.177Z",
+          "publishedAt": "2026-11-09T13:38:46.178Z"
         }
       },
       {
@@ -1585,7 +1589,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Gurpreet_Singh_15d694d1d8.png",
+              "url": "/images/uploads/large_Gurpreet_Singh_15d694d1d8.png",
               "hash": "large_Gurpreet_Singh_15d694d1d8",
               "mime": "image/png",
               "name": "large_Gurpreet-Singh.png",
@@ -1597,7 +1601,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Gurpreet_Singh_15d694d1d8.png",
+              "url": "/images/uploads/small_Gurpreet_Singh_15d694d1d8.png",
               "hash": "small_Gurpreet_Singh_15d694d1d8",
               "mime": "image/png",
               "name": "small_Gurpreet-Singh.png",
@@ -1609,7 +1613,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Gurpreet_Singh_15d694d1d8.png",
+              "url": "/images/uploads/medium_Gurpreet_Singh_15d694d1d8.png",
               "hash": "medium_Gurpreet_Singh_15d694d1d8",
               "mime": "image/png",
               "name": "medium_Gurpreet-Singh.png",
@@ -1621,7 +1625,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Gurpreet_Singh_15d694d1d8.png",
+              "url": "/images/uploads/thumbnail_Gurpreet_Singh_15d694d1d8.png",
               "hash": "thumbnail_Gurpreet_Singh_15d694d1d8",
               "mime": "image/png",
               "name": "thumbnail_Gurpreet-Singh.png",
@@ -1636,7 +1640,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 204.52,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Gurpreet_Singh_15d694d1d8.png",
+          "url": "/images/uploads/Gurpreet_Singh_15d694d1d8.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1645,6 +1649,10 @@
           "publishedAt": "2026-08-22T10:37:06.933Z"
         }
       }
-    ]
+    ],
+    "primaryKeyword": "Industrial Construction & Infrastructure Leaders India",
+    "metaTitle": "Pislinfra Leadership | Board of Directors & Management",
+    "metaDescription": "Meet the leadership team and board of directors at Pislinfra, bringing expertise and strategic vision to industrial, warehouse and infrastructure projects.",
+    "focusKeywords": "Pislinfra leadership, board of directors, management team, industrial infrastructure leaders India, civil engineering executives, Shubhendra Mittal"
   }
 ]

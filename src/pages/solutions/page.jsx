@@ -1,22 +1,71 @@
+import React, { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 
 const ServicesPage = () => {
+  const [pageData, setPageData] = useState(() => {
+    const raw = getLocalDataSync('solution-pages-solutions') || getLocalDataSync('solution-pages?filters[slug]=solutions&populate=*');
+    if (raw) return Array.isArray(raw) ? raw[0] : raw;
+    return null;
+  });
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('solution-pages-solutions') || getLocalDataSync('solution-pages?filters[slug]=solutions&populate=*');
+      if (fresh) setPageData(Array.isArray(fresh) ? fresh[0] : fresh);
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    const getData = async (forceFresh = false) => {
+      try {
+        const res = await fetchStrapiData('solution-pages?filters[slug]=solutions&populate=*', { forceFresh });
+        if (res && isMounted) {
+          const item = Array.isArray(res) ? res[0] : res;
+          if (item) setPageData(item);
+        }
+      } catch (err) {
+        console.error("Error fetching solutions SEO data:", err);
+      }
+    };
+    getData();
+    return () => { isMounted = false; };
+  }, []);
+
+  const fallbackTitle = 'Construction & Infrastructure Solutions | Pislinfra';
+  const fallbackDescription = "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches.";
+  const fallbackPrimaryKeyword = 'Construction & Infrastructure Solutions';
+  const fallbackFocusKeywords = 'Construction & Infrastructure Solutions, turnkey industrial EPC, warehouse construction, infrastructure solutions India';
+
+  // Connect CMS Solutions page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (pageData?.metaTitle || pageData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
     contentType: 'page',
-    title: 'Our Solutions',
-    seoTitle: 'Turnkey Industrial, Warehouse & Infrastructure Solutions | Pislinfra',
-    seoDescription: 'Explore Pislinfra comprehensive industrial solutions: Turnkey EPC factory construction, Grade-A logistics parks, LEED warehouses, and heavy civil engineering across India.',
-    seoKeywords: 'industrial construction solutions, warehouse EPC company India, logistics park construction, PEB design build, civil infrastructure development, Pislinfra',
+    ...(pageData?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'Construction & Infrastructure Solutions, industrial construction solutions, warehouse EPC company India, logistics park construction, PEB design build, civil infrastructure development, Pislinfra',
     slug: 'solutions',
     canonicalUrl: 'https://pislinfra.com/solutions',
-    ogTitle: 'Turnkey Industrial, Warehouse & Infrastructure Solutions | Pislinfra',
-    ogDescription: 'Comprehensive industrial construction and infrastructure solutions across India. Design, Build, Logistics, and EPC.',
-    ogImage: 'https://pislinfra.com/images/hero/Service.png',
+    ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
+    ogImage: pageData?.seo?.ogImage || 'https://pislinfra.com/images/hero/Service.png',
     ogType: 'website',
-    twitterTitle: 'Turnkey Industrial, Warehouse & Infrastructure Solutions | Pislinfra',
-    twitterDescription: 'Comprehensive industrial construction and infrastructure solutions across India. Design, Build, Logistics, and EPC.',
-    twitterImage: 'https://pislinfra.com/images/hero/Service.png',
+    twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: pageData?.seo?.twitterImage || 'https://pislinfra.com/images/hero/Service.png',
     twitterCardType: 'summary_large_image',
     schemaType: 'Service',
     breadcrumbSchema: true,

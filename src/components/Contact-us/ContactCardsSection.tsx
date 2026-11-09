@@ -132,10 +132,10 @@ const ContactCardsSection: React.FC<ContactCardsSectionProps> = ({ pageData }) =
           text-decoration: none;
           color: inherit;
           background-color: #FFFFFF;
-          border-radius: 16px;
-          border: 1px solid #EAEFF5;
+          border-radius: 8px;
+          border: 1px solid rgba(52, 65, 85, 0.35);
           padding: 20px 18px;
-          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+          box-shadow: none;
           cursor: pointer;
           box-sizing: border-box;
           width: 100%;
@@ -146,8 +146,8 @@ const ContactCardsSection: React.FC<ContactCardsSectionProps> = ({ pageData }) =
 
         .contact-card-item:hover {
           transform: none !important;
-          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
-          border-color: #EAEFF5 !important;
+          box-shadow: none !important;
+          border-color: rgba(52, 65, 85, 0.35) !important;
         }
 
         .contact-card-icon-wrap {
@@ -223,7 +223,7 @@ const ContactCardsSection: React.FC<ContactCardsSectionProps> = ({ pageData }) =
           }
           .contact-card-item {
             padding: 16px 14px !important;
-            border-radius: 14px !important;
+            border-radius: 8px !important;
             gap: 14px !important;
             min-height: auto !important;
           }

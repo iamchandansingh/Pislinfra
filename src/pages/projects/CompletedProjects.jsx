@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
-import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localCompletedProjects from '../../data/completedProjects'
@@ -15,11 +15,20 @@ const CompletedProjects = () => {
   const [loading, setLoading] = useState(false)
   
   useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('completed-page');
+      if (fresh) setPageData(fresh);
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
     let isMounted = true;
     const getData = async (forceFresh = false) => {
       try {
         const [pData, projData] = await Promise.all([
-          fetchStrapiData('completed-page?populate=seo,heroImage', { forceFresh }),
+          fetchStrapiData('completed-page?populate=*', { forceFresh }),
           fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100', { forceFresh })
         ]);
 
@@ -88,26 +97,39 @@ const CompletedProjects = () => {
   const heroBreadcrumb = pageData?.heroBreadcrumb || "Projects / Completed";
   const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Completed-Projects.png") : "/images/hero/Completed-Projects.png";
 
-  const seoData = pageData?.seo || {
+  const fallbackTitle = 'Completed Projects & Project Portfolio | Pislinfra';
+  const fallbackDescription = "Explore Pislinfra's completed projects across industrial, warehousing and infrastructure sectors, showcasing quality, safety and successful project delivery.";
+
+  // Connect CMS Completed Projects page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (pageData?.metaTitle || pageData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || 'Completed Construction Projects').trim();
+  const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+
+  const seoData = {
     contentType: 'page',
-    title: 'Completed Projects',
-    seoTitle: 'Completed Projects | Pislinfra',
-    seoDescription: 'Explore Pislinfra\'s successfully delivered industrial projects - warehousing, logistics parks & infrastructure completed across India. 16M+ sq ft delivered.',
-    seoKeywords: 'completed projects, industrial construction, warehouse projects, logistics park, infrastructure portfolio, delivered projects, Pislinfra',
+    ...(pageData?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'Completed Construction Projects, completed projects, industrial construction, warehouse projects, logistics park, infrastructure portfolio, delivered projects, Pislinfra',
     slug: 'projects/completed',
     canonicalUrl: 'https://pislinfra.com/projects/completed',
-    ogTitle: 'Completed Projects - Industrial Portfolio | Pislinfra',
-    ogDescription: 'Successfully delivered infrastructure projects across India.',
-    ogImage: 'https://pislinfra.com/images/hero/Completed-Projects.png',
+    ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
+    ogImage: pageData?.seo?.ogImage || (pageData?.heroImage?.url ? getImageUrl(pageData.heroImage) : 'https://pislinfra.com/images/hero/Completed-Projects.png'),
     ogType: 'website',
-    twitterTitle: 'Completed Projects | Pislinfra',
-    twitterDescription: 'Our portfolio of successfully delivered industrial projects.',
-    twitterImage: 'https://pislinfra.com/images/hero/Completed-Projects.png',
+    twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: pageData?.seo?.twitterImage || (pageData?.heroImage?.url ? getImageUrl(pageData.heroImage) : 'https://pislinfra.com/images/hero/Completed-Projects.png'),
     twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
+    schemaType: 'CollectionPage',
     breadcrumbSchema: true,
     organizationSchema: true,
-    tags: ['Projects', 'Completed', 'Construction', 'Industrial', 'Portfolio'],
+    tags: ['Projects', 'Completed', 'Construction', 'Industrial', 'Portfolio', 'Pislinfra'],
   };
 
   return (

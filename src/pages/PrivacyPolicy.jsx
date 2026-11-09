@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { getImageUrl } from '../utils/imageUrl.js';
 import ReactMarkdown from 'react-markdown';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
@@ -72,12 +73,14 @@ const PrivacyPolicy = () => {
   const [data, setData] = useState(() => getLocalDataSync('policy-page') || fallbackPolicyData);
   const [loading, setLoading] = useState(false);
 
-  const getImageUrl = (imgObj, defaultImg) => {
-    if (!imgObj || (!imgObj.url && !imgObj.data?.attributes?.url)) return defaultImg;
-    const url = imgObj.url || imgObj.data?.attributes?.url;
-    if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-    return url;
-  };
+  useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('policy-page');
+      if (fresh) setData(fresh);
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -85,7 +88,7 @@ const PrivacyPolicy = () => {
 
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('policy-page?populate[0]=heroImage&populate[1]=seo&populate[2]=sections');
+        const response = await fetchStrapiData('policy-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage&populate[3]=sections');
         if (response && isMounted) {
           setData(response);
         }
@@ -102,6 +105,46 @@ const PrivacyPolicy = () => {
   if (loading && !data) return <Preloader />;
 
   const currentData = data || fallbackPolicyData;
+
+  const fallbackTitle = "Privacy Policy | Pislinfra";
+  const fallbackDescription = "Read Pislinfra’s Privacy Policy to understand how we collect, use, protect and manage personal information when you use our website and services.";
+  const fallbackPrimaryKeyword = "Privacy Policy";
+  const fallbackFocusKeywords = "Privacy Policy, Pislinfra, data protection, personal information, cookies and tracking, privacy terms";
+
+  // Connect CMS Privacy Policy page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (currentData?.metaTitle || currentData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (currentData?.metaDescription || currentData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (currentData?.primaryKeyword || currentData?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (currentData?.focusKeywords || currentData?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
+  const seoData = {
+    contentType: 'page',
+    ...(currentData.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: currentData?.seo?.seoKeywords || resolvedFocusKeywords,
+    slug: 'privacy-policy',
+    canonicalUrl: currentData?.seo?.canonicalUrl || 'https://pislinfra.com/privacy-policy',
+    ogTitle: currentData?.ogTitle || currentData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: currentData?.ogDescription || currentData?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Extra-2.png'),
+    ogType: currentData?.seo?.ogType || 'website',
+    twitterTitle: currentData?.twitterTitle || currentData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: currentData?.twitterDescription || currentData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(currentData.seo?.twitterImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Extra-2.png'),
+    twitterCardType: currentData?.seo?.twitterCardType || 'summary_large_image',
+    schemaType: currentData?.seo?.schemaType || 'WebPage',
+    breadcrumbSchema: currentData?.seo?.breadcrumbSchema !== undefined ? currentData.seo.breadcrumbSchema : true,
+    organizationSchema: currentData?.seo?.organizationSchema !== undefined ? currentData.seo.organizationSchema : true,
+    tags: currentData?.seo?.tags ? (typeof currentData.seo.tags === 'string' ? currentData.seo.tags.split(',').map(t => t.trim()) : currentData.seo.tags) : ['Privacy Policy', 'Data Protection', 'Pislinfra'],
+    noIndex: currentData?.seo?.noIndex || false,
+    noFollow: currentData?.seo?.noFollow || false,
+    structuredData: currentData?.seo?.structuredData
+  };
 
   const navItems = (currentData.sections && currentData.sections.length > 0)
     ? currentData.sections.map((section, index) => ({
@@ -131,7 +174,7 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="policy-page-wrapper">
-      {currentData.seo && <BlogSEO blog={currentData.seo} />}
+      <BlogSEO blog={seoData} />
       
       <PageHero
         title={currentData.title || "Privacy Policy"}

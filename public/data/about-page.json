@@ -9,8 +9,8 @@
     "capabilitiesTitle": "OUR CAPABILITIES",
     "valuesTitle": "OUR VALUES",
     "createdAt": "2026-08-22T09:53:42.036Z",
-    "updatedAt": "2026-10-23T17:06:23.537Z",
-    "publishedAt": "2026-10-23T17:05:57.740Z",
+    "updatedAt": "2026-11-09T12:15:10.465Z",
+    "publishedAt": "2026-11-09T12:15:10.149Z",
     "presenceTitle": "OUR PRESENCE",
     "presenceDescription": "Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring",
     "heroImage": {
@@ -25,7 +25,7 @@
       "formats": {
         "large": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_11_70052d09da.png",
+          "url": "/images/uploads/large_11_70052d09da.png",
           "hash": "large_11_70052d09da",
           "mime": "image/png",
           "name": "large_11.png",
@@ -37,7 +37,7 @@
         },
         "small": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_11_70052d09da.png",
+          "url": "/images/uploads/small_11_70052d09da.png",
           "hash": "small_11_70052d09da",
           "mime": "image/png",
           "name": "small_11.png",
@@ -49,7 +49,7 @@
         },
         "medium": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_11_70052d09da.png",
+          "url": "/images/uploads/medium_11_70052d09da.png",
           "hash": "medium_11_70052d09da",
           "mime": "image/png",
           "name": "medium_11.png",
@@ -61,7 +61,7 @@
         },
         "thumbnail": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_11_70052d09da.png",
+          "url": "/images/uploads/thumbnail_11_70052d09da.png",
           "hash": "thumbnail_11_70052d09da",
           "mime": "image/png",
           "name": "thumbnail_11.png",
@@ -76,7 +76,7 @@
       "ext": ".png",
       "mime": "image/png",
       "size": 710.71,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/11_70052d09da.png",
+      "url": "/images/uploads/11_70052d09da.png",
       "previewUrl": null,
       "provider": "aws-s3",
       "provider_metadata": null,
@@ -106,7 +106,7 @@
       {
         "id": 391,
         "title": "EMPLOYEE",
-        "description": "600+ Employee Strength",
+        "description": "700+ Employee Strength",
         "iconName": "FaUsers"
       }
     ],
@@ -194,7 +194,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/large_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "7a81e4c16d3cb2d67122c0603050038b",
             "hash": "large_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -207,7 +207,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/small_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "93452ed71681fabe34b683801ad29df3",
             "hash": "small_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -220,7 +220,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/medium_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "8e9c1e0e5d68916b182795a28c6e12ad",
             "hash": "medium_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -233,7 +233,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/thumbnail_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "0800980ea091889ff480303b6f7092d4",
             "hash": "thumbnail_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -249,7 +249,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 625.79,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/imgi_48_11_70052d09da_5ddacdd692.png",
+        "url": "/images/uploads/imgi_48_11_70052d09da_5ddacdd692.png",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -269,7 +269,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/large_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "7a81e4c16d3cb2d67122c0603050038b",
             "hash": "large_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -282,7 +282,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/small_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "93452ed71681fabe34b683801ad29df3",
             "hash": "small_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -295,7 +295,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/medium_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "8e9c1e0e5d68916b182795a28c6e12ad",
             "hash": "medium_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -308,7 +308,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_imgi_48_11_70052d09da_5ddacdd692.png",
+            "url": "/images/uploads/thumbnail_imgi_48_11_70052d09da_5ddacdd692.png",
             "etag": "0800980ea091889ff480303b6f7092d4",
             "hash": "thumbnail_imgi_48_11_70052d09da_5ddacdd692",
             "mime": "image/png",
@@ -324,7 +324,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 625.79,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/imgi_48_11_70052d09da_5ddacdd692.png",
+        "url": "/images/uploads/imgi_48_11_70052d09da_5ddacdd692.png",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -352,7 +352,7 @@
         "ext": ".pdf",
         "mime": "application/pdf",
         "size": 30995.21,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Pragati_Infra_Solutions_2d2730c93f.pdf",
+        "url": "/reports/Pragati_Infra_Solutions_2d2730c93f.pdf",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -372,7 +372,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "url": "/images/uploads/large_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
             "etag": "f98e95550b82df34462d31871eda1dec",
             "hash": "large_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
             "mime": "image/png",
@@ -385,7 +385,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "url": "/images/uploads/small_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
             "etag": "0148b807a8b5caddb14ad31c0ea146a9",
             "hash": "small_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
             "mime": "image/png",
@@ -398,7 +398,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "url": "/images/uploads/medium_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
             "etag": "8c533d2e3ed794fb7fbf0f3589dbfc2c",
             "hash": "medium_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
             "mime": "image/png",
@@ -411,7 +411,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+            "url": "/images/uploads/thumbnail_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
             "etag": "c364a9ca7f4fd0f99adeb5a0f6128950",
             "hash": "thumbnail_Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0",
             "mime": "image/png",
@@ -427,7 +427,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 1105.57,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
+        "url": "/images/uploads/Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -435,6 +435,10 @@
         "updatedAt": "2026-10-13T17:28:21.493Z",
         "publishedAt": "2026-10-13T17:28:21.493Z"
       }
-    }
+    },
+    "primaryKeyword": "Industrial & Warehouse EPC Contractor India",
+    "metaTitle": "About Pislinfra | Industrial & Warehouse EPC Contractor",
+    "metaDescription": "Learn about Pislinfra, a leading industrial and warehouse EPC contractor delivering construction, logistics and infrastructure solutions across India.",
+    "focusKeywords": "industrial infrastructure, warehouse construction company, turnkey EPC contractor, PEB engineering"
   }
 ]

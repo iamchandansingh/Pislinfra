@@ -27,9 +27,15 @@ const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(
 
 const getProjectSlug = (project) => {
   if (!project) return '';
-  const base = (project.name || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-  if (base === 'pmg-logistics-park' && project.location) {
-    const loc = project.location.toLowerCase().replace(/[,/]/g, ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const pName = project.name || project.projectName || project.project_name || project.title || '';
+  const base = pName.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const pLoc = project.location || project.city || project.state || '';
+  if (base === 'pmg-logistics-park' && pLoc) {
+    const locLower = pLoc.toLowerCase();
+    if (locLower.includes('neemrana')) return `${base}-neemrana`;
+    if (locLower.includes('hyderabad')) return `${base}-hyderabad`;
+    if (locLower.includes('kolathur') || locLower.includes('bangalore') || locLower.includes('bengaluru')) return `${base}-kolathur-bangalore`;
+    const loc = locLower.replace(/[,/]/g, ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     return `${base}-${loc}`;
   }
   return base || project.id || '';
@@ -270,6 +276,22 @@ const ABOUT_PAGES_META = [
     image: `${SITE_URL}/images/hero/Awards-Certification.png`,
     title: 'Awards, Accolades &amp; US LEED Gold Certifications | Pislinfra',
     caption: 'Prestigious industry honors, safety excellence recognitions by Adani and Fortune 500 clients.'
+  },
+  {
+    loc: `${SITE_URL}/about/company-policy`,
+    priority: '0.85',
+    changefreq: 'monthly',
+    image: `${SITE_URL}/images/uploads/optimized_1787756480751_Extra-2.webp`,
+    title: 'Company Policy &amp; Corporate Governance | Pislinfra',
+    caption: 'Corporate policies guiding ethical, transparent and sustainable growth across Pislinfra.'
+  },
+  {
+    loc: `${SITE_URL}/about/policies`,
+    priority: '0.85',
+    changefreq: 'monthly',
+    image: `${SITE_URL}/images/uploads/optimized_1787756480751_Extra-2.webp`,
+    title: 'Policies &amp; Corporate Governance Framework | Pislinfra',
+    caption: 'Risk Management, Vigil Mechanism, and CSR Policies.'
   }
 ];
 

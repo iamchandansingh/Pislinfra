@@ -35,6 +35,12 @@ const defaultEHSData = {
   pillarsSectionTitle: 'Core Safety Pillars',
   programsSectionTitle: 'Comprehensive Safety Programs',
   gallerySectionTitle: 'EHS in Action',
+  gallery: [
+    { id: '1', title: 'PPE Training Session',   image: '/images/EHS/PPE-Training-Session.png' },
+    { id: '2', title: 'Site Safety Inspection', image: '/images/EHS/Site-Safety-Inspection.png' },
+    { id: '3', title: 'Fire Safety Drill',      image: '/images/EHS/Fire-Safety-Drill.png' },
+    { id: '4', title: 'Emergency Mock Drill',   image: '/images/EHS/Emergency-Mock-Drill.png' },
+  ],
   awardsSectionTitle: 'Photography With Client',
   awardsSectionSubtitle: 'Our commitment to safety, quality, and operational excellence continues to earn recognition across infrastructure and industrial projects.',
   resourcesSectionTitle: 'Key Documents & Downloads',
@@ -140,27 +146,39 @@ const EHS = () => {
     };
   }, []);
 
+  const fallbackTitle = "EHS Safety Protocols & Zero-Accident Construction Standards | Pislinfra";
+  const fallbackDescription = "Pislinfra is committed to world-class Environment, Health & Safety (EHS) standards with over 15+ million safe man-hours, ISO certifications, and zero-LTI safety protocols on construction sites.";
+
+  // Connect CMS EHS page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || '').trim();
+  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || '').trim();
+
   const seoData = {
     contentType: 'page',
-    title: data.seo?.seoTitle || 'Environment, Health & Safety (EHS) Policy | Pislinfra',
-    seoTitle: data.seo?.seoTitle || 'EHS Safety Protocols & Zero-Accident Construction Standards | Pislinfra',
-    seoDescription: data.seo?.seoDescription || 'Pislinfra is committed to world-class Environment, Health & Safety (EHS) standards with over 15+ million safe man-hours, ISO certifications, and zero-LTI safety protocols on construction sites.',
-    seoKeywords: data.seo?.seoKeywords || 'EHS policy construction, safety standards industrial construction, ISO 45001 contractor India, zero harm safety culture, safe man hours construction, Pislinfra EHS',
+    ...(data?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data?.seo?.seoKeywords || 'EHS policy construction, safety standards industrial construction, ISO 45001 contractor India, zero harm safety culture, safe man hours construction, Pislinfra EHS',
     slug: 'about/ehs',
     canonicalUrl: 'https://pislinfra.com/about/ehs',
-    ogTitle: data.seo?.ogTitle || 'EHS & Industrial Safety Standards | Pislinfra',
-    ogDescription: data.seo?.ogDescription || 'Uncompromising commitment to workforce safety, environmental sustainability, and ISO certified standards.',
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
+    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
+    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
     ogType: 'website',
-    twitterTitle: data.seo?.twitterTitle || 'EHS & Workplace Safety | Pislinfra',
-    twitterDescription: data.seo?.twitterDescription || '15+ Million Safe Man-Hours delivered with rigorous site safety standards.',
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
+    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
     twitterCardType: 'summary_large_image',
     schemaType: 'AboutPage',
     breadcrumbSchema: true,
     organizationSchema: true,
-    tags: ['EHS', 'Safety Policy', 'Safe Man Hours', 'ISO 45001', 'Construction Safety', 'Pislinfra'],
-    ...data.seo
+    tags: ['EHS', 'Safety Policy', 'Safe Man Hours', 'ISO 45001', 'Construction Safety', 'Pislinfra']
   };
 
   return (

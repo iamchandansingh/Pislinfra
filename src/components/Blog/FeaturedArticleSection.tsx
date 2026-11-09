@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { formatBlogDate } from '../../utils/formatBlog';
 
 
 
@@ -23,10 +24,8 @@ const FeaturedArticleSection = ({ article: latestBlog }) => {
 
   if (!latestBlog) return null;
 
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      day: '2-digit', month: 'short', year: 'numeric',
-    });
+  const formatDate = (dateString, fallbackDate) => {
+    return formatBlogDate(dateString, fallbackDate);
   };
 
   return (
@@ -50,7 +49,7 @@ const FeaturedArticleSection = ({ article: latestBlog }) => {
               {latestBlog.category}
             </span>
             <span className="featured-date">
-              {formatDate(latestBlog.publishDate)}
+              {formatDate(latestBlog.publishDate, latestBlog.createdAt)}
             </span>
           </div>
 

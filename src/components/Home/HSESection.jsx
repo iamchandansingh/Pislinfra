@@ -99,7 +99,7 @@ const HSESection = ({ data }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="hse-img-box"
-            style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(10,42,102,0.08)', height: 380, border: '3px solid #ff8755' }}
+            style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(10,42,102,0.08)', height: 380, border: '2px solid #031D63' }}
           >
             <img
               src={images[0]}
@@ -204,7 +204,7 @@ const HSESection = ({ data }) => {
           .hse-img-box {
             height: clamp(190px, 52vw, 235px) !important;
             border-radius: 14px !important;
-            border-width: 2.5px !important;
+            border: 2px solid #031D63 !important;
           }
           .hse-content-box {
             gap: 18px !important;

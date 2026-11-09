@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Folder } from 'lucide-react';
 import { useBlogs } from '../../context/BlogContext';
+import { formatBlogDate } from '../../utils/formatBlog';
 
 
 
@@ -22,14 +23,12 @@ const BlogSidebarSection = () => {
 
   const recentPosts = [...BlogDB]
     .filter(b => b.status === 'published')
-    .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
+    .sort((a, b) => new Date(b.publishDate || b.createdAt || 0) - new Date(a.publishDate || a.createdAt || 0))
     .slice(1, 6)
     .map(blog => ({
       id: blog.id,
       title: blog.title,
-      date: new Date(blog.publishDate).toLocaleDateString('en-US', {
-        day: '2-digit', month: 'short', year: 'numeric',
-      }),
+      date: formatBlogDate(blog.publishDate, blog.createdAt),
       image: blog.featuredImage || "/images/hero/Blog.png",
       slug: blog.slug,
     }));

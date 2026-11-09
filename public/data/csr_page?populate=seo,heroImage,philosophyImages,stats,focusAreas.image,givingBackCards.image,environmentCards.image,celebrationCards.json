@@ -1,6 +1,6 @@
 [
   {
-    "id": 8,
+    "id": 13,
     "documentId": "l3m38tszhldy4zvqbzxudjsf",
     "heroTitle": "CSR Initiatives",
     "heroSubtitle": "Changing lives beyond business",
@@ -8,10 +8,10 @@
     "philosophyTitle": "Creating Sustainable\nCommunities",
     "philosophyDescription": "Our CSR philosophy is built on the foundation of sustainable development, inclusive growth, and social equity. We focus on initiatives that empower communities, enhance quality of life, and contribute to a better, greener future.",
     "createdAt": "2026-08-23T07:07:55.661Z",
-    "updatedAt": "2026-10-09T01:01:30.345Z",
-    "publishedAt": "2026-10-09T01:01:36.470Z",
+    "updatedAt": "2026-11-09T12:15:24.714Z",
+    "publishedAt": "2026-11-09T12:15:50.322Z",
     "seo": {
-      "id": 320,
+      "id": 334,
       "seoTitle": "CSR Initiatives & Community Development | Pislinfra",
       "seoDescription": "Discover Pislinfra’s CSR initiatives focused on community development, social welfare, sustainability and creating a positive impact across communities.",
       "seoKeywords": "CSR initiatives, corporate social responsibility, community development",
@@ -318,7 +318,7 @@
     ],
     "stats": [
       {
-        "id": 33,
+        "id": 53,
         "label": "Lives Impacted",
         "value": 10,
         "suffix": "+",
@@ -326,7 +326,7 @@
         "iconColor": "#6366F1"
       },
       {
-        "id": 34,
+        "id": 54,
         "label": "Education Initiatives",
         "value": 25,
         "suffix": "+",
@@ -334,7 +334,7 @@
         "iconColor": "#22C55E"
       },
       {
-        "id": 35,
+        "id": 55,
         "label": "Health Camps",
         "value": 20,
         "suffix": "+",
@@ -342,7 +342,7 @@
         "iconColor": "#EC4899"
       },
       {
-        "id": 36,
+        "id": 56,
         "label": "Environment Projects",
         "value": 30,
         "suffix": "+",
@@ -352,7 +352,7 @@
     ],
     "focusAreas": [
       {
-        "id": 33,
+        "id": 53,
         "title": "Education",
         "description": "Empowering children and youth through quality education and skill development programs.",
         "iconName": "FiBookOpen",
@@ -430,7 +430,7 @@
         }
       },
       {
-        "id": 34,
+        "id": 54,
         "title": "Health & Well-being",
         "description": "Improving healthcare accessibility and promoting well-being in communities.",
         "iconName": "FiHeart",
@@ -508,7 +508,7 @@
         }
       },
       {
-        "id": 35,
+        "id": 55,
         "title": "Environment",
         "description": "Promoting sustainability through green initiatives, conservation and responsible practices.",
         "iconName": "FiFeather",
@@ -586,7 +586,7 @@
         }
       },
       {
-        "id": 36,
+        "id": 56,
         "title": "Community Development",
         "description": "Building stronger communities through infrastructure, livelihood and welfare programs.",
         "iconName": "FiUsers",
@@ -666,7 +666,7 @@
     ],
     "givingBackCards": [
       {
-        "id": 55,
+        "id": 90,
         "title": "Sharing Happiness Through Winter Support",
         "description": "Essential winter support initiatives helping workers and communities stay safe, warm, and cared for during challenging weather conditions.",
         "imageLeft": true,
@@ -743,7 +743,7 @@
         }
       },
       {
-        "id": 56,
+        "id": 91,
         "title": "Supporting Front-Line Heroes",
         "description": "Community outreach programs dedicated to supporting frontline personnel and appreciating their commitment towards public safety and service.",
         "imageLeft": false,
@@ -822,7 +822,7 @@
     ],
     "environmentCards": [
       {
-        "id": 57,
+        "id": 92,
         "title": "Promoting Greener Tomorrow",
         "description": "Environmental sustainability initiatives focused on plantation drives, green development, and maintaining healthier project surroundings.",
         "imageLeft": true,
@@ -899,7 +899,7 @@
         }
       },
       {
-        "id": 58,
+        "id": 93,
         "title": "Health & Safety Precautions",
         "description": "Comprehensive health and safety measures implemented to create safer, cleaner, and healthier workplace environments.",
         "imageLeft": false,
@@ -966,7 +966,7 @@
     ],
     "celebrationCards": [
       {
-        "id": 59,
+        "id": 94,
         "title": "Independence Day Celebration",
         "description": "Celebrating national pride with flag hoisting ceremonies, cultural performances, and team gatherings across all project sites.",
         "imageLeft": true,
@@ -1043,7 +1043,7 @@
         }
       },
       {
-        "id": 60,
+        "id": 95,
         "title": "Team Birthday Celebration",
         "description": "Monthly birthday celebrations bringing teams together to share joy, cake, and memorable moments with colleagues.",
         "imageLeft": true,
@@ -1120,7 +1120,7 @@
         }
       },
       {
-        "id": 61,
+        "id": 96,
         "title": "Corporate Event Celebration",
         "description": "Annual corporate events, award ceremonies, and team-building activities that strengthen our organizational culture and values.",
         "imageLeft": true,
@@ -1196,6 +1196,10 @@
           "publishedAt": "2026-08-23T07:28:14.000Z"
         }
       }
-    ]
+    ],
+    "primaryKeyword": "CSR Initiatives & Community Development India",
+    "metaTitle": "CSR Initiatives & Community Development | Pislinfra",
+    "metaDescription": "Discover Pislinfra’s CSR initiatives focused on community development, social welfare, sustainability and creating a positive impact across communities.",
+    "focusKeywords": "CSR initiatives, corporate social responsibility, community development"
   }
 ]

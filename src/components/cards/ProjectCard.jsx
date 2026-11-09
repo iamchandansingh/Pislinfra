@@ -81,7 +81,7 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
       <div 
         className={`premium-project-card ${isSelected ? 'selected' : ''}`}
         style={{
-          borderRadius: '12px',
+          borderRadius: '8px',
           overflow: 'hidden',
           border: isSelected ? `2px solid ${accentColor}` : '1px solid #e8ecf1',
           backgroundColor: '#ffffff',
@@ -317,6 +317,7 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
 
       <style>{`
         .premium-project-card {
+          border-radius: 8px !important;
           box-shadow: 0 4px 14px rgba(5, 42, 115, 0.04) !important;
           transition: none !important;
           transform: none !important;

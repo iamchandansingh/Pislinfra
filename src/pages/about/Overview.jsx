@@ -3,6 +3,7 @@ import Preloader from '../../components/common/Preloader';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
+import { getImageUrl } from '../../utils/imageUrl.js';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import OurPresence from '../../components/sections/OurPresence';
@@ -131,38 +132,42 @@ const Overview = () => {
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
   }, []);
 
-  const getImageUrl = (imgObj, defaultImg) => {
-    if (!imgObj) return defaultImg;
-    const url = imgObj.url || imgObj.data?.attributes?.url;
-    if (!url) return defaultImg;
-    if (url.startsWith('http')) return url;
-    return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-  };
-
   if (loading && !data) return <Preloader />;
   if (!data) return <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Data not found.</div>;
 
+  const fallbackTitle = "About Pislinfra - India's Premier Industrial & Warehouse EPC Contractor";
+  const fallbackDescription = "Pragati Infra Solutions Pvt. Ltd. (Pislinfra) is a leading industrial infrastructure and EPC company with 16M+ sq. ft delivered across India. Specializing in warehouses, logistics parks, and PEB engineering.";
+
+  // Connect CMS About page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || '').trim();
+  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || '').trim();
+
   const seoData = {
     contentType: 'page',
-    title: data.seo?.seoTitle || 'About Us - Company Overview & Infrastructure Legacy | Pislinfra',
-    seoTitle: data.seo?.seoTitle || 'About Pislinfra - India\'s Premier Industrial & Warehouse EPC Contractor',
-    seoDescription: data.seo?.seoDescription || 'Pragati Infra Solutions Pvt. Ltd. (Pislinfra) is a leading industrial infrastructure and EPC company with 16M+ sq. ft delivered across India. Specializing in warehouses, logistics parks, and PEB engineering.',
-    seoKeywords: data.seo?.seoKeywords || 'about Pislinfra, industrial construction company India, Pragati Infra Solutions, turnkey EPC contractor, warehouse builder India, industrial infrastructure profile',
+    ...(data?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data?.seo?.seoKeywords || 'about Pislinfra, industrial construction company India, Pragati Infra Solutions, turnkey EPC contractor, warehouse builder India, industrial infrastructure profile',
     slug: 'about',
     canonicalUrl: 'https://pislinfra.com/about',
-    ogTitle: data.seo?.ogTitle || 'About Pislinfra - Turnkey Industrial EPC Company',
-    ogDescription: data.seo?.ogDescription || 'Discover Pislinfra\'s journey, 16M+ sq ft delivered, Grade-A logistics parks, and nationwide presence.',
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/11.png'),
+    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
+    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/11.png'),
     ogType: 'website',
-    twitterTitle: data.seo?.twitterTitle || 'About Us | Pislinfra Infrastructure',
-    twitterDescription: data.seo?.twitterDescription || '16M+ sq ft of industrial infrastructure and warehousing delivered across India.',
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/11.png'),
+    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, 'https://pislinfra.com/images/hero/11.png'),
     twitterCardType: 'summary_large_image',
     schemaType: 'AboutPage',
     breadcrumbSchema: true,
     organizationSchema: true,
-    tags: ['About Us', 'Pislinfra', 'Industrial EPC', 'Company Overview', 'Infrastructure Leader India'],
-    ...data.seo
+    tags: ['About Us', 'Pislinfra', 'Industrial EPC', 'Company Overview', 'Infrastructure Leader India']
   };
 
   const overviewTitle = data?.overviewTitle ? data.overviewTitle.toUpperCase() : 'OVERVIEW';

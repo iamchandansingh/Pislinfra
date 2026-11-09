@@ -31,7 +31,8 @@ const Blog = () => {
   // Filter and Sort: Featured article / Newest first, then all remaining latest articles
   const filteredBlogs = [...BlogDB]
     .filter(b => {
-      if (b.status !== 'published') return false;
+      const status = (b.status || 'published').toLowerCase();
+      if (status !== 'published') return false;
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         return (
@@ -47,9 +48,9 @@ const Blog = () => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
       
-      // 2. Newest blog (by createdAt or publishDate) comes first
-      const timeA = new Date(a.createdAt || a.publishDate || 0).getTime();
-      const timeB = new Date(b.createdAt || b.publishDate || 0).getTime();
+      // 2. Newest blog (by publishDate or createdAt) comes first
+      const timeA = new Date(a.publishDate || a.createdAt || 0).getTime();
+      const timeB = new Date(b.publishDate || b.createdAt || 0).getTime();
       return timeB - timeA;
     });
 
@@ -65,22 +66,40 @@ const Blog = () => {
     setVisibleCount(totalRemainingCount);
   };
 
+  const fallbackTitle = "Construction & Infrastructure Insights | Pislinfra";
+  const fallbackDescription = "Explore Pislinfra's latest insights on construction, infrastructure, engineering, project management, industry trends and innovative solutions.";
+  const fallbackPrimaryKeyword = "Construction & Infrastructure Insights";
+  const fallbackFocusKeywords = "Construction & Infrastructure Insights, infrastructure blog, construction insights, warehouse design, industrial development, logistics, project management, Pislinfra";
+
+  // Connect CMS Blog page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = searchQuery 
+    ? `Search: "${searchQuery}" - Blog | Pislinfra` 
+    : (blogPage?.metaTitle || blogPage?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = searchQuery 
+    ? `${filteredBlogs.length} results found for "${searchQuery}"` 
+    : (blogPage?.metaDescription || blogPage?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (blogPage?.primaryKeyword || blogPage?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (blogPage?.focusKeywords || blogPage?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
     contentType: 'blog',
     title: 'Blog',
     articleSection: 'Blog',
-    seoTitle: searchQuery ? `Search: "${searchQuery}" - Blog | Pislinfra` : 'Infrastructure Insights, News & Updates | Pislinfra Blog',
-    seoDescription: searchQuery ? `${filteredBlogs.length} results found for "${searchQuery}"` : 'Read expert insights on industrial infrastructure, construction trends, warehousing innovations, and project management from Pislinfra.',
-    seoKeywords: 'infrastructure blog, construction insights, warehouse design, industrial development, logistics, project management, Pislinfra',
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: blogPage?.seo?.seoKeywords || resolvedFocusKeywords,
     slug: '',
-    canonicalUrl: 'https://pislinfra.com/blog',
-    ogTitle: 'Pislinfra Blog - Infrastructure Insights & Updates',
-    ogDescription: 'Expert insights on industrial infrastructure, construction trends & warehousing innovations.',
-    ogImage: 'https://pislinfra.com/images/hero/Blog.png',
+    canonicalUrl: blogPage?.seo?.canonicalUrl || 'https://pislinfra.com/blog',
+    ogTitle: searchQuery ? `Search: "${searchQuery}" - Blog | Pislinfra` : (blogPage?.ogTitle || blogPage?.seo?.ogTitle || resolvedTitle),
+    ogDescription: searchQuery ? `${filteredBlogs.length} results found for "${searchQuery}"` : (blogPage?.ogDescription || blogPage?.seo?.ogDescription || resolvedDescription),
+    ogImage: blogPage?.seo?.ogImage?.url || 'https://pislinfra.com/images/hero/Blog.png',
     ogType: 'website',
-    twitterTitle: 'Pislinfra Blog - Infrastructure Insights',
-    twitterDescription: 'Read the latest on industrial construction & infrastructure development.',
-    twitterImage: 'https://pislinfra.com/images/hero/Blog.png',
+    twitterTitle: searchQuery ? `Search: "${searchQuery}" - Blog | Pislinfra` : (blogPage?.twitterTitle || blogPage?.seo?.twitterTitle || resolvedTitle),
+    twitterDescription: searchQuery ? `${filteredBlogs.length} results found for "${searchQuery}"` : (blogPage?.twitterDescription || blogPage?.seo?.twitterDescription || resolvedDescription),
+    twitterImage: blogPage?.seo?.twitterImage?.url || 'https://pislinfra.com/images/hero/Blog.png',
     twitterCardType: 'summary_large_image',
     schemaType: 'Blog',
     breadcrumbSchema: true,

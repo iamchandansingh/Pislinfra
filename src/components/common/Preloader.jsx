@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Preloader = () => {
+const Preloader = ({ timeout = 2500, fallback = null }) => {
+  const [timedOut, setTimedOut] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimedOut(true);
+    }, timeout);
+    return () => clearTimeout(timer);
+  }, [timeout]);
+
+  if (timedOut) return fallback;
+
   return (
     <>
       <style>{`

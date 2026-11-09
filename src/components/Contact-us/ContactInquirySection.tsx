@@ -354,10 +354,10 @@ const ContactInquirySection: React.FC<ContactInquirySectionProps> = ({ pageData 
         /* ===== Form Container ===== */
         .contact-form {
           background-color: #FFFFFF;
-          border-radius: 16px;
-          border: 1px solid #EAEFF5;
+          border-radius: 8px;
+          border: 1px solid rgba(52, 65, 85, 0.35);
           padding: 24px 22px;
-          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+          box-shadow: none;
           box-sizing: border-box;
           min-width: 0;
         }
@@ -527,10 +527,10 @@ const ContactInquirySection: React.FC<ContactInquirySectionProps> = ({ pageData 
 
         .sidebar-card {
           background-color: #1E2A5A;
-          border-radius: 16px;
+          border-radius: 8px;
           padding: 24px 20px;
           color: #FFFFFF;
-          box-shadow: 0 8px 24px rgba(30, 42, 90, 0.12);
+          box-shadow: none;
           height: 100%;
           display: flex;
           flex-direction: column;
@@ -696,14 +696,14 @@ const ContactInquirySection: React.FC<ContactInquirySectionProps> = ({ pageData 
           }
           .contact-form {
             padding: 18px 14px !important;
-            border-radius: 14px !important;
+            border-radius: 8px !important;
           }
           .form-header {
             margin-bottom: 16px !important;
           }
           .sidebar-card {
             padding: 20px 16px !important;
-            border-radius: 14px !important;
+            border-radius: 8px !important;
           }
           /* iOS Safari auto-zoom prevention: inputs must be 16px on mobile */
           .form-input,

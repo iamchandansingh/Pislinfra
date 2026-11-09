@@ -17,6 +17,11 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- High-Performance Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    
     <!-- Primary Meta Tags -->
     <title>Pislinfra | Industrial Infrastructure & EPC Company India</title>
     <meta name="title" content="Pislinfra | Industrial Infrastructure & EPC Company India" />
@@ -183,5 +188,33 @@
       </div>
     </div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      (function() {
+        var dismissed = false;
+        function hidePreloader() {
+          if (dismissed) return;
+          var el = document.querySelector('.preloader-container');
+          if (el) {
+            dismissed = true;
+            el.style.transition = 'opacity 0.4s ease-out';
+            el.style.opacity = '0';
+            setTimeout(function() {
+              if (el && el.parentNode) {
+                el.parentNode.removeChild(el);
+              }
+            }, 400);
+          }
+        }
+        if (document.readyState === 'complete') {
+          setTimeout(hidePreloader, 600);
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(hidePreloader, 600);
+          });
+        }
+        // Absolute maximum safety timeout: never block longer than 2500ms
+        setTimeout(hidePreloader, 2500);
+      })();
+    </script>
   </body>
 </html>

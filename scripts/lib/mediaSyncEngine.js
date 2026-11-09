@@ -106,30 +106,46 @@ export function crawlMediaUrls(data, currentKey = '', context = '', foundMap = n
 /**
  * Downloads a single media asset safely with retry and integrity validation.
  */
-export async function downloadMediaAsset(urlInfo) {
-  const { url, category, filename } = urlInfo;
+export async function downloadMediaAsset(urlInfo, explicitTargetPath = null) {
+  let url = '';
+  let category = 'uploads';
+  let filename = '';
+
+  if (typeof urlInfo === 'string') {
+    url = urlInfo;
+    filename = explicitTargetPath ? path.basename(explicitTargetPath) : cleanMediaFilename(url);
+    category = classifyMediaCategory(url);
+  } else if (urlInfo && typeof urlInfo === 'object') {
+    url = urlInfo.url;
+    category = urlInfo.category || classifyMediaCategory(url);
+    filename = urlInfo.filename || cleanMediaFilename(url);
+  }
   if (!filename) return false;
 
   const targetDir = category === 'reports' ? DIRS.reports : (DIRS[category] || DIRS.uploads);
-  const targetPath = path.join(targetDir, filename);
+  const targetPath = explicitTargetPath || path.join(targetDir, filename);
 
-  // Incremental: If already exists and is non-empty, skip re-download
-  if (fs.existsSync(targetPath)) {
-    try {
-      const stat = fs.statSync(targetPath);
-      if (stat.size > 0) {
-        // Also ensure dist has it if dist exists
-        const distDir = path.join(ROOT, 'dist', path.relative(path.join(ROOT, 'public'), targetDir));
-        if (fs.existsSync(path.join(ROOT, 'dist'))) {
-          if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
-          const distTarget = path.join(distDir, filename);
-          if (!fs.existsSync(distTarget)) {
-            fs.copyFileSync(targetPath, distTarget);
+  // Incremental: Check if this file already exists in ANY media directory to prevent duplicate downloads
+  const allDirs = [DIRS.projects, DIRS.awards, DIRS.blogs, DIRS.leadership, DIRS.reports, DIRS.uploads];
+  for (const dir of allDirs) {
+    const candidatePath = path.join(dir, filename);
+    if (fs.existsSync(candidatePath)) {
+      try {
+        const stat = fs.statSync(candidatePath);
+        if (stat.size > 0) {
+          // Also ensure dist has it if dist exists
+          const distDir = path.join(ROOT, 'dist', path.relative(path.join(ROOT, 'public'), dir));
+          if (fs.existsSync(path.join(ROOT, 'dist'))) {
+            if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
+            const distTarget = path.join(distDir, filename);
+            if (!fs.existsSync(distTarget)) {
+              fs.copyFileSync(candidatePath, distTarget);
+            }
           }
+          return { status: 'already_cached', path: candidatePath };
         }
-        return { status: 'already_cached', path: targetPath };
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
   }
 
   // Handle local Strapi relative URL
@@ -217,6 +233,8 @@ export function updateImageUrlSets() {
     updateSet('PROJECT_FILES', DIRS.projects);
     updateSet('AWARD_FILES', DIRS.awards);
     updateSet('BLOG_FILES', DIRS.blogs);
+    updateSet('LEADERSHIP_FILES', DIRS.leadership);
+    updateSet('UPLOAD_FILES', DIRS.uploads);
 
     fs.writeFileSync(imgUrlPath, content, 'utf8');
   } catch (e) {
@@ -224,16 +242,43 @@ export function updateImageUrlSets() {
   }
 }
 
+function resolveLocalMediaPath(filename) {
+  try {
+    if (fs.existsSync(path.join(DIRS.blogs, filename))) return `/images/blogs/${filename}`;
+    if (fs.existsSync(path.join(DIRS.projects, filename))) return `/images/projects/${filename}`;
+    if (fs.existsSync(path.join(DIRS.awards, filename))) return `/images/awards/${filename}`;
+    if (fs.existsSync(path.join(DIRS.leadership, filename))) return `/images/leadership/${filename}`;
+    if (fs.existsSync(path.join(DIRS.reports, filename))) return `/reports/${filename}`;
+  } catch (e) {}
+  return `/images/uploads/${filename}`;
+}
+
 /**
- * Deep-rewrites any localhost:1337 or 127.0.0.1:1337 URLs in content to relative production paths.
+ * Deep-rewrites any localhost:1337, 127.0.0.1:1337, Cloudflare R2, or Render URLs in content to relative production paths.
  */
 export function sanitizeLocalhostUrls(data) {
   if (!data) return data;
   if (typeof data === 'string') {
-    return data.replace(/https?:\/\/(localhost|127\.0\.0\.1):1337\/uploads\/([a-zA-Z0-9._-]+)/g, (match, host, fn) => {
+    let str = data;
+    // 1. Rewrite localhost and 127.0.0.1 URLs
+    str = str.replace(/https?:\/\/(?:localhost|127\.0\.0\.1):1337\/uploads\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
       const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
-      return `/images/uploads/${clean}`;
+      return resolveLocalMediaPath(clean);
     });
+
+    // 2. Rewrite Cloudflare R2 URLs
+    str = str.replace(/https?:\/\/[a-zA-Z0-9.-]*\.r2\.dev\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
+      const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
+      return resolveLocalMediaPath(clean);
+    });
+
+    // 3. Rewrite onrender Strapi URLs
+    str = str.replace(/https?:\/\/cms-pislinfra\.onrender\.com\/uploads\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
+      const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
+      return resolveLocalMediaPath(clean);
+    });
+
+    return str;
   }
   if (Array.isArray(data)) return data.map(sanitizeLocalhostUrls);
   if (typeof data === 'object') {

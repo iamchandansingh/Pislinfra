@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { getImageUrl } from '../utils/imageUrl.js';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
 import { FaDownload, FaFilePdf, FaCalendar } from 'react-icons/fa';
@@ -72,12 +73,21 @@ const AnnualReports = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('annual-report-page');
+      if (fresh) setData(fresh);
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     let isMounted = true;
 
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('annual-report-page?populate[0]=heroImage&populate[1]=seo&populate[2]=reports&populate[3]=reports.pdfFile');
+        const response = await fetchStrapiData('annual-report-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage&populate[3]=reports&populate[4]=reports.pdfFile');
         if (response && isMounted) {
           setData(response);
         }
@@ -91,19 +101,13 @@ const AnnualReports = () => {
     return () => { isMounted = false; };
   }, []);
 
-  const getImageUrl = (imgObj, defaultImg) => {
-    if (!imgObj || (!imgObj.url && !imgObj.data?.attributes?.url)) return defaultImg;
-    const url = imgObj.url || imgObj.data?.attributes?.url;
-    if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-    return url;
-  };
-
   const getFileUrl = (fileUrl, pdfFileObj) => {
     if (fileUrl && fileUrl.startsWith('/reports/')) return fileUrl;
-    const url = pdfFileObj?.url || pdfFileObj?.data?.attributes?.url;
+    const url = pdfFileObj?.url || pdfFileObj?.data?.attributes?.url || fileUrl;
     if (url) {
-      if (url.startsWith('/')) return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-      return url;
+      if (url.startsWith('/reports/')) return url;
+      const fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+      return `/reports/${fn}`;
     }
     return fileUrl || '#';
   };
@@ -119,10 +123,44 @@ const AnnualReports = () => {
 
   const currentData = data || fallbackData;
 
+  const fallbackTitle = "Pislinfra Annual Reports | Company Reports & Updates";
+  const fallbackDescription = "Explore Pislinfra annual reports, company information and key business updates covering multiple financial years.";
+  const fallbackPrimaryKeyword = "Pislinfra Annual Reports";
+  const fallbackFocusKeywords = "Pislinfra Annual Reports, company reports, annual returns, statutory disclosures, financial year performance, Pislinfra";
+
+  // Connect CMS Annual Reports page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (currentData?.metaTitle || currentData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (currentData?.metaDescription || currentData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (currentData?.primaryKeyword || currentData?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (currentData?.focusKeywords || currentData?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
-    ...currentData.seo,
     contentType: 'page',
-    ogImage: getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png')
+    ...(currentData.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: currentData?.seo?.seoKeywords || resolvedFocusKeywords,
+    slug: 'annual-reports',
+    canonicalUrl: currentData?.seo?.canonicalUrl || 'https://pislinfra.com/annual-reports',
+    ogTitle: currentData?.ogTitle || currentData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: currentData?.ogDescription || currentData?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png'),
+    ogType: currentData?.seo?.ogType || 'website',
+    twitterTitle: currentData?.twitterTitle || currentData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: currentData?.twitterDescription || currentData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(currentData.seo?.twitterImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png'),
+    twitterCardType: currentData?.seo?.twitterCardType || 'summary_large_image',
+    schemaType: currentData?.seo?.schemaType || 'WebPage',
+    breadcrumbSchema: currentData?.seo?.breadcrumbSchema !== undefined ? currentData.seo.breadcrumbSchema : true,
+    organizationSchema: currentData?.seo?.organizationSchema !== undefined ? currentData.seo.organizationSchema : true,
+    tags: currentData?.seo?.tags ? (typeof currentData.seo.tags === 'string' ? currentData.seo.tags.split(',').map(t => t.trim()) : currentData.seo.tags) : ['Annual Reports', 'Financial Reports', 'Statutory Filings', 'Pislinfra'],
+    noIndex: currentData?.seo?.noIndex || false,
+    noFollow: currentData?.seo?.noFollow || false,
+    structuredData: currentData?.seo?.structuredData
   };
 
   const reports = (currentData.reports && currentData.reports.length > 0) ? currentData.reports : fallbackData.reports;

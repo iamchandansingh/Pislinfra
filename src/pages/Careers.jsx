@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData } from '../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../services/strapi'
 import { getImageUrl } from '../utils/imageUrl'
 import PageHero from '../components/hero/PageHero'
 import BlogSEO from '../components/Blog/BlogSEO'
@@ -15,33 +15,59 @@ const defaultCareerData = {
   heroSubtitle: "Join Pislinfra and build tomorrow's India with us.",
   breadcrumb: 'Careers',
   heroImage: { url: '/images/hero/Careers.png' },
+  primaryKeyword: 'Careers at Pislinfra',
+  metaTitle: 'Careers at Pislinfra | Build Your Future With Us',
+  metaDescription: 'Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.',
+  focusKeywords: 'Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers',
   seo: {
-    seoTitle: 'Careers & Current Openings | Join India\'s Leading EPC Team | Pislinfra',
-    seoDescription: 'Explore 27+ exciting engineering, project management, and construction job openings at Pislinfra across PAN India. Apply online today.',
-    seoKeywords: 'construction jobs India, civil engineer careers, planning engineer hiring, safety officer jobs, project manager vacancy, Pislinfra hiring, PAN India construction jobs',
+    seoTitle: 'Careers at Pislinfra | Build Your Future With Us',
+    seoDescription: 'Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.',
+    seoKeywords: 'Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers',
     canonicalUrl: 'https://pislinfra.com/careers'
   }
 };
 
 const Careers = () => {
   const [selectedPosition, setSelectedPosition] = useState('');
-  const [data, setData] = useState(defaultCareerData);
+  const [data, setData] = useState(() => {
+    const raw = getLocalDataSync('career-page') || getLocalDataSync('career-page?populate=*');
+    if (raw) return Array.isArray(raw) ? (raw[0] || defaultCareerData) : raw;
+    return defaultCareerData;
+  });
   const [jobs, setJobs] = useState(jobOpeningsData);
 
   useEffect(() => {
-    const loadData = async () => {
-      const pageRes = await fetchStrapiData('career-page?populate[0]=heroImage&populate[1]=seo&populate[2]=benefits&populate[3]=processSteps');
-      if (pageRes) setData(Array.isArray(pageRes) ? pageRes[0] : pageRes);
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('career-page') || getLocalDataSync('career-page?populate=*');
+      if (fresh) {
+        setData(Array.isArray(fresh) ? (fresh[0] || defaultCareerData) : fresh);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
 
-      const jobsRes = await fetchStrapiData('job-openings?pagination[limit]=100');
-      if (jobsRes) {
-         const items = Array.isArray(jobsRes) ? jobsRes : (jobsRes.data || []);
-         setJobs(items.length > 0 ? items : jobOpeningsData);
-      } else {
-        setJobs(jobOpeningsData);
+  useEffect(() => {
+    let isMounted = true;
+    const loadData = async () => {
+      try {
+        const pageRes = await fetchStrapiData('career-page?populate[0]=heroImage&populate[1]=seo&populate[2]=benefits&populate[3]=processSteps');
+        if (pageRes && isMounted) {
+          setData(Array.isArray(pageRes) ? (pageRes[0] || defaultCareerData) : pageRes);
+        }
+
+        const jobsRes = await fetchStrapiData('job-openings?pagination[limit]=100');
+        if (jobsRes && isMounted) {
+          const items = Array.isArray(jobsRes) ? jobsRes : (jobsRes.data || []);
+          setJobs(items.length > 0 ? items : jobOpeningsData);
+        } else if (isMounted) {
+          setJobs(jobOpeningsData);
+        }
+      } catch (e) {
       }
     };
     loadData();
+    return () => { isMounted = false; };
   }, []);
 
   const allJobsList = jobs.length > 0 ? jobs : jobOpeningsData;
@@ -87,20 +113,35 @@ const Careers = () => {
     'url': `https://pislinfra.com/careers`
   }));
 
+  const fallbackTitle = "Careers at Pislinfra | Build Your Future With Us";
+  const fallbackDescription = "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.";
+  const fallbackPrimaryKeyword = "Careers at Pislinfra";
+  const fallbackFocusKeywords = "Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers";
+
+  // Connect CMS Careers page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
     contentType: 'page',
-    title: data?.title || 'Careers',
-    seoTitle: data?.seo?.seoTitle || defaultCareerData.seo.seoTitle,
-    seoDescription: data?.seo?.seoDescription || defaultCareerData.seo.seoDescription,
-    seoKeywords: data?.seo?.seoKeywords || defaultCareerData.seo.seoKeywords,
+    ...(data?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data?.seo?.seoKeywords || resolvedFocusKeywords,
     slug: 'careers',
     canonicalUrl: data?.seo?.canonicalUrl || 'https://pislinfra.com/careers',
-    ogTitle: data?.seo?.ogTitle || defaultCareerData.seo.seoTitle,
-    ogDescription: data?.seo?.ogDescription || defaultCareerData.seo.seoDescription,
+    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
+    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
     ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, '/images/hero/Careers.png'),
     ogType: data?.seo?.ogType || 'website',
-    twitterTitle: data?.seo?.twitterTitle || defaultCareerData.seo.seoTitle,
-    twitterDescription: data?.seo?.twitterDescription || defaultCareerData.seo.seoDescription,
+    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
     twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, '/images/hero/Careers.png'),
     twitterCardType: data?.seo?.twitterCardType || 'summary_large_image',
     schemaType: data?.seo?.schemaType || 'WebPage',

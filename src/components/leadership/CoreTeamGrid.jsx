@@ -1,16 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const NAVY = '#28296F';
 const ORANGE = '#ff904e';
-
-const getImageUrl = (imgObj, defaultImg) => {
-  if (!imgObj) return defaultImg;
-  const url = imgObj.url || imgObj.data?.attributes?.url;
-  if (!url) return defaultImg;
-  if (url.startsWith('http')) return url;
-  return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-};
 
 const TeamMemberCard = ({ member, index }) => {
   return (

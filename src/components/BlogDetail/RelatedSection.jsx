@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiMapPin, FiCalendar, FiClock } from 'react-icons/fi';
+import { formatBlogDate } from '../../utils/formatBlog';
 
 // ==================== PROJECT CARD ====================
 const ProjectCard = ({ project }) => {
@@ -118,16 +119,7 @@ const ArticleCard = ({ article }) => {
   const articleUrl = article.slug ? `/blog/${article.slug}` : article.url || '#';
 
   const formatDate = (dateStr) => {
-    if (!dateStr) return '';
-    try {
-      return new Date(dateStr).toLocaleDateString('en-US', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      });
-    } catch {
-      return dateStr;
-    }
+    return formatBlogDate(dateStr, article.createdAt);
   };
 
   return (

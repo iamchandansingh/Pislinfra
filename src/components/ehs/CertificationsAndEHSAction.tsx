@@ -2,29 +2,69 @@ import React, { useState, useEffect } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import clientsData from '../../data/clientsData';
+import { getImageUrl } from '../../utils/imageUrl';
 
-const getGalleryUrl = (img: any, fallback: string) => {
-  if (!img) return fallback;
-  const url = typeof img === 'string' ? img : (img.url || img.data?.attributes?.url);
-  if (!url) return fallback;
-  return url.startsWith('http') ? url : `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
+const LOCAL_GALLERY_FALLBACKS: Record<string, string> = {
+  'ppe training session': '/images/EHS/PPE-Training-Session.png',
+  'site safety inspection': '/images/EHS/Site-Safety-Inspection.png',
+  'fire safety drill': '/images/EHS/Fire-Safety-Drill.png',
+  'emergency mock drill': '/images/EHS/Emergency-Mock-Drill.png',
+};
+
+const defaultGalleryItems = [
+  { id: '1', title: 'PPE Training Session',   image: '/images/EHS/PPE-Training-Session.png' },
+  { id: '2', title: 'Site Safety Inspection', image: '/images/EHS/Site-Safety-Inspection.png' },
+  { id: '3', title: 'Fire Safety Drill',      image: '/images/EHS/Fire-Safety-Drill.png' },
+  { id: '4', title: 'Emergency Mock Drill',   image: '/images/EHS/Emergency-Mock-Drill.png' },
+];
+
+const resolveGalleryImage = (item: any, index: number): string => {
+  const fallback = defaultGalleryItems[index % defaultGalleryItems.length]?.image || '/images/EHS/PPE-Training-Session.png';
+  if (!item) return fallback;
+
+  const itemTitle = (item.title || defaultGalleryItems[index]?.title || '').toLowerCase().trim();
+  const knownPath = LOCAL_GALLERY_FALLBACKS[itemTitle];
+
+  // If item.image is a direct string path that exists
+  if (typeof item.image === 'string' && item.image.trim()) {
+    const trimmed = item.image.trim();
+    if (trimmed.startsWith('/images/EHS/')) return trimmed;
+  }
+
+  // If img object from Strapi or CMS
+  const imgObj = item.image || item.img;
+  if (imgObj) {
+    if (typeof imgObj === 'string' && imgObj.trim()) {
+      if (imgObj.startsWith('/images/EHS/')) return imgObj;
+      const url = getImageUrl(imgObj, knownPath || fallback);
+      if (url && !url.includes('undefined')) return url;
+    } else if (typeof imgObj === 'object') {
+      // Prefer original url over non-existent medium/small format prefixes
+      const directUrl = imgObj.url || imgObj.attributes?.url;
+      if (directUrl && typeof directUrl === 'string') {
+        const resolvedDirect = getImageUrl(directUrl, knownPath || fallback);
+        if (resolvedDirect && !resolvedDirect.includes('undefined')) return resolvedDirect;
+      }
+      const resolved = getImageUrl(imgObj, knownPath || fallback);
+      if (resolved && !resolved.includes('undefined')) return resolved;
+    }
+  }
+
+  return knownPath || fallback;
 };
 
 const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title?: string }) => {
-  const galleryItems = [
-    { id: '1', title: 'PPE Training Session',   image: '/images/EHS/PPE-Training-Session.png' },
-    { id: '2', title: 'Site Safety Inspection', image: '/images/EHS/Site-Safety-Inspection.png' },
-    { id: '3', title: 'Fire Safety Drill',      image: '/images/EHS/Fire-Safety-Drill.png' },
-    { id: '4', title: 'Emergency Mock Drill',   image: '/images/EHS/Emergency-Mock-Drill.png' },
-  ];
-
   const activeGallery = gallery && gallery.length > 0 
     ? gallery.map((g, i) => ({ 
         id: g.id || i, 
-        title: g.title || galleryItems[i]?.title, 
-        image: getGalleryUrl(g.image, galleryItems[i]?.image || "") 
+        title: g.title || defaultGalleryItems[i]?.title, 
+        image: resolveGalleryImage(g, i) 
       })) 
-    : galleryItems;
+    : defaultGalleryItems;
+
+  const displayTitle = title && !title.toLowerCase().startsWith('certifications')
+    ? title
+    : 'EHS in Action';
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
@@ -33,15 +73,16 @@ const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title
   const clientLogos = allClients.map(name => clientsData.find(c => c.name === name)).filter(Boolean);
 
   useEffect(() => {
+    if (clientLogos.length <= 3) return;
     const interval = setInterval(() => {
-      setCurrentSlide(prev => prev + 3 >= clientLogos.length ? 0 : prev + 3);
+      setCurrentSlide(prev => (prev + 3 >= clientLogos.length ? 0 : prev + 3));
     }, 3000);
     return () => clearInterval(interval);
   }, [clientLogos.length]);
 
   const visibleClients = clientLogos.slice(currentSlide, currentSlide + 3);
-  if (visibleClients.length < 3) {
-    visibleClients.push(...clientLogos.slice(0, 3 - visibleClients.length));
+  while (visibleClients.length < 3 && clientLogos.length > 0) {
+    visibleClients.push(clientLogos[visibleClients.length % clientLogos.length]);
   }
 
   return (
@@ -155,9 +196,18 @@ const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title
           height: 160px;
           border-radius: 10px;
           overflow: hidden;
-          background-size: cover;
-          background-position: center;
           background-color: #F1F5F9;
+          position: relative;
+        }
+        .gallery-img-tag {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.3s ease;
+        }
+        .gallery-card-item:hover .gallery-img-tag {
+          transform: scale(1.04);
         }
         .gallery-item-title {
           font-size: 11.5px;
@@ -271,7 +321,7 @@ const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title
             
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <div className="cert-clients-grid">
-                {visibleClients.map((client: any, i: number) => (
+                {visibleClients.filter(Boolean).map((client: any, i: number) => (
                   <div key={i} style={{ textAlign: 'center' }}>
                     <div className="client-logo-box">
                       <img 
@@ -299,19 +349,33 @@ const CertificationsAndEHSAction = ({ gallery, title }: { gallery?: any[]; title
 
           {/* RIGHT: EHS in Action Gallery */}
           <div className="ehs-action-card">
-            <h2 className="ehs-card-title">{title || "EHS in Action"}</h2>
+            <h2 className="ehs-card-title">{displayTitle}</h2>
             <p className="ehs-card-subtitle">Building a strong safety culture on every site.</p>
             
             <div className="ehs-gallery-grid">
-              {activeGallery.map((item: any) => (
-                <div key={item.id}>
-                  <div 
-                    className="gallery-img-thumb"
-                    style={{ backgroundImage: `url(${item.image})` }} 
-                  />
-                  <p className="gallery-item-title">{item.title}</p>
-                </div>
-              ))}
+              {activeGallery.map((item: any, idx: number) => {
+                const fallbackSrc = defaultGalleryItems[idx % defaultGalleryItems.length]?.image || '/images/EHS/PPE-Training-Session.png';
+                return (
+                  <div key={item.id} className="gallery-card-item">
+                    <div className="gallery-img-thumb">
+                      <img 
+                        src={item.image || fallbackSrc} 
+                        alt={item.title || 'EHS in Action'} 
+                        loading="lazy" 
+                        decoding="async"
+                        className="gallery-img-tag"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.src.endsWith(fallbackSrc)) {
+                            target.src = fallbackSrc;
+                          }
+                        }}
+                      />
+                    </div>
+                    <p className="gallery-item-title">{item.title}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

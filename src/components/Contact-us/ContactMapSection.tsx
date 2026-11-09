@@ -9,27 +9,27 @@ const ContactMapSection = () => {
   const [activeMap, setActiveMap] = useState('pisl');
 
   return (
-    <section className="contact-map-wrapper" style={{ width: '100%', margin: 0, padding: 0, marginTop: 0, paddingTop: 0, fontFamily: 'Inter, sans-serif' }}>
-      <div style={{ width: '95%', maxWidth: '1370px', margin: '0 auto', padding: 0, marginTop: 0, paddingTop: 0, display: 'flex', flexDirection: 'column', gap: 0 }}>
+    <section className="contact-map-wrapper" style={{ width: '100%', margin: 0, padding: 0, fontFamily: 'Inter, sans-serif' }}>
+      <div style={{ width: '95%', maxWidth: '1370px', margin: '0 auto', padding: 0, display: 'flex', flexDirection: 'column' }}>
         
         {/* Map Container */}
         <div className="map-container" style={{
           position: 'relative', width: '100%', height: '280px', overflow: 'hidden',
-          borderRadius: '12px', border: '1px solid #E5E7EB', backgroundColor: '#FFFFFF',
-          boxShadow: '0 4px 12px rgba(15,23,42,0.06)', marginTop: 0
+          borderRadius: '8px', border: '1px solid rgba(52, 65, 85, 0.35)', backgroundColor: '#FFFFFF',
+          boxShadow: 'none', marginTop: 0
         }}>
           {/* Toggle Buttons */}
           <div style={{
             position: 'absolute', top: '16px', right: '16px', zIndex: 10,
-            display: 'flex', gap: '8px', backgroundColor: 'rgba(255,255,255,0.9)',
-            padding: '6px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            display: 'flex', gap: '8px', backgroundColor: 'rgba(255,255,255,0.95)',
+            padding: '4px', borderRadius: '8px', border: '1px solid rgba(52, 65, 85, 0.2)',
             backdropFilter: 'blur(4px)'
           }}>
             <button 
               onClick={() => setActiveMap('pisl')}
               style={{
-                padding: '8px 16px', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer',
-                transition: 'all 0.3s', backgroundColor: activeMap === 'pisl' ? '#28286e' : 'transparent',
+                padding: '7px 14px', border: 'none', borderRadius: '6px', fontSize: '13px', fontWeight: 600, cursor: 'pointer',
+                transition: 'all 0.2s', backgroundColor: activeMap === 'pisl' ? '#1E2A5A' : 'transparent',
                 color: activeMap === 'pisl' ? '#FFFFFF' : '#4b5563'
               }}
             >
@@ -38,8 +38,8 @@ const ContactMapSection = () => {
             <button 
               onClick={() => setActiveMap('pragati')}
               style={{
-                padding: '8px 16px', border: 'none', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer',
-                transition: 'all 0.3s', backgroundColor: activeMap === 'pragati' ? '#28286e' : 'transparent',
+                padding: '7px 14px', border: 'none', borderRadius: '6px', fontSize: '13px', fontWeight: 600, cursor: 'pointer',
+                transition: 'all 0.2s', backgroundColor: activeMap === 'pragati' ? '#1E2A5A' : 'transparent',
                 color: activeMap === 'pragati' ? '#FFFFFF' : '#4b5563'
               }}
             >

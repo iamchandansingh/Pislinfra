@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { formatBlogDate } from '../../utils/formatBlog';
 
 const LatestArticlesSection = ({ articles: inputArticles }) => {
   const navigate = useNavigate();
@@ -19,9 +20,7 @@ const LatestArticlesSection = ({ articles: inputArticles }) => {
       id: blog.id,
       category: blog.category,
       title: blog.title,
-      date: new Date(blog.publishDate).toLocaleDateString('en-US', {
-        day: '2-digit', month: 'short', year: 'numeric',
-      }),
+      date: formatBlogDate(blog.publishDate, blog.createdAt),
       description: blog.excerpt,
       image: blog.featuredImage || "/images/hero/Blog.png",
       badgeBg: '#EEF4FF',

@@ -1,0 +1,75 @@
+[
+  {
+    "id": 5,
+    "documentId": "zo2xnzsvu7mqwzun77a3pjao",
+    "heroTitle": "Case Studies",
+    "heroSubtitle": "Detailed analysis of our major infrastructure projects",
+    "heroBreadcrumb": "Projects / Case Study",
+    "createdAt": "2026-08-23T09:58:48.029Z",
+    "updatedAt": "2026-11-09T00:24:14.261Z",
+    "publishedAt": "2026-10-09T01:05:07.541Z",
+    "approachTitle": "Our Approach That Delivers Results",
+    "ctaTitle": "Have a Project in Mind?",
+    "ctaSubtitle": "Let's build something extraordinary together.",
+    "ctaButtonText": "Get In Touch",
+    "ctaButtonLink": "/contact-us",
+    "seo": {
+      "id": 324,
+      "seoTitle": "Project Case Studies & Insights | Pislinfra",
+      "seoDescription": "Explore Pislinfra’s project case studies, highlighting our expertise, execution capabilities, innovative solutions and successful delivery across key sectors.",
+      "seoKeywords": null,
+      "canonicalUrl": null,
+      "ogTitle": null,
+      "ogDescription": null,
+      "ogType": "website",
+      "twitterTitle": null,
+      "twitterDescription": null,
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": false,
+      "tags": null,
+      "noIndex": false,
+      "noFollow": false
+    },
+    "heroImage": null,
+    "approachSteps": [
+      {
+        "id": 31,
+        "stepNumber": "01",
+        "title": "Understand",
+        "description": "We deeply understand the client's needs."
+      },
+      {
+        "id": 32,
+        "stepNumber": "02",
+        "title": "Plan",
+        "description": "We create smart, feasible and efficient plans."
+      },
+      {
+        "id": 33,
+        "stepNumber": "03",
+        "title": "Execute",
+        "description": "We execute with precision and strict quality control."
+      },
+      {
+        "id": 34,
+        "stepNumber": "04",
+        "title": "Deliver",
+        "description": "We deliver on time with safety and quality."
+      },
+      {
+        "id": 35,
+        "stepNumber": "05",
+        "title": "Optimize",
+        "description": "We ensure long-term value and sustainability."
+      }
+    ],
+    "trustedClients": [],
+    "primaryKeyword": null,
+    "metaTitle": null,
+    "metaDescription": null,
+    "focusKeywords": null
+  }
+]

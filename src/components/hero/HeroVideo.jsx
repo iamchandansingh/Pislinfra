@@ -1,23 +1,92 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 
 const HeroVideo = ({ videoSrc, bannerImage, heroImage }) => {
   const videoRef = useRef(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [activeSrc, setActiveSrc] = useState(videoSrc || '/videos/PISL-WEBSITE.mp4');
+
   const activeBanner = bannerImage || heroImage || '/images/hero/11.png';
 
+  // Keep activeSrc updated when videoSrc prop changes
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.defaultMuted = true;
-      if (videoRef.current.readyState >= 3) {
-        setIsVideoLoaded(true);
+    if (videoSrc && videoSrc !== activeSrc && !hasError) {
+      setActiveSrc(videoSrc);
+      setIsPlaying(false);
+    }
+  }, [videoSrc]);
+
+  // Handle browser autoplay policy cleanly with muted playback
+  const attemptPlay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+
+    // Start playback only when enough data is ready
+    if (video.readyState >= 2) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Playback started successfully
+          })
+          .catch((err) => {
+            console.warn('[HeroVideo] Autoplay note:', err?.message || err);
+            // Retry with muted guarantee
+            if (!video.muted) {
+              video.muted = true;
+              video.play().catch(() => {});
+            }
+          });
       }
     }
   }, []);
 
-  const handleVideoReady = () => {
-    setIsVideoLoaded(true);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    if (video.readyState >= 3 && !video.paused) {
+      setIsPlaying(true);
+    } else if (video.readyState >= 3) {
+      attemptPlay();
+    }
+  }, [activeSrc, attemptPlay]);
+
+  const handleLoadedData = () => {
+    attemptPlay();
   };
+
+  const handleCanPlay = () => {
+    attemptPlay();
+  };
+
+  const handlePlaying = () => {
+    // Video is actively playing and rendering frames
+    setIsPlaying(true);
+  };
+
+  const handleWaiting = () => {
+    // Temporary lack of data while buffering
+  };
+
+  const handleError = () => {
+    // If remote URL fails, attempt local fallback before showing graceful cover image
+    if (activeSrc !== '/videos/PISL-WEBSITE.mp4') {
+      setActiveSrc('/videos/PISL-WEBSITE.mp4');
+    } else {
+      setHasError(true);
+      setIsPlaying(false);
+    }
+  };
+
+  const showLoadingIndicator = !isPlaying && !hasError && Boolean(activeSrc);
 
   return (
     <section className="pisl-hero-container relative w-full overflow-hidden bg-[#07132b]">
@@ -32,8 +101,8 @@ const HeroVideo = ({ videoSrc, bannerImage, heroImage }) => {
         }}
       />
 
-      {/* Loading Animation until video is loaded */}
-      {!isVideoLoaded && (
+      {/* 2. Loading Animation: Shown only while video is loading, disappears when playing or on error */}
+      {showLoadingIndicator && (
         <div
           className="absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[2px]"
           style={{ transition: 'opacity 0.4s ease' }}
@@ -72,28 +141,28 @@ const HeroVideo = ({ videoSrc, bannerImage, heroImage }) => {
         </div>
       )}
 
-      {/* Video Background */}
-      {videoSrc !== null && videoSrc !== false && (
+      {/* 3. Video Background: Plays only when ready, fades in only when actually playing */}
+      {!hasError && activeSrc && (
         <video
           ref={videoRef}
+          src={activeSrc}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster={activeBanner}
-          onLoadedData={handleVideoReady}
-          onCanPlay={handleVideoReady}
-          onPlaying={handleVideoReady}
-          onError={() => setIsVideoLoaded(false)}
-          className="pisl-hero-video absolute top-0 left-0 w-full h-full z-0"
+          onLoadedData={handleLoadedData}
+          onCanPlay={handleCanPlay}
+          onPlaying={handlePlaying}
+          onWaiting={handleWaiting}
+          onError={handleError}
+          className="pisl-hero-video absolute top-0 left-0 w-full h-full z-[1]"
           style={{
-            opacity: isVideoLoaded ? 1 : 0,
+            opacity: isPlaying ? 1 : 0,
             transition: 'opacity 0.6s ease-in-out',
           }}
-        >
-          <source src={videoSrc || "/videos/PISL-WEBSITE.mp4"} type="video/mp4" />
-        </video>
+        />
       )}
 
       {/* Dark Overlay */}

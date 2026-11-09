@@ -6,6 +6,7 @@ import {
   FiFileText, FiDownload, FiPhone, FiMail, FiLinkedin,
   FiArrowRight, FiClock, FiChevronRight, FiPrinter,
 } from 'react-icons/fi';
+import { formatBlogDate } from '../../utils/formatBlog';
 
 // ==================== TABLE OF CONTENTS ====================
 const TableOfContents = ({ headings = [] }) => {
@@ -184,7 +185,7 @@ const DownloadBlogPDF = ({ title = '', content = '' }) => {
 // ==================== LATEST ARTICLES ====================
 const LatestArticles = ({ latestBlogs = [], onArticleClick }) => {
   if (!latestBlogs || latestBlogs.length === 0) return null;
-  const formatDate = (dateStr) => { try { return new Date(dateStr).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }); } catch { return dateStr; } };
+  const formatDate = (dateStr) => formatBlogDate(dateStr);
   return (
     <div className="sidebar-card" style={{ borderRadius: '14px', border: '1px solid #E5E7EB', backgroundColor: '#FFFFFF', padding: '18px', boxShadow: '0 2px 8px rgba(0,0,0,0.03)', fontFamily: 'Inter, sans-serif' }}>
       <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#081B4B', margin: '0 0 14px 0' }}>Latest Articles</h3>

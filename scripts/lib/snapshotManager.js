@@ -184,7 +184,7 @@ export function exportStaticCollections(data) {
 
   for (const [key, val] of Object.entries(data)) {
     const baseKey = key.split('?')[0];
-    if (Array.isArray(val) && val.length > 0) {
+    if (val && (Array.isArray(val) ? val.length > 0 : (typeof val === 'object' && Object.keys(val).length > 0))) {
       writeStatic(`${baseKey}.json`, val);
       if (baseKey.includes('-')) {
         writeStatic(`${baseKey.replace(/-/g, '_')}.json`, val);

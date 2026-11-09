@@ -5,6 +5,7 @@ import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import CoreTeamGrid from '../../components/leadership/CoreTeamGrid';
 import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
+import { getImageUrl } from '../../utils/imageUrl.js';
 import Preloader from '../../components/common/Preloader';
 import defaultLeadershipData from '../../data/leadershipData';
 
@@ -43,39 +44,51 @@ const Leadership = () => {
       }
     };
     loadData();
-  }, []);
 
-  const getImageUrl = (imgObj, defaultImg) => {
-    if (!imgObj) return defaultImg;
-    const url = imgObj.url || imgObj.data?.attributes?.url;
-    if (!url) return defaultImg;
-    if (url.startsWith('http')) return url;
-    return `${import.meta.env.VITE_STRAPI_URL || ""}${url}`;
-  };
+    const handleUpdate = (e) => {
+      if (e.detail?.endpoint?.includes('leadership-page') && e.detail.data) {
+        setData(e.detail.data);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
 
   if (loading && !data) return <Preloader />;
 
+  const fallbackTitle = "Leadership & Board of Directors - Visionary Infrastructure Leaders | Pislinfra";
+  const fallbackDescription = "Meet the leadership team and board of directors at Pislinfra steering India's fastest-growing industrial EPC, civil engineering, and warehouse construction enterprise.";
+
+  // Connect CMS Leadership page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || '').trim();
+  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || '').trim();
+
   const seoData = {
     contentType: 'page',
-    title: data.seo?.seoTitle || 'Leadership & Executive Management Team | Pislinfra',
-    seoTitle: data.seo?.seoTitle || 'Leadership & Board of Directors - Visionary Infrastructure Leaders | Pislinfra',
-    seoDescription: data.seo?.seoDescription || 'Meet the leadership team and board of directors at Pislinfra steering India\'s fastest-growing industrial EPC, civil engineering, and warehouse construction enterprise.',
-    seoKeywords: data.seo?.seoKeywords || 'Pislinfra leadership, board of directors, management team, industrial infrastructure leaders India, civil engineering executives, construction MD India',
+    ...(data?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data?.seo?.seoKeywords || 'Pislinfra leadership, board of directors, management team, industrial infrastructure leaders India, civil engineering executives, construction MD India',
     slug: 'about/leadership',
     canonicalUrl: 'https://pislinfra.com/about/leadership',
-    ogTitle: data.seo?.ogTitle || 'Executive Leadership & Management Team | Pislinfra',
-    ogDescription: data.seo?.ogDescription || 'Meet the visionaries driving engineering excellence and nationwide industrial infrastructure development at Pislinfra.',
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/leadership.png'),
+    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
+    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/leadership.png'),
     ogType: 'website',
-    twitterTitle: data.seo?.twitterTitle || 'Leadership Team | Pislinfra',
-    twitterDescription: data.seo?.twitterDescription || 'Visionary leadership behind 16M+ sq. ft of turnkey infrastructure in India.',
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/leadership.png'),
+    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, 'https://pislinfra.com/images/hero/leadership.png'),
     twitterCardType: 'summary_large_image',
     schemaType: 'AboutPage',
     breadcrumbSchema: true,
     organizationSchema: true,
-    tags: ['Leadership', 'Management', 'Directors', 'Founders', 'Pislinfra Executive Team'],
-    ...data.seo
+    tags: ['Leadership', 'Management', 'Directors', 'Founders', 'Pislinfra Executive Team']
   };
 
   return (

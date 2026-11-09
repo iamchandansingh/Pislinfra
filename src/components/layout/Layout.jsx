@@ -1,7 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+
+const ContentLoader = () => (
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', width: '100%' }}>
+    <div style={{ width: '40px', height: '40px', border: '3px solid #f3f3f3', borderTop: '3px solid #ff904e', borderRadius: '50%', animation: 'pislSpin 0.7s linear infinite' }} />
+    <style>{`@keyframes pislSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
+  </div>
+);
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -39,7 +46,9 @@ const Layout = () => {
       
       {/* Main Content Render Area */}
       <main style={{ flex: 1, backgroundColor: '#f8f9fc' }}>
-        <Outlet />
+        <Suspense fallback={<ContentLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       
       {/* Footer - FULL WIDTH */}

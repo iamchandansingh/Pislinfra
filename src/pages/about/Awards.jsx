@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
 import defaultClientAppreciations from '../../data/clientAppreciationsData';
-import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi';
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
 import { getImageUrl } from '../../utils/imageUrl';
 import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
 import PageHero from '../../components/hero/PageHero';
@@ -171,21 +171,34 @@ const Awards = () => {
     loadData();
   }, []);
 
+  const fallbackTitle = 'Awards & Certifications - Safety Milestones & Industry Honors | Pislinfra';
+  const fallbackDescription = 'Explore Pislinfra prestigious awards, US LEED Gold certification, and zero-LTI safety milestones awarded by Adani, Reliance, and leading industry councils.';
+
+  // Connect CMS Awards page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (pageData?.metaTitle || pageData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || '').trim();
+  const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+
   const seoData = {
     contentType: 'page',
-    title: 'Awards & Industry Recognitions | Pislinfra',
-    seoTitle: 'Awards & Certifications - Safety Milestones & Industry Honors | Pislinfra',
-    seoDescription: 'Explore Pislinfra prestigious awards, US LEED Gold certification, and zero-LTI safety milestones awarded by Adani, Reliance, and leading industry councils.',
-    seoKeywords: 'Pislinfra awards, construction awards India, safety excellence awards, Adani best safety contractor, LEED Gold warehousing, industrial EPC honors, turnkey infrastructure accolades, 2026 infrastructure award',
+    ...(pageData?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: pageData?.seo?.seoKeywords || 'Pislinfra awards, construction awards India, safety excellence awards, Adani best safety contractor, LEED Gold warehousing, industrial EPC honors, turnkey infrastructure accolades, 2026 infrastructure award',
     slug: 'about/awards',
     canonicalUrl: 'https://pislinfra.com/about/awards',
-    ogTitle: 'Awards & Accolades - Industry Excellence | Pislinfra',
-    ogDescription: 'A legacy of excellence recognized by India\'s top industrial conglomerates. Celebrating safety milestones, LEED Gold warehousing, and turnkey EPC achievements.',
-    ogImage: 'https://pislinfra.com/images/hero/Awards-Certification.png',
+    ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(pageData?.seo?.ogImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/Awards-Certification.png'),
     ogType: 'website',
-    twitterTitle: 'Awards & Certifications | Pislinfra',
-    twitterDescription: 'Recognized for safety excellence, green building innovation, and record-breaking industrial EPC execution across India.',
-    twitterImage: 'https://pislinfra.com/images/hero/Awards-Certification.png',
+    twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(pageData?.seo?.twitterImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/Awards-Certification.png'),
     twitterCardType: 'summary_large_image',
     schemaType: 'WebPage',
     breadcrumbSchema: true,
@@ -219,7 +232,7 @@ const Awards = () => {
   }, [selectedYear, awardsAndCertifications]);
 
   const latestAchievementData = useMemo(() => {
-    const list = filteredData.length > 0 ? filteredData : awardsAndCertifications;
+    const list = awardsAndCertifications || [];
     const targetList = list.filter(item => item.category !== 'Certification');
     const data = targetList.length > 0 ? targetList[0] : (list.length > 0 ? list[0] : null);
     if (!data) return null;
@@ -243,7 +256,7 @@ const Awards = () => {
         'Industry Benchmark Standards'
       ],
     };
-  }, [filteredData, awardsAndCertifications]);
+  }, [awardsAndCertifications]);
 
   const awardsShowcaseData = useMemo(() => {
     return filteredData.map(item => {
@@ -460,7 +473,7 @@ const Awards = () => {
       <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={getImageUrl(pageData?.heroImage, "/images/hero/Awards-Certification.png")} />
       {latestAchievementData && (
         <LatestAchievement 
-          achievements={(filteredData.length > 0 ? filteredData : awardsAndCertifications).filter(a => a.category !== 'Certification').slice(0, 5)} 
+          achievements={(awardsAndCertifications || []).filter(a => a.category !== 'Certification').slice(0, 5)} 
           achievementData={latestAchievementData} 
           onViewDetails={handleViewAwardDetails} 
           onDownload={handleDownload} 

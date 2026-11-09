@@ -3,9 +3,18 @@
 # Designed for Hostinger Shared Hosting / Apache 2.4+ / HTTP/2 & HTTPS
 # ==============================================================================
 
-# ==================== 1. CORE SERVER SECURITY ====================
+# ==================== 1. CORE SERVER SECURITY & MIME TYPES ====================
 Options -Indexes -MultiViews
 ServerSignature Off
+
+<IfModule mod_mime.c>
+    AddType application/javascript .js .mjs
+    AddType text/css .css
+    AddType application/json .json
+    AddType image/svg+xml .svg
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+</IfModule>
 
 # ==================== 2. HTTPS ENFORCEMENT ====================
 <IfModule mod_rewrite.c>
@@ -83,10 +92,18 @@ ServerSignature Off
     </IfModule>
 </FilesMatch>
 
-# Specifically protect the data directory from public listing
+# Specifically protect sensitive data and sync files from public browsing
 <IfModule mod_rewrite.c>
     RewriteRule ^data/live-backup\.json$ - [F,L]
+    RewriteRule ^data/.*\.bak$ - [F,L]
+    RewriteRule ^data/\..*$ - [F,L]
 </IfModule>
+
+<Files "sync-backup.php">
+    <IfModule mod_headers.c>
+        Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+    </IfModule>
+</Files>
 
 # ==================== 7. SPA ROUTING (REACT SINGLE PAGE APPLICATION) ====================
 <IfModule mod_rewrite.c>
@@ -124,13 +141,40 @@ ServerSignature Off
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
 
     # Sitemaps & Feeds
     ExpiresByType application/xml "access plus 1 hour"
     ExpiresByType text/xml "access plus 1 hour"
     ExpiresByType application/rss+xml "access plus 1 hour"
     ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType application/json "access plus 60 seconds"
     ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# ==================== 8.1 EXPLICIT CACHE-CONTROL HEADERS ====================
+<IfModule mod_headers.c>
+    # 1-Year immutable cache for static assets (CSS, JS, fonts)
+    <FilesMatch "\.(css|js|woff2?|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # 1-Year cache for images and media
+    <FilesMatch "\.(png|jpe?g|webp|avif|gif|svg|ico|mp4|webm)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # Short cache with revalidation for JSON data files
+    <FilesMatch "\.json$">
+        Header set Cache-Control "public, max-age=60, must-revalidate"
+    </FilesMatch>
+
+    # No cache for HTML pages to ensure immediate updates
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
 </IfModule>
 
 # ==================== 9. GZIP & BROTLI COMPRESSION ====================

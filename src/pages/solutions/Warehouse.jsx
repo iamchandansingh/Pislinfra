@@ -39,45 +39,75 @@ const Warehouse = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('solution-pages-warehouse') || getLocalDataSync('solution-pages?filters[slug]=warehouse');
+      if (fresh) {
+        setData(Array.isArray(fresh) ? (fresh[0] || defaultWarehouseData) : fresh);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
     const loadData = async () => {
       try {
         const response = await fetchStrapiData('solution-pages?filters[slug]=warehouse&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo');
-        if (response && response.length > 0) {
-          setData(response[0]);
-        } else if (response && !Array.isArray(response)) {
-          setData(response);
+        if (response && isMounted) {
+          if (Array.isArray(response) && response.length > 0) {
+            setData(response[0]);
+          } else if (!Array.isArray(response)) {
+            setData(response);
+          }
         }
       } catch (err) {
         // Fallback remains active
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     loadData();
+    return () => { isMounted = false; };
   }, []);
 
   if (loading && !data) return <Preloader />;
 
+  const fallbackTitle = "Warehouse Construction Company in India | Pislinfra";
+  const fallbackDescription = "Pislinfra's delivers design-build warehouse construction solutions across India, creating efficient, scalable and future-ready facilities for businesses.";
+  const fallbackPrimaryKeyword = "Warehouse Construction Company";
+  const fallbackFocusKeywords = "Warehouse Construction Company, design-build warehouse construction, warehouse solutions India, future-ready facilities, Pislinfra";
+
+  // Connect CMS Warehouse Solutions page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data.metaTitle || data.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data.metaDescription || data.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data.primaryKeyword || data.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (data.focusKeywords || data.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
     contentType: 'page',
-    title: data.title || "Warehousing Solutions",
-    seoTitle: data.seo?.seoTitle || "Modern Warehouse Design & LEED Certified Construction | Pislinfra",
-    seoDescription: data.seo?.seoDescription || "India's premier warehouse construction company. High-bay pre-engineered steel buildings, FM2 floor specification, LEED gold certified green warehousing, and cold chain facilities.",
-    seoKeywords: data.seo?.seoKeywords || "warehouse construction company India, PEB warehouse contractor, FM2 superflat flooring, LEED certified green warehouse, cold storage construction, Pislinfra warehouse",
+    ...(data.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data.seo?.seoKeywords || resolvedFocusKeywords,
     slug: 'solutions/warehouse',
     canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/warehouse",
-    ogTitle: data.seo?.ogTitle || "Modern Warehouse Design & LEED Certified Construction | Pislinfra",
-    ogDescription: data.seo?.ogDescription || "India's premier warehouse construction company. High-bay PEB buildings, FM2 floor specs, and LEED gold green warehousing.",
+    ogTitle: data.ogTitle || data.seo?.ogTitle || resolvedTitle,
+    ogDescription: data.ogDescription || data.seo?.ogDescription || resolvedDescription,
     ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Warehouse.png'),
     ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.seo?.twitterTitle || "Modern Warehouse Design & LEED Certified Construction | Pislinfra",
-    twitterDescription: data.seo?.twitterDescription || "India's premier warehouse construction company. High-bay PEB buildings, FM2 floor specs, and LEED gold green warehousing.",
+    twitterTitle: data.twitterTitle || data.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data.twitterDescription || data.seo?.twitterDescription || resolvedDescription,
     twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Warehouse.png'),
     twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
     schemaType: data.seo?.schemaType || 'Service',
     breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
     organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Warehouse Construction', 'LEED Certified Warehousing', 'PEB Industrial Buildings', 'FM2 Superflat Floors', 'Cold Storage Facilities'],
+    tags: data.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Warehouse Construction', 'LEED Certified Warehousing', 'PEB Industrial Buildings', 'FM2 Superflat Floors', 'Cold Storage Facilities'],
     noIndex: data.seo?.noIndex || false,
     noFollow: data.seo?.noFollow || false,
     structuredData: data.seo?.structuredData

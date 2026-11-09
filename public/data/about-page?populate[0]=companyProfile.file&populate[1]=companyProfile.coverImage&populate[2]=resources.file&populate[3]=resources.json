@@ -9,8 +9,8 @@
     "capabilitiesTitle": "OUR CAPABILITIES",
     "valuesTitle": "OUR VALUES",
     "createdAt": "2026-08-22T09:53:42.036Z",
-    "updatedAt": "2026-10-23T17:06:23.537Z",
-    "publishedAt": "2026-10-23T17:05:57.740Z",
+    "updatedAt": "2026-11-09T12:15:10.465Z",
+    "publishedAt": "2026-11-09T12:15:10.149Z",
     "presenceTitle": "OUR PRESENCE",
     "presenceDescription": "Explore active nodes, glowing network lines, smart region clusters, and real-time telemetry signals powering nationwide monitoring",
     "heroImage": {
@@ -106,7 +106,7 @@
       {
         "id": 391,
         "title": "EMPLOYEE",
-        "description": "600+ Employee Strength",
+        "description": "700+ Employee Strength",
         "iconName": "FaUsers"
       }
     ],
@@ -435,6 +435,10 @@
         "updatedAt": "2026-10-13T17:28:21.493Z",
         "publishedAt": "2026-10-13T17:28:21.493Z"
       }
-    }
+    },
+    "primaryKeyword": "Industrial & Warehouse EPC Contractor India",
+    "metaTitle": "About Pislinfra | Industrial & Warehouse EPC Contractor",
+    "metaDescription": "Learn about Pislinfra, a leading industrial and warehouse EPC contractor delivering construction, logistics and infrastructure solutions across India.",
+    "focusKeywords": "industrial infrastructure, warehouse construction company, turnkey EPC contractor, PEB engineering"
   }
 ]

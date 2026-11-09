@@ -70,29 +70,6 @@ const projectsData = [
   },
   {
     "id": 4,
-    "documentId": "amba9u870vie2hx8hmse641h",
-    "category": "Bio Energy",
-    "name": "CBG Plant",
-    "location": "Najibabad",
-    "state": "Uttar Pradesh",
-    "area": "6.96 Lakh Sq.ft",
-    "client": "Yuva Bio Energy Pvt Ltd",
-    "timeline": "2022 - WIP",
-    "status": "Ongoing",
-    "scope": "Excavation, Concreting, Shuttering, Reinforcement",
-    "cx": null,
-    "cy": null,
-    "images": [
-      "/images/projects/optimized_1787755484148_143_large_cbg-plant-najibabad-up_png.webp",
-      "/images/projects/large_cbg_plant_najibabad_up_2_8bff055186.png",
-      "/images/projects/optimized_1787755427976_990_large_cbg-plant-najibabad-up-3_png.webp",
-      "/images/projects/optimized_1787755569711_553_large_cbg-plant-najibabad-up-4_png.webp",
-      "/images/projects/optimized_1787755011529_929_large_cbg-plant-najibabad-up-5_png.webp",
-      "/images/projects/optimized_1787755429455_7_large_cbg-plant-najibabad-up-6_png.webp"
-    ]
-  },
-  {
-    "id": 5,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -115,7 +92,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 6,
+    "id": 5,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
@@ -138,7 +115,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 7,
+    "id": 6,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -159,28 +136,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 8,
-    "documentId": "wqd7gr6n1eodf36348atvtn4",
-    "category": "Institutional",
-    "name": "CPWD – IIT ISM Campus Project",
-    "location": "Dhanbad",
-    "state": "Jharkhand",
-    "area": "1.82 Lakh Sq. ft",
-    "client": "IIT ISM Dhanbad (CPWD)",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development",
-    "cx": null,
-    "cy": null,
-    "images": [
-      "/images/projects/large_1_0af1e34235.png",
-      "/images/projects/large_2_1ed9fbb57a.png",
-      "/images/projects/large_3_99b906acc0.png",
-      "/images/projects/large_4_006c5ffb41.png"
-    ]
-  },
-  {
-    "id": 9,
+    "id": 7,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
     "category": "Industrial",
     "name": "Reliance Solar Unit Manufacturing Plant",
@@ -203,7 +159,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 10,
+    "id": 8,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
@@ -224,7 +180,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 11,
+    "id": 9,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
@@ -246,7 +202,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 12,
+    "id": 10,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
@@ -267,7 +223,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 13,
+    "id": 11,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
     "category": "Industrial",
     "name": "Reliance DMD Plant",
@@ -289,7 +245,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 14,
+    "id": 12,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
@@ -310,31 +266,7 @@ const projectsData = [
     ]
   },
   {
-    "id": 15,
-    "documentId": "n3hwjilrop1oleltf6fwjxmx",
-    "category": "Industrial",
-    "name": "AMNS SSC GIDC Project",
-    "location": "GIDC Sanand",
-    "state": "Gujarat",
-    "area": "16.15 Lakh Sq. Ft",
-    "client": "AMNS",
-    "timeline": "2025 - WIP",
-    "status": "Ongoing",
-    "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
-    "cx": null,
-    "cy": null,
-    "images": [
-      "/images/projects/large_Screenshot_2026_10_12_at_11_53_30_PM_04b1b4e0d3.png",
-      "/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp",
-      "/images/projects/optimized_1787755127970_367_large_amns-ssc-gidc-project-sanand-gj-2_png.webp",
-      "/images/projects/optimized_1787755454265_164_large_amns-ssc-gidc-project-sanand-gj-3_png.webp",
-      "/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png",
-      "/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp",
-      "/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp"
-    ]
-  },
-  {
-    "id": 16,
+    "id": 13,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
     "category": "Warehousing",
     "name": "HANNO ONE Logistics Park",
@@ -352,6 +284,67 @@ const projectsData = [
       "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
       "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
       "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "documentId": "amba9u870vie2hx8hmse641h",
+    "category": "Bio Energy",
+    "name": "CBG Plant",
+    "location": "Najibabad",
+    "state": "Uttar Pradesh",
+    "area": "6.96 Lakh Sq.ft",
+    "client": "Yuva Bio Energy Pvt Ltd",
+    "timeline": "2022 - WIP",
+    "status": "Ongoing",
+    "scope": "Excavation, Concreting, Shuttering, Reinforcement",
+    "cx": null,
+    "cy": null,
+    "images": [
+      "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg",
+      "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
+      "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
+    ]
+  },
+  {
+    "id": 15,
+    "documentId": "n3hwjilrop1oleltf6fwjxmx",
+    "category": "Industrial",
+    "name": "AMNS SSC GIDC Project",
+    "location": "GIDC Sanand",
+    "state": "Gujarat",
+    "area": "16.15 Lakh Sq. Ft",
+    "client": "AMNS",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
+    "cx": null,
+    "cy": null,
+    "images": [
+      "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
+      "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
+      "/images/projects/large_AMNS_d5d027bbdc.jpeg",
+      "/images/projects/large_AAMNS_1_c32916c58d.jpeg"
+    ]
+  },
+  {
+    "id": 16,
+    "documentId": "wqd7gr6n1eodf36348atvtn4",
+    "category": "Institutional",
+    "name": "CPWD – IIT ISM Campus Project",
+    "location": "Dhanbad",
+    "state": "Jharkhand",
+    "area": "1.82 Lakh Sq. ft",
+    "client": "IIT ISM Dhanbad (CPWD)",
+    "timeline": "2025 - WIP",
+    "status": "Ongoing",
+    "scope": "Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development",
+    "cx": null,
+    "cy": null,
+    "images": [
+      "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
+      "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
+      "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg"
     ]
   }
 ];

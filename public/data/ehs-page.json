@@ -1,0 +1,1978 @@
+{
+  "id": 1,
+  "documentId": "rq79utnq5yl4bec0chrgi3li",
+  "title": "EHS Standards",
+  "subtitle": "Environment, Health & Safety Standards",
+  "breadcrumb": "About Us / EHS",
+  "createdAt": "2026-08-22T11:02:04.954Z",
+  "updatedAt": "2026-11-09T17:57:42.929Z",
+  "publishedAt": "2026-11-09T17:57:42.676Z",
+  "safetyCultureTitle": "Safety Culture & Values",
+  "safetyCultureDesc": "We foster a proactive safety culture where every employee is empowered to STOP WORK if they observe unsafe conditions.",
+  "commitmentTitle": "Safe Man Hours Growth",
+  "philosophySectionTitle": "Latest HSE Statistics",
+  "approachesSectionTitle": "Safety 360° Journey",
+  "approachesSectionSubtitle": "Since introducing Safety 360° in 2018, we've continued to raise the bar by launching new proactive initiatives, promoting deep collaboration, and fostering a culture of shared responsibility across all project sites.",
+  "rulesSectionTitle": "Life Saving Safety Rules (LSSR)",
+  "rulesSectionSubtitle": "जीवन रक्षक सुरक्षा नियम",
+  "pillarsSectionTitle": "Our EHS Pillars",
+  "programsSectionTitle": "Our Safety Programs",
+  "awardsSectionTitle": "Photography With Client",
+  "awardsSectionSubtitle": "Our commitment to safety, quality, and operational excellence continues to earn recognition across infrastructure and industrial projects.",
+  "resourcesSectionTitle": "SAFETY & RESOURCES",
+  "resourcesSectionSubtitle": "Safety is Our Highest Priority",
+  "resourcesSectionDesc": "Access our official safety guidelines, company profile, and important resources for all project sites.",
+  "gallerySectionTitle": "Certifications & EHS in Action",
+  "primaryKeyword": "EHS Safety Standards & Zero-Harm Construction India",
+  "metaTitle": "Environment, Health & Safety Standards",
+  "metaDescription": "Pislinfra's EHS standards ensure zero harm, environmental protection & workplace safety. Comprehensive safety programs, certifications & sustainable construction practices.",
+  "focusKeywords": "EHS policy construction, safety standards industrial construction, ISO 45001 contractor India, zero harm safety culture, safe man hours construction, Pislinfra EHS",
+  "heroImage": {
+    "id": 77,
+    "documentId": "camyr8kbnlse64v6aoeyq3xw",
+    "name": "EHS.png",
+    "alternativeText": null,
+    "caption": null,
+    "focalPoint": null,
+    "width": 2240,
+    "height": 700,
+    "formats": {
+      "large": {
+        "ext": ".webp",
+        "url": "/images/uploads/optimized_1787755069456_129_large_EHS_png.webp",
+        "hash": "large_EHS_5064deb167",
+        "mime": "image/webp",
+        "name": "large_EHS.png",
+        "path": null,
+        "size": 41.94140625,
+        "width": 1000,
+        "height": 312,
+        "sizeInBytes": 42948
+      },
+      "small": {
+        "ext": ".webp",
+        "url": "/images/uploads/optimized_1787755070759_624_small_EHS_png.webp",
+        "hash": "small_EHS_5064deb167",
+        "mime": "image/webp",
+        "name": "small_EHS.png",
+        "path": null,
+        "size": 12.630859375,
+        "width": 500,
+        "height": 156,
+        "sizeInBytes": 12934
+      },
+      "medium": {
+        "ext": ".webp",
+        "url": "/images/uploads/optimized_1787755072014_709_medium_EHS_png.webp",
+        "hash": "medium_EHS_5064deb167",
+        "mime": "image/webp",
+        "name": "medium_EHS.png",
+        "path": null,
+        "size": 25.822265625,
+        "width": 750,
+        "height": 234,
+        "sizeInBytes": 26442
+      },
+      "thumbnail": {
+        "ext": ".webp",
+        "url": "/images/uploads/optimized_1787755074323_905_thumbnail_EHS_png.webp",
+        "hash": "thumbnail_EHS_5064deb167",
+        "mime": "image/webp",
+        "name": "thumbnail_EHS.png",
+        "path": null,
+        "size": 3.744140625,
+        "width": 245,
+        "height": 77,
+        "sizeInBytes": 3834
+      }
+    },
+    "hash": "EHS_5064deb167",
+    "ext": ".webp",
+    "mime": "image/webp",
+    "size": 108.71,
+    "url": "/images/uploads/optimized_1787755067556_403_EHS_png.webp",
+    "previewUrl": null,
+    "provider": "aws-s3",
+    "provider_metadata": null,
+    "createdAt": "2026-08-22T11:01:35.976Z",
+    "updatedAt": "2026-08-26T13:42:16.332Z",
+    "publishedAt": "2026-08-22T11:01:35.976Z"
+  },
+  "seo": {
+    "id": 86,
+    "seoTitle": "Environment, Health & Safety Standards",
+    "seoDescription": "Pislinfra's EHS standards ensure zero harm, environmental protection & workplace safety. Comprehensive safety programs, certifications & sustainable construction practices.",
+    "seoKeywords": "EHS standards, environment health safety, construction safety, workplace safety, safety certification, environmental protection, sustainable construction, Pislinfra",
+    "canonicalUrl": null,
+    "ogTitle": null,
+    "ogDescription": null,
+    "ogType": "website",
+    "twitterTitle": null,
+    "twitterDescription": null,
+    "twitterCardType": "summary_large_image",
+    "schemaType": "WebPage",
+    "structuredData": null,
+    "breadcrumbSchema": true,
+    "organizationSchema": false,
+    "tags": null,
+    "noIndex": false,
+    "noFollow": false,
+    "ogImage": null,
+    "twitterImage": null
+  },
+  "stats": [
+    {
+      "id": 21,
+      "value": "30",
+      "suffix": "M+",
+      "label": "Safe Man Hours",
+      "sub": "Upto 2025-26",
+      "iconName": "FiShield"
+    },
+    {
+      "id": 22,
+      "value": "31673040",
+      "suffix": "",
+      "label": "Lost Time Injuries Frequency Rate",
+      "sub": "2019 to 2025-26",
+      "iconName": "FiCheckCircle"
+    },
+    {
+      "id": 23,
+      "value": "100",
+      "suffix": "%",
+      "label": "Legal & Other Compliance",
+      "sub": "Every Year",
+      "iconName": "FiAward"
+    },
+    {
+      "id": 24,
+      "value": "17",
+      "suffix": "K+",
+      "label": "Job Specific Safety Training",
+      "sub": "Across All Projects",
+      "iconName": "FiBookOpen"
+    }
+  ],
+  "features": [
+    {
+      "id": 21,
+      "title": "Strategic EHS Planning",
+      "description": "Implementing proactive safety methodologies.",
+      "iconName": "FiTarget"
+    },
+    {
+      "id": 22,
+      "title": "Advanced Training Modules",
+      "description": "Interactive hazard identification workshops.",
+      "iconName": "FiBookOpen"
+    },
+    {
+      "id": 23,
+      "title": "Strict Safety Audits",
+      "description": "Rigorous compliance checking.",
+      "iconName": "FiCheckSquare"
+    },
+    {
+      "id": 24,
+      "title": "Safe & Sustainable Future",
+      "description": "Protecting people, environment and communities.",
+      "iconName": "FiFeather"
+    }
+  ],
+  "philosophy": [
+    {
+      "id": 6,
+      "title": "CCTV Camera",
+      "description": "Strong safety awareness helps teams identify risks early, stay alert on-site, and protect both themselves and others through responsible actions.",
+      "image": {
+        "id": 74,
+        "documentId": "p1q7n8jfxt9fbcdq7kqmdtrp",
+        "name": "Site-Safety-Inspection.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 893,
+        "height": 945,
+        "formats": {
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Site_Safety_Inspection_30e2e76e8c.png",
+            "hash": "small_Site_Safety_Inspection_30e2e76e8c",
+            "mime": "image/png",
+            "name": "small_Site-Safety-Inspection.png",
+            "path": null,
+            "size": 400.62,
+            "width": 472,
+            "height": 500,
+            "sizeInBytes": 400624
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Site_Safety_Inspection_30e2e76e8c.png",
+            "hash": "medium_Site_Safety_Inspection_30e2e76e8c",
+            "mime": "image/png",
+            "name": "medium_Site-Safety-Inspection.png",
+            "path": null,
+            "size": 859.64,
+            "width": 709,
+            "height": 750,
+            "sizeInBytes": 859639
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Site_Safety_Inspection_30e2e76e8c.png",
+            "hash": "thumbnail_Site_Safety_Inspection_30e2e76e8c",
+            "mime": "image/png",
+            "name": "thumbnail_Site-Safety-Inspection.png",
+            "path": null,
+            "size": 46.22,
+            "width": 147,
+            "height": 156,
+            "sizeInBytes": 46221
+          }
+        },
+        "hash": "Site_Safety_Inspection_30e2e76e8c",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 327.08,
+        "url": "/images/uploads/Site_Safety_Inspection_30e2e76e8c.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T10:51:28.031Z",
+        "updatedAt": "2026-08-26T12:38:47.176Z",
+        "publishedAt": "2026-08-22T10:51:28.031Z"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Fall Protection",
+      "description": "Encouraging communication, teamwork, and regular engagement helps strengthen confidence, improve decision-making, and create a focused workplace.",
+      "image": {
+        "id": 624,
+        "documentId": "v3g3fipsdjgiclsmftfb54vg",
+        "name": "protection.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 2100,
+        "height": 1313,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_protection_9cf1ae02b7.png",
+            "hash": "large_protection_9cf1ae02b7",
+            "mime": "image/png",
+            "name": "large_protection.png",
+            "path": null,
+            "size": 1260.94,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1260942
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_protection_9cf1ae02b7.png",
+            "hash": "small_protection_9cf1ae02b7",
+            "mime": "image/png",
+            "name": "small_protection.png",
+            "path": null,
+            "size": 343.4,
+            "width": 500,
+            "height": 313,
+            "sizeInBytes": 343401
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_protection_9cf1ae02b7.png",
+            "hash": "medium_protection_9cf1ae02b7",
+            "mime": "image/png",
+            "name": "medium_protection.png",
+            "path": null,
+            "size": 728.99,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 728987
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_protection_9cf1ae02b7.png",
+            "hash": "thumbnail_protection_9cf1ae02b7",
+            "mime": "image/png",
+            "name": "thumbnail_protection.png",
+            "path": null,
+            "size": 92.37,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 92371
+          }
+        },
+        "hash": "protection_9cf1ae02b7",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 922.74,
+        "url": "/images/uploads/protection_9cf1ae02b7.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:45:18.299Z",
+        "updatedAt": "2026-08-26T12:52:53.432Z",
+        "publishedAt": "2026-08-26T11:45:18.300Z"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Edge Professional",
+      "description": "Promoting disciplined work practices and responsible decision-making helps reduce risks, prevent incidents, and build long-term operational excellence.",
+      "image": {
+        "id": 816,
+        "documentId": "ud37v5zesdok43jjsk3tkp8s",
+        "name": "2.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1500,
+        "height": 938,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_2_320a5a9466.png",
+            "etag": "70eb025698733a24c26a068b1f6dd885",
+            "hash": "large_2_320a5a9466",
+            "mime": "image/png",
+            "name": "large_2.png",
+            "path": null,
+            "size": 1532.45,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1532445
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_2_320a5a9466.png",
+            "etag": "2a6c93c9ef195198fdcb460de2592cfe",
+            "hash": "small_2_320a5a9466",
+            "mime": "image/png",
+            "name": "small_2.png",
+            "path": null,
+            "size": 393.65,
+            "width": 500,
+            "height": 313,
+            "sizeInBytes": 393652
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_2_320a5a9466.png",
+            "etag": "80cdeae733bb366ddfe694685463e523",
+            "hash": "medium_2_320a5a9466",
+            "mime": "image/png",
+            "name": "medium_2.png",
+            "path": null,
+            "size": 871.6,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 871599
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_2_320a5a9466.png",
+            "etag": "e7e4c50f118c474ad4818d0034fb0720",
+            "hash": "thumbnail_2_320a5a9466",
+            "mime": "image/png",
+            "name": "thumbnail_2.png",
+            "path": null,
+            "size": 98.77,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 98774
+          }
+        },
+        "hash": "2_320a5a9466",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 759.54,
+        "url": "/images/uploads/2_320a5a9466.png",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-13T16:40:34.381Z",
+        "updatedAt": "2026-10-13T16:40:34.381Z",
+        "publishedAt": "2026-10-13T16:40:34.381Z"
+      }
+    },
+    {
+      "id": 9,
+      "title": "IGBC Compliance",
+      "description": "Safety is a collective responsibility where every team member contributes through accountability, coordination, and commitment towards maintaining safe environments.",
+      "image": {
+        "id": 602,
+        "documentId": "ro88wzeoqvbmfpumql1ok5c3",
+        "name": "Compliance.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 2100,
+        "height": 1313,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_Compliance_7756415c24.png",
+            "hash": "large_Compliance_7756415c24",
+            "mime": "image/png",
+            "name": "large_Compliance.png",
+            "path": null,
+            "size": 1139.62,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1139620
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Compliance_7756415c24.png",
+            "hash": "small_Compliance_7756415c24",
+            "mime": "image/png",
+            "name": "small_Compliance.png",
+            "path": null,
+            "size": 312.06,
+            "width": 500,
+            "height": 313,
+            "sizeInBytes": 312064
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Compliance_7756415c24.png",
+            "hash": "medium_Compliance_7756415c24",
+            "mime": "image/png",
+            "name": "medium_Compliance.png",
+            "path": null,
+            "size": 655.76,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 655755
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Compliance_7756415c24.png",
+            "hash": "thumbnail_Compliance_7756415c24",
+            "mime": "image/png",
+            "name": "thumbnail_Compliance.png",
+            "path": null,
+            "size": 87.31,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 87310
+          }
+        },
+        "hash": "Compliance_7756415c24",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 843.86,
+        "url": "/images/uploads/Compliance_7756415c24.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:36:29.956Z",
+        "updatedAt": "2026-08-26T12:51:32.086Z",
+        "publishedAt": "2026-08-26T11:36:29.956Z"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Third Party Training",
+      "description": "Rigorous third-party training ensures our workforce is equipped with the latest safety techniques, certifications, and hazard prevention strategies.",
+      "image": {
+        "id": 630,
+        "documentId": "w8a5o0kg37pgt2w4pa8k3sux",
+        "name": "Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "large_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "large_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 1554.86,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1554860
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "small_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "small_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 411.86,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 411862
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "medium_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "medium_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 903.6,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 903600
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "thumbnail_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 103.51,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 103514
+          }
+        },
+        "hash": "Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 457.27,
+        "url": "/images/uploads/Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:45:47.431Z",
+        "updatedAt": "2026-08-26T12:52:51.602Z",
+        "publishedAt": "2026-08-26T11:45:47.431Z"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Motivational HSE Training",
+      "description": "Continuous motivational training drives a proactive safety culture, keeping safety at the forefront of every operational decision on the ground.",
+      "image": {
+        "id": 663,
+        "documentId": "ablsl9jauulu0y3m4rnqx60b",
+        "name": "Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755674751_605_large_Celebrated-National-Safety-PRR-Jhamuwas-_2__png.webp",
+            "etag": "594866c0c26506b9d29f79c1d8665f84",
+            "hash": "large_Celebrated_National_Safety_PRR_Jhamuwas_2_403c317e2b",
+            "mime": "image/webp",
+            "name": "large_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 108.681640625,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 111290
+          },
+          "small": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755692645_866_small_Celebrated-National-Safety-PRR-Jhamuwas-_2__png.webp",
+            "etag": "1307238636334ad87ea76f68599c9324",
+            "hash": "small_Celebrated_National_Safety_PRR_Jhamuwas_2_403c317e2b",
+            "mime": "image/webp",
+            "name": "small_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 38.771484375,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 39702
+          },
+          "medium": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755721268_381_medium_Celebrated-National-Safety-PRR-Jhamuwas-_2__png.webp",
+            "etag": "fbe3b0f05e90b1f3d3fdd03b639f0d58",
+            "hash": "medium_Celebrated_National_Safety_PRR_Jhamuwas_2_403c317e2b",
+            "mime": "image/webp",
+            "name": "medium_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 70.15234375,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 71836
+          },
+          "thumbnail": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755728337_828_thumbnail_Celebrated-National-Safety-PRR-Jhamuwas-_2__png.webp",
+            "etag": "1414eafe819155b45771e70622a2b959",
+            "hash": "thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_2_403c317e2b",
+            "mime": "image/webp",
+            "name": "thumbnail_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 12.224609375,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 12518
+          }
+        },
+        "hash": "Celebrated_National_Safety_PRR_Jhamuwas_2_403c317e2b",
+        "ext": ".webp",
+        "mime": "image/webp",
+        "size": 123.76,
+        "url": "/images/uploads/optimized_1787755628310_902_Celebrated-National-Safety-PRR-Jhamuwas-_2__png.webp",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T12:54:25.133Z",
+        "updatedAt": "2026-08-26T12:54:25.133Z",
+        "publishedAt": "2026-08-26T12:54:25.133Z"
+      }
+    }
+  ],
+  "approaches": [
+    {
+      "id": 14,
+      "year": "2018",
+      "position": "top",
+      "points": [
+        "Corporate rollout of Safety 360° program",
+        "5-worker lunches program fosters conversations",
+        "Partner with ClarkDietrich"
+      ]
+    },
+    {
+      "id": 15,
+      "year": "2019",
+      "position": "bottom",
+      "points": [
+        "Monthly Safety Stand-Downs instituted",
+        "Introduction of specialized Edge Protection systems",
+        "Safety innovation award for new harness technology"
+      ]
+    },
+    {
+      "id": 16,
+      "year": "2020",
+      "position": "top",
+      "points": [
+        "Digital Hazard Reporting system implemented",
+        "COVID-19 advanced safety protocols established",
+        "Zero lost-time injuries milestone across 5 major sites"
+      ]
+    },
+    {
+      "id": 17,
+      "year": "2021",
+      "position": "bottom",
+      "points": [
+        "Third-party safety audits mandate across all projects",
+        "Mental Health & Wellness initiatives launched",
+        "Advanced CCTV monitoring for critical operations"
+      ]
+    },
+    {
+      "id": 18,
+      "year": "2022",
+      "position": "top",
+      "points": [
+        "AI-powered predictive safety analytics integration",
+        "Mobile-first safety training modules for site workers",
+        "National Safety Council leadership recognition"
+      ]
+    },
+    {
+      "id": 19,
+      "year": "2023",
+      "position": "bottom",
+      "points": [
+        "Drone-based site safety inspections",
+        "Sustainable safety practices (Green Safety)",
+        "Cross-industry safety consortium founding member"
+      ]
+    },
+    {
+      "id": 20,
+      "year": "2024",
+      "position": "top",
+      "points": [
+        "Real-time biometric fatigue monitoring pilots",
+        "Virtual Reality (VR) safety training centers opened",
+        "Achieved 10 million safe man-hours globally"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": 53,
+      "titleEn": "WORK AT HEIGHT",
+      "descEn": "Always protect yourself against fall while ascending, descending or working at height (1.8 meters).",
+      "descHi": "ऊंचाई (1.8 मीटर) पर चढ़ते, उतरते या काम करते समय हमेशा अपने आप को गिरने से बचाएं।",
+      "imgBase64Key": "WORK-AT-HEIGHT"
+    },
+    {
+      "id": 54,
+      "titleEn": "PERMIT TO WORK",
+      "descEn": "Always perform a HSE Tool Box Talk. Work with a valid work permit when required.",
+      "descHi": "काम शुरू करने से पहले हमेशा टूल बॉक्स टॉक करें। हमेशा वैध वर्क परमिट के साथ काम करें।",
+      "imgBase64Key": "PERMIT-TO-WORK"
+    },
+    {
+      "id": 55,
+      "titleEn": "INCIDENT REPORTING",
+      "descEn": "All Incidents must be recorded, reported, investigated and recommendations acted upon in a time bound manner.",
+      "descHi": "सभी घटनाओं को दर्ज किया जाना चाहिए, रिपोर्ट किया जाना चाहिए और जांच की जानी चाहिए।",
+      "imgBase64Key": "INCIDENT-REPORTING"
+    },
+    {
+      "id": 56,
+      "titleEn": "EXCAVATION",
+      "descEn": "Never enter into an excavation unless safe access/egress, adequate barricades are provided and soil is sufficiently supported/sloped.",
+      "descHi": "खुदाई में कभी भी प्रवेश न करें जब तक कि सुरक्षित रास्ता, पर्याप्त बैरिकेड न दिए गए हों और मिट्टी को सहारा न दिया गया हो।",
+      "imgBase64Key": "EXCAVATION"
+    },
+    {
+      "id": 57,
+      "titleEn": "CONFINED SPACE",
+      "descEn": "Always obtain authorisation before entering a confined space.",
+      "descHi": "कन्फाइंड स्पेस में प्रवेश करने से पहले हमेशा अनुमति लें।",
+      "imgBase64Key": "CONFINED-SPACE"
+    },
+    {
+      "id": 58,
+      "titleEn": "BARRICADING & SIGNAGE",
+      "descEn": "Never remove or bypass safety barricades and warning signages. Do not enter in unauthorized areas.",
+      "descHi": "सुरक्षा बैरिकेड्स और चेतावनी संकेतों को कभी न हटाएं। अनधिकृत क्षेत्रों में प्रवेश न करें।",
+      "imgBase64Key": "BARRICADING"
+    },
+    {
+      "id": 59,
+      "titleEn": "FIT FOR DUTY",
+      "descEn": "Always assure your competency and fitness for your job. Do not enter the premises under the influence of drugs or alcohol.",
+      "descHi": "हमेशा सुनिश्चित करें कि आप अपने काम के लिए फिट हैं। शराब या ड्रग्स के प्रभाव में कार्यस्थल पर प्रवेश न करें।",
+      "imgBase64Key": "FIT-FOR-DUTY"
+    },
+    {
+      "id": 60,
+      "titleEn": "LINE OF FIRE",
+      "descEn": "Always keep yourself and others out of the line of fire. (E.g. moving vehicles, suspended loads, tensioned lines)",
+      "descHi": "हमेशा अपने आप को और दूसरों को खतरे की रेखा से बाहर रखें। (जैसे- चलती गाड़ियां, लटका हुआ भार)",
+      "imgBase64Key": "LINE-OF-FIRE"
+    },
+    {
+      "id": 61,
+      "titleEn": "LIFTING OPERATIONS",
+      "descEn": "Do not use defective lifting tools and tackles. Never stand or walk under suspended loads.",
+      "descHi": "खराब लिफ्टिंग उपकरणों का उपयोग न करें। लटके हुए भार के नीचे कभी खड़े न हों या चलें।",
+      "imgBase64Key": "LIFTING"
+    },
+    {
+      "id": 62,
+      "titleEn": "TRAFFIC MANAGEMENT",
+      "descEn": "Always comply with traffic rules, specified speed limit and do not use mobile phones while driving.",
+      "descHi": "हमेशा यातायात नियमों और गति सीमा का पालन करें। ड्राइविंग करते समय मोबाइल फोन का उपयोग न करें।",
+      "imgBase64Key": "TRAFFIC"
+    },
+    {
+      "id": 63,
+      "titleEn": "ISOLATION OF HAZARDOUS ENERGY",
+      "descEn": "Always verify energy isolation & zero energy state before working on energized equipment/network.",
+      "descHi": "मशीन पर काम करने से पहले हमेशा ऊर्जा के अलगाव और शून्य ऊर्जा की स्थिति को सुनिश्चित करें।",
+      "imgBase64Key": "ISOLATION"
+    },
+    {
+      "id": 64,
+      "titleEn": "HOT WORK",
+      "descEn": "Ensure to keep area free from flammable materials and maintain proper firefighting equipment prior to start hot work.",
+      "descHi": "हॉट वर्क शुरू करने से पहले ज्वलनशील पदार्थों को हटाएं और आग बुझाने के उचित उपकरण रखें।",
+      "imgBase64Key": "HOT-WORK"
+    }
+  ],
+  "pillars": [
+    {
+      "id": 13,
+      "title": "Workplace Safety",
+      "description": "Ensuring the safety of every individual through robust processes, training and behavioral safety programs."
+    },
+    {
+      "id": 14,
+      "title": "Environmental Stewardship",
+      "description": "Minimizing our environmental footprint through responsible resource use and pollution prevention."
+    },
+    {
+      "id": 15,
+      "title": "Health & Well-being",
+      "description": "Promoting physical and mental well-being of our workforce and ensuring a healthy work environment."
+    },
+    {
+      "id": 16,
+      "title": "Emergency Preparedness",
+      "description": "Being prepared for emergencies with well-defined plans, drills and rapid response systems."
+    }
+  ],
+  "programs": [
+    {
+      "id": 13,
+      "title": "PPE Compliance",
+      "items": null
+    },
+    {
+      "id": 14,
+      "title": "Toolbox Talks",
+      "items": null
+    },
+    {
+      "id": 15,
+      "title": "Site Inspections & Audits",
+      "items": null
+    },
+    {
+      "id": 16,
+      "title": "Emergency Drills",
+      "items": null
+    },
+    {
+      "id": 17,
+      "title": "Behavior Based Safety",
+      "items": null
+    },
+    {
+      "id": 18,
+      "title": "Incident Reporting & Learning",
+      "items": null
+    }
+  ],
+  "gallery": [
+    {
+      "id": 25,
+      "title": "PPE Training Session",
+      "image": {
+        "id": 78,
+        "documentId": "bigcue3x3x2m3jtq1bkkeeat",
+        "name": "PPE-Training-Session.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 893,
+        "height": 945,
+        "formats": {
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_PPE_Training_Session_dd3537ba2c.png",
+            "hash": "small_PPE_Training_Session_dd3537ba2c",
+            "mime": "image/png",
+            "name": "small_PPE-Training-Session.png",
+            "path": null,
+            "size": 448.61,
+            "width": 472,
+            "height": 500,
+            "sizeInBytes": 448613
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_PPE_Training_Session_dd3537ba2c.png",
+            "hash": "medium_PPE_Training_Session_dd3537ba2c",
+            "mime": "image/png",
+            "name": "medium_PPE-Training-Session.png",
+            "path": null,
+            "size": 959.84,
+            "width": 709,
+            "height": 750,
+            "sizeInBytes": 959843
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_PPE_Training_Session_dd3537ba2c.png",
+            "hash": "thumbnail_PPE_Training_Session_dd3537ba2c",
+            "mime": "image/png",
+            "name": "thumbnail_PPE-Training-Session.png",
+            "path": null,
+            "size": 50.04,
+            "width": 147,
+            "height": 156,
+            "sizeInBytes": 50039
+          }
+        },
+        "hash": "PPE_Training_Session_dd3537ba2c",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 356.03,
+        "url": "/images/uploads/PPE_Training_Session_dd3537ba2c.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T11:01:41.187Z",
+        "updatedAt": "2026-08-26T12:38:49.672Z",
+        "publishedAt": "2026-08-22T11:01:41.187Z"
+      }
+    },
+    {
+      "id": 26,
+      "title": "Site Safety Inspection",
+      "image": {
+        "id": 79,
+        "documentId": "ip4yqp3lxhquiawam6c4y21d",
+        "name": "Site-Safety-Inspection.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 893,
+        "height": 945,
+        "formats": {
+          "small": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755069030_646_small_Site-Safety-Inspection_png.webp",
+            "hash": "small_Site_Safety_Inspection_0604f27994",
+            "mime": "image/webp",
+            "name": "small_Site-Safety-Inspection.png",
+            "path": null,
+            "size": 25.52734375,
+            "width": 472,
+            "height": 500,
+            "sizeInBytes": 26140
+          },
+          "medium": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755070594_667_medium_Site-Safety-Inspection_png.webp",
+            "hash": "medium_Site_Safety_Inspection_0604f27994",
+            "mime": "image/webp",
+            "name": "medium_Site-Safety-Inspection.png",
+            "path": null,
+            "size": 42.3515625,
+            "width": 709,
+            "height": 750,
+            "sizeInBytes": 43368
+          },
+          "thumbnail": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755071540_778_thumbnail_Site-Safety-Inspection_png.webp",
+            "hash": "thumbnail_Site_Safety_Inspection_0604f27994",
+            "mime": "image/webp",
+            "name": "thumbnail_Site-Safety-Inspection.png",
+            "path": null,
+            "size": 4.5078125,
+            "width": 147,
+            "height": 156,
+            "sizeInBytes": 4616
+          }
+        },
+        "hash": "Site_Safety_Inspection_0604f27994",
+        "ext": ".webp",
+        "mime": "image/webp",
+        "size": 60.78,
+        "url": "/images/uploads/optimized_1787755067627_811_Site-Safety-Inspection_png.webp",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T11:01:46.609Z",
+        "updatedAt": "2026-08-26T13:42:17.686Z",
+        "publishedAt": "2026-08-22T11:01:46.610Z"
+      }
+    },
+    {
+      "id": 27,
+      "title": "Fire Safety Drill",
+      "image": {
+        "id": 80,
+        "documentId": "gcfbp0imqe0o9yoa5zaldql5",
+        "name": "Fire-Safety-Drill.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 893,
+        "height": 945,
+        "formats": {
+          "small": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755068308_968_small_Fire-Safety-Drill_png.webp",
+            "hash": "small_Fire_Safety_Drill_086ef2bd0c",
+            "mime": "image/webp",
+            "name": "small_Fire-Safety-Drill.png",
+            "path": null,
+            "size": 31.228515625,
+            "width": 472,
+            "height": 500,
+            "sizeInBytes": 31978
+          },
+          "medium": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755069539_978_medium_Fire-Safety-Drill_png.webp",
+            "hash": "medium_Fire_Safety_Drill_086ef2bd0c",
+            "mime": "image/webp",
+            "name": "medium_Fire-Safety-Drill.png",
+            "path": null,
+            "size": 53.291015625,
+            "width": 709,
+            "height": 750,
+            "sizeInBytes": 54570
+          },
+          "thumbnail": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755070634_400_thumbnail_Fire-Safety-Drill_png.webp",
+            "hash": "thumbnail_Fire_Safety_Drill_086ef2bd0c",
+            "mime": "image/webp",
+            "name": "thumbnail_Fire-Safety-Drill.png",
+            "path": null,
+            "size": 5.18359375,
+            "width": 147,
+            "height": 156,
+            "sizeInBytes": 5308
+          }
+        },
+        "hash": "Fire_Safety_Drill_086ef2bd0c",
+        "ext": ".webp",
+        "mime": "image/webp",
+        "size": 74.28,
+        "url": "/images/uploads/optimized_1787755066805_588_Fire-Safety-Drill_png.webp",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T11:01:51.559Z",
+        "updatedAt": "2026-08-26T13:42:19.044Z",
+        "publishedAt": "2026-08-22T11:01:51.559Z"
+      }
+    },
+    {
+      "id": 28,
+      "title": "Emergency Mock Drill",
+      "image": {
+        "id": 81,
+        "documentId": "ffpffivzgxbavkyurcym5eiv",
+        "name": "Emergency-Mock-Drill.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 893,
+        "height": 945,
+        "formats": {
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Emergency_Mock_Drill_a6f3662002.png",
+            "hash": "small_Emergency_Mock_Drill_a6f3662002",
+            "mime": "image/png",
+            "name": "small_Emergency-Mock-Drill.png",
+            "path": null,
+            "size": 549.11,
+            "width": 472,
+            "height": 500,
+            "sizeInBytes": 549114
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Emergency_Mock_Drill_a6f3662002.png",
+            "hash": "medium_Emergency_Mock_Drill_a6f3662002",
+            "mime": "image/png",
+            "name": "medium_Emergency-Mock-Drill.png",
+            "path": null,
+            "size": 1180.05,
+            "width": 709,
+            "height": 750,
+            "sizeInBytes": 1180050
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Emergency_Mock_Drill_a6f3662002.png",
+            "hash": "thumbnail_Emergency_Mock_Drill_a6f3662002",
+            "mime": "image/png",
+            "name": "thumbnail_Emergency-Mock-Drill.png",
+            "path": null,
+            "size": 61.38,
+            "width": 147,
+            "height": 156,
+            "sizeInBytes": 61381
+          }
+        },
+        "hash": "Emergency_Mock_Drill_a6f3662002",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 380.11,
+        "url": "/images/uploads/Emergency_Mock_Drill_a6f3662002.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T11:01:56.902Z",
+        "updatedAt": "2026-08-26T12:38:49.579Z",
+        "publishedAt": "2026-08-22T11:01:56.902Z"
+      }
+    }
+  ],
+  "awards": [
+    {
+      "id": 5,
+      "title": "Best Safety Performance Award",
+      "subtitle": "5 Million Safe Man-Hours Achievement",
+      "description": "Recognized for achieving 5 million safe man-hours without a single lost-time injury across complex infrastructure sites.",
+      "image": {
+        "id": 626,
+        "documentId": "p2k0uyft5o1ric6xyq56xe9r",
+        "name": "Safety-Excellence-Awards-Adani.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/awards/large_Safety_Excellence_Awards_Adani_0fffa5151e.png",
+            "hash": "large_Safety_Excellence_Awards_Adani_0fffa5151e",
+            "mime": "image/png",
+            "name": "large_Safety-Excellence-Awards-Adani.png",
+            "path": null,
+            "size": 1132.98,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1132985
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Safety_Excellence_Awards_Adani_0fffa5151e.png",
+            "hash": "small_Safety_Excellence_Awards_Adani_0fffa5151e",
+            "mime": "image/png",
+            "name": "small_Safety-Excellence-Awards-Adani.png",
+            "path": null,
+            "size": 317.08,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 317085
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Safety_Excellence_Awards_Adani_0fffa5151e.png",
+            "hash": "medium_Safety_Excellence_Awards_Adani_0fffa5151e",
+            "mime": "image/png",
+            "name": "medium_Safety-Excellence-Awards-Adani.png",
+            "path": null,
+            "size": 677.82,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 677818
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Safety_Excellence_Awards_Adani_0fffa5151e.png",
+            "hash": "thumbnail_Safety_Excellence_Awards_Adani_0fffa5151e",
+            "mime": "image/png",
+            "name": "thumbnail_Safety-Excellence-Awards-Adani.png",
+            "path": null,
+            "size": 86.26,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 86260
+          }
+        },
+        "hash": "Safety_Excellence_Awards_Adani_0fffa5151e",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 300.78,
+        "url": "/images/awards/Safety_Excellence_Awards_Adani_0fffa5151e.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:45:28.277Z",
+        "updatedAt": "2026-08-26T12:52:45.333Z",
+        "publishedAt": "2026-08-26T11:45:28.278Z"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Zero Incident Safety Recognition",
+      "subtitle": "Outstanding Workplace Standards",
+      "description": "Awarded for maintaining a flawless zero-incident record while executing high-risk industrial operations and structural installations.",
+      "image": {
+        "id": 154,
+        "documentId": "rul08eiwb7udft6o8w64bnwq",
+        "name": "Reliance-Jamnagar-HSE.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_Reliance_Jamnagar_HSE_ec5b3a8735.png",
+            "hash": "large_Reliance_Jamnagar_HSE_ec5b3a8735",
+            "mime": "image/png",
+            "name": "large_Reliance-Jamnagar-HSE.png",
+            "path": null,
+            "size": 918.16,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 918163
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Reliance_Jamnagar_HSE_ec5b3a8735.png",
+            "hash": "small_Reliance_Jamnagar_HSE_ec5b3a8735",
+            "mime": "image/png",
+            "name": "small_Reliance-Jamnagar-HSE.png",
+            "path": null,
+            "size": 257.68,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 257680
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Reliance_Jamnagar_HSE_ec5b3a8735.png",
+            "hash": "medium_Reliance_Jamnagar_HSE_ec5b3a8735",
+            "mime": "image/png",
+            "name": "medium_Reliance-Jamnagar-HSE.png",
+            "path": null,
+            "size": 550.24,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 550237
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Reliance_Jamnagar_HSE_ec5b3a8735.png",
+            "hash": "thumbnail_Reliance_Jamnagar_HSE_ec5b3a8735",
+            "mime": "image/png",
+            "name": "thumbnail_Reliance-Jamnagar-HSE.png",
+            "path": null,
+            "size": 72.21,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 72211
+          }
+        },
+        "hash": "Reliance_Jamnagar_HSE_ec5b3a8735",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 225.96,
+        "url": "/images/uploads/Reliance_Jamnagar_HSE_ec5b3a8735.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T14:34:07.182Z",
+        "updatedAt": "2026-08-26T12:40:08.628Z",
+        "publishedAt": "2026-08-22T14:34:07.182Z"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Construction Safety Leadership",
+      "subtitle": "Advanced Compliance & Training",
+      "description": "Honored for pioneering advanced safety compliance, deploying cutting-edge training, and leading continuous safety improvement on site.",
+      "image": {
+        "id": 166,
+        "documentId": "q4gat4v1uzo7n42j8eoocu4d",
+        "name": "NCR-Patli.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755214813_697_large_NCR-Patli_png.webp",
+            "hash": "large_NCR_Patli_1abf71ea45",
+            "mime": "image/webp",
+            "name": "large_NCR-Patli.png",
+            "path": null,
+            "size": 60.50390625,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 61956
+          },
+          "small": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755216118_12_small_NCR-Patli_png.webp",
+            "hash": "small_NCR_Patli_1abf71ea45",
+            "mime": "image/webp",
+            "name": "small_NCR-Patli.png",
+            "path": null,
+            "size": 23.056640625,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 23610
+          },
+          "medium": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755217248_663_medium_NCR-Patli_png.webp",
+            "hash": "medium_NCR_Patli_1abf71ea45",
+            "mime": "image/webp",
+            "name": "medium_NCR-Patli.png",
+            "path": null,
+            "size": 42.380859375,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 43398
+          },
+          "thumbnail": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755218138_795_thumbnail_NCR-Patli_png.webp",
+            "hash": "thumbnail_NCR_Patli_1abf71ea45",
+            "mime": "image/webp",
+            "name": "thumbnail_NCR-Patli.png",
+            "path": null,
+            "size": 7.2734375,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 7448
+          }
+        },
+        "hash": "NCR_Patli_1abf71ea45",
+        "ext": ".webp",
+        "mime": "image/webp",
+        "size": 66.01,
+        "url": "/images/uploads/optimized_1787755213608_304_NCR-Patli_png.webp",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T14:47:01.245Z",
+        "updatedAt": "2026-08-26T12:40:14.900Z",
+        "publishedAt": "2026-08-22T14:47:01.245Z"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Excellence in Safety Management",
+      "subtitle": "Proactive Hazard Prevention",
+      "description": "Demonstrated exceptional safety management by proactively identifying hazards and implementing highly effective preventive control measures.",
+      "image": {
+        "id": 607,
+        "documentId": "opajfvbfh18rz78o5691d76v",
+        "name": "Mundra-Petrochem-Adani.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_Mundra_Petrochem_Adani_c0a4834691.png",
+            "hash": "large_Mundra_Petrochem_Adani_c0a4834691",
+            "mime": "image/png",
+            "name": "large_Mundra-Petrochem-Adani.png",
+            "path": null,
+            "size": 1104.9,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1104895
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Mundra_Petrochem_Adani_c0a4834691.png",
+            "hash": "small_Mundra_Petrochem_Adani_c0a4834691",
+            "mime": "image/png",
+            "name": "small_Mundra-Petrochem-Adani.png",
+            "path": null,
+            "size": 319.5,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 319502
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Mundra_Petrochem_Adani_c0a4834691.png",
+            "hash": "medium_Mundra_Petrochem_Adani_c0a4834691",
+            "mime": "image/png",
+            "name": "medium_Mundra-Petrochem-Adani.png",
+            "path": null,
+            "size": 668.23,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 668225
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Mundra_Petrochem_Adani_c0a4834691.png",
+            "hash": "thumbnail_Mundra_Petrochem_Adani_c0a4834691",
+            "mime": "image/png",
+            "name": "thumbnail_Mundra-Petrochem-Adani.png",
+            "path": null,
+            "size": 87.81,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 87814
+          }
+        },
+        "hash": "Mundra_Petrochem_Adani_c0a4834691",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 265.53,
+        "url": "/images/uploads/Mundra_Petrochem_Adani_c0a4834691.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:36:55.101Z",
+        "updatedAt": "2026-08-26T12:52:43.057Z",
+        "publishedAt": "2026-08-26T11:36:55.101Z"
+      }
+    },
+    {
+      "id": 9,
+      "title": "National Safety Achievement",
+      "subtitle": "Celebrated Safety Milestone",
+      "description": "Received national acclaim for surpassing critical safety milestones and setting new benchmarks in the industrial construction sector.",
+      "image": {
+        "id": 160,
+        "documentId": "k5ei43ttkrjk3469d6dp1jwd",
+        "name": "Celebrated-National-Safety-PRR-Jhamuwas.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755484389_248_large_Celebrated-National-Safety-PRR-Jhamuwas_png.webp",
+            "hash": "large_Celebrated_National_Safety_PRR_Jhamuwas_102ec89ce5",
+            "mime": "image/webp",
+            "name": "large_Celebrated-National-Safety-PRR-Jhamuwas.png",
+            "path": null,
+            "size": 71.31640625,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 73028
+          },
+          "small": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755485555_41_small_Celebrated-National-Safety-PRR-Jhamuwas_png.webp",
+            "hash": "small_Celebrated_National_Safety_PRR_Jhamuwas_102ec89ce5",
+            "mime": "image/webp",
+            "name": "small_Celebrated-National-Safety-PRR-Jhamuwas.png",
+            "path": null,
+            "size": 27.47265625,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 28132
+          },
+          "medium": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755486955_800_medium_Celebrated-National-Safety-PRR-Jhamuwas_png.webp",
+            "hash": "medium_Celebrated_National_Safety_PRR_Jhamuwas_102ec89ce5",
+            "mime": "image/webp",
+            "name": "medium_Celebrated-National-Safety-PRR-Jhamuwas.png",
+            "path": null,
+            "size": 46.525390625,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 47642
+          },
+          "thumbnail": {
+            "ext": ".webp",
+            "url": "/images/uploads/optimized_1787755488014_189_thumbnail_Celebrated-National-Safety-PRR-Jhamuwas_png.webp",
+            "hash": "thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_102ec89ce5",
+            "mime": "image/webp",
+            "name": "thumbnail_Celebrated-National-Safety-PRR-Jhamuwas.png",
+            "path": null,
+            "size": 9.8515625,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 10088
+          }
+        },
+        "hash": "Celebrated_National_Safety_PRR_Jhamuwas_102ec89ce5",
+        "ext": ".webp",
+        "mime": "image/webp",
+        "size": 79.65,
+        "url": "/images/uploads/optimized_1787755482972_488_Celebrated-National-Safety-PRR-Jhamuwas_png.webp",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T14:46:16.113Z",
+        "updatedAt": "2026-08-26T12:40:14.491Z",
+        "publishedAt": "2026-08-22T14:46:16.113Z"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Safety Excellence Award",
+      "subtitle": "Continuous Safety Improvement",
+      "description": "Acknowledged for outstanding safety leadership, consistent continuous improvement, and an uncompromising commitment to employee well-being.",
+      "image": {
+        "id": 630,
+        "documentId": "w8a5o0kg37pgt2w4pa8k3sux",
+        "name": "Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "large_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "large_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 1554.86,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1554860
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "small_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "small_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 411.86,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 411862
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "medium_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "medium_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 903.6,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 903600
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+            "hash": "thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+            "mime": "image/png",
+            "name": "thumbnail_Celebrated-National-Safety-PRR-Jhamuwas-(5).png",
+            "path": null,
+            "size": 103.51,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 103514
+          }
+        },
+        "hash": "Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 457.27,
+        "url": "/images/uploads/Celebrated_National_Safety_PRR_Jhamuwas_5_434444e163.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:45:47.431Z",
+        "updatedAt": "2026-08-26T12:52:51.602Z",
+        "publishedAt": "2026-08-26T11:45:47.431Z"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Green PVC Project Award",
+      "subtitle": "Adani Mundra Recognition",
+      "description": "Awarded for strictly adhering to environmental safety regulations and maintaining zero ecological impact during project execution.",
+      "image": {
+        "id": 153,
+        "documentId": "pr110ru37dvudefe32vuhbzc",
+        "name": "adani-Mundra-Petrochem-LTd-Green-Pvc-Project.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/projects/large_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832.png",
+            "hash": "large_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832",
+            "mime": "image/png",
+            "name": "large_adani-Mundra-Petrochem-LTd-Green-Pvc-Project.png",
+            "path": null,
+            "size": 1360.1,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1360104
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832.png",
+            "hash": "small_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832",
+            "mime": "image/png",
+            "name": "small_adani-Mundra-Petrochem-LTd-Green-Pvc-Project.png",
+            "path": null,
+            "size": 379.68,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 379684
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832.png",
+            "hash": "medium_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832",
+            "mime": "image/png",
+            "name": "medium_adani-Mundra-Petrochem-LTd-Green-Pvc-Project.png",
+            "path": null,
+            "size": 812.57,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 812569
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832.png",
+            "hash": "thumbnail_adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832",
+            "mime": "image/png",
+            "name": "thumbnail_adani-Mundra-Petrochem-LTd-Green-Pvc-Project.png",
+            "path": null,
+            "size": 98.99,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 98986
+          }
+        },
+        "hash": "adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 329.1,
+        "url": "/images/projects/adani_Mundra_Petrochem_L_Td_Green_Pvc_Project_48321a4832.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-22T14:34:01.562Z",
+        "updatedAt": "2026-08-26T12:40:07.758Z",
+        "publishedAt": "2026-08-22T14:34:01.563Z"
+      }
+    },
+    {
+      "id": 13,
+      "title": "National Safety Award",
+      "subtitle": "PRR Jhamuwas Recognition",
+      "description": "Secured honors for demonstrating unparalleled safety achievements and maintaining rigorous health and safety protocols nationwide.",
+      "image": {
+        "id": 645,
+        "documentId": "vuztb1411q57yh0bh8cm4n92",
+        "name": "Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697.png",
+            "hash": "large_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697",
+            "mime": "image/png",
+            "name": "large_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 1429.06,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1429059
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697.png",
+            "hash": "small_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697",
+            "mime": "image/png",
+            "name": "small_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 396.72,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 396722
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697.png",
+            "hash": "medium_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697",
+            "mime": "image/png",
+            "name": "medium_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 849.79,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 849794
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697.png",
+            "hash": "thumbnail_Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697",
+            "mime": "image/png",
+            "name": "thumbnail_Celebrated-National-Safety-PRR-Jhamuwas-(2).png",
+            "path": null,
+            "size": 102.92,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 102917
+          }
+        },
+        "hash": "Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 337.7,
+        "url": "/images/uploads/Celebrated_National_Safety_PRR_Jhamuwas_2_a7a3a12697.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T12:33:16.086Z",
+        "updatedAt": "2026-08-26T12:52:46.064Z",
+        "publishedAt": "2026-08-26T12:33:16.087Z"
+      }
+    },
+    {
+      "id": 14,
+      "title": "Adani Mundra Petrochem Award",
+      "subtitle": "January 2025 Recognition",
+      "description": "Officially commended in January 2025 for exceptional industrial safety practices and uncompromising standards at the Mundra facility.",
+      "image": {
+        "id": 598,
+        "documentId": "ciysq66n3l93vyo8lq52syid",
+        "name": "adani-Mundra-Petrochem-limmited-Jan-25.png",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": 1050,
+        "height": 656,
+        "formats": {
+          "large": {
+            "ext": ".png",
+            "url": "/images/uploads/large_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5.png",
+            "hash": "large_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5",
+            "mime": "image/png",
+            "name": "large_adani-Mundra-Petrochem-limmited-Jan-25.png",
+            "path": null,
+            "size": 1330.84,
+            "width": 1000,
+            "height": 625,
+            "sizeInBytes": 1330837
+          },
+          "small": {
+            "ext": ".png",
+            "url": "/images/uploads/small_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5.png",
+            "hash": "small_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5",
+            "mime": "image/png",
+            "name": "small_adani-Mundra-Petrochem-limmited-Jan-25.png",
+            "path": null,
+            "size": 365.96,
+            "width": 500,
+            "height": 312,
+            "sizeInBytes": 365960
+          },
+          "medium": {
+            "ext": ".png",
+            "url": "/images/uploads/medium_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5.png",
+            "hash": "medium_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5",
+            "mime": "image/png",
+            "name": "medium_adani-Mundra-Petrochem-limmited-Jan-25.png",
+            "path": null,
+            "size": 789.05,
+            "width": 750,
+            "height": 469,
+            "sizeInBytes": 789047
+          },
+          "thumbnail": {
+            "ext": ".png",
+            "url": "/images/uploads/thumbnail_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5.png",
+            "hash": "thumbnail_adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5",
+            "mime": "image/png",
+            "name": "thumbnail_adani-Mundra-Petrochem-limmited-Jan-25.png",
+            "path": null,
+            "size": 97.31,
+            "width": 245,
+            "height": 153,
+            "sizeInBytes": 97306
+          }
+        },
+        "hash": "adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5",
+        "ext": ".png",
+        "mime": "image/png",
+        "size": 311.13,
+        "url": "/images/uploads/adani_Mundra_Petrochem_limmited_Jan_25_3c51907ed5.png",
+        "previewUrl": null,
+        "provider": "aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-08-26T11:36:13.245Z",
+        "updatedAt": "2026-08-26T12:51:21.917Z",
+        "publishedAt": "2026-08-26T11:36:13.245Z"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "id": 18,
+      "title": "HSE Policy",
+      "desc": "Official Health, Safety & Environment policies, operational guidelines and zero-harm standards.",
+      "fileUrl": null,
+      "file": {
+        "id": 819,
+        "documentId": "nem66rvuwan2hf7pr8kapwwg",
+        "name": "HSE POLICY PISL.pdf",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": null,
+        "height": null,
+        "formats": null,
+        "hash": "HSE_POLICY_PISL_e35061d871",
+        "ext": ".pdf",
+        "mime": "application/pdf",
+        "size": 374.76,
+        "url": "/reports/HSE_POLICY_PISL_e35061d871.pdf",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-13T17:29:39.213Z",
+        "updatedAt": "2026-10-13T17:29:39.213Z",
+        "publishedAt": "2026-10-13T17:29:39.213Z"
+      },
+      "coverImage": null
+    },
+    {
+      "id": 22,
+      "title": "Risk Management Policy",
+      "desc": "Structured framework for identifying, assessing, and mitigating operational and project risks.",
+      "fileUrl": null,
+      "file": {
+        "id": 821,
+        "documentId": "iheqg49d80dk12j6r4fmzfb1",
+        "name": "Risk Management Policy-PISL.pdf",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": null,
+        "height": null,
+        "formats": null,
+        "hash": "Risk_Management_Policy_PISL_37fe051837",
+        "ext": ".pdf",
+        "mime": "application/pdf",
+        "size": 568.07,
+        "url": "/reports/Risk_Management_Policy_PISL_37fe051837.pdf",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-23T10:28:23.689Z",
+        "updatedAt": "2026-10-23T10:28:23.689Z",
+        "publishedAt": "2026-10-23T10:28:23.689Z"
+      },
+      "coverImage": null
+    },
+    {
+      "id": 23,
+      "title": "Vigil Mechanism Policy",
+      "desc": "Whistleblower mechanism ensuring corporate transparency, ethical conduct, and accountability.",
+      "fileUrl": null,
+      "file": {
+        "id": 820,
+        "documentId": "n14g31lx35jcwxp23cpp8j9d",
+        "name": "Vigil Mechanism Policy-PISL.pdf",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": null,
+        "height": null,
+        "formats": null,
+        "hash": "Vigil_Mechanism_Policy_PISL_6c1fe65e70",
+        "ext": ".pdf",
+        "mime": "application/pdf",
+        "size": 499.27,
+        "url": "/reports/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-23T10:28:19.084Z",
+        "updatedAt": "2026-10-23T10:28:19.084Z",
+        "publishedAt": "2026-10-23T10:28:19.084Z"
+      },
+      "coverImage": null
+    },
+    {
+      "id": 24,
+      "title": "CSR Policy",
+      "desc": "Corporate Social Responsibility commitments towards community welfare and sustainable development.",
+      "fileUrl": null,
+      "file": {
+        "id": 822,
+        "documentId": "mrzpghs59xcdbuswdumtsmm7",
+        "name": "CSR_Policy-PISL.pdf",
+        "alternativeText": null,
+        "caption": null,
+        "focalPoint": null,
+        "width": null,
+        "height": null,
+        "formats": null,
+        "hash": "CSR_Policy_PISL_2e584fd56d",
+        "ext": ".pdf",
+        "mime": "application/pdf",
+        "size": 490.7,
+        "url": "/reports/CSR_Policy_PISL_2e584fd56d.pdf",
+        "previewUrl": null,
+        "provider": "@strapi/provider-upload-aws-s3",
+        "provider_metadata": null,
+        "createdAt": "2026-10-23T10:28:27.724Z",
+        "updatedAt": "2026-10-23T10:28:27.724Z",
+        "publishedAt": "2026-10-23T10:28:27.725Z"
+      },
+      "coverImage": null
+    }
+  ],
+  "resourcesCoverImage": {
+    "id": 824,
+    "documentId": "hwvz79dgft79r3ir4jbfv0b8",
+    "name": "pisl_EHS-100kb.jpeg",
+    "alternativeText": null,
+    "caption": null,
+    "focalPoint": null,
+    "width": 875,
+    "height": 700,
+    "formats": {
+      "small": {
+        "ext": ".jpeg",
+        "url": "/images/uploads/small_pisl_EHS_100kb_1da8061955.jpeg",
+        "etag": "4d7d6267711e53807ef937488a9d2498",
+        "hash": "small_pisl_EHS_100kb_1da8061955",
+        "mime": "image/jpeg",
+        "name": "small_pisl_EHS-100kb.jpeg",
+        "path": null,
+        "size": 36.32,
+        "width": 500,
+        "height": 400,
+        "sizeInBytes": 36321
+      },
+      "medium": {
+        "ext": ".jpeg",
+        "url": "/images/uploads/medium_pisl_EHS_100kb_1da8061955.jpeg",
+        "etag": "ba7d8566a5021ceb01b3e559e837dea9",
+        "hash": "medium_pisl_EHS_100kb_1da8061955",
+        "mime": "image/jpeg",
+        "name": "medium_pisl_EHS-100kb.jpeg",
+        "path": null,
+        "size": 65.1,
+        "width": 750,
+        "height": 600,
+        "sizeInBytes": 65095
+      },
+      "thumbnail": {
+        "ext": ".jpeg",
+        "url": "/images/uploads/thumbnail_pisl_EHS_100kb_1da8061955.jpeg",
+        "etag": "51a9c0098852bafd65c76f446800b50a",
+        "hash": "thumbnail_pisl_EHS_100kb_1da8061955",
+        "mime": "image/jpeg",
+        "name": "thumbnail_pisl_EHS-100kb.jpeg",
+        "path": null,
+        "size": 9.19,
+        "width": 195,
+        "height": 156,
+        "sizeInBytes": 9194
+      }
+    },
+    "hash": "pisl_EHS_100kb_1da8061955",
+    "ext": ".jpeg",
+    "mime": "image/jpeg",
+    "size": 79.75,
+    "url": "/images/uploads/pisl_EHS_100kb_1da8061955.jpeg",
+    "previewUrl": null,
+    "provider": "@strapi/provider-upload-aws-s3",
+    "provider_metadata": null,
+    "createdAt": "2026-10-23T14:17:44.982Z",
+    "updatedAt": "2026-10-23T14:17:44.982Z",
+    "publishedAt": "2026-10-23T14:17:44.982Z"
+  }
+}

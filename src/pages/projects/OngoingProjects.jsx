@@ -3,7 +3,7 @@ import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
-import { fetchStrapiData, STRAPI_URL, getLocalDataSync } from '../../services/strapi'
+import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localProjectsData from '../../data/projectsData'
@@ -18,11 +18,20 @@ const OngoingProjects = () => {
   const itemsPerPage = 16
 
   useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('ongoing-page');
+      if (fresh) setPageData(fresh);
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
     let isMounted = true;
     const getData = async (forceFresh = false) => {
       try {
         const [pData, projData] = await Promise.all([
-          fetchStrapiData('ongoing-page?populate=seo,heroImage', { forceFresh }),
+          fetchStrapiData('ongoing-page?populate=*', { forceFresh }),
           fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100', { forceFresh })
         ]);
 
@@ -92,21 +101,34 @@ const OngoingProjects = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentProjects = projectsData.slice(startIndex, endIndex);
 
+  const fallbackTitle = 'Ongoing Projects | Pislinfra– Building India’s Future';
+  const fallbackDescription = 'Explore Pislinfra\'s ongoing projects across industrial, infrastructure, warehousing and logistics sectors, delivering quality construction solutions across India.';
+
+  // Connect CMS Ongoing Projects page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (pageData?.metaTitle || pageData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || 'Ongoing Construction Projects').trim();
+  const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+
   const seoData = {
     contentType: 'page',
-    title: pageData?.seo?.seoTitle || 'Ongoing Industrial Construction Projects | Pislinfra',
-    seoTitle: pageData?.seo?.seoTitle || 'Ongoing Industrial Projects & Construction Sites in India | Pislinfra',
-    seoDescription: pageData?.seo?.seoDescription || 'Explore Pislinfra\'s ongoing industrial construction, warehouse developments, PEB steel plants, and infrastructure sites under execution across India.',
-    seoKeywords: pageData?.seo?.seoKeywords || 'ongoing industrial projects, warehouse construction sites India, PEB manufacturing plants under construction, civil infrastructure ongoing work, Pislinfra projects',
+    ...(pageData?.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'Ongoing Construction Projects, ongoing industrial projects, warehouse construction sites India, PEB manufacturing plants under construction, civil infrastructure ongoing work, Pislinfra projects',
     slug: 'projects/ongoing',
     canonicalUrl: 'https://pislinfra.com/projects/ongoing',
-    ogTitle: pageData?.seo?.ogTitle || 'Ongoing Industrial Projects & Construction Sites | Pislinfra',
-    ogDescription: pageData?.seo?.ogDescription || 'Explore active industrial & warehouse construction projects under development by Pislinfra across India.',
-    ogImage: pageData?.heroImage?.url || '/images/hero/Ongoing-Projects.png',
+    ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
+    ogImage: pageData?.seo?.ogImage || (pageData?.heroImage?.url ? getImageUrl(pageData.heroImage) : '/images/hero/Ongoing-Projects.png'),
     ogType: 'website',
-    twitterTitle: pageData?.seo?.twitterTitle || 'Ongoing Industrial Projects | Pislinfra',
-    twitterDescription: pageData?.seo?.twitterDescription || 'Current industrial & infrastructure projects under development across India.',
-    twitterImage: pageData?.heroImage?.url || '/images/hero/Ongoing-Projects.png',
+    twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: pageData?.seo?.twitterImage || (pageData?.heroImage?.url ? getImageUrl(pageData.heroImage) : '/images/hero/Ongoing-Projects.png'),
     twitterCardType: 'summary_large_image',
     schemaType: 'CollectionPage',
     breadcrumbSchema: true,

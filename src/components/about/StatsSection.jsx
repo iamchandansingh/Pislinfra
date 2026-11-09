@@ -310,12 +310,12 @@ const StatsSection = ({ data }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="pisl-stats-left lg:pr-10"
-            style={{ marginTop: '0px' }}
+            style={{ marginTop: '-46px' }}
           >
 
 
             {/* Big Legacy Counter */}
-            <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '20px' }} className="pisl-stats-legacy">
+            <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '2px' }} className="pisl-stats-legacy">
               <span className="pisl-legacy-num" style={{
                 fontSize: 'clamp(70px, 8vw, 110px)',
                 fontWeight: 900,
@@ -332,14 +332,14 @@ const StatsSection = ({ data }) => {
               fontWeight: 800, 
               color: NAVY,
               lineHeight: '1.25', 
-              margin: '0 0 20px 0', 
+              margin: '0 0 16px 0', 
               letterSpacing: '-1px'
             }}>
               {renderStatsTitle(data?.aboutSubtitle || data?.statsTitle)}
             </h2>
 
             {/* Decorative Line */}
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '32px' }} className="pisl-stats-line">
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '14px' }} className="pisl-stats-line">
               <div style={{ width: '40px', height: '5px', backgroundColor: NAVY, borderRadius: '2px' }}></div>
               <div style={{ width: '16px', height: '5px', backgroundColor: ORANGE, borderRadius: '2px' }}></div>
             </div>

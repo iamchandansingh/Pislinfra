@@ -54,11 +54,11 @@ const AboutUs = ({ data }) => {
           position: 'relative', 
           width: '100%', 
           height: '360px', 
-          borderRadius: '20px', 
+          borderRadius: '12px', 
           overflow: 'hidden', 
           boxShadow: '0 16px 36px -12px rgba(40, 41, 111, 0.12)',
           background: '#f1f5f9',
-          border: '1px solid #e2e8f0'
+          border: '2px solid #031D63'
         }}>
           <Swiper
             modules={[Autoplay, Pagination]}
@@ -100,18 +100,16 @@ const AboutUs = ({ data }) => {
 
         {/* ── RIGHT COLUMN: Clean Typography Block (No borders) ── */}
         <motion.div 
-          onClick={() => navigate('/about')}
           initial={{ opacity: 0, y: 15 }} 
           whileInView={{ opacity: 1, y: 0 }} 
-          whileHover={{ x: 4 }}
           viewport={{ once: true }} 
           transition={{ duration: 0.5 }}
-          className="pisl-clickable-block"
+          className="pisl-about-content"
           style={{
             display: 'block',
             textDecoration: 'none', 
             color: 'inherit',
-            cursor: 'pointer',
+            cursor: 'default',
             padding: 0,
             border: 'none',
             background: 'transparent',
@@ -144,10 +142,8 @@ const AboutUs = ({ data }) => {
           {/* Explore Pislinfra Button in Blue */}
           <div style={{ marginTop: '20px' }}>
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate('/about');
-              }}
+              type="button"
+              onClick={() => navigate('/about')}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -184,10 +180,6 @@ const AboutUs = ({ data }) => {
 
       {/* Global Style overrides for micro-interactions & responsiveness */}
       <style>{`
-        .pisl-clickable-block:hover .pisl-title {
-          opacity: 0.88;
-        }
-        
         .pisl-image-frame .swiper {
           width: 100% !important;
           height: 100% !important;
@@ -238,7 +230,8 @@ const AboutUs = ({ data }) => {
           }
           .pisl-image-frame {
             height: 280px !important;
-            border-radius: 16px !important;
+            border-radius: 12px !important;
+            border: 2px solid #031D63 !important;
           }
           .pisl-title {
             font-size: clamp(24px, 4vw, 30px) !important;
@@ -256,7 +249,8 @@ const AboutUs = ({ data }) => {
           }
           .pisl-image-frame {
             height: clamp(190px, 52vw, 230px) !important;
-            border-radius: 14px !important;
+            border-radius: 10px !important;
+            border: 2px solid #031D63 !important;
           }
           .pisl-title {
             font-size: clamp(22px, 6vw, 26px) !important;

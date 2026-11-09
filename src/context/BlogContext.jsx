@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { getLocalDataSync } from '../services/strapi';
 import { formatStrapiBlogs } from '../utils/formatBlog';
 import fallbackDB from '../data/Blogdb.js';
 
@@ -7,14 +7,9 @@ const BlogContext = createContext();
 
 export const BlogProvider = ({ children }) => {
   const [blogs, setBlogs] = useState(() => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      try {
-        const cached = window.localStorage.getItem('pisl_cache_blogs');
-        if (cached) {
-          const parsed = JSON.parse(cached);
-          if (Array.isArray(parsed) && parsed.length > 0) return formatStrapiBlogs(parsed);
-        }
-      } catch (e) {}
+    const local = getLocalDataSync('blogs');
+    if (Array.isArray(local) && local.length > 0) {
+      return formatStrapiBlogs(local);
     }
     return fallbackDB || [];
   });
@@ -22,50 +17,22 @@ export const BlogProvider = ({ children }) => {
   const [blogPage, setBlogPage] = useState(() => getLocalDataSync('blog-page'));
   const [loading, setLoading] = useState(false);
 
-  // Fresh Network Fetcher: Always checks live Strapi for latest added blogs
-  const refreshBlogs = useCallback(async () => {
+  // Synchronous local refresh: Reads only from local verified data (0ms, zero network)
+  const refreshBlogs = useCallback(() => {
     try {
-      const [blogData, pageData] = await Promise.all([
-        fetchStrapiData('blogs?populate=*&pagination[pageSize]=100&sort=createdAt:desc', { forceFresh: true }).catch(() => null),
-        fetchStrapiData('blog-page?populate=seo,heroImage', { forceFresh: true }).catch(() => null)
-      ]);
-      if (blogData && Array.isArray(blogData) && blogData.length > 0) {
-        const formatted = formatStrapiBlogs(blogData);
-        setBlogs(formatted);
-        if (typeof window !== 'undefined' && window.localStorage) {
-          try {
-            window.localStorage.setItem('pisl_cache_blogs', JSON.stringify(blogData));
-          } catch (e) {}
-        }
+      const localBlogs = getLocalDataSync('blogs');
+      if (Array.isArray(localBlogs) && localBlogs.length > 0) {
+        setBlogs(formatStrapiBlogs(localBlogs));
       }
-      if (pageData) {
-        setBlogPage(pageData);
+      const localPage = getLocalDataSync('blog-page');
+      if (localPage) {
+        setBlogPage(localPage);
       }
-    } catch (e) {
-      // Fallback remains active
-    } finally {
-      setLoading(false);
-    }
+    } catch (e) {}
   }, []);
 
   useEffect(() => {
-    // 1. Fetch live fresh data on mount
-    refreshBlogs();
-
-    // 2. Auto-reload when user returns to this tab (e.g. after adding a blog in Strapi Admin)
-    const handleFocus = () => {
-      refreshBlogs();
-    };
-    window.addEventListener('focus', handleFocus);
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        refreshBlogs();
-      }
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // 3. Listen to live data update events
+    // Listen for local administrative update events without triggering network polling
     const handleUpdate = (e) => {
       const { endpoint, cleanEndpoint, data } = e.detail || {};
       if ((endpoint && endpoint.includes('blogs')) || (cleanEndpoint && cleanEndpoint.includes('blogs'))) {
@@ -73,15 +40,18 @@ export const BlogProvider = ({ children }) => {
           setBlogs(formatStrapiBlogs(data));
         }
       }
+      if ((endpoint && endpoint.includes('blog-page')) || (cleanEndpoint && cleanEndpoint.includes('blog-page'))) {
+        if (data) {
+          setBlogPage(data);
+        }
+      }
     };
     window.addEventListener('pisl-data-update', handleUpdate);
 
     return () => {
-      window.removeEventListener('focus', handleFocus);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('pisl-data-update', handleUpdate);
     };
-  }, [refreshBlogs]);
+  }, []);
 
   return (
     <BlogContext.Provider value={{ blogs, blogPage, loading, refreshBlogs }}>

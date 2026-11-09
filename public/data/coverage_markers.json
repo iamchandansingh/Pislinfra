@@ -7,8 +7,8 @@
     "cx": 17.5,
     "cy": 48.5,
     "createdAt": "2026-08-29T03:59:03.261Z",
-    "updatedAt": "2026-08-29T03:59:03.261Z",
-    "publishedAt": "2026-08-29T03:59:03.261Z",
+    "updatedAt": "2026-11-09T10:18:42.239Z",
+    "publishedAt": "2026-11-09T10:18:41.879Z",
     "state": "Gujarat",
     "city": "GIDC Sanand",
     "showOnMap": null,
@@ -26,7 +26,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp",
+            "url": "/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp",
             "hash": "large_amns_ssc_gidc_project_sanand_gj_5afb6e3332",
             "mime": "image/webp",
             "name": "large_amns-ssc-gidc-project-sanand-gj.png",
@@ -38,7 +38,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755454731_329_small_amns-ssc-gidc-project-sanand-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755454731_329_small_amns-ssc-gidc-project-sanand-gj_png.webp",
             "hash": "small_amns_ssc_gidc_project_sanand_gj_5afb6e3332",
             "mime": "image/webp",
             "name": "small_amns-ssc-gidc-project-sanand-gj.png",
@@ -50,7 +50,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755456186_281_medium_amns-ssc-gidc-project-sanand-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755456186_281_medium_amns-ssc-gidc-project-sanand-gj_png.webp",
             "hash": "medium_amns_ssc_gidc_project_sanand_gj_5afb6e3332",
             "mime": "image/webp",
             "name": "medium_amns-ssc-gidc-project-sanand-gj.png",
@@ -62,7 +62,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755457362_542_thumbnail_amns-ssc-gidc-project-sanand-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755457362_542_thumbnail_amns-ssc-gidc-project-sanand-gj_png.webp",
             "hash": "thumbnail_amns_ssc_gidc_project_sanand_gj_5afb6e3332",
             "mime": "image/webp",
             "name": "thumbnail_amns-ssc-gidc-project-sanand-gj.png",
@@ -77,7 +77,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 219.76,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755451086_42_amns-ssc-gidc-project-sanand-gj_png.webp",
+        "url": "/images/projects/optimized_1787755451086_42_amns-ssc-gidc-project-sanand-gj_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -114,7 +114,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
+            "url": "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
             "hash": "large_amns_steel_plant_hazira_gj_09a4e82bd6",
             "mime": "image/webp",
             "name": "large_amns-steel-plant-hazira-gj.png",
@@ -126,7 +126,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755379738_287_small_amns-steel-plant-hazira-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755379738_287_small_amns-steel-plant-hazira-gj_png.webp",
             "hash": "small_amns_steel_plant_hazira_gj_09a4e82bd6",
             "mime": "image/webp",
             "name": "small_amns-steel-plant-hazira-gj.png",
@@ -138,7 +138,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755382824_278_medium_amns-steel-plant-hazira-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755382824_278_medium_amns-steel-plant-hazira-gj_png.webp",
             "hash": "medium_amns_steel_plant_hazira_gj_09a4e82bd6",
             "mime": "image/webp",
             "name": "medium_amns-steel-plant-hazira-gj.png",
@@ -150,7 +150,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755383969_600_thumbnail_amns-steel-plant-hazira-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755383969_600_thumbnail_amns-steel-plant-hazira-gj_png.webp",
             "hash": "thumbnail_amns_steel_plant_hazira_gj_09a4e82bd6",
             "mime": "image/webp",
             "name": "thumbnail_amns-steel-plant-hazira-gj.png",
@@ -165,7 +165,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 327.09,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755354829_969_amns-steel-plant-hazira-gj_png.webp",
+        "url": "/images/uploads/optimized_1787755354829_969_amns-steel-plant-hazira-gj_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -202,7 +202,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
+            "url": "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
             "hash": "large_adani_copper_smelter_mundra_gj_1_db36898992",
             "mime": "image/webp",
             "name": "large_adani-copper-smelter-mundra-gj-1.png",
@@ -214,7 +214,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754986730_140_small_adani-copper-smelter-mundra-gj-1_png.webp",
+            "url": "/images/uploads/optimized_1787754986730_140_small_adani-copper-smelter-mundra-gj-1_png.webp",
             "hash": "small_adani_copper_smelter_mundra_gj_1_db36898992",
             "mime": "image/webp",
             "name": "small_adani-copper-smelter-mundra-gj-1.png",
@@ -226,7 +226,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754987996_16_medium_adani-copper-smelter-mundra-gj-1_png.webp",
+            "url": "/images/uploads/optimized_1787754987996_16_medium_adani-copper-smelter-mundra-gj-1_png.webp",
             "hash": "medium_adani_copper_smelter_mundra_gj_1_db36898992",
             "mime": "image/webp",
             "name": "medium_adani-copper-smelter-mundra-gj-1.png",
@@ -238,7 +238,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754989261_489_thumbnail_adani-copper-smelter-mundra-gj-1_png.webp",
+            "url": "/images/uploads/optimized_1787754989261_489_thumbnail_adani-copper-smelter-mundra-gj-1_png.webp",
             "hash": "thumbnail_adani_copper_smelter_mundra_gj_1_db36898992",
             "mime": "image/webp",
             "name": "thumbnail_adani-copper-smelter-mundra-gj-1.png",
@@ -253,7 +253,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 195.86,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754983990_768_adani-copper-smelter-mundra-gj-1_png.webp",
+        "url": "/images/uploads/optimized_1787754983990_768_adani-copper-smelter-mundra-gj-1_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -271,8 +271,8 @@
     "cx": 36,
     "cy": 29,
     "createdAt": "2026-08-29T03:59:03.261Z",
-    "updatedAt": "2026-08-29T10:46:37.554Z",
-    "publishedAt": "2026-08-29T10:46:31.867Z",
+    "updatedAt": "2026-11-09T10:05:21.282Z",
+    "publishedAt": "2026-11-09T10:05:20.971Z",
     "state": "Uttar Pradesh",
     "city": "Najibabad",
     "showOnMap": null,
@@ -290,7 +290,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755484148_143_large_cbg-plant-najibabad-up_png.webp",
+            "url": "/images/projects/optimized_1787755484148_143_large_cbg-plant-najibabad-up_png.webp",
             "hash": "large_cbg_plant_najibabad_up_90968408f7",
             "mime": "image/webp",
             "name": "large_cbg-plant-najibabad-up.png",
@@ -302,7 +302,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755485679_854_small_cbg-plant-najibabad-up_png.webp",
+            "url": "/images/uploads/optimized_1787755485679_854_small_cbg-plant-najibabad-up_png.webp",
             "hash": "small_cbg_plant_najibabad_up_90968408f7",
             "mime": "image/webp",
             "name": "small_cbg-plant-najibabad-up.png",
@@ -314,7 +314,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755486918_383_medium_cbg-plant-najibabad-up_png.webp",
+            "url": "/images/uploads/optimized_1787755486918_383_medium_cbg-plant-najibabad-up_png.webp",
             "hash": "medium_cbg_plant_najibabad_up_90968408f7",
             "mime": "image/webp",
             "name": "medium_cbg-plant-najibabad-up.png",
@@ -326,7 +326,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755489975_952_thumbnail_cbg-plant-najibabad-up_png.webp",
+            "url": "/images/uploads/optimized_1787755489975_952_thumbnail_cbg-plant-najibabad-up_png.webp",
             "hash": "thumbnail_cbg_plant_najibabad_up_90968408f7",
             "mime": "image/webp",
             "name": "thumbnail_cbg-plant-najibabad-up.png",
@@ -341,7 +341,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 152.67,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755482537_892_cbg-plant-najibabad-up_png.webp",
+        "url": "/images/uploads/optimized_1787755482537_892_cbg-plant-najibabad-up_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -361,7 +361,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_cbg_plant_najibabad_up_2_8bff055186.png",
+            "url": "/images/projects/large_cbg_plant_najibabad_up_2_8bff055186.png",
             "hash": "large_cbg_plant_najibabad_up_2_8bff055186",
             "mime": "image/png",
             "name": "large_cbg-plant-najibabad-up-2.png",
@@ -373,7 +373,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_cbg_plant_najibabad_up_2_8bff055186.png",
+            "url": "/images/uploads/small_cbg_plant_najibabad_up_2_8bff055186.png",
             "hash": "small_cbg_plant_najibabad_up_2_8bff055186",
             "mime": "image/png",
             "name": "small_cbg-plant-najibabad-up-2.png",
@@ -385,7 +385,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_cbg_plant_najibabad_up_2_8bff055186.png",
+            "url": "/images/uploads/medium_cbg_plant_najibabad_up_2_8bff055186.png",
             "hash": "medium_cbg_plant_najibabad_up_2_8bff055186",
             "mime": "image/png",
             "name": "medium_cbg-plant-najibabad-up-2.png",
@@ -397,7 +397,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_cbg_plant_najibabad_up_2_8bff055186.png",
+            "url": "/images/uploads/thumbnail_cbg_plant_najibabad_up_2_8bff055186.png",
             "hash": "thumbnail_cbg_plant_najibabad_up_2_8bff055186",
             "mime": "image/png",
             "name": "thumbnail_cbg-plant-najibabad-up-2.png",
@@ -412,7 +412,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 690.52,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/cbg_plant_najibabad_up_2_8bff055186.png",
+        "url": "/images/uploads/cbg_plant_najibabad_up_2_8bff055186.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -432,7 +432,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755427976_990_large_cbg-plant-najibabad-up-3_png.webp",
+            "url": "/images/projects/optimized_1787755427976_990_large_cbg-plant-najibabad-up-3_png.webp",
             "hash": "large_cbg_plant_najibabad_up_3_fa8d4736ac",
             "mime": "image/webp",
             "name": "large_cbg-plant-najibabad-up-3.png",
@@ -444,7 +444,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755429982_736_small_cbg-plant-najibabad-up-3_png.webp",
+            "url": "/images/uploads/optimized_1787755429982_736_small_cbg-plant-najibabad-up-3_png.webp",
             "hash": "small_cbg_plant_najibabad_up_3_fa8d4736ac",
             "mime": "image/webp",
             "name": "small_cbg-plant-najibabad-up-3.png",
@@ -456,7 +456,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755436672_394_medium_cbg-plant-najibabad-up-3_png.webp",
+            "url": "/images/uploads/optimized_1787755436672_394_medium_cbg-plant-najibabad-up-3_png.webp",
             "hash": "medium_cbg_plant_najibabad_up_3_fa8d4736ac",
             "mime": "image/webp",
             "name": "medium_cbg-plant-najibabad-up-3.png",
@@ -468,7 +468,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755437757_234_thumbnail_cbg-plant-najibabad-up-3_png.webp",
+            "url": "/images/uploads/optimized_1787755437757_234_thumbnail_cbg-plant-najibabad-up-3_png.webp",
             "hash": "thumbnail_cbg_plant_najibabad_up_3_fa8d4736ac",
             "mime": "image/webp",
             "name": "thumbnail_cbg-plant-najibabad-up-3.png",
@@ -483,7 +483,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 115.35,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755426834_389_cbg-plant-najibabad-up-3_png.webp",
+        "url": "/images/uploads/optimized_1787755426834_389_cbg-plant-najibabad-up-3_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -503,7 +503,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755569711_553_large_cbg-plant-najibabad-up-4_png.webp",
+            "url": "/images/projects/optimized_1787755569711_553_large_cbg-plant-najibabad-up-4_png.webp",
             "hash": "large_cbg_plant_najibabad_up_4_6b23486240",
             "mime": "image/webp",
             "name": "large_cbg-plant-najibabad-up-4.png",
@@ -515,7 +515,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755571168_57_small_cbg-plant-najibabad-up-4_png.webp",
+            "url": "/images/uploads/optimized_1787755571168_57_small_cbg-plant-najibabad-up-4_png.webp",
             "hash": "small_cbg_plant_najibabad_up_4_6b23486240",
             "mime": "image/webp",
             "name": "small_cbg-plant-najibabad-up-4.png",
@@ -527,7 +527,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755572682_400_medium_cbg-plant-najibabad-up-4_png.webp",
+            "url": "/images/uploads/optimized_1787755572682_400_medium_cbg-plant-najibabad-up-4_png.webp",
             "hash": "medium_cbg_plant_najibabad_up_4_6b23486240",
             "mime": "image/webp",
             "name": "medium_cbg-plant-najibabad-up-4.png",
@@ -539,7 +539,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755574130_153_thumbnail_cbg-plant-najibabad-up-4_png.webp",
+            "url": "/images/uploads/optimized_1787755574130_153_thumbnail_cbg-plant-najibabad-up-4_png.webp",
             "hash": "thumbnail_cbg_plant_najibabad_up_4_6b23486240",
             "mime": "image/webp",
             "name": "thumbnail_cbg-plant-najibabad-up-4.png",
@@ -554,7 +554,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 222.78,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755568358_263_cbg-plant-najibabad-up-4_png.webp",
+        "url": "/images/uploads/optimized_1787755568358_263_cbg-plant-najibabad-up-4_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -574,7 +574,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755011529_929_large_cbg-plant-najibabad-up-5_png.webp",
+            "url": "/images/projects/optimized_1787755011529_929_large_cbg-plant-najibabad-up-5_png.webp",
             "hash": "large_cbg_plant_najibabad_up_5_028d1686df",
             "mime": "image/webp",
             "name": "large_cbg-plant-najibabad-up-5.png",
@@ -586,7 +586,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755012743_514_small_cbg-plant-najibabad-up-5_png.webp",
+            "url": "/images/uploads/optimized_1787755012743_514_small_cbg-plant-najibabad-up-5_png.webp",
             "hash": "small_cbg_plant_najibabad_up_5_028d1686df",
             "mime": "image/webp",
             "name": "small_cbg-plant-najibabad-up-5.png",
@@ -598,7 +598,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755014237_406_medium_cbg-plant-najibabad-up-5_png.webp",
+            "url": "/images/uploads/optimized_1787755014237_406_medium_cbg-plant-najibabad-up-5_png.webp",
             "hash": "medium_cbg_plant_najibabad_up_5_028d1686df",
             "mime": "image/webp",
             "name": "medium_cbg-plant-najibabad-up-5.png",
@@ -610,7 +610,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755015083_30_thumbnail_cbg-plant-najibabad-up-5_png.webp",
+            "url": "/images/uploads/optimized_1787755015083_30_thumbnail_cbg-plant-najibabad-up-5_png.webp",
             "hash": "thumbnail_cbg_plant_najibabad_up_5_028d1686df",
             "mime": "image/webp",
             "name": "thumbnail_cbg-plant-najibabad-up-5.png",
@@ -625,7 +625,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 75.47,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755009812_122_cbg-plant-najibabad-up-5_png.webp",
+        "url": "/images/uploads/optimized_1787755009812_122_cbg-plant-najibabad-up-5_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -645,7 +645,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755429455_7_large_cbg-plant-najibabad-up-6_png.webp",
+            "url": "/images/projects/optimized_1787755429455_7_large_cbg-plant-najibabad-up-6_png.webp",
             "hash": "large_cbg_plant_najibabad_up_6_2217f322b8",
             "mime": "image/webp",
             "name": "large_cbg-plant-najibabad-up-6.png",
@@ -657,7 +657,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755430733_14_small_cbg-plant-najibabad-up-6_png.webp",
+            "url": "/images/uploads/optimized_1787755430733_14_small_cbg-plant-najibabad-up-6_png.webp",
             "hash": "small_cbg_plant_najibabad_up_6_2217f322b8",
             "mime": "image/webp",
             "name": "small_cbg-plant-najibabad-up-6.png",
@@ -669,7 +669,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755433507_90_medium_cbg-plant-najibabad-up-6_png.webp",
+            "url": "/images/uploads/optimized_1787755433507_90_medium_cbg-plant-najibabad-up-6_png.webp",
             "hash": "medium_cbg_plant_najibabad_up_6_2217f322b8",
             "mime": "image/webp",
             "name": "medium_cbg-plant-najibabad-up-6.png",
@@ -681,7 +681,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755434852_77_thumbnail_cbg-plant-najibabad-up-6_png.webp",
+            "url": "/images/uploads/optimized_1787755434852_77_thumbnail_cbg-plant-najibabad-up-6_png.webp",
             "hash": "thumbnail_cbg_plant_najibabad_up_6_2217f322b8",
             "mime": "image/webp",
             "name": "thumbnail_cbg-plant-najibabad-up-6.png",
@@ -696,7 +696,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 145.92,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755427366_697_cbg-plant-najibabad-up-6_png.webp",
+        "url": "/images/uploads/optimized_1787755427366_697_cbg-plant-najibabad-up-6_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -714,8 +714,8 @@
     "cx": 61.55,
     "cy": 46.1,
     "createdAt": "2026-08-29T03:59:03.261Z",
-    "updatedAt": "2026-08-29T03:59:03.261Z",
-    "publishedAt": "2026-08-29T03:59:03.261Z",
+    "updatedAt": "2026-11-09T10:49:27.148Z",
+    "publishedAt": "2026-11-09T10:49:26.854Z",
     "state": "Jharkhand",
     "city": "Dhanbad",
     "showOnMap": null,
@@ -733,7 +733,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
+            "url": "/images/projects/large_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
             "hash": "large_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29",
             "mime": "image/png",
             "name": "large_cpwd-iit-ism-campus-project-dhanbad-jh.png",
@@ -745,7 +745,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
+            "url": "/images/uploads/small_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
             "hash": "small_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29",
             "mime": "image/png",
             "name": "small_cpwd-iit-ism-campus-project-dhanbad-jh.png",
@@ -757,7 +757,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
+            "url": "/images/uploads/medium_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
             "hash": "medium_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29",
             "mime": "image/png",
             "name": "medium_cpwd-iit-ism-campus-project-dhanbad-jh.png",
@@ -769,7 +769,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
+            "url": "/images/uploads/thumbnail_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
             "hash": "thumbnail_cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29",
             "mime": "image/png",
             "name": "thumbnail_cpwd-iit-ism-campus-project-dhanbad-jh.png",
@@ -784,7 +784,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 744.09,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
+        "url": "/images/projects/cpwd_iit_ism_campus_project_dhanbad_jh_46b2881d29.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -821,7 +821,7 @@
         "formats": {
           "large": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+            "url": "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
             "etag": "9b7992c22806d2b816ab0aa36627664b",
             "hash": "large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d",
             "mime": "image/jpeg",
@@ -834,7 +834,7 @@
           },
           "small": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+            "url": "/images/uploads/small_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
             "etag": "dddef3c534f55c0548c76d7686e84aa7",
             "hash": "small_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d",
             "mime": "image/jpeg",
@@ -847,7 +847,7 @@
           },
           "medium": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+            "url": "/images/uploads/medium_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
             "etag": "d7a86190076ebb7cbc33ad23a2aefa4f",
             "hash": "medium_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d",
             "mime": "image/jpeg",
@@ -860,7 +860,7 @@
           },
           "thumbnail": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+            "url": "/images/uploads/thumbnail_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
             "etag": "64426c441f0100fa2f8f90107db0bf5e",
             "hash": "thumbnail_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d",
             "mime": "image/jpeg",
@@ -876,7 +876,7 @@
         "ext": ".jpg",
         "mime": "image/jpeg",
         "size": 699.32,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+        "url": "/images/uploads/DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -896,7 +896,7 @@
         "formats": {
           "large": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
+            "url": "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
             "etag": "7b7a26d95758ce871d31e866e94633a0",
             "hash": "large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9",
             "mime": "image/jpeg",
@@ -909,7 +909,7 @@
           },
           "small": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
+            "url": "/images/uploads/small_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
             "etag": "26324f7ec5237dfd0484694bb19f709c",
             "hash": "small_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9",
             "mime": "image/jpeg",
@@ -922,7 +922,7 @@
           },
           "medium": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
+            "url": "/images/uploads/medium_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
             "etag": "1763461e8ea7b5ddd2feef5bfe4090c4",
             "hash": "medium_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9",
             "mime": "image/jpeg",
@@ -935,7 +935,7 @@
           },
           "thumbnail": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
+            "url": "/images/uploads/thumbnail_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
             "etag": "abbf0b096079ae6b99e69e7b91131cf1",
             "hash": "thumbnail_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9",
             "mime": "image/jpeg",
@@ -951,7 +951,7 @@
         "ext": ".jpg",
         "mime": "image/jpeg",
         "size": 718.8,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
+        "url": "/images/uploads/DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -971,7 +971,7 @@
         "formats": {
           "large": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+            "url": "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
             "etag": "3a0a2936279953621a5d763397787529",
             "hash": "large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6",
             "mime": "image/jpeg",
@@ -984,7 +984,7 @@
           },
           "small": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+            "url": "/images/uploads/small_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
             "etag": "0229ed694bfee41353379ab0c5a7ba64",
             "hash": "small_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6",
             "mime": "image/jpeg",
@@ -997,7 +997,7 @@
           },
           "medium": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+            "url": "/images/uploads/medium_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
             "etag": "70ee17e4730ac8cfef6e6731abd48dba",
             "hash": "medium_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6",
             "mime": "image/jpeg",
@@ -1010,7 +1010,7 @@
           },
           "thumbnail": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+            "url": "/images/uploads/thumbnail_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
             "etag": "07ae20fb4343a4fae2df2083b15aba9e",
             "hash": "thumbnail_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6",
             "mime": "image/jpeg",
@@ -1026,7 +1026,7 @@
         "ext": ".jpg",
         "mime": "image/jpeg",
         "size": 726.21,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+        "url": "/images/uploads/DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -1046,7 +1046,7 @@
         "formats": {
           "large": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+            "url": "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
             "etag": "2919cb04d26ac5e68194013fa1532f71",
             "hash": "large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1",
             "mime": "image/jpeg",
@@ -1059,7 +1059,7 @@
           },
           "small": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+            "url": "/images/uploads/small_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
             "etag": "4431ca9a98b0ca4db44b29003c37aa13",
             "hash": "small_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1",
             "mime": "image/jpeg",
@@ -1072,7 +1072,7 @@
           },
           "medium": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+            "url": "/images/uploads/medium_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
             "etag": "ba739a8da0c3c0dc92c755524d855f65",
             "hash": "medium_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1",
             "mime": "image/jpeg",
@@ -1085,7 +1085,7 @@
           },
           "thumbnail": {
             "ext": ".jpg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+            "url": "/images/uploads/thumbnail_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
             "etag": "09c029ef7bd218189ca3f6f7155dbfef",
             "hash": "thumbnail_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1",
             "mime": "image/jpeg",
@@ -1101,7 +1101,7 @@
         "ext": ".jpg",
         "mime": "image/jpeg",
         "size": 617.5,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+        "url": "/images/uploads/DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -1138,7 +1138,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755732015_768_large_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
+            "url": "/images/projects/optimized_1787755732015_768_large_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
             "hash": "large_highway_humsafar_delhi_mumbai_expressway_hr_f6b0445528",
             "mime": "image/webp",
             "name": "large_highway-humsafar-delhi-mumbai-expressway-hr.png",
@@ -1150,7 +1150,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755733516_63_small_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755733516_63_small_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
             "hash": "small_highway_humsafar_delhi_mumbai_expressway_hr_f6b0445528",
             "mime": "image/webp",
             "name": "small_highway-humsafar-delhi-mumbai-expressway-hr.png",
@@ -1162,7 +1162,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755734670_366_medium_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755734670_366_medium_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
             "hash": "medium_highway_humsafar_delhi_mumbai_expressway_hr_f6b0445528",
             "mime": "image/webp",
             "name": "medium_highway-humsafar-delhi-mumbai-expressway-hr.png",
@@ -1174,7 +1174,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755735741_9_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755735741_9_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
             "hash": "thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_f6b0445528",
             "mime": "image/webp",
             "name": "thumbnail_highway-humsafar-delhi-mumbai-expressway-hr.png",
@@ -1189,7 +1189,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 222.94,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755730209_921_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
+        "url": "/images/uploads/optimized_1787755730209_921_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1209,7 +1209,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
+            "url": "/images/projects/large_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
             "hash": "large_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6",
             "mime": "image/png",
             "name": "large_highway-humsafar-delhi-mumbai-expressway-hr-2.png",
@@ -1221,7 +1221,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
+            "url": "/images/uploads/small_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
             "hash": "small_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6",
             "mime": "image/png",
             "name": "small_highway-humsafar-delhi-mumbai-expressway-hr-2.png",
@@ -1233,7 +1233,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
+            "url": "/images/uploads/medium_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
             "hash": "medium_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6",
             "mime": "image/png",
             "name": "medium_highway-humsafar-delhi-mumbai-expressway-hr-2.png",
@@ -1245,7 +1245,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
+            "url": "/images/uploads/thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
             "hash": "thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6",
             "mime": "image/png",
             "name": "thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-2.png",
@@ -1260,7 +1260,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 888.01,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
+        "url": "/images/uploads/highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1280,7 +1280,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755551918_184_large_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
+            "url": "/images/projects/optimized_1787755551918_184_large_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
             "hash": "large_highway_humsafar_delhi_mumbai_expressway_hr_3_e42af992c4",
             "mime": "image/webp",
             "name": "large_highway-humsafar-delhi-mumbai-expressway-hr-3.png",
@@ -1292,7 +1292,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755554850_994_small_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
+            "url": "/images/uploads/optimized_1787755554850_994_small_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
             "hash": "small_highway_humsafar_delhi_mumbai_expressway_hr_3_e42af992c4",
             "mime": "image/webp",
             "name": "small_highway-humsafar-delhi-mumbai-expressway-hr-3.png",
@@ -1304,7 +1304,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755558801_229_medium_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
+            "url": "/images/uploads/optimized_1787755558801_229_medium_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
             "hash": "medium_highway_humsafar_delhi_mumbai_expressway_hr_3_e42af992c4",
             "mime": "image/webp",
             "name": "medium_highway-humsafar-delhi-mumbai-expressway-hr-3.png",
@@ -1316,7 +1316,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755560936_21_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
+            "url": "/images/uploads/optimized_1787755560936_21_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
             "hash": "thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_3_e42af992c4",
             "mime": "image/webp",
             "name": "thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-3.png",
@@ -1331,7 +1331,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 250.53,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755549653_971_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
+        "url": "/images/uploads/optimized_1787755549653_971_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1351,7 +1351,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755546108_364_large_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
+            "url": "/images/projects/optimized_1787755546108_364_large_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
             "hash": "large_highway_humsafar_delhi_mumbai_expressway_hr_4_9cfd5ed94e",
             "mime": "image/webp",
             "name": "large_highway-humsafar-delhi-mumbai-expressway-hr-4.png",
@@ -1363,7 +1363,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755547349_414_small_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
+            "url": "/images/uploads/optimized_1787755547349_414_small_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
             "hash": "small_highway_humsafar_delhi_mumbai_expressway_hr_4_9cfd5ed94e",
             "mime": "image/webp",
             "name": "small_highway-humsafar-delhi-mumbai-expressway-hr-4.png",
@@ -1375,7 +1375,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755548755_653_medium_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
+            "url": "/images/uploads/optimized_1787755548755_653_medium_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
             "hash": "medium_highway_humsafar_delhi_mumbai_expressway_hr_4_9cfd5ed94e",
             "mime": "image/webp",
             "name": "medium_highway-humsafar-delhi-mumbai-expressway-hr-4.png",
@@ -1387,7 +1387,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755549795_667_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
+            "url": "/images/uploads/optimized_1787755549795_667_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
             "hash": "thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_4_9cfd5ed94e",
             "mime": "image/webp",
             "name": "thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-4.png",
@@ -1402,7 +1402,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 124.52,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755544644_409_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
+        "url": "/images/uploads/optimized_1787755544644_409_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1422,7 +1422,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755570793_781_large_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
+            "url": "/images/projects/optimized_1787755570793_781_large_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
             "hash": "large_highway_humsafar_delhi_mumbai_expressway_hr_5_609b688234",
             "mime": "image/webp",
             "name": "large_highway-humsafar-delhi-mumbai-expressway-hr-5.png",
@@ -1434,7 +1434,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755572297_80_small_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
+            "url": "/images/uploads/optimized_1787755572297_80_small_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
             "hash": "small_highway_humsafar_delhi_mumbai_expressway_hr_5_609b688234",
             "mime": "image/webp",
             "name": "small_highway-humsafar-delhi-mumbai-expressway-hr-5.png",
@@ -1446,7 +1446,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755574468_123_medium_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
+            "url": "/images/uploads/optimized_1787755574468_123_medium_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
             "hash": "medium_highway_humsafar_delhi_mumbai_expressway_hr_5_609b688234",
             "mime": "image/webp",
             "name": "medium_highway-humsafar-delhi-mumbai-expressway-hr-5.png",
@@ -1458,7 +1458,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755575433_160_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
+            "url": "/images/uploads/optimized_1787755575433_160_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
             "hash": "thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_5_609b688234",
             "mime": "image/webp",
             "name": "thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-5.png",
@@ -1473,7 +1473,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 145.15,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755568865_908_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
+        "url": "/images/uploads/optimized_1787755568865_908_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1493,7 +1493,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755570560_282_large_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
+            "url": "/images/projects/optimized_1787755570560_282_large_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
             "hash": "large_highway_humsafar_delhi_mumbai_expressway_hr_6_cc6c94e86e",
             "mime": "image/webp",
             "name": "large_highway-humsafar-delhi-mumbai-expressway-hr-6.png",
@@ -1505,7 +1505,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755571582_376_small_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
+            "url": "/images/uploads/optimized_1787755571582_376_small_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
             "hash": "small_highway_humsafar_delhi_mumbai_expressway_hr_6_cc6c94e86e",
             "mime": "image/webp",
             "name": "small_highway-humsafar-delhi-mumbai-expressway-hr-6.png",
@@ -1517,7 +1517,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755572959_569_medium_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
+            "url": "/images/uploads/optimized_1787755572959_569_medium_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
             "hash": "medium_highway_humsafar_delhi_mumbai_expressway_hr_6_cc6c94e86e",
             "mime": "image/webp",
             "name": "medium_highway-humsafar-delhi-mumbai-expressway-hr-6.png",
@@ -1529,7 +1529,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755576952_883_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
+            "url": "/images/uploads/optimized_1787755576952_883_thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
             "hash": "thumbnail_highway_humsafar_delhi_mumbai_expressway_hr_6_cc6c94e86e",
             "mime": "image/webp",
             "name": "thumbnail_highway-humsafar-delhi-mumbai-expressway-hr-6.png",
@@ -1544,7 +1544,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 174.17,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755568439_924_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
+        "url": "/images/uploads/optimized_1787755568439_924_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1583,7 +1583,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 162.81,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+        "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1620,7 +1620,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "large_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "large_pmg-logistics-park-kolathur-ka.png",
@@ -1632,7 +1632,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/small_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "small_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "small_pmg-logistics-park-kolathur-ka.png",
@@ -1644,7 +1644,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/medium_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "medium_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "medium_pmg-logistics-park-kolathur-ka.png",
@@ -1656,7 +1656,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "thumbnail_pmg-logistics-park-kolathur-ka.png",
@@ -1671,7 +1671,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 731.86,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+        "url": "/images/uploads/pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1708,7 +1708,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "large_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "large_pmg-logistics-park-kolathur-ka.png",
@@ -1720,7 +1720,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/small_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "small_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "small_pmg-logistics-park-kolathur-ka.png",
@@ -1732,7 +1732,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/medium_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "medium_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "medium_pmg-logistics-park-kolathur-ka.png",
@@ -1744,7 +1744,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "thumbnail_pmg-logistics-park-kolathur-ka.png",
@@ -1759,7 +1759,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 731.86,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+        "url": "/images/uploads/pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1796,7 +1796,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "large_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "large_pmg-logistics-park-kolathur-ka.png",
@@ -1808,7 +1808,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/small_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "small_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "small_pmg-logistics-park-kolathur-ka.png",
@@ -1820,7 +1820,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/medium_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "medium_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "medium_pmg-logistics-park-kolathur-ka.png",
@@ -1832,7 +1832,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+            "url": "/images/uploads/thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
             "hash": "thumbnail_pmg_logistics_park_kolathur_ka_7fddb12bf8",
             "mime": "image/png",
             "name": "thumbnail_pmg-logistics-park-kolathur-ka.png",
@@ -1847,7 +1847,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 731.86,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
+        "url": "/images/uploads/pmg_logistics_park_kolathur_ka_7fddb12bf8.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1884,7 +1884,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755113794_27_large_reliance-dmd-plant-dahej-gj_png.webp",
+            "url": "/images/projects/optimized_1787755113794_27_large_reliance-dmd-plant-dahej-gj_png.webp",
             "hash": "large_reliance_dmd_plant_dahej_gj_ef09db2e83",
             "mime": "image/webp",
             "name": "large_reliance-dmd-plant-dahej-gj.png",
@@ -1896,7 +1896,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755114923_992_small_reliance-dmd-plant-dahej-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755114923_992_small_reliance-dmd-plant-dahej-gj_png.webp",
             "hash": "small_reliance_dmd_plant_dahej_gj_ef09db2e83",
             "mime": "image/webp",
             "name": "small_reliance-dmd-plant-dahej-gj.png",
@@ -1908,7 +1908,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755116081_3_medium_reliance-dmd-plant-dahej-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755116081_3_medium_reliance-dmd-plant-dahej-gj_png.webp",
             "hash": "medium_reliance_dmd_plant_dahej_gj_ef09db2e83",
             "mime": "image/webp",
             "name": "medium_reliance-dmd-plant-dahej-gj.png",
@@ -1920,7 +1920,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755117343_487_thumbnail_reliance-dmd-plant-dahej-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755117343_487_thumbnail_reliance-dmd-plant-dahej-gj_png.webp",
             "hash": "thumbnail_reliance_dmd_plant_dahej_gj_ef09db2e83",
             "mime": "image/webp",
             "name": "thumbnail_reliance-dmd-plant-dahej-gj.png",
@@ -1935,7 +1935,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 348.77,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755112378_142_reliance-dmd-plant-dahej-gj_png.webp",
+        "url": "/images/uploads/optimized_1787755112378_142_reliance-dmd-plant-dahej-gj_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -1972,7 +1972,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755241070_281_large_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
+            "url": "/images/projects/optimized_1787755241070_281_large_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
             "hash": "large_reliance_solar_unit_manufacturing_plant_jamnagar_gj_0e21968733",
             "mime": "image/webp",
             "name": "large_reliance-solar-unit-manufacturing-plant-jamnagar-gj.png",
@@ -1984,7 +1984,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755242456_165_small_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755242456_165_small_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
             "hash": "small_reliance_solar_unit_manufacturing_plant_jamnagar_gj_0e21968733",
             "mime": "image/webp",
             "name": "small_reliance-solar-unit-manufacturing-plant-jamnagar-gj.png",
@@ -1996,7 +1996,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755244696_501_medium_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755244696_501_medium_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
             "hash": "medium_reliance_solar_unit_manufacturing_plant_jamnagar_gj_0e21968733",
             "mime": "image/webp",
             "name": "medium_reliance-solar-unit-manufacturing-plant-jamnagar-gj.png",
@@ -2008,7 +2008,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755245795_149_thumbnail_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755245795_149_thumbnail_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
             "hash": "thumbnail_reliance_solar_unit_manufacturing_plant_jamnagar_gj_0e21968733",
             "mime": "image/webp",
             "name": "thumbnail_reliance-solar-unit-manufacturing-plant-jamnagar-gj.png",
@@ -2023,7 +2023,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 94.26,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755237587_615_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
+        "url": "/images/uploads/optimized_1787755237587_615_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2060,7 +2060,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755239207_582_large_sanaswadi-industrial-project-pune-mh_png.webp",
+            "url": "/images/projects/optimized_1787755239207_582_large_sanaswadi-industrial-project-pune-mh_png.webp",
             "hash": "large_sanaswadi_industrial_project_pune_mh_8d8ba6870e",
             "mime": "image/webp",
             "name": "large_sanaswadi-industrial-project-pune-mh.png",
@@ -2072,7 +2072,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755240365_5_small_sanaswadi-industrial-project-pune-mh_png.webp",
+            "url": "/images/uploads/optimized_1787755240365_5_small_sanaswadi-industrial-project-pune-mh_png.webp",
             "hash": "small_sanaswadi_industrial_project_pune_mh_8d8ba6870e",
             "mime": "image/webp",
             "name": "small_sanaswadi-industrial-project-pune-mh.png",
@@ -2084,7 +2084,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755245002_929_medium_sanaswadi-industrial-project-pune-mh_png.webp",
+            "url": "/images/uploads/optimized_1787755245002_929_medium_sanaswadi-industrial-project-pune-mh_png.webp",
             "hash": "medium_sanaswadi_industrial_project_pune_mh_8d8ba6870e",
             "mime": "image/webp",
             "name": "medium_sanaswadi-industrial-project-pune-mh.png",
@@ -2096,7 +2096,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755246304_48_thumbnail_sanaswadi-industrial-project-pune-mh_png.webp",
+            "url": "/images/uploads/optimized_1787755246304_48_thumbnail_sanaswadi-industrial-project-pune-mh_png.webp",
             "hash": "thumbnail_sanaswadi_industrial_project_pune_mh_8d8ba6870e",
             "mime": "image/webp",
             "name": "thumbnail_sanaswadi-industrial-project-pune-mh.png",
@@ -2111,7 +2111,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 153.01,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755237677_225_sanaswadi-industrial-project-pune-mh_png.webp",
+        "url": "/images/projects/optimized_1787755237677_225_sanaswadi-industrial-project-pune-mh_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2148,7 +2148,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+            "url": "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
             "hash": "large_vpw_logistics_park_mappedu_tn_1523a1ec59",
             "mime": "image/png",
             "name": "large_vpw-logistics-park-mappedu-tn.png",
@@ -2160,7 +2160,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+            "url": "/images/uploads/small_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
             "hash": "small_vpw_logistics_park_mappedu_tn_1523a1ec59",
             "mime": "image/png",
             "name": "small_vpw-logistics-park-mappedu-tn.png",
@@ -2172,7 +2172,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+            "url": "/images/uploads/medium_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
             "hash": "medium_vpw_logistics_park_mappedu_tn_1523a1ec59",
             "mime": "image/png",
             "name": "medium_vpw-logistics-park-mappedu-tn.png",
@@ -2184,7 +2184,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+            "url": "/images/uploads/thumbnail_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
             "hash": "thumbnail_vpw_logistics_park_mappedu_tn_1523a1ec59",
             "mime": "image/png",
             "name": "thumbnail_vpw-logistics-park-mappedu-tn.png",
@@ -2199,7 +2199,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 677.85,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+        "url": "/images/uploads/vpw_logistics_park_mappedu_tn_1523a1ec59.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2236,7 +2236,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+            "url": "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
             "hash": "large_vinyl_project_at_dmd_osbl_area_dahej_gj_96a5915230",
             "mime": "image/webp",
             "name": "large_vinyl-project-at-dmd.-osbl-area-dahej-gj.png",
@@ -2248,7 +2248,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755548994_45_small_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755548994_45_small_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
             "hash": "small_vinyl_project_at_dmd_osbl_area_dahej_gj_96a5915230",
             "mime": "image/webp",
             "name": "small_vinyl-project-at-dmd.-osbl-area-dahej-gj.png",
@@ -2260,7 +2260,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755550208_560_medium_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755550208_560_medium_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
             "hash": "medium_vinyl_project_at_dmd_osbl_area_dahej_gj_96a5915230",
             "mime": "image/webp",
             "name": "medium_vinyl-project-at-dmd.-osbl-area-dahej-gj.png",
@@ -2272,7 +2272,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755551948_631_thumbnail_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+            "url": "/images/uploads/optimized_1787755551948_631_thumbnail_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
             "hash": "thumbnail_vinyl_project_at_dmd_osbl_area_dahej_gj_96a5915230",
             "mime": "image/webp",
             "name": "thumbnail_vinyl-project-at-dmd.-osbl-area-dahej-gj.png",
@@ -2287,7 +2287,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 262.23,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755544832_567_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+        "url": "/images/projects/optimized_1787755544832_567_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2326,7 +2326,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 162.81,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+        "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2365,7 +2365,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 70.26,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp",
+        "url": "/images/projects/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2402,7 +2402,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp",
+            "url": "/images/projects/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp",
             "hash": "large_amazon_delu_manesar_hr_89815a5fea",
             "mime": "image/webp",
             "name": "large_amazon-delu-manesar-hr.png",
@@ -2414,7 +2414,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755073982_869_small_amazon-delu-manesar-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755073982_869_small_amazon-delu-manesar-hr_png.webp",
             "hash": "small_amazon_delu_manesar_hr_89815a5fea",
             "mime": "image/webp",
             "name": "small_amazon-delu-manesar-hr.png",
@@ -2426,7 +2426,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755075198_60_medium_amazon-delu-manesar-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755075198_60_medium_amazon-delu-manesar-hr_png.webp",
             "hash": "medium_amazon_delu_manesar_hr_89815a5fea",
             "mime": "image/webp",
             "name": "medium_amazon-delu-manesar-hr.png",
@@ -2438,7 +2438,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755076723_610_thumbnail_amazon-delu-manesar-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755076723_610_thumbnail_amazon-delu-manesar-hr_png.webp",
             "hash": "thumbnail_amazon_delu_manesar_hr_89815a5fea",
             "mime": "image/webp",
             "name": "thumbnail_amazon-delu-manesar-hr.png",
@@ -2453,7 +2453,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 118.68,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755068665_183_amazon-delu-manesar-hr_png.webp",
+        "url": "/images/uploads/optimized_1787755068665_183_amazon-delu-manesar-hr_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2490,7 +2490,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp",
+            "url": "/images/projects/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp",
             "hash": "large_amazon_ncrun_jamalpur_hr_9fe361d97b",
             "mime": "image/webp",
             "name": "large_amazon-ncrun-jamalpur-hr.png",
@@ -2502,7 +2502,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755049949_99_small_amazon-ncrun-jamalpur-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755049949_99_small_amazon-ncrun-jamalpur-hr_png.webp",
             "hash": "small_amazon_ncrun_jamalpur_hr_9fe361d97b",
             "mime": "image/webp",
             "name": "small_amazon-ncrun-jamalpur-hr.png",
@@ -2514,7 +2514,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755052050_26_medium_amazon-ncrun-jamalpur-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755052050_26_medium_amazon-ncrun-jamalpur-hr_png.webp",
             "hash": "medium_amazon_ncrun_jamalpur_hr_9fe361d97b",
             "mime": "image/webp",
             "name": "medium_amazon-ncrun-jamalpur-hr.png",
@@ -2526,7 +2526,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755052880_378_thumbnail_amazon-ncrun-jamalpur-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755052880_378_thumbnail_amazon-ncrun-jamalpur-hr_png.webp",
             "hash": "thumbnail_amazon_ncrun_jamalpur_hr_9fe361d97b",
             "mime": "image/webp",
             "name": "thumbnail_amazon-ncrun-jamalpur-hr.png",
@@ -2541,7 +2541,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 69.34,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755047431_251_amazon-ncrun-jamalpur-hr_png.webp",
+        "url": "/images/uploads/optimized_1787755047431_251_amazon-ncrun-jamalpur-hr_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2578,7 +2578,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
+            "url": "/images/projects/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
             "hash": "large_avitech_nutrition_farukhnager_hr_04fad9dcbe",
             "mime": "image/png",
             "name": "large_avitech-nutrition-farukhnager-hr.png",
@@ -2590,7 +2590,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
+            "url": "/images/uploads/small_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
             "hash": "small_avitech_nutrition_farukhnager_hr_04fad9dcbe",
             "mime": "image/png",
             "name": "small_avitech-nutrition-farukhnager-hr.png",
@@ -2602,7 +2602,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
+            "url": "/images/uploads/medium_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
             "hash": "medium_avitech_nutrition_farukhnager_hr_04fad9dcbe",
             "mime": "image/png",
             "name": "medium_avitech-nutrition-farukhnager-hr.png",
@@ -2614,7 +2614,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
+            "url": "/images/uploads/thumbnail_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
             "hash": "thumbnail_avitech_nutrition_farukhnager_hr_04fad9dcbe",
             "mime": "image/png",
             "name": "thumbnail_avitech-nutrition-farukhnager-hr.png",
@@ -2629,7 +2629,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 712.82,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
+        "url": "/images/uploads/avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2666,7 +2666,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
+            "url": "/images/projects/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
             "hash": "large_blue_dart_warehouse_bilaspur_hr_d28e220d09",
             "mime": "image/png",
             "name": "large_blue-dart-warehouse-bilaspur-hr.png",
@@ -2678,7 +2678,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
+            "url": "/images/uploads/small_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
             "hash": "small_blue_dart_warehouse_bilaspur_hr_d28e220d09",
             "mime": "image/png",
             "name": "small_blue-dart-warehouse-bilaspur-hr.png",
@@ -2690,7 +2690,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
+            "url": "/images/uploads/medium_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
             "hash": "medium_blue_dart_warehouse_bilaspur_hr_d28e220d09",
             "mime": "image/png",
             "name": "medium_blue-dart-warehouse-bilaspur-hr.png",
@@ -2702,7 +2702,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
+            "url": "/images/uploads/thumbnail_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
             "hash": "thumbnail_blue_dart_warehouse_bilaspur_hr_d28e220d09",
             "mime": "image/png",
             "name": "thumbnail_blue-dart-warehouse-bilaspur-hr.png",
@@ -2717,7 +2717,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 988.31,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
+        "url": "/images/uploads/blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2754,7 +2754,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
+            "url": "/images/projects/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
             "hash": "large_bluestar_realtors_ltd_palwal_hr_76ec876648",
             "mime": "image/png",
             "name": "large_bluestar-realtors-ltd-palwal-hr.png",
@@ -2766,7 +2766,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
+            "url": "/images/uploads/small_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
             "hash": "small_bluestar_realtors_ltd_palwal_hr_76ec876648",
             "mime": "image/png",
             "name": "small_bluestar-realtors-ltd-palwal-hr.png",
@@ -2778,7 +2778,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
+            "url": "/images/uploads/medium_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
             "hash": "medium_bluestar_realtors_ltd_palwal_hr_76ec876648",
             "mime": "image/png",
             "name": "medium_bluestar-realtors-ltd-palwal-hr.png",
@@ -2790,7 +2790,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
+            "url": "/images/uploads/thumbnail_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
             "hash": "thumbnail_bluestar_realtors_ltd_palwal_hr_76ec876648",
             "mime": "image/png",
             "name": "thumbnail_bluestar-realtors-ltd-palwal-hr.png",
@@ -2805,7 +2805,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 541.71,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/bluestar_realtors_ltd_palwal_hr_76ec876648.png",
+        "url": "/images/uploads/bluestar_realtors_ltd_palwal_hr_76ec876648.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2842,7 +2842,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
+            "url": "/images/projects/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
             "hash": "large_cadbury_warehouse_dharuhera_hr_d17448dec2",
             "mime": "image/png",
             "name": "large_cadbury-warehouse-dharuhera-hr.png",
@@ -2854,7 +2854,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
+            "url": "/images/uploads/small_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
             "hash": "small_cadbury_warehouse_dharuhera_hr_d17448dec2",
             "mime": "image/png",
             "name": "small_cadbury-warehouse-dharuhera-hr.png",
@@ -2866,7 +2866,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
+            "url": "/images/uploads/medium_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
             "hash": "medium_cadbury_warehouse_dharuhera_hr_d17448dec2",
             "mime": "image/png",
             "name": "medium_cadbury-warehouse-dharuhera-hr.png",
@@ -2878,7 +2878,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
+            "url": "/images/uploads/thumbnail_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
             "hash": "thumbnail_cadbury_warehouse_dharuhera_hr_d17448dec2",
             "mime": "image/png",
             "name": "thumbnail_cadbury-warehouse-dharuhera-hr.png",
@@ -2893,7 +2893,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 733.88,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/cadbury_warehouse_dharuhera_hr_d17448dec2.png",
+        "url": "/images/uploads/cadbury_warehouse_dharuhera_hr_d17448dec2.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -2930,7 +2930,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_ecom_express_india_one_pathreri_hr_f04011dd73.png",
+            "url": "/images/projects/large_ecom_express_india_one_pathreri_hr_f04011dd73.png",
             "hash": "large_ecom_express_india_one_pathreri_hr_f04011dd73",
             "mime": "image/png",
             "name": "large_ecom-express-india-one-pathreri-hr.png",
@@ -2942,7 +2942,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_ecom_express_india_one_pathreri_hr_f04011dd73.png",
+            "url": "/images/uploads/small_ecom_express_india_one_pathreri_hr_f04011dd73.png",
             "hash": "small_ecom_express_india_one_pathreri_hr_f04011dd73",
             "mime": "image/png",
             "name": "small_ecom-express-india-one-pathreri-hr.png",
@@ -2954,7 +2954,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_ecom_express_india_one_pathreri_hr_f04011dd73.png",
+            "url": "/images/uploads/medium_ecom_express_india_one_pathreri_hr_f04011dd73.png",
             "hash": "medium_ecom_express_india_one_pathreri_hr_f04011dd73",
             "mime": "image/png",
             "name": "medium_ecom-express-india-one-pathreri-hr.png",
@@ -2966,7 +2966,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_ecom_express_india_one_pathreri_hr_f04011dd73.png",
+            "url": "/images/uploads/thumbnail_ecom_express_india_one_pathreri_hr_f04011dd73.png",
             "hash": "thumbnail_ecom_express_india_one_pathreri_hr_f04011dd73",
             "mime": "image/png",
             "name": "thumbnail_ecom-express-india-one-pathreri-hr.png",
@@ -2981,7 +2981,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 607.56,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/ecom_express_india_one_pathreri_hr_f04011dd73.png",
+        "url": "/images/uploads/ecom_express_india_one_pathreri_hr_f04011dd73.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3020,7 +3020,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 353.43,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/compressed_1787754805351.webp",
+        "url": "/images/projects/compressed_1787754805351.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3057,7 +3057,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
+            "url": "/images/projects/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
             "hash": "large_gmr_coimbatore_logistics_park_coimbatore_tn_96aedb3311",
             "mime": "image/webp",
             "name": "large_gmr-coimbatore-logistics-park-coimbatore-tn.png",
@@ -3069,7 +3069,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755624546_133_small_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
+            "url": "/images/uploads/optimized_1787755624546_133_small_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
             "hash": "small_gmr_coimbatore_logistics_park_coimbatore_tn_96aedb3311",
             "mime": "image/webp",
             "name": "small_gmr-coimbatore-logistics-park-coimbatore-tn.png",
@@ -3081,7 +3081,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755625744_705_medium_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
+            "url": "/images/uploads/optimized_1787755625744_705_medium_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
             "hash": "medium_gmr_coimbatore_logistics_park_coimbatore_tn_96aedb3311",
             "mime": "image/webp",
             "name": "medium_gmr-coimbatore-logistics-park-coimbatore-tn.png",
@@ -3093,7 +3093,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755627168_964_thumbnail_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
+            "url": "/images/uploads/optimized_1787755627168_964_thumbnail_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
             "hash": "thumbnail_gmr_coimbatore_logistics_park_coimbatore_tn_96aedb3311",
             "mime": "image/webp",
             "name": "thumbnail_gmr-coimbatore-logistics-park-coimbatore-tn.png",
@@ -3108,7 +3108,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 73.44,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755621285_593_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
+        "url": "/images/uploads/optimized_1787755621285_593_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3145,7 +3145,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp",
+            "url": "/images/projects/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp",
             "hash": "large_gmr_hoskote_logistics_park_ka_59857730af",
             "mime": "image/webp",
             "name": "large_gmr-hoskote-logistics-park-ka.png",
@@ -3157,7 +3157,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755069556_53_small_gmr-hoskote-logistics-park-ka_png.webp",
+            "url": "/images/uploads/optimized_1787755069556_53_small_gmr-hoskote-logistics-park-ka_png.webp",
             "hash": "small_gmr_hoskote_logistics_park_ka_59857730af",
             "mime": "image/webp",
             "name": "small_gmr-hoskote-logistics-park-ka.png",
@@ -3169,7 +3169,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755070798_672_medium_gmr-hoskote-logistics-park-ka_png.webp",
+            "url": "/images/uploads/optimized_1787755070798_672_medium_gmr-hoskote-logistics-park-ka_png.webp",
             "hash": "medium_gmr_hoskote_logistics_park_ka_59857730af",
             "mime": "image/webp",
             "name": "medium_gmr-hoskote-logistics-park-ka.png",
@@ -3181,7 +3181,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755071675_768_thumbnail_gmr-hoskote-logistics-park-ka_png.webp",
+            "url": "/images/uploads/optimized_1787755071675_768_thumbnail_gmr-hoskote-logistics-park-ka_png.webp",
             "hash": "thumbnail_gmr_hoskote_logistics_park_ka_59857730af",
             "mime": "image/webp",
             "name": "thumbnail_gmr-hoskote-logistics-park-ka.png",
@@ -3196,7 +3196,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 116.02,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755066684_839_gmr-hoskote-logistics-park-ka_png.webp",
+        "url": "/images/uploads/optimized_1787755066684_839_gmr-hoskote-logistics-park-ka_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3233,7 +3233,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
+            "url": "/images/projects/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
             "hash": "large_lodha_industrial_park_development_a5_mumbai_mh_dd5e481927",
             "mime": "image/webp",
             "name": "large_lodha-industrial-park-development-a5-mumbai-mh.png",
@@ -3245,7 +3245,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755254929_534_small_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
+            "url": "/images/uploads/optimized_1787755254929_534_small_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
             "hash": "small_lodha_industrial_park_development_a5_mumbai_mh_dd5e481927",
             "mime": "image/webp",
             "name": "small_lodha-industrial-park-development-a5-mumbai-mh.png",
@@ -3257,7 +3257,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755256575_191_medium_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
+            "url": "/images/uploads/optimized_1787755256575_191_medium_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
             "hash": "medium_lodha_industrial_park_development_a5_mumbai_mh_dd5e481927",
             "mime": "image/webp",
             "name": "medium_lodha-industrial-park-development-a5-mumbai-mh.png",
@@ -3269,7 +3269,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755257792_852_thumbnail_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
+            "url": "/images/uploads/optimized_1787755257792_852_thumbnail_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
             "hash": "thumbnail_lodha_industrial_park_development_a5_mumbai_mh_dd5e481927",
             "mime": "image/webp",
             "name": "thumbnail_lodha-industrial-park-development-a5-mumbai-mh.png",
@@ -3284,7 +3284,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 84.46,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755252153_37_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
+        "url": "/images/uploads/optimized_1787755252153_37_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3323,7 +3323,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 238.04,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/compressed_1787754806543.webp",
+        "url": "/images/projects/compressed_1787754806543.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3343,7 +3343,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_CSR_7_c15937b80b.png",
+            "url": "/images/projects/large_CSR_7_c15937b80b.png",
             "hash": "large_CSR_7_c15937b80b",
             "mime": "image/png",
             "name": "large_CSR-(7).png",
@@ -3355,7 +3355,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_CSR_7_c15937b80b.png",
+            "url": "/images/uploads/small_CSR_7_c15937b80b.png",
             "hash": "small_CSR_7_c15937b80b",
             "mime": "image/png",
             "name": "small_CSR-(7).png",
@@ -3367,7 +3367,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_CSR_7_c15937b80b.png",
+            "url": "/images/uploads/medium_CSR_7_c15937b80b.png",
             "hash": "medium_CSR_7_c15937b80b",
             "mime": "image/png",
             "name": "medium_CSR-(7).png",
@@ -3379,7 +3379,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_CSR_7_c15937b80b.png",
+            "url": "/images/uploads/thumbnail_CSR_7_c15937b80b.png",
             "hash": "thumbnail_CSR_7_c15937b80b",
             "mime": "image/png",
             "name": "thumbnail_CSR-(7).png",
@@ -3394,7 +3394,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 792.05,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_7_c15937b80b.png",
+        "url": "/images/uploads/CSR_7_c15937b80b.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3431,7 +3431,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "large_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "large_pragati-one-logistics-park-khijuri-hr.png",
@@ -3443,7 +3443,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755300003_715_small_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755300003_715_small_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "small_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "small_pragati-one-logistics-park-khijuri-hr.png",
@@ -3455,7 +3455,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755304477_784_medium_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755304477_784_medium_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "medium_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "medium_pragati-one-logistics-park-khijuri-hr.png",
@@ -3467,7 +3467,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755305282_635_thumbnail_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755305282_635_thumbnail_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "thumbnail_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "thumbnail_pragati-one-logistics-park-khijuri-hr.png",
@@ -3482,7 +3482,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 208.06,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755297320_173_pragati-one-logistics-park-khijuri-hr_png.webp",
+        "url": "/images/uploads/optimized_1787755297320_173_pragati-one-logistics-park-khijuri-hr_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3519,7 +3519,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp",
+            "url": "/images/projects/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp",
             "hash": "large_ludhiana_logistics_park_pb_f351e52388",
             "mime": "image/webp",
             "name": "large_ludhiana-logistics-park-pb.png",
@@ -3531,7 +3531,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754987059_530_small_ludhiana-logistics-park-pb_png.webp",
+            "url": "/images/uploads/optimized_1787754987059_530_small_ludhiana-logistics-park-pb_png.webp",
             "hash": "small_ludhiana_logistics_park_pb_f351e52388",
             "mime": "image/webp",
             "name": "small_ludhiana-logistics-park-pb.png",
@@ -3543,7 +3543,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754988480_429_medium_ludhiana-logistics-park-pb_png.webp",
+            "url": "/images/uploads/optimized_1787754988480_429_medium_ludhiana-logistics-park-pb_png.webp",
             "hash": "medium_ludhiana_logistics_park_pb_f351e52388",
             "mime": "image/webp",
             "name": "medium_ludhiana-logistics-park-pb.png",
@@ -3555,7 +3555,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754989677_114_thumbnail_ludhiana-logistics-park-pb_png.webp",
+            "url": "/images/uploads/optimized_1787754989677_114_thumbnail_ludhiana-logistics-park-pb_png.webp",
             "hash": "thumbnail_ludhiana_logistics_park_pb_f351e52388",
             "mime": "image/webp",
             "name": "thumbnail_ludhiana-logistics-park-pb.png",
@@ -3570,7 +3570,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 180.42,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754983913_327_ludhiana-logistics-park-pb_png.webp",
+        "url": "/images/uploads/optimized_1787754983913_327_ludhiana-logistics-park-pb_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3607,7 +3607,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_ncr_bigbox_patli_hr_61fcc6ba59.png",
+            "url": "/images/projects/large_ncr_bigbox_patli_hr_61fcc6ba59.png",
             "hash": "large_ncr_bigbox_patli_hr_61fcc6ba59",
             "mime": "image/png",
             "name": "large_ncr-bigbox-patli-hr.png",
@@ -3619,7 +3619,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_ncr_bigbox_patli_hr_61fcc6ba59.png",
+            "url": "/images/uploads/small_ncr_bigbox_patli_hr_61fcc6ba59.png",
             "hash": "small_ncr_bigbox_patli_hr_61fcc6ba59",
             "mime": "image/png",
             "name": "small_ncr-bigbox-patli-hr.png",
@@ -3631,7 +3631,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_ncr_bigbox_patli_hr_61fcc6ba59.png",
+            "url": "/images/uploads/medium_ncr_bigbox_patli_hr_61fcc6ba59.png",
             "hash": "medium_ncr_bigbox_patli_hr_61fcc6ba59",
             "mime": "image/png",
             "name": "medium_ncr-bigbox-patli-hr.png",
@@ -3643,7 +3643,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_ncr_bigbox_patli_hr_61fcc6ba59.png",
+            "url": "/images/uploads/thumbnail_ncr_bigbox_patli_hr_61fcc6ba59.png",
             "hash": "thumbnail_ncr_bigbox_patli_hr_61fcc6ba59",
             "mime": "image/png",
             "name": "thumbnail_ncr-bigbox-patli-hr.png",
@@ -3658,7 +3658,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 639.96,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/ncr_bigbox_patli_hr_61fcc6ba59.png",
+        "url": "/images/uploads/ncr_bigbox_patli_hr_61fcc6ba59.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3695,7 +3695,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
+            "url": "/images/projects/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
             "hash": "large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7",
             "mime": "image/png",
             "name": "large_om-sukh-logistics-park-pataudi-hr.png",
@@ -3707,7 +3707,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
+            "url": "/images/uploads/small_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
             "hash": "small_om_sukh_logistics_park_pataudi_hr_be3f72c0a7",
             "mime": "image/png",
             "name": "small_om-sukh-logistics-park-pataudi-hr.png",
@@ -3719,7 +3719,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
+            "url": "/images/uploads/medium_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
             "hash": "medium_om_sukh_logistics_park_pataudi_hr_be3f72c0a7",
             "mime": "image/png",
             "name": "medium_om-sukh-logistics-park-pataudi-hr.png",
@@ -3731,7 +3731,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
+            "url": "/images/uploads/thumbnail_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
             "hash": "thumbnail_om_sukh_logistics_park_pataudi_hr_be3f72c0a7",
             "mime": "image/png",
             "name": "thumbnail_om-sukh-logistics-park-pataudi-hr.png",
@@ -3746,7 +3746,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 801.49,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
+        "url": "/images/uploads/om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3783,7 +3783,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_oswal_logistics_park_jaipur_hr_41a8d15490.png",
+            "url": "/images/projects/large_oswal_logistics_park_jaipur_hr_41a8d15490.png",
             "hash": "large_oswal_logistics_park_jaipur_hr_41a8d15490",
             "mime": "image/png",
             "name": "large_oswal-logistics-park-jaipur-hr.png",
@@ -3795,7 +3795,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_oswal_logistics_park_jaipur_hr_41a8d15490.png",
+            "url": "/images/uploads/small_oswal_logistics_park_jaipur_hr_41a8d15490.png",
             "hash": "small_oswal_logistics_park_jaipur_hr_41a8d15490",
             "mime": "image/png",
             "name": "small_oswal-logistics-park-jaipur-hr.png",
@@ -3807,7 +3807,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_oswal_logistics_park_jaipur_hr_41a8d15490.png",
+            "url": "/images/uploads/medium_oswal_logistics_park_jaipur_hr_41a8d15490.png",
             "hash": "medium_oswal_logistics_park_jaipur_hr_41a8d15490",
             "mime": "image/png",
             "name": "medium_oswal-logistics-park-jaipur-hr.png",
@@ -3819,7 +3819,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_oswal_logistics_park_jaipur_hr_41a8d15490.png",
+            "url": "/images/uploads/thumbnail_oswal_logistics_park_jaipur_hr_41a8d15490.png",
             "hash": "thumbnail_oswal_logistics_park_jaipur_hr_41a8d15490",
             "mime": "image/png",
             "name": "thumbnail_oswal-logistics-park-jaipur-hr.png",
@@ -3834,7 +3834,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 698.44,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/oswal_logistics_park_jaipur_hr_41a8d15490.png",
+        "url": "/images/uploads/oswal_logistics_park_jaipur_hr_41a8d15490.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3871,7 +3871,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
+            "url": "/images/projects/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
             "hash": "large_prr_warehousing_pvt_ltd_tauru_hr_40af2ba265",
             "mime": "image/webp",
             "name": "large_prr-warehousing-pvt-ltd-tauru-hr.png",
@@ -3883,7 +3883,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755624362_666_small_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755624362_666_small_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
             "hash": "small_prr_warehousing_pvt_ltd_tauru_hr_40af2ba265",
             "mime": "image/webp",
             "name": "small_prr-warehousing-pvt-ltd-tauru-hr.png",
@@ -3895,7 +3895,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755625390_744_medium_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755625390_744_medium_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
             "hash": "medium_prr_warehousing_pvt_ltd_tauru_hr_40af2ba265",
             "mime": "image/webp",
             "name": "medium_prr-warehousing-pvt-ltd-tauru-hr.png",
@@ -3907,7 +3907,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755627236_270_thumbnail_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755627236_270_thumbnail_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
             "hash": "thumbnail_prr_warehousing_pvt_ltd_tauru_hr_40af2ba265",
             "mime": "image/webp",
             "name": "thumbnail_prr-warehousing-pvt-ltd-tauru-hr.png",
@@ -3922,7 +3922,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 146.31,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755621302_442_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
+        "url": "/images/uploads/optimized_1787755621302_442_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -3959,7 +3959,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
+            "url": "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
             "hash": "large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6",
             "mime": "image/png",
             "name": "large_pragati-farrukhnagar-logistics-park-hr.png",
@@ -3971,7 +3971,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
+            "url": "/images/uploads/small_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
             "hash": "small_pragati_farrukhnagar_logistics_park_hr_cfabd902b6",
             "mime": "image/png",
             "name": "small_pragati-farrukhnagar-logistics-park-hr.png",
@@ -3983,7 +3983,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
+            "url": "/images/uploads/medium_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
             "hash": "medium_pragati_farrukhnagar_logistics_park_hr_cfabd902b6",
             "mime": "image/png",
             "name": "medium_pragati-farrukhnagar-logistics-park-hr.png",
@@ -3995,7 +3995,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
+            "url": "/images/uploads/thumbnail_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
             "hash": "thumbnail_pragati_farrukhnagar_logistics_park_hr_cfabd902b6",
             "mime": "image/png",
             "name": "thumbnail_pragati-farrukhnagar-logistics-park-hr.png",
@@ -4010,7 +4010,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 1089.93,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
+        "url": "/images/uploads/pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -4047,7 +4047,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "large_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "large_pragati-one-logistics-park-khijuri-hr.png",
@@ -4059,7 +4059,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755300003_715_small_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755300003_715_small_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "small_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "small_pragati-one-logistics-park-khijuri-hr.png",
@@ -4071,7 +4071,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755304477_784_medium_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755304477_784_medium_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "medium_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "medium_pragati-one-logistics-park-khijuri-hr.png",
@@ -4083,7 +4083,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755305282_635_thumbnail_pragati-one-logistics-park-khijuri-hr_png.webp",
+            "url": "/images/uploads/optimized_1787755305282_635_thumbnail_pragati-one-logistics-park-khijuri-hr_png.webp",
             "hash": "thumbnail_pragati_one_logistics_park_khijuri_hr_4b2c55c159",
             "mime": "image/webp",
             "name": "thumbnail_pragati-one-logistics-park-khijuri-hr.png",
@@ -4098,7 +4098,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 208.06,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755297320_173_pragati-one-logistics-park-khijuri-hr_png.webp",
+        "url": "/images/uploads/optimized_1787755297320_173_pragati-one-logistics-park-khijuri-hr_png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -4135,7 +4135,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
+            "url": "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
             "hash": "large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac",
             "mime": "image/png",
             "name": "large_pragati-prathamus-logistics-park-neemrana-rj.png",
@@ -4147,7 +4147,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
+            "url": "/images/uploads/small_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
             "hash": "small_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac",
             "mime": "image/png",
             "name": "small_pragati-prathamus-logistics-park-neemrana-rj.png",
@@ -4159,7 +4159,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
+            "url": "/images/uploads/medium_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
             "hash": "medium_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac",
             "mime": "image/png",
             "name": "medium_pragati-prathamus-logistics-park-neemrana-rj.png",
@@ -4171,7 +4171,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
+            "url": "/images/uploads/thumbnail_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
             "hash": "thumbnail_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac",
             "mime": "image/png",
             "name": "thumbnail_pragati-prathamus-logistics-park-neemrana-rj.png",
@@ -4186,7 +4186,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 693.95,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
+        "url": "/images/uploads/pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -4223,7 +4223,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_rajratan_global_wires_chennai_tn_75e18124c0.png",
+            "url": "/images/projects/large_rajratan_global_wires_chennai_tn_75e18124c0.png",
             "hash": "large_rajratan_global_wires_chennai_tn_75e18124c0",
             "mime": "image/png",
             "name": "large_rajratan-global-wires-chennai-tn.png",
@@ -4235,7 +4235,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_rajratan_global_wires_chennai_tn_75e18124c0.png",
+            "url": "/images/uploads/small_rajratan_global_wires_chennai_tn_75e18124c0.png",
             "hash": "small_rajratan_global_wires_chennai_tn_75e18124c0",
             "mime": "image/png",
             "name": "small_rajratan-global-wires-chennai-tn.png",
@@ -4247,7 +4247,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_rajratan_global_wires_chennai_tn_75e18124c0.png",
+            "url": "/images/uploads/medium_rajratan_global_wires_chennai_tn_75e18124c0.png",
             "hash": "medium_rajratan_global_wires_chennai_tn_75e18124c0",
             "mime": "image/png",
             "name": "medium_rajratan-global-wires-chennai-tn.png",
@@ -4259,7 +4259,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_rajratan_global_wires_chennai_tn_75e18124c0.png",
+            "url": "/images/uploads/thumbnail_rajratan_global_wires_chennai_tn_75e18124c0.png",
             "hash": "thumbnail_rajratan_global_wires_chennai_tn_75e18124c0",
             "mime": "image/png",
             "name": "thumbnail_rajratan-global-wires-chennai-tn.png",
@@ -4274,7 +4274,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 501.9,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/rajratan_global_wires_chennai_tn_75e18124c0.png",
+        "url": "/images/uploads/rajratan_global_wires_chennai_tn_75e18124c0.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -4311,7 +4311,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
+            "url": "/images/projects/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
             "hash": "large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec",
             "mime": "image/png",
             "name": "large_vinfast-factory-phase-1-thoothukudi-tn.png",
@@ -4323,7 +4323,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
+            "url": "/images/uploads/small_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
             "hash": "small_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec",
             "mime": "image/png",
             "name": "small_vinfast-factory-phase-1-thoothukudi-tn.png",
@@ -4335,7 +4335,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
+            "url": "/images/uploads/medium_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
             "hash": "medium_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec",
             "mime": "image/png",
             "name": "medium_vinfast-factory-phase-1-thoothukudi-tn.png",
@@ -4347,7 +4347,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
+            "url": "/images/uploads/thumbnail_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
             "hash": "thumbnail_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec",
             "mime": "image/png",
             "name": "thumbnail_vinfast-factory-phase-1-thoothukudi-tn.png",
@@ -4362,7 +4362,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 396.22,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
+        "url": "/images/uploads/vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -4399,7 +4399,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+            "url": "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
             "etag": "234bd716917310d8c5dd2266c6b3ee95",
             "hash": "large_Rebar_Wall_Construction_Site_500kb_c2264ddb63",
             "mime": "image/jpeg",
@@ -4412,7 +4412,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+            "url": "/images/uploads/small_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
             "etag": "21d48fe31e651ff144e1ad1f3702bbbb",
             "hash": "small_Rebar_Wall_Construction_Site_500kb_c2264ddb63",
             "mime": "image/jpeg",
@@ -4425,7 +4425,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+            "url": "/images/uploads/medium_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
             "etag": "0d670903ce1a0a95327a7b36f3c69283",
             "hash": "medium_Rebar_Wall_Construction_Site_500kb_c2264ddb63",
             "mime": "image/jpeg",
@@ -4438,7 +4438,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+            "url": "/images/uploads/thumbnail_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
             "etag": "97c5293de7f452fa86c9ca2ad3e6648a",
             "hash": "thumbnail_Rebar_Wall_Construction_Site_500kb_c2264ddb63",
             "mime": "image/jpeg",
@@ -4454,7 +4454,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 483.04,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+        "url": "/images/uploads/Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4474,7 +4474,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+            "url": "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
             "etag": "622ce270ba7b981f56c0ff97461cd6a4",
             "hash": "large_Open_Sky_Construction_Site_500kb_0045f305de",
             "mime": "image/jpeg",
@@ -4487,7 +4487,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+            "url": "/images/uploads/small_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
             "etag": "6ebe86b816982faa716ab8fb80906585",
             "hash": "small_Open_Sky_Construction_Site_500kb_0045f305de",
             "mime": "image/jpeg",
@@ -4500,7 +4500,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+            "url": "/images/uploads/medium_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
             "etag": "9f72a9a1358f44625d2bc97438187cad",
             "hash": "medium_Open_Sky_Construction_Site_500kb_0045f305de",
             "mime": "image/jpeg",
@@ -4513,7 +4513,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+            "url": "/images/uploads/thumbnail_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
             "etag": "04c2e804b18f017de2856d03d46838f7",
             "hash": "thumbnail_Open_Sky_Construction_Site_500kb_0045f305de",
             "mime": "image/jpeg",
@@ -4529,7 +4529,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 261.68,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+        "url": "/images/uploads/Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4549,7 +4549,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+            "url": "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
             "etag": "0642d2424a4aafe903105947954f7a76",
             "hash": "large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3",
             "mime": "image/jpeg",
@@ -4562,7 +4562,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+            "url": "/images/uploads/small_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
             "etag": "3e83de86b71ddadcd49a076c4cbfce39",
             "hash": "small_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3",
             "mime": "image/jpeg",
@@ -4575,7 +4575,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+            "url": "/images/uploads/medium_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
             "etag": "08dc6d718976b37e9c2bf9981877c314",
             "hash": "medium_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3",
             "mime": "image/jpeg",
@@ -4588,7 +4588,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+            "url": "/images/uploads/thumbnail_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
             "etag": "1321d06d7e8d867fd719f26651c05e89",
             "hash": "thumbnail_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3",
             "mime": "image/jpeg",
@@ -4604,7 +4604,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 504.07,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+        "url": "/images/uploads/Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4624,7 +4624,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
+            "url": "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
             "etag": "bb89bd64abca3784c648279f3a144ed0",
             "hash": "large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b",
             "mime": "image/png",
@@ -4637,7 +4637,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
+            "url": "/images/uploads/small_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
             "etag": "c30d2e5def21be98bd1b6ce6317dfdd1",
             "hash": "small_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b",
             "mime": "image/png",
@@ -4650,7 +4650,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
+            "url": "/images/uploads/medium_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
             "etag": "f113cec0d14bf9c23a7b588bc9a79f22",
             "hash": "medium_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b",
             "mime": "image/png",
@@ -4663,7 +4663,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
+            "url": "/images/uploads/thumbnail_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
             "etag": "44b2c3b3ec1565487ee47cc451e95010",
             "hash": "thumbnail_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b",
             "mime": "image/png",
@@ -4679,7 +4679,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 832.16,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
+        "url": "/images/uploads/Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4716,7 +4716,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+            "url": "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
             "etag": "6afb2ab269e9380531e5c8abcf6d0d4a",
             "hash": "large_4_TR_Building_Township_Jamnagar_13bfc57dab",
             "mime": "image/jpeg",
@@ -4729,7 +4729,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+            "url": "/images/uploads/small_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
             "etag": "6d70ee28c7ec9519bad819602a9d4b67",
             "hash": "small_4_TR_Building_Township_Jamnagar_13bfc57dab",
             "mime": "image/jpeg",
@@ -4742,7 +4742,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+            "url": "/images/uploads/medium_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
             "etag": "186f8a02aa601cfce066ebf712f9f73b",
             "hash": "medium_4_TR_Building_Township_Jamnagar_13bfc57dab",
             "mime": "image/jpeg",
@@ -4755,7 +4755,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+            "url": "/images/uploads/thumbnail_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
             "etag": "50017da5547ced636352ba682414cb9d",
             "hash": "thumbnail_4_TR_Building_Township_Jamnagar_13bfc57dab",
             "mime": "image/jpeg",
@@ -4771,7 +4771,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 255.18,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+        "url": "/images/uploads/4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4791,7 +4791,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+            "url": "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
             "etag": "19c8e48f7bdb2c145164a71ce44b4c7f",
             "hash": "large_1_TR_Building_Township_Jamnagar_3416f89107",
             "mime": "image/jpeg",
@@ -4804,7 +4804,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+            "url": "/images/uploads/small_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
             "etag": "dc3674a60017661eb3a48a8a05560a52",
             "hash": "small_1_TR_Building_Township_Jamnagar_3416f89107",
             "mime": "image/jpeg",
@@ -4817,7 +4817,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+            "url": "/images/uploads/medium_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
             "etag": "6161f533c1095054b063d2e846bcb69c",
             "hash": "medium_1_TR_Building_Township_Jamnagar_3416f89107",
             "mime": "image/jpeg",
@@ -4830,7 +4830,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+            "url": "/images/uploads/thumbnail_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
             "etag": "30c30d003c5bf3b4c174852893bb9fa9",
             "hash": "thumbnail_1_TR_Building_Township_Jamnagar_3416f89107",
             "mime": "image/jpeg",
@@ -4846,7 +4846,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 284.09,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+        "url": "/images/uploads/1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4866,7 +4866,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+            "url": "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
             "etag": "583647466e5beb856cfa6e7e63ac5e14",
             "hash": "large_2_TR_Building_Township_Jamnagar_deb7b7161c",
             "mime": "image/jpeg",
@@ -4879,7 +4879,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+            "url": "/images/uploads/small_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
             "etag": "220692f0af7131a814b2d8bc3dfe55e5",
             "hash": "small_2_TR_Building_Township_Jamnagar_deb7b7161c",
             "mime": "image/jpeg",
@@ -4892,7 +4892,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+            "url": "/images/uploads/medium_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
             "etag": "764587723e651385c57e2140cde8c642",
             "hash": "medium_2_TR_Building_Township_Jamnagar_deb7b7161c",
             "mime": "image/jpeg",
@@ -4905,7 +4905,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+            "url": "/images/uploads/thumbnail_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
             "etag": "42a206fc922c4e4774a6559061f1b152",
             "hash": "thumbnail_2_TR_Building_Township_Jamnagar_deb7b7161c",
             "mime": "image/jpeg",
@@ -4921,7 +4921,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 238.71,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+        "url": "/images/uploads/2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -4941,7 +4941,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+            "url": "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
             "etag": "4a5ad8be13239dd878d4ef4f5774a17d",
             "hash": "large_3_TR_Building_Township_Jamnagar_cdcea5a284",
             "mime": "image/jpeg",
@@ -4954,7 +4954,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+            "url": "/images/uploads/small_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
             "etag": "a2b209dc210601cf7ba678228e7efd3d",
             "hash": "small_3_TR_Building_Township_Jamnagar_cdcea5a284",
             "mime": "image/jpeg",
@@ -4967,7 +4967,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+            "url": "/images/uploads/medium_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
             "etag": "25af937af03c2dd19035bf58f261fbf5",
             "hash": "medium_3_TR_Building_Township_Jamnagar_cdcea5a284",
             "mime": "image/jpeg",
@@ -4980,7 +4980,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+            "url": "/images/uploads/thumbnail_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
             "etag": "49cf3eb8b7d0f1f96b0d7d86ac009cdb",
             "hash": "thumbnail_3_TR_Building_Township_Jamnagar_cdcea5a284",
             "mime": "image/jpeg",
@@ -4996,7 +4996,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 252.68,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+        "url": "/images/uploads/3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,
@@ -5016,7 +5016,7 @@
         "formats": {
           "large": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
+            "url": "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
             "etag": "af5f17fb3082b8828b8e96784e3a6822",
             "hash": "large_5_TR_Building_Township_Jamnagar_bc04226f23",
             "mime": "image/jpeg",
@@ -5029,7 +5029,7 @@
           },
           "small": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
+            "url": "/images/uploads/small_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
             "etag": "f2ce5733fd4bfcbc0ac848613c536a4c",
             "hash": "small_5_TR_Building_Township_Jamnagar_bc04226f23",
             "mime": "image/jpeg",
@@ -5042,7 +5042,7 @@
           },
           "medium": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
+            "url": "/images/uploads/medium_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
             "etag": "9e97299337253077cdcf9a4eebcfcab2",
             "hash": "medium_5_TR_Building_Township_Jamnagar_bc04226f23",
             "mime": "image/jpeg",
@@ -5055,7 +5055,7 @@
           },
           "thumbnail": {
             "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
+            "url": "/images/uploads/thumbnail_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
             "etag": "e1b063a8c1525039462821c89093c12f",
             "hash": "thumbnail_5_TR_Building_Township_Jamnagar_bc04226f23",
             "mime": "image/jpeg",
@@ -5071,7 +5071,7 @@
         "ext": ".jpeg",
         "mime": "image/jpeg",
         "size": 251.89,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
+        "url": "/images/uploads/5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
         "previewUrl": null,
         "provider": "@strapi/provider-upload-aws-s3",
         "provider_metadata": null,

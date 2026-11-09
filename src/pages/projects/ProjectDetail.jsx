@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { fetchStrapiData, STRAPI_URL } from '../../services/strapi'
-import { getImageUrl } from '../../utils/imageUrl'
+import { fetchStrapiData } from '../../services/strapi'
+import { getImageUrl, getProjectSlug } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
@@ -83,16 +83,32 @@ const matchProject = (p, target) => {
   if (p.documentId && p.documentId.toLowerCase() === targetStr) return true;
   if (p.id && p.id.toString() === targetStr) return true;
 
+  const pSlug = getProjectSlug(p);
+  if (pSlug) {
+    const pSlugClean = pSlug.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (pSlug.toLowerCase() === targetStr || pSlugClean === targetClean) return true;
+  }
+
   const pName = p.name || p.projectName || p.project_name || p.title || '';
   const pNameClean = pName.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const pLoc = p.location || p.city || '';
+  const pLoc = p.location || p.city || p.state || '';
   const pLocClean = pLoc.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   const fullSlugClean = `${pNameClean}${pLocClean}`;
-  if (fullSlugClean === targetClean) return true;
+  if (fullSlugClean && fullSlugClean === targetClean) return true;
 
-  if (targetClean.includes(pNameClean) && pLocClean && targetClean.includes(pLocClean)) return true;
-  if (pNameClean && (pNameClean === targetClean || targetClean.includes(pNameClean) || pNameClean.includes(targetClean))) return true;
+  if (pNameClean && targetClean.includes(pNameClean)) {
+    const extra = targetClean.replace(pNameClean, '');
+    if (extra.length > 0) {
+      if (pLocClean && (pLocClean.includes(extra) || extra.includes(pLocClean) || targetClean.includes(pLocClean))) {
+        return true;
+      }
+      return false;
+    }
+    return pNameClean === targetClean;
+  }
+
+  if (pNameClean && pNameClean === targetClean) return true;
 
   return false;
 };
@@ -121,17 +137,19 @@ const ProjectDetail = () => {
   const projectIdOrSlug = id || ''
 
   const localPool = projectType === 'completed' ? completedProjects : projectsData;
-  const initialMatch = location.state?.projectData || localPool.find(p => matchProject(p, projectIdOrSlug));
+  const initialMatch = (location.state?.projectData && matchProject(location.state.projectData, projectIdOrSlug))
+    ? location.state.projectData
+    : localPool.find(p => matchProject(p, projectIdOrSlug));
 
   const [project, setProject] = useState(initialMatch || null)
   const [allProjects, setAllProjects] = useState(localPool)
   const [loading, setLoading] = useState(!initialMatch)
 
   useEffect(() => {
-    if (location.state?.projectData) {
+    if (location.state?.projectData && matchProject(location.state.projectData, projectIdOrSlug)) {
       setProject(location.state.projectData);
     }
-  }, [location.state]);
+  }, [location.state, projectIdOrSlug]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -191,9 +209,13 @@ const ProjectDetail = () => {
           let foundProject = formattedAll.find(p => matchProject(p, projectIdOrSlug));
           if (!foundProject) {
             foundProject = formattedAll.find(p => {
-               const s = slugify(p.name);
-               const targetS = slugify(projectIdOrSlug);
-               return s === targetS || s.includes(targetS) || targetS.includes(s) || (p.id && p.id.toString() === projectIdOrSlug.toString());
+              if (p.documentId && p.documentId.toLowerCase() === projectIdOrSlug.toLowerCase()) return true;
+              if (p.id && p.id.toString() === projectIdOrSlug.toString()) return true;
+              const pSlug = getProjectSlug(p);
+              if (pSlug && pSlug.toLowerCase() === projectIdOrSlug.toLowerCase()) return true;
+              const s = slugify(p.name);
+              const targetS = slugify(projectIdOrSlug);
+              return s === targetS;
             });
           }
 
@@ -203,7 +225,7 @@ const ProjectDetail = () => {
               const mList = Array.isArray(markersRes) ? markersRes : (markersRes?.data && Array.isArray(markersRes.data) ? markersRes.data : []);
               const mMatch = mList.find(m => {
                 const mName = m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '';
-                return matchProject({ ...m, name: mName }, projectIdOrSlug) || slugify(mName) === slugify(projectIdOrSlug) || slugify(mName).includes(slugify(projectIdOrSlug)) || slugify(projectIdOrSlug).includes(slugify(mName));
+                return matchProject({ ...m, name: mName }, projectIdOrSlug) || slugify(mName) === slugify(projectIdOrSlug);
               });
               if (mMatch) {
                 const rawImgs = Array.isArray(mMatch.images) && mMatch.images.length > 0 ? mMatch.images : (mMatch.image ? [mMatch.image] : (mMatch.attributes?.images?.data ? mMatch.attributes.images.data : []));
@@ -308,8 +330,8 @@ const ProjectDetail = () => {
     seoTitle: `${project.name} - ${project.category} Construction in ${project.location}, ${project.state} | Pislinfra`,
     seoDescription: `${project.name} in ${project.location}, ${project.state}. Client: ${project.client}, Area: ${project.area}, Status: ${project.status}. Scope of work: ${project.scope}. Delivered by Pislinfra.`,
     seoKeywords: `${project.name}, ${project.client} construction project, ${project.category} construction ${project.location}, industrial warehouse ${project.state}, Pislinfra projects, turnkey civil engineering`,
-    slug: `project/${projectType}/${slugify(project.name)}`,
-    canonicalUrl: `https://pislinfra.com/project/${projectType}/${slugify(project.name)}`,
+    slug: `project/${projectType}/${getProjectSlug(project)}`,
+    canonicalUrl: `https://pislinfra.com/project/${projectType}/${getProjectSlug(project)}`,
     ogTitle: `${project.name} - ${project.category} (${project.status}) | Pislinfra`,
     ogDescription: `${project.name} in ${project.location}, ${project.state} for ${project.client}. Built by Pislinfra.`,
     ogImage: projectImages[0],
@@ -344,10 +366,10 @@ const ProjectDetail = () => {
           <Link to={backUrl} className="back-btn"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px',
-              color: '#475569', fontWeight: '600', fontSize: '14px',
+              color: '#ffffff', fontWeight: '600', fontSize: '14px',
               textDecoration: 'none', marginBottom: '32px',
-              padding: '8px 16px', backgroundColor: '#f1f5f9',
-              borderRadius: '20px', transition: 'all 0.3s'
+              padding: '8px 16px', backgroundColor: '#031D63',
+              borderRadius: '8px', transition: 'all 0.2s ease'
             }}
           >
             <FaArrowLeft /> Back to {projectType === 'completed' ? 'Completed' : 'Ongoing'} Projects
@@ -360,12 +382,12 @@ const ProjectDetail = () => {
               <div className="project-image-slider"
                 style={{ 
                   position: 'relative', 
-                  borderRadius: '16px', 
+                  borderRadius: '8px', 
                   overflow: 'hidden', 
-                  border: '1px solid #EAEFF5',
+                  border: '1px solid #031D63',
                   height: '420px',
                   cursor: 'default',
-                  boxShadow: '0 4px 14px rgba(15, 23, 42, 0.04)',
+                  boxShadow: 'none',
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -697,9 +719,20 @@ const ProjectDetail = () => {
 
       {/* Responsive Styles */}
       <style>{`
+        .back-btn {
+          background-color: #031D63 !important;
+          color: #ffffff !important;
+          border-radius: 8px !important;
+        }
         .back-btn:hover {
-          background-color: #e2e8f0 !important;
-          color: #1e293b !important;
+          background-color: #05267a !important;
+          color: #ffffff !important;
+        }
+
+        .project-image-slider {
+          border: 1px solid #031D63 !important;
+          border-radius: 8px !important;
+          box-shadow: none !important;
         }
 
         .scope-card {
@@ -707,7 +740,6 @@ const ProjectDetail = () => {
           background-color: #ffffff;
           border-radius: 14px;
           border: 1px solid #e2e8f0;
-          border-left: 4px solid #ff8755;
           box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
           box-sizing: border-box;
           transition: none !important;
@@ -808,7 +840,8 @@ const ProjectDetail = () => {
           }
           .project-image-slider {
             height: clamp(220px, 62vw, 290px) !important;
-            border-radius: 12px !important;
+            border-radius: 6px !important;
+            border: 1px solid #031D63 !important;
           }
           .project-title {
             font-size: clamp(21px, 5.2vw, 26px) !important;
@@ -847,6 +880,7 @@ const ProjectDetail = () => {
             margin-bottom: 18px !important;
             font-size: 13px !important;
             padding: 6px 12px !important;
+            border-radius: 8px !important;
           }
           .more-projects-section {
             padding: 32px 14px 48px !important;
@@ -878,6 +912,8 @@ const ProjectDetail = () => {
           }
           .project-image-slider {
             height: 210px !important;
+            border-radius: 6px !important;
+            border: 1px solid #031D63 !important;
           }
           .info-card {
             padding: 12px 10px !important;

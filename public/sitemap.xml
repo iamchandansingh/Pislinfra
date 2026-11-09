@@ -8,7 +8,7 @@
   <!-- Core Home Page -->
   <url>
     <loc>https://pislinfra.com/</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -23,7 +23,7 @@
   <!-- ==================== ABOUT US SECTION ==================== -->
   <url>
     <loc>https://pislinfra.com/about</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -36,7 +36,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/about/leadership</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -49,7 +49,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/about/ehs</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/about/csr</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -75,7 +75,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/about/awards</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -86,17 +86,43 @@
       <image:license>https://pislinfra.com/privacy-policy</image:license>
     </image:image>
   </url>
+  <url>
+    <loc>https://pislinfra.com/about/company-policy</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/uploads/optimized_1787756480751_Extra-2.webp</image:loc>
+      <image:title>Company Policy &amp; Corporate Governance | Pislinfra</image:title>
+      <image:caption>Corporate policies guiding ethical, transparent and sustainable growth across Pislinfra.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/about/policies</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/uploads/optimized_1787756480751_Extra-2.webp</image:loc>
+      <image:title>Policies &amp; Corporate Governance Framework | Pislinfra</image:title>
+      <image:caption>Risk Management, Vigil Mechanism, and CSR Policies.</image:caption>
+      <image:geo_location>India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
 
   <!-- Projects Section Index -->
   <url>
     <loc>https://pislinfra.com/projects</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/projects/completed</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -108,7 +134,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/ongoing</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -120,7 +146,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -128,7 +154,7 @@
   <!-- ==================== SOLUTIONS PAGES (INDIVIDUAL RANKING) ==================== -->
   <url>
     <loc>https://pislinfra.com/solutions</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -141,7 +167,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/solutions/industrial</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -154,7 +180,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/solutions/infrastructure</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -167,7 +193,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/solutions/logistic</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -180,7 +206,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/solutions/warehouse</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -195,25 +221,25 @@
   <!-- Knowledge, Coverage, Annual Reports & Contact -->
   <url>
     <loc>https://pislinfra.com/blog</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/coverage</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/annual-reports</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/contact-us</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -225,7 +251,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/careers</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -237,13 +263,13 @@
   </url>
   <url>
     <loc>https://pislinfra.com/sitemap</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/privacy-policy</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -251,7 +277,7 @@
   <!-- ==================== CASE STUDIES ==================== -->
   <url>
     <loc>https://pislinfra.com/projects/case-study/sunsat-warehousing</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -264,7 +290,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/pragati-farukhnagar-logistics</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -277,7 +303,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/ludhiana-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -290,7 +316,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/bluestar-realtors-palwal</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -303,7 +329,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/ncr-bigbox-patli</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -316,7 +342,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/avitech-nutrition-farukhnagar</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -329,7 +355,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/om-sukh-logistics-park-pataudi</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -342,7 +368,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/projects/case-study/gmr-coimbatore-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -355,7 +381,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/adani-copper-smelter-project</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -403,7 +429,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/amns-steel-plant</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -451,7 +477,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/vpw-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -498,56 +524,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://pislinfra.com/project/ongoing/cbg-plant</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755484148_143_large_cbg-plant-najibabad-up_png.webp</image:loc>
-      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 1)</image:title>
-      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_cbg_plant_najibabad_up_2_8bff055186.png</image:loc>
-      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 2)</image:title>
-      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755427976_990_large_cbg-plant-najibabad-up-3_png.webp</image:loc>
-      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 3)</image:title>
-      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755569711_553_large_cbg-plant-najibabad-up-4_png.webp</image:loc>
-      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 4)</image:title>
-      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755011529_929_large_cbg-plant-najibabad-up-5_png.webp</image:loc>
-      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 5)</image:title>
-      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755429455_7_large_cbg-plant-najibabad-up-6_png.webp</image:loc>
-      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 6)</image:title>
-      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-  </url>
-  <url>
     <loc>https://pislinfra.com/project/ongoing/pmg-logistics-park-hyderabad</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -595,7 +573,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/vinyl-project-at-dmd-osbl-area</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -643,7 +621,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/pmg-logistics-park-kolathur-bangalore</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -676,42 +654,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://pislinfra.com/project/ongoing/cpwd--iit-ism-campus-project</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_1_0af1e34235.png</image:loc>
-      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 1)</image:title>
-      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_2_1ed9fbb57a.png</image:loc>
-      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 2)</image:title>
-      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_3_99b906acc0.png</image:loc>
-      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 3)</image:title>
-      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_4_006c5ffb41.png</image:loc>
-      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 4)</image:title>
-      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-  </url>
-  <url>
     <loc>https://pislinfra.com/project/ongoing/reliance-solar-unit-manufacturing-plant</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -759,7 +703,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/crestway-projects-private-limited</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -793,7 +737,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/tr-building-township-jamnagar</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -834,7 +778,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/sanaswadi-industrial-project</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -868,7 +812,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/reliance-dmd-plant</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -909,7 +853,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/ongoing/pmg-logistics-park-neemrana</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -942,63 +886,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://pislinfra.com/project/ongoing/amns-ssc-gidc-project</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_Screenshot_2026_10_12_at_11_53_30_PM_04b1b4e0d3.png</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 1)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755452834_665_large_amns-ssc-gidc-project-sanand-gj_png.webp</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 2)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755127970_367_large_amns-ssc-gidc-project-sanand-gj-2_png.webp</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 3)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755454265_164_large_amns-ssc-gidc-project-sanand-gj-3_png.webp</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 4)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/large_amns_ssc_gidc_project_sanand_gj_4_f4e26e70c7.png</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 5)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755231269_367_large_amns-ssc-gidc-project-sanand-gj-5_png.webp</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 6)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/projects/optimized_1787755454258_726_large_amns-ssc-gidc-project-sanand-gj-6_png.webp</image:loc>
-      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 7)</image:title>
-      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
-      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-  </url>
-  <url>
     <loc>https://pislinfra.com/project/ongoing/hanno-one-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1031,8 +920,96 @@
     </image:image>
   </url>
   <url>
+    <loc>https://pislinfra.com/project/ongoing/cbg-plant</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg</image:loc>
+      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 1)</image:title>
+      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg</image:loc>
+      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 2)</image:title>
+      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg</image:loc>
+      <image:title>CBG Plant - Bio Energy in Najibabad, Uttar Pradesh (Photo 3)</image:title>
+      <image:caption>CBG Plant for Yuva Bio Energy Pvt Ltd. Area: 6.96 Lakh Sq.ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>Najibabad, Uttar Pradesh, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/project/ongoing/amns-ssc-gidc-project</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg</image:loc>
+      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 1)</image:title>
+      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg</image:loc>
+      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 2)</image:title>
+      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_AMNS_d5d027bbdc.jpeg</image:loc>
+      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 3)</image:title>
+      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_AAMNS_1_c32916c58d.jpeg</image:loc>
+      <image:title>AMNS SSC GIDC Project - Industrial in GIDC Sanand, Gujarat (Photo 4)</image:title>
+      <image:caption>AMNS SSC GIDC Project for AMNS. Area: 16.15 Lakh Sq. Ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>GIDC Sanand, Gujarat, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/project/ongoing/cpwd--iit-ism-campus-project</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg</image:loc>
+      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 1)</image:title>
+      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg</image:loc>
+      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 2)</image:title>
+      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/projects/large_dhanbad_210kb_6b077476b0.jpeg</image:loc>
+      <image:title>CPWD – IIT ISM Campus Project - Institutional in Dhanbad, Jharkhand (Photo 3)</image:title>
+      <image:caption>CPWD – IIT ISM Campus Project for IIT ISM Dhanbad (CPWD). Area: 1.82 Lakh Sq. ft. Status: Ongoing. Delivered by Pislinfra.</image:caption>
+      <image:geo_location>Dhanbad, Jharkhand, India</image:geo_location>
+      <image:license>https://pislinfra.com/privacy-policy</image:license>
+    </image:image>
+  </url>
+  <url>
     <loc>https://pislinfra.com/project/completed/om-sukh-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1073,7 +1050,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/ncr-bigbox</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1121,7 +1098,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/prr-warehousing-pvt-ltd</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1169,7 +1146,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/gmr-coimbatore-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1217,7 +1194,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/vinfast-factory-phase-1</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1265,7 +1242,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/gmr-hoskote-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1313,7 +1290,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/bluestar-realtors-ltd</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1361,7 +1338,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/rajratan-global-wires</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1409,7 +1386,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/lodha-industrial-park-development</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1457,7 +1434,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/avitech-nutrition</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1505,7 +1482,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/oswal-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1553,7 +1530,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/pragati-prathamus-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1594,7 +1571,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/ludhiana-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1642,7 +1619,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/pragati-farrukhnagar-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1690,7 +1667,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/pragati-one-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1731,7 +1708,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/logos-india-industrial-park-bengaluru</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1786,7 +1763,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/flipkart-sampka</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1827,7 +1804,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/logos-india-industrial-park-luhari</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1875,7 +1852,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/ecom-express-india-one</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1923,7 +1900,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/amazon-ncrun</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -1964,7 +1941,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/all-cargo-logistics-park</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2005,7 +1982,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/amazon-delu</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2046,7 +2023,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/amazon-del5</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2094,7 +2071,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/cadbury-warehouse</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2135,7 +2112,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/blue-dart-warehouse</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2176,7 +2153,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/highway-humsafar</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2217,7 +2194,7 @@
   </url>
   <url>
     <loc>https://pislinfra.com/project/completed/logistics-park-llp</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -2251,43 +2228,43 @@
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Pragati-Infra-Solutions-2.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Annual-Reports-2023-2024.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Annual-Return_2024-25.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Annual-Return-2022-23.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Annual-Return-2021-22.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Pragati-Infra-Solutions-Private-Limited_Annual-Return_2020-21-1.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://pislinfra.com/reports/Pragati-Infra-Solutions-Private-Limited_Annual-Return_2019-2020.pdf</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -2295,26 +2272,13 @@
   <!-- ==================== INDIVIDUAL BLOG POSTS ==================== -->
   <url>
     <loc>https://pislinfra.com/blog/how-to-choose-an-industrial-epc-contractor</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://pislinfra.com/images/hero/Blog.png</image:loc>
+      <image:loc>https://pislinfra.com/images/blogs/industrial_EPC_contractor_83969ef29f.avif</image:loc>
       <image:title>How to Choose an Industrial EPC Contractor</image:title>
-      <image:caption>How to Choose an Industrial EPC Contractor</image:caption>
-      <image:geo_location>India</image:geo_location>
-      <image:license>https://pislinfra.com/privacy-policy</image:license>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://pislinfra.com/blog/blog</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://pislinfra.com/images/hero/Blog.png</image:loc>
-      <image:title>How Industrial EPC Projects Reduce Long-Term Operational Costs</image:title>
-      <image:caption>How Industrial EPC Projects Reduce Long-Term Operational Costs</image:caption>
+      <image:caption>Learn key criteria and strategic guidelines for selecting the right industrial EPC contractor for your plant, factory, or processing facility to ensure timely d</image:caption>
       <image:geo_location>India</image:geo_location>
       <image:license>https://pislinfra.com/privacy-policy</image:license>
     </image:image>
@@ -2377,7 +2341,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://pislinfra.com/images/blogs/industrial_EPC_contractor_83969ef29f.avif</image:loc>
+      <image:loc>https://pislinfra.com/images/blogs/Industrial_Infrastructure_and_Manufacturing_081f9bbb37.avif</image:loc>
       <image:title>How Industrial EPC Projects Reduce Long-Term Operational Costs</image:title>
       <image:caption>Discover how the right industrial EPC contractor can reduce long-term operational costs through integrated design, value engineering, energy efficiency and main</image:caption>
       <image:geo_location>India</image:geo_location>

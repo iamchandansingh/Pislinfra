@@ -39,45 +39,75 @@ const Logistic = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('solution-pages-logistic') || getLocalDataSync('solution-pages?filters[slug]=logistic');
+      if (fresh) {
+        setData(Array.isArray(fresh) ? (fresh[0] || defaultLogisticData) : fresh);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
     const loadData = async () => {
       try {
         const response = await fetchStrapiData('solution-pages?filters[slug]=logistic&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=grids.items&populate[3]=seo');
-        if (response && response.length > 0) {
-          setData(response[0]);
-        } else if (response && !Array.isArray(response)) {
-          setData(response);
+        if (response && isMounted) {
+          if (Array.isArray(response) && response.length > 0) {
+            setData(response[0]);
+          } else if (!Array.isArray(response)) {
+            setData(response);
+          }
         }
       } catch (err) {
         // Fallback remains active
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     loadData();
+    return () => { isMounted = false; };
   }, []);
 
   if (loading && !data) return <Preloader />;
 
+  const fallbackTitle = "Logistics Park Development Company in India | Pislinfra";
+  const fallbackDescription = "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.";
+  const fallbackPrimaryKeyword = "Logistics Park Development";
+  const fallbackFocusKeywords = "Logistics Park Development, Grade-A logistics parks, warehousing and logistics solutions, supply chain infrastructure India, Pislinfra";
+
+  // Connect CMS Logistics Solutions page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data.metaTitle || data.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data.metaDescription || data.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data.primaryKeyword || data.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (data.focusKeywords || data.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
     contentType: 'page',
-    title: data.title || "Logistics Parks",
-    seoTitle: data.seo?.seoTitle || "Grade-A Logistics Parks & Distribution Centers Construction | Pislinfra",
-    seoDescription: data.seo?.seoDescription || "Specialized engineering and construction of Grade-A logistics parks, supply chain distribution hubs, multi-modal terminals, and high-efficiency freight facilities across India.",
-    seoKeywords: data.seo?.seoKeywords || "logistics park construction, Grade-A distribution hubs, supply chain parks India, freight logistics infrastructure, multi-modal park development, Pislinfra",
+    ...(data.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data.seo?.seoKeywords || resolvedFocusKeywords,
     slug: 'solutions/logistic',
     canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/logistic",
-    ogTitle: data.seo?.ogTitle || "Grade-A Logistics Parks & Distribution Centers Construction | Pislinfra",
-    ogDescription: data.seo?.ogDescription || "Specialized construction of Grade-A logistics parks, warehousing hubs, and multi-modal distribution centers in India.",
+    ogTitle: data.ogTitle || data.seo?.ogTitle || resolvedTitle,
+    ogDescription: data.ogDescription || data.seo?.ogDescription || resolvedDescription,
     ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Logistic.png'),
     ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.seo?.twitterTitle || "Grade-A Logistics Parks & Distribution Centers Construction | Pislinfra",
-    twitterDescription: data.seo?.twitterDescription || "Specialized construction of Grade-A logistics parks, warehousing hubs, and multi-modal distribution centers in India.",
+    twitterTitle: data.twitterTitle || data.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data.twitterDescription || data.seo?.twitterDescription || resolvedDescription,
     twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Logistic.png'),
     twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
     schemaType: data.seo?.schemaType || 'Service',
     breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
     organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Logistics Parks', 'Distribution Centers', 'Freight Infrastructure', 'Supply Chain Hubs', 'Multi-Modal Logistics'],
+    tags: data.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Logistics Parks', 'Distribution Centers', 'Freight Infrastructure', 'Supply Chain Hubs', 'Multi-Modal Logistics'],
     noIndex: data.seo?.noIndex || false,
     noFollow: data.seo?.noFollow || false,
     structuredData: data.seo?.structuredData

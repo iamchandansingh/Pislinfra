@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData, STRAPI_URL } from '../../services/strapi';
+import { fetchStrapiData } from '../../services/strapi';
+import { getImageUrl } from '../../utils/imageUrl';
 import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
@@ -57,8 +58,8 @@ const Footer = () => {
     { label: 'Warehouse Contractors', href: '/solutions/warehouse' },
   ];
 
-  const logoUrl = footerData?.logo?.url 
-    ? (footerData.logo.url.startsWith('http') ? footerData.logo.url : (STRAPI_URL ? `${STRAPI_URL}${footerData.logo.url}` : "/White Logo.png"))
+  const logoUrl = footerData?.logo 
+    ? getImageUrl(footerData.logo, "/White Logo.png")
     : "/White Logo.png";
 
   return (

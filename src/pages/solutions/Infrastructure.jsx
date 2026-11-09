@@ -44,45 +44,75 @@ const Infrastructure = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('solution-pages-infrastructure') || getLocalDataSync('solution-pages?filters[slug]=infrastructure');
+      if (fresh) {
+        setData(Array.isArray(fresh) ? (fresh[0] || defaultInfrastructureData) : fresh);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
     const loadData = async () => {
       try {
         const response = await fetchStrapiData('solution-pages?filters[slug]=infrastructure&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo');
-        if (response && response.length > 0) {
-          setData(response[0]);
-        } else if (response && !Array.isArray(response)) {
-          setData(response);
+        if (response && isMounted) {
+          if (Array.isArray(response) && response.length > 0) {
+            setData(response[0]);
+          } else if (!Array.isArray(response)) {
+            setData(response);
+          }
         }
       } catch (err) {
         // Fallback remains active
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     loadData();
+    return () => { isMounted = false; };
   }, []);
 
   if (loading && !data) return <Preloader />;
 
+  const fallbackTitle = "Infrastructure Development Company | Pislinfra";
+  const fallbackDescription = "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.";
+  const fallbackPrimaryKeyword = "Infrastructure Development";
+  const fallbackFocusKeywords = "Infrastructure Development, infrastructure construction solutions, civil infrastructure, engineering expertise, complex developments India, Pislinfra";
+
+  // Connect CMS Infrastructure Solutions page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
+  // Safely falls back to existing SEO component or default metadata if fields are empty
+  const resolvedTitle = (data.metaTitle || data.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (data.metaDescription || data.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data.primaryKeyword || data.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (data.focusKeywords || data.seo?.focusKeywords || fallbackFocusKeywords).trim();
+
   const seoData = {
     contentType: 'page',
-    title: data.title || "Infrastructure Solutions",
-    seoTitle: data.seo?.seoTitle || "Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra",
-    seoDescription: data.seo?.seoDescription || "Delivering world-class civil infrastructure, highways, industrial road networks, utility grids, and site development for large-scale enterprise projects in India.",
-    seoKeywords: data.seo?.seoKeywords || "civil infrastructure development, industrial road networks, utility infrastructure contractor, site grading and leveling, heavy civil engineering India, Pislinfra infrastructure",
+    ...(data.seo || {}),
+    title: resolvedTitle,
+    seoTitle: resolvedTitle,
+    seoDescription: resolvedDescription,
+    primaryKeyword: resolvedPrimaryKeyword,
+    focusKeywords: resolvedFocusKeywords,
+    seoKeywords: data.seo?.seoKeywords || resolvedFocusKeywords,
     slug: 'solutions/infrastructure',
     canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/infrastructure",
-    ogTitle: data.seo?.ogTitle || "Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra",
-    ogDescription: data.seo?.ogDescription || "Delivering world-class civil infrastructure, industrial road networks, and utility grids across India.",
+    ogTitle: data.ogTitle || data.seo?.ogTitle || resolvedTitle,
+    ogDescription: data.ogDescription || data.seo?.ogDescription || resolvedDescription,
     ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
     ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.seo?.twitterTitle || "Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra",
-    twitterDescription: data.seo?.twitterDescription || "Delivering world-class civil infrastructure, industrial road networks, and utility grids across India.",
+    twitterTitle: data.twitterTitle || data.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: data.twitterDescription || data.seo?.twitterDescription || resolvedDescription,
     twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
     twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
     schemaType: data.seo?.schemaType || 'Service',
     breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
     organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? data.seo.tags.split(',').map(t => t.trim()) : ['Civil Infrastructure', 'Industrial Utilities', 'Road Networks', 'Heavy Engineering', 'Earthworks'],
+    tags: data.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Civil Infrastructure', 'Industrial Utilities', 'Road Networks', 'Heavy Engineering', 'Earthworks'],
     noIndex: data.seo?.noIndex || false,
     noFollow: data.seo?.noFollow || false,
     structuredData: data.seo?.structuredData

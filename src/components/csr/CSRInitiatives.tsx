@@ -186,11 +186,11 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
           box-sizing: border-box;
         }
         .init-block {
-          margin-bottom: clamp(34px, 5vw, 50px);
+          margin-bottom: clamp(26px, 4vw, 36px);
         }
         .init-section-header {
           text-align: center;
-          margin-bottom: 24px;
+          margin-bottom: 18px;
         }
         .init-badge {
           display: inline-block;
@@ -206,7 +206,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
           font-family: 'Inter', sans-serif;
         }
         .init-title {
-          font-size: clamp(21px, 2.8vw, 26px);
+          font-size: clamp(20px, 2.6vw, 24px);
           font-weight: 800;
           color: #052A73;
           font-family: 'Inter', sans-serif;
@@ -219,18 +219,18 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
         .init-grid-2 {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          gap: 18px;
           box-sizing: border-box;
         }
         .init-card-2 {
           background-color: #FFFFFF;
           border: 1px solid #EEF2F7;
-          border-radius: 14px;
+          border-radius: 12px;
           overflow: hidden;
           display: flex;
-          min-height: 190px;
+          min-height: 130px;
           height: auto;
-          box-shadow: 0 4px 14px rgba(5, 42, 115, 0.04);
+          box-shadow: 0 2px 10px rgba(5, 42, 115, 0.03);
           box-sizing: border-box;
           transition: none !important;
         }
@@ -238,8 +238,8 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
           flex-direction: row-reverse;
         }
         .init-card-img-wrap {
-          width: 42%;
-          min-width: 42%;
+          width: 36%;
+          min-width: 36%;
           position: relative;
           overflow: hidden;
           background: #F8FAFC;
@@ -252,7 +252,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
         }
         .init-card-content {
           flex: 1;
-          padding: 22px 20px;
+          padding: 14px 18px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -260,17 +260,17 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
           box-sizing: border-box;
         }
         .init-card-title {
-          font-size: 17px;
+          font-size: 16px;
           font-weight: 700;
           color: #052A73;
-          line-height: 1.32;
-          margin: 0 0 8px 0;
+          line-height: 1.3;
+          margin: 0 0 5px 0;
           font-family: 'Inter', sans-serif;
         }
         .init-card-desc {
-          font-size: 13px;
+          font-size: 12.5px;
           color: #64748B;
-          line-height: 1.55;
+          line-height: 1.48;
           margin: 0;
           font-family: 'Inter', sans-serif;
         }
@@ -376,21 +376,21 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
           .init-card-img-wrap {
             width: 100% !important;
             min-width: 100% !important;
-            height: clamp(160px, 46vw, 195px) !important;
+            height: clamp(115px, 32vw, 140px) !important;
             order: 1 !important;
           }
           .init-card-content {
             width: 100% !important;
-            padding: 16px 14px !important;
+            padding: 12px 14px !important;
             order: 2 !important;
           }
           .init-card-title {
-            font-size: clamp(16px, 4.2vw, 17.5px) !important;
-            margin-bottom: 6px !important;
+            font-size: clamp(15.5px, 4vw, 16.5px) !important;
+            margin-bottom: 4px !important;
           }
           .init-card-desc {
-            font-size: 12.5px !important;
-            line-height: 1.55 !important;
+            font-size: 12px !important;
+            line-height: 1.45 !important;
           }
 
           /* Celebrations mobile */

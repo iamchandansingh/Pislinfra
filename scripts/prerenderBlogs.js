@@ -26,9 +26,15 @@ const slugify = (str) => (str || '').toLowerCase().replace(/\s+/g, '-').replace(
 
 const getProjectSlug = (project) => {
   if (!project) return '';
-  const base = (project.name || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-  if (base === 'pmg-logistics-park' && project.location) {
-    const loc = project.location.toLowerCase().replace(/[,/]/g, ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const pName = project.name || project.projectName || project.project_name || project.title || '';
+  const base = pName.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const pLoc = project.location || project.city || project.state || '';
+  if (base === 'pmg-logistics-park' && pLoc) {
+    const locLower = pLoc.toLowerCase();
+    if (locLower.includes('neemrana')) return `${base}-neemrana`;
+    if (locLower.includes('hyderabad')) return `${base}-hyderabad`;
+    if (locLower.includes('kolathur') || locLower.includes('bangalore') || locLower.includes('bengaluru')) return `${base}-kolathur-bangalore`;
+    const loc = locLower.replace(/[,/]/g, ' ').trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     return `${base}-${loc}`;
   }
   return base || project.id || '';
@@ -153,10 +159,10 @@ const SOLUTION_PAGES = [
     slug: 'solutions',
     pathSuffix: 'solutions',
     breadcrumbName: 'Solutions',
-    title: 'Turnkey Industrial, Warehouse & Infrastructure Solutions | Pislinfra',
-    headline: 'Comprehensive Turnkey Industrial & Infrastructure Solutions in India',
-    description: 'Explore Pislinfra comprehensive industrial solutions: Turnkey EPC factory construction, Grade-A logistics parks, LEED warehouses, and heavy civil engineering across India.',
-    keywords: 'industrial construction solutions, warehouse EPC company India, logistics park construction, PEB design build, civil infrastructure development, Pislinfra',
+    title: 'Construction & Infrastructure Solutions | Pislinfra',
+    headline: 'Construction & Infrastructure Solutions',
+    description: "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches.",
+    keywords: 'Construction & Infrastructure Solutions, turnkey industrial EPC, warehouse construction, infrastructure solutions India, industrial construction solutions',
     image: '/images/hero/Service.png',
     serviceType: 'Industrial Infrastructure & EPC Solutions',
     features: [
@@ -170,10 +176,10 @@ const SOLUTION_PAGES = [
     slug: 'solutions/industrial',
     pathSuffix: 'solutions/industrial',
     breadcrumbName: 'Industrial Development',
-    title: 'Turnkey Industrial Construction & Manufacturing Plants EPC | Pislinfra',
-    headline: 'Turnkey Industrial Construction & Manufacturing Facilities EPC',
-    description: "PISL is India's leading industrial construction EPC contractor specializing in heavy structural steel, manufacturing factories, PEB engineering, and turnkey plants.",
-    keywords: 'industrial construction, turnkey EPC contractor India, factory building construction, heavy steel PEB fabrication, manufacturing infrastructure, industrial development, Pislinfra',
+    title: 'Industrial Development Company In India | Pislinfra',
+    headline: 'Industrial Development Company In India',
+    description: "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.",
+    keywords: 'Industrial Development, industrial construction, turnkey EPC contractor India, factory building construction, heavy steel PEB fabrication, manufacturing infrastructure, Pislinfra',
     image: '/images/hero/Industrial.png',
     serviceType: 'Industrial Manufacturing & Factory Construction',
     features: [
@@ -186,11 +192,11 @@ const SOLUTION_PAGES = [
   {
     slug: 'solutions/infrastructure',
     pathSuffix: 'solutions/infrastructure',
-    breadcrumbName: 'Infrastructure Solutions',
-    title: 'Heavy Civil & Utility Infrastructure Development Solutions | Pislinfra',
-    headline: 'Heavy Civil Engineering & Utility Infrastructure Development',
-    description: 'Delivering world-class civil infrastructure, highways, industrial road networks, utility grids, and site development for large-scale enterprise projects in India.',
-    keywords: 'civil infrastructure development, industrial road networks, utility infrastructure contractor, site grading and leveling, heavy civil engineering India, Pislinfra infrastructure',
+    breadcrumbName: 'Infrastructure Development',
+    title: 'Infrastructure Development Company | Pislinfra',
+    headline: 'Infrastructure Development Company',
+    description: 'Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.',
+    keywords: 'Infrastructure Development, infrastructure construction solutions, civil infrastructure, engineering expertise, complex developments India, Pislinfra',
     image: '/images/hero/Infrastructure.png',
     serviceType: 'Heavy Civil & Utility Infrastructure',
     features: [
@@ -204,10 +210,10 @@ const SOLUTION_PAGES = [
     slug: 'solutions/logistic',
     pathSuffix: 'solutions/logistic',
     breadcrumbName: 'Logistics Parks',
-    title: 'Grade-A Logistics Parks & Distribution Centers Construction | Pislinfra',
-    headline: 'Grade-A Logistics Parks & Distribution Hubs Engineering',
-    description: 'Specialized engineering and construction of Grade-A logistics parks, supply chain distribution hubs, multi-modal terminals, and high-efficiency freight facilities across India.',
-    keywords: 'logistics park construction, Grade-A distribution hubs, supply chain parks India, freight logistics infrastructure, multi-modal park development, Pislinfra',
+    title: 'Logistics Park Development Company in India | Pislinfra',
+    headline: 'Logistics Park Development Company in India',
+    description: "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.",
+    keywords: 'Logistics Park Development, Grade-A logistics parks, warehousing and logistics solutions, supply chain infrastructure India, Pislinfra',
     image: '/images/hero/Logistic.png',
     serviceType: 'Logistics Parks & Distribution Hubs Construction',
     features: [
@@ -221,10 +227,10 @@ const SOLUTION_PAGES = [
     slug: 'solutions/warehouse',
     pathSuffix: 'solutions/warehouse',
     breadcrumbName: 'Warehousing Solutions',
-    title: 'Modern Warehouse Design & LEED Certified Construction | Pislinfra',
-    headline: 'Modern High-Bay Warehouse Design & LEED Green Construction',
-    description: "India's premier warehouse construction company. High-bay pre-engineered steel buildings, FM2 floor specification, LEED gold certified green warehousing, and cold chain facilities.",
-    keywords: 'warehouse construction company India, PEB warehouse contractor, FM2 superflat flooring, LEED certified green warehouse, cold storage construction, Pislinfra warehouse',
+    title: 'Warehouse Construction Company in India | Pislinfra',
+    headline: 'Warehouse Construction Company in India',
+    description: "Pislinfra's delivers design-build warehouse construction solutions across India, creating efficient, scalable and future-ready facilities for businesses.",
+    keywords: 'Warehouse Construction Company, design-build warehouse construction, warehouse solutions India, future-ready facilities, Pislinfra',
     image: '/images/hero/Warehouse.png',
     serviceType: 'High-Bay Warehousing & Storage Facilities',
     features: [
@@ -321,34 +327,68 @@ const ABOUT_PAGES = [
       'Times of India Industry Leaders Award',
       'Zero-LTI Milestone Recognitions from Fortune 500 Clients'
     ]
+  },
+  {
+    slug: 'about/company-policy',
+    pathSuffix: 'about/company-policy',
+    breadcrumbName: 'Company Policy',
+    title: 'Company Policy & Corporate Governance | Pislinfra',
+    headline: 'Corporate Policies, Ethics & Governance Framework',
+    description: 'Explore Pislinfra corporate policies including Risk Management Policy, Vigil Mechanism Policy, and Corporate Social Responsibility (CSR) Policy.',
+    keywords: 'Pislinfra policies, company policy, risk management policy, vigil mechanism policy, CSR policy, corporate governance infrastructure India',
+    image: 'https://pislinfra.com/images/uploads/optimized_1787756480751_Extra-2.webp',
+    sectionName: 'Policies & Corporate Governance',
+    highlights: [
+      'Risk Management Policy - Comprehensive Business Continuity & Mitigation Framework',
+      'Vigil Mechanism Policy - Transparent Ethics, Accountability & Reporting Mechanism',
+      'CSR Policy - Sustainable Community Development & Social Empowerment',
+      'Statutory & Regulatory Compliance across all Operations'
+    ]
+  },
+  {
+    slug: 'about/policies',
+    pathSuffix: 'about/policies',
+    breadcrumbName: 'Company Policy',
+    title: 'Company Policy & Corporate Governance | Pislinfra',
+    headline: 'Corporate Policies, Ethics & Governance Framework',
+    description: 'Explore Pislinfra corporate policies including Risk Management Policy, Vigil Mechanism Policy, and Corporate Social Responsibility (CSR) Policy.',
+    keywords: 'Pislinfra policies, company policy, risk management policy, vigil mechanism policy, CSR policy, corporate governance infrastructure India',
+    image: 'https://pislinfra.com/images/uploads/optimized_1787756480751_Extra-2.webp',
+    sectionName: 'Policies & Corporate Governance',
+    highlights: [
+      'Risk Management Policy - Comprehensive Business Continuity & Mitigation Framework',
+      'Vigil Mechanism Policy - Transparent Ethics, Accountability & Reporting Mechanism',
+      'CSR Policy - Sustainable Community Development & Social Empowerment',
+      'Statutory & Regulatory Compliance across all Operations'
+    ]
   }
 ];
 
 const CORPORATE_PAGES = [
   {
     pathSuffix: 'careers',
-    title: 'Careers at Pislinfra | Join India\'s Leading Infrastructure & EPC Enterprise',
-    headline: 'Build Tomorrow\'s Industrial India With Pislinfra',
-    description: 'Explore exciting career opportunities at Pislinfra. Join our civil engineering, project management, PEB design, and construction leadership teams across India.',
-    keywords: 'Pislinfra careers, construction jobs India, civil engineer vacancies, PEB designer jobs, project manager infrastructure, EPC careers Gurugram',
+    title: 'Careers at Pislinfra | Build Your Future With Us',
+    headline: 'Careers at Pislinfra',
+    description: 'Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.',
+    keywords: 'Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers',
     image: '/images/hero/Careers.png',
     canonicalUrl: `${SITE_URL}/careers`
   },
   {
     pathSuffix: 'contact-us',
-    title: 'Contact Pislinfra | Industrial Construction & Infrastructure Inquiries',
-    headline: 'Get in Touch for Turnkey Industrial & Warehousing Solutions',
-    description: 'Contact Pislinfra headquarters in Gurugram, Haryana for turnkey industrial construction, warehouse EPC projects, and infrastructure inquiries across India.',
-    keywords: 'contact Pislinfra, infrastructure company contact, warehouse construction quote, industrial EPC contractor Gurugram, PISL phone email',
+    title: 'Contact Pislinfra | Enquiries & Business Support',
+    headline: 'Contact Pislinfra',
+    description: 'Get in touch with Pislinfra for project enquiries, business partnerships and construction solutions. Connect with our team for expert assistance.',
+    keywords: 'Contact Pislinfra, project enquiries, business partnerships, construction solutions, infrastructure assistance, Pislinfra office',
     image: '/images/hero/Contact-Us.png',
     canonicalUrl: `${SITE_URL}/contact-us`
   },
   {
     pathSuffix: 'annual-reports',
-    title: 'Annual Reports & Statutory Filings | Pislinfra Corporate Governance',
+    title: 'Pislinfra Annual Reports | Company Reports & Updates',
     headline: 'Annual Reports, Financial Disclosures & Corporate Filings',
-    description: 'Access official Pislinfra annual reports, statutory returns, financial statements, and corporate governance documents for download.',
-    keywords: 'Pislinfra annual reports, statutory filings, corporate governance, financial returns, annual reports PDF, Pragati Infra Solutions',
+    description: 'Explore Pislinfra annual reports, company information and key business updates covering multiple financial years.',
+    keywords: 'Pislinfra Annual Reports, company reports, annual returns, statutory disclosures, financial year performance, Pislinfra',
     image: '/images/hero/Annual-Reports.png',
     canonicalUrl: `${SITE_URL}/annual-reports`
   },
@@ -372,11 +412,11 @@ const CORPORATE_PAGES = [
   },
   {
     pathSuffix: 'privacy-policy',
-    title: 'Privacy Policy & Terms of Use | Pislinfra',
+    title: 'Privacy Policy | Pislinfra',
     headline: 'Privacy Policy & Corporate Data Protection',
-    description: 'Learn how Pragati Infra Solutions Pvt. Ltd. (Pislinfra) collects, uses, and safeguards information submitted through our official enterprise website.',
-    keywords: 'Pislinfra privacy policy, data protection, terms of use, privacy statement',
-    image: '/logo.png',
+    description: 'Read Pislinfra’s Privacy Policy to understand how we collect, use, protect and manage personal information when you use our website and services.',
+    keywords: 'Privacy Policy, Pislinfra, data protection, personal information, cookies and tracking, privacy terms',
+    image: '/images/hero/Extra-2.png',
     canonicalUrl: `${SITE_URL}/privacy-policy`
   }
 ];
@@ -575,6 +615,90 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
   let solutionCount = 0;
 
   SOLUTION_PAGES.forEach(sol => {
+    let solTitle = sol.title;
+    let solDescription = sol.description;
+    let solKeywords = sol.keywords;
+
+    if (sol.slug === 'solutions') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const bData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const solCms = bData['solution-pages-solutions'] || bData['solution-pages?filters[slug]=solutions&populate=*'];
+          const target = Array.isArray(solCms) ? solCms[0] : solCms;
+          if (target?.metaTitle) solTitle = target.metaTitle;
+          if (target?.metaDescription) solDescription = target.metaDescription;
+          if (target?.focusKeywords || target?.primaryKeyword) {
+            solKeywords = target.focusKeywords || target.primaryKeyword;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (sol.slug === 'solutions/industrial') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const bData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const indCms = bData['solution-pages-industrial'] || bData['solution-pages?filters[slug]=industrial'];
+          const target = Array.isArray(indCms) ? indCms[0] : indCms;
+          if (target?.metaTitle || target?.seo?.seoTitle) solTitle = target.metaTitle || target.seo.seoTitle;
+          if (target?.metaDescription || target?.seo?.seoDescription) solDescription = target.metaDescription || target.seo.seoDescription;
+          if (target?.focusKeywords || target?.primaryKeyword || target?.seo?.seoKeywords) {
+            solKeywords = target.focusKeywords || target.primaryKeyword || target.seo.seoKeywords;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (sol.slug === 'solutions/infrastructure') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const bData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const infraCms = bData['solution-pages-infrastructure'] || bData['solution-pages?filters[slug]=infrastructure'];
+          const target = Array.isArray(infraCms) ? infraCms[0] : infraCms;
+          if (target?.metaTitle || target?.seo?.seoTitle) solTitle = target.metaTitle || target.seo.seoTitle;
+          if (target?.metaDescription || target?.seo?.seoDescription) solDescription = target.metaDescription || target.seo.seoDescription;
+          if (target?.focusKeywords || target?.primaryKeyword || target?.seo?.seoKeywords) {
+            solKeywords = target.focusKeywords || target.primaryKeyword || target.seo.seoKeywords;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (sol.slug === 'solutions/logistic') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const bData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const logCms = bData['solution-pages-logistic'] || bData['solution-pages?filters[slug]=logistic'];
+          const target = Array.isArray(logCms) ? logCms[0] : logCms;
+          if (target?.metaTitle || target?.seo?.seoTitle) solTitle = target.metaTitle || target.seo.seoTitle;
+          if (target?.metaDescription || target?.seo?.seoDescription) solDescription = target.metaDescription || target.seo.seoDescription;
+          if (target?.focusKeywords || target?.primaryKeyword || target?.seo?.seoKeywords) {
+            solKeywords = target.focusKeywords || target.primaryKeyword || target.seo.seoKeywords;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (sol.slug === 'solutions/warehouse') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const bData = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const whCms = bData['solution-pages-warehouse'] || bData['solution-pages?filters[slug]=warehouse'];
+          const target = Array.isArray(whCms) ? whCms[0] : whCms;
+          if (target?.metaTitle || target?.seo?.seoTitle) solTitle = target.metaTitle || target.seo.seoTitle;
+          if (target?.metaDescription || target?.seo?.seoDescription) solDescription = target.metaDescription || target.seo.seoDescription;
+          if (target?.focusKeywords || target?.primaryKeyword || target?.seo?.seoKeywords) {
+            solKeywords = target.focusKeywords || target.primaryKeyword || target.seo.seoKeywords;
+          }
+        }
+      } catch (e) {}
+    }
+
     const canonicalUrl = `${SITE_URL}/${sol.slug}`;
     const rawImage = sol.image;
     const imageUrl = rawImage.startsWith('http') ? rawImage : `${SITE_URL}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
@@ -585,7 +709,7 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
       '@id': `${canonicalUrl}#service`,
       'name': sol.headline,
       'serviceType': sol.serviceType,
-      'description': sol.description,
+      'description': solDescription,
       'provider': {
         '@type': 'Organization',
         'name': 'Pragati Infra Solutions Pvt. Ltd.',
@@ -604,8 +728,8 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
       '@type': 'WebPage',
       '@id': `${canonicalUrl}#webpage`,
       'url': canonicalUrl,
-      'name': sol.title,
-      'description': sol.description,
+      'name': solTitle,
+      'description': solDescription,
       'speakable': {
         '@type': 'SpeakableSpecification',
         'cssSelector': ['#speakable-summary', 'h1', 'h2', 'p']
@@ -622,7 +746,7 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
       'width': 1200,
       'height': 630,
       'name': sol.headline,
-      'caption': sol.description,
+      'caption': solDescription,
       'license': `${SITE_URL}/privacy-policy`,
       'creditText': 'Pragati Infra Solutions Pvt. Ltd.'
     };
@@ -648,11 +772,11 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
     const jsonLdSchemas = [serviceSchema, speakableSchema, imageSchema, breadcrumbSchema];
 
     const metaHeadBlock = `
-    <!-- Individual Solution Page SEO for ${escapeHtml(sol.title)} -->
-    <title>${escapeHtml(sol.title)}</title>
-    <meta name="title" content="${escapeHtml(sol.title)}" />
-    <meta name="description" content="${escapeHtml(sol.description)}" />
-    <meta name="keywords" content="${escapeHtml(sol.keywords)}" />
+    <!-- Individual Solution Page SEO for ${escapeHtml(solTitle)} -->
+    <title>${escapeHtml(solTitle)}</title>
+    <meta name="title" content="${escapeHtml(solTitle)}" />
+    <meta name="description" content="${escapeHtml(solDescription)}" />
+    <meta name="keywords" content="${escapeHtml(solKeywords)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -664,8 +788,8 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonicalUrl}" />
-    <meta property="og:title" content="${escapeHtml(sol.title)}" />
-    <meta property="og:description" content="${escapeHtml(sol.description)}" />
+    <meta property="og:title" content="${escapeHtml(solTitle)}" />
+    <meta property="og:description" content="${escapeHtml(solDescription)}" />
     <meta property="og:image" content="${imageUrl}" />
     <meta property="og:image:secure_url" content="${imageUrl}" />
     <meta property="og:image:width" content="1200" />
@@ -675,8 +799,8 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Pislinfra" />
-    <meta name="twitter:title" content="${escapeHtml(sol.title)}" />
-    <meta name="twitter:description" content="${escapeHtml(sol.description)}" />
+    <meta name="twitter:title" content="${escapeHtml(solTitle)}" />
+    <meta name="twitter:description" content="${escapeHtml(solDescription)}" />
     <meta name="twitter:image" content="${imageUrl}" />
 
     <script type="application/ld+json">
@@ -708,6 +832,66 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
   let aboutCount = 0;
 
   ABOUT_PAGES.forEach(ab => {
+    let pageTitle = ab.title;
+    let pageDescription = ab.description;
+    let pageKeywords = ab.keywords;
+
+    if (ab.slug === 'about') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const aboutDoc = (parsed && (parsed['about-page'] || parsed['about-page?populate=*'])) || {};
+          if (aboutDoc.metaTitle) pageTitle = aboutDoc.metaTitle;
+          else if (aboutDoc.seo?.seoTitle) pageTitle = aboutDoc.seo.seoTitle;
+          if (aboutDoc.metaDescription) pageDescription = aboutDoc.metaDescription;
+          else if (aboutDoc.seo?.seoDescription) pageDescription = aboutDoc.seo.seoDescription;
+        }
+      } catch (e) {}
+    }
+
+    if (ab.slug === 'about/leadership') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const leadDoc = (parsed && (parsed['leadership-page'] || parsed['leadership-page?populate=*'])) || {};
+          if (leadDoc.metaTitle) pageTitle = leadDoc.metaTitle;
+          else if (leadDoc.seo?.seoTitle) pageTitle = leadDoc.seo.seoTitle;
+          if (leadDoc.metaDescription) pageDescription = leadDoc.metaDescription;
+          else if (leadDoc.seo?.seoDescription) pageDescription = leadDoc.seo.seoDescription;
+        }
+      } catch (e) {}
+    }
+
+    if (ab.slug === 'about/ehs') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const ehsDoc = (parsed && (parsed['ehs-page'] || parsed['ehs-page?populate=*'])) || {};
+          if (ehsDoc.metaTitle) pageTitle = ehsDoc.metaTitle;
+          else if (ehsDoc.seo?.seoTitle) pageTitle = ehsDoc.seo.seoTitle;
+          if (ehsDoc.metaDescription) pageDescription = ehsDoc.metaDescription;
+          else if (ehsDoc.seo?.seoDescription) pageDescription = ehsDoc.seo.seoDescription;
+        }
+      } catch (e) {}
+    }
+
+    if (ab.slug === 'about/awards') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const awardsDoc = (parsed && (parsed['awards-page'] || parsed['awards-page?populate=*'])) || {};
+          if (awardsDoc.metaTitle) pageTitle = awardsDoc.metaTitle;
+          else if (awardsDoc.seo?.seoTitle) pageTitle = awardsDoc.seo.seoTitle;
+          if (awardsDoc.metaDescription) pageDescription = awardsDoc.metaDescription;
+          else if (awardsDoc.seo?.seoDescription) pageDescription = awardsDoc.seo.seoDescription;
+        }
+      } catch (e) {}
+    }
+
     const canonicalUrl = `${SITE_URL}/${ab.slug}`;
     const rawImage = ab.image;
     const imageUrl = rawImage.startsWith('http') ? rawImage : `${SITE_URL}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
@@ -717,9 +901,9 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
       '@type': 'AboutPage',
       '@id': `${canonicalUrl}#aboutpage`,
       'url': canonicalUrl,
-      'name': ab.title,
+      'name': pageTitle,
       'headline': ab.headline,
-      'description': ab.description,
+      'description': pageDescription,
       'mainEntity': {
         '@type': 'Organization',
         'name': 'Pragati Infra Solutions Pvt. Ltd.',
@@ -777,11 +961,11 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
     const jsonLdSchemas = [aboutSchema, speakableSchema, imageSchema, breadcrumbSchema];
 
     const metaHeadBlock = `
-    <!-- Individual About Page SEO for ${escapeHtml(ab.title)} -->
-    <title>${escapeHtml(ab.title)}</title>
-    <meta name="title" content="${escapeHtml(ab.title)}" />
-    <meta name="description" content="${escapeHtml(ab.description)}" />
-    <meta name="keywords" content="${escapeHtml(ab.keywords)}" />
+    <!-- Individual About Page SEO for ${escapeHtml(pageTitle)} -->
+    <title>${escapeHtml(pageTitle)}</title>
+    <meta name="title" content="${escapeHtml(pageTitle)}" />
+    <meta name="description" content="${escapeHtml(pageDescription)}" />
+    <meta name="keywords" content="${escapeHtml(pageKeywords)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -793,8 +977,8 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonicalUrl}" />
-    <meta property="og:title" content="${escapeHtml(ab.title)}" />
-    <meta property="og:description" content="${escapeHtml(ab.description)}" />
+    <meta property="og:title" content="${escapeHtml(pageTitle)}" />
+    <meta property="og:description" content="${escapeHtml(pageDescription)}" />
     <meta property="og:image" content="${imageUrl}" />
     <meta property="og:image:secure_url" content="${imageUrl}" />
     <meta property="og:image:width" content="1200" />
@@ -926,7 +1110,6 @@ ${JSON.stringify([articleSchema, breadcrumbSchema], null, 2)}
 
   const csIndexDir = path.join(distDir, 'projects', 'case-study');
   if (!fs.existsSync(csIndexDir)) fs.mkdirSync(csIndexDir, { recursive: true });
-  fs.writeFileSync(path.join(csIndexDir, 'index.html'), baseHtml, 'utf-8');
 
   console.log(`✅ Prerendered ${caseStudyCount} individual Case Study static HTML pages!`);
 
@@ -1083,20 +1266,36 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
   const allCorporateListingPages = [
     ...CORPORATE_PAGES,
     {
+      pathSuffix: 'blog',
+      title: 'Construction & Infrastructure Insights | Pislinfra',
+      description: "Explore Pislinfra's latest insights on construction, infrastructure, engineering, project management, industry trends and innovative solutions.",
+      keywords: 'Construction & Infrastructure Insights, infrastructure blog, construction insights, warehouse design, industrial development, logistics, project management, Pislinfra',
+      canonicalUrl: `${SITE_URL}/blog`,
+      image: `${SITE_URL}/images/hero/Blog.png`
+    },
+    {
       pathSuffix: 'projects/ongoing',
-      title: 'Ongoing Industrial Projects & Construction Sites in India | Pislinfra',
-      description: 'Explore Pislinfra\'s ongoing industrial construction, warehouse developments, PEB steel plants, and infrastructure sites under execution across India.',
-      keywords: 'ongoing industrial projects, warehouse construction sites India, PEB manufacturing plants under construction, civil infrastructure ongoing work, Pislinfra projects',
+      title: 'Ongoing Projects | Pislinfra– Building India’s Future',
+      description: 'Explore Pislinfra\'s ongoing projects across industrial, infrastructure, warehousing and logistics sectors, delivering quality construction solutions across India.',
+      keywords: 'Ongoing Construction Projects, industrial infrastructure India, warehousing construction, PEB manufacturing plants',
       canonicalUrl: `${SITE_URL}/projects/ongoing`,
       image: `${SITE_URL}/images/hero/Ongoing-Projects.png`
     },
     {
       pathSuffix: 'projects/completed',
-      title: 'Completed Projects - Industrial & Warehouse Portfolio | Pislinfra',
-      description: 'Explore Pislinfra\'s successfully delivered industrial projects - warehousing, logistics parks & infrastructure completed across India. 16M+ sq ft delivered.',
-      keywords: 'completed projects, industrial construction, warehouse projects, logistics park, infrastructure portfolio, delivered projects, Pislinfra',
+      title: 'Completed Projects & Project Portfolio | Pislinfra',
+      description: 'Explore Pislinfra\'s completed projects across industrial, warehousing and infrastructure sectors, showcasing quality, safety and successful project delivery.',
+      keywords: 'Completed Construction Projects, completed projects, industrial construction, warehouse projects, logistics park, infrastructure portfolio, delivered projects, Pislinfra',
       canonicalUrl: `${SITE_URL}/projects/completed`,
       image: `${SITE_URL}/images/hero/Completed-Projects.png`
+    },
+    {
+      pathSuffix: 'projects/case-study',
+      title: 'Project Case Studies & Insights | Pislinfra',
+      description: "Explore Pislinfra's project case studies, highlighting our expertise, execution capabilities, innovative solutions and successful delivery across key sectors.",
+      keywords: 'Construction Project Case Studies, industrial EPC case studies, warehouse project insights, infrastructure execution India',
+      canonicalUrl: `${SITE_URL}/projects/case-study`,
+      image: `${SITE_URL}/images/hero/Case-Study.webp`
     },
     {
       pathSuffix: 'projects',
@@ -1114,8 +1313,140 @@ ${JSON.stringify(jsonLdSchemas, null, 2)}
     listHtml = listHtml.replace(/<meta\s+name=["']description["'][\s\S]*?>/i, '');
     listHtml = listHtml.replace(/<meta\s+name=["']keywords["'][\s\S]*?>/i, '');
     listHtml = listHtml.replace(/<link\s+rel=["']canonical["'][\s\S]*?>/i, '');
-    listHtml = listHtml.replace(/<meta\s+property=["']og:[\s\S]*?>/gi, '');
+    listHtml = listHtml.replace(/<meta\s+property=["'](og|twitter):[\s\S]*?>/gi, '');
     listHtml = listHtml.replace(/<meta\s+name=["']twitter:[\s\S]*?>/gi, '');
+
+    let pageTitle = pl.title;
+    let pageDescription = pl.description;
+    let pageKeywords = pl.keywords;
+
+    if (pl.pathSuffix === 'careers') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const careerDoc = (parsed && (parsed['career-page'] || parsed['career-page?populate=*'])) || {};
+          if (careerDoc.metaTitle) pageTitle = careerDoc.metaTitle;
+          else if (careerDoc.seo?.seoTitle) pageTitle = careerDoc.seo.seoTitle;
+          if (careerDoc.metaDescription) pageDescription = careerDoc.metaDescription;
+          else if (careerDoc.seo?.seoDescription) pageDescription = careerDoc.seo.seoDescription;
+          if (careerDoc.focusKeywords) pageKeywords = careerDoc.focusKeywords;
+          else if (careerDoc.primaryKeyword) pageKeywords = careerDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'contact-us') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const contactDoc = (parsed && (parsed['contact-page'] || parsed['contact-page?populate=*'])) || {};
+          if (contactDoc.metaTitle) pageTitle = contactDoc.metaTitle;
+          else if (contactDoc.seo?.seoTitle) pageTitle = contactDoc.seo.seoTitle;
+          if (contactDoc.metaDescription) pageDescription = contactDoc.metaDescription;
+          else if (contactDoc.seo?.seoDescription) pageDescription = contactDoc.seo.seoDescription;
+          if (contactDoc.focusKeywords) pageKeywords = contactDoc.focusKeywords;
+          else if (contactDoc.primaryKeyword) pageKeywords = contactDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'annual-reports') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const reportDoc = (parsed && (parsed['annual-report-page'] || parsed['annual-report-page?populate=*'])) || {};
+          if (reportDoc.metaTitle) pageTitle = reportDoc.metaTitle;
+          else if (reportDoc.seo?.seoTitle) pageTitle = reportDoc.seo.seoTitle;
+          if (reportDoc.metaDescription) pageDescription = reportDoc.metaDescription;
+          else if (reportDoc.seo?.seoDescription) pageDescription = reportDoc.seo.seoDescription;
+          if (reportDoc.focusKeywords) pageKeywords = reportDoc.focusKeywords;
+          else if (reportDoc.primaryKeyword) pageKeywords = reportDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'privacy-policy') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const policyDoc = (parsed && (parsed['policy-page'] || parsed['policy-page?populate=*'])) || {};
+          if (policyDoc.metaTitle) pageTitle = policyDoc.metaTitle;
+          else if (policyDoc.seo?.seoTitle) pageTitle = policyDoc.seo.seoTitle;
+          if (policyDoc.metaDescription) pageDescription = policyDoc.metaDescription;
+          else if (policyDoc.seo?.seoDescription) pageDescription = policyDoc.seo.seoDescription;
+          if (policyDoc.focusKeywords) pageKeywords = policyDoc.focusKeywords;
+          else if (policyDoc.primaryKeyword) pageKeywords = policyDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'blog') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const blogDoc = (parsed && (parsed['blog-page'] || parsed['blog-page?populate=*'])) || {};
+          if (blogDoc.metaTitle) pageTitle = blogDoc.metaTitle;
+          else if (blogDoc.seo?.seoTitle) pageTitle = blogDoc.seo.seoTitle;
+          if (blogDoc.metaDescription) pageDescription = blogDoc.metaDescription;
+          else if (blogDoc.seo?.seoDescription) pageDescription = blogDoc.seo.seoDescription;
+          if (blogDoc.focusKeywords) pageKeywords = blogDoc.focusKeywords;
+          else if (blogDoc.primaryKeyword) pageKeywords = blogDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'projects/ongoing') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const ongoingDoc = (parsed && (parsed['ongoing-page'] || parsed['ongoing-page?populate=*'])) || {};
+          if (ongoingDoc.metaTitle) pageTitle = ongoingDoc.metaTitle;
+          else if (ongoingDoc.seo?.seoTitle) pageTitle = ongoingDoc.seo.seoTitle;
+          if (ongoingDoc.metaDescription) pageDescription = ongoingDoc.metaDescription;
+          else if (ongoingDoc.seo?.seoDescription) pageDescription = ongoingDoc.seo.seoDescription;
+          if (ongoingDoc.focusKeywords) pageKeywords = ongoingDoc.focusKeywords;
+          else if (ongoingDoc.primaryKeyword) pageKeywords = ongoingDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'projects/completed') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const completedDoc = (parsed && (parsed['completed-page'] || parsed['completed-page?populate=*'])) || {};
+          if (completedDoc.metaTitle) pageTitle = completedDoc.metaTitle;
+          else if (completedDoc.seo?.seoTitle) pageTitle = completedDoc.seo.seoTitle;
+          if (completedDoc.metaDescription) pageDescription = completedDoc.metaDescription;
+          else if (completedDoc.seo?.seoDescription) pageDescription = completedDoc.seo.seoDescription;
+          if (completedDoc.focusKeywords) pageKeywords = completedDoc.focusKeywords;
+          else if (completedDoc.primaryKeyword) pageKeywords = completedDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
+
+    if (pl.pathSuffix === 'projects/case-study') {
+      try {
+        const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+        if (fs.existsSync(backupPath)) {
+          const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+          const csDoc = (parsed && (parsed['case-study-page'] || parsed['case-study-page?populate=*'])) || {};
+          if (csDoc.metaTitle) pageTitle = csDoc.metaTitle;
+          else if (csDoc.seo?.seoTitle) pageTitle = csDoc.seo.seoTitle;
+          if (csDoc.metaDescription) pageDescription = csDoc.metaDescription;
+          else if (csDoc.seo?.seoDescription) pageDescription = csDoc.seo.seoDescription;
+          if (csDoc.focusKeywords) pageKeywords = csDoc.focusKeywords;
+          else if (csDoc.primaryKeyword) pageKeywords = csDoc.primaryKeyword;
+        }
+      } catch (e) {}
+    }
 
     let extraSchemasJson = '';
     if (pl.pathSuffix === 'careers') {
@@ -1188,17 +1519,21 @@ ${JSON.stringify(jobPostingSchemas, null, 2)}
     }
 
     const headBlock = `
-    <title>${escapeHtml(pl.title)}</title>
-    <meta name="title" content="${escapeHtml(pl.title)}" />
-    <meta name="description" content="${escapeHtml(pl.description)}" />
-    <meta name="keywords" content="${escapeHtml(pl.keywords)}" />
+    <title>${escapeHtml(pageTitle)}</title>
+    <meta name="title" content="${escapeHtml(pageTitle)}" />
+    <meta name="description" content="${escapeHtml(pageDescription)}" />
+    <meta name="keywords" content="${escapeHtml(pageKeywords)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="${pl.canonicalUrl}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${pl.canonicalUrl}" />
-    <meta property="og:title" content="${escapeHtml(pl.title)}" />
-    <meta property="og:description" content="${escapeHtml(pl.description)}" />
+    <meta property="og:title" content="${escapeHtml(pageTitle)}" />
+    <meta property="og:description" content="${escapeHtml(pageDescription)}" />
     <meta property="og:image" content="${pl.image}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(pageTitle)}" />
+    <meta name="twitter:description" content="${escapeHtml(pageDescription)}" />
+    <meta name="twitter:image" content="${pl.image}" />
 ${extraSchemasJson}`;
     listHtml = listHtml.replace('</head>', `${headBlock}\n</head>`);
 
@@ -1212,9 +1547,18 @@ ${extraSchemasJson}`;
   // ==========================================
   // 7. PRERENDER ROOT HOME PAGE WITH ALL CLIENT SCHEMAS
   // ==========================================
-  const homeTitle = 'Pislinfra | Industrial Infrastructure & EPC Company India';
-  const homeDescription = 'Pislinfra delivers warehousing, logistics parks, and industrial construction solutions, with 17+ years of experience and 16M+ sq. ft. delivered.';
-  const homeKeywords = 'Pislinfra, industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, turnkey EPC company India, PEB warehouse construction, Grade-A warehouse builder, industrial park developers NCR, civil engineering contractors India, factory shed construction, pre-engineered buildings India, commercial construction company, BTS warehouse developers, logistics park infrastructure, heavy industrial construction, Pragati Infra Solutions, warehouse contractors Delhi NCR Haryana Gujarat, Amazon warehouse builder, Flipkart logistics park, Adani construction partner, Reliance solar unit builder';
+  let homeBackup = {};
+  try {
+    const backupPath = path.join(__dirname, '../src/data/MainBackupPislinfra.json');
+    if (fs.existsSync(backupPath)) {
+      const parsed = JSON.parse(fs.readFileSync(backupPath, 'utf-8'));
+      homeBackup = (parsed && (parsed['home-page'] || parsed['home-page?populate=*'])) || {};
+    }
+  } catch (e) {}
+
+  const homeTitle = homeBackup.metaTitle || homeBackup.seoTitle || 'Pislinfra | Industrial Infrastructure & EPC Company India';
+  const homeDescription = homeBackup.metaDescription || homeBackup.seoDescription || 'Pislinfra delivers warehousing, logistics parks, and industrial construction solutions, with 17+ years of experience and 16M+ sq. ft. delivered.';
+  const homeKeywords = homeBackup.seoKeywords || 'Pislinfra, industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, turnkey EPC company India, PEB warehouse construction, Grade-A warehouse builder, industrial park developers NCR, civil engineering contractors India, factory shed construction, pre-engineered buildings India, commercial construction company, BTS warehouse developers, logistics park infrastructure, heavy industrial construction, Pragati Infra Solutions, warehouse contractors Delhi NCR Haryana Gujarat, Amazon warehouse builder, Flipkart logistics park, Adani construction partner, Reliance solar unit builder';
   const homeCanonicalUrl = `${SITE_URL}/`;
   const homeLogoUrl = `${SITE_URL}/logo.png`;
 
