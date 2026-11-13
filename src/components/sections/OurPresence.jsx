@@ -1,31 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, User, Maximize2, Calendar, Layers } from 'lucide-react';
 import projectsData from '../../data/projectsData';
+import { fetchWpData } from '../../services/wordpress';
 
-const OurPresence = ({ title, description }) => {
+const OurPresence = ({ title, description, projects = null }) => {
   const [activeLocation, setActiveLocation] = useState(null);
+  const [wpProjects, setWpProjects] = useState(Array.isArray(projects) ? projects : null);
 
-  const ongoingProjects = projectsData || [];
+  useEffect(() => {
+    if (Array.isArray(projects)) {
+      setWpProjects(projects);
+      return;
+    }
+    let mounted = true;
+    fetchWpData('ongoing-projects?pagination[limit]=100')
+      .then((res) => {
+        if (!mounted) return;
+        const list = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : null);
+        if (list) setWpProjects(list);
+      })
+      .catch(() => {});
+    return () => { mounted = false; };
+  }, [projects]);
+
+  const ongoingProjects = wpProjects !== null ? wpProjects : (projectsData || []);
 
   const findProject = (location) => {
     if (!ongoingProjects.length) return null;
-    return ongoingProjects.find(p => 
-      p.location === location || 
-      p.location?.includes(location) || 
-      location.includes(p.location?.split(',')[0])
-    ) || null;
+    const target = location.toLowerCase();
+    return ongoingProjects.find((p) => {
+      const loc = (p.location || p.city || '').toLowerCase();
+      const firstCity = loc.split(',')[0].trim();
+      const name = (p.name || p.title || '').toLowerCase();
+      return loc === target || loc.includes(target) || (firstCity && target.includes(firstCity)) || name.includes(target);
+    }) || null;
   };
 
   const getProjectInfo = (location) => {
     const project = findProject(location);
     if (project) {
       return {
-        title: project.name,
-        location: `${project.location}, ${project.state}`,
-        client: project.client,
-        area: project.area,
+        title: project.name || project.title,
+        location: project.state && !(project.location || '').includes(project.state)
+          ? `${project.location}, ${project.state}`
+          : (project.location || project.state || location),
+        client: project.client || 'Confidential',
+        area: project.area || '-',
         timeline: project.timeline || 'WIP',
-        scope: project.scope
+        scope: project.scope || ''
       };
     }
     return null;

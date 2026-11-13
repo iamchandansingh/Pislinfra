@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiMapPin, FiGrid, FiAlertTriangle, FiSettings, FiTrendingUp, FiArrowRight } from 'react-icons/fi';
+import { getImageUrl } from '../../utils/imageUrl';
 import caseStudies from '../../data/caseStudies';
 
-const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured }) => {
+const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured, badgeText }) => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  const featured = strapiFeatured || caseStudies.find(c => c.slug === 'pragati-farukhnagar-logistics') || caseStudies[0];
+
+  const featured = strapiFeatured === null
+    ? null
+    : (strapiFeatured || caseStudies.find(c => c.slug === 'pragati-farukhnagar-logistics') || caseStudies[0]);
 
   if (!featured) return null;
 
-  // Real images from case study data
-  const slideImages = [
-    { id: 1, url: featured.image, alt: featured.title },
-    { id: 2, url: featured.engagementImage || featured.image, alt: 'Engagement' },
-    { id: 3, url: featured.challengesImage || featured.image, alt: 'Challenges' },
-    { id: 4, url: featured.achievementsImage || featured.image, alt: 'Achievements' },
-  ];
+  const mainImg = getImageUrl(featured.image, '/images/hero/Case-Study.png');
+  const rawSlides = [
+    { id: 1, url: mainImg, alt: featured.title },
+    { id: 2, url: getImageUrl(featured.engagementImage, mainImg), alt: 'Engagement' },
+    { id: 3, url: getImageUrl(featured.challengesImage, mainImg), alt: 'Challenges' },
+    { id: 4, url: getImageUrl(featured.achievementsImage, mainImg), alt: 'Achievements' },
+  ].filter(s => Boolean(s.url));
+  const slideImages = rawSlides.length > 0 ? rawSlides : [{ id: 1, url: '/images/hero/Case-Study.png', alt: featured.title || 'Case Study' }];
 
   const projectInfo = [
     { id: 'client', icon: <FiUser size={13} />, label: 'Client', value: featured.developer || 'N/A' },
@@ -26,13 +30,13 @@ const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured }) => {
   ];
 
   const csrCards = [
-    { id: 'challenge', icon: <FiAlertTriangle size={16} />, title: 'Challenge', description: 'Local Villagers Interference & Consequent Delays' },
-    { id: 'solution', icon: <FiSettings size={16} />, title: 'Solution', description: 'Detailed Planning & Project Scheduling' },
-    { id: 'result', icon: <FiTrendingUp size={16} />, title: 'Result', description: 'Successfully completed despite multiple challenges' },
+    { id: 'challenge', icon: <FiAlertTriangle size={16} />, title: 'Challenge', description: (Array.isArray(featured.challenges) && featured.challenges[0]) || 'Local Villagers Interference & Consequent Delays' },
+    { id: 'solution', icon: <FiSettings size={16} />, title: 'Solution', description: (Array.isArray(featured.engagement) && featured.engagement[0]) || 'Detailed Planning & Project Scheduling' },
+    { id: 'result', icon: <FiTrendingUp size={16} />, title: 'Result', description: (Array.isArray(featured.achievements) && featured.achievements[0]) || 'Successfully completed despite multiple challenges' },
   ];
 
   const handleCardClick = () => {
-    navigate(`/projects/case-study/${featured.slug}`);
+    navigate(`/projects/case-study/${encodeURIComponent(featured.slug)}`);
   };
 
   return (
@@ -45,23 +49,27 @@ const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured }) => {
           gap: '24px', overflow: 'hidden', cursor: 'pointer',
         }}>
           <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden' }}>
-            <div className="slide-image" style={{
-              width: '100%', height: '100%', minHeight: '390px',
-              backgroundImage: `url(${slideImages[currentSlide].url})`,
-              backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '12px',
-            }} />
+            <div className="slide-image" style={{ width: '100%', height: '100%', minHeight: '390px', position: 'relative', overflow: 'hidden', borderRadius: '12px' }}>
+              <img
+                src={slideImages[currentSlide % slideImages.length].url}
+                alt={slideImages[currentSlide % slideImages.length].caption || `${featured.title} - Pragati Infra Solutions`}
+                loading="eager"
+                decoding="async"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', borderRadius: '12px' }}
+              />
+            </div>
             <div style={{ position: 'absolute', bottom: '12px', left: '12px', backgroundColor: '#1E293B', color: '#FFFFFF', padding: '4px 10px', borderRadius: '6px', fontSize: '10px', fontWeight: 600, fontFamily: 'Inter, sans-serif' }}>
-              {currentSlide + 1} / {slideImages.length}
+              {(currentSlide % slideImages.length) + 1} / {slideImages.length}
             </div>
           </div>
 
-          {/* Right Content Column with padding side safety */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '390px', overflow: 'hidden', paddingRight: '24px' }}>
-            <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1px', color: '#FF6B35', textTransform: 'uppercase', marginBottom: '6px', fontFamily: 'Inter, sans-serif' }}>Featured Case Study</span>
-            
-            {/* Title size slightly adjusted to fit nicely */}
+            <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1px', color: '#FF6B35', textTransform: 'uppercase', marginBottom: '6px', fontFamily: 'Inter, sans-serif' }}>
+              {badgeText || 'Featured Case Study'}
+            </span>
+
             <h2 style={{ fontSize: 'clamp(18px, 2vw, 22px)', fontWeight: 800, lineHeight: 1.2, color: '#0A2A66', margin: '0 0 12px 0', fontFamily: 'Inter, sans-serif' }}>{featured.title}</h2>
-            
+
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap', marginBottom: '14px' }}>
               {projectInfo.map((info, index) => (
                 <React.Fragment key={info.id}>
@@ -77,12 +85,10 @@ const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured }) => {
               ))}
             </div>
 
-            {/* Description font size refined with clear spacing */}
             <p style={{ fontSize: '12px', fontWeight: 400, lineHeight: 1.55, color: '#4B5563', margin: '0 0 16px 0', marginRight: '12px', fontFamily: 'Inter, sans-serif' }}>
               {featured.introduction || featured.overview || featured.excerpt || 'Pislinfra built 12 Lakh sq. ft. Flipkart logistics park for Morgan Stanley in Farrukhnagar. Features first underground fire tunnel, completed despite NGT ban & challenges.'}
             </p>
 
-            {/* Grid layout sizes decreased for a precise look */}
             <div className="csr-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '18px', width: '100%' }}>
               {csrCards.map((card) => (
                 <div key={card.id} style={{ borderLeft: '2px solid #E2E8F0', paddingLeft: '8px', paddingRight: '6px', minWidth: 0, overflow: 'hidden' }}>
@@ -93,7 +99,6 @@ const FeaturedCaseStudy: React.FC<any> = ({ featured: strapiFeatured }) => {
               ))}
             </div>
 
-            {/* Flat Shape Action Button */}
             <button onClick={(e) => { e.stopPropagation(); navigate(`/projects/case-study/${featured.slug}`); }} style={{
               display: 'inline-flex', alignItems: 'center', gap: '6px', height: '36px', padding: '0 16px',
               backgroundColor: '#0A2A66', color: '#FFFFFF', border: 'none', borderRadius: '6px',

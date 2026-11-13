@@ -6,18 +6,22 @@ import CSRPhilosophy from '../../components/csr/CSRPhilosophy';
 import CSRFocusAreas from '../../components/csr/CSRFocusAreas';
 import CSRInitiatives from '../../components/csr/CSRInitiatives';
 import CSRCTA from '../../components/csr/CSRCTA';
-import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../../services/wordpress';
 import { getImageUrl } from '../../utils/imageUrl.js';
 import Preloader from '../../components/common/Preloader';
 
 const CSR = () => {
-  const [data, setData] = useState(() => getLocalDataSync('csr-page'));
-  const [loading, setLoading] = useState(!data);
+  const isPreview = Boolean(getPreviewContext());
+  const [data, setData] = useState(() => (isPreview ? null : getLocalDataSync('csr-page')));
+  const [loading, setLoading] = useState(isPreview || !data);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await fetchStrapiData('csr-page?populate=seo,heroImage,philosophyImages,stats,focusAreas.image,givingBackCards.image,environmentCards.image,celebrationCards.image');
+        const res = await fetchWpData(
+          'csr-page?populate=seo,heroImage,philosophyImages,stats,focusAreas.image,givingBackCards.image,environmentCards.image,celebrationCards.image',
+          { forceFresh: isPreview }
+        );
         if (res) {
           setData(res);
         }
@@ -30,13 +34,14 @@ const CSR = () => {
     getData();
 
     const handleUpdate = (e) => {
-      if (e.detail?.endpoint?.includes('csr-page') && e.detail.data) {
+      if (isPreview) return;
+      if ((e.detail?.cleanEndpoint?.startsWith('csr-page') || e.detail?.endpoint?.includes('csr-page')) && e.detail.data) {
         setData(e.detail.data);
       }
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   if (loading && !data) return <Preloader />;
 
@@ -49,11 +54,22 @@ const CSR = () => {
   // Safely falls back to existing SEO component or default metadata if fields are empty
   const resolvedTitle = (pageData?.metaTitle || pageData?.seo?.seoTitle || fallbackTitle).trim();
   const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
-  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || '').trim();
-  const resolvedFocusKeywords = (pageData?.focusKeywords || '').trim();
+  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || '').trim();
+  const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+  const resolvedHeroImage = getImageUrl(pageData?.heroImage, '/images/hero/CSR.png');
+  const resolvedOgImage = getImageUrl(pageData?.seo?.ogImage || pageData?.ogImage || pageData?.heroImage, resolvedHeroImage);
+  const resolvedTwitterImage = getImageUrl(pageData?.seo?.twitterImage || pageData?.twitterImage, resolvedOgImage);
 
   const seoData = {
     contentType: 'page',
+    slug: 'about/csr',
+    canonicalUrl: 'https://pislinfra.com/about/csr',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'AboutPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['CSR', 'Social Responsibility', 'Community Empowerment', 'Education', 'Environment', 'Welfare', 'Pislinfra'],
     ...(pageData?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
@@ -61,38 +77,61 @@ const CSR = () => {
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
     seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'Pislinfra CSR, corporate social responsibility construction, community empowerment India, sustainable development, green initiatives, healthcare and education CSR',
-    slug: 'about/csr',
-    canonicalUrl: 'https://pislinfra.com/about/csr',
+    canonicalUrl: pageData?.seo?.canonicalUrl || 'https://pislinfra.com/about/csr',
     ogTitle: pageData?.seo?.ogTitle || resolvedTitle,
     ogDescription: pageData?.seo?.ogDescription || resolvedDescription,
-    ogImage: pageData?.seo?.ogImage || pageData?.heroImage?.url || '/images/hero/CSR.png',
-    ogType: 'website',
+    ogImage: resolvedOgImage,
     twitterTitle: pageData?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: pageData?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: pageData?.seo?.twitterImage || pageData?.heroImage?.url || '/images/hero/CSR.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'AboutPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['CSR', 'Social Responsibility', 'Community Empowerment', 'Education', 'Environment', 'Welfare', 'Pislinfra']
+    twitterImage: resolvedTwitterImage,
   };
-
-  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage) : "/images/hero/CSR.png";
 
   return (
     <div style={{ fontFamily: 'Inter, sans-serif' }}>
       <BlogSEO blog={seoData} />
-      <PageHero 
-        title={pageData.heroTitle || "CSR Initiatives"} 
-        subtitle={pageData.heroSubtitle || "Changing lives beyond business"} 
-        breadcrumb={pageData.heroBreadcrumb || "About Us / CSR"} 
-        bgImage={heroImage} 
-      />
-      <CSRStats stats={pageData.stats} />
-      <CSRPhilosophy title={pageData.philosophyTitle} description={pageData.philosophyDescription} images={pageData.philosophyImages} />
-      <CSRFocusAreas areas={pageData.focusAreas} />
-      <CSRInitiatives givingBackCards={pageData.givingBackCards} envCards={pageData.environmentCards} celebCards={pageData.celebrationCards} />
-      <CSRCTA />
+      {pageData?.showHero !== false && (
+        <PageHero 
+          title={pageData.heroTitle || "CSR Initiatives"} 
+          subtitle={pageData.heroSubtitle || "Changing lives beyond business"} 
+          breadcrumb={pageData.heroBreadcrumb || "About Us / CSR"} 
+          bgImage={resolvedHeroImage} 
+        />
+      )}
+      {pageData?.showStats !== false && <CSRStats stats={pageData.stats} />}
+      {pageData?.showPhilosophy !== false && (
+        <CSRPhilosophy
+          badge={pageData.philosophyBadge}
+          title={pageData.philosophyTitle}
+          description={pageData.philosophyDescription}
+          images={pageData.philosophyImages}
+        />
+      )}
+      {pageData?.showFocusAreas !== false && (
+        <CSRFocusAreas
+          badge={pageData.focusBadge}
+          title={pageData.focusTitle}
+          subtitle={pageData.focusSubtitle}
+          areas={pageData.focusAreas}
+        />
+      )}
+      {pageData?.showInitiatives !== false && (
+        <CSRInitiatives
+          givingBackTitle={pageData.givingBackTitle}
+          environmentTitle={pageData.environmentTitle}
+          celebrationsTitle={pageData.celebrationsTitle}
+          givingBackCards={pageData.givingBackCards}
+          envCards={pageData.environmentCards}
+          celebCards={pageData.celebrationCards}
+        />
+      )}
+      {pageData?.showCta !== false && (
+        <CSRCTA
+          heading={pageData.ctaHeading}
+          subtext={pageData.ctaSubtext}
+          buttonText={pageData.ctaButtonText}
+          buttonLink={pageData.ctaButtonLink}
+        />
+      )}
     </div>
   );
 };

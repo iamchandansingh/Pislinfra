@@ -1,12 +1,49 @@
 {
   "id": 4,
   "documentId": "ise3kv8tqchbim6ln33i2lx9",
-  "heroTitle": "Blog",
-  "heroSubtitle": "Insights, news & updates from Pislinfra",
-  "heroBreadcrumb": "Blog",
   "createdAt": "2026-08-23T14:36:02.587Z",
   "updatedAt": "2026-11-09T03:00:01.421Z",
   "publishedAt": "2026-10-09T01:10:00.138Z",
+  "showHero": true,
+  "heroTitle": "Blog",
+  "heroSubtitle": "Insights, news & updates from Pislinfra",
+  "heroBreadcrumb": "Blog",
+  "heroImage": {
+    "id": 158,
+    "documentId": "wp_media_158",
+    "name": "optimized_1787755381273_146_Blog_png.webp",
+    "alternativeText": "Optimized 1787755381273 146 Blog Png | Pragati Infra Solutions",
+    "caption": "",
+    "width": 1920,
+    "height": 600,
+    "formats": {
+      "thumbnail": {
+        "url": "/images/uploads/optimized_1787755381273_146_Blog_png-150x150.webp",
+        "width": 150,
+        "height": 150
+      },
+      "small": {
+        "url": "/images/uploads/optimized_1787755381273_146_Blog_png-500x156.webp",
+        "width": 500,
+        "height": 156
+      },
+      "medium": {
+        "url": "/images/uploads/optimized_1787755381273_146_Blog_png-750x234.webp",
+        "width": 750,
+        "height": 234
+      },
+      "large": {
+        "url": "/images/blogs/optimized_1787755381273_146_Blog_png-1200x375.webp",
+        "width": 1200,
+        "height": 375
+      }
+    },
+    "mime": "image/webp",
+    "url": "/images/blogs/optimized_1787755381273_146_Blog_png.webp"
+  },
+  "showFeatured": true,
+  "showLatest": true,
+  "showSidebar": true,
   "primaryKeyword": null,
   "metaTitle": null,
   "metaDescription": null,
@@ -29,28 +66,8 @@
     "organizationSchema": false,
     "tags": null,
     "noIndex": false,
-    "noFollow": false
-  },
-  "heroImage": {
-    "id": 555,
-    "documentId": "dfowq9t9p8vu0mrxs963y0fg",
-    "name": "Blog.png",
-    "alternativeText": null,
-    "caption": null,
-    "focalPoint": null,
-    "width": null,
-    "height": null,
-    "formats": null,
-    "hash": "b1519098be0475948cdb06f1198e88d9",
-    "ext": ".webp",
-    "mime": "image/webp",
-    "size": 64.63,
-    "url": "/images/blogs/optimized_1787755381273_146_Blog_png.webp",
-    "previewUrl": null,
-    "provider": "aws-s3",
-    "provider_metadata": null,
-    "createdAt": "2026-08-23T14:36:00.135Z",
-    "updatedAt": "2026-08-26T12:41:09.014Z",
-    "publishedAt": "2026-08-23T14:36:00.136Z"
+    "noFollow": false,
+    "metaTitle": "Construction & Infrastructure Insights | Pislinfra",
+    "metaDescription": "Explore Pislinfra's latest insights on construction, infrastructure, engineering, project management, industry trends and innovative solutions."
   }
 }

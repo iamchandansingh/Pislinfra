@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../services/wordpress';
 import { getImageUrl } from '../utils/imageUrl.js';
 import ReactMarkdown from 'react-markdown';
 import PageHero from '../components/hero/PageHero';
@@ -69,18 +69,20 @@ const Icon = ({ name, style }) => {
 };
 
 const PrivacyPolicy = () => {
+  const isPreview = Boolean(getPreviewContext());
   const [activeTab, setActiveTab] = useState(1);
-  const [data, setData] = useState(() => getLocalDataSync('policy-page') || fallbackPolicyData);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(() => (isPreview ? null : (getLocalDataSync('policy-page') || fallbackPolicyData)));
+  const [loading, setLoading] = useState(isPreview);
 
   useEffect(() => {
+    if (isPreview) return;
     const handleUpdate = () => {
       const fresh = getLocalDataSync('policy-page');
       if (fresh) setData(fresh);
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -88,7 +90,10 @@ const PrivacyPolicy = () => {
 
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('policy-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage&populate[3]=sections');
+        const response = await fetchWpData(
+          'policy-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage&populate[3]=sections',
+          { forceFresh: isPreview }
+        );
         if (response && isMounted) {
           setData(response);
         }
@@ -100,7 +105,7 @@ const PrivacyPolicy = () => {
     };
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [isPreview]);
 
   if (loading && !data) return <Preloader />;
 
@@ -117,6 +122,8 @@ const PrivacyPolicy = () => {
   const resolvedDescription = (currentData?.metaDescription || currentData?.seo?.seoDescription || fallbackDescription).trim();
   const resolvedPrimaryKeyword = (currentData?.primaryKeyword || currentData?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
   const resolvedFocusKeywords = (currentData?.focusKeywords || currentData?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+  const resolvedOgImage = getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Extra-2.png');
+  const resolvedTwitterImage = getImageUrl(currentData.seo?.twitterImage || currentData.seo?.ogImage || currentData.heroImage, resolvedOgImage);
 
   const seoData = {
     contentType: 'page',
@@ -131,11 +138,11 @@ const PrivacyPolicy = () => {
     canonicalUrl: currentData?.seo?.canonicalUrl || 'https://pislinfra.com/privacy-policy',
     ogTitle: currentData?.ogTitle || currentData?.seo?.ogTitle || resolvedTitle,
     ogDescription: currentData?.ogDescription || currentData?.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Extra-2.png'),
+    ogImage: resolvedOgImage,
     ogType: currentData?.seo?.ogType || 'website',
     twitterTitle: currentData?.twitterTitle || currentData?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: currentData?.twitterDescription || currentData?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(currentData.seo?.twitterImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Extra-2.png'),
+    twitterImage: resolvedTwitterImage,
     twitterCardType: currentData?.seo?.twitterCardType || 'summary_large_image',
     schemaType: currentData?.seo?.schemaType || 'WebPage',
     breadcrumbSchema: currentData?.seo?.breadcrumbSchema !== undefined ? currentData.seo.breadcrumbSchema : true,
@@ -175,15 +182,18 @@ const PrivacyPolicy = () => {
   return (
     <div className="policy-page-wrapper">
       <BlogSEO blog={seoData} />
-      
-      <PageHero
-        title={currentData.title || "Privacy Policy"}
-        subtitle={currentData.heroSubtitle || "Learn how we collect, use, and protect your data."}
-        breadcrumb={currentData.breadcrumb || "Privacy Policy"}
-        bgImage={getImageUrl(currentData.heroImage, "/images/hero/Extra-2.png")}
-      />
 
-      <div className="policy-main-container">
+      {currentData.showHero !== false && (
+        <PageHero
+          title={currentData.title || "Privacy Policy"}
+          subtitle={currentData.heroSubtitle || "Learn how we collect, use, and protect your data."}
+          breadcrumb={currentData.breadcrumb || "Privacy Policy"}
+          bgImage={getImageUrl(currentData.heroImage, "/images/hero/Extra-2.png")}
+        />
+      )}
+
+      {currentData.showContent !== false && (
+        <div className="policy-main-container">
         
         {/* Mobile Horizontal Section Jump Bar */}
         <div className="policy-mobile-nav">
@@ -264,6 +274,7 @@ const PrivacyPolicy = () => {
 
         </div>
       </div>
+      )}
 
       <style>{`
         .policy-page-wrapper {

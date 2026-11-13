@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import notFoundIllustration from '../assets/images/page-not-found.jpg';
+import { fetchSeoConfig, matchSeoRedirect, log404Hit } from '../services/wordpress';
 
 /* ─── CORPORATE BRAND COLORS ─────────────────────────────────────────────── */
 const NAVY = '#28286e';
@@ -8,6 +10,27 @@ const ORANGE = '#ff8755';
 
 /* ─── MAIN 404 COMPONENT ─────────────────────────────────────────────────── */
 const NotFound = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let active = true;
+    const currentPath = window.location.pathname || '/';
+    fetchSeoConfig().then((cfg) => {
+      if (!active) return;
+      const rule = matchSeoRedirect(currentPath, cfg?.redirects);
+      if (rule && rule.target) {
+        if (/^https?:\/\//i.test(rule.target)) {
+          window.location.replace(rule.target);
+        } else {
+          navigate(rule.target, { replace: true });
+        }
+        return;
+      }
+      log404Hit(window.location.pathname + window.location.search);
+    });
+    return () => { active = false; };
+  }, [navigate]);
+
   return (
     <section style={{
       minHeight: '55vh',

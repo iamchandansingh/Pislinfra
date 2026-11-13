@@ -1,8 +1,20 @@
 // src/components/Blog/BlogSEO.jsx
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { fetchSeoConfig } from '../../services/wordpress';
+import { stripHtmlAndWpBlocks } from '../../utils/formatBlog';
 
 const BlogSEO = ({ blog }) => {
+  const [seoConfig, setSeoConfig] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+    fetchSeoConfig().then((cfg) => {
+      if (active && cfg) setSeoConfig(cfg);
+    });
+    return () => { active = false; };
+  }, []);
+
   useEffect(() => {
     if (!blog) return;
 
@@ -13,12 +25,14 @@ const BlogSEO = ({ blog }) => {
     
     const parentPath = isCaseStudy ? '/projects/case-study' : isBlog ? '/blog' : '';
     const parentName = isCaseStudy ? 'Case Studies' : isBlog ? 'Blog' : '';
-    const siteName = 'Pislinfra';
-    const siteUrl = window.location.origin || 'https://pislinfra.com';
+    const siteName = seoConfig?.siteName || 'Pislinfra';
+    const siteUrl = seoConfig?.canonicalBaseUrl || window.location.origin || 'https://pislinfra.com';
 
     // ==================== FALLBACK LOGIC ====================
-    const seoTitle = blog.seoTitle || `${blog.title} | Pislinfra`;
-    const rawExcerpt = blog.seoDescription || blog.excerpt || (typeof blog.content === 'string' ? blog.content.substring(0, 160) : '');
+    const titleSuffix = seoConfig?.defaultTitleSuffix || 'Pislinfra';
+    const seoTitle = blog.seoTitle || blog.metaTitle || (blog.title ? `${blog.title} | ${siteName}` : titleSuffix);
+    const plainContent = typeof blog.content === 'string' ? stripHtmlAndWpBlocks(blog.content) : '';
+    const rawExcerpt = blog.seoDescription || blog.metaDescription || blog.excerpt || seoConfig?.defaultDescription || plainContent.substring(0, 160);
     const seoDescription = rawExcerpt.replace(/[\n\r]+/g, ' ').trim().substring(0, 160);
     const extractUrl = (img) => {
       if (!img) return null;
@@ -29,9 +43,9 @@ const BlogSEO = ({ blog }) => {
       return null;
     };
 
-    const ogTitle = blog.ogTitle || blog.seoTitle || blog.title;
+    const ogTitle = blog.ogTitle || seoTitle || blog.title;
     const ogDescription = blog.ogDescription || seoDescription;
-    const rawImage = extractUrl(blog.ogImage) || extractUrl(blog.featuredImage) || extractUrl(blog.image) || '/images/hero/Blog.png';
+    const rawImage = extractUrl(blog.ogImage) || extractUrl(blog.featuredImage) || extractUrl(blog.image) || seoConfig?.social?.defaultOgImage || '/images/hero/Blog.png';
     const absoluteImage = rawImage.startsWith('http') ? rawImage : `${siteUrl}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
     
     // Canonical URL
@@ -50,7 +64,7 @@ const BlogSEO = ({ blog }) => {
     const twitterDescription = blog.twitterDescription || seoDescription;
     const publishDate = blog.publishDate || '2026-01-01';
     const updatedDate = blog.updatedDate || blog.publishDate || new Date().toISOString().split('T')[0];
-    const authorName = blog.authorName || blog.author?.name || 'Pragati Infra Solutions Pvt. Ltd.';
+    const authorName = blog.authorName || blog.author?.name || seoConfig?.schema?.org_name || 'Pragati Infra Solutions Pvt. Ltd.';
 
     // ==================== TITLE TAG ====================
     document.title = seoTitle;
@@ -74,15 +88,24 @@ const BlogSEO = ({ blog }) => {
     };
 
     // ==================== CORE SEO META TAGS ====================
+    const resolvedKeywords = blog.seoKeywords || blog.focusKeyword || blog.primaryKeyword || (Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags || 'warehouse construction, industrial infrastructure, PEB buildings');
     setMetaTag('description', seoDescription);
-    setMetaTag('keywords', blog.seoKeywords || (Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags || 'warehouse construction, industrial infrastructure, PEB buildings'));
+    setMetaTag('keywords', resolvedKeywords);
     setMetaTag('author', authorName);
 
     // ==================== ROBOTS & CRAWLER DIRECTIVES ====================
-    setMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-    setMetaTag('googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-    setMetaTag('googlebot-news', 'index, follow');
-    setMetaTag('bingbot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    const isNoIndex = Boolean(blog.noIndex || seoConfig?.globalNoIndex);
+    const isNoFollow = Boolean(blog.noFollow || seoConfig?.globalNoFollow);
+    const robotsDirective = isNoIndex || isNoFollow
+      ? `${isNoIndex ? 'noindex' : 'index'}, ${isNoFollow ? 'nofollow' : 'follow'}`
+      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+    const bingRobotsDirective = isNoIndex || isNoFollow
+      ? robotsDirective
+      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+    setMetaTag('robots', robotsDirective);
+    setMetaTag('googlebot', robotsDirective);
+    setMetaTag('googlebot-news', isNoIndex || isNoFollow ? robotsDirective : 'index, follow');
+    setMetaTag('bingbot', bingRobotsDirective);
 
     // ==================== VOICE SEARCH & GOOGLE ASSISTANT TAGS ====================
     setMetaTag('voice-search-enabled', 'true');
@@ -112,17 +135,19 @@ const BlogSEO = ({ blog }) => {
     setMetaTag('og:image', absoluteImage, true);
     setMetaTag('og:image:secure_url', absoluteImage, true);
     setMetaTag('og:image:alt', blog.imageAlt || blog.title, true);
-    setMetaTag('og:image:width', '1200', true);
-    setMetaTag('og:image:height', '630', true);
+    if (blog.imageWidth && blog.imageHeight) {
+      setMetaTag('og:image:width', String(blog.imageWidth), true);
+      setMetaTag('og:image:height', String(blog.imageHeight), true);
+    }
     setMetaTag('og:url', canonicalUrl, true);
     setMetaTag('og:type', blog.ogType || (isCaseStudy || isBlog ? 'article' : 'website'), true);
-    setMetaTag('og:site_name', siteName, true);
+    setMetaTag('og:site_name', blog.ogSiteName || seoConfig?.social?.ogSiteName || siteName, true);
     setMetaTag('og:locale', 'en_IN', true);
 
     // ==================== TWITTER CARD TAGS ====================
-    setMetaTag('twitter:card', 'summary_large_image');
-    setMetaTag('twitter:site', '@Pislinfra');
-    setMetaTag('twitter:creator', '@Pislinfra');
+    setMetaTag('twitter:card', blog.twitterCardType || seoConfig?.social?.twitterCard || 'summary_large_image');
+    setMetaTag('twitter:site', blog.twitterSite || seoConfig?.social?.twitterSite || '@Pislinfra');
+    setMetaTag('twitter:creator', blog.twitterCreator || seoConfig?.social?.twitterSite || '@Pislinfra');
     setMetaTag('twitter:title', twitterTitle);
     setMetaTag('twitter:description', twitterDescription);
     setMetaTag('twitter:image', twitterImage);
@@ -148,7 +173,7 @@ const BlogSEO = ({ blog }) => {
     }
 
     // ==================== JSON-LD SCHEMA MARKUP ====================
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(el => el.remove());
+    document.querySelectorAll('script[data-pisl-seo-jsonld="true"]').forEach(el => el.remove());
 
     // 1. Google Assistant / Voice Search Speakable Specification Schema
     const speakableSchema = {
@@ -185,8 +210,7 @@ const BlogSEO = ({ blog }) => {
       'url': absoluteImage,
       'contentUrl': absoluteImage,
       'thumbnailUrl': absoluteImage,
-      'width': 1200,
-      'height': 630,
+      ...(blog.imageWidth && blog.imageHeight ? { 'width': blog.imageWidth, 'height': blog.imageHeight } : {}),
       'caption': blog.imageCaption || blog.excerpt || blog.title,
       'name': blog.imageTitle || blog.title,
       'description': blog.imageAlt || blog.title,
@@ -203,11 +227,12 @@ const BlogSEO = ({ blog }) => {
     };
     addJsonLd(imageObjectSchema);
 
-    // 3. BlogPosting / Article Schema
-    const blogPostingSchema = {
+    // 3. Primary Entity Schema (honors CMS schemaType or falls back to BlogPosting / WebPage)
+    const resolvedSchemaType = blog.schemaType || (isPage ? 'WebPage' : 'BlogPosting');
+    const primarySchema = {
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      '@id': `${canonicalUrl}#article`,
+      '@type': resolvedSchemaType,
+      '@id': `${canonicalUrl}#${isPage ? 'webpage' : 'article'}`,
       'isPartOf': {
         '@type': 'WebSite',
         'name': siteName,
@@ -217,15 +242,15 @@ const BlogSEO = ({ blog }) => {
         '@type': 'WebPage',
         '@id': canonicalUrl
       },
-      'headline': blog.headline || blog.title,
-      'name': blog.title,
+      'headline': blog.headline || seoTitle || blog.title,
+      'name': blog.title || seoTitle,
       'description': seoDescription,
       'image': imageObjectSchema,
       'datePublished': publishDate,
       'dateModified': updatedDate,
       'inLanguage': blog.language || 'en-IN',
-      'wordCount': blog.wordCount || (blog.content ? blog.content.split(/\s+/).length : 1200),
-      'keywords': blog.seoKeywords || (Array.isArray(blog.tags) ? blog.tags.join(', ') : blog.tags),
+      'wordCount': blog.wordCount || (plainContent ? plainContent.split(/\s+/).filter(Boolean).length : 1200),
+      'keywords': resolvedKeywords,
       'articleSection': blog.articleSection || blog.category || 'Industrial Construction & Infrastructure',
       'author': {
         '@type': 'Organization',
@@ -249,19 +274,29 @@ const BlogSEO = ({ blog }) => {
         'cssSelector': ['#speakable-summary', '.blog-hero-title', '.blog-hero-excerpt', '.content-h2']
       }
     };
-    addJsonLd(blogPostingSchema);
+    addJsonLd(primarySchema);
 
     // 4. BreadcrumbList Schema
-    const breadcrumbSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': [
+    if (blog.breadcrumbSchema !== false) {
+      const breadcrumbItems = [
         { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': siteUrl },
-        { '@type': 'ListItem', 'position': 2, 'name': parentName || 'Blog', 'item': `${siteUrl}${parentPath || '/blog'}` },
-        { '@type': 'ListItem', 'position': 3, 'name': blog.title, 'item': canonicalUrl }
-      ]
-    };
-    addJsonLd(breadcrumbSchema);
+      ];
+      if (parentPath && parentName) {
+        breadcrumbItems.push({ '@type': 'ListItem', 'position': 2, 'name': parentName, 'item': `${siteUrl}${parentPath}` });
+      }
+      breadcrumbItems.push({
+        '@type': 'ListItem',
+        'position': breadcrumbItems.length + 1,
+        'name': blog.title || seoTitle,
+        'item': canonicalUrl
+      });
+      const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': breadcrumbItems
+      };
+      addJsonLd(breadcrumbSchema);
+    }
 
     // 5. FAQ Schema (Extract from blog.faqSchema or parse from content)
     let faqsToInclude = Array.isArray(blog.faqSchema) && blog.faqSchema.length > 0 ? blog.faqSchema : [];
@@ -297,28 +332,32 @@ const BlogSEO = ({ blog }) => {
     }
 
     // 6. Organization Knowledge Graph Schema
-    const orgSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      '@id': `${siteUrl}/#organization`,
-      'name': 'Pragati Infra Solutions Pvt. Ltd.',
-      'alternateName': ['Pislinfra', 'PISL'],
-      'url': siteUrl,
-      'logo': `${siteUrl}/logo.png`,
-      'contactPoint': {
-        '@type': 'ContactPoint',
-        'telephone': '+91-124-400-0000',
-        'contactType': 'customer support',
-        'areaServed': 'IN',
-        'availableLanguage': ['en', 'hi']
-      },
-      'sameAs': [
-        'https://www.linkedin.com/company/pislinfra',
-        'https://twitter.com/Pislinfra',
-        'https://www.facebook.com/pislinfra'
-      ]
-    };
-    addJsonLd(orgSchema);
+    if (blog.organizationSchema !== false) {
+      const orgSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        'name': seoConfig?.schema?.org_name || 'Pragati Infra Solutions Pvt. Ltd.',
+        'alternateName': ['Pislinfra', 'PISL'],
+        'url': seoConfig?.schema?.org_url || siteUrl,
+        'logo': seoConfig?.schema?.org_logo || `${siteUrl}/logo.png`,
+        'contactPoint': {
+          '@type': 'ContactPoint',
+          'telephone': seoConfig?.schema?.orgPhone || '+91-8527040411',
+          'contactType': 'customer support',
+          'areaServed': 'IN',
+          'availableLanguage': ['en', 'hi']
+        },
+        'sameAs': Array.isArray(seoConfig?.schema?.same_as) && seoConfig.schema.same_as.length > 0
+          ? seoConfig.schema.same_as
+          : [
+              'https://www.linkedin.com/company/pislinfra',
+              'https://twitter.com/Pislinfra',
+              'https://www.facebook.com/pislinfra'
+            ]
+      };
+      addJsonLd(orgSchema);
+    }
 
     // ==================== IMAGE ALT HELPER ====================
     window.__BLOG_IMAGE_DATA__ = {
@@ -370,12 +409,12 @@ const BlogSEO = ({ blog }) => {
       document.querySelectorAll('meta[property="article:modified_time"]').forEach(el => el.remove());
       document.querySelectorAll('meta[property="article:author"]').forEach(el => el.remove());
       document.querySelectorAll('meta[property="article:section"]').forEach(el => el.remove());
-      document.querySelectorAll('script[type="application/ld+json"]').forEach(el => el.remove());
+      document.querySelectorAll('script[data-pisl-seo-jsonld="true"]').forEach(el => el.remove());
       const canonicalEl = document.querySelector('link[rel="canonical"]');
       if (canonicalEl) canonicalEl.remove();
       delete window.__BLOG_IMAGE_DATA__;
     };
-  }, [blog]);
+  }, [blog, seoConfig]);
 
   return null;
 };
@@ -383,6 +422,7 @@ const BlogSEO = ({ blog }) => {
 const addJsonLd = (schema) => {
   const script = document.createElement('script');
   script.type = 'application/ld+json';
+  script.setAttribute('data-pisl-seo-jsonld', 'true');
   script.textContent = JSON.stringify(schema);
   document.head.appendChild(script);
 };

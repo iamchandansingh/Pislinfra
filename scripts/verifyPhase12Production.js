@@ -286,12 +286,12 @@ try {
 // ==========================================
 console.log('▶ [TEST G] Auditing Client-Side Codebase for Zero Background Polling...');
 try {
-  const strapiJs = fs.readFileSync(path.join(rootDir, 'src', 'services', 'strapi.js'), 'utf8');
+  const wpJs = fs.readFileSync(path.join(rootDir, 'src', 'services', 'wordpress.js'), 'utf8');
   const blogContextJs = fs.readFileSync(path.join(rootDir, 'src', 'context', 'BlogContext.jsx'), 'utf8');
 
   // Verify revalidateInBackground is gone
-  if (strapiJs.includes('revalidateInBackground')) {
-    throw new Error('revalidateInBackground still present in strapi.js');
+  if (wpJs.includes('revalidateInBackground')) {
+    throw new Error('revalidateInBackground still present in wordpress.js');
   }
 
   // Verify polling setInterval is gone from BlogContext
@@ -299,14 +299,14 @@ try {
     throw new Error('setInterval polling still present in BlogContext.jsx');
   }
 
-  // Verify candidateUrls to onrender is removed from normal client fetches
-  if (strapiJs.includes('https://cms-pislinfra.onrender.com') && strapiJs.includes('candidateUrls')) {
-    throw new Error('candidateUrls targeting onrender still present in strapi.js fetcher');
+  // Verify legacy external Strapi/Render candidateUrls are gone from client fetches
+  if (wpJs.includes('cms-pislinfra.onrender.com') || wpJs.includes(':1337')) {
+    throw new Error('Legacy Strapi/Render URLs still present in wordpress.js fetcher');
   }
 
   results.testG = {
     status: 'PASSED',
-    details: 'Confirmed: 0 visitor-side intervals, 0 revalidateInBackground calls, 0 polling loops.'
+    details: 'Confirmed: 0 visitor-side intervals, 0 revalidateInBackground calls, 0 polling loops, 0 Strapi/Render runtime references.'
   };
   console.log('✅ TEST G PASSED: Clean network audit. Zero visitor-side polling or CMS revalidation.\n');
 } catch (e) {

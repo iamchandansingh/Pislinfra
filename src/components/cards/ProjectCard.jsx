@@ -4,27 +4,38 @@ import { HiOutlineShieldCheck } from 'react-icons/hi2';
 import clientsData from '../../data/clientsData';
 import { getImageUrl, getProjectSlug } from '../../utils/imageUrl';
 
-const getClientInfo = (clientName) => {
+const getClientInfo = (clientName, clientsList = null) => {
   if (!clientName) return [];
-  
+
+  const livePool = Array.isArray(clientsList) && clientsList.length > 0
+    ? clientsList.map(c => ({
+        name: c.name || '',
+        logo: getImageUrl(c.logo || c.logoUrl) || null,
+      })).filter(c => c.name)
+    : [];
+
+  const pool = [...livePool, ...clientsData];
+
   const clientNames = clientName
     .split(/[,/&]|\band\b/i)
     .map(n => n.trim())
     .filter(n => n.length > 0);
 
   return clientNames.map(name => {
-    let client = clientsData.find(c => c.name === name);
+    let client = pool.find(c => c.name === name && c.logo);
     if (client) return { logo: client.logo, name: client.name };
-    
-    client = clientsData.find(c => c.name.toLowerCase() === name.toLowerCase());
+
+    client = pool.find(c => c.name.toLowerCase() === name.toLowerCase() && c.logo);
     if (client) return { logo: client.logo, name: client.name };
-    
-    client = clientsData.find(c => 
-      c.name.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(c.name.toLowerCase())
+
+    client = pool.find(c =>
+      c.logo && (
+        c.name.toLowerCase().includes(name.toLowerCase()) ||
+        name.toLowerCase().includes(c.name.toLowerCase())
+      )
     );
     if (client) return { logo: client.logo, name: client.name };
-    
+
     const shortNames = {
       'Adani Group': 'Adani',
       'Reliance': 'Reliance Industries Limited',
@@ -41,23 +52,23 @@ const getClientInfo = (clientName) => {
       'EIL': 'EIL (Engineers India Limited)',
       'CPWD': 'CPWD (Central Public Works Department)',
     };
-    
+
     const mappedName = shortNames[name];
     if (mappedName) {
-      client = clientsData.find(c => c.name === mappedName);
+      client = pool.find(c => c.name === mappedName && c.logo);
       if (client) return { logo: client.logo, name: client.name };
     }
-    
-    client = clientsData.find(c => 
-      c.name.toLowerCase().includes(name.toLowerCase().split('(')[0].trim())
+
+    client = pool.find(c =>
+      c.logo && c.name.toLowerCase().includes(name.toLowerCase().split('(')[0].trim())
     );
     if (client) return { logo: client.logo, name: client.name };
-    
+
     return { logo: null, name: name };
   });
 };
 
-const ProjectCard = ({ project, type, isSelected = false }) => {
+const ProjectCard = ({ project, type, isSelected = false, clientsList = null }) => {
   const navigate = useNavigate();
 
   const isOngoing = project?.status === 'Ongoing' || project?.status === 'ongoing' || type === 'ongoing';
@@ -65,7 +76,7 @@ const ProjectCard = ({ project, type, isSelected = false }) => {
   const rawCover = project?.images?.[0] || project?.image;
   const coverImage = getImageUrl(rawCover, defaultFallback);
 
-  const clientInfoList = getClientInfo(project.client);
+  const clientInfoList = getClientInfo(project.client, clientsList);
 
   const handleClick = (e) => {
     e.stopPropagation();

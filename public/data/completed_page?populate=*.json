@@ -25,7 +25,7 @@
       "formats": {
         "large": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Completed_Projects_cb99c688ed.png",
+          "url": "/images/projects/large_Completed_Projects_cb99c688ed.png",
           "hash": "large_Completed_Projects_cb99c688ed",
           "mime": "image/png",
           "name": "large_Completed-Projects.png",
@@ -37,7 +37,7 @@
         },
         "small": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Completed_Projects_cb99c688ed.png",
+          "url": "/images/projects/small_Completed_Projects_cb99c688ed.png",
           "hash": "small_Completed_Projects_cb99c688ed",
           "mime": "image/png",
           "name": "small_Completed-Projects.png",
@@ -49,7 +49,7 @@
         },
         "medium": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Completed_Projects_cb99c688ed.png",
+          "url": "/images/projects/medium_Completed_Projects_cb99c688ed.png",
           "hash": "medium_Completed_Projects_cb99c688ed",
           "mime": "image/png",
           "name": "medium_Completed-Projects.png",
@@ -61,7 +61,7 @@
         },
         "thumbnail": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Completed_Projects_cb99c688ed.png",
+          "url": "/images/projects/thumbnail_Completed_Projects_cb99c688ed.png",
           "hash": "thumbnail_Completed_Projects_cb99c688ed",
           "mime": "image/png",
           "name": "thumbnail_Completed-Projects.png",
@@ -76,7 +76,7 @@
       "ext": ".png",
       "mime": "image/png",
       "size": 928.8,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Completed_Projects_cb99c688ed.png",
+      "url": "/images/projects/Completed_Projects_cb99c688ed.png",
       "previewUrl": null,
       "provider": "aws-s3",
       "provider_metadata": null,

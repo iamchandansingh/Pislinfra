@@ -1,75 +1,103 @@
 [
   {
-    "id": 4,
+    "id": 409,
     "documentId": "fvtfie7wh0gb9clr3u5o1hmn",
+    "createdAt": "2026-11-12T04:53:28+00:00",
+    "updatedAt": "2026-11-12T12:42:41+00:00",
+    "publishedAt": "2026-11-12T04:53:28+00:00",
     "slug": "warehouse",
     "title": "Warehouse Contractors",
+    "showHero": true,
     "heroSubtitle": "State-of-the-art storage & distribution centers",
     "breadcrumb": "Solutions / Warehouse",
-    "introText": "",
-    "mainFeatureTitle": "Design-Build Solutions",
-    "mainFeatureText": "PISL stands as the leading warehouse contractor and distribution space nationwide, serving as a reliable contractor for clients nationwide. We are highly competent in offering the best and most cost-effective warehouse design and construction solutions for our clients. This holds true whether it's speculative developments or expansive distribution centres catering to e-commerce end-users, Consumer Packaged Goods (CPGs), and Third-Party Logistics (3PL) providers.",
-    "whyPislBadge": null,
-    "whyPislTitle": null,
-    "whyPislDesc": null,
-    "createdAt": "2026-08-21T14:31:31.272Z",
-    "updatedAt": "2026-11-09T12:16:48.573Z",
-    "publishedAt": "2026-11-09T12:16:48.262Z",
+    "heroImage": {
+      "id": 87,
+      "documentId": "wp_media_87",
+      "name": "optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp",
+      "alternativeText": "Optimized 1787754972679 771 Amazon Del5 Billaspur Hr 5 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp"
+    },
     "primaryKeyword": "Warehouse Construction Company",
     "metaTitle": "Warehouse Construction Company in India | Pislinfra",
     "metaDescription": "Pislinfra's delivers design-build warehouse construction solutions across India, creating efficient, scalable and future-ready facilities for businesses.",
     "focusKeywords": "Warehouse Construction Company, design-build warehouse construction, warehouse solutions India, future-ready facilities, Pislinfra",
-    "heroImage": {
-      "id": 10,
-      "documentId": "zohe0i2vpwzb0qrcf0lylxxu",
-      "name": "amazon-del5-billaspur-hr-5.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "wh_bg_1787322680933",
-      "ext": ".webp",
-      "mime": "image/webp",
-      "size": 124.11,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T14:31:20.933Z",
-      "updatedAt": "2026-08-26T13:40:58.020Z",
-      "publishedAt": "2026-08-21T14:31:20.934Z"
-    },
+    "showIntro": true,
+    "introText": "",
+    "showMainFeature": true,
+    "mainFeatureTitle": "Design-Build Solutions",
+    "mainFeatureText": "PISL stands as the leading warehouse contractor and distribution space nationwide, serving as a reliable contractor for clients nationwide. We are highly competent in offering the best and most cost-effective warehouse design and construction solutions for our clients. This holds true whether it's speculative developments or expansive distribution centres catering to e-commerce end-users, Consumer Packaged Goods (CPGs), and Third-Party Logistics (3PL) providers.",
     "mainFeatureImage": {
-      "id": 10,
-      "documentId": "zohe0i2vpwzb0qrcf0lylxxu",
-      "name": "amazon-del5-billaspur-hr-5.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "wh_bg_1787322680933",
-      "ext": ".webp",
+      "id": 87,
+      "documentId": "wp_media_87",
+      "name": "optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp",
+      "alternativeText": "Optimized 1787754972679 771 Amazon Del5 Billaspur Hr 5 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
       "mime": "image/webp",
-      "size": 124.11,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T14:31:20.933Z",
-      "updatedAt": "2026-08-26T13:40:58.020Z",
-      "publishedAt": "2026-08-21T14:31:20.934Z"
+      "url": "/images/projects/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png.webp"
     },
+    "showWhyPisl": true,
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "whyPislImage": null,
+    "features": [],
     "grids": [
       {
         "id": 25,
         "title": "Construction (Considerations)",
         "description": "When undertaking warehouse construction, numerous warehouse design and construction intricacies must be taken into account to achieve a successful development. Working with an experienced contractor who is actively involved in the design and early stages of a project ensures optimal results.",
         "vertical": false,
-        "minWidth": "400px",
+        "minWidth": "280px",
         "cardBg": null,
         "cardBorder": null,
         "iconBg": null,
@@ -79,37 +107,37 @@
             "id": 200,
             "title": "1. Floor Systems",
             "description": "Choosing the right warehouse floor system necessitates an understanding of concrete kinds, site dynamics, and how a space will be used. Concrete floors can be reinforced or unreinforced, freezer/cooler compatible, shrinkage compensating, and tailored to the user's floor loads and equipment route requirements.",
-            "iconName": null
+            "iconName": "FaLayerGroup"
           },
           {
             "id": 201,
             "title": "2. Exterior Wall Types",
             "description": "Selecting warehouse exterior walls considers factors like size and schedule. Large facilities often opt for on-site poured concrete panels, which are cost-effective and have versatile finishes. Precast panels, produced offsite, suit tight schedules and are ideal for installation before the floor slab.",
-            "iconName": null
+            "iconName": "FaBuilding"
           },
           {
             "id": 202,
             "title": "3. Building Structure",
             "description": "In planning a warehouse, factors like roof loads, wall cladding, and storage heights must be factored in. Engineered steel joists, rafters, and columns can span considerable distances and support substantial roof loads. For tall storage needs, rack-supported structures optimise space.",
-            "iconName": null
+            "iconName": "FaWarehouse"
           },
           {
             "id": 203,
             "title": "4. Bay Sizing",
             "description": "Bay sizing and rack design are critical elements in the warehouse building. The width and clear height of the structure are used to determine forklift travel pathways, aisle widths and racking layouts. A skilled warehouse contractor is critical to guaranteeing successful construction.",
-            "iconName": null
+            "iconName": "FaRulerCombined"
           },
           {
             "id": 204,
             "title": "5. Building Systems",
             "description": "Decisions on dock types, sizes, and specifications have significance throughout the design phase. The functional requirements dictate whether mechanical or hydraulic docks are used. Electrical service, HVAC, fire protection, and lighting are all factors to consider with strict adherence to code standards.",
-            "iconName": null
+            "iconName": "FaCogs"
           },
           {
             "id": 205,
             "title": "6. Site Design & Selection",
             "description": "Guidelines dictate parking ratios, dock size, and office space distribution. PISL's expertise guarantees efficient and functional space utilisation. Our site feasibility services empower clients to make informed decisions by providing cost information and aiding in schedule considerations before construction.",
-            "iconName": null
+            "iconName": "FaMapMarkedAlt"
           }
         ]
       },
@@ -128,19 +156,19 @@
             "id": 206,
             "title": "Design-Build Strategy",
             "description": "PISL's distinctive design-build strategy eliminates the risk of upfront costs by providing customers with a complimentary preliminary design.",
-            "iconName": null
+            "iconName": "FaDraftingCompass"
           },
           {
             "id": 207,
             "title": "Integrated Project Delivery",
             "description": "Our integrated project delivery strategy unifies design and construction quality, capital expenditure management, and schedule adherence under a single point of contact.",
-            "iconName": null
+            "iconName": "FaHardHat"
           },
           {
             "id": 208,
             "title": "Risk Minimisation",
             "description": "Our team of construction experts deeply understands each business, strategically minimising risk exposure and delivering optimal value.",
-            "iconName": null
+            "iconName": "FaShieldAlt"
           }
         ]
       }
@@ -163,7 +191,638 @@
       "organizationSchema": true,
       "tags": "Warehouse, Construction, Design Build, Industrial, Storage, Logistics",
       "noIndex": false,
-      "noFollow": false
+      "noFollow": false,
+      "metaTitle": "Warehouse Construction Company in India | Pislinfra",
+      "metaDescription": "Pislinfra's delivers design-build warehouse construction solutions across India, creating efficient, scalable and future-ready facilities for businesses."
+    }
+  },
+  {
+    "id": 408,
+    "documentId": "zx8v9bwbcluk3zmibaw3gdjc",
+    "createdAt": "2026-11-12T04:53:25+00:00",
+    "updatedAt": "2026-11-12T12:39:22+00:00",
+    "publishedAt": "2026-11-12T04:53:25+00:00",
+    "slug": "logistic",
+    "title": "Logistic Park Development",
+    "showHero": true,
+    "heroSubtitle": "Modern logistics & warehousing solutions",
+    "breadcrumb": "Solutions / Logistic",
+    "heroImage": {
+      "id": 86,
+      "documentId": "wp_media_86",
+      "name": "optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+      "alternativeText": "Optimized 1787754972742 595 All Cargo Logistics Park Farrukhnagar Hr 2 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp"
+    },
+    "primaryKeyword": "Logistics Park Development",
+    "metaTitle": "Logistics Park Development Company in India | Pislinfra",
+    "metaDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.",
+    "focusKeywords": "Logistics Park Development, Grade-A logistics parks, warehousing and logistics solutions, supply chain infrastructure India, Pislinfra",
+    "showIntro": true,
+    "introText": "",
+    "showMainFeature": true,
+    "mainFeatureTitle": "Introduction",
+    "mainFeatureText": "PISL stands as India's premier construction company, renowned for delivering exceptional services across diverse sectors. With a vast portfolio exceeding 8 million sq. ft., PISL embodies enthusiasm, hard work, and integrity. Committed to excellence, we've successfully crafted numerous projects, spanning millions of square metres, over our 13-year journey. Our unwavering ethical standards and strong track record make us a trusted industry leader in logistic park development.",
+    "mainFeatureImage": {
+      "id": 86,
+      "documentId": "wp_media_86",
+      "name": "optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+      "alternativeText": "Optimized 1787754972742 595 All Cargo Logistics Park Farrukhnagar Hr 2 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp"
+    },
+    "showWhyPisl": true,
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "whyPislImage": null,
+    "features": [],
+    "grids": [
+      {
+        "id": 31,
+        "title": "Services (Design, Procurement & Construction)",
+        "description": null,
+        "vertical": true,
+        "minWidth": "300px",
+        "cardBg": null,
+        "cardBorder": null,
+        "iconBg": null,
+        "iconColor": null,
+        "items": [
+          {
+            "id": 243,
+            "title": "Design",
+            "description": "PISL's design expertise transcends aesthetics, focusing on robust foundations that endure the test of time. Our dedicated architects envision and execute projects that redefine skylines, represent architectural excellence and enrich lives.",
+            "iconName": null
+          },
+          {
+            "id": 244,
+            "title": "Construction",
+            "description": "Pislinfra specialises in constructing industrial backbones with a keen eye on functionality, durability, and space optimisation. Our experienced team ensures meticulous planning and execution, delivering exceptional results. Whether it is large-scale warehouses or specialised facilities, our warehouse contractors contribute to streamlined operations and business growth.",
+            "iconName": null
+          },
+          {
+            "id": 245,
+            "title": "Procurement",
+            "description": "Through smart sourcing, efficient procedures, and high-quality products, PISL's procurement sector offers considerable value. We ensure timely and cost-effective procurement with our vast network and industry experience, facilitating the flawless execution of warehousing and industrial initiatives.",
+            "iconName": null
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "title": "What Makes Us Different (Our Capabilities)",
+        "description": null,
+        "vertical": false,
+        "minWidth": "340px",
+        "cardBg": null,
+        "cardBorder": null,
+        "iconBg": null,
+        "iconColor": null,
+        "items": [
+          {
+            "id": 246,
+            "title": "Cutting-Edge Industrial and Warehousing Spaces",
+            "description": "PISL sets itself apart by delivering top-notch Grade-A infrastructure tailored for our BTS (Built-To-Suit) clients. Our commitment to excellence permeates every aspect, guaranteeing efficiency and quality in both design and construction for every project.",
+            "iconName": null
+          },
+          {
+            "id": 247,
+            "title": "Tech-Driven Innovation",
+            "description": "PISL welcomes the future through the strategic integration of information technology. We use cutting-edge techniques to expedite procurement procedures and efficiently manage construction timelines. This technological integration allows us to deliver projects with more precision and agility.",
+            "iconName": null
+          },
+          {
+            "id": 248,
+            "title": "Precision in Execution",
+            "description": "At PISL, execution is at the heart of our services. We guarantee our clients a smooth and accurate execution across all of our solutions, ensuring that their investment is maximised and their vision is fulfilled.",
+            "iconName": null
+          },
+          {
+            "id": 249,
+            "title": "Strategic Financial Approach",
+            "description": "PISL is at the forefront of India's thriving warehousing industry, providing not just secure but also profitable financial opportunities. Our dedication to a balanced and prosperous financial perspective is in sync with the industry's rapid expansion, assuring a safe investment for our clients.",
+            "iconName": null
+          }
+        ]
+      }
+    ],
+    "seo": {
+      "id": 72,
+      "seoTitle": "Logistics Park Development Company in India | Pislinfra",
+      "seoDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.",
+      "seoKeywords": "Logistics Park Development, Grade-A logistics parks, warehousing and logistics solutions, supply chain infrastructure India, Pislinfra",
+      "canonicalUrl": "https://pislinfra.com/solutions/logistic",
+      "ogTitle": "Logistics Park Development Company in India | Pislinfra",
+      "ogDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.",
+      "ogType": "website",
+      "twitterTitle": "Logistics Park Development Company in India | Pislinfra",
+      "twitterDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": true,
+      "tags": "Logistics, Warehouse, Supply Chain, Industrial, Construction",
+      "noIndex": false,
+      "noFollow": false,
+      "metaTitle": "Logistics Park Development Company in India | Pislinfra",
+      "metaDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains."
+    }
+  },
+  {
+    "id": 407,
+    "documentId": "urtbz1p2g6um4tqzw0wviit5",
+    "createdAt": "2026-11-12T04:53:22+00:00",
+    "updatedAt": "2026-11-12T12:31:09+00:00",
+    "publishedAt": "2026-11-12T04:53:22+00:00",
+    "slug": "infrastructure",
+    "title": "Infrastructure Development",
+    "showHero": true,
+    "heroSubtitle": "Building the foundation for tomorrow's growth",
+    "breadcrumb": "Solutions / Infrastructure",
+    "heroImage": {
+      "id": 84,
+      "documentId": "wp_media_84",
+      "name": "optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp",
+      "alternativeText": "Optimized 1787754972790 157 Amazon Del5 Billaspur Hr 6 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp"
+    },
+    "primaryKeyword": "Infrastructure Development",
+    "metaTitle": "Infrastructure Development Company | Pislinfra",
+    "metaDescription": "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.",
+    "focusKeywords": "Infrastructure Development, infrastructure construction solutions, civil infrastructure, engineering expertise, complex developments India, Pislinfra",
+    "showIntro": true,
+    "introText": "Experience the zenith of construction prowess with Pislinfra's Infrastructure Development. Armed with a profound understanding of industry requirements, we are well-equipped to undertake major commercial building projects nationwide. We specialise in offering premium yet affordable factory construction services. From factory sheds to diverse manufacturing facilities, our services align with our clients' business goals.",
+    "showMainFeature": true,
+    "mainFeatureTitle": "Introduction to Infrastructure Development",
+    "mainFeatureText": "Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.\n\n### Services Offered by Pislinfra\n\nPISL is an infrastructure development firm that oversees all stages of construction.\n\nWe take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.",
+    "mainFeatureImage": {
+      "id": 84,
+      "documentId": "wp_media_84",
+      "name": "optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp",
+      "alternativeText": "Optimized 1787754972790 157 Amazon Del5 Billaspur Hr 6 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp"
+    },
+    "showWhyPisl": true,
+    "whyPislBadge": "Core Advantages",
+    "whyPislTitle": "What Differentiates Us?",
+    "whyPislDesc": "Our steadfast dedication to essential distinguishing qualities demonstrates our commitment to attaining operational excellence and maintaining the highest industry standards.",
+    "whyPislImage": {
+      "id": 85,
+      "documentId": "wp_media_85",
+      "name": "infra_why_bg_1787319117513.png",
+      "alternativeText": "Infra Why Bg 1787319117513 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/infra_why_bg_1787319117513-150x150.png",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/infra_why_bg_1787319117513-500x281.png",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/infra_why_bg_1787319117513-750x422.png",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/infra_why_bg_1787319117513-1200x675.png",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/infra_why_bg_1787319117513.png"
+    },
+    "features": [
+      {
+        "id": 239,
+        "title": "Timely Delivery",
+        "description": "At Pislinfra, punctual project completion is our hallmark. We understand the importance of timelines and are committed to delivering results efficiently without compromising on quality.",
+        "iconName": null
+      },
+      {
+        "id": 240,
+        "title": "Quality Construction",
+        "description": "Our unwavering dedication to delivering high-quality building services sets us apart. We uphold strict standards to ensure that every aspect of our work meets or exceeds industry expectations.",
+        "iconName": null
+      },
+      {
+        "id": 241,
+        "title": "Professional Management",
+        "description": "A team of highly qualified and experienced individuals forms the backbone of our operations. Their expertise ensures precision and excellence in every phase of the construction process.",
+        "iconName": null
+      },
+      {
+        "id": 242,
+        "title": "Safety Commitment",
+        "description": "Safety is non-negotiable at Pislinfra. We adhere strictly to safety requirements, prioritising the well-being of our team, clients, and the community in every project we undertake.",
+        "iconName": null
+      }
+    ],
+    "grids": [],
+    "seo": {
+      "id": 71,
+      "seoTitle": "Infrastructure Development Company | Pislinfra",
+      "seoDescription": "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.",
+      "seoKeywords": "Infrastructure Development, infrastructure construction solutions, civil infrastructure, engineering expertise, complex developments India, Pislinfra",
+      "canonicalUrl": "https://pislinfra.com/solutions/infrastructure",
+      "ogTitle": "Infrastructure Development Company | Pislinfra",
+      "ogDescription": "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.",
+      "ogType": "website",
+      "twitterTitle": "Infrastructure Development Company | Pislinfra",
+      "twitterDescription": "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": true,
+      "tags": "Infrastructure, Development, Civil Engineering, Construction",
+      "noIndex": false,
+      "noFollow": false,
+      "metaTitle": "Infrastructure Development Company | Pislinfra",
+      "metaDescription": "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments."
+    }
+  },
+  {
+    "id": 406,
+    "documentId": "vpww0ihdd2m19joe90aczxat",
+    "createdAt": "2026-11-12T04:53:19+00:00",
+    "updatedAt": "2026-11-12T12:26:53+00:00",
+    "publishedAt": "2026-11-12T04:53:19+00:00",
+    "slug": "industrial",
+    "title": "Industrial Development",
+    "showHero": true,
+    "heroSubtitle": "World-class industrial facilities and manufacturing plants",
+    "breadcrumb": "Solutions / Industrial",
+    "heroImage": {
+      "id": 82,
+      "documentId": "wp_media_82",
+      "name": "compressed_1787754805351.webp",
+      "alternativeText": "Compressed 1787754805351 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/compressed_1787754805351-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/compressed_1787754805351-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/compressed_1787754805351-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/compressed_1787754805351-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/compressed_1787754805351.webp"
+    },
+    "primaryKeyword": "Industrial Development",
+    "metaTitle": "Industrial Development Company In India | Pislinfra",
+    "metaDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.",
+    "focusKeywords": "Industrial Development, industrial construction, turnkey EPC contractor India, factory building construction, heavy steel PEB fabrication, manufacturing infrastructure, Pislinfra",
+    "showIntro": true,
+    "introText": "At PISL's Industrial Development Hub, you can experience the pinnacle of industrial innovation. PISL is a construction pioneer with over a decade of experience. We blend accuracy, cutting-edge technological integration, and a smart financial strategy into every project, resulting in industrial development spaces that not only meet but surpass expectations and establish new standards for excellence.",
+    "showMainFeature": true,
+    "mainFeatureTitle": "What is Industrial Development?",
+    "mainFeatureText": "Industrial development is the dynamic process of creating, expanding, and optimising infrastructure and facilities within the industrial sector. It involves the strategic integration of technology, efficient resource management, and innovative warehouse design to foster economic growth, job creation, and the establishment of industrial ecosystems, driving progress and sustainability.\n\n### Our Unique Methodologies & Approach\n\nRanked among India's premier industrial construction firms, our commitment extends beyond mere project completion—we consider it incomplete until we precisely fulfil our client's unique requirements.\n\nOur methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.",
+    "mainFeatureImage": {
+      "id": 82,
+      "documentId": "wp_media_82",
+      "name": "compressed_1787754805351.webp",
+      "alternativeText": "Compressed 1787754805351 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/compressed_1787754805351-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/compressed_1787754805351-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/compressed_1787754805351-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/compressed_1787754805351-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/compressed_1787754805351.webp"
+    },
+    "showWhyPisl": true,
+    "whyPislBadge": "Core Advantages",
+    "whyPislTitle": "Why Pislinfra?",
+    "whyPislDesc": "At Pislinfra, we thrive on harnessing the creativity of our focused team of engineers, designers, and workers. This collaborative synergy ensures the generation of fresh, inventive ideas, delivering unparalleled results for our clients across diverse industries.",
+    "whyPislImage": {
+      "id": 83,
+      "documentId": "wp_media_83",
+      "name": "compressed_1787754806543.webp",
+      "alternativeText": "Compressed 1787754806543 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/compressed_1787754806543-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/compressed_1787754806543-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/compressed_1787754806543-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/compressed_1787754806543-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/compressed_1787754806543.webp"
+    },
+    "features": [
+      {
+        "id": 234,
+        "title": "High-Quality Services",
+        "description": "PISL provides high-quality industrial building services and solutions at competitive rates. Our persistent commitment to quality and strict adherence to rigorous safety standards demonstrate our commitment to providing outstanding value.",
+        "iconName": null
+      },
+      {
+        "id": 235,
+        "title": "Expert Team",
+        "description": "Engineers, designers, and labourers at PISL have the knowledge and experience to manage projects of any scale and complexity. Their strengths include managing challenging tasks and guaranteeing effective outcomes.",
+        "iconName": null
+      },
+      {
+        "id": 236,
+        "title": "Trusted Partner",
+        "description": "As a dependable industrial construction company, PISL consistently earns the trust of clients, forming partnerships built on transparency, professionalism, and reliability.",
+        "iconName": null
+      },
+      {
+        "id": 237,
+        "title": "Client Satisfaction",
+        "description": "PISL prioritises attaining complete client satisfaction and assistance. Our concentrated efforts are focused on understanding and addressing our client's specific needs.",
+        "iconName": null
+      },
+      {
+        "id": 238,
+        "title": "Continuous Innovation",
+        "description": "PISL is committed to continuous improvement and innovation in our processes and functions. By constantly evolving, we ensure the delivery of effective and cutting-edge services.",
+        "iconName": null
+      }
+    ],
+    "grids": [],
+    "seo": {
+      "id": 70,
+      "seoTitle": "Industrial Development Company In India | Pislinfra",
+      "seoDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.",
+      "seoKeywords": "Industrial Development, industrial construction, turnkey EPC contractor India, factory building construction, heavy steel PEB fabrication, manufacturing infrastructure, Pislinfra",
+      "canonicalUrl": "https://pislinfra.com/solutions/industrial",
+      "ogTitle": "Industrial Development Company In India | Pislinfra",
+      "ogDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.",
+      "ogType": "website",
+      "twitterTitle": "Industrial Development Company In India | Pislinfra",
+      "twitterDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.",
+      "twitterCardType": "summary_large_image",
+      "schemaType": "WebPage",
+      "structuredData": null,
+      "breadcrumbSchema": true,
+      "organizationSchema": false,
+      "tags": "Industrial Development",
+      "noIndex": false,
+      "noFollow": false,
+      "metaTitle": "Industrial Development Company In India | Pislinfra",
+      "metaDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India."
+    }
+  },
+  {
+    "id": 410,
+    "documentId": "gkmtnmfgjy6ggqmjszggqnwa",
+    "createdAt": "2026-11-12T04:53:15+00:00",
+    "updatedAt": "2026-11-12T13:00:37+00:00",
+    "publishedAt": "2026-11-12T04:53:15+00:00",
+    "slug": "solutions",
+    "title": "Construction & Infrastructure Solutions",
+    "showHero": true,
+    "heroSubtitle": "Comprehensive infrastructure solutions tailored to your needs",
+    "breadcrumb": "Solutions",
+    "heroImage": {
+      "id": 884,
+      "documentId": "wp_media_884",
+      "name": "Service.png",
+      "alternativeText": "PISL Solutions Hero | Pragati Infra Solutions",
+      "caption": "",
+      "width": 2240,
+      "height": 700,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Service-150x150.png",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Service-500x156.png",
+          "width": 500,
+          "height": 156
+        },
+        "medium": {
+          "url": "/images/uploads/Service-750x234.png",
+          "width": 750,
+          "height": 234
+        },
+        "large": {
+          "url": "/images/uploads/Service-1200x375.png",
+          "width": 1200,
+          "height": 375
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/Service.png"
+    },
+    "primaryKeyword": "Construction & Infrastructure Solutions",
+    "metaTitle": "Construction & Infrastructure Solutions | Pislinfra",
+    "metaDescription": "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches.",
+    "focusKeywords": "Construction & Infrastructure Solutions, turnkey industrial EPC, warehouse construction, infrastructure solutions India",
+    "showIntro": true,
+    "introText": null,
+    "showMainFeature": true,
+    "mainFeatureTitle": "Our Solutions",
+    "mainFeatureText": null,
+    "mainFeatureImage": null,
+    "showWhyPisl": true,
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "whyPislImage": null,
+    "features": [],
+    "grids": [
+      {
+        "id": "solutions-overview",
+        "title": "Core Capabilities",
+        "items": [
+          {
+            "id": "design",
+            "title": "Design",
+            "description": "Our team of dedicated architects and designers collaboratively envision and execute projects that redefine skylines and set new standards in architectural excellence. From conceptualisation to realisation, our vertical design approach ensures every project stands as a testament to our commitment to shaping environments that not only stand tall but also enrich lives. Explore our portfolio and witness the transformative power of design that reaches for the sky.",
+            "image": "/images/awards/3.png",
+            "imageAlt": "Design"
+          },
+          {
+            "id": "construction",
+            "title": "Construction",
+            "description": "We specialise in the vertical of construction that builds the backbone of industries. Our expertise lies in creating robust and efficient spaces that cater to the unique needs of warehousing and industrial operations. With a keen focus on functionality, durability, and optimised space utilisation, we construct vertical structures that seamlessly integrate with the industrial landscape.",
+            "image": "/images/uploads/12.png",
+            "imageAlt": "Construction"
+          }
+        ]
+      }
+    ],
+    "seo": {
+      "seoTitle": "Construction & Infrastructure Solutions | Pislinfra",
+      "seoDescription": "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches.",
+      "seoKeywords": "Construction & Infrastructure Solutions, turnkey industrial EPC, warehouse construction, infrastructure solutions India",
+      "tags": "Construction & Infrastructure Solutions",
+      "canonicalUrl": "https://pislinfra.com/solutions",
+      "metaTitle": "Construction & Infrastructure Solutions | Pislinfra",
+      "metaDescription": "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches."
     }
   }
 ]

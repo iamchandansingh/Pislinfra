@@ -85,7 +85,7 @@ const awards = [
   },
 ];
 
-import { getStrapiMediaUrl } from '../../services/strapi';
+import { getWpMediaUrl } from '../../services/wordpress';
 
 const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
   const swiperRef = useRef(null);
@@ -94,7 +94,7 @@ const IndustryRecognition = ({ awards: strapiAwards, title, subtitle }) => {
 
   const activeAwards = strapiAwards && strapiAwards.length > 0 
     ? strapiAwards.map((a, i) => {
-        const customImg = getStrapiMediaUrl(a.image);
+        const customImg = getWpMediaUrl(a.image);
         return { 
           title: a.title || awards[i % awards.length]?.title, 
           subtitle: a.subtitle || awards[i % awards.length]?.subtitle, 

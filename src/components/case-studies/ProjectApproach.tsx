@@ -98,7 +98,13 @@ const ProjectApproachCTA: React.FC<ProjectApproachProps> = ({ data }) => {
             <p className="approach-cta-desc">{ctaSubtitle}</p>
             <button 
               type="button"
-              onClick={() => navigate(ctaBtnLink)} 
+              onClick={() => {
+                if (/^https?:\/\//i.test(ctaBtnLink)) {
+                  window.open(ctaBtnLink, '_blank', 'noopener,noreferrer');
+                } else {
+                  navigate(ctaBtnLink);
+                }
+              }} 
               className="approach-cta-btn"
             >
               {ctaBtnText} <FiArrowRight size={16} />

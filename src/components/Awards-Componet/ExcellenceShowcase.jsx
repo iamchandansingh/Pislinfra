@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, FreeMode, Mousewheel, Pagination, Autoplay } from 'swiper/modules';
 import clientsData from '../../data/clientsData';
+import { getImageUrl } from '../../utils/imageUrl';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
@@ -207,20 +208,34 @@ const ExcellenceShowcase = ({
   awards = [], 
   allAwards = [],
   milestones = [],
+  milestoneBannerImage = '/images/awards/years_2e23ba7341.avif',
   certificates = [],
   clientAppreciations = [], 
+  clientsList = null,
   selectedYear = 'All',
   onYearChange,
   years = ['All', 2026, 2025, 2024, 2023, 2022, 2021],
+  showcaseTitle,
+  showcaseSubtitle,
+  milestonesKicker,
+  milestonesTitle,
+  clientAppreciationsTitle,
   onViewAward,
   onViewCertificate
 }) => {
   const getClientLogo = (companyName) => {
-    // Quick custom mappings if needed
-    if (companyName.includes('AM/NS')) {
-       return clientsData.find(c => c.name.includes('AM/NS'))?.logo;
+    if (!companyName) return null;
+    const lower = companyName.toLowerCase();
+    const livePool = Array.isArray(clientsList) && clientsList.length > 0
+      ? clientsList.map(c => ({ name: c.name || '', logo: getImageUrl(c.logo || c.logoUrl) || null })).filter(c => c.name && c.logo)
+      : [];
+    const pool = [...livePool, ...clientsData];
+    if (lower.includes('am/ns')) {
+      return pool.find(c => c.name.toLowerCase().includes('am/ns'))?.logo || null;
     }
-    const client = clientsData.find(c => c.name.toLowerCase().includes(companyName.toLowerCase()));
+    const client = pool.find(c =>
+      c.logo && (c.name.toLowerCase().includes(lower) || lower.includes(c.name.toLowerCase()))
+    );
     return client ? client.logo : null;
   };
   const awardsSectionRef = useRef(null);
@@ -242,7 +257,7 @@ const ExcellenceShowcase = ({
         statsSuffix: '1st Mega Logistics Park',
         highlights: ['Incorporation of PISL', 'First logistics park execution in NCR', 'Core engineering leadership assembled'],
         icon: <BuildingIcon size={24} color="#FFFFFF" />,
-        image: '/images/about/mission.jpg',
+        image: '/images/Overview/11.png',
         color: '#1E2A5A'
       },
       {
@@ -253,7 +268,7 @@ const ExcellenceShowcase = ({
         statsSuffix: '500,000+ Sq. Ft. Delivered',
         highlights: ['Multi-acre warehousing parks', 'Grade-A industrial floorings', 'Long-term client partnerships initiated'],
         icon: <StarIcon size={24} color="#FFFFFF" />,
-        image: '/images/projects/completed/pragati-one.jpg',
+        image: '/images/projects/large_pragati_one_logistics_park_khijuri_hr_4_566bf03456.png',
         color: '#F37346'
       },
       {
@@ -264,7 +279,7 @@ const ExcellenceShowcase = ({
         statsSuffix: '100% On-Time Delivery',
         highlights: ['Zero-incident safety execution', 'Digital project monitoring deployed', 'Rapid supply chain adaptation'],
         icon: <UsersIcon size={24} color="#FFFFFF" />,
-        image: '/images/about/vision.jpg',
+        image: '/images/Overview/8.png',
         color: '#1E2A5A'
       },
       {
@@ -275,7 +290,7 @@ const ExcellenceShowcase = ({
         statsSuffix: '1.2 Million Sq. Ft. Executed',
         highlights: ['Laser-screed flooring standard', 'Advanced PEB design modeling', 'Pan-India vendor network established'],
         icon: <ShieldCheckIcon size={24} color="#FFFFFF" />,
-        image: '/images/projects/completed/pragati-two.jpg',
+        image: '/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png',
         color: '#F37346'
       },
       {
@@ -286,7 +301,7 @@ const ExcellenceShowcase = ({
         statsSuffix: 'Winner ET Real Estate North',
         highlights: ['ET Real Estate Winner Award', 'Industrial & warehousing benchmark', 'Major corporate client acquisitions'],
         icon: <TrophyIcon size={24} color="#FFFFFF" />,
-        image: '/images/about/excellence.jpg',
+        image: '/images/Overview/4.png',
         color: '#F37346'
       },
       {
@@ -297,7 +312,7 @@ const ExcellenceShowcase = ({
         statsSuffix: '2.5 Million Sq. Ft. Warehousing',
         highlights: ['Mundra industrial corridor expansion', 'Petrochemical & heavy infra EPC', 'LTI-free safety compliance'],
         icon: <TrendingUpIcon size={24} color="#FFFFFF" />,
-        image: '/images/about/history.jpg',
+        image: '/images/Overview/13.png',
         color: '#1E2A5A'
       },
       {
@@ -308,7 +323,7 @@ const ExcellenceShowcase = ({
         statsSuffix: 'USGBC LEED Gold Rated Warehouse',
         highlights: ['First non-captive LEED Gold warehouse', 'Adani Green PVC safety recognition', 'IAF Entrepreneur of the Year award'],
         icon: <BadgeCheckIcon size={24} color="#FFFFFF" />,
-        image: '/images/about/journey.jpg',
+        image: '/images/Overview/21.png',
         color: '#F37346'
       },
       {
@@ -319,7 +334,7 @@ const ExcellenceShowcase = ({
         statsSuffix: '3.5 Million LTI-Free Safe Hours',
         highlights: ['Adani KCL Safety Excellence Award', 'Zero reportable incidents', '3.5M continuous safe man-hours'],
         icon: <ShieldCheckIcon size={24} color="#FFFFFF" />,
-        image: '/images/projects/completed/pragati-three.jpg',
+        image: '/images/projects/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png',
         color: '#1E2A5A'
       },
       {
@@ -337,11 +352,12 @@ const ExcellenceShowcase = ({
 
     const sourceAwards = (allAwards && allAwards.length > 0) ? allAwards : awards;
 
-    // Collect all distinct years from baseline, strapi milestones, and sourceAwards (including new years like 2027+)
+    // Collect all distinct years from WordPress milestones and awards (only fall back to baselineYears if no WP milestones loaded)
     const strapiMilestoneYears = (milestones || []).map(m => String(m.year || '').trim()).filter(Boolean);
     const awardYears = [...new Set(sourceAwards.map(a => String(a.year || '').trim()).filter(Boolean))];
     const baselineYears = baseline.map(b => b.year);
-    const allDistinctYears = [...new Set([...baselineYears, ...strapiMilestoneYears, ...awardYears])].sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+    const seedYears = strapiMilestoneYears.length > 0 ? strapiMilestoneYears : baselineYears;
+    const allDistinctYears = [...new Set([...seedYears, ...awardYears])].sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
 
     return allDistinctYears.map((yearStr, idx) => {
       const yearAwards = sourceAwards.filter(a => String(a.year || '').trim() === yearStr);
@@ -351,7 +367,8 @@ const ExcellenceShowcase = ({
       
       // Prioritize Strapi Milestone cover image, title & description
       const topAward = yearAwards[0];
-      const image = (strapiMilestone && strapiMilestone.image) || 
+      const milestoneImg = strapiMilestone && strapiMilestone.image ? getImageUrl(strapiMilestone.image, '') : '';
+      const image = milestoneImg || 
                     (topAward && (topAward.image || topAward.clientImage)) || 
                     (matchedBase && matchedBase.image) || 
                     '/images/about/sustainable-infra-gold.jpg';
@@ -408,20 +425,20 @@ const ExcellenceShowcase = ({
   }, [dynamicTimelineMilestones]);
 
   const defaultAwards = [
-    { id: 1, name: 'Best Infrastructure Company', year: 2025, category: 'Excellence', image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=300&fit=crop', description: 'Recognized for outstanding contribution to infrastructure development and project execution.', certificate: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', gallery: [] },
-    { id: 2, name: 'Innovation in Construction', year: 2024, category: 'Innovation', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=300&fit=crop', description: 'Pioneering innovative construction methodologies.', certificate: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', gallery: [] },
-    { id: 3, name: 'Safety Excellence Award', year: 2024, category: 'Safety', image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop', description: 'Zero-incident safety record across all project sites.', certificate: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', gallery: [] },
-    { id: 4, name: 'Quality Management Award', year: 2023, category: 'Quality', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop', description: 'ISO-certified quality management systems.', certificate: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', gallery: [] },
-    { id: 5, name: 'Green Building Leadership', year: 2023, category: 'Sustainability', image: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=400&h=300&fit=crop', description: 'Leadership in sustainable infrastructure.', certificate: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', gallery: [] },
-    { id: 6, name: 'Project Management Excellence', year: 2022, category: 'Management', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=300&fit=crop', description: 'Excellence in large-scale project management.', certificate: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', gallery: [] },
+    { id: 1, name: 'Best Infrastructure Company', year: 2025, category: 'Excellence', image: '/images/hero/Awards-Certification.png', description: 'Recognized for outstanding contribution to infrastructure development and project execution.', certificate: '/images/awards/certificate.jpg', gallery: [] },
+    { id: 2, name: 'Innovation in Construction', year: 2024, category: 'Innovation', image: '/images/hero/Awards-Certification.png', description: 'Pioneering innovative construction methodologies.', certificate: '/images/awards/certificate.jpg', gallery: [] },
+    { id: 3, name: 'Safety Excellence Award', year: 2024, category: 'Safety', image: '/images/hero/Awards-Certification.png', description: 'Zero-incident safety record across all project sites.', certificate: '/images/awards/certificate.jpg', gallery: [] },
+    { id: 4, name: 'Quality Management Award', year: 2023, category: 'Quality', image: '/images/hero/Awards-Certification.png', description: 'ISO-certified quality management systems.', certificate: '/images/awards/certificate.jpg', gallery: [] },
+    { id: 5, name: 'Green Building Leadership', year: 2023, category: 'Sustainability', image: '/images/hero/Awards-Certification.png', description: 'Leadership in sustainable infrastructure.', certificate: '/images/awards/certificate.jpg', gallery: [] },
+    { id: 6, name: 'Project Management Excellence', year: 2022, category: 'Management', image: '/images/hero/Awards-Certification.png', description: 'Excellence in large-scale project management.', certificate: '/images/awards/certificate.jpg', gallery: [] },
   ];
 
   const defaultCertificates = [
-    { id: 1, name: 'ISO 9001:2015', issuer: 'Bureau of Indian Standards', issueDate: '2025', expiryDate: '2028', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', description: 'Quality Management Systems certification for infrastructure development.', supportingFiles: [] },
-    { id: 2, name: 'ISO 14001:2015', issuer: 'International Certification Body', issueDate: '2024', expiryDate: '2027', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', description: 'Environmental Management Systems certification.', supportingFiles: [] },
-    { id: 3, name: 'OHSAS 18001', issuer: 'Safety Certification Authority', issueDate: '2024', expiryDate: '2027', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', description: 'Occupational Health and Safety Management.', supportingFiles: [] },
-    { id: 4, name: 'LEED Platinum', issuer: 'Green Building Council', issueDate: '2023', expiryDate: '2026', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', description: 'Leadership in Energy and Environmental Design.', supportingFiles: [] },
-    { id: 5, name: 'ISO 45001:2018', issuer: 'International Safety Org', issueDate: '2023', expiryDate: '2026', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', description: 'Occupational health and safety management.', supportingFiles: [] },
+    { id: 1, name: 'ISO 9001:2015', issuer: 'Bureau of Indian Standards', issueDate: '2025', expiryDate: '2028', image: '/images/awards/certificate.jpg', description: 'Quality Management Systems certification for infrastructure development.', supportingFiles: [] },
+    { id: 2, name: 'ISO 14001:2015', issuer: 'International Certification Body', issueDate: '2024', expiryDate: '2027', image: '/images/awards/certificate.jpg', description: 'Environmental Management Systems certification.', supportingFiles: [] },
+    { id: 3, name: 'OHSAS 18001', issuer: 'Safety Certification Authority', issueDate: '2024', expiryDate: '2027', image: '/images/awards/certificate.jpg', description: 'Occupational Health and Safety Management.', supportingFiles: [] },
+    { id: 4, name: 'LEED Platinum', issuer: 'Green Building Council', issueDate: '2023', expiryDate: '2026', image: '/images/awards/certificate.jpg', description: 'Leadership in Energy and Environmental Design.', supportingFiles: [] },
+    { id: 5, name: 'ISO 45001:2018', issuer: 'International Safety Org', issueDate: '2023', expiryDate: '2026', image: '/images/awards/certificate.jpg', description: 'Occupational health and safety management.', supportingFiles: [] },
   ];
 
   // Bottom grid items data (Recognitions & Certifications)
@@ -597,8 +614,13 @@ const ExcellenceShowcase = ({
                 OUR PRESTIGIOUS AWARDS
               </span>
               <h2 className="legacy-heading">
-                A Legacy of Excellence
+                {showcaseTitle || 'A Legacy of Excellence'}
               </h2>
+              {showcaseSubtitle && (
+                <p style={{ margin: '6px 0 0 0', fontSize: '14px', color: '#64748B', fontFamily: 'Inter, sans-serif' }}>
+                  {showcaseSubtitle}
+                </p>
+              )}
             </div>
 
             {/* Right Side: Year Filter Pills (All, 2026, 2025, 2024 ... 2018) */}
@@ -722,10 +744,10 @@ const ExcellenceShowcase = ({
         <section ref={certificatesSectionRef} className="journey-timeline-section">
           <div className="journey-header">
             <span className="journey-eyebrow">
-              OUR JOURNEY OF EXCELLENCE
+              {milestonesKicker || 'OUR JOURNEY OF EXCELLENCE'}
             </span>
             <h2 className="journey-heading">
-              Milestones of Growth, Safety & Innovation
+              {milestonesTitle || 'Milestones of Growth, Safety & Innovation'}
             </h2>
           </div>
 
@@ -819,17 +841,22 @@ const ExcellenceShowcase = ({
                             overflow: 'hidden', 
                             position: 'relative', 
                             marginBottom: '14px',
-                            backgroundImage: "url('https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/years_2e23ba7341.avif')",
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
                             border: '1.5px solid rgba(243, 115, 70, 0.35)',
                             boxShadow: '0 6px 18px rgba(0, 0, 0, 0.12)'
                           }}>
+                            <img
+                              src={milestoneBannerImage || '/images/awards/years_2e23ba7341.avif'}
+                              alt={`PISL Excellence Milestone Year ${item.year}`}
+                              loading="lazy"
+                              decoding="async"
+                              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
+                            />
                             {/* Crisp Dark Gradient Overlay for Maximum Contrast & Zero Blur */}
                             <div style={{
-                              position: 'absolute',
-                              inset: 0,
+                              position: 'relative',
+                              zIndex: 1,
+                              height: '100%',
+                              width: '100%',
                               background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.88) 100%)',
                               display: 'flex',
                               flexDirection: 'column',
@@ -948,8 +975,15 @@ const ExcellenceShowcase = ({
                     {/* Milestone Card */}
                     <div className="mobile-milestone-card">
                       {/* Top Header Banner */}
-                      <div className="mobile-milestone-banner">
-                        <div className="mobile-milestone-banner-overlay">
+                      <div className="mobile-milestone-banner" style={{ position: 'relative', overflow: 'hidden' }}>
+                        <img
+                          src={milestoneBannerImage || '/images/awards/years_2e23ba7341.avif'}
+                          alt={`PISL Excellence Milestone Year ${item.year}`}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
+                        />
+                        <div className="mobile-milestone-banner-overlay" style={{ position: 'relative', zIndex: 1 }}>
                           <div className="mobile-milestone-top-row">
                             <span className="mobile-milestone-year-badge">
                               {item.year}
@@ -996,7 +1030,7 @@ const ExcellenceShowcase = ({
               CLIENT TESTIMONIALS & RECOGNITION
             </span>
             <h2 className="client-testimonials-heading">
-              Client Appreciations & Safety Awards
+              {clientAppreciationsTitle || 'Client Appreciations & Safety Awards'}
             </h2>
           </div>
           
@@ -1463,7 +1497,7 @@ const ExcellenceShowcase = ({
           width: 100%;
           position: relative;
           overflow: hidden;
-          background-image: url('https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/years_2e23ba7341.avif');
+          background-image: url('/images/awards/years_2e23ba7341.avif');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;

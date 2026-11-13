@@ -1,17 +1,57 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { fetchWpData } from '../../services/wordpress';
+import { getImageUrl } from '../../utils/imageUrl';
 import clientsData from '../../data/clientsData';
 
-const TrustedClients = () => {
+const TrustedClients = ({ clients: propClients = null, isPreview = false }: { clients?: any[] | null; isPreview?: boolean }) => {
   const seriesOrder = [
     'Adani', 'AM/NS India (ArcelorMittal Nippon Steel India)', 'Reliance Industries Limited',
     'Flipkart', 'Amazon', 'DHL', 'Prologis', 'Morgan Stanley', 'Lodha', 'PMG',
     'Bosch', 'Blue Dart', 'Myntra', 'Cadbury', 'Daikin', 'Allcargo',
   ];
 
-  const filteredClients = seriesOrder
-    .map(name => clientsData.find(c => c.name === name))
+  const [wpClients, setWpClients] = useState<any[] | null>(
+    Array.isArray(propClients) ? propClients : null
+  );
+
+  useEffect(() => {
+    if (Array.isArray(propClients)) {
+      setWpClients(propClients);
+      return;
+    }
+    let mounted = true;
+    fetchWpData('clients?pagination[pageSize]=100&sort=order:asc&populate=*', { forceFresh: isPreview })
+      .then((res) => {
+        if (mounted && Array.isArray(res)) {
+          setWpClients(res);
+        }
+      })
+      .catch(() => {});
+    if (filteredClients.length === 0) return null;
+
+  return () => { mounted = false; };
+  }, [propClients, isPreview]);
+
+  const sourceClients = React.useMemo(() => {
+    if (Array.isArray(wpClients)) {
+      return wpClients
+        .filter((c) => c && c.isActive !== false && c.name)
+        .map((c) => ({
+          id: c.id || c.name,
+          name: c.name,
+          logo: getImageUrl(c.logo) || getImageUrl(c.logoUrl),
+        }));
+    }
+    return isPreview ? [] : clientsData;
+  }, [wpClients, isPreview]);
+
+  const ordered = seriesOrder
+    .map(name => sourceClients.find(c => c.name === name && c.logo))
     .filter(Boolean);
+  const filteredClients = ordered.length > 0
+    ? ordered
+    : sourceClients.filter(c => Boolean(c && c.logo));
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -19,24 +59,29 @@ const TrustedClients = () => {
   const visibleLogos = 6;
 
   useEffect(() => {
-    if (!isPaused) {
+    if (!isPaused && filteredClients.length > 0) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prev) => prev + 1 >= filteredClients.length ? 0 : prev + 1);
       }, 3000);
     }
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+    if (filteredClients.length === 0) return null;
+
+  return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [isPaused, filteredClients.length]);
 
   const handlePrev = () => setCurrentIndex((prev) => prev - 1 < 0 ? filteredClients.length - 1 : prev - 1);
   const handleNext = () => setCurrentIndex((prev) => prev + 1 >= filteredClients.length ? 0 : prev + 1);
 
   const getVisibleClients = () => {
+    if (filteredClients.length === 0) return [];
     const clients = [];
-    for (let i = 0; i < visibleLogos; i++) {
+    for (let i = 0; i < Math.min(visibleLogos, filteredClients.length); i++) {
       clients.push(filteredClients[(currentIndex + i) % filteredClients.length]);
     }
     return clients;
   };
+
+  if (filteredClients.length === 0) return null;
 
   return (
     <div style={{ width: '100%', padding: '48px 0', backgroundColor: '#FFFFFF' }}>

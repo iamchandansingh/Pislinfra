@@ -89,12 +89,12 @@ export default defineConfig({
       ignored: ['**/src/data/**', '**/public/data/**', '**/dist/**', '**/public/images/**', '**/src/utils/imageUrl.js'],
     },
     proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:1337',
+      '/wp-json': {
+        target: 'http://127.0.0.1:8080',
         changeOrigin: true,
       },
-      '/uploads': {
-        target: 'http://127.0.0.1:1337',
+      '/wp-content': {
+        target: 'http://127.0.0.1:8080',
         changeOrigin: true,
       },
     },

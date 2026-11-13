@@ -2,6 +2,7 @@ import React, { useEffect, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import WpAdminBar from '../common/WpAdminBar';
 
 const ContentLoader = () => (
   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', width: '100%' }}>
@@ -53,6 +54,9 @@ const Layout = () => {
       
       {/* Footer - FULL WIDTH */}
       <Footer />
+
+      {/* Conditional Editor Bar (visible only to authenticated WP editors or preview sessions) */}
+      <WpAdminBar />
     </div>
   );
 };

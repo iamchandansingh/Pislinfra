@@ -51,12 +51,15 @@ const LatestArticlesSection = ({ articles: inputArticles }) => {
             onClick={() => navigate(`/blog/${article.slug}`)}
           >
             {/* Image */}
-            <div
-              className="article-image"
-              style={{
-                backgroundImage: `url(${article.image})`,
-              }}
-            />
+            <div className="article-image" style={{ position: 'relative', overflow: 'hidden' }}>
+              <img
+                src={article.image || '/images/hero/Blog.png'}
+                alt={article.title || 'Pragati Infra Solutions Blog Article'}
+                loading="lazy"
+                decoding="async"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+              />
+            </div>
 
             {/* Content */}
             <div className="article-content">

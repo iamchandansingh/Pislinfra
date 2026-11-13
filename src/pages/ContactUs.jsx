@@ -5,38 +5,49 @@ import ContactCardsSection from '../components/Contact-us/ContactCardsSection';
 import ContactInquirySection from '../components/Contact-us/ContactInquirySection';
 import ContactMapSection from '../components/Contact-us/ContactMapSection';
 import Preloader from '../components/common/Preloader';
-import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../services/wordpress';
 import { getImageUrl } from '../utils/imageUrl';
 
 const ContactUs = () => {
-  const [pageData, setPageData] = useState(() => getLocalDataSync('contact-page'));
-  const [loading, setLoading] = useState(false);
+  const isPreview = Boolean(getPreviewContext());
+  const [pageData, setPageData] = useState(() =>
+    isPreview ? null : (getLocalDataSync('contact-page') || getLocalDataSync('contact-page?populate=*'))
+  );
+  const [loading, setLoading] = useState(isPreview);
 
   useEffect(() => {
+    if (isPreview) return;
     const handleUpdate = () => {
-      const fresh = getLocalDataSync('contact-page');
+      const fresh = getLocalDataSync('contact-page') || getLocalDataSync('contact-page?populate=*');
       if (fresh) setPageData(fresh);
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   useEffect(() => {
     let isMounted = true;
     const getData = async () => {
       try {
-        const data = await fetchStrapiData('contact-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage');
+        const data = await fetchWpData(
+          'contact-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage',
+          { forceFresh: isPreview }
+        );
         if (data && isMounted) setPageData(data);
-      } catch (e) {}
+      } catch (e) {
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     };
     getData();
     return () => { isMounted = false; };
-  }, []);
+  }, [isPreview]);
 
   if (loading && !pageData) return <Preloader />;
 
   const heroTitle = pageData?.heroTitle || 'Get in Touch';
   const heroSubtitle = pageData?.heroSubtitle || 'Secure enterprise channel for infrastructure collaboration.';
+  const heroBreadcrumb = pageData?.heroBreadcrumb || 'Contact';
   const heroBg = pageData?.heroImage ? getImageUrl(pageData.heroImage, '/images/hero/Contact-Us.png') : '/images/hero/Contact-Us.png';
 
   const fallbackTitle = "Contact Pislinfra | Enquiries & Business Support";
@@ -53,6 +64,15 @@ const ContactUs = () => {
 
   const seoData = {
     contentType: 'page',
+    slug: 'contact-us',
+    canonicalUrl: 'https://pislinfra.com/contact-us',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'ContactPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    noIndex: false,
+    noFollow: false,
     ...(pageData?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
@@ -60,22 +80,15 @@ const ContactUs = () => {
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
     seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords,
-    slug: 'contact-us',
-    canonicalUrl: pageData?.seo?.canonicalUrl || 'https://pislinfra.com/contact-us',
     ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
     ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
-    ogImage: pageData?.seo?.ogImage ? getImageUrl(pageData.seo.ogImage, '/images/hero/Contact-Us.png') : '/images/hero/Contact-Us.png',
-    ogType: pageData?.seo?.ogType || 'website',
+    ogImage: getImageUrl(pageData?.seo?.ogImage || pageData?.heroImage, '/images/hero/Contact-Us.png'),
     twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: pageData?.seo?.twitterImage ? getImageUrl(pageData.seo.twitterImage, '/images/hero/Contact-Us.png') : '/images/hero/Contact-Us.png',
-    twitterCardType: pageData?.seo?.twitterCardType || 'summary_large_image',
-    schemaType: pageData?.seo?.schemaType || 'ContactPage',
-    breadcrumbSchema: pageData?.seo?.breadcrumbSchema !== undefined ? pageData.seo.breadcrumbSchema : true,
-    organizationSchema: pageData?.seo?.organizationSchema !== undefined ? pageData.seo.organizationSchema : true,
-    tags: pageData?.seo?.tags ? (typeof pageData.seo.tags === 'string' ? pageData.seo.tags.split(',').map(t => t.trim()) : pageData.seo.tags) : ['Contact', 'Inquiry', 'Quote', 'Industrial', 'Construction'],
-    noIndex: pageData?.seo?.noIndex || false,
-    noFollow: pageData?.seo?.noFollow || false,
+    twitterImage: getImageUrl(pageData?.seo?.twitterImage || pageData?.heroImage, '/images/hero/Contact-Us.png'),
+    tags: pageData?.seo?.tags
+      ? (typeof pageData.seo.tags === 'string' ? pageData.seo.tags.split(',').map(t => t.trim()) : pageData.seo.tags)
+      : ['Contact', 'Inquiry', 'Quote', 'Industrial', 'Construction'],
     structuredData: pageData?.seo?.structuredData
   };
 
@@ -84,17 +97,19 @@ const ContactUs = () => {
       
       <BlogSEO blog={seoData} />
 
-      <PageHero
-        title={heroTitle}
-        subtitle={heroSubtitle}
-        breadcrumb="Contact"
-        bgImage={heroBg}
-      />
+      {pageData?.showHero !== false && (
+        <PageHero
+          title={heroTitle}
+          subtitle={heroSubtitle}
+          breadcrumb={heroBreadcrumb}
+          bgImage={heroBg}
+        />
+      )}
 
       <div className="contact-sections" style={{ display: 'flex', flexDirection: 'column', gap: '60px', paddingBottom: '60px', paddingTop: '40px' }}>
-        <ContactCardsSection pageData={pageData} />
-        <ContactInquirySection pageData={pageData} />
-        <ContactMapSection />
+        {pageData?.showContactCards !== false && <ContactCardsSection pageData={pageData} />}
+        {pageData?.showInquiry !== false && <ContactInquirySection pageData={pageData} />}
+        {pageData?.showMap !== false && <ContactMapSection />}
       </div>
 
       <style>{`

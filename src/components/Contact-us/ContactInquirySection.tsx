@@ -17,6 +17,7 @@ interface ContactInquirySectionProps {
     phone?: string;
     email?: string;
     address?: string;
+    linkedinUrl?: string;
   };
 }
 
@@ -312,7 +313,7 @@ const ContactInquirySection: React.FC<ContactInquirySectionProps> = ({ pageData 
               <div className="sidebar-divider-section">
                 <h4 className="sidebar-section-title">Follow Us</h4>
                 <a
-                  href="https://linkedin.com/company/pislinfra"
+                  href={pageData?.linkedinUrl || "https://linkedin.com/company/pislinfra"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="sidebar-social-link"

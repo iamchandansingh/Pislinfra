@@ -3,43 +3,46 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa';
 import { ChevronRight, ArrowRight } from 'lucide-react';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchWpData } from '../../services/wordpress';
 import { getImageUrl } from '../../utils/imageUrl';
 import clientsData from '../../data/clientsData';
 import awardsAndCertifications from '../../data/Awards-&-Certifications';
 import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
+import pislFallbackLogo from '../../assets/images/CLIENTS/pisl.png';
 
-const getLogo = (companyName) => {
-  if (!companyName) return '/images/clients/default-logo.png';
+const getLogo = (companyName, clientsSource = clientsData) => {
+  if (!companyName) return pislFallbackLogo;
   const name = companyName.toLowerCase();
+  const pool = Array.isArray(clientsSource) && clientsSource.length > 0 ? clientsSource : clientsData;
+  const resolveClientLogo = (client) => (client?.logo ? getImageUrl(client.logo, pislFallbackLogo) : pislFallbackLogo);
   
   if (name.includes('adani')) {
-    const adani = clientsData.find(c => c.name.toLowerCase().includes('adani'));
-    return adani?.logo || '/images/clients/Adani.png';
+    const adani = pool.find(c => (c.name || '').toLowerCase().includes('adani'));
+    return resolveClientLogo(adani);
   }
   if (name.includes('reliance') || name.includes('ril')) {
-    const ril = clientsData.find(c => c.name.toLowerCase().includes('reliance'));
-    return ril?.logo || '/images/clients/RIL.png';
+    const ril = pool.find(c => (c.name || '').toLowerCase().includes('reliance'));
+    return resolveClientLogo(ril);
   }
   if (name.includes('flipkart')) {
-    const flipkart = clientsData.find(c => c.name.toLowerCase().includes('flipkart'));
-    return flipkart?.logo || '/images/clients/Flipkart.png';
+    const flipkart = pool.find(c => (c.name || '').toLowerCase().includes('flipkart'));
+    return resolveClientLogo(flipkart);
   }
   if (name.includes('prologis') || name.includes('prr')) {
-    const prr = clientsData.find(c => c.name.toLowerCase().includes('prologis') || c.name.toLowerCase().includes('prr'));
-    return prr?.logo || '/images/clients/Prologis.png';
+    const prr = pool.find(c => (c.name || '').toLowerCase().includes('prologis') || (c.name || '').toLowerCase().includes('prr'));
+    return resolveClientLogo(prr);
   }
   if (name.includes('am/ns') || name.includes('amns') || name.includes('arcelor')) {
-    const amns = clientsData.find(c => c.name.toLowerCase().includes('am/ns') || c.name.toLowerCase().includes('amns'));
-    return amns?.logo || '/images/clients/AMNS.png';
+    const amns = pool.find(c => (c.name || '').toLowerCase().includes('am/ns') || (c.name || '').toLowerCase().includes('amns'));
+    return resolveClientLogo(amns);
   }
   if (name.includes('gar')) {
-    const gar = clientsData.find(c => c.name.toLowerCase().includes('gar'));
-    return gar?.logo || '/images/clients/GAR.png';
+    const gar = pool.find(c => (c.name || '').toLowerCase().includes('gar'));
+    return resolveClientLogo(gar);
   }
   
-  const client = clientsData.find(c => c.name && c.name.toLowerCase() === name);
-  return client?.logo || '/images/clients/default-logo.png';
+  const client = pool.find(c => c.name && c.name.toLowerCase() === name);
+  return resolveClientLogo(client);
 };
 
 const defaultAwards = sortAwardsByFeaturedAndDate(awardsAndCertifications.map((item, idx) => ({
@@ -77,15 +80,15 @@ const ImageSlider = ({ images, isHovered }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       {images.map((img, i) => (
-        <img key={i} src={img} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: current === i ? 1 : 0, transition: 'opacity 0.8s ease' }} />
+        <img key={i} src={img} alt={`Pragati Infra Solutions Award & Recognition - Slide ${i + 1}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: current === i ? 1 : 0, transition: 'opacity 0.8s ease' }} />
       ))}
     </div>
   );
 };
 
-const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
+const Awards = ({ awardsData: propAwardsData, clientsList, data: strapiHomeData, isPreview = false }) => {
   const navigate = useNavigate();
-  const [awards, setAwards] = useState(defaultAwards);
+  const [awards, setAwards] = useState(isPreview || Array.isArray(propAwardsData) ? [] : defaultAwards);
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -97,6 +100,7 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
   useEffect(() => {
     async function loadData() {
       try {
+        const logoPool = Array.isArray(clientsList) && clientsList.length > 0 ? clientsList : clientsData;
         const processAwardItem = (item) => {
           const allImgs = [];
           const addImg = (img) => {
@@ -137,32 +141,27 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
             isFeatured: Boolean(item.featured || item.isFeatured),
             createdAt: item.createdAt || null,
             images: imageArray,
-            logo: item.logo ? getImageUrl(item.logo, getLogo(item.company)) : getLogo(item.company)
+            logo: item.logo ? getImageUrl(item.logo, getLogo(item.company, logoPool)) : getLogo(item.company, logoPool)
           };
         };
 
-        if (propAwardsData && Array.isArray(propAwardsData) && propAwardsData.length > 0) {
+        if (Array.isArray(propAwardsData)) {
           const mapped = sortAwardsByFeaturedAndDate(propAwardsData.map(processAwardItem));
-          if (mapped.length > 0) {
-            setAwards(mapped);
-            return;
-          }
+          setAwards(mapped);
+          return;
         }
 
-        const data = await fetchStrapiData('awards?populate=*&sort=createdAt:desc');
+        const data = await fetchWpData('awards?populate=*&sort=createdAt:desc', { forceFresh: isPreview });
         const rawList = Array.isArray(data) ? data : (data?.data || null);
-        if (rawList && rawList.length > 0) {
-          const mapped = rawList.map(processAwardItem);
-          const existingTitles = new Set(mapped.map(a => (a.title || '').trim().toLowerCase()));
-          const missing = defaultAwards.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
-          setAwards(sortAwardsByFeaturedAndDate([...mapped, ...missing]));
+        if (Array.isArray(rawList)) {
+          setAwards(sortAwardsByFeaturedAndDate(rawList.map(processAwardItem)));
         }
       } catch (err) {
-        console.error("Awards Strapi fetch error:", err);
+        console.error("Awards WP fetch error:", err);
       }
     }
     loadData();
-  }, [propAwardsData]);
+  }, [propAwardsData, clientsList, isPreview]);
 
   const gridAwards = awards.slice(0, 6);
 
@@ -223,14 +222,14 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
                 {/* Collapsed */}
                 <div style={{ position: 'absolute', inset: '20px 0', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', opacity: isActive ? 0 : 1, pointerEvents: 'none', transition: 'opacity 0.3s ease', padding: '0 4px' }}>
                   <span className="v-title" style={{ fontSize: 11, fontWeight: 800, color: '#fff', letterSpacing: '1.2px', textTransform: 'uppercase', whiteSpace: 'nowrap', writingMode: 'vertical-rl', transform: 'rotate(180deg)', marginBottom: 12, maxHeight: '65%', overflow: 'hidden', textOverflow: 'ellipsis' }}>{award.title}</span>
-                  <img src={award.logo} alt="" style={{ width: 32, height: 32, objectFit: 'contain', background: '#fff', borderRadius: 8, padding: 3, boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }} />
+                  <img src={award.logo} alt={`${award.company || 'Client'} Recognition Logo`} style={{ width: 32, height: 32, objectFit: 'contain', background: '#fff', borderRadius: 8, padding: 3, boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }} />
                 </div>
 
                 {/* Expanded */}
                 <div style={{ position: 'absolute', inset: 0, padding: '28px 32px', display: 'flex', alignItems: 'center', opacity: isActive ? 1 : 0, pointerEvents: isActive ? 'auto' : 'none', transition: 'opacity 0.4s ease 0.2s' }}>
                   <div style={{ maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 10 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <img src={award.logo} alt="" style={{ width: 40, height: 40, objectFit: 'contain', background: '#fff', borderRadius: 8, padding: 3, boxShadow: '0 4px 10px rgba(0,0,0,0.12)' }} />
+                      <img src={award.logo} alt={`${award.company || 'Client'} Recognition Logo`} style={{ width: 40, height: 40, objectFit: 'contain', background: '#fff', borderRadius: 8, padding: 3, boxShadow: '0 4px 10px rgba(0,0,0,0.12)' }} />
                       <div>
                         <p style={{ margin: 0, fontSize: 14, fontWeight: 900, color: '#fff', letterSpacing: '-0.2px' }}>{award.company}</p>
                         <span style={{ background: ORANGE, color: '#fff', padding: '2px 8px', borderRadius: 100, fontSize: 8.5, fontWeight: 800, textTransform: 'uppercase', display: 'inline-block', marginTop: 2 }}>{award.category} {award.year ? `· ${award.year}` : ''}</span>
@@ -317,7 +316,7 @@ const Awards = ({ awardsData: propAwardsData, data: strapiHomeData }) => {
                 </div>
                 <div className="awards-mobile-card-content" style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                    <img src={award.logo} alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '4px', background: '#fff', border: '1px solid #e2e8f0', padding: '2px', flexShrink: 0 }} />
+                    <img src={award.logo} alt={`${award.company || 'Client'} Recognition Logo`} style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '4px', background: '#fff', border: '1px solid #e2e8f0', padding: '2px', flexShrink: 0 }} />
                     <span style={{ fontSize: '11px', fontWeight: '800', color: NAVY, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{award.company}</span>
                   </div>
                   <h4 style={{ 

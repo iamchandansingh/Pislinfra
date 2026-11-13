@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData, getLocalDataSync } from '../services/strapi'
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../services/wordpress'
 import { getImageUrl } from '../utils/imageUrl'
 import PageHero from '../components/hero/PageHero'
 import BlogSEO from '../components/Blog/BlogSEO'
@@ -7,6 +7,7 @@ import CareerBenefitsSection from '../components/Careers/CareerBenefitsSection'
 import CurrentOpeningsSection from '../components/Careers/CurrentOpeningsSection'
 import HiringProcessSection from '../components/Careers/HiringProcessSection'
 import CareerApplicationSection from '../components/Careers/CareerApplicationSection'
+import Preloader from '../components/common/Preloader'
 
 import jobOpeningsData from '../data/careersJobsData';
 
@@ -28,90 +29,79 @@ const defaultCareerData = {
 };
 
 const Careers = () => {
+  const previewCtx = getPreviewContext();
+  const isPagePreview = Boolean(previewCtx && previewCtx.type === 'career-page');
+  const isJobPreview = Boolean(previewCtx && previewCtx.type === 'job-openings');
+  const isAnyPreview = Boolean(previewCtx);
+
   const [selectedPosition, setSelectedPosition] = useState('');
   const [data, setData] = useState(() => {
+    if (isPagePreview) return null;
     const raw = getLocalDataSync('career-page') || getLocalDataSync('career-page?populate=*');
     if (raw) return Array.isArray(raw) ? (raw[0] || defaultCareerData) : raw;
     return defaultCareerData;
   });
-  const [jobs, setJobs] = useState(jobOpeningsData);
+  const [jobs, setJobs] = useState(() => {
+    if (isJobPreview) return [];
+    const localJobs = getLocalDataSync('job-openings');
+    if (Array.isArray(localJobs) && localJobs.length > 0) return localJobs;
+    return jobOpeningsData;
+  });
+  const [loading, setLoading] = useState(isPagePreview || isJobPreview);
 
   useEffect(() => {
+    if (isAnyPreview) return;
     const handleUpdate = () => {
       const fresh = getLocalDataSync('career-page') || getLocalDataSync('career-page?populate=*');
       if (fresh) {
         setData(Array.isArray(fresh) ? (fresh[0] || defaultCareerData) : fresh);
       }
+      const freshJobs = getLocalDataSync('job-openings');
+      if (Array.isArray(freshJobs) && freshJobs.length > 0) {
+        setJobs(freshJobs);
+      }
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isAnyPreview]);
 
   useEffect(() => {
     let isMounted = true;
     const loadData = async () => {
       try {
-        const pageRes = await fetchStrapiData('career-page?populate[0]=heroImage&populate[1]=seo&populate[2]=benefits&populate[3]=processSteps');
+        const pageRes = await fetchWpData(
+          'career-page?populate[0]=heroImage&populate[1]=seo&populate[2]=benefits&populate[3]=processSteps',
+          { forceFresh: isPagePreview }
+        );
         if (pageRes && isMounted) {
           setData(Array.isArray(pageRes) ? (pageRes[0] || defaultCareerData) : pageRes);
         }
 
-        const jobsRes = await fetchStrapiData('job-openings?pagination[limit]=100');
+        const jobsRes = await fetchWpData(
+          'job-openings?pagination[limit]=100',
+          { forceFresh: isJobPreview }
+        );
         if (jobsRes && isMounted) {
           const items = Array.isArray(jobsRes) ? jobsRes : (jobsRes.data || []);
           setJobs(items.length > 0 ? items : jobOpeningsData);
-        } else if (isMounted) {
+        } else if (isMounted && !isJobPreview) {
           setJobs(jobOpeningsData);
         }
       } catch (e) {
+      } finally {
+        if (isMounted) setLoading(false);
       }
     };
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [isPagePreview, isJobPreview]);
 
+  if (loading && ((isPagePreview && !data) || (isJobPreview && jobs.length === 0))) {
+    return <Preloader />;
+  }
+
+  const activeData = data || defaultCareerData;
   const allJobsList = jobs.length > 0 ? jobs : jobOpeningsData;
-
-  const jobPostingSchemas = allJobsList.map(job => ({
-    '@context': 'https://schema.org',
-    '@type': 'JobPosting',
-    'title': job.title,
-    'description': job.description || `${job.title} vacancy at Pragati Infra Solutions Pvt. Ltd. Experience: ${job.experience}. Qualification: ${job.qualification}. Location: ${job.location}.`,
-    'identifier': {
-      '@type': 'PropertyValue',
-      'name': 'Pislinfra',
-      'value': `PISL-JOB-${job.id || job.title.replace(/\s+/g, '-').toUpperCase()}`
-    },
-    'datePosted': '2026-01-01',
-    'validThrough': '2026-12-31',
-    'employmentType': job.employmentType || 'FULL_TIME',
-    'hiringOrganization': {
-      '@type': 'Organization',
-      'name': 'Pragati Infra Solutions Pvt. Ltd.',
-      'sameAs': 'https://pislinfra.com',
-      'logo': 'https://pislinfra.com/logo.png'
-    },
-    'jobLocation': {
-      '@type': 'Place',
-      'address': {
-        '@type': 'PostalAddress',
-        'streetAddress': '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38',
-        'addressLocality': 'Gurugram',
-        'addressRegion': 'Haryana',
-        'postalCode': '122018',
-        'addressCountry': 'IN'
-      }
-    },
-    'applicantLocationRequirements': {
-      '@type': 'Country',
-      'name': 'IN'
-    },
-    'experienceRequirements': job.experience,
-    'qualifications': job.qualification,
-    'occupationalCategory': `${job.department} Engineering / Construction`,
-    'directApply': true,
-    'url': `https://pislinfra.com/careers`
-  }));
 
   const fallbackTitle = "Careers at Pislinfra | Build Your Future With Us";
   const fallbackDescription = "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.";
@@ -120,37 +110,38 @@ const Careers = () => {
 
   // Connect CMS Careers page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
   // Safely falls back to existing SEO component or default metadata if fields are empty
-  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
-  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
-  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
-  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+  const resolvedTitle = (activeData?.metaTitle || activeData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (activeData?.metaDescription || activeData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (activeData?.primaryKeyword || activeData?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (activeData?.focusKeywords || activeData?.seo?.focusKeywords || fallbackFocusKeywords).trim();
 
   const seoData = {
     contentType: 'page',
-    ...(data?.seo || {}),
+    slug: 'careers',
+    canonicalUrl: 'https://pislinfra.com/careers',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'WebPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    noIndex: false,
+    noFollow: false,
+    ...(activeData?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: data?.seo?.seoKeywords || resolvedFocusKeywords,
-    slug: 'careers',
-    canonicalUrl: data?.seo?.canonicalUrl || 'https://pislinfra.com/careers',
-    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
-    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, '/images/hero/Careers.png'),
-    ogType: data?.seo?.ogType || 'website',
-    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
-    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, '/images/hero/Careers.png'),
-    twitterCardType: data?.seo?.twitterCardType || 'summary_large_image',
-    schemaType: data?.seo?.schemaType || 'WebPage',
-    breadcrumbSchema: data?.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
-    organizationSchema: data?.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data?.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Careers', 'Jobs', 'Hiring', 'Construction', 'Engineering'],
-    noIndex: data?.seo?.noIndex || false,
-    noFollow: data?.seo?.noFollow || false,
-    structuredData: jobPostingSchemas
+    seoKeywords: activeData?.seo?.seoKeywords || resolvedFocusKeywords,
+    ogTitle: activeData?.ogTitle || activeData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: activeData?.ogDescription || activeData?.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(activeData?.seo?.ogImage || activeData?.heroImage, '/images/hero/Careers.png'),
+    twitterTitle: activeData?.twitterTitle || activeData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: activeData?.twitterDescription || activeData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(activeData?.seo?.twitterImage || activeData?.heroImage, '/images/hero/Careers.png'),
+    tags: activeData?.seo?.tags
+      ? (typeof activeData.seo.tags === 'string' ? activeData.seo.tags.split(',').map(t => t.trim()) : activeData.seo.tags)
+      : ['Careers', 'Jobs', 'Hiring', 'Construction', 'Engineering']
   };
 
   const handleApplyNow = (position) => {
@@ -165,53 +156,63 @@ const Careers = () => {
       
       <BlogSEO blog={seoData} />
 
-      <PageHero
-        title={data?.title || "Careers"}
-        subtitle={data?.heroSubtitle || "Join Pislinfra and build tomorrow's India with us."}
-        breadcrumb={data?.breadcrumb || "Careers"}
-        bgImage={getImageUrl(data?.heroImage, "/images/hero/Careers.png")}
-      />
+      {activeData?.showHero !== false && (
+        <PageHero
+          title={activeData?.title || "Careers"}
+          subtitle={activeData?.heroSubtitle || "Join Pislinfra and build tomorrow's India with us."}
+          breadcrumb={activeData?.breadcrumb || "Careers"}
+          bgImage={getImageUrl(activeData?.heroImage, "/images/hero/Careers.png")}
+        />
+      )}
 
       <div className="careers-content-stack" style={{ display: 'flex', flexDirection: 'column', gap: '80px', paddingBottom: '80px' }}>
-        <CareerBenefitsSection title={data?.benefitsTitle} benefits={data?.benefits?.length > 0 ? data.benefits.map(b => {
-          const defaultIcons = {
-            'Competitive Salary': 'Wallet',
-            'Career Growth': 'TrendingUp',
-            'Learning Programs': 'GraduationCap',
-            'Health Benefits': 'HeartPulse',
-            'Work-Life Balance': 'Scale',
-            'Make an Impact': 'Star'
-          };
-          return {
-            id: b.id || b.title,
-            icon: b.iconName || defaultIcons[b.title] || 'Check',
-            iconColor: ['Learning Programs', 'Work-Life Balance'].includes(b.title) ? '#1E2A5A' : '#FF6B35',
-            title: b.title,
-            description: b.description || b.desc
-          };
-        }) : undefined} />
+        {activeData?.showBenefits !== false && (
+          <CareerBenefitsSection title={activeData?.benefitsTitle} benefits={activeData?.benefits?.length > 0 ? activeData.benefits.map(b => {
+            const defaultIcons = {
+              'Competitive Salary': 'Wallet',
+              'Career Growth': 'TrendingUp',
+              'Learning Programs': 'GraduationCap',
+              'Health Benefits': 'HeartPulse',
+              'Work-Life Balance': 'Scale',
+              'Make an Impact': 'Star'
+            };
+            return {
+              id: b.id || b.title,
+              icon: b.iconName || defaultIcons[b.title] || 'Check',
+              iconColor: ['Learning Programs', 'Work-Life Balance'].includes(b.title) ? '#1E2A5A' : '#FF6B35',
+              title: b.title,
+              description: b.description || b.desc
+            };
+          }) : undefined} />
+        )}
 
-        <CurrentOpeningsSection onApplyNow={handleApplyNow} openings={jobs.length > 0 ? jobs : undefined} />
+        {activeData?.showOpenings !== false && (
+          <CurrentOpeningsSection title={activeData?.openingsTitle} onApplyNow={handleApplyNow} openings={jobs.length > 0 ? jobs : undefined} />
+        )}
 
-        <HiringProcessSection title={data?.processTitle} steps={data?.processSteps?.length > 0 ? data.processSteps.map((s, i) => {
-          const defaultSteps = {
-            'Apply Online': 'FileText',
-            'Initial Screening': 'ClipboardCheck',
-            'Technical Interview': 'Users',
-            'HR Discussion': 'MessageSquare',
-            'Offer Letter': 'Award'
-          };
-          return {
-            id: s.id || i,
-            icon: s.iconName || defaultSteps[s.title] || 'Check',
-            title: s.title,
-            description: s.description || s.desc
-          };
-        }) : undefined} />
+        {activeData?.showProcess !== false && (
+          <HiringProcessSection title={activeData?.processTitle} steps={activeData?.processSteps?.length > 0 ? activeData.processSteps.map((s, i) => {
+            const defaultSteps = {
+              'Apply Online': 'FileText',
+              'Initial Screening': 'ClipboardCheck',
+              'Technical Interview': 'Users',
+              'HR Discussion': 'MessageSquare',
+              'Offer Letter': 'Award'
+            };
+            return {
+              id: s.id || i,
+              icon: s.iconName || defaultSteps[s.title] || 'Check',
+              title: s.title,
+              description: s.description || s.desc
+            };
+          }) : undefined} />
+        )}
 
-        <div id="application-form">
-          <CareerApplicationSection preSelectedPosition={selectedPosition} jobPositionsList={jobs.length > 0 ? jobs.map(j => j.title) : undefined} title={data?.formTitle} subtitle={data?.formSubtitle} />
-        </div>
+        {activeData?.showApplicationForm !== false && (
+          <div id="application-form">
+            <CareerApplicationSection preSelectedPosition={selectedPosition} jobPositionsList={jobs.length > 0 ? jobs.map(j => j.title) : undefined} title={activeData?.formTitle} subtitle={activeData?.formSubtitle} />
+          </div>
+        )}
       </div>
 
       <style>{`

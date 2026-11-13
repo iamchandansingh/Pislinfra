@@ -26,6 +26,10 @@ ServerSignature Off
     RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # 301 Permanent Redirects for Company Policy Canonical
+    RewriteRule ^about/(?:company-policy|policies|policies-governance)/?$ /company-policy [R=301,L]
+    RewriteRule ^policies-governance/?$ /company-policy [R=301,L]
+
     # Force non-www or canonical domain consistency if desired
     # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
     # RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
@@ -82,7 +86,7 @@ ServerSignature Off
 </IfModule>
 
 # ==================== 6. BLOCK SENSITIVE FILES & EXTENSIONS ====================
-<FilesMatch "(^\.|/\.|\.env|\.git|\.gitignore|\.htaccess|\.htpasswd|\.DS_Store|\.bak|\.config|\.sql|\.log|\.sh|\.ini|\.conf|\.yml|\.yaml|\.lock|\.md|\.map)$">
+<FilesMatch "(^\.|/\.|\.env|\.git|\.gitignore|\.htaccess|\.htpasswd|\.DS_Store|\.bak|\.config|\.sql|\.log|\.sh|\.ini|\.conf|\.yml|\.yaml|\.lock|\.md|\.map|^\.mail-config.*|_mail-config-loader\.php|\.example\.php)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>

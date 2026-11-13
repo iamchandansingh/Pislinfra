@@ -1,54 +1,86 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchWpData } from '../../services/wordpress';
+import { getImageUrl } from '../../utils/imageUrl';
 import clientsData from '../../data/clientsData';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
 
-const getClientLogo = (name, strapiLogoObj) => {
-  if (strapiLogoObj?.url) {
-    return strapiLogoObj.url.startsWith('http') ? strapiLogoObj.url : `${strapiLogoObj.url}`;
+const getClientLogo = (item, allowStaticFallback = false) => {
+  if (!item) return null;
+  const resolved = getImageUrl(item.logo) || getImageUrl(item.logoUrl);
+  if (resolved) return resolved;
+  if (allowStaticFallback && item.name) {
+    const client = clientsData.find(c => c.name && c.name.toLowerCase() === item.name.toLowerCase());
+    return client?.logo || null;
   }
-  const client = clientsData.find(c => c.name && c.name.toLowerCase() === name.toLowerCase());
-  return client?.logo || null;
+  return null;
 };
 
-const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
-  const [clients, setClients] = useState(clientsData);
+const getInitials = (name = '') => {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return 'CL';
+  if (words.length === 1) return words[0].slice(0, 3).toUpperCase();
+  return (words[0][0] + words[1][0]).toUpperCase();
+};
+
+const Clients = ({ clientsData: propClientsData, data: strapiHomeData, isPreview = false }) => {
+  const [clients, setClients] = useState(isPreview || Array.isArray(propClientsData) ? [] : clientsData);
 
   useEffect(() => {
     async function loadData() {
       try {
-        if (propClientsData && Array.isArray(propClientsData) && propClientsData.length > 0) {
-          const mapped = propClientsData.map(item => ({
-            id: item.id || item.name,
-            name: item.name,
-            logo: getClientLogo(item.name, item.logo)
-          })).filter(c => c.logo);
-          if (mapped.length > 0) {
-            setClients(mapped);
-            return;
-          }
+        if (Array.isArray(propClientsData)) {
+          const mapped = propClientsData
+            .filter(item => item && item.isActive !== false && item.name)
+            .map(item => {
+              const isCmsRecord = Boolean(item.documentId || typeof item.id === 'number');
+              return {
+                id: item.id || item.name,
+                name: item.name,
+                logo: getClientLogo(item, !isCmsRecord),
+              };
+            });
+          setClients(mapped);
+          return;
         }
 
-        const data = await fetchStrapiData('clients?pagination[pageSize]=100&sort=order:asc&populate=*');
-        if (data && Array.isArray(data) && data.length > 0) {
-          const mapped = data.map(item => ({
-            id: item.id,
-            name: item.name,
-            logo: getClientLogo(item.name, item.logo)
-          })).filter(c => c.logo); // Only keep those with a valid logo
-          if (mapped.length > 0) {
-            setClients(mapped);
-          }
+        const data = await fetchWpData('clients?pagination[pageSize]=100&sort=order:asc&populate=*', { forceFresh: isPreview });
+        if (Array.isArray(data)) {
+          const mapped = data
+            .filter(item => item && item.isActive !== false && item.name)
+            .map(item => {
+              const isCmsRecord = Boolean(item.documentId || typeof item.id === 'number');
+              return {
+                id: item.id || item.name,
+                name: item.name,
+                logo: getClientLogo(item, !isCmsRecord),
+              };
+            });
+          setClients(mapped);
         }
       } catch (err) {
-        console.error("Clients Strapi fetch error:", err);
+        console.error("Clients WP fetch error:", err);
       }
     }
     loadData();
-  }, [propClientsData]);
+  }, [propClientsData, isPreview]);
+
+  const renderClientCardContent = (client, decorative = false) => (
+    client.logo ? (
+      <img
+        className="client-logo-img"
+        src={client.logo}
+        alt={decorative ? '' : `${client.name} - Pislinfra Client`}
+        decoding="async"
+      />
+    ) : (
+      <div className="client-logo-fallback" title={client.name}>
+        <span>{getInitials(client.name)}</span>
+      </div>
+    )
+  );
 
   const RowSlider = ({ rowClients, direction = 'left', duration = 32 }) => {
     if (!rowClients || rowClients.length === 0) return null;
@@ -75,12 +107,7 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
                 key={`g1-${client.id || client.name}-${idx}`}
                 className="client-logo-card"
               >
-                <img
-                  className="client-logo-img"
-                  src={client.logo}
-                  alt={`${client.name} - Pislinfra Client`}
-                  decoding="async"
-                />
+                {renderClientCardContent(client, false)}
               </div>
             ))}
           </div>
@@ -92,12 +119,7 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
                 key={`g2-${client.id || client.name}-${idx}`}
                 className="client-logo-card"
               >
-                <img
-                  className="client-logo-img"
-                  src={client.logo}
-                  alt=""
-                  decoding="async"
-                />
+                {renderClientCardContent(client, true)}
               </div>
             ))}
           </div>
@@ -240,6 +262,21 @@ const Clients = ({ clientsData: propClientsData, data: strapiHomeData }) => {
           max-height: 60px;
           object-fit: contain;
           display: block;
+        }
+
+        .client-logo-fallback {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          border-radius: 10px;
+          border: 1px dashed #cbd5e1;
+          background: #f8fafc;
+          color: #0a2a66;
+          font-weight: 700;
+          font-size: 14px;
+          letter-spacing: 0.5px;
         }
 
         /* Desktop only: pause and subtle lift on mouse hover */

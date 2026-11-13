@@ -16,10 +16,14 @@ dist-ssr
 build/
 src/data/backups/
 
-# Environment
+# Environment & Credentials
 *.local
+*.local.*
 .env
 .env.*
+.mail-config.php
+.pisl-mail-config.php
+.wp-local-credentials.txt
 
 # Large Files
 *.mp4

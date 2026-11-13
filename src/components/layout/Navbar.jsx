@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchWpData } from '../../services/wordpress'
 import { getImageUrl } from '../../utils/imageUrl'
 import { HiMenuAlt3, HiX, HiChevronDown, HiPhone, HiMail, HiLocationMarker } from 'react-icons/hi'
 import { FaBuilding, FaUsers, FaShieldAlt, FaAward, FaHeart } from 'react-icons/fa'
@@ -102,7 +102,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const topData = await fetchStrapiData('top-header');
+      const topData = await fetchWpData('top-header');
       if (topData) {
         setTopHeaderData({
           address: topData.address || '31 P, adj. to Medanta, Medicity, Islampur Colony, Sector 38, Gurugram, Haryana 122018',
@@ -110,7 +110,7 @@ const Navbar = () => {
           email: topData.email || 'info@pislinfra.com'
         });
       }
-      const hData = await fetchStrapiData('header?populate[0]=logo&populate[1]=navigation.subLinks');
+      const hData = await fetchWpData('header?populate[0]=logo&populate[1]=navigation.subLinks');
       if (hData) {
         setHeaderData({
           tagline: hData.tagline || 'Progressive Innovative Sustainable Limitless',
@@ -163,7 +163,7 @@ const Navbar = () => {
       </div>
 
       {/* MAIN NAVIGATION */}
-      <nav style={{ position: 'sticky', top: 0, zIndex: 50, backgroundColor: 'white', boxShadow: isScrolled ? '0 4px 6px -1px rgba(0,0,0,0.1)' : 'none', transition: 'box-shadow 0.3s' }}>
+      <nav style={{ position: 'sticky', top: 0, zIndex: 1000, backgroundColor: 'white', boxShadow: isScrolled ? '0 4px 6px -1px rgba(0,0,0,0.1)' : 'none', transition: 'box-shadow 0.3s' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
             
@@ -182,7 +182,7 @@ const Navbar = () => {
                         {item.label}<HiChevronDown style={{ fontSize: '12px', transform: openDropdown === item.id ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
                       </button>
                       {openDropdown === item.id && (
-                        <div style={{ position: 'absolute', top: '100%', right: 0, paddingTop: '10px', zIndex: 50 }}>
+                        <div style={{ position: 'absolute', top: '100%', right: 0, paddingTop: '10px', zIndex: 1010 }}>
                           <div style={{ width: '260px', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)', border: '1px solid #f3f4f6', padding: '8px 0' }}>
                             {(item.subLinks || item.children).map((child) => (
                               <Link key={child.id} to={child.href} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 16px', fontSize: '14px', color: '#4b5563', textDecoration: 'none', transition: 'all 0.3s', borderRadius: '8px', margin: '0 4px' }}
@@ -230,7 +230,7 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         {isMobileOpen && (
-          <div style={{ position: 'fixed', inset: 0, top: '64px', zIndex: 40 }} className="lg-menu-container">
+          <div style={{ position: 'fixed', inset: 0, top: '64px', zIndex: 1020 }} className="lg-menu-container">
             <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }} onClick={() => setIsMobileOpen(false)} />
             <div style={{ position: 'absolute', right: 0, top: 0, height: '100%', width: '320px', maxWidth: '100%', backgroundColor: 'white', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflowY: 'auto' }}>
               <div style={{ padding: '16px' }}>

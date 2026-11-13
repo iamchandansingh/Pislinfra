@@ -14,11 +14,17 @@ const PageHero = ({ title, subtitle, breadcrumb, bgImage, image }) => {
       display: 'flex',
       alignItems: 'center',
     }}>
-      <div style={{
-        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-        backgroundImage: `url(${activeBg})`, backgroundSize: 'cover', backgroundPosition: 'center',
-        filter: 'brightness(0.4)', zIndex: 0,
-      }} />
+      <img
+        src={activeBg}
+        alt={title ? `${title} - Pragati Infra Solutions` : 'Pragati Infra Solutions'}
+        loading="eager"
+        decoding="async"
+        style={{
+          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          objectFit: 'cover', objectPosition: 'center',
+          filter: 'brightness(0.4)', zIndex: 0,
+        }}
+      />
       <div style={{
         position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
         background: 'linear-gradient(135deg, rgba(42,42,117,0.9) 0%, rgba(0,0,0,0.6) 100%)', zIndex: 1,

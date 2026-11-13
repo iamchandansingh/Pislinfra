@@ -1,1658 +1,879 @@
 const leadershipData = {
   "id": 1,
   "documentId": "athzbmjocb082bae4thenf6n",
+  "createdAt": "2026-08-22T10:37:29.211Z",
+  "updatedAt": "2026-11-12T15:39:49+00:00",
+  "publishedAt": "2026-11-12T15:39:49+00:00",
+  "showHero": true,
   "title": "Our Leadership",
   "subtitle": "The visionaries and domain experts steering our growth",
   "breadcrumb": "Leadership",
-  "topLeaderName": "Shubhendra Mittal",
-  "topLeaderDesignation": "Partner & Managing Director",
-  "topLeaderBio": "A graduate from IIT Kharagpur with an excellent knowledge & 33+ years of expertise in Steel Fabrication, Infrastructure Development & Business Development coupled with excellent networking and communication skills. He has a natural flair for in depth technical analysis and technological innovation.",
-  "executiveTitle": "Executive Management",
-  "executiveSubtitle": "Steering large enterprise operations with highly structured corporate delivery models.",
-  "coreTeamTitle": "Our Core Team",
-  "createdAt": "2026-08-22T10:37:29.211Z",
-  "updatedAt": "2026-11-09T17:57:40.469Z",
-  "publishedAt": "2026-11-09T17:57:40.217Z",
-  "primaryKeyword": "Industrial Construction & Infrastructure Leaders India",
-  "metaTitle": "Pislinfra Leadership | Board of Directors & Management",
-  "metaDescription": "Meet the leadership team and board of directors at Pislinfra, bringing expertise and strategic vision to industrial, warehouse and infrastructure projects.",
-  "focusKeywords": "Pislinfra leadership, board of directors, management team, industrial infrastructure leaders India, civil engineering executives, Shubhendra Mittal",
   "heroImage": {
-    "id": 49,
-    "documentId": "bt09tryru4lkbgr5k5qm1lh8",
-    "name": "leadership.png",
-    "alternativeText": null,
-    "caption": null,
-    "focalPoint": null,
+    "id": 99,
+    "documentId": "wp_media_99",
+    "name": "leadership_e1cdd98d80.png",
+    "alternativeText": "Leadership E1cdd98d80 | Pragati Infra Solutions",
+    "caption": "",
     "width": 2240,
     "height": 700,
     "formats": {
-      "large": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_leadership_e1cdd98d80.png",
-        "hash": "large_leadership_e1cdd98d80",
-        "mime": "image/png",
-        "name": "large_leadership.png",
-        "path": null,
-        "size": 680.31,
-        "width": 1000,
-        "height": 312,
-        "sizeInBytes": 680311
+      "thumbnail": {
+        "url": "/images/uploads/leadership_e1cdd98d80-150x150.png",
+        "width": 150,
+        "height": 150
       },
       "small": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_leadership_e1cdd98d80.png",
-        "hash": "small_leadership_e1cdd98d80",
-        "mime": "image/png",
-        "name": "small_leadership.png",
-        "path": null,
-        "size": 183.42,
+        "url": "/images/uploads/leadership_e1cdd98d80-500x156.png",
         "width": 500,
-        "height": 156,
-        "sizeInBytes": 183419
+        "height": 156
       },
       "medium": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_leadership_e1cdd98d80.png",
-        "hash": "medium_leadership_e1cdd98d80",
-        "mime": "image/png",
-        "name": "medium_leadership.png",
-        "path": null,
-        "size": 394.31,
+        "url": "/images/uploads/leadership_e1cdd98d80-750x234.png",
         "width": 750,
-        "height": 234,
-        "sizeInBytes": 394306
+        "height": 234
       },
-      "thumbnail": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_leadership_e1cdd98d80.png",
-        "hash": "thumbnail_leadership_e1cdd98d80",
-        "mime": "image/png",
-        "name": "thumbnail_leadership.png",
-        "path": null,
-        "size": 48.43,
-        "width": 245,
-        "height": 77,
-        "sizeInBytes": 48431
+      "large": {
+        "url": "/images/uploads/leadership_e1cdd98d80-1200x375.png",
+        "width": 1200,
+        "height": 375
       }
     },
-    "hash": "leadership_e1cdd98d80",
-    "ext": ".png",
     "mime": "image/png",
-    "size": 753.15,
-    "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/leadership_e1cdd98d80.png",
-    "previewUrl": null,
-    "provider": "aws-s3",
-    "provider_metadata": null,
-    "createdAt": "2026-08-22T10:35:37.753Z",
-    "updatedAt": "2026-08-26T12:37:39.072Z",
-    "publishedAt": "2026-08-22T10:35:37.753Z"
+    "url": "/images/uploads/leadership_e1cdd98d80.png"
   },
-  "seo": {
-    "id": 79,
-    "seoTitle": "Pislinfra Leadership | Board of Directors & Management",
-    "seoDescription": "Meet the leadership team and board of directors at Pislinfra, bringing expertise and strategic vision to industrial, warehouse and infrastructure projects.",
-    "seoKeywords": "leadership team, infrastructure leaders, construction management, Shubhendra Mittal, executive management, Pislinfra directors",
-    "canonicalUrl": null,
-    "ogTitle": null,
-    "ogDescription": null,
-    "ogType": "website",
-    "twitterTitle": null,
-    "twitterDescription": null,
-    "twitterCardType": "summary_large_image",
-    "schemaType": "WebPage",
-    "structuredData": null,
-    "breadcrumbSchema": true,
-    "organizationSchema": false,
-    "tags": null,
-    "noIndex": false,
-    "noFollow": false
-  },
+  "showTopLeader": true,
+  "topLeaderName": "Shubhendra Mittal",
+  "topLeaderDesignation": "Partner & Managing Director",
+  "topLeaderBio": "A graduate from IIT Kharagpur with an excellent knowledge & 33+ years of expertise in Steel Fabrication, Infrastructure Development & Business Development coupled with excellent networking and communication skills. He has a natural flair for in depth technical analysis and technological innovation.",
   "topLeaderImage": {
-    "id": 50,
-    "documentId": "ei5a3g0e9hgw1mb88uc0vif9",
-    "name": "Shubhendra-Mittal.png",
-    "alternativeText": null,
-    "caption": null,
-    "focalPoint": null,
+    "id": 100,
+    "documentId": "wp_media_100",
+    "name": "Shubhendra_Mittal_124689ebd2.png",
+    "alternativeText": "Shubhendra Mittal 124689ebd2 | Pragati Infra Solutions",
+    "caption": "",
     "width": 700,
     "height": 910,
     "formats": {
+      "thumbnail": {
+        "url": "/images/uploads/Shubhendra_Mittal_124689ebd2-150x150.png",
+        "width": 150,
+        "height": 150
+      },
       "small": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Shubhendra_Mittal_124689ebd2.png",
-        "hash": "small_Shubhendra_Mittal_124689ebd2",
-        "mime": "image/png",
-        "name": "small_Shubhendra-Mittal.png",
-        "path": null,
-        "size": 312.3,
+        "url": "/images/uploads/Shubhendra_Mittal_124689ebd2-385x500.png",
         "width": 385,
-        "height": 500,
-        "sizeInBytes": 312300
+        "height": 500
       },
       "medium": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Shubhendra_Mittal_124689ebd2.png",
-        "hash": "medium_Shubhendra_Mittal_124689ebd2",
-        "mime": "image/png",
-        "name": "medium_Shubhendra-Mittal.png",
-        "path": null,
-        "size": 675.6,
+        "url": "/images/uploads/Shubhendra_Mittal_124689ebd2-577x750.png",
         "width": 577,
-        "height": 750,
-        "sizeInBytes": 675600
+        "height": 750
       },
-      "thumbnail": {
-        "ext": ".png",
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Shubhendra_Mittal_124689ebd2.png",
-        "hash": "thumbnail_Shubhendra_Mittal_124689ebd2",
-        "mime": "image/png",
-        "name": "thumbnail_Shubhendra-Mittal.png",
-        "path": null,
-        "size": 35.31,
-        "width": 120,
-        "height": 156,
-        "sizeInBytes": 35312
+      "large": {
+        "url": "/images/uploads/Shubhendra_Mittal_124689ebd2.png",
+        "width": 700,
+        "height": 910
       }
     },
-    "hash": "Shubhendra_Mittal_124689ebd2",
-    "ext": ".png",
     "mime": "image/png",
-    "size": 269.92,
-    "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Shubhendra_Mittal_124689ebd2.png",
-    "previewUrl": null,
-    "provider": "aws-s3",
-    "provider_metadata": null,
-    "createdAt": "2026-08-22T10:35:41.879Z",
-    "updatedAt": "2026-08-26T13:41:42.950Z",
-    "publishedAt": "2026-08-22T10:35:41.879Z"
+    "url": "/images/uploads/Shubhendra_Mittal_124689ebd2.png"
   },
   "topLeaderHighlights": [
     {
-      "id": 1,
       "iconName": "FaGraduationCap",
       "title": "IIT Kharagpur Alumnus",
       "description": "Excellent professional knowledge base"
     },
     {
-      "id": 2,
       "iconName": "FaBriefcase",
       "title": "33+ Years Core Expertise",
       "description": "Steel Fabrication & Infrastructure Development"
     },
     {
-      "id": 3,
       "iconName": "FaNetworkWired",
       "title": "Technological Innovation",
       "description": "Natural flair for in-depth technical analysis"
     }
   ],
+  "showExecutives": true,
+  "executiveTitle": "Executive Management",
+  "executiveSubtitle": "Steering large enterprise operations with highly structured corporate delivery models.",
   "executives": [
     {
-      "id": 1,
       "name": "YASH MITTAL",
       "designation": "Promoter – Director",
-      "department": null,
+      "department": "",
       "bio": "A Graduate in Mechanical Engg. from BITS Pilani Dubai, focusing on deployment of new technologies for growth and development of EPC business.",
       "image": {
-        "id": 51,
-        "documentId": "c6jvzytfn0k1umf041x2jv29",
-        "name": "Yash.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 101,
+        "documentId": "wp_media_101",
+        "name": "optimized_1787755009637_344_Yash_png.webp",
+        "alternativeText": "Optimized 1787755009637 344 Yash Png | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755011936_527_large_Yash_png.webp",
-            "hash": "large_Yash_6ede8c09e1",
-            "mime": "image/webp",
-            "name": "large_Yash.png",
-            "path": null,
-            "size": 30.431640625,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 31162
+          "thumbnail": {
+            "url": "/images/uploads/optimized_1787755009637_344_Yash_png-150x150.webp",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755013089_309_small_Yash_png.webp",
-            "hash": "small_Yash_6ede8c09e1",
-            "mime": "image/webp",
-            "name": "small_Yash.png",
-            "path": null,
-            "size": 13.181640625,
+            "url": "/images/uploads/optimized_1787755009637_344_Yash_png-375x500.webp",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 13498
+            "height": 500
           },
           "medium": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755014565_710_medium_Yash_png.webp",
-            "hash": "medium_Yash_6ede8c09e1",
-            "mime": "image/webp",
-            "name": "medium_Yash.png",
-            "path": null,
-            "size": 21.138671875,
+            "url": "/images/uploads/optimized_1787755009637_344_Yash_png-563x750.webp",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 21646
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755015576_525_thumbnail_Yash_png.webp",
-            "hash": "thumbnail_Yash_6ede8c09e1",
-            "mime": "image/webp",
-            "name": "thumbnail_Yash.png",
-            "path": null,
-            "size": 2.921875,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 2992
+          "large": {
+            "url": "/images/uploads/optimized_1787755009637_344_Yash_png.webp",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Yash_6ede8c09e1",
-        "ext": ".webp",
         "mime": "image/webp",
-        "size": 38.92,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755009637_344_Yash_png.webp",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:35:46.579Z",
-        "updatedAt": "2026-08-26T13:41:45.845Z",
-        "publishedAt": "2026-08-22T10:35:46.579Z"
+        "url": "/images/uploads/optimized_1787755009637_344_Yash_png.webp"
       }
     },
     {
-      "id": 2,
       "name": "ABHIMANYU RAO",
       "designation": "Promoter – Director",
-      "department": null,
+      "department": "",
       "bio": "Spearheading robust commercial frameworks and technical innovation models to secure optimized logistics and warehousing portfolios.",
       "image": {
-        "id": 52,
-        "documentId": "ppgd1obvtwy3ld3orfqko87d",
-        "name": "1.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 102,
+        "documentId": "wp_media_102",
+        "name": "1_2cab33be28.png",
+        "alternativeText": "1 2cab33be28 | Pragati Infra Solutions",
+        "caption": "",
         "width": 700,
         "height": 875,
         "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/1_2cab33be28-150x150.png",
+            "width": 150,
+            "height": 150
+          },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_1_2cab33be28.png",
-            "hash": "small_1_2cab33be28",
-            "mime": "image/png",
-            "name": "small_1.png",
-            "path": null,
-            "size": 295.31,
+            "url": "/images/uploads/1_2cab33be28-400x500.png",
             "width": 400,
-            "height": 500,
-            "sizeInBytes": 295307
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_1_2cab33be28.png",
-            "hash": "medium_1_2cab33be28",
-            "mime": "image/png",
-            "name": "medium_1.png",
-            "path": null,
-            "size": 624.61,
+            "url": "/images/uploads/1_2cab33be28-600x750.png",
             "width": 600,
-            "height": 750,
-            "sizeInBytes": 624608
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_1_2cab33be28.png",
-            "hash": "thumbnail_1_2cab33be28",
-            "mime": "image/png",
-            "name": "thumbnail_1.png",
-            "path": null,
-            "size": 32.98,
-            "width": 125,
-            "height": 156,
-            "sizeInBytes": 32978
+          "large": {
+            "url": "/images/uploads/1_2cab33be28.png",
+            "width": 700,
+            "height": 875
           }
         },
-        "hash": "1_2cab33be28",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 183.53,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/1_2cab33be28.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:35:51.180Z",
-        "updatedAt": "2026-08-26T12:37:28.833Z",
-        "publishedAt": "2026-08-22T10:35:51.180Z"
+        "url": "/images/uploads/1_2cab33be28.png"
       }
     },
     {
-      "id": 3,
       "name": "K.J. RAWAL",
       "designation": "Independent – Director",
-      "department": null,
+      "department": "",
       "bio": "A seasoned professional with 39+ years of experience in the EPC Industry.",
       "image": {
-        "id": 53,
-        "documentId": "nixzh51kpnk1b3fuh5z6a2id",
-        "name": "2.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 103,
+        "documentId": "wp_media_103",
+        "name": "2_98134e6941.png",
+        "alternativeText": "2 98134e6941 | Pragati Infra Solutions",
+        "caption": "",
         "width": 700,
         "height": 875,
         "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/2_98134e6941-150x150.png",
+            "width": 150,
+            "height": 150
+          },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_2_98134e6941.png",
-            "hash": "small_2_98134e6941",
-            "mime": "image/png",
-            "name": "small_2.png",
-            "path": null,
-            "size": 234.73,
+            "url": "/images/uploads/2_98134e6941-400x500.png",
             "width": 400,
-            "height": 500,
-            "sizeInBytes": 234730
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_2_98134e6941.png",
-            "hash": "medium_2_98134e6941",
-            "mime": "image/png",
-            "name": "medium_2.png",
-            "path": null,
-            "size": 480.38,
+            "url": "/images/uploads/2_98134e6941-600x750.png",
             "width": 600,
-            "height": 750,
-            "sizeInBytes": 480378
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_2_98134e6941.png",
-            "hash": "thumbnail_2_98134e6941",
-            "mime": "image/png",
-            "name": "thumbnail_2.png",
-            "path": null,
-            "size": 29.13,
-            "width": 125,
-            "height": 156,
-            "sizeInBytes": 29127
+          "large": {
+            "url": "/images/uploads/2_98134e6941.png",
+            "width": 700,
+            "height": 875
           }
         },
-        "hash": "2_98134e6941",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 140.01,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/2_98134e6941.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:35:55.420Z",
-        "updatedAt": "2026-08-26T12:37:32.762Z",
-        "publishedAt": "2026-08-22T10:35:55.420Z"
+        "url": "/images/uploads/2_98134e6941.png"
       }
     }
   ],
+  "showCoreTeam": true,
+  "coreTeamTitle": "Our Core Team",
   "coreTeam": [
     {
-      "id": 4,
       "name": "PANKAJ SOOD",
       "designation": "Chief Financial Officer",
       "department": "Finance",
       "bio": "Driving strategic financial planning and enterprise growth initiatives.",
       "image": {
-        "id": 54,
-        "documentId": "j7peqw6cn1x9vw13mgsphq4y",
-        "name": "Pankaj-Sood.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 104,
+        "documentId": "wp_media_104",
+        "name": "Pankaj_Sood_2deaaf74b9.png",
+        "alternativeText": "Pankaj Sood 2deaaf74b9 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Pankaj_Sood_2deaaf74b9.png",
-            "hash": "large_Pankaj_Sood_2deaaf74b9",
-            "mime": "image/png",
-            "name": "large_Pankaj-Sood.png",
-            "path": null,
-            "size": 691.31,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 691313
+          "thumbnail": {
+            "url": "/images/uploads/Pankaj_Sood_2deaaf74b9-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Pankaj_Sood_2deaaf74b9.png",
-            "hash": "small_Pankaj_Sood_2deaaf74b9",
-            "mime": "image/png",
-            "name": "small_Pankaj-Sood.png",
-            "path": null,
-            "size": 191.67,
+            "url": "/images/uploads/Pankaj_Sood_2deaaf74b9-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 191672
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Pankaj_Sood_2deaaf74b9.png",
-            "hash": "medium_Pankaj_Sood_2deaaf74b9",
-            "mime": "image/png",
-            "name": "medium_Pankaj-Sood.png",
-            "path": null,
-            "size": 406.53,
+            "url": "/images/uploads/Pankaj_Sood_2deaaf74b9-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 406528
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Pankaj_Sood_2deaaf74b9.png",
-            "hash": "thumbnail_Pankaj_Sood_2deaaf74b9",
-            "mime": "image/png",
-            "name": "thumbnail_Pankaj-Sood.png",
-            "path": null,
-            "size": 23.55,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 23554
+          "large": {
+            "url": "/images/uploads/Pankaj_Sood_2deaaf74b9.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Pankaj_Sood_2deaaf74b9",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 252.98,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Pankaj_Sood_2deaaf74b9.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:35:59.759Z",
-        "updatedAt": "2026-08-26T13:41:51.825Z",
-        "publishedAt": "2026-08-22T10:35:59.759Z"
+        "url": "/images/uploads/Pankaj_Sood_2deaaf74b9.png"
       }
     },
     {
-      "id": 5,
       "name": "RAMDHAN YADAV",
       "designation": "Director Finance",
       "department": "Finance",
       "bio": "Managing corporate finance operations and compliance frameworks.",
       "image": {
-        "id": 55,
-        "documentId": "bzmo8y22n1smc021ue86y733",
-        "name": "Ramdhan-Yadav.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 105,
+        "documentId": "wp_media_105",
+        "name": "Ramdhan_Yadav_168b7a2ecd.png",
+        "alternativeText": "Ramdhan Yadav 168b7a2ecd | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Ramdhan_Yadav_168b7a2ecd.png",
-            "hash": "large_Ramdhan_Yadav_168b7a2ecd",
-            "mime": "image/png",
-            "name": "large_Ramdhan-Yadav.png",
-            "path": null,
-            "size": 683.31,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 683310
+          "thumbnail": {
+            "url": "/images/uploads/Ramdhan_Yadav_168b7a2ecd-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Ramdhan_Yadav_168b7a2ecd.png",
-            "hash": "small_Ramdhan_Yadav_168b7a2ecd",
-            "mime": "image/png",
-            "name": "small_Ramdhan-Yadav.png",
-            "path": null,
-            "size": 177.69,
+            "url": "/images/uploads/Ramdhan_Yadav_168b7a2ecd-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 177688
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Ramdhan_Yadav_168b7a2ecd.png",
-            "hash": "medium_Ramdhan_Yadav_168b7a2ecd",
-            "mime": "image/png",
-            "name": "medium_Ramdhan-Yadav.png",
-            "path": null,
-            "size": 391.05,
+            "url": "/images/uploads/Ramdhan_Yadav_168b7a2ecd-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 391054
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Ramdhan_Yadav_168b7a2ecd.png",
-            "hash": "thumbnail_Ramdhan_Yadav_168b7a2ecd",
-            "mime": "image/png",
-            "name": "thumbnail_Ramdhan-Yadav.png",
-            "path": null,
-            "size": 21.2,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 21200
+          "large": {
+            "url": "/images/uploads/Ramdhan_Yadav_168b7a2ecd.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Ramdhan_Yadav_168b7a2ecd",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 277.37,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Ramdhan_Yadav_168b7a2ecd.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:03.589Z",
-        "updatedAt": "2026-08-26T12:38:44.096Z",
-        "publishedAt": "2026-08-22T10:36:03.589Z"
+        "url": "/images/uploads/Ramdhan_Yadav_168b7a2ecd.png"
       }
     },
     {
-      "id": 6,
       "name": "RAJESH YADAV",
       "designation": "Chief Development Officer",
       "department": "Development",
       "bio": "Leading large-scale infrastructure development and execution strategies.",
       "image": {
-        "id": 56,
-        "documentId": "l1ry78fwmaqn675e7qv1nhb8",
-        "name": "Rajesh-Yada.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 106,
+        "documentId": "wp_media_106",
+        "name": "optimized_1787755046112_535_Rajesh-Yada_png.webp",
+        "alternativeText": "Optimized 1787755046112 535 Rajesh Yada Png | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755047584_218_large_Rajesh-Yada_png.webp",
-            "hash": "large_Rajesh_Yada_d9e286d1df",
-            "mime": "image/webp",
-            "name": "large_Rajesh-Yada.png",
-            "path": null,
-            "size": 46.3515625,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 47464
+          "thumbnail": {
+            "url": "/images/uploads/optimized_1787755046112_535_Rajesh-Yada_png-150x150.webp",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755049378_864_small_Rajesh-Yada_png.webp",
-            "hash": "small_Rajesh_Yada_d9e286d1df",
-            "mime": "image/webp",
-            "name": "small_Rajesh-Yada.png",
-            "path": null,
-            "size": 12.435546875,
+            "url": "/images/uploads/optimized_1787755046112_535_Rajesh-Yada_png-375x500.webp",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 12734
+            "height": 500
           },
           "medium": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050440_212_medium_Rajesh-Yada_png.webp",
-            "hash": "medium_Rajesh_Yada_d9e286d1df",
-            "mime": "image/webp",
-            "name": "medium_Rajesh-Yada.png",
-            "path": null,
-            "size": 26.53515625,
+            "url": "/images/uploads/optimized_1787755046112_535_Rajesh-Yada_png-563x750.webp",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 27172
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755051528_167_thumbnail_Rajesh-Yada_png.webp",
-            "hash": "thumbnail_Rajesh_Yada_d9e286d1df",
-            "mime": "image/webp",
-            "name": "thumbnail_Rajesh-Yada.png",
-            "path": null,
-            "size": 2.3125,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 2368
+          "large": {
+            "url": "/images/uploads/optimized_1787755046112_535_Rajesh-Yada_png.webp",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Rajesh_Yada_d9e286d1df",
-        "ext": ".webp",
         "mime": "image/webp",
-        "size": 68.12,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755046112_535_Rajesh-Yada_png.webp",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:07.849Z",
-        "updatedAt": "2026-08-26T13:41:54.760Z",
-        "publishedAt": "2026-08-22T10:36:07.849Z"
+        "url": "/images/uploads/optimized_1787755046112_535_Rajesh-Yada_png.webp"
       }
     },
     {
-      "id": 7,
       "name": "BRIG. SURINDER YADAV",
       "designation": "Chief Administrative Officer",
       "department": "Administration",
       "bio": "Overseeing administrative operations and organizational governance.",
       "image": {
-        "id": 57,
-        "documentId": "e7re6zbzytpcnruwo3gwsyye",
-        "name": "Brigadier-Surinder-Singh.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 107,
+        "documentId": "wp_media_107",
+        "name": "Brigadier_Surinder_Singh_6636464756.png",
+        "alternativeText": "Brigadier Surinder Singh 6636464756 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Brigadier_Surinder_Singh_6636464756.png",
-            "hash": "large_Brigadier_Surinder_Singh_6636464756",
-            "mime": "image/png",
-            "name": "large_Brigadier-Surinder-Singh.png",
-            "path": null,
-            "size": 1059.91,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 1059905
+          "thumbnail": {
+            "url": "/images/uploads/Brigadier_Surinder_Singh_6636464756-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Brigadier_Surinder_Singh_6636464756.png",
-            "hash": "small_Brigadier_Surinder_Singh_6636464756",
-            "mime": "image/png",
-            "name": "small_Brigadier-Surinder-Singh.png",
-            "path": null,
-            "size": 277.12,
+            "url": "/images/uploads/Brigadier_Surinder_Singh_6636464756-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 277123
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Brigadier_Surinder_Singh_6636464756.png",
-            "hash": "medium_Brigadier_Surinder_Singh_6636464756",
-            "mime": "image/png",
-            "name": "medium_Brigadier-Surinder-Singh.png",
-            "path": null,
-            "size": 610.02,
+            "url": "/images/uploads/Brigadier_Surinder_Singh_6636464756-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 610022
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Brigadier_Surinder_Singh_6636464756.png",
-            "hash": "thumbnail_Brigadier_Surinder_Singh_6636464756",
-            "mime": "image/png",
-            "name": "thumbnail_Brigadier-Surinder-Singh.png",
-            "path": null,
-            "size": 29,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 28996
+          "large": {
+            "url": "/images/uploads/Brigadier_Surinder_Singh_6636464756.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Brigadier_Surinder_Singh_6636464756",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 416.25,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Brigadier_Surinder_Singh_6636464756.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:12.269Z",
-        "updatedAt": "2026-08-26T12:38:49.408Z",
-        "publishedAt": "2026-08-22T10:36:12.269Z"
+        "url": "/images/uploads/Brigadier_Surinder_Singh_6636464756.png"
       }
     },
     {
-      "id": 8,
       "name": "ARNAB BOSE",
       "designation": "Sr Project Director",
       "department": "Projects",
       "bio": "Delivering high-value infrastructure projects with operational excellence.",
       "image": {
-        "id": 58,
-        "documentId": "o59tlp9cagaor4zpf3d0g1vy",
-        "name": "Arnab-Bose.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 108,
+        "documentId": "wp_media_108",
+        "name": "Arnab_Bose_e08543a7b2.png",
+        "alternativeText": "Arnab Bose E08543a7b2 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Arnab_Bose_e08543a7b2.png",
-            "hash": "large_Arnab_Bose_e08543a7b2",
-            "mime": "image/png",
-            "name": "large_Arnab-Bose.png",
-            "path": null,
-            "size": 802.96,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 802960
+          "thumbnail": {
+            "url": "/images/uploads/Arnab_Bose_e08543a7b2-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Arnab_Bose_e08543a7b2.png",
-            "hash": "small_Arnab_Bose_e08543a7b2",
-            "mime": "image/png",
-            "name": "small_Arnab-Bose.png",
-            "path": null,
-            "size": 214.83,
+            "url": "/images/uploads/Arnab_Bose_e08543a7b2-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 214826
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Arnab_Bose_e08543a7b2.png",
-            "hash": "medium_Arnab_Bose_e08543a7b2",
-            "mime": "image/png",
-            "name": "medium_Arnab-Bose.png",
-            "path": null,
-            "size": 463.08,
+            "url": "/images/uploads/Arnab_Bose_e08543a7b2-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 463081
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Arnab_Bose_e08543a7b2.png",
-            "hash": "thumbnail_Arnab_Bose_e08543a7b2",
-            "mime": "image/png",
-            "name": "thumbnail_Arnab-Bose.png",
-            "path": null,
-            "size": 26.63,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 26628
+          "large": {
+            "url": "/images/uploads/Arnab_Bose_e08543a7b2.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Arnab_Bose_e08543a7b2",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 301.36,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Arnab_Bose_e08543a7b2.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:16.784Z",
-        "updatedAt": "2026-08-26T12:38:47.521Z",
-        "publishedAt": "2026-08-22T10:36:16.784Z"
+        "url": "/images/uploads/Arnab_Bose_e08543a7b2.png"
       }
     },
     {
-      "id": 9,
       "name": "JITENDER SINGH",
       "designation": "Sr Project Director",
       "department": "Projects",
       "bio": "Supervising multi-site project execution and engineering coordination.",
       "image": {
-        "id": 59,
-        "documentId": "rba0vodci5zcxgnp21pc5ll5",
-        "name": "JITENDER-SINGH.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 109,
+        "documentId": "wp_media_109",
+        "name": "JITENDER_SINGH_1b2eed43d1.png",
+        "alternativeText": "JITENDER SINGH 1b2eed43d1 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_JITENDER_SINGH_1b2eed43d1.png",
-            "hash": "large_JITENDER_SINGH_1b2eed43d1",
-            "mime": "image/png",
-            "name": "large_JITENDER-SINGH.png",
-            "path": null,
-            "size": 569.81,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 569813
+          "thumbnail": {
+            "url": "/images/uploads/JITENDER_SINGH_1b2eed43d1-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_JITENDER_SINGH_1b2eed43d1.png",
-            "hash": "small_JITENDER_SINGH_1b2eed43d1",
-            "mime": "image/png",
-            "name": "small_JITENDER-SINGH.png",
-            "path": null,
-            "size": 171,
+            "url": "/images/uploads/JITENDER_SINGH_1b2eed43d1-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 171003
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_JITENDER_SINGH_1b2eed43d1.png",
-            "hash": "medium_JITENDER_SINGH_1b2eed43d1",
-            "mime": "image/png",
-            "name": "medium_JITENDER-SINGH.png",
-            "path": null,
-            "size": 341.32,
+            "url": "/images/uploads/JITENDER_SINGH_1b2eed43d1-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 341321
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_JITENDER_SINGH_1b2eed43d1.png",
-            "hash": "thumbnail_JITENDER_SINGH_1b2eed43d1",
-            "mime": "image/png",
-            "name": "thumbnail_JITENDER-SINGH.png",
-            "path": null,
-            "size": 24.87,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 24865
+          "large": {
+            "url": "/images/uploads/JITENDER_SINGH_1b2eed43d1.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "JITENDER_SINGH_1b2eed43d1",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 163.31,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/JITENDER_SINGH_1b2eed43d1.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:21.445Z",
-        "updatedAt": "2026-08-26T12:38:37.035Z",
-        "publishedAt": "2026-08-22T10:36:21.445Z"
+        "url": "/images/uploads/JITENDER_SINGH_1b2eed43d1.png"
       }
     },
     {
-      "id": 10,
       "name": "SUMIT GUPTA",
       "designation": "Project Director",
       "department": "Projects",
       "bio": "Managing end-to-end project planning and construction workflows.",
       "image": {
-        "id": 60,
-        "documentId": "fs0x9axdzzo9apmb9ry40vfk",
-        "name": "Sumit-Gupta.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 110,
+        "documentId": "wp_media_110",
+        "name": "Sumit_Gupta_c33f5d1dbb.png",
+        "alternativeText": "Sumit Gupta C33f5d1dbb | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Sumit_Gupta_c33f5d1dbb.png",
-            "hash": "large_Sumit_Gupta_c33f5d1dbb",
-            "mime": "image/png",
-            "name": "large_Sumit-Gupta.png",
-            "path": null,
-            "size": 868.75,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 868752
+          "thumbnail": {
+            "url": "/images/uploads/Sumit_Gupta_c33f5d1dbb-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Sumit_Gupta_c33f5d1dbb.png",
-            "hash": "small_Sumit_Gupta_c33f5d1dbb",
-            "mime": "image/png",
-            "name": "small_Sumit-Gupta.png",
-            "path": null,
-            "size": 214.4,
+            "url": "/images/uploads/Sumit_Gupta_c33f5d1dbb-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 214396
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Sumit_Gupta_c33f5d1dbb.png",
-            "hash": "medium_Sumit_Gupta_c33f5d1dbb",
-            "mime": "image/png",
-            "name": "medium_Sumit-Gupta.png",
-            "path": null,
-            "size": 488.74,
+            "url": "/images/uploads/Sumit_Gupta_c33f5d1dbb-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 488737
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Sumit_Gupta_c33f5d1dbb.png",
-            "hash": "thumbnail_Sumit_Gupta_c33f5d1dbb",
-            "mime": "image/png",
-            "name": "thumbnail_Sumit-Gupta.png",
-            "path": null,
-            "size": 25.64,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 25643
+          "large": {
+            "url": "/images/uploads/Sumit_Gupta_c33f5d1dbb.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Sumit_Gupta_c33f5d1dbb",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 316.56,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Sumit_Gupta_c33f5d1dbb.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:26.147Z",
-        "updatedAt": "2026-08-26T12:38:47.992Z",
-        "publishedAt": "2026-08-22T10:36:26.147Z"
+        "url": "/images/uploads/Sumit_Gupta_c33f5d1dbb.png"
       }
     },
     {
-      "id": 11,
       "name": "OP TIWARI",
       "designation": "DGM Projects",
       "department": "Projects",
       "bio": "Streamlining project delivery and execution management systems.",
       "image": {
-        "id": 61,
-        "documentId": "iqoimxdg7eikdp43xnrdhd52",
-        "name": "OP-Tiwari.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 111,
+        "documentId": "wp_media_111",
+        "name": "OP_Tiwari_3d61c18c6b.png",
+        "alternativeText": "OP Tiwari 3d61c18c6b | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_OP_Tiwari_3d61c18c6b.png",
-            "hash": "large_OP_Tiwari_3d61c18c6b",
-            "mime": "image/png",
-            "name": "large_OP-Tiwari.png",
-            "path": null,
-            "size": 519.27,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 519273
+          "thumbnail": {
+            "url": "/images/uploads/OP_Tiwari_3d61c18c6b-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_OP_Tiwari_3d61c18c6b.png",
-            "hash": "small_OP_Tiwari_3d61c18c6b",
-            "mime": "image/png",
-            "name": "small_OP-Tiwari.png",
-            "path": null,
-            "size": 159.27,
+            "url": "/images/uploads/OP_Tiwari_3d61c18c6b-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 159268
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_OP_Tiwari_3d61c18c6b.png",
-            "hash": "medium_OP_Tiwari_3d61c18c6b",
-            "mime": "image/png",
-            "name": "medium_OP-Tiwari.png",
-            "path": null,
-            "size": 316.64,
+            "url": "/images/uploads/OP_Tiwari_3d61c18c6b-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 316635
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_OP_Tiwari_3d61c18c6b.png",
-            "hash": "thumbnail_OP_Tiwari_3d61c18c6b",
-            "mime": "image/png",
-            "name": "thumbnail_OP-Tiwari.png",
-            "path": null,
-            "size": 23.76,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 23764
+          "large": {
+            "url": "/images/uploads/OP_Tiwari_3d61c18c6b.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "OP_Tiwari_3d61c18c6b",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 151.98,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/OP_Tiwari_3d61c18c6b.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:30.481Z",
-        "updatedAt": "2026-08-26T12:38:35.200Z",
-        "publishedAt": "2026-08-22T10:36:30.481Z"
+        "url": "/images/uploads/OP_Tiwari_3d61c18c6b.png"
       }
     },
     {
-      "id": 12,
       "name": "MANOJ KUMAR",
       "designation": "Vice President (Tendering)",
       "department": "Tendering",
       "bio": "Leading tendering operations and contract acquisition strategies.",
       "image": {
-        "id": 62,
-        "documentId": "h7g3bozj14th1pjf280w0ws4",
-        "name": "Manoj-Kumar.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 112,
+        "documentId": "wp_media_112",
+        "name": "Manoj_Kumar_b18fcd067d.png",
+        "alternativeText": "Manoj Kumar B18fcd067d | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Manoj_Kumar_b18fcd067d.png",
-            "hash": "large_Manoj_Kumar_b18fcd067d",
-            "mime": "image/png",
-            "name": "large_Manoj-Kumar.png",
-            "path": null,
-            "size": 770.74,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 770735
+          "thumbnail": {
+            "url": "/images/uploads/Manoj_Kumar_b18fcd067d-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Manoj_Kumar_b18fcd067d.png",
-            "hash": "small_Manoj_Kumar_b18fcd067d",
-            "mime": "image/png",
-            "name": "small_Manoj-Kumar.png",
-            "path": null,
-            "size": 203.46,
+            "url": "/images/uploads/Manoj_Kumar_b18fcd067d-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 203457
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Manoj_Kumar_b18fcd067d.png",
-            "hash": "medium_Manoj_Kumar_b18fcd067d",
-            "mime": "image/png",
-            "name": "medium_Manoj-Kumar.png",
-            "path": null,
-            "size": 443.73,
+            "url": "/images/uploads/Manoj_Kumar_b18fcd067d-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 443727
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Manoj_Kumar_b18fcd067d.png",
-            "hash": "thumbnail_Manoj_Kumar_b18fcd067d",
-            "mime": "image/png",
-            "name": "thumbnail_Manoj-Kumar.png",
-            "path": null,
-            "size": 25.21,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 25206
+          "large": {
+            "url": "/images/uploads/Manoj_Kumar_b18fcd067d.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Manoj_Kumar_b18fcd067d",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 286.87,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Manoj_Kumar_b18fcd067d.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:35.086Z",
-        "updatedAt": "2026-08-26T12:38:39.177Z",
-        "publishedAt": "2026-08-22T10:36:35.086Z"
+        "url": "/images/uploads/Manoj_Kumar_b18fcd067d.png"
       }
     },
     {
-      "id": 13,
       "name": "PRINCE ARORA",
       "designation": "Manager Tendering – Civil",
       "department": "Tendering",
       "bio": "Handling civil tender management and bid optimization processes.",
       "image": {
-        "id": 63,
-        "documentId": "v5cjab7tbgpavbconodxmysg",
-        "name": "Prince-Arora.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 113,
+        "documentId": "wp_media_113",
+        "name": "optimized_1787755045785_317_Prince-Arora_png.webp",
+        "alternativeText": "Optimized 1787755045785 317 Prince Arora Png | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755046809_767_large_Prince-Arora_png.webp",
-            "hash": "large_Prince_Arora_364fb6b157",
-            "mime": "image/webp",
-            "name": "large_Prince-Arora.png",
-            "path": null,
-            "size": 27.99609375,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 28668
+          "thumbnail": {
+            "url": "/images/uploads/optimized_1787755045785_317_Prince-Arora_png-150x150.webp",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755048187_757_small_Prince-Arora_png.webp",
-            "hash": "small_Prince_Arora_364fb6b157",
-            "mime": "image/webp",
-            "name": "small_Prince-Arora.png",
-            "path": null,
-            "size": 9.2734375,
+            "url": "/images/uploads/optimized_1787755045785_317_Prince-Arora_png-375x500.webp",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 9496
+            "height": 500
           },
           "medium": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050351_413_medium_Prince-Arora_png.webp",
-            "hash": "medium_Prince_Arora_364fb6b157",
-            "mime": "image/webp",
-            "name": "medium_Prince-Arora.png",
-            "path": null,
-            "size": 17.052734375,
+            "url": "/images/uploads/optimized_1787755045785_317_Prince-Arora_png-563x750.webp",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 17462
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755051311_527_thumbnail_Prince-Arora_png.webp",
-            "hash": "thumbnail_Prince_Arora_364fb6b157",
-            "mime": "image/webp",
-            "name": "thumbnail_Prince-Arora.png",
-            "path": null,
-            "size": 1.865234375,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 1910
+          "large": {
+            "url": "/images/uploads/optimized_1787755045785_317_Prince-Arora_png.webp",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Prince_Arora_364fb6b157",
-        "ext": ".webp",
         "mime": "image/webp",
-        "size": 40.97,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755045785_317_Prince-Arora_png.webp",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:39.086Z",
-        "updatedAt": "2026-08-26T13:41:57.899Z",
-        "publishedAt": "2026-08-22T10:36:39.087Z"
+        "url": "/images/uploads/optimized_1787755045785_317_Prince-Arora_png.webp"
       }
     },
     {
-      "id": 14,
       "name": "KARTIK DARA",
       "designation": "Manager Tendering – Civil",
       "department": "Tendering",
       "bio": "Coordinating civil estimation and tender documentation workflows.",
       "image": {
-        "id": 64,
-        "documentId": "fjlnzmy7h9ttf9r5p3z5twvm",
-        "name": "Kartik-Dara.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 114,
+        "documentId": "wp_media_114",
+        "name": "Kartik_Dara_17acef1e54.png",
+        "alternativeText": "Kartik Dara 17acef1e54 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Kartik_Dara_17acef1e54.png",
-            "hash": "large_Kartik_Dara_17acef1e54",
-            "mime": "image/png",
-            "name": "large_Kartik-Dara.png",
-            "path": null,
-            "size": 841.95,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 841950
+          "thumbnail": {
+            "url": "/images/uploads/Kartik_Dara_17acef1e54-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Kartik_Dara_17acef1e54.png",
-            "hash": "small_Kartik_Dara_17acef1e54",
-            "mime": "image/png",
-            "name": "small_Kartik-Dara.png",
-            "path": null,
-            "size": 207.77,
+            "url": "/images/uploads/Kartik_Dara_17acef1e54-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 207769
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Kartik_Dara_17acef1e54.png",
-            "hash": "medium_Kartik_Dara_17acef1e54",
-            "mime": "image/png",
-            "name": "medium_Kartik-Dara.png",
-            "path": null,
-            "size": 475.56,
+            "url": "/images/uploads/Kartik_Dara_17acef1e54-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 475562
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Kartik_Dara_17acef1e54.png",
-            "hash": "thumbnail_Kartik_Dara_17acef1e54",
-            "mime": "image/png",
-            "name": "thumbnail_Kartik-Dara.png",
-            "path": null,
-            "size": 24.31,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 24313
+          "large": {
+            "url": "/images/uploads/Kartik_Dara_17acef1e54.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Kartik_Dara_17acef1e54",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 339.3,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Kartik_Dara_17acef1e54.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:43.435Z",
-        "updatedAt": "2026-08-26T12:38:48.062Z",
-        "publishedAt": "2026-08-22T10:36:43.436Z"
+        "url": "/images/uploads/Kartik_Dara_17acef1e54.png"
       }
     },
     {
-      "id": 15,
       "name": "RAVINDRA TOMAR",
       "designation": "Manager Tendering – MEP",
       "department": "Tendering",
       "bio": "Managing MEP tendering and technical commercial evaluations.",
       "image": {
-        "id": 65,
-        "documentId": "d7akk2cz1e9r9dy9hs84hv2q",
-        "name": "Ravinder-Toma.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 115,
+        "documentId": "wp_media_115",
+        "name": "optimized_1787755045783_89_Ravinder-Toma_png.webp",
+        "alternativeText": "Optimized 1787755045783 89 Ravinder Toma Png | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755049590_291_large_Ravinder-Toma_png.webp",
-            "hash": "large_Ravinder_Toma_9d586b1f4e",
-            "mime": "image/webp",
-            "name": "large_Ravinder-Toma.png",
-            "path": null,
-            "size": 31.943359375,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 32710
+          "thumbnail": {
+            "url": "/images/uploads/optimized_1787755045783_89_Ravinder-Toma_png-150x150.webp",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050999_711_small_Ravinder-Toma_png.webp",
-            "hash": "small_Ravinder_Toma_9d586b1f4e",
-            "mime": "image/webp",
-            "name": "small_Ravinder-Toma.png",
-            "path": null,
-            "size": 9.798828125,
+            "url": "/images/uploads/optimized_1787755045783_89_Ravinder-Toma_png-375x500.webp",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 10034
+            "height": 500
           },
           "medium": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755052175_197_medium_Ravinder-Toma_png.webp",
-            "hash": "medium_Ravinder_Toma_9d586b1f4e",
-            "mime": "image/webp",
-            "name": "medium_Ravinder-Toma.png",
-            "path": null,
-            "size": 18.939453125,
+            "url": "/images/uploads/optimized_1787755045783_89_Ravinder-Toma_png-563x750.webp",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 19394
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755053125_376_thumbnail_Ravinder-Toma_png.webp",
-            "hash": "thumbnail_Ravinder_Toma_9d586b1f4e",
-            "mime": "image/webp",
-            "name": "thumbnail_Ravinder-Toma.png",
-            "path": null,
-            "size": 2.04296875,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 2092
+          "large": {
+            "url": "/images/uploads/optimized_1787755045783_89_Ravinder-Toma_png.webp",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Ravinder_Toma_9d586b1f4e",
-        "ext": ".webp",
         "mime": "image/webp",
-        "size": 52.04,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755045783_89_Ravinder-Toma_png.webp",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:47.914Z",
-        "updatedAt": "2026-08-26T13:42:00.699Z",
-        "publishedAt": "2026-08-22T10:36:47.914Z"
+        "url": "/images/uploads/optimized_1787755045783_89_Ravinder-Toma_png.webp"
       }
     },
     {
-      "id": 16,
       "name": "AMIT DUBEY",
       "designation": "EHS Lead",
       "department": "Safety & EHS",
       "bio": "Ensuring workplace safety, EHS compliance, and risk management.",
       "image": {
-        "id": 66,
-        "documentId": "u0dc7ltbfpy4lpngu2wdb0e5",
-        "name": "Amit-Dubey.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 116,
+        "documentId": "wp_media_116",
+        "name": "Amit_Dubey_8a7a267fe5.png",
+        "alternativeText": "Amit Dubey 8a7a267fe5 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Amit_Dubey_8a7a267fe5.png",
-            "hash": "large_Amit_Dubey_8a7a267fe5",
-            "mime": "image/png",
-            "name": "large_Amit-Dubey.png",
-            "path": null,
-            "size": 820.37,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 820365
+          "thumbnail": {
+            "url": "/images/uploads/Amit_Dubey_8a7a267fe5-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Amit_Dubey_8a7a267fe5.png",
-            "hash": "small_Amit_Dubey_8a7a267fe5",
-            "mime": "image/png",
-            "name": "small_Amit-Dubey.png",
-            "path": null,
-            "size": 218.23,
+            "url": "/images/uploads/Amit_Dubey_8a7a267fe5-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 218227
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Amit_Dubey_8a7a267fe5.png",
-            "hash": "medium_Amit_Dubey_8a7a267fe5",
-            "mime": "image/png",
-            "name": "medium_Amit-Dubey.png",
-            "path": null,
-            "size": 472.6,
+            "url": "/images/uploads/Amit_Dubey_8a7a267fe5-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 472595
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Amit_Dubey_8a7a267fe5.png",
-            "hash": "thumbnail_Amit_Dubey_8a7a267fe5",
-            "mime": "image/png",
-            "name": "thumbnail_Amit-Dubey.png",
-            "path": null,
-            "size": 26.61,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 26610
+          "large": {
+            "url": "/images/uploads/Amit_Dubey_8a7a267fe5.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Amit_Dubey_8a7a267fe5",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 307.2,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Amit_Dubey_8a7a267fe5.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:52.884Z",
-        "updatedAt": "2026-08-26T13:41:59.338Z",
-        "publishedAt": "2026-08-22T10:36:52.885Z"
+        "url": "/images/uploads/Amit_Dubey_8a7a267fe5.png"
       }
     },
     {
-      "id": 17,
       "name": "MOHSIN KHAN",
       "designation": "AGM Procurement",
       "department": "Procurement",
       "bio": "Managing procurement operations and strategic vendor coordination.",
       "image": {
-        "id": 67,
-        "documentId": "cuir9lu1voy5f7qe4f2a2t1o",
-        "name": "Mohsin-Khan.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 117,
+        "documentId": "wp_media_117",
+        "name": "Mohsin_Khan_5aa6f2faed.png",
+        "alternativeText": "Mohsin Khan 5aa6f2faed | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Mohsin_Khan_5aa6f2faed.png",
-            "hash": "large_Mohsin_Khan_5aa6f2faed",
-            "mime": "image/png",
-            "name": "large_Mohsin-Khan.png",
-            "path": null,
-            "size": 1053.45,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 1053451
+          "thumbnail": {
+            "url": "/images/uploads/Mohsin_Khan_5aa6f2faed-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Mohsin_Khan_5aa6f2faed.png",
-            "hash": "small_Mohsin_Khan_5aa6f2faed",
-            "mime": "image/png",
-            "name": "small_Mohsin-Khan.png",
-            "path": null,
-            "size": 272.46,
+            "url": "/images/uploads/Mohsin_Khan_5aa6f2faed-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 272464
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Mohsin_Khan_5aa6f2faed.png",
-            "hash": "medium_Mohsin_Khan_5aa6f2faed",
-            "mime": "image/png",
-            "name": "medium_Mohsin-Khan.png",
-            "path": null,
-            "size": 605.16,
+            "url": "/images/uploads/Mohsin_Khan_5aa6f2faed-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 605156
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Mohsin_Khan_5aa6f2faed.png",
-            "hash": "thumbnail_Mohsin_Khan_5aa6f2faed",
-            "mime": "image/png",
-            "name": "thumbnail_Mohsin-Khan.png",
-            "path": null,
-            "size": 30.09,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 30090
+          "large": {
+            "url": "/images/uploads/Mohsin_Khan_5aa6f2faed.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Mohsin_Khan_5aa6f2faed",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 366.61,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Mohsin_Khan_5aa6f2faed.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:36:57.720Z",
-        "updatedAt": "2026-08-26T13:42:10.473Z",
-        "publishedAt": "2026-08-22T10:36:57.721Z"
+        "url": "/images/uploads/Mohsin_Khan_5aa6f2faed.png"
       }
     },
     {
-      "id": 18,
       "name": "HITENDRA PLASS",
-      "designation": "General Manager ",
+      "designation": "General Manager",
       "department": "PMO",
       "bio": "Driving multi-project execution, cost optimization, and strategic planning.",
       "image": {
-        "id": 842,
-        "documentId": "t9xmqkw4acgv565w37d1y4jt",
-        "name": "Hitendra.jpeg",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 118,
+        "documentId": "wp_media_118",
+        "name": "Hitendra_6ce0672aa2.jpeg",
+        "alternativeText": "Hitendra 6ce0672aa2 | Pragati Infra Solutions",
+        "caption": "",
         "width": 1495,
         "height": 1600,
         "formats": {
-          "large": {
-            "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Hitendra_6ce0672aa2.jpeg",
-            "etag": "50768687c2450e9a7a2cb2f4a4c7deea",
-            "hash": "large_Hitendra_6ce0672aa2",
-            "mime": "image/jpeg",
-            "name": "large_Hitendra.jpeg",
-            "path": null,
-            "size": 58.83,
-            "width": 934,
-            "height": 1000,
-            "sizeInBytes": 58827
+          "thumbnail": {
+            "url": "/images/uploads/Hitendra_6ce0672aa2-150x150.jpeg",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Hitendra_6ce0672aa2.jpeg",
-            "etag": "548cba6bd1f6eb2802ec5410a626dd26",
-            "hash": "small_Hitendra_6ce0672aa2",
-            "mime": "image/jpeg",
-            "name": "small_Hitendra.jpeg",
-            "path": null,
-            "size": 19.76,
+            "url": "/images/uploads/Hitendra_6ce0672aa2-467x500.jpeg",
             "width": 467,
-            "height": 500,
-            "sizeInBytes": 19764
+            "height": 500
           },
           "medium": {
-            "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Hitendra_6ce0672aa2.jpeg",
-            "etag": "122b899e8499ffe39f99d537322d09df",
-            "hash": "medium_Hitendra_6ce0672aa2",
-            "mime": "image/jpeg",
-            "name": "medium_Hitendra.jpeg",
-            "path": null,
-            "size": 37.26,
+            "url": "/images/uploads/Hitendra_6ce0672aa2-701x750.jpeg",
             "width": 701,
-            "height": 750,
-            "sizeInBytes": 37262
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".jpeg",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Hitendra_6ce0672aa2.jpeg",
-            "etag": "47964146079a14fd3865e0dc87dd4a35",
-            "hash": "thumbnail_Hitendra_6ce0672aa2",
-            "mime": "image/jpeg",
-            "name": "thumbnail_Hitendra.jpeg",
-            "path": null,
-            "size": 3.33,
-            "width": 145,
-            "height": 156,
-            "sizeInBytes": 3329
+          "large": {
+            "url": "/images/uploads/Hitendra_6ce0672aa2-1121x1200.jpeg",
+            "width": 1121,
+            "height": 1200
           }
         },
-        "hash": "Hitendra_6ce0672aa2",
-        "ext": ".jpeg",
         "mime": "image/jpeg",
-        "size": 106.9,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Hitendra_6ce0672aa2.jpeg",
-        "previewUrl": null,
-        "provider": "@strapi/provider-upload-aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-11-09T13:38:46.177Z",
-        "updatedAt": "2026-11-09T13:38:46.177Z",
-        "publishedAt": "2026-11-09T13:38:46.178Z"
+        "url": "/images/uploads/Hitendra_6ce0672aa2.jpeg"
       }
     },
     {
-      "id": 19,
       "name": "GURPREET SINGH",
       "designation": "Manager Design",
       "department": "Design",
       "bio": "Creating innovative structural and design planning frameworks.",
       "image": {
-        "id": 69,
-        "documentId": "k9ahbx33u9yvgsduk7w2zqrk",
-        "name": "Gurpreet-Singh.png",
-        "alternativeText": null,
-        "caption": null,
-        "focalPoint": null,
+        "id": 119,
+        "documentId": "wp_media_119",
+        "name": "Gurpreet_Singh_15d694d1d8.png",
+        "alternativeText": "Gurpreet Singh 15d694d1d8 | Pragati Infra Solutions",
+        "caption": "",
         "width": 900,
         "height": 1200,
         "formats": {
-          "large": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Gurpreet_Singh_15d694d1d8.png",
-            "hash": "large_Gurpreet_Singh_15d694d1d8",
-            "mime": "image/png",
-            "name": "large_Gurpreet-Singh.png",
-            "path": null,
-            "size": 620.16,
-            "width": 750,
-            "height": 1000,
-            "sizeInBytes": 620162
+          "thumbnail": {
+            "url": "/images/uploads/Gurpreet_Singh_15d694d1d8-150x150.png",
+            "width": 150,
+            "height": 150
           },
           "small": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Gurpreet_Singh_15d694d1d8.png",
-            "hash": "small_Gurpreet_Singh_15d694d1d8",
-            "mime": "image/png",
-            "name": "small_Gurpreet-Singh.png",
-            "path": null,
-            "size": 184.37,
+            "url": "/images/uploads/Gurpreet_Singh_15d694d1d8-375x500.png",
             "width": 375,
-            "height": 500,
-            "sizeInBytes": 184369
+            "height": 500
           },
           "medium": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Gurpreet_Singh_15d694d1d8.png",
-            "hash": "medium_Gurpreet_Singh_15d694d1d8",
-            "mime": "image/png",
-            "name": "medium_Gurpreet-Singh.png",
-            "path": null,
-            "size": 375.21,
+            "url": "/images/uploads/Gurpreet_Singh_15d694d1d8-563x750.png",
             "width": 563,
-            "height": 750,
-            "sizeInBytes": 375213
+            "height": 750
           },
-          "thumbnail": {
-            "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Gurpreet_Singh_15d694d1d8.png",
-            "hash": "thumbnail_Gurpreet_Singh_15d694d1d8",
-            "mime": "image/png",
-            "name": "thumbnail_Gurpreet-Singh.png",
-            "path": null,
-            "size": 24.4,
-            "width": 117,
-            "height": 156,
-            "sizeInBytes": 24396
+          "large": {
+            "url": "/images/uploads/Gurpreet_Singh_15d694d1d8.png",
+            "width": 900,
+            "height": 1200
           }
         },
-        "hash": "Gurpreet_Singh_15d694d1d8",
-        "ext": ".png",
         "mime": "image/png",
-        "size": 204.52,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Gurpreet_Singh_15d694d1d8.png",
-        "previewUrl": null,
-        "provider": "aws-s3",
-        "provider_metadata": null,
-        "createdAt": "2026-08-22T10:37:06.933Z",
-        "updatedAt": "2026-08-26T12:38:43.917Z",
-        "publishedAt": "2026-08-22T10:37:06.933Z"
+        "url": "/images/uploads/Gurpreet_Singh_15d694d1d8.png"
       }
     }
-  ]
+  ],
+  "primaryKeyword": "Industrial Construction & Infrastructure Leaders India",
+  "metaTitle": "Pislinfra Leadership | Board of Directors & Management",
+  "metaDescription": "Meet the leadership team and board of directors at Pislinfra, bringing expertise and strategic vision to industrial, warehouse and infrastructure projects.",
+  "focusKeywords": "Pislinfra leadership, board of directors, management team, industrial infrastructure leaders India, civil engineering executives, Shubhendra Mittal",
+  "seo": {
+    "seoTitle": "Pislinfra Leadership | Board of Directors & Management",
+    "seoDescription": "Meet the leadership team and board of directors at Pislinfra, bringing expertise and strategic vision to industrial, warehouse and infrastructure projects.",
+    "focusKeyword": "",
+    "secondaryKeywords": "",
+    "seoKeywords": "leadership team, infrastructure leaders, construction management, Shubhendra Mittal, executive management, Pislinfra directors",
+    "canonicalUrl": "https://pislinfra.com/about/leadership",
+    "ogTitle": "",
+    "ogDescription": "",
+    "ogImage": null,
+    "ogType": "website",
+    "twitterTitle": "",
+    "twitterDescription": "",
+    "twitterImage": null,
+    "twitterCardType": "summary_large_image",
+    "schemaType": "WebPage",
+    "noIndex": false,
+    "noFollow": false,
+    "structuredData": "",
+    "breadcrumbSchema": true,
+    "organizationSchema": false,
+    "tags": "Industrial Construction & Infrastructure Leaders India",
+    "metaTitle": "Pislinfra Leadership | Board of Directors & Management",
+    "metaDescription": "Meet the leadership team and board of directors at Pislinfra, bringing expertise and strategic vision to industrial, warehouse and infrastructure projects."
+  }
 };
 
 export default leadershipData;

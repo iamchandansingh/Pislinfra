@@ -73,3 +73,40 @@ export const formatStrapiBlogs = (strapiBlogs) => {
     };
   });
 };
+
+export const extractNumericId = (itemOrId) => {
+  const raw = typeof itemOrId === 'object' && itemOrId !== null
+    ? (itemOrId.wp_id ?? itemOrId.id ?? itemOrId.documentId)
+    : itemOrId;
+  if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+  const match = String(raw || '').match(/(\d+)$/);
+  return match ? parseInt(match[1], 10) : 0;
+};
+
+export const sortBlogsByDateDesc = (a, b) => {
+  const timeA = new Date(a?.publishDate || a?.publishedAt || a?.createdAt || 0).getTime() || 0;
+  const timeB = new Date(b?.publishDate || b?.publishedAt || b?.createdAt || 0).getTime() || 0;
+  if (timeB !== timeA) return timeB - timeA;
+  const createdA = new Date(a?.publishedAt || a?.createdAt || 0).getTime() || 0;
+  const createdB = new Date(b?.publishedAt || b?.createdAt || 0).getTime() || 0;
+  if (createdB !== createdA) return createdB - createdA;
+  const idA = extractNumericId(a);
+  const idB = extractNumericId(b);
+  if (idB !== idA) {
+    return idB - idA;
+  }
+  return 0;
+};
+
+export const stripHtmlAndWpBlocks = (raw = '') => {
+  if (typeof raw !== 'string') return '';
+  return raw
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+export const slugifyHeading = (text = '') =>
+  String(text).toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');

@@ -108,22 +108,20 @@ const renderCapabilitiesTitle = (title) => {
 };
 
 const Services = ({ data }) => {
-  const servicesDataMapped = [
-    {
-      id: 'design',
-      title: 'DESIGN',
-      desc: data?.items?.[0]?.desc || 'Our team of dedicated architects and designers collaboratively envision and execute projects that redefine skylines and set new standards in architectural excellence. From conceptualisation to realisation, our vertical design approach ensures every project stands as a testament to our commitment to shaping environments that not only stand tall but also enrich lives.',
-      img: getImageUrl(data?.items?.[0]?.img) || '/images/Overview/3.png',
-      link: '/solutions'
-    },
-    {
-      id: 'construction',
-      title: 'CONSTRUCTION',
-      desc: data?.items?.[1]?.desc || 'We specialise in the vertical of construction that builds the backbone of industries. Our expertise lies in creating robust and efficient spaces that cater to the unique needs of warehousing and industrial operations. From large-scale warehouses to specialised industrial facilities, we are committed to constructing vertical spaces that facilitate streamlined operations.',
-      img: getImageUrl(data?.items?.[1]?.img) || '/images/Overview/vpw.png',
-      link: '/solutions'
-    }
-  ];
+  const incomingCards = Array.isArray(data?.serviceCards) && data.serviceCards.length > 0
+    ? data.serviceCards
+    : (Array.isArray(data?.items) && data.items.length > 0 ? data.items : null);
+
+  const servicesDataMapped = (incomingCards || servicesData).map((card, idx) => {
+    const fallback = servicesData[idx] || servicesData[0];
+    return {
+      id: card?.id || fallback.id,
+      title: card?.title || fallback.title,
+      desc: card?.desc || card?.description || fallback.desc,
+      img: getImageUrl(card?.img || card?.image, fallback.img) || fallback.img,
+      link: card?.link || fallback.link,
+    };
+  });
 
   return (
     <section className="pisl-services-section" style={{

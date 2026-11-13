@@ -169,10 +169,37 @@ export function safeCommitSnapshot(data, metadata = {}) {
 /**
  * Writes individual static JSON collections to public/data and dist/data for decoupled CDN consumption.
  */
+/**
+ * Propagates an updated/adapted collection value to any legacy query-variant keys
+ * in the same snapshot (e.g. "coverage-markers?populate=*&pagination[pageSize]=100").
+ */
+export function syncQueryAliases(snapshot, baseKey, value) {
+  if (!snapshot || typeof snapshot !== 'object' || !baseKey || !value) return;
+  snapshot[baseKey] = value;
+  const prefix = `${baseKey}?`;
+  for (const existingKey of Object.keys(snapshot)) {
+    if (existingKey.startsWith(prefix)) {
+      snapshot[existingKey] = value;
+    }
+  }
+}
+
 export function exportStaticCollections(data) {
   if (fs.existsSync(path.resolve(ROOT, 'dist')) && !fs.existsSync(DIST_DATA_DIR)) {
     fs.mkdirSync(DIST_DATA_DIR, { recursive: true });
   }
+
+  const refreshExistingQueryFiles = (dir, baseName, fallbackContent) => {
+    if (!fs.existsSync(dir)) return;
+    const prefix = `${baseName}?`;
+    for (const fname of fs.readdirSync(dir)) {
+      if (fname.startsWith(prefix) && fname.endsWith('.json')) {
+        const exactKey = fname.slice(0, -5);
+        const exactVal = data[exactKey] || data[exactKey.replace(/_/g, '-')] || fallbackContent;
+        safeAtomicWrite(path.join(dir, fname), exactVal);
+      }
+    }
+  };
 
   const writeStatic = (filename, content) => {
     if (!content) return;
@@ -186,8 +213,13 @@ export function exportStaticCollections(data) {
     const baseKey = key.split('?')[0];
     if (val && (Array.isArray(val) ? val.length > 0 : (typeof val === 'object' && Object.keys(val).length > 0))) {
       writeStatic(`${baseKey}.json`, val);
+      refreshExistingQueryFiles(PUBLIC_DATA_DIR, baseKey, val);
+      if (fs.existsSync(DIST_DATA_DIR)) refreshExistingQueryFiles(DIST_DATA_DIR, baseKey, val);
       if (baseKey.includes('-')) {
-        writeStatic(`${baseKey.replace(/-/g, '_')}.json`, val);
+        const underKey = baseKey.replace(/-/g, '_');
+        writeStatic(`${underKey}.json`, val);
+        refreshExistingQueryFiles(PUBLIC_DATA_DIR, underKey, val);
+        if (fs.existsSync(DIST_DATA_DIR)) refreshExistingQueryFiles(DIST_DATA_DIR, underKey, val);
       }
     }
   }

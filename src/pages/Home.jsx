@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import SEO from '../components/common/SEO';
+import React, { useState, useEffect, useCallback } from 'react';
 import BlogSEO from '../components/Blog/BlogSEO';
 import HeroVideo from '../components/hero/HeroVideo';
 import AboutUs from '../components/about/AboutUs';
@@ -11,7 +10,7 @@ import Clients from '../components/clients/Clients';
 import Awards from '../components/Home/Awards';
 import HSESection from '../components/Home/HSESection';
 import Preloader from '../components/common/Preloader';
-import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../services/wordpress';
 import { getImageUrl } from '../utils/imageUrl';
 import projectsData from '../data/projectsData';
 import completedProjectsData from '../data/completedProjects';
@@ -73,36 +72,76 @@ const getInitialCached = (key, fallback) => {
 };
 
 const Home = () => {
-  const [data, setData] = useState(() => getInitialCached('pisl_home_page', null) || getLocalDataSync('home-page'));
-  const [ongoing, setOngoing] = useState(() => getInitialCached('pisl_ongoing_projects', defaultOngoing));
-  const [completed, setCompleted] = useState(() => getInitialCached('pisl_completed_projects', defaultCompleted));
-  const [loading, setLoading] = useState(false);
-  const [clients, setClients] = useState(() => getInitialCached('pisl_clients', clientsData));
-  const [awards, setAwards] = useState(() => sortAwardsByFeaturedAndDate(getInitialCached('pisl_awards', awardsAndCertifications)));
-  const [markers, setMarkers] = useState(() => getInitialCached('pisl_coverage_markers', coverageMarkersData));
+  const isPreview = Boolean(getPreviewContext());
+  const [data, setData] = useState(() => (isPreview ? null : (getInitialCached('pisl_home_page', null) || getLocalDataSync('home-page'))));
+  const [ongoing, setOngoing] = useState(() => (isPreview ? [] : getInitialCached('pisl_ongoing_projects', defaultOngoing)));
+  const [completed, setCompleted] = useState(() => (isPreview ? [] : getInitialCached('pisl_completed_projects', defaultCompleted)));
+  const [loading, setLoading] = useState(isPreview);
+  const [clients, setClients] = useState(() => (isPreview ? [] : getInitialCached('pisl_clients', clientsData)));
+  const [awards, setAwards] = useState(() => (isPreview ? [] : sortAwardsByFeaturedAndDate(getInitialCached('pisl_awards', awardsAndCertifications))));
+  const [markers, setMarkers] = useState(() => (isPreview ? [] : getInitialCached('pisl_coverage_markers', coverageMarkersData)));
+
+  const shouldWaitForHero = !data ? true : data?.showHero !== false;
+  const [heroReady, setHeroReady] = useState(() => !shouldWaitForHero);
+  const [preloaderFading, setPreloaderFading] = useState(false);
+  const [preloaderDismissed, setPreloaderDismissed] = useState(() => !shouldWaitForHero);
+
+  const handleHeroReady = useCallback(() => {
+    setHeroReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (data && data?.showHero === false) {
+      setHeroReady(true);
+    }
+  }, [data]);
+
+  // Safety timeout: never block the page indefinitely if video stalls or codec fails
+  useEffect(() => {
+    if (heroReady) return;
+    const safetyTimer = setTimeout(() => {
+      setHeroReady(true);
+    }, 6000);
+    return () => clearTimeout(safetyTimer);
+  }, [heroReady]);
+
+  const isDataReady = !loading || Boolean(data);
+  useEffect(() => {
+    if (!isDataReady || !heroReady || preloaderDismissed) return;
+    setPreloaderFading(true);
+    const hideTimer = setTimeout(() => {
+      setPreloaderDismissed(true);
+    }, 320);
+    return () => clearTimeout(hideTimer);
+  }, [isDataReady, heroReady, preloaderDismissed]);
   
   useEffect(() => {
     const loadData = async (force = false) => {
       try {
+        const shouldForce = force || isPreview;
         const [homeRes, ongoingRes, completedRes, clientsRes, awardsRes, markersRes] = await Promise.all([
-          fetchStrapiData('home-page?populate=*', { forceFresh: force }),
-          fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100', { forceFresh: force }),
-          fetchStrapiData('completed-projects?populate=*&pagination[pageSize]=100', { forceFresh: force }),
-          fetchStrapiData('clients?pagination[pageSize]=100&sort=order:asc', { forceFresh: force }),
-          fetchStrapiData('awards?populate=*&sort=createdAt:desc', { forceFresh: force }),
-          fetchStrapiData('coverage-markers?populate=*&pagination[pageSize]=100', { forceFresh: force })
+          fetchWpData('home-page?populate=*', { forceFresh: shouldForce }),
+          fetchWpData('ongoing-projects?populate=*&pagination[pageSize]=100', { forceFresh: shouldForce }),
+          fetchWpData('completed-projects?populate=*&pagination[pageSize]=100', { forceFresh: shouldForce }),
+          fetchWpData('clients?pagination[pageSize]=100&sort=order:asc&populate=*', { forceFresh: shouldForce }),
+          fetchWpData('awards?populate=*&sort=createdAt:desc', { forceFresh: shouldForce }),
+          fetchWpData('coverage-markers?populate=*&pagination[pageSize]=100', { forceFresh: shouldForce })
         ]);
         
         if (homeRes) {
           setData(homeRes);
-          try { window.localStorage.setItem('pisl_home_page', JSON.stringify(homeRes)); } catch (e) {}
+          if (!isPreview) {
+            try { window.localStorage.setItem('pisl_home_page', JSON.stringify(homeRes)); } catch (e) {}
+          }
         }
         const parsedMarkers = Array.isArray(markersRes)
           ? markersRes
-          : (markersRes?.data && Array.isArray(markersRes.data) ? markersRes.data : []);
-        if (parsedMarkers.length > 0) {
+          : (markersRes?.data && Array.isArray(markersRes.data) ? markersRes.data : null);
+        if (Array.isArray(parsedMarkers)) {
           setMarkers(parsedMarkers);
-          try { window.localStorage.setItem('pisl_coverage_markers', JSON.stringify(parsedMarkers)); } catch (e) {}
+          if (!isPreview) {
+            try { window.localStorage.setItem('pisl_coverage_markers', JSON.stringify(parsedMarkers)); } catch (e) {}
+          }
         }
         
         const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -149,12 +188,8 @@ const Home = () => {
           });
         };
 
-        if (ongoingRes && Array.isArray(ongoingRes) && ongoingRes.length > 0) {
-          const filteredOngoing = ongoingRes.filter(p => {
-            const n = (p.name || p.title || '').toLowerCase();
-            return !n.includes('humsafar') && !n.includes('logistics park llp');
-          });
-          const mappedOngoing = filteredOngoing.map(p => {
+        if (Array.isArray(ongoingRes)) {
+          const mappedOngoing = ongoingRes.map(p => {
             const pName = p.name || p.title || '';
             const matchLocal = projectsData.find(lp => {
               const sL = slugify(lp.name);
@@ -181,32 +216,37 @@ const Home = () => {
             const finalCx = hasValidMarker ? Number(mCx) : (p.cx != null && Number(p.cx) > 0 ? Number(p.cx) : (matchLocal.cx || null));
             const finalCy = hasValidMarker ? Number(mCy) : (p.cy != null && Number(p.cy) > 0 ? Number(p.cy) : (matchLocal.cy || null));
 
+            const pSlug = p.slug || getProjectSlug({ ...p, name: pName, location: p.location || p.city, state: p.state });
+
             return {
               id: p.documentId || p.id,
-              name: pName || matchLocal.name,
-              state: p.state || matchLocal.state || 'Gujarat',
-              city: p.location || p.city || matchLocal.location || matchLocal.city || 'Gujarat',
-              location: p.location || p.city || matchLocal.location || matchLocal.city || 'Gujarat',
+              slug: pSlug,
+              name: pName,
+              state: p.state || '',
+              city: p.location || p.city || '',
+              location: p.location || p.city || '',
               status: 'Ongoing',
-              category: p.category || matchLocal.category || 'Industrial',
-              area: p.area || matchLocal.area || 'N/A',
-              client: p.client || matchLocal.client || 'Pislinfra Client',
-              scope: p.scope || matchLocal.scope || 'Civil Work & Infrastructure',
-              timeline: p.timeline || matchLocal.timeline || 'Ongoing',
+              category: p.category || 'Industrial',
+              area: p.area || 'N/A',
+              client: p.client || 'Pislinfra Client',
+              scope: p.scope || 'Civil Work & Infrastructure',
+              timeline: p.timeline || 'Ongoing',
               cx: finalCx,
               cy: finalCy,
               hasMarker: hasValidMarker,
               showOnMap: hasValidMarker,
-              progress: p.progress != null ? p.progress : (matchLocal.progress || 75),
+              progress: p.progress != null ? p.progress : 75,
               images: finalImages,
               image: finalImages[0]
             };
           });
           setOngoing(mappedOngoing);
-          try { window.localStorage.setItem('pisl_ongoing_projects', JSON.stringify(mappedOngoing)); } catch (e) {}
+          if (!isPreview) {
+            try { window.localStorage.setItem('pisl_ongoing_projects', JSON.stringify(mappedOngoing)); } catch (e) {}
+          }
         }
         
-        if (completedRes && Array.isArray(completedRes) && completedRes.length > 0) {
+        if (Array.isArray(completedRes)) {
           const mappedCompleted = completedRes.map(p => {
             const pName = p.name || p.title || '';
             const matchLocal = completedProjectsData.find(lp => {
@@ -234,18 +274,21 @@ const Home = () => {
             const finalCx = hasValidMarker ? Number(mCx) : (p.cx != null && Number(p.cx) > 0 ? Number(p.cx) : (matchLocal.cx || null));
             const finalCy = hasValidMarker ? Number(mCy) : (p.cy != null && Number(p.cy) > 0 ? Number(p.cy) : (matchLocal.cy || null));
 
+            const pSlug = p.slug || getProjectSlug({ ...p, name: pName, location: p.location || p.city, state: p.state });
+
             return {
               id: p.documentId || p.id,
-              name: pName || matchLocal.name,
-              state: p.state || matchLocal.state || 'Haryana',
-              city: p.location || p.city || matchLocal.location || matchLocal.city || 'Haryana',
-              location: p.location || p.city || matchLocal.location || matchLocal.city || 'Haryana',
+              slug: pSlug,
+              name: pName,
+              state: p.state || '',
+              city: p.location || p.city || '',
+              location: p.location || p.city || '',
               status: 'Completed',
-              category: p.category || matchLocal.category || 'Warehousing',
-              area: p.area || matchLocal.area || 'N/A',
-              client: p.client || matchLocal.client || 'Pislinfra Client',
-              scope: p.scope || matchLocal.scope || 'Turnkey Construction',
-              timeline: p.timeline || matchLocal.timeline || 'Completed',
+              category: p.category || 'Warehousing',
+              area: p.area || 'N/A',
+              client: p.client || 'Pislinfra Client',
+              scope: p.scope || 'Turnkey Construction',
+              timeline: p.timeline || 'Completed',
               cx: finalCx,
               cy: finalCy,
               hasMarker: hasValidMarker,
@@ -256,25 +299,28 @@ const Home = () => {
             };
           });
 
-          const existingSlugs = new Set(mappedCompleted.map(p => slugify(p.name)));
-          const missingCompleted = defaultCompleted.filter(p => !existingSlugs.has(slugify(p.name)));
-          const allCompleted = [...mappedCompleted, ...missingCompleted];
-          setCompleted(allCompleted);
-          try { window.localStorage.setItem('pisl_completed_projects', JSON.stringify(allCompleted)); } catch (e) {}
+          setCompleted(mappedCompleted);
+          if (!isPreview) {
+            try { window.localStorage.setItem('pisl_completed_projects', JSON.stringify(mappedCompleted)); } catch (e) {}
+          }
         }
         
         if (clientsRes && Array.isArray(clientsRes)) {
           setClients(clientsRes);
-          try { window.localStorage.setItem('pisl_clients', JSON.stringify(clientsRes)); } catch (e) {}
+          if (!isPreview) {
+            try { window.localStorage.setItem('pisl_clients', JSON.stringify(clientsRes)); } catch (e) {}
+          }
         }
         if (awardsRes && Array.isArray(awardsRes)) {
           const sortedAwards = sortAwardsByFeaturedAndDate(awardsRes);
           setAwards(sortedAwards);
-          try { window.localStorage.setItem('pisl_awards', JSON.stringify(sortedAwards)); } catch (e) {}
+          if (!isPreview) {
+            try { window.localStorage.setItem('pisl_awards', JSON.stringify(sortedAwards)); } catch (e) {}
+          }
         }
 
-        // On localhost: Auto-save fresh coverage-markers directly to local disk
-        if (typeof window !== 'undefined' && parsedMarkers.length > 0 && window.location.hostname === 'localhost') {
+        // On localhost: Auto-save fresh coverage-markers directly to local disk only when freshly fetched
+        if (!isPreview && force && import.meta.env.DEV && typeof window !== 'undefined' && Array.isArray(parsedMarkers) && parsedMarkers.length > 0 && window.location.hostname === 'localhost') {
           try {
             fetch('/__api/save-main-backup', {
               method: 'POST',
@@ -285,7 +331,7 @@ const Home = () => {
         }
         
       } catch (err) {
-        console.error("Failed to load home page data from Strapi", err);
+        console.error("Failed to load home page data from WP", err);
       } finally {
         setLoading(false);
       }
@@ -293,6 +339,7 @@ const Home = () => {
     loadData();
 
     const handleDataUpdate = (e) => {
+      if (isPreview) return;
       const { cleanEndpoint, data: updatedData } = e.detail || {};
       if (!updatedData) return;
       if (cleanEndpoint && (cleanEndpoint.startsWith('ongoing-projects') || cleanEndpoint.startsWith('completed-projects') || cleanEndpoint.startsWith('coverage-markers'))) {
@@ -307,61 +354,75 @@ const Home = () => {
     return () => {
       window.removeEventListener('pisl-data-update', handleDataUpdate);
     };
-  }, []);
+  }, [isPreview]);
+
+  if (loading && !data) {
+    return <Preloader timeout={7000} />;
+  }
 
   const fallbackTitle = 'Pislinfra | Industrial Infrastructure & EPC Company India';
   const fallbackDescription = 'Pislinfra delivers warehousing, logistics parks, and industrial construction solutions, with 17+ years of experience and 16M+ sq. ft. delivered.';
 
   // Connect CMS homepage SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
-  // Safely falls back to default metadata if Strapi is offline or fields are empty
+  // Safely falls back to default metadata if WP is offline or fields are empty
   const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
   const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
   const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || '').trim();
   const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || '').trim();
+  const resolvedOgImage = getImageUrl(data?.seo?.ogImage || data?.ogImage, 'https://pislinfra.com/logo.png');
+  const resolvedTwitterImage = getImageUrl(data?.seo?.twitterImage || data?.twitterImage, resolvedOgImage);
 
   const homeSeoData = {
     contentType: 'page',
+    slug: '',
+    canonicalUrl: 'https://pislinfra.com/',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'WebSite',
+    breadcrumbSchema: false,
+    organizationSchema: true,
+    tags: ['Industrial Construction', 'Warehousing', 'Logistics Parks', 'Turnkey EPC', 'PEB Buildings', 'India'],
     ...(data?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: data?.seo?.seoKeywords || 'Pislinfra, industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, turnkey EPC company India, PEB warehouse construction, Grade-A warehouse builder, industrial park developers NCR, civil engineering contractors India, factory shed construction, pre-engineered buildings India, commercial construction company, BTS warehouse developers, logistics park infrastructure, heavy industrial construction, Pragati Infra Solutions, warehouse contractors Delhi NCR Haryana Gujarat',
-    slug: '',
-    canonicalUrl: 'https://pislinfra.com/',
+    seoKeywords: data?.seo?.seoKeywords || resolvedFocusKeywords || 'Pislinfra, industrial infrastructure, construction company, warehousing, logistics park, industrial development, warehouse construction India, turnkey EPC company India, PEB warehouse construction, Grade-A warehouse builder, industrial park developers NCR, civil engineering contractors India, factory shed construction, pre-engineered buildings India, commercial construction company, BTS warehouse developers, logistics park infrastructure, heavy industrial construction, Pragati Infra Solutions, warehouse contractors Delhi NCR Haryana Gujarat',
+    canonicalUrl: data?.seo?.canonicalUrl || 'https://pislinfra.com/',
     ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
     ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
-    ogImage: data?.ogImage || data?.seo?.ogImage || 'https://pislinfra.com/logo.png',
-    ogType: 'website',
+    ogImage: resolvedOgImage,
     twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: data?.twitterImage || data?.seo?.twitterImage || 'https://pislinfra.com/logo.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebSite',
-    breadcrumbSchema: false,
-    organizationSchema: true,
-    tags: ['Industrial Construction', 'Warehousing', 'Logistics Parks', 'Turnkey EPC', 'PEB Buildings', 'India']
+    twitterImage: resolvedTwitterImage,
   };
 
   return (
     <>
       <BlogSEO blog={homeSeoData} />
 
+      {!preloaderDismissed && <Preloader timeout={7000} fadeOut={preloaderFading} />}
+
       <div>
-        <HeroVideo 
-          bannerImage={getImageUrl(data?.heroImage, '/images/hero/11.png')}
-          heroImage={getImageUrl(data?.heroImage, '/images/hero/11.png')}
-          videoSrc={getImageUrl(data?.heroVideo, '/videos/PISL-WEBSITE.mp4')}
-        />
-        <AboutUs data={data} />
-        <StatsSection data={data} />
-        <Services data={data} />
-        <CoverageMap data={data} mapMarkers={markers.length > 0 ? markers : (data?.mapMarkers || [])} ongoingProjects={ongoing} completedProjects={completed} />
-        <Industries data={data} />
-        <Awards awardsData={awards.length > 0 ? awards : undefined} data={data} />
-        <Clients clientsData={clients.length > 0 ? clients : undefined} data={data} />
-        <HSESection data={data} />
+        {data?.showHero !== false && (
+          <HeroVideo 
+            bannerImage={getImageUrl(data?.heroImage, '/images/hero/11.png')}
+            heroImage={getImageUrl(data?.heroImage, '/images/hero/11.png')}
+            videoSrc={getImageUrl(data?.heroVideo, '/videos/PISL-WEBSITE.mp4')}
+            onReady={handleHeroReady}
+          />
+        )}
+        {data?.showAbout !== false && <AboutUs data={data} />}
+        {data?.showStats !== false && <StatsSection data={data} />}
+        {data?.showServices !== false && <Services data={data} />}
+        {data?.showCoverage !== false && (
+          <CoverageMap data={data} mapMarkers={markers} ongoingProjects={ongoing} completedProjects={completed} asHomeSection={true} />
+        )}
+        {data?.showIndustries !== false && <Industries data={data} />}
+        {data?.showAwards !== false && <Awards awardsData={awards} clientsList={clients} data={data} isPreview={isPreview} />}
+        {data?.showClients !== false && <Clients clientsData={clients} data={data} isPreview={isPreview} />}
+        {data?.showHse !== false && <HSESection data={data} />}
       </div>
     </>
   );

@@ -4,12 +4,18 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
+require_once __DIR__ . '/_mail-config-loader.php';
+
 function send_smtp_mail($to, $subject, $body, $custom_headers, $cc_list = []) {
-    $smtp_host = "ssl://smtp.gmail.com";
-    $smtp_port = 465;
-    $smtp_user = "info@pislinfra.com";
-    // Google App Password
-    $smtp_pass = "oqdyatxmxgrcamsg";
+    $smtpConfig = pisl_get_smtp_config();
+    $smtp_host = $smtpConfig['host'];
+    $smtp_port = $smtpConfig['port'];
+    $smtp_user = $smtpConfig['user'];
+    $smtp_pass = $smtpConfig['pass'];
+
+    if (empty($smtp_pass)) {
+        return false;
+    }
 
     $socket = @fsockopen($smtp_host, $smtp_port, $errno, $errstr, 15);
     if (!$socket) { return false; }
@@ -138,6 +144,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileContent = file_get_contents($fileTmpPath);
         $fileEncoded = chunk_split(base64_encode($fileContent));
         $resumeInfo = "$fileName (" . round($fileSize / 1024, 1) . " KB)";
+    }
+
+    $smtpConfig = pisl_get_smtp_config();
+    if (empty($smtpConfig['pass'])) {
+        http_response_code(503);
+        echo json_encode(['success' => false, 'message' => 'SMTP mail service is not configured on this server.']);
+        exit;
     }
     
     // Respond to client quickly

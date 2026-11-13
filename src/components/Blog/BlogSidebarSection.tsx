@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Folder } from 'lucide-react';
 import { useBlogs } from '../../context/BlogContext';
-import { formatBlogDate } from '../../utils/formatBlog';
+import { formatBlogDate, sortBlogsByDateDesc } from '../../utils/formatBlog';
 
 
 
@@ -22,8 +22,8 @@ const BlogSidebarSection = () => {
   }, []);
 
   const recentPosts = [...BlogDB]
-    .filter(b => b.status === 'published')
-    .sort((a, b) => new Date(b.publishDate || b.createdAt || 0) - new Date(a.publishDate || a.createdAt || 0))
+    .filter(b => (b.status || 'published').toLowerCase() === 'published')
+    .sort(sortBlogsByDateDesc)
     .slice(1, 6)
     .map(blog => ({
       id: blog.id,
@@ -60,12 +60,15 @@ const BlogSidebarSection = () => {
               onClick={() => navigate(`/blog/${post.slug}`)}
               className={`recent-post-item ${index === recentPosts.length - 1 ? 'last-item' : ''}`}
             >
-              <div
-                className="recent-post-image"
-                style={{
-                  backgroundImage: `url(${post.image})`,
-                }}
-              />
+              <div className="recent-post-image" style={{ position: 'relative', overflow: 'hidden' }}>
+                <img
+                  src={post.image || '/images/hero/Blog.png'}
+                  alt={post.title || 'Recent Blog Post'}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                />
+              </div>
               <div className="recent-post-content">
                 <h4 className="recent-post-title">{post.title}</h4>
                 <p className="recent-post-date">{post.date}</p>

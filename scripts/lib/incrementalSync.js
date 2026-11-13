@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { loadCurrentSnapshot, safeCommitSnapshot, safeAtomicWrite, exportStaticCollections } from './snapshotManager.js';
+import { loadCurrentSnapshot, safeCommitSnapshot, safeAtomicWrite, exportStaticCollections, syncQueryAliases } from './snapshotManager.js';
 import {
   adaptOngoingProjects,
   adaptCompletedProjects,
@@ -109,6 +109,9 @@ export async function applyIncrementalSync(targetKeyOrUid, updatedPayload, actio
   }
 
   // 2. Execute corresponding model adapter if registered
+  // 2. Run Content Adapters for UI-ready JS files & update any query-variant aliases
+  const rawPayloadForQueries = snapshot[key];
+  syncQueryAliases(snapshot, key, rawPayloadForQueries);
   try {
     if (key === 'ongoing-projects' && Array.isArray(snapshot[key])) {
       const adapted = adaptOngoingProjects(snapshot[key]);

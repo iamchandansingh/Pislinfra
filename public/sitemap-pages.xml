@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://pislinfra.com/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/logo.png</image:loc>
+      <image:title>Pislinfra - Industrial &amp;amp; Infrastructure Construction</image:title>
+      <image:caption>Leading Turnkey Industrial Construction and PEB Engineering in India</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/about</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/11.png</image:loc>
+      <image:title>About Pislinfra - Corporate Overview &amp;amp; Infrastructure Legacy</image:title>
+      <image:caption>Premier industrial EPC contractor with 16M+ sq ft of warehouses and logistics parks delivered across India.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/about/leadership</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/leadership.png</image:loc>
+      <image:title>Executive Leadership &amp;amp; Board of Directors | Pislinfra</image:title>
+      <image:caption>Visionary leadership team steering India&apos;s leading industrial infrastructure and turnkey construction enterprise.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/about/ehs</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/EHS.png</image:loc>
+      <image:title>Environment, Health &amp;amp; Safety (EHS) Policy &amp;amp; Standards | Pislinfra</image:title>
+      <image:caption>15+ Million safe man-hours and zero-LTI construction safety protocols with ISO certifications.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/about/csr</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/CSR.png</image:loc>
+      <image:title>Corporate Social Responsibility (CSR) Initiatives | Pislinfra</image:title>
+      <image:caption>Grassroots social impact, education, healthcare, and ecological tree plantation programs.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/about/awards</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Awards-Certification.png</image:loc>
+      <image:title>Awards, Accolades &amp;amp; Industry Recognitions | Pislinfra</image:title>
+      <image:caption>Prestigious industry honors, safety excellence recognitions by Adani and Fortune 500 clients.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/company-policy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/EHS.png</image:loc>
+      <image:title>Company Policy &amp;amp; Corporate Governance | Pislinfra</image:title>
+      <image:caption>Official corporate governance, CSR, Vigil Mechanism, and Risk Management policies.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/coverage</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Ongoing-Projects.png</image:loc>
+      <image:title>Nationwide Construction Coverage Across India | Pislinfra</image:title>
+      <image:caption>Explore our multi-state presence delivering warehousing and infrastructure projects.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/annual-reports</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Annual-Reports.png</image:loc>
+      <image:title>Annual Reports &amp;amp; Financial Statements | Pislinfra</image:title>
+      <image:caption>Annual returns and corporate governance filings of Pragati Infra Solutions.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/contact-us</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Contact-Us.png</image:loc>
+      <image:title>Contact Pislinfra Corporate Office</image:title>
+      <image:caption>Get in touch for industrial construction, warehousing and EPC projects across India.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/privacy-policy</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/logo.png</image:loc>
+      <image:title>Privacy Policy | Pislinfra</image:title>
+      <image:caption>Privacy policy and data governance practices of Pragati Infra Solutions Pvt. Ltd.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pislinfra.com/sitemap</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pislinfra.com/images/hero/Sitemap.png</image:loc>
+      <image:title>Website Sitemap | Pislinfra</image:title>
+      <image:caption>Complete hierarchical directory of all pages, solutions, and projects.</image:caption>
+    </image:image>
+  </url>
+</urlset>

@@ -7,14 +7,20 @@ import {
   ArrowRight, 
   Eye 
 } from 'lucide-react';
-import { fetchStrapiData, getStrapiMediaUrl } from '../../services/strapi';
+import { fetchWpData, getWpMediaUrl, getPreviewContext } from '../../services/wordpress';
 
-const PISL_DEFAULT_PDF = 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Pragati_Infra_Solutions_2d2730c93f.pdf';
-const PISL_DEFAULT_COVER = 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png';
+const PISL_DEFAULT_PDF = '/reports/Pragati_Infra_Solutions_2d2730c93f.pdf';
+const PISL_DEFAULT_COVER = '/images/uploads/Screenshot_2026_10_13_at_10_58_08_PM_baafd337f0.png';
 const PISL_LOCAL_COVER = '/images/about/pisl-profile-cover.png';
 const PISL_LOCAL_PDF = '/reports/Pragati-Infra-Solutions-2.pdf';
 
-const AboutDocuments = ({ profileData }) => {
+const DEFAULT_PROFILE_STATS = [
+  { title: '17+ Years', sub: 'Excellence', iconName: 'Building2' },
+  { title: '16M+ Sq. Ft.', sub: 'Delivered', iconName: 'TrendingUp' },
+  { title: 'Nationwide', sub: 'Presence', iconName: 'MapPin' },
+];
+
+const AboutDocuments = ({ profileData, profileStats, downloadLabel, viewLabel }) => {
   const [docFileUrl, setDocFileUrl] = useState(PISL_DEFAULT_PDF);
   const [docCoverUrl, setDocCoverUrl] = useState(PISL_DEFAULT_COVER);
   const [docTitle, setDocTitle] = useState('Building Infrastructure\nfor a Better Tomorrow');
@@ -25,9 +31,9 @@ const AboutDocuments = ({ profileData }) => {
     e.preventDefault();
     if (downloading) return;
     setDownloading(true);
+    const targetUrl = docFileUrl || PISL_LOCAL_PDF || '/reports/Pragati-Infra-Solutions-Corporate-Profile.pdf';
 
     try {
-      const targetUrl = docFileUrl || '/reports/Pragati-Infra-Solutions-Corporate-Profile.pdf';
       const response = await fetch(targetUrl, { mode: 'cors' });
       if (!response.ok) throw new Error('Download network error');
       const blob = await response.blob();
@@ -55,22 +61,24 @@ const AboutDocuments = ({ profileData }) => {
     if (item.title) setDocTitle(item.title);
     if (item.desc) setDocDesc(item.desc);
     if (item.file || item.fileUrl) {
-      const u = getStrapiMediaUrl(item.file || item.fileUrl);
+      const u = getWpMediaUrl(item.file || item.fileUrl);
       if (u) setDocFileUrl(u);
     }
     if (item.coverImage) {
-      const c = getStrapiMediaUrl(item.coverImage);
+      const c = getWpMediaUrl(item.coverImage);
       if (c) setDocCoverUrl(c);
     }
   };
 
   useEffect(() => {
+    const previewActive = Boolean(getPreviewContext());
     if (profileData) {
       applyProfile(profileData);
+      if (previewActive) return;
     }
 
-    // 1. Live network fetch directly from Strapi about-page first
-    fetchStrapiData('about-page?populate[0]=companyProfile.file&populate[1]=companyProfile.coverImage&populate[2]=resources.file&populate[3]=resources.coverImage')
+    // 1. Live network fetch directly from WordPress about-page first
+    fetchWpData('about-page?populate[0]=companyProfile.file&populate[1]=companyProfile.coverImage&populate[2]=resources.file&populate[3]=resources.coverImage')
       .then(res => {
         const d = res?.data?.attributes || res?.companyProfile ? res : res?.data || res;
         const profile = d?.companyProfile || (d?.resources && d.resources.find(r => (r.title || '').toLowerCase().includes('profile'))) || d?.resources?.[0];
@@ -79,7 +87,7 @@ const AboutDocuments = ({ profileData }) => {
           return;
         }
         // Fallback to ehs-page if about-page profile has not been uploaded yet
-        return fetchStrapiData('ehs-page?populate[0]=resources&populate[1]=resources.file&populate[2]=resources.coverImage')
+        return fetchWpData('ehs-page?populate[0]=resources&populate[1]=resources.file&populate[2]=resources.coverImage')
           .then(data => {
             const items = data?.resources || data?.data?.attributes?.resources || [];
             const pislItem = items.find(r => (r.title || '').toLowerCase().includes('profile'));
@@ -88,8 +96,8 @@ const AboutDocuments = ({ profileData }) => {
       })
       .catch(() => {});
 
-    // 2. Check if cached about-page or ehs-page in localStorage has updated profile file or cover
-    if (typeof window !== 'undefined' && window.localStorage) {
+    // 2. Cached fallback only outside signed preview sessions
+    if (!previewActive && !profileData && typeof window !== 'undefined' && window.localStorage) {
       try {
         for (let i = 0; i < window.localStorage.length; i++) {
           const key = window.localStorage.key(i);
@@ -188,38 +196,21 @@ const AboutDocuments = ({ profileData }) => {
 
             {/* 3 Metric Stat Items */}
             <div className="ap-stats-row">
-              {/* Stat 1: 17+ Years */}
-              <div className="ap-stat-item">
-                <div className="ap-stat-icon ap-icon-blue">
-                  <Building2 size={20} strokeWidth={2.2} />
-                </div>
-                <div className="ap-stat-text">
-                  <div className="ap-stat-title">17+ Years</div>
-                  <div className="ap-stat-sub">Excellence</div>
-                </div>
-              </div>
-
-              {/* Stat 2: 16M+ Sq. Ft. */}
-              <div className="ap-stat-item">
-                <div className="ap-stat-icon ap-icon-orange">
-                  <TrendingUp size={20} strokeWidth={2.2} />
-                </div>
-                <div className="ap-stat-text">
-                  <div className="ap-stat-title">16M+ Sq. Ft.</div>
-                  <div className="ap-stat-sub">Delivered</div>
-                </div>
-              </div>
-
-              {/* Stat 3: Nationwide */}
-              <div className="ap-stat-item ap-stat-item-last">
-                <div className="ap-stat-icon ap-icon-green">
-                  <MapPin size={20} strokeWidth={2.2} />
-                </div>
-                <div className="ap-stat-text">
-                  <div className="ap-stat-title">Nationwide</div>
-                  <div className="ap-stat-sub">Presence</div>
-                </div>
-              </div>
+              {(Array.isArray(profileStats) && profileStats.length > 0 ? profileStats : DEFAULT_PROFILE_STATS).slice(0, 3).map((st, idx) => {
+                const iconClass = idx === 0 ? 'ap-icon-blue' : idx === 1 ? 'ap-icon-orange' : 'ap-icon-green';
+                const IconComp = st.iconName === 'TrendingUp' ? TrendingUp : (st.iconName === 'MapPin' ? MapPin : (st.iconName === 'Building2' ? Building2 : (idx === 1 ? TrendingUp : (idx === 2 ? MapPin : Building2))));
+                return (
+                  <div key={idx} className={`ap-stat-item${idx === 2 ? ' ap-stat-item-last' : ''}`}>
+                    <div className={`ap-stat-icon ${iconClass}`}>
+                      <IconComp size={20} strokeWidth={2.2} />
+                    </div>
+                    <div className="ap-stat-text">
+                      <div className="ap-stat-title">{st.title}</div>
+                      <div className="ap-stat-sub">{st.sub}</div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Actions: Download Button & View Link */}
@@ -229,11 +220,11 @@ const AboutDocuments = ({ profileData }) => {
                 download="Pragati-Infra-Solutions-Company-Profile.pdf"
                 onClick={handleDownload}
                 className="ap-download-btn"
-                title="Download Company Profile (PDF)"
+                title={downloadLabel || 'Download Company Profile (PDF)'}
               >
                 <div className="ap-btn-body">
                   <FileText size={18} strokeWidth={2.2} />
-                  <span>{downloading ? 'Downloading...' : 'Download Company Profile (PDF)'}</span>
+                  <span>{downloading ? 'Downloading...' : (downloadLabel || 'Download Company Profile (PDF)')}</span>
                 </div>
                 <div className="ap-btn-arrow">
                   <ArrowRight size={18} strokeWidth={2.4} />
@@ -245,10 +236,10 @@ const AboutDocuments = ({ profileData }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ap-view-btn"
-                title="View Presentation in Browser"
+                title={viewLabel || 'View Presentation in Browser'}
               >
                 <Eye size={16} />
-                <span>View Presentation</span>
+                <span>{viewLabel || 'View Presentation'}</span>
               </a>
             </div>
 

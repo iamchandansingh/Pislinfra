@@ -103,7 +103,7 @@ const HSESection = ({ data }) => {
           >
             <img
               src={images[0]}
-              alt="HSE"
+              alt="Health, Safety and Environment Standards - Pragati Infra Solutions"
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
@@ -159,7 +159,14 @@ const HSESection = ({ data }) => {
 
               {/* CTA */}
               <button 
-                onClick={() => navigate('/about/ehs')}
+                onClick={() => {
+                  const target = data?.ctaLink || '/about/ehs';
+                  if (/^https?:\/\//i.test(target)) {
+                    window.open(target, '_blank', 'noopener,noreferrer');
+                  } else {
+                    navigate(target);
+                  }
+                }}
                 className="hse-cta-btn"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,

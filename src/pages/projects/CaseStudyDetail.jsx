@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { fetchStrapiData } from '../../services/strapi'
-import Preloader from '../../components/common/Preloader'
-import PageHero from '../../components/hero/PageHero'
-import BlogSEO from '../../components/Blog/BlogSEO'
-import caseStudies from '../../data/caseStudies'
-import { FaBuilding, FaMapMarkerAlt, FaRulerCombined } from 'react-icons/fa'
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchWpData, getPreviewContext } from '../../services/wordpress';
+import { getImageUrl } from '../../utils/imageUrl';
+import Preloader from '../../components/common/Preloader';
+import PageHero from '../../components/hero/PageHero';
+import BlogSEO from '../../components/Blog/BlogSEO';
+import caseStudies from '../../data/caseStudies';
+import { FaBuilding, FaMapMarkerAlt, FaRulerCombined } from 'react-icons/fa';
 
 const imgStyle = {
   width: '100%',
@@ -13,14 +14,14 @@ const imgStyle = {
   objectFit: 'cover',
   borderRadius: '12px',
   border: '3px solid #ff8d4b',
-  boxShadow: '0 8px 16px rgba(0,0,0,0.2)'
+  boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
 };
 
 const sectionStyle = {
   display: 'flex',
   alignItems: 'center',
   gap: '50px',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
 };
 
 const imageContainerStyle = { flex: '1', minWidth: '300px' };
@@ -28,20 +29,26 @@ const contentStyle = { flex: '1', minWidth: '300px' };
 const headingStyle = { color: '#28296F', fontSize: '32px', marginBottom: '20px', fontWeight: 800 };
 
 const CaseStudyDetail = () => {
-  const { slug } = useParams()
-  const navigate = useNavigate()
-  
-  const initialLocal = caseStudies.find(lc => lc.slug === slug);
-  const [cs, setCs] = useState(initialLocal || null)
-  const [loading, setLoading] = useState(!initialLocal)
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const isPreview = Boolean(getPreviewContext());
+
+  const initialLocal = isPreview ? null : caseStudies.find((lc) => lc.slug === slug);
+  const [cs, setCs] = useState(initialLocal || null);
+  const [loading, setLoading] = useState(isPreview || !initialLocal);
 
   useEffect(() => {
+    let isMounted = true;
     const getData = async () => {
       try {
-        const csData = await fetchStrapiData(`case-studies?filters[slug][$eq]=${slug}&populate=*`);
-        if (csData && csData.length > 0) {
-          const item = csData[0];
-          const matchLocal = caseStudies.find(lc => lc.slug === item.slug) || {};
+        const csData = await fetchWpData(`case-studies?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`, { forceFresh: isPreview });
+        if (!isMounted) return;
+        if (Array.isArray(csData) && csData.length > 0) {
+          const item =
+            csData.find((c) => c.slug === slug || c.documentId === slug || String(c.id) === slug) ||
+            csData[0];
+          const fallbackSrc = item.image || item.engagementImage || item.challengesImage || item.achievementsImage;
+          const coverImg = getImageUrl(fallbackSrc, '/images/hero/Case-Study.png');
           setCs({
             id: item.documentId || item.id,
             slug: item.slug,
@@ -53,50 +60,62 @@ const CaseStudyDetail = () => {
             buildUpArea: item.buildUpArea,
             introduction: item.introduction,
             overview: item.overview,
-            engagement: item.engagement || [],
-            challenges: item.challenges || [],
-            achievements: item.achievements || [],
+            engagement: Array.isArray(item.engagement) ? item.engagement : [],
+            challenges: Array.isArray(item.challenges) ? item.challenges : [],
+            achievements: Array.isArray(item.achievements) ? item.achievements : [],
             conclusion: item.conclusion,
-            image: item.image ? (item.image.url?.startsWith('http') ? item.image.url : `${item.image.url}`) : matchLocal.image || null,
-            engagementImage: item.engagementImage ? (item.engagementImage.url?.startsWith('http') ? item.engagementImage.url : `${item.engagementImage.url}`) : matchLocal.engagementImage || null,
-            challengesImage: item.challengesImage ? (item.challengesImage.url?.startsWith('http') ? item.challengesImage.url : `${item.challengesImage.url}`) : matchLocal.challengesImage || null,
-            achievementsImage: item.achievementsImage ? (item.achievementsImage.url?.startsWith('http') ? item.achievementsImage.url : `${item.achievementsImage.url}`) : matchLocal.achievementsImage || null,
+            image: coverImg,
+            engagementImage: getImageUrl(item.engagementImage, coverImg),
+            challengesImage: getImageUrl(item.challengesImage, coverImg),
+            achievementsImage: getImageUrl(item.achievementsImage, coverImg),
             seo: item.seo,
           });
+        } else if (isPreview || Array.isArray(csData)) {
+          setCs(null);
         } else {
-          const found = caseStudies.find(c => c.slug === slug);
+          const found = caseStudies.find((c) => c.slug === slug);
           setCs(found || null);
         }
       } catch (err) {
-        console.error("Error fetching case study details:", err);
-        const found = caseStudies.find(c => c.slug === slug);
-        setCs(found || null);
+        console.error('Error fetching case study details:', err);
+        if (isMounted) {
+          const found = isPreview ? null : caseStudies.find((c) => c.slug === slug);
+          setCs(found || null);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
-    
+
     getData();
-  }, [slug]);
+    return () => {
+      isMounted = false;
+    };
+  }, [slug, isPreview]);
 
-  if (loading && !cs) return <Preloader />
-
+  if (loading && !cs) return <Preloader />;
 
   if (!cs) {
     return (
       <div>
-        <PageHero title="Not Found" breadcrumb="Projects" bgImage="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+        <PageHero title="Not Found" breadcrumb="Projects" bgImage="/images/hero/Case-Study.png" />
         <section style={{ padding: '80px 16px', textAlign: 'center' }}>
           <button onClick={() => navigate('/projects/case-study')} style={{ color: '#ff8755', fontWeight: '600', border: 'none', background: 'none', cursor: 'pointer' }}>← Back</button>
         </section>
       </div>
-    )
+    );
   }
 
-  // ==================== SEO DATA ====================
+  const resolvedOgImage = getImageUrl(cs?.seo?.ogImage || cs?.ogImage || cs?.image, '/images/hero/Case-Study.png');
+  const resolvedTwitterImage = getImageUrl(cs?.seo?.twitterImage || cs?.twitterImage || cs?.image, resolvedOgImage);
   const seoData = {
     ...cs,
+    ...(cs?.seo || {}),
     contentType: 'case-study',
+    slug: `projects/case-study/${cs.slug}`,
+    canonicalUrl: cs?.seo?.canonicalUrl || `https://pislinfra.com/projects/case-study/${cs.slug}`,
+    ogImage: resolvedOgImage,
+    twitterImage: resolvedTwitterImage,
   };
 
   const infoData = [
@@ -105,20 +124,20 @@ const CaseStudyDetail = () => {
     { icon: FaMapMarkerAlt, label: 'LOCATION', value: cs.location },
     { icon: FaRulerCombined, label: 'PLINTH AREA', value: cs.plinthArea },
     { icon: FaRulerCombined, label: 'BUILD-UP AREA', value: cs.buildUpArea },
-  ]
+  ];
 
   return (
     <div>
       <BlogSEO blog={seoData} />
       <PageHero title={cs.title} breadcrumb="Projects / Case Study" bgImage={cs.image} />
-      
+
       <section style={{ padding: '60px 16px', backgroundColor: '#fafbfc' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
           {/* ===== SECTION 1: Image LEFT + Content RIGHT ===== */}
           <div className="case-row" style={sectionStyle}>
             <div style={imageContainerStyle}>
-              <img src={cs.image} alt={cs.title} style={imgStyle} />
+              <img src={cs.image} alt={`${cs.title} - Infrastructure Project Details | Pragati Infra Solutions`} style={imgStyle} />
             </div>
             <div style={contentStyle}>
               <h3 style={headingStyle}>Project <span style={{ color: '#ff8755' }}>Details</span></h3>
@@ -130,8 +149,8 @@ const CaseStudyDetail = () => {
                     borderRadius: '10px', border: '1px solid #f0f0f0',
                     transition: 'all 0.3s',
                   }}
-                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#ff8755'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(255,135,85,0.08)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#f0f0f0'; e.currentTarget.style.boxShadow = 'none' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#ff8755'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(255,135,85,0.08)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#f0f0f0'; e.currentTarget.style.boxShadow = 'none'; }}
                   >
                     <div style={{
                       width: '38px', height: '38px', borderRadius: '8px',
@@ -157,7 +176,7 @@ const CaseStudyDetail = () => {
           {/* ===== SECTION 2: Content LEFT + Image RIGHT ===== */}
           <div className="case-row" style={{ ...sectionStyle, marginTop: '56px', flexDirection: 'row-reverse' }}>
             <div style={imageContainerStyle}>
-              <img src={cs.engagementImage || cs.image} alt="Engagement" style={imgStyle} />
+              <img src={cs.engagementImage || cs.image} alt={`${cs.title} - Scope of Work & PISL Engagement | Pragati Infra Solutions`} style={imgStyle} />
             </div>
             <div style={contentStyle}>
               <h3 style={headingStyle}>
@@ -182,7 +201,7 @@ const CaseStudyDetail = () => {
           {/* ===== SECTION 3: Image LEFT + Content RIGHT ===== */}
           <div className="case-row" style={{ ...sectionStyle, marginTop: '56px' }}>
             <div style={imageContainerStyle}>
-              <img src={cs.challengesImage || cs.image} alt="Challenges" style={imgStyle} />
+              <img src={cs.challengesImage || cs.image} alt={`${cs.title} - Engineering Challenges & Execution | Pragati Infra Solutions`} style={imgStyle} />
             </div>
             <div style={contentStyle}>
               <h3 style={headingStyle}>
@@ -207,7 +226,7 @@ const CaseStudyDetail = () => {
           {/* ===== SECTION 4: Content LEFT + Image RIGHT ===== */}
           <div className="case-row" style={{ ...sectionStyle, marginTop: '56px', flexDirection: 'row-reverse' }}>
             <div style={imageContainerStyle}>
-              <img src={cs.achievementsImage || cs.image} alt="Achievements" style={imgStyle} />
+              <img src={cs.achievementsImage || cs.image} alt={`${cs.title} - Project Achievements & Results | Pragati Infra Solutions`} style={imgStyle} />
             </div>
             <div style={contentStyle}>
               <h3 style={headingStyle}>
@@ -232,7 +251,6 @@ const CaseStudyDetail = () => {
         </div>
       </section>
 
-      {/* Responsive */}
       <style>{`
         @media (max-width: 768px) {
           .case-row {
@@ -241,7 +259,7 @@ const CaseStudyDetail = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default CaseStudyDetail
+export default CaseStudyDetail;

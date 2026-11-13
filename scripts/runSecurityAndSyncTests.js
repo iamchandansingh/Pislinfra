@@ -359,24 +359,24 @@ try {
 }
 
 // -----------------------------------------------------------------
-// TEST 12: Visitor Network Audit (Zero Client CMS Calls or Polling)
+// TEST 12: Visitor Network Audit (Zero Background Polling or Strapi/NeonDB Calls)
 // -----------------------------------------------------------------
-console.log('▶ [TEST 12] Auditing Client Code for Zero Strapi/NeonDB Calls...');
+console.log('▶ [TEST 12] Auditing Client Code for Zero Background Polling & Zero Strapi/NeonDB Calls...');
 try {
-  const strapiService = fs.readFileSync(path.join(rootDir, 'src', 'services', 'strapi.js'), 'utf8');
+  const wpService = fs.readFileSync(path.join(rootDir, 'src', 'services', 'wordpress.js'), 'utf8');
   const blogContext = fs.readFileSync(path.join(rootDir, 'src', 'context', 'BlogContext.jsx'), 'utf8');
 
-  if (strapiService.includes('revalidateInBackground')) {
-    throw new Error('strapi.js contains revalidateInBackground');
+  if (wpService.includes('revalidateInBackground')) {
+    throw new Error('wordpress.js contains revalidateInBackground');
   }
   if (blogContext.includes('setInterval')) {
     throw new Error('BlogContext.jsx contains setInterval polling');
   }
-  if (strapiService.includes('candidateUrls') && strapiService.includes('onrender')) {
-    throw new Error('strapi.js contains candidateUrls pointing to Render');
+  if (wpService.includes('onrender.com') || wpService.includes(':1337') || wpService.includes('neon.tech')) {
+    throw new Error('wordpress.js still contains legacy Strapi/Render/Neon URLs');
   }
 
-  console.log('✅ TEST 12 PASSED: 0 visitor polling loops, 0 runtime background revalidation calls.\n');
+  console.log('✅ TEST 12 PASSED: 0 visitor polling loops, 0 runtime background revalidation calls, 0 Strapi/Render/Neon references.\n');
   testResults.push({ id: 12, name: 'Visitor Network Audit', status: 'PASSED' });
 } catch (e) {
   console.error('❌ TEST 12 FAILED:', e.message, '\n');

@@ -72,12 +72,15 @@ const FeaturedArticleSection = ({ article: latestBlog }) => {
         </div>
 
         {/* Image Side */}
-        <div 
-          className="featured-image"
-          style={{
-            backgroundImage: `url(${latestBlog.featuredImage || "/images/hero/Blog.png"})`,
-          }}
-        />
+        <div className="featured-image" style={{ position: 'relative', overflow: 'hidden' }}>
+          <img
+            src={latestBlog.featuredImage || '/images/hero/Blog.png'}
+            alt={latestBlog.title || 'Featured Article - Pragati Infra Solutions'}
+            loading="eager"
+            decoding="async"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+          />
+        </div>
 
       </div>
 

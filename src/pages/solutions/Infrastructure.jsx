@@ -1,26 +1,54 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../../services/wordpress'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import infraBg from '../../assets/images/Project/complete/Bilaspur-NCR/amazon-del5-billaspur-hr-6.png'
-import { FaCircle, FaCheck, FaBuilding, FaWarehouse, FaTruck, FaIndustry } from 'react-icons/fa';
+import {
+  FaCircle,
+  FaCheck,
+  FaCheckCircle,
+  FaBuilding,
+  FaWarehouse,
+  FaTruck,
+  FaIndustry,
+  FaCogs,
+  FaShieldAlt,
+  FaTools,
+  FaAward,
+  FaHardHat,
+  FaCubes,
+  FaClock,
+  FaUserTie,
+} from 'react-icons/fa';
 import Preloader from '../../components/common/Preloader';
 
 const commonIcons = {
   FaCircle,
   FaCheck,
+  FaCheckCircle,
   FaBuilding,
   FaWarehouse,
   FaTruck,
   FaIndustry,
+  FaCogs,
+  FaShieldAlt,
+  FaTools,
+  FaAward,
+  FaHardHat,
+  FaCubes,
+  FaClock,
+  FaUserTie,
 };
 
-const getIcon = (iconName) => {
+const getIcon = (iconName, title = '') => {
   if (iconName && commonIcons[iconName]) return commonIcons[iconName];
-  return FaCircle;
+  const t = (title || '').toLowerCase();
+  if (t.includes('time') || t.includes('delivery') || t.includes('schedule') || t.includes('punctual')) return FaClock;
+  if (t.includes('quality') || t.includes('excellence') || t.includes('standard')) return FaAward;
+  if (t.includes('management') || t.includes('team') || t.includes('professional') || t.includes('expert')) return FaUserTie;
+  if (t.includes('safety') || t.includes('shield') || t.includes('security') || t.includes('protection')) return FaShieldAlt;
+  return FaAward;
 };
-
-
 
 const defaultInfrastructureData = {
   title: "Infrastructure Solutions",
@@ -36,14 +64,17 @@ const defaultInfrastructureData = {
 };
 
 const Infrastructure = () => {
+  const isPreview = Boolean(getPreviewContext());
   const [data, setData] = useState(() => {
+    if (isPreview) return null;
     const raw = getLocalDataSync('solution-pages-infrastructure') || getLocalDataSync('solution-pages?filters[slug]=infrastructure');
     if (raw) return Array.isArray(raw) ? (raw[0] || defaultInfrastructureData) : raw;
     return defaultInfrastructureData;
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(isPreview);
 
   useEffect(() => {
+    if (isPreview) return;
     const handleUpdate = () => {
       const fresh = getLocalDataSync('solution-pages-infrastructure') || getLocalDataSync('solution-pages?filters[slug]=infrastructure');
       if (fresh) {
@@ -52,13 +83,16 @@ const Infrastructure = () => {
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   useEffect(() => {
     let isMounted = true;
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('solution-pages?filters[slug]=infrastructure&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo');
+        const response = await fetchWpData(
+          'solution-pages?filters[slug]=infrastructure&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo',
+          { forceFresh: isPreview }
+        );
         if (response && isMounted) {
           if (Array.isArray(response) && response.length > 0) {
             setData(response[0]);
@@ -74,69 +108,161 @@ const Infrastructure = () => {
     };
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [isPreview]);
 
   if (loading && !data) return <Preloader />;
+
+  const activeData = data || defaultInfrastructureData;
 
   const fallbackTitle = "Infrastructure Development Company | Pislinfra";
   const fallbackDescription = "Explore Pislinfra’s infrastructure construction solutions, combining engineering expertise, quality execution and reliable project delivery for complex developments.";
   const fallbackPrimaryKeyword = "Infrastructure Development";
   const fallbackFocusKeywords = "Infrastructure Development, infrastructure construction solutions, civil infrastructure, engineering expertise, complex developments India, Pislinfra";
 
-  // Connect CMS Infrastructure Solutions page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
-  // Safely falls back to existing SEO component or default metadata if fields are empty
-  const resolvedTitle = (data.metaTitle || data.seo?.seoTitle || fallbackTitle).trim();
-  const resolvedDescription = (data.metaDescription || data.seo?.seoDescription || fallbackDescription).trim();
-  const resolvedPrimaryKeyword = (data.primaryKeyword || data.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
-  const resolvedFocusKeywords = (data.focusKeywords || data.seo?.focusKeywords || fallbackFocusKeywords).trim();
+  const resolvedTitle = (activeData.metaTitle || activeData.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (activeData.metaDescription || activeData.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (activeData.primaryKeyword || activeData.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (activeData.focusKeywords || activeData.seo?.focusKeywords || fallbackFocusKeywords).trim();
 
   const seoData = {
     contentType: 'page',
-    ...(data.seo || {}),
+    slug: 'solutions/infrastructure',
+    canonicalUrl: "https://pislinfra.com/solutions/infrastructure",
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'Service',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    noIndex: false,
+    noFollow: false,
+    ...(activeData.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: data.seo?.seoKeywords || resolvedFocusKeywords,
-    slug: 'solutions/infrastructure',
-    canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/infrastructure",
-    ogTitle: data.ogTitle || data.seo?.ogTitle || resolvedTitle,
-    ogDescription: data.ogDescription || data.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
-    ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.twitterTitle || data.seo?.twitterTitle || resolvedTitle,
-    twitterDescription: data.twitterDescription || data.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
-    twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
-    schemaType: data.seo?.schemaType || 'Service',
-    breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
-    organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Civil Infrastructure', 'Industrial Utilities', 'Road Networks', 'Heavy Engineering', 'Earthworks'],
-    noIndex: data.seo?.noIndex || false,
-    noFollow: data.seo?.noFollow || false,
-    structuredData: data.seo?.structuredData
+    seoKeywords: activeData.seo?.seoKeywords || resolvedFocusKeywords,
+    ogTitle: activeData.ogTitle || activeData.seo?.ogTitle || resolvedTitle,
+    ogDescription: activeData.ogDescription || activeData.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(activeData.seo?.ogImage || activeData.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
+    twitterTitle: activeData.twitterTitle || activeData.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: activeData.twitterDescription || activeData.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(activeData.seo?.twitterImage || activeData.heroImage, 'https://pislinfra.com/images/hero/Infrastructure.png'),
+    tags: activeData.seo?.tags
+      ? (typeof activeData.seo.tags === 'string' ? activeData.seo.tags.split(',').map(t => t.trim()) : activeData.seo.tags)
+      : ['Civil Infrastructure', 'Industrial Utilities', 'Road Networks', 'Heavy Engineering', 'Earthworks'],
+    structuredData: activeData.seo?.structuredData
   };
 
-  const differentiators = data.features || [];
+  const features = activeData.features || [];
+
+  const whyPislGrid = (activeData.showWhyPisl !== false && (activeData.whyPislTitle || features.length > 0)) ? [{
+    title: (
+      <span>
+        What Differentiates <span style={{ color: '#ff8755' }}>Us?</span>
+      </span>
+    ),
+    description: activeData.whyPislDesc || "Our steadfast dedication to essential distinguishing qualities demonstrates our commitment to attaining operational excellence and maintaining the highest industry standards.",
+    titleColor: '#ffffff',
+    descColor: '#e2e8f0',
+    items: features.map(f => ({
+      icon: getIcon(f.iconName || f.icon, f.title),
+      title: f.title,
+      desc: f.description || f.desc
+    })),
+    vertical: false,
+    boxLayout: true,
+    showNumbers: true,
+    compact: true,
+    circleAnimation: true,
+    fullWidth: true,
+    borderless: true,
+    noOrangeBorder: true,
+    columns: 'repeat(auto-fit, minmax(260px, 1fr))',
+    bgImage: getImageUrl(activeData.whyPislImage, infraBg),
+    bgOverlay: 'linear-gradient(135deg, rgba(10, 42, 102, 0.72) 0%, rgba(30, 32, 95, 0.78) 100%)',
+    imageFilter: 'brightness(0.92) contrast(1.05)',
+    cardBg: '#ffffff',
+    cardBorder: 'none',
+    cardBottomBorder: 'none',
+    cardShadow: '0 10px 30px rgba(0, 0, 0, 0.14)',
+    iconBg: '#fff2ec',
+    iconColor: '#ff8755',
+    containerClass: 'infrastructure-advantages-section',
+    containerStyle: {
+      border: 'none',
+      borderRadius: '0',
+      boxShadow: 'none',
+      padding: '75px 0',
+    }
+  }] : [];
+
+  const allGrids = [...whyPislGrid, ...(Array.isArray(activeData.grids) ? activeData.grids : [])];
+
+  const rawMainFeatureText = activeData.mainFeatureText || '';
+  const textParts = rawMainFeatureText.split(/(?:###\s*)?Services Offered by Pislinfra/i);
+  const introPart = textParts[0] ? textParts[0].trim() : rawMainFeatureText;
+  const afterServices = textParts[1] ? textParts[1].trim() : '';
+
+  const methodParts = afterServices.split(/(?:###\s*)?Our methodologies and approach/i);
+  const servicesOnly = methodParts[0] ? methodParts[0].trim() : afterServices;
+  const methodologiesOnly = methodParts[1]
+    ? `Our methodologies and approach ${methodParts[1].trim()}`
+    : "Our methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.";
+
+  const leftColumnContent = (
+    <div>
+      <div style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8', marginBottom: '24px' }}>
+        {introPart ? (
+          <div dangerouslySetInnerHTML={{ __html: introPart.replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>') }} />
+        ) : (
+          <p style={{ margin: 0 }}>
+            Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.
+          </p>
+        )}
+      </div>
+
+      <div>
+        <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '12px' }}>
+          Services Offered by <span style={{ color: '#0a2a66' }}>Pislinfra</span>
+        </h3>
+        {servicesOnly ? (
+          <div
+            style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8' }}
+            dangerouslySetInnerHTML={{ __html: servicesOnly.replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>') }}
+          />
+        ) : (
+          <>
+            <p style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8', marginBottom: '12px' }}>
+              PISL is an infrastructure development firm that oversees all stages of construction.
+            </p>
+            <p style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8', margin: 0 }}>
+              We take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.
+            </p>
+          </>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <SolutionLayout
       seoData={seoData}
       hero={{
-        title: "Infrastructure Development",
-        subtitle: "Building the foundation for tomorrow's growth",
-        breadcrumb: "Solutions / Infrastructure",
-        bgImage: data.heroImage ? getImageUrl(data.heroImage, infraBg) : infraBg
+        show: activeData.showHero !== false,
+        title: activeData.title || "Infrastructure Development",
+        subtitle: activeData.heroSubtitle || "Building the foundation for tomorrow's growth",
+        breadcrumb: activeData.breadcrumb || "Solutions / Infrastructure",
+        bgImage: activeData.heroImage ? getImageUrl(activeData.heroImage, infraBg) : infraBg
       }}
-      intro={{
-        text: data.introText ? (<div dangerouslySetInnerHTML={{ __html: data.introText.replace(/\n/g, '<br/>') }} />) : null
-      }}
-      mainFeature={{
+      intro={activeData.showIntro !== false ? {
+        text: activeData.introText ? (<div dangerouslySetInnerHTML={{ __html: activeData.introText.replace(/\n/g, '<br/>') }} />) : null
+      } : null}
+      mainFeature={activeData.showMainFeature !== false ? {
         title: (
           <span>
             {(() => {
-              const words = (data.mainFeatureTitle || "Introduction to Infrastructure Development").split(' ');
+              const words = (activeData.mainFeatureTitle || "Introduction to Infrastructure Development").split(' ');
               if (words.length <= 2) return <span style={{ color: '#0a2a66' }}>{words.join(' ')}</span>;
               const firstPart = words.slice(0, words.length - 2).join(' ');
               const lastPart = words.slice(-2).join(' ');
@@ -144,264 +270,14 @@ const Infrastructure = () => {
             })()}
           </span>
         ),
-        text: data.mainFeatureText ? (<div style={{ marginBottom: '16px', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: data.mainFeatureText.replace(/### (.*?)\n/g, '<h3 style="font-size: 22px; font-weight: bold; color: #2a2a75; margin-bottom: 16px; margin-top: 32px;">$1</h3>').replace(/\n\n/g, '<br/><br/>') }} />) : null,
-        image: getImageUrl(data.mainFeatureImage, infraBg)
-      }}
-    >
-      <style>{`
-        .why-pisl-split-wrapper {
-          max-width: 1400px;
-          margin: 80px auto;
-          padding: 0 30px;
-          display: flex;
-          gap: 40px;
-          align-items: stretch;
-        }
-
-        .why-pisl-left {
-          width: 40%;
-        }
-
-        .why-pisl-image-card {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 20px;
-          overflow: hidden;
-          background-image: url('${data.whyPislImage ? getImageUrl(data.whyPislImage, "") : ""}');
-          background-size: cover;
-          background-position: center;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-          border: 2px solid #ffede5;
-          display: flex;
-          align-items: flex-end;
-        }
-
-        .why-pisl-image-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to bottom, rgba(10,42,102,0.1) 0%, rgba(10,42,102,0.7) 40%, rgba(10,42,102,0.95) 100%);
-          z-index: 1;
-        }
-
-        .why-pisl-image-content {
-          position: relative;
-          z-index: 2;
-          padding: 40px;
-          color: #ffffff;
-        }
-
-        .why-pisl-image-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 13px;
-          font-weight: bold;
-          color: #ffffff;
-          background-color: rgba(255, 135, 85, 0.9);
-          padding: 6px 14px;
-          border-radius: 20px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          margin-bottom: 24px;
-          backdrop-filter: blur(4px);
-        }
-
-        .why-pisl-image-badge::before {
-          content: '';
-          display: block;
-          width: 6px;
-          height: 6px;
-          background-color: #ffffff;
-          border-radius: 50%;
-        }
-
-        .why-pisl-left-title {
-          font-size: 28px;
-          font-weight: bold;
-          color: #ffffff;
-          margin-bottom: 20px;
-          line-height: 1.3;
-        }
-
-        .why-pisl-left-title span {
-          color: #ff8755;
-        }
-
-        .why-pisl-left-desc {
-          color: #e2e8f0;
-          font-size: 15px;
-          line-height: 1.8;
-          margin: 0;
-        }
-
-        /* Right Side Box Grid (Bento Style) */
-        .why-pisl-right {
-          width: 60%;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 16px;
-        }
-
-        .why-pisl-list-card {
-          background: #ffffff;
-          border: 1px solid #f0f0f0;
-          border-radius: 12px;
-          padding: 24px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 16px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .why-pisl-list-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background-color: #ff8755;
-        }
-
-        .why-pisl-list-card:hover {
-          box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-          border-color: #ffe8df;
-        }
-
-        .why-pisl-list-icon-wrap {
-          width: 44px;
-          height: 44px;
-          background-color: #fff5f0;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .why-pisl-list-icon {
-          color: #ff8755;
-          font-size: 20px;
-        }
-
-        .why-pisl-list-text {
-          flex: 1;
-        }
-
-        .why-pisl-list-title {
-          font-size: 17px;
-          font-weight: bold;
-          color: #2a2a75;
-          margin-bottom: 6px;
-        }
-
-        .why-pisl-list-desc {
-          color: #6b7280;
-          font-size: 14px;
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        /* Tablet & Mobile responsive */
-        @media screen and (max-width: 900px) {
-          .why-pisl-split-wrapper {
-            flex-direction: column;
-            margin: 60px auto;
-            padding: 0 20px;
-            gap: 32px;
-          }
-          .why-pisl-left, .why-pisl-right {
-            width: 100%;
-          }
-          .why-pisl-right {
-            grid-template-columns: 1fr;
-          }
-          .why-pisl-list-card {
-            flex-direction: row;
-            align-items: flex-start;
-          }
-          .why-pisl-image-card {
-            min-height: 400px;
-          }
-          .why-pisl-image-content {
-            padding: 32px;
-          }
-        }
-
-        /* Small Phones responsive */
-        @media screen and (max-width: 600px) {
-          .why-pisl-split-wrapper {
-            margin: 40px auto;
-            padding: 0 16px;
-            gap: 24px;
-          }
-          .why-pisl-image-card {
-            min-height: 350px;
-            border-radius: 16px;
-          }
-          .why-pisl-image-content {
-            padding: 24px 20px;
-          }
-          .why-pisl-left-title {
-            font-size: 24px;
-            margin-bottom: 12px;
-          }
-          .why-pisl-left-desc {
-            font-size: 14px;
-            line-height: 1.6;
-          }
-          .why-pisl-list-card {
-            flex-direction: column;
-            padding: 20px;
-            gap: 12px;
-          }
-        }
-      `}</style>
-
-      {(data.whyPislTitle || (data.features && data.features.length > 0)) && (
-      <div className="why-pisl-split-wrapper">
-        
-        {/* Left Fixed Area */}
-        <div className="why-pisl-left">
-          <div className="why-pisl-image-card">
-            <div className="why-pisl-image-overlay"></div>
-            <div className="why-pisl-image-content">
-              {data.whyPislBadge && <div className="why-pisl-image-badge">{data.whyPislBadge}</div>}
-              <h2 className="why-pisl-left-title" dangerouslySetInnerHTML={{ __html: data.whyPislTitle ? data.whyPislTitle.replace('Us?', '<span>Us?</span>') : 'What Differentiates <span>Us?</span>' }}></h2>
-              <p className="why-pisl-left-desc">{data.whyPislDesc}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Box Grid Area */}
-        <div className="why-pisl-right">
-          {differentiators.map((feature, index) => (
-            <div key={index} className="why-pisl-list-card">
-              <div className="why-pisl-list-icon-wrap">
-                {(() => { const Icon = getIcon(feature.icon); return <Icon className="why-pisl-list-icon" />; })()}
-              </div>
-              <div className="why-pisl-list-text">
-                <h3 className="why-pisl-list-title">
-                  {feature.title}
-                </h3>
-                <p className="why-pisl-list-desc">
-                  {feature.description || feature.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-      </div>
-      )}</SolutionLayout>
+        text: leftColumnContent,
+        image: getImageUrl(activeData.mainFeatureImage, infraBg),
+        imageOverlayContent: methodologiesOnly,
+        imageHeight: '410px',
+        imageBorder: '2px solid #0a2a66'
+      } : null}
+      grids={allGrids}
+    />
   )
 }
 

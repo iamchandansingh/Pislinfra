@@ -219,23 +219,23 @@ const StatsSection = ({ data }) => {
   
   // ── Section 1 Stats: "Building Global-Standard Industrial & Logistics Parks" ──
   // Card 01: 10M+ Million Sq. Ft of Optimally-Designed Spaces
-  const s1Val = data?.statSpaceSqFt || '10M+';
-  const s1Label = data?.statSpaceSqFtLabel || 'Million Sq. Ft of Optimally-Designed Spaces';
+  const s1Val = data?.statSpaceSqFt || data?.stat1Value || '10M+';
+  const s1Label = data?.statSpaceSqFtLabel || data?.stat1Label || 'Million Sq. Ft of Optimally-Designed Spaces';
   const parsed1 = parseStatValue(s1Val, '10', 'M+');
 
   // Card 02: 27+ Key Micro Markets Signify Our PAN-India Presence
-  const s2Val = data?.statMicroMarkets || '27+';
-  const s2Label = data?.statMicroMarketsLabel || 'Key Micro Markets Signify Our PAN-India Presence';
+  const s2Val = data?.statMicroMarkets || data?.stat2Value || '27+';
+  const s2Label = data?.statMicroMarketsLabel || data?.stat2Label || 'Key Micro Markets Signify Our PAN-India Presence';
   const parsed2 = parseStatValue(s2Val, '27', '+');
 
   // Card 03: 20M Million Sq. Ft Development Pipeline Over Next 3 Years
-  const s3Val = data?.statPipelineSqFt || '20M';
-  const s3Label = data?.statPipelineSqFtLabel || 'Million Sq. Ft Development Pipeline Over Next 3 Years';
+  const s3Val = data?.statPipelineSqFt || data?.stat3Value || '20M';
+  const s3Label = data?.statPipelineSqFtLabel || data?.stat3Label || 'Million Sq. Ft Development Pipeline Over Next 3 Years';
   const parsed3 = parseStatValue(s3Val, '20', 'M');
 
   // Card 04: 100+ Visionaries Bringing Forth Decades of Expertise
-  const s4Val = data?.statVisionaries || '100+';
-  const s4Label = data?.statVisionariesLabel || 'Visionaries Bringing Forth Decades of Expertise';
+  const s4Val = data?.statVisionaries || data?.stat4Value || '100+';
+  const s4Label = data?.statVisionariesLabel || data?.stat4Label || 'Visionaries Bringing Forth Decades of Expertise';
   const parsed4 = parseStatValue(s4Val, '100', '+');
 
   const dataset = [

@@ -2,7 +2,7 @@ import Preloader from '../../components/common/Preloader';
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../../services/wordpress';
 import { getImageUrl } from '../../utils/imageUrl.js';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
@@ -37,8 +37,8 @@ const getIcon = (name) => {
   return iconMap[name] || FaCheckCircle;
 };
 
-const AutoSlidingImages = () => {
-  const images = [
+const AutoSlidingImages = ({ galleryImages = [] }) => {
+  const defaultImages = [
     '/images/Overview/11.png',
     '/images/Overview/8.png',
     '/images/Overview/4.png',
@@ -46,6 +46,10 @@ const AutoSlidingImages = () => {
     '/images/Overview/13.png',
     '/images/Overview/21.png',
   ];
+  const resolvedGallery = Array.isArray(galleryImages)
+    ? galleryImages.map((img, i) => getImageUrl(img, defaultImages[i % defaultImages.length])).filter(Boolean)
+    : [];
+  const images = resolvedGallery.length > 0 ? resolvedGallery : defaultImages;
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setCurrent((prev) => (prev + 1) % images.length), 5000);
@@ -104,16 +108,26 @@ const AutoSlidingImages = () => {
   );
 };
 
+const DEFAULT_ABOUT_SECTIONS = ['hero', 'overview', 'stats', 'capabilities', 'values', 'presence', 'companyProfile'];
+
 const Overview = () => {
-  const [data, setData] = useState(() => getLocalDataSync('about-page'));
+  const [data, setData] = useState(() => (getPreviewContext()?.type === 'about-page' ? null : getLocalDataSync('about-page')));
+  const [ongoingProjects, setOngoingProjects] = useState(null);
   const [loading, setLoading] = useState(!data);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values&populate[5]=companyProfile.file&populate[6]=companyProfile.coverImage&populate[7]=resources.file&populate[8]=resources.coverImage');
+        const [response, projRes] = await Promise.all([
+          fetchWpData('about-page?populate[0]=heroImage&populate[1]=seo&populate[2]=stats&populate[3]=capabilities&populate[4]=values&populate[5]=companyProfile.file&populate[6]=companyProfile.coverImage&populate[7]=resources.file&populate[8]=resources.coverImage'),
+          fetchWpData('ongoing-projects?pagination[limit]=100').catch(() => null),
+        ]);
         if (response) {
           setData(response);
+        }
+        const projList = Array.isArray(projRes) ? projRes : (Array.isArray(projRes?.data) ? projRes.data : null);
+        if (projList) {
+          setOngoingProjects(projList);
         }
       } catch (error) {
         console.error('Error fetching about page:', error);
@@ -138,36 +152,40 @@ const Overview = () => {
   const fallbackTitle = "About Pislinfra - India's Premier Industrial & Warehouse EPC Contractor";
   const fallbackDescription = "Pragati Infra Solutions Pvt. Ltd. (Pislinfra) is a leading industrial infrastructure and EPC company with 16M+ sq. ft delivered across India. Specializing in warehouses, logistics parks, and PEB engineering.";
 
-  // Connect CMS About page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
-  // Safely falls back to existing SEO component or default metadata if fields are empty
-  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
-  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
-  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || '').trim();
-  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || '').trim();
+  // Connect CMS About page SEO fields (WordPress seo object takes priority over fallback defaults)
+  const wpSeo = data?.seo && typeof data.seo === 'object' ? data.seo : {};
+  const resolvedTitle = (wpSeo.seoTitle || wpSeo.metaTitle || data?.metaTitle || fallbackTitle).trim();
+  const resolvedDescription = (wpSeo.seoDescription || wpSeo.metaDescription || data?.metaDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (data?.primaryKeyword || wpSeo.primaryKeyword || wpSeo.focusKeyword || '').trim();
+  const resolvedFocusKeywords = (data?.focusKeywords || wpSeo.focusKeywords || wpSeo.secondaryKeywords || '').trim();
+  const rawSchemaType = String(wpSeo.schemaType || '').trim();
+  const resolvedSchemaType = rawSchemaType && !rawSchemaType.includes('+') ? rawSchemaType : 'AboutPage';
 
   const seoData = {
     contentType: 'page',
-    ...(data?.seo || {}),
+    slug: 'about',
+    canonicalUrl: wpSeo.canonicalUrl || 'https://pislinfra.com/about',
+    ogType: wpSeo.ogType || 'website',
+    twitterCardType: wpSeo.twitterCardType || 'summary_large_image',
+    breadcrumbSchema: wpSeo.breadcrumbSchema !== undefined ? Boolean(wpSeo.breadcrumbSchema) : true,
+    organizationSchema: wpSeo.organizationSchema !== undefined ? Boolean(wpSeo.organizationSchema) : true,
+    noIndex: Boolean(wpSeo.noIndex),
+    noFollow: Boolean(wpSeo.noFollow),
+    schemaType: resolvedSchemaType,
+    seoKeywords: wpSeo.seoKeywords || resolvedFocusKeywords || 'about Pislinfra, industrial construction company India, Pragati Infra Solutions, turnkey EPC contractor, warehouse builder India, industrial infrastructure profile',
+    tags: wpSeo.tags || ['About Us', 'Pislinfra', 'Industrial EPC', 'Company Overview', 'Infrastructure Leader India'],
+    ...wpSeo,
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: data?.seo?.seoKeywords || 'about Pislinfra, industrial construction company India, Pragati Infra Solutions, turnkey EPC contractor, warehouse builder India, industrial infrastructure profile',
-    slug: 'about',
-    canonicalUrl: 'https://pislinfra.com/about',
-    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
-    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/11.png'),
-    ogType: 'website',
-    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
-    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, 'https://pislinfra.com/images/hero/11.png'),
-    twitterCardType: 'summary_large_image',
-    schemaType: 'AboutPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['About Us', 'Pislinfra', 'Industrial EPC', 'Company Overview', 'Infrastructure Leader India']
+    ogTitle: wpSeo.ogTitle || data?.ogTitle || resolvedTitle,
+    ogDescription: wpSeo.ogDescription || data?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(wpSeo.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/11.png'),
+    twitterTitle: wpSeo.twitterTitle || data?.twitterTitle || resolvedTitle,
+    twitterDescription: wpSeo.twitterDescription || data?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(wpSeo.twitterImage || wpSeo.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/11.png'),
   };
 
   const overviewTitle = data?.overviewTitle ? data.overviewTitle.toUpperCase() : 'OVERVIEW';
@@ -180,18 +198,38 @@ const Overview = () => {
   const v1 = valuesTitleSplit.length > 1 ? valuesTitleSplit.slice(0, -1).join(' ') : 'OUR';
   const v2 = valuesTitleSplit.length > 1 ? valuesTitleSplit.slice(-1)[0] : (valuesTitleSplit[0] || 'VALUES');
 
-  return (
-    <div style={{ background: '#ffffff', fontFamily: '"Inter", "Helvetica Neue", sans-serif' }}>
-      <BlogSEO blog={seoData} />
-      
+  const parsedOrder = typeof data?.sectionOrder === 'string' && data.sectionOrder.trim()
+    ? data.sectionOrder.split(',').map((s) => s.trim()).filter((k) => DEFAULT_ABOUT_SECTIONS.includes(k))
+    : [];
+  const sectionOrder = parsedOrder.length > 0
+    ? [...parsedOrder, ...DEFAULT_ABOUT_SECTIONS.filter((k) => !parsedOrder.includes(k))]
+    : DEFAULT_ABOUT_SECTIONS;
+
+  const isVisible = (key) => {
+    const map = {
+      hero: data?.showHero !== false,
+      overview: data?.showOverview !== false,
+      stats: data?.showStats !== false,
+      capabilities: data?.showCapabilities !== false,
+      values: data?.showValues !== false,
+      presence: data?.showPresence !== false,
+      companyProfile: data?.showCompanyProfile !== false,
+    };
+    return map[key] !== false;
+  };
+
+  const sectionElements = {
+    hero: (
       <PageHero 
+        key="hero"
         title={data.title} 
         subtitle={data.subtitle}
-        breadcrumb={data.breadcrumb}
+        breadcrumb={data.breadcrumb || 'About Us'}
         bgImage={getImageUrl(data.heroImage, "/images/hero/11.png")}
       />
-
-      <section id="expertise" className="overview-section pisl-overview-section" style={{ backgroundColor: '#ffffff', overflow: 'hidden' }}>
+    ),
+    overview: (
+      <section key="overview" id="expertise" className="overview-section pisl-overview-section" style={{ backgroundColor: '#ffffff', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1350px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 0.75fr', gap: '56px', alignItems: 'center' }} className="overview-split">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <h2 className="overview-title" style={{ fontSize: '36px', fontWeight: 'bold', color: NAVY, marginBottom: '24px' }}>
@@ -204,12 +242,13 @@ const Overview = () => {
             />
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <AutoSlidingImages />
+            <AutoSlidingImages galleryImages={data?.overviewGallery} />
           </motion.div>
         </div>
       </section>
-
-      <section className="stats-section pisl-stats-section" style={{ backgroundColor: '#f9fafb', overflow: 'hidden' }}>
+    ),
+    stats: (
+      <section key="stats" className="stats-section pisl-stats-section" style={{ backgroundColor: '#f9fafb', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }} className="stats-grid pisl-stats-grid">
             {(data.stats || []).map((item, i) => {
@@ -226,10 +265,10 @@ const Overview = () => {
                   style={{ 
                     textAlign: 'center', 
                     padding: '36px 20px 32px', 
-                    backgroundColor: '#fff5f0', 
+                    backgroundColor: '#ffffff', 
                     borderRadius: '16px', 
-                    border: '2px solid #ffd5c2', 
-                    borderBottom: `4px solid ${ORANGE}`, 
+                    border: '2px solid #edf2f7', 
+                    boxShadow: 'none',
                     transition: 'all 0.3s ease', 
                     cursor: 'default',
                     display: 'flex',
@@ -245,7 +284,8 @@ const Overview = () => {
                       width: '64px', 
                       height: '64px', 
                       borderRadius: '16px', 
-                      backgroundColor: ORANGE, 
+                      backgroundColor: NAVY, 
+                      boxShadow: 'none',
                       display: 'flex', 
                       alignItems: 'center', 
                       justifyContent: 'center', 
@@ -273,8 +313,9 @@ const Overview = () => {
           </div>
         </div>
       </section>
-
-      <section className="overview-section pisl-capabilities-section" style={{ backgroundColor: NAVY, overflow: 'hidden' }}>
+    ),
+    capabilities: (
+      <section key="capabilities" className="overview-section pisl-capabilities-section" style={{ backgroundColor: NAVY, overflow: 'hidden' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 className="pisl-capabilities-title" style={{ fontSize: '36px', fontWeight: 'bold', color: 'white', marginBottom: '48px', textAlign: 'center' }}>
             {c1} <span style={{ color: ORANGE }}>{c2}</span>
@@ -292,7 +333,7 @@ const Overview = () => {
                     borderRadius: '16px', 
                     borderLeft: `4px solid ${ORANGE}`, 
                     borderBottom: `4px solid ${NAVY}`,
-                    boxShadow: '0 4px 14px rgba(0,0,0,0.06)'
+                    boxShadow: 'none'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
@@ -326,76 +367,109 @@ const Overview = () => {
           </div>
         </div>
       </section>
-
-      {/* OUR VALUES */}
-      <section className="overview-section pisl-values-section" style={{ backgroundColor: '#f9fafb', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    ),
+    values: (
+      <section key="values" className="overview-section pisl-values-section" style={{ backgroundColor: '#f9fafb', overflow: 'hidden', padding: '70px 0' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 20px' }}>
           <h2 className="pisl-values-title" style={{ fontSize: '36px', fontWeight: 'bold', color: NAVY, marginBottom: '48px', textAlign: 'center' }}>
-            {v1} <span style={{ color: ORANGE }}>{v2}</span>
+            {v1} <span style={{ color: '#0a2a66' }}>{v2}</span>
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }} className="values-grid pisl-values-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }} className="values-grid pisl-values-grid">
             {(data.values || []).map((val, i) => {
               const IconComp = getIcon(val.iconName);
               return (
-                <motion.div 
+                <div 
                   key={i} 
-                  initial={{ opacity: 0, y: 20 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ delay: i * 0.08 }}
-                  whileHover={{ y: -4 }}
                   className="pisl-value-card"
                   style={{ 
-                    textAlign: 'center', 
-                    padding: '40px 24px 36px', 
-                    backgroundColor: 'white', 
+                    textAlign: 'left', 
+                    padding: '34px 28px', 
+                    backgroundColor: '#ffffff', 
                     borderRadius: '16px', 
-                    border: '2px solid #e5e7eb', 
-                    borderBottom: `4px solid ${ORANGE}`, 
-                    transition: 'all 0.3s ease', 
+                    border: '2px solid #edf2f7', 
                     cursor: 'default',
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
                     justifyContent: 'flex-start',
                     height: '100%',
-                    boxShadow: '0 4px 14px rgba(0,0,0,0.04)'
+                    boxShadow: 'none'
                   }}
                 >
-                  <div 
-                    className="pisl-value-icon-wrap"
-                    style={{ 
-                      width: '72px', 
-                      height: '72px', 
-                      borderRadius: '18px', 
-                      backgroundColor: '#fff5f0', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center', 
-                      margin: '0 auto 16px',
-                      flexShrink: 0
-                    }}
-                  >
-                    <IconComp className="pisl-value-icon" style={{ color: ORANGE, fontSize: '32px' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px', width: '100%' }}>
+                    <div 
+                      className="pisl-value-icon-wrap"
+                      style={{ 
+                        position: 'relative',
+                        width: '54px', 
+                        height: '54px', 
+                        borderRadius: '50%', 
+                        backgroundColor: '#eff6ff', 
+                        border: '2px solid #28296F',
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        flexShrink: 0,
+                        boxShadow: 'none'
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: '-6px',
+                          borderRadius: '50%',
+                          border: '2px dashed rgba(40, 41, 111, 0.45)',
+                          animation: 'pislCircleSpin 10s linear infinite',
+                          pointerEvents: 'none'
+                        }}
+                      />
+                      <IconComp className="pisl-value-icon" style={{ color: NAVY, fontSize: '22px' }} />
+                    </div>
+                    <span style={{
+                      fontSize: '15px',
+                      fontWeight: '800',
+                      color: '#cbd5e1',
+                      letterSpacing: '1px',
+                      fontFamily: 'monospace'
+                    }}>
+                      0{i + 1}
+                    </span>
                   </div>
-                  <h3 className="pisl-value-title" style={{ fontSize: '18px', fontWeight: 'bold', color: NAVY, letterSpacing: '2px', marginBottom: '8px' }}>
+                  <h3 className="pisl-value-title" style={{ fontSize: '18px', fontWeight: 'bold', color: '#1e293b', letterSpacing: '0.5px', marginBottom: '10px', lineHeight: '1.4' }}>
                     {val.title}
                   </h3>
-                  <p className="pisl-value-desc" style={{ fontSize: '12px', color: '#6b7280', fontWeight: '500', lineHeight: 1.5, margin: 0 }}>
+                  <p className="pisl-value-desc" style={{ fontSize: '13.5px', color: '#64748b', fontWeight: '400', lineHeight: '1.7', margin: 0 }}>
                     {val.description}
                   </p>
-                </motion.div>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
+    ),
+    presence: (
+      <OurPresence
+        key="presence"
+        title={data.presenceTitle}
+        description={data.presenceDescription}
+        projects={ongoingProjects}
+      />
+    ),
+    companyProfile: (
+      <AboutDocuments
+        key="companyProfile"
+        profileData={data?.companyProfile || (data?.resources && data.resources.find(r => (r.title || '').toLowerCase().includes('profile'))) || (data?.resources && data.resources[0])}
+        profileStats={data?.companyProfileStats}
+        downloadLabel={data?.companyProfileDownloadLabel}
+        viewLabel={data?.companyProfileViewLabel}
+      />
+    ),
+  };
 
-      {/* OUR PRESENCE */}
-      <OurPresence title={data.presenceTitle} description={data.presenceDescription} />
-
-      {/* Building Infrastructure for a Better Tomorrow (Company Profile) - Sabse Niche */}
-      <AboutDocuments profileData={data?.companyProfile || (data?.resources && data.resources.find(r => (r.title || '').toLowerCase().includes('profile'))) || (data?.resources && data.resources[0])} />
+  return (
+    <div style={{ background: '#ffffff', fontFamily: '"Inter", "Helvetica Neue", sans-serif' }}>
+      <BlogSEO blog={seoData} />
+      {sectionOrder.map((key) => (isVisible(key) ? sectionElements[key] : null))}
 
       <style>{`
         .overview-section { padding: 80px 24px; }
@@ -445,7 +519,7 @@ const Overview = () => {
             padding: 20px 10px 18px !important;
             border-radius: 12px !important;
             border-width: 1.5px !important;
-            border-bottom-width: 3.5px !important;
+            border-bottom-width: 1.5px !important;
             transform: none !important;
           }
           .pisl-stat-icon-wrap {
@@ -524,7 +598,7 @@ const Overview = () => {
             padding: 22px 10px 18px !important;
             border-radius: 12px !important;
             border-width: 1.5px !important;
-            border-bottom-width: 3.5px !important;
+            border-bottom-width: 1.5px !important;
             transform: none !important;
           }
           .pisl-value-icon-wrap {
@@ -607,6 +681,16 @@ const Overview = () => {
           .pisl-value-desc {
             font-size: 10.5px !important;
           }
+        }
+
+        @keyframes pislCircleSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes pislCirclePulse {
+          0% { box-shadow: 0 0 0 0 rgba(40, 41, 111, 0.45); }
+          70% { box-shadow: 0 0 0 10px rgba(40, 41, 111, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(40, 41, 111, 0); }
         }
       `}</style>
     </div>

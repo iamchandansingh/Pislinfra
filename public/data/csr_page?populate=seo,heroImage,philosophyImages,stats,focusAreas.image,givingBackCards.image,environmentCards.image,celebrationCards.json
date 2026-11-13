@@ -42,7 +42,7 @@
       "formats": {
         "large": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_leadership_ea91f6ef03.png",
+          "url": "/images/leadership/large_leadership_ea91f6ef03.png",
           "hash": "large_leadership_ea91f6ef03",
           "mime": "image/png",
           "name": "large_leadership.png",
@@ -54,7 +54,7 @@
         },
         "small": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_leadership_ea91f6ef03.png",
+          "url": "/images/leadership/small_leadership_ea91f6ef03.png",
           "hash": "small_leadership_ea91f6ef03",
           "mime": "image/png",
           "name": "small_leadership.png",
@@ -66,7 +66,7 @@
         },
         "medium": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_leadership_ea91f6ef03.png",
+          "url": "/images/leadership/medium_leadership_ea91f6ef03.png",
           "hash": "medium_leadership_ea91f6ef03",
           "mime": "image/png",
           "name": "medium_leadership.png",
@@ -78,7 +78,7 @@
         },
         "thumbnail": {
           "ext": ".png",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_leadership_ea91f6ef03.png",
+          "url": "/images/leadership/thumbnail_leadership_ea91f6ef03.png",
           "hash": "thumbnail_leadership_ea91f6ef03",
           "mime": "image/png",
           "name": "thumbnail_leadership.png",
@@ -93,7 +93,7 @@
       "ext": ".png",
       "mime": "image/png",
       "size": 753.15,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/leadership_ea91f6ef03.png",
+      "url": "/images/leadership/leadership_ea91f6ef03.png",
       "previewUrl": null,
       "provider": "aws-s3",
       "provider_metadata": null,
@@ -114,7 +114,7 @@
         "formats": {
           "large": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755268407_853_large_CSR-_5__png.webp",
+            "url": "/images/uploads/optimized_1787755268407_853_large_CSR-_5__png.webp",
             "hash": "large_CSR_5_a41e5fdb90",
             "mime": "image/webp",
             "name": "large_CSR-(5).png",
@@ -126,7 +126,7 @@
           },
           "small": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755269419_303_small_CSR-_5__png.webp",
+            "url": "/images/uploads/optimized_1787755269419_303_small_CSR-_5__png.webp",
             "hash": "small_CSR_5_a41e5fdb90",
             "mime": "image/webp",
             "name": "small_CSR-(5).png",
@@ -138,7 +138,7 @@
           },
           "medium": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755271360_751_medium_CSR-_5__png.webp",
+            "url": "/images/uploads/optimized_1787755271360_751_medium_CSR-_5__png.webp",
             "hash": "medium_CSR_5_a41e5fdb90",
             "mime": "image/webp",
             "name": "medium_CSR-(5).png",
@@ -150,7 +150,7 @@
           },
           "thumbnail": {
             "ext": ".webp",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755272336_955_thumbnail_CSR-_5__png.webp",
+            "url": "/images/uploads/optimized_1787755272336_955_thumbnail_CSR-_5__png.webp",
             "hash": "thumbnail_CSR_5_a41e5fdb90",
             "mime": "image/webp",
             "name": "thumbnail_CSR-(5).png",
@@ -165,7 +165,7 @@
         "ext": ".webp",
         "mime": "image/webp",
         "size": 283.85,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755267146_773_CSR-_5__png.webp",
+        "url": "/images/uploads/optimized_1787755267146_773_CSR-_5__png.webp",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -185,7 +185,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_CSR_3_afb12e6672.png",
+            "url": "/images/uploads/large_CSR_3_afb12e6672.png",
             "hash": "large_CSR_3_afb12e6672",
             "mime": "image/png",
             "name": "large_CSR-(3).png",
@@ -197,7 +197,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_CSR_3_afb12e6672.png",
+            "url": "/images/uploads/small_CSR_3_afb12e6672.png",
             "hash": "small_CSR_3_afb12e6672",
             "mime": "image/png",
             "name": "small_CSR-(3).png",
@@ -209,7 +209,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_CSR_3_afb12e6672.png",
+            "url": "/images/uploads/medium_CSR_3_afb12e6672.png",
             "hash": "medium_CSR_3_afb12e6672",
             "mime": "image/png",
             "name": "medium_CSR-(3).png",
@@ -221,7 +221,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_CSR_3_afb12e6672.png",
+            "url": "/images/uploads/thumbnail_CSR_3_afb12e6672.png",
             "hash": "thumbnail_CSR_3_afb12e6672",
             "mime": "image/png",
             "name": "thumbnail_CSR-(3).png",
@@ -236,7 +236,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 614.97,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_3_afb12e6672.png",
+        "url": "/images/uploads/CSR_3_afb12e6672.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -256,7 +256,7 @@
         "formats": {
           "large": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_CSR_1_ce3f3c5b8d.png",
+            "url": "/images/uploads/large_CSR_1_ce3f3c5b8d.png",
             "hash": "large_CSR_1_ce3f3c5b8d",
             "mime": "image/png",
             "name": "large_CSR-(1).png",
@@ -268,7 +268,7 @@
           },
           "small": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_CSR_1_ce3f3c5b8d.png",
+            "url": "/images/uploads/small_CSR_1_ce3f3c5b8d.png",
             "hash": "small_CSR_1_ce3f3c5b8d",
             "mime": "image/png",
             "name": "small_CSR-(1).png",
@@ -280,7 +280,7 @@
           },
           "medium": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_CSR_1_ce3f3c5b8d.png",
+            "url": "/images/uploads/medium_CSR_1_ce3f3c5b8d.png",
             "hash": "medium_CSR_1_ce3f3c5b8d",
             "mime": "image/png",
             "name": "medium_CSR-(1).png",
@@ -292,7 +292,7 @@
           },
           "thumbnail": {
             "ext": ".png",
-            "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_CSR_1_ce3f3c5b8d.png",
+            "url": "/images/uploads/thumbnail_CSR_1_ce3f3c5b8d.png",
             "hash": "thumbnail_CSR_1_ce3f3c5b8d",
             "mime": "image/png",
             "name": "thumbnail_CSR-(1).png",
@@ -307,7 +307,7 @@
         "ext": ".png",
         "mime": "image/png",
         "size": 811.64,
-        "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_1_ce3f3c5b8d.png",
+        "url": "/images/uploads/CSR_1_ce3f3c5b8d.png",
         "previewUrl": null,
         "provider": "aws-s3",
         "provider_metadata": null,
@@ -369,7 +369,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755129985_392_large_Education_png.webp",
+              "url": "/images/uploads/optimized_1787755129985_392_large_Education_png.webp",
               "hash": "large_Education_7d3e1436a5",
               "mime": "image/webp",
               "name": "large_Education.png",
@@ -381,7 +381,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755131332_131_small_Education_png.webp",
+              "url": "/images/uploads/optimized_1787755131332_131_small_Education_png.webp",
               "hash": "small_Education_7d3e1436a5",
               "mime": "image/webp",
               "name": "small_Education.png",
@@ -393,7 +393,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755132662_999_medium_Education_png.webp",
+              "url": "/images/uploads/optimized_1787755132662_999_medium_Education_png.webp",
               "hash": "medium_Education_7d3e1436a5",
               "mime": "image/webp",
               "name": "medium_Education.png",
@@ -405,7 +405,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755134231_200_thumbnail_Education_png.webp",
+              "url": "/images/uploads/optimized_1787755134231_200_thumbnail_Education_png.webp",
               "hash": "thumbnail_Education_7d3e1436a5",
               "mime": "image/webp",
               "name": "thumbnail_Education.png",
@@ -420,7 +420,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 114.1,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755128680_178_Education_png.webp",
+          "url": "/images/uploads/optimized_1787755128680_178_Education_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -447,7 +447,7 @@
           "formats": {
             "large": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Health_e392971e21.jpeg",
+              "url": "/images/uploads/large_Health_e392971e21.jpeg",
               "hash": "large_Health_e392971e21",
               "mime": "image/jpeg",
               "name": "large_Health.jpeg",
@@ -459,7 +459,7 @@
             },
             "small": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Health_e392971e21.jpeg",
+              "url": "/images/uploads/small_Health_e392971e21.jpeg",
               "hash": "small_Health_e392971e21",
               "mime": "image/jpeg",
               "name": "small_Health.jpeg",
@@ -471,7 +471,7 @@
             },
             "medium": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Health_e392971e21.jpeg",
+              "url": "/images/uploads/medium_Health_e392971e21.jpeg",
               "hash": "medium_Health_e392971e21",
               "mime": "image/jpeg",
               "name": "medium_Health.jpeg",
@@ -483,7 +483,7 @@
             },
             "thumbnail": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Health_e392971e21.jpeg",
+              "url": "/images/uploads/thumbnail_Health_e392971e21.jpeg",
               "hash": "thumbnail_Health_e392971e21",
               "mime": "image/jpeg",
               "name": "thumbnail_Health.jpeg",
@@ -498,7 +498,7 @@
           "ext": ".jpeg",
           "mime": "image/jpeg",
           "size": 149.02,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Health_e392971e21.jpeg",
+          "url": "/images/uploads/Health_e392971e21.jpeg",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -525,7 +525,7 @@
           "formats": {
             "large": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_CSR_7_f20ae55190.png",
+              "url": "/images/uploads/large_CSR_7_f20ae55190.png",
               "hash": "large_CSR_7_f20ae55190",
               "mime": "image/png",
               "name": "large_CSR-(7).png",
@@ -537,7 +537,7 @@
             },
             "small": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_CSR_7_f20ae55190.png",
+              "url": "/images/uploads/small_CSR_7_f20ae55190.png",
               "hash": "small_CSR_7_f20ae55190",
               "mime": "image/png",
               "name": "small_CSR-(7).png",
@@ -549,7 +549,7 @@
             },
             "medium": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_CSR_7_f20ae55190.png",
+              "url": "/images/uploads/medium_CSR_7_f20ae55190.png",
               "hash": "medium_CSR_7_f20ae55190",
               "mime": "image/png",
               "name": "medium_CSR-(7).png",
@@ -561,7 +561,7 @@
             },
             "thumbnail": {
               "ext": ".png",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_CSR_7_f20ae55190.png",
+              "url": "/images/uploads/thumbnail_CSR_7_f20ae55190.png",
               "hash": "thumbnail_CSR_7_f20ae55190",
               "mime": "image/png",
               "name": "thumbnail_CSR-(7).png",
@@ -576,7 +576,7 @@
           "ext": ".png",
           "mime": "image/png",
           "size": 792.05,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_7_f20ae55190.png",
+          "url": "/images/uploads/CSR_7_f20ae55190.png",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -603,7 +603,7 @@
           "formats": {
             "large": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Community_2d57d79d13.jpeg",
+              "url": "/images/uploads/large_Community_2d57d79d13.jpeg",
               "hash": "large_Community_2d57d79d13",
               "mime": "image/jpeg",
               "name": "large_Community.jpeg",
@@ -615,7 +615,7 @@
             },
             "small": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Community_2d57d79d13.jpeg",
+              "url": "/images/uploads/small_Community_2d57d79d13.jpeg",
               "hash": "small_Community_2d57d79d13",
               "mime": "image/jpeg",
               "name": "small_Community.jpeg",
@@ -627,7 +627,7 @@
             },
             "medium": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Community_2d57d79d13.jpeg",
+              "url": "/images/uploads/medium_Community_2d57d79d13.jpeg",
               "hash": "medium_Community_2d57d79d13",
               "mime": "image/jpeg",
               "name": "medium_Community.jpeg",
@@ -639,7 +639,7 @@
             },
             "thumbnail": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Community_2d57d79d13.jpeg",
+              "url": "/images/uploads/thumbnail_Community_2d57d79d13.jpeg",
               "hash": "thumbnail_Community_2d57d79d13",
               "mime": "image/jpeg",
               "name": "thumbnail_Community.jpeg",
@@ -654,7 +654,7 @@
           "ext": ".jpeg",
           "mime": "image/jpeg",
           "size": 323.63,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Community_2d57d79d13.jpeg",
+          "url": "/images/uploads/Community_2d57d79d13.jpeg",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -682,7 +682,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755067598_325_large_Happiness_jpg.webp",
+              "url": "/images/uploads/optimized_1787755067598_325_large_Happiness_jpg.webp",
               "hash": "large_Happiness_ca99aeee34",
               "mime": "image/webp",
               "name": "large_Happiness.jpg",
@@ -694,7 +694,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755068465_481_small_Happiness_jpg.webp",
+              "url": "/images/uploads/optimized_1787755068465_481_small_Happiness_jpg.webp",
               "hash": "small_Happiness_ca99aeee34",
               "mime": "image/webp",
               "name": "small_Happiness.jpg",
@@ -706,7 +706,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755069962_798_medium_Happiness_jpg.webp",
+              "url": "/images/uploads/optimized_1787755069962_798_medium_Happiness_jpg.webp",
               "hash": "medium_Happiness_ca99aeee34",
               "mime": "image/webp",
               "name": "medium_Happiness.jpg",
@@ -718,7 +718,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755071182_616_thumbnail_Happiness_jpg.webp",
+              "url": "/images/uploads/optimized_1787755071182_616_thumbnail_Happiness_jpg.webp",
               "hash": "thumbnail_Happiness_ca99aeee34",
               "mime": "image/webp",
               "name": "thumbnail_Happiness.jpg",
@@ -733,7 +733,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 172.57,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755066677_333_Happiness_jpg.webp",
+          "url": "/images/uploads/optimized_1787755066677_333_Happiness_jpg.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -759,7 +759,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755281876_57_large_Safety-Excellence-Awards-Adani-_2__png.webp",
+              "url": "/images/awards/optimized_1787755281876_57_large_Safety-Excellence-Awards-Adani-_2__png.webp",
               "hash": "large_Safety_Excellence_Awards_Adani_2_12b21e3f16",
               "mime": "image/webp",
               "name": "large_Safety-Excellence-Awards-Adani-(2).png",
@@ -771,7 +771,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755282942_809_small_Safety-Excellence-Awards-Adani-_2__png.webp",
+              "url": "/images/awards/optimized_1787755282942_809_small_Safety-Excellence-Awards-Adani-_2__png.webp",
               "hash": "small_Safety_Excellence_Awards_Adani_2_12b21e3f16",
               "mime": "image/webp",
               "name": "small_Safety-Excellence-Awards-Adani-(2).png",
@@ -783,7 +783,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755284230_178_medium_Safety-Excellence-Awards-Adani-_2__png.webp",
+              "url": "/images/awards/optimized_1787755284230_178_medium_Safety-Excellence-Awards-Adani-_2__png.webp",
               "hash": "medium_Safety_Excellence_Awards_Adani_2_12b21e3f16",
               "mime": "image/webp",
               "name": "medium_Safety-Excellence-Awards-Adani-(2).png",
@@ -795,7 +795,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755288317_532_thumbnail_Safety-Excellence-Awards-Adani-_2__png.webp",
+              "url": "/images/awards/optimized_1787755288317_532_thumbnail_Safety-Excellence-Awards-Adani-_2__png.webp",
               "hash": "thumbnail_Safety_Excellence_Awards_Adani_2_12b21e3f16",
               "mime": "image/webp",
               "name": "thumbnail_Safety-Excellence-Awards-Adani-(2).png",
@@ -810,7 +810,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 52.13,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755280488_870_Safety-Excellence-Awards-Adani-_2__png.webp",
+          "url": "/images/awards/optimized_1787755280488_870_Safety-Excellence-Awards-Adani-_2__png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -838,7 +838,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754973888_668_large_CSR-_4__png.webp",
+              "url": "/images/uploads/optimized_1787754973888_668_large_CSR-_4__png.webp",
               "hash": "large_CSR_4_0c87d0abbf",
               "mime": "image/webp",
               "name": "large_CSR-(4).png",
@@ -850,7 +850,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754974911_778_small_CSR-_4__png.webp",
+              "url": "/images/uploads/optimized_1787754974911_778_small_CSR-_4__png.webp",
               "hash": "small_CSR_4_0c87d0abbf",
               "mime": "image/webp",
               "name": "small_CSR-(4).png",
@@ -862,7 +862,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754976199_715_medium_CSR-_4__png.webp",
+              "url": "/images/uploads/optimized_1787754976199_715_medium_CSR-_4__png.webp",
               "hash": "medium_CSR_4_0c87d0abbf",
               "mime": "image/webp",
               "name": "medium_CSR-(4).png",
@@ -874,7 +874,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754977654_387_thumbnail_CSR-_4__png.webp",
+              "url": "/images/uploads/optimized_1787754977654_387_thumbnail_CSR-_4__png.webp",
               "hash": "thumbnail_CSR_4_0c87d0abbf",
               "mime": "image/webp",
               "name": "thumbnail_CSR-(4).png",
@@ -889,7 +889,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 228.51,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787754972126_343_CSR-_4__png.webp",
+          "url": "/images/uploads/optimized_1787754972126_343_CSR-_4__png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -915,7 +915,7 @@
           "formats": {
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755104087_78_small_PPE-Training-Session_png.webp",
+              "url": "/images/uploads/optimized_1787755104087_78_small_PPE-Training-Session_png.webp",
               "hash": "small_PPE_Training_Session_deb2f0e80d",
               "mime": "image/webp",
               "name": "small_PPE-Training-Session.png",
@@ -927,7 +927,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755105576_501_medium_PPE-Training-Session_png.webp",
+              "url": "/images/uploads/optimized_1787755105576_501_medium_PPE-Training-Session_png.webp",
               "hash": "medium_PPE_Training_Session_deb2f0e80d",
               "mime": "image/webp",
               "name": "medium_PPE-Training-Session.png",
@@ -939,7 +939,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755106783_278_thumbnail_PPE-Training-Session_png.webp",
+              "url": "/images/uploads/optimized_1787755106783_278_thumbnail_PPE-Training-Session_png.webp",
               "hash": "thumbnail_PPE_Training_Session_deb2f0e80d",
               "mime": "image/webp",
               "name": "thumbnail_PPE-Training-Session.png",
@@ -954,7 +954,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 82.53,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755102948_371_PPE-Training-Session_png.webp",
+          "url": "/images/uploads/optimized_1787755102948_371_PPE-Training-Session_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -982,7 +982,7 @@
           "formats": {
             "large": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/large_Independence_827ba61cd5.jpeg",
+              "url": "/images/uploads/large_Independence_827ba61cd5.jpeg",
               "hash": "large_Independence_827ba61cd5",
               "mime": "image/jpeg",
               "name": "large_Independence.jpeg",
@@ -994,7 +994,7 @@
             },
             "small": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/small_Independence_827ba61cd5.jpeg",
+              "url": "/images/uploads/small_Independence_827ba61cd5.jpeg",
               "hash": "small_Independence_827ba61cd5",
               "mime": "image/jpeg",
               "name": "small_Independence.jpeg",
@@ -1006,7 +1006,7 @@
             },
             "medium": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/medium_Independence_827ba61cd5.jpeg",
+              "url": "/images/uploads/medium_Independence_827ba61cd5.jpeg",
               "hash": "medium_Independence_827ba61cd5",
               "mime": "image/jpeg",
               "name": "medium_Independence.jpeg",
@@ -1018,7 +1018,7 @@
             },
             "thumbnail": {
               "ext": ".jpeg",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/thumbnail_Independence_827ba61cd5.jpeg",
+              "url": "/images/uploads/thumbnail_Independence_827ba61cd5.jpeg",
               "hash": "thumbnail_Independence_827ba61cd5",
               "mime": "image/jpeg",
               "name": "thumbnail_Independence.jpeg",
@@ -1033,7 +1033,7 @@
           "ext": ".jpeg",
           "mime": "image/jpeg",
           "size": 232.28,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Independence_827ba61cd5.jpeg",
+          "url": "/images/uploads/Independence_827ba61cd5.jpeg",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1059,7 +1059,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755046990_71_large_Birthday_jpeg.webp",
+              "url": "/images/uploads/optimized_1787755046990_71_large_Birthday_jpeg.webp",
               "hash": "large_Birthday_10b8d813c3",
               "mime": "image/webp",
               "name": "large_Birthday.jpeg",
@@ -1071,7 +1071,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755047898_114_small_Birthday_jpeg.webp",
+              "url": "/images/uploads/optimized_1787755047898_114_small_Birthday_jpeg.webp",
               "hash": "small_Birthday_10b8d813c3",
               "mime": "image/webp",
               "name": "small_Birthday.jpeg",
@@ -1083,7 +1083,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755049781_852_medium_Birthday_jpeg.webp",
+              "url": "/images/uploads/optimized_1787755049781_852_medium_Birthday_jpeg.webp",
               "hash": "medium_Birthday_10b8d813c3",
               "mime": "image/webp",
               "name": "medium_Birthday.jpeg",
@@ -1095,7 +1095,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755050696_729_thumbnail_Birthday_jpeg.webp",
+              "url": "/images/uploads/optimized_1787755050696_729_thumbnail_Birthday_jpeg.webp",
               "hash": "thumbnail_Birthday_10b8d813c3",
               "mime": "image/webp",
               "name": "thumbnail_Birthday.jpeg",
@@ -1110,7 +1110,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 95.57,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755045677_182_Birthday_jpeg.webp",
+          "url": "/images/uploads/optimized_1787755045677_182_Birthday_jpeg.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,
@@ -1136,7 +1136,7 @@
           "formats": {
             "large": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755282758_6_large_Corporate_png.webp",
+              "url": "/images/uploads/optimized_1787755282758_6_large_Corporate_png.webp",
               "hash": "large_Corporate_5769eedc9c",
               "mime": "image/webp",
               "name": "large_Corporate.png",
@@ -1148,7 +1148,7 @@
             },
             "small": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755283948_736_small_Corporate_png.webp",
+              "url": "/images/uploads/optimized_1787755283948_736_small_Corporate_png.webp",
               "hash": "small_Corporate_5769eedc9c",
               "mime": "image/webp",
               "name": "small_Corporate.png",
@@ -1160,7 +1160,7 @@
             },
             "medium": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755286090_926_medium_Corporate_png.webp",
+              "url": "/images/uploads/optimized_1787755286090_926_medium_Corporate_png.webp",
               "hash": "medium_Corporate_5769eedc9c",
               "mime": "image/webp",
               "name": "medium_Corporate.png",
@@ -1172,7 +1172,7 @@
             },
             "thumbnail": {
               "ext": ".webp",
-              "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755286971_737_thumbnail_Corporate_png.webp",
+              "url": "/images/uploads/optimized_1787755286971_737_thumbnail_Corporate_png.webp",
               "hash": "thumbnail_Corporate_5769eedc9c",
               "mime": "image/webp",
               "name": "thumbnail_Corporate.png",
@@ -1187,7 +1187,7 @@
           "ext": ".webp",
           "mime": "image/webp",
           "size": 172.46,
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755280399_259_Corporate_png.webp",
+          "url": "/images/uploads/optimized_1787755280399_259_Corporate_png.webp",
           "previewUrl": null,
           "provider": "aws-s3",
           "provider_metadata": null,

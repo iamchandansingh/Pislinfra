@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { HiChevronRight } from 'react-icons/hi';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
 
 import { useBlogs } from '../context/BlogContext';
+import { fetchWpData, getLocalDataSync } from '../services/wordpress';
 import fallbackDB from '../data/Blogdb.js';
 
 const NAVY = '#28296F';
@@ -13,11 +13,29 @@ const ORANGE = '#ff904e';
 
 const Sitemap = () => {
   const { blogs } = useBlogs();
+  const [governancePage, setGovernancePage] = useState(() => getLocalDataSync('governance-page'));
   const allBlogs = (blogs && blogs.length > 0) ? blogs : fallbackDB;
-  const publishedBlogs = allBlogs.filter(b => b.status === 'published' && b.slug);
+  const publishedBlogs = allBlogs.filter(b => b.status !== 'draft' && b.slug);
+  const governanceSlug = (governancePage?.slug || 'company-policy').replace(/^\/+|\/+$/g, '') || 'company-policy';
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    let isMounted = true;
+
+    const handleUpdate = () => {
+      const fresh = getLocalDataSync('governance-page');
+      if (fresh && isMounted) setGovernancePage(fresh);
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+
+    fetchWpData('governance-page').then((res) => {
+      if (res && isMounted) setGovernancePage(res);
+    }).catch(() => {});
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('pisl-data-update', handleUpdate);
+    };
   }, []);
 
   const seoData = {
@@ -50,6 +68,7 @@ const Sitemap = () => {
       { title: 'EHS', link: '/about/ehs' },
       { title: 'Awards & Certification', link: '/about/awards' },
       { title: 'CSR', link: '/about/csr' },
+      { title: 'Policies & Governance', link: '/company-policy' },
     ]},
     { title: 'Projects', link: '/projects/ongoing', children: [
       { title: 'Ongoing Projects', link: '/projects/ongoing' },
@@ -68,6 +87,7 @@ const Sitemap = () => {
     })) },
     { title: 'Careers', link: '/careers', children: [] },
     { title: 'Annual Reports', link: '/annual-reports', children: [] },
+    { title: 'Privacy Policy', link: '/privacy-policy', children: [] },
     { title: 'Contact Us', link: '/contact-us', children: [] },
   ];
 

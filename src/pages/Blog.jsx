@@ -6,18 +6,28 @@ import FeaturedArticleSection from '../components/Blog/FeaturedArticleSection';
 import LatestArticlesSection from '../components/Blog/LatestArticlesSection';
 import BlogSidebarSection from '../components/Blog/BlogSidebarSection';
 import { useBlogs } from '../context/BlogContext';
+import { getImageUrl } from '../utils/imageUrl';
+import { getPreviewContext } from '../services/wordpress';
+import { sortBlogsByDateDesc } from '../utils/formatBlog';
 import Preloader from '../components/common/Preloader';
 
 const ITEMS_PER_PAGE = 6;
 
 const Blog = () => {
-  const { blogs: BlogDB, blogPage, loading } = useBlogs();
+  const { blogs: BlogDB, blogPage, loading, refreshBlogs } = useBlogs();
+  const isPreview = Boolean(getPreviewContext());
   
   const [searchParams] = useSearchParams();
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [isMobile, setIsMobile] = useState(false);
   
   const searchQuery = searchParams.get('search') || '';
+
+  useEffect(() => {
+    if (isPreview) {
+      refreshBlogs();
+    }
+  }, [isPreview, refreshBlogs]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,38 +38,35 @@ const Blog = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Filter and Sort: Featured article / Newest first, then all remaining latest articles
-  const filteredBlogs = [...BlogDB]
+  // Filter published blogs and sort chronologically (newest first)
+  const matchingBlogs = [...BlogDB]
     .filter(b => {
       const status = (b.status || 'published').toLowerCase();
       if (status !== 'published') return false;
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         return (
-          b.title.toLowerCase().includes(query) ||
+          (b.title || '').toLowerCase().includes(query) ||
           (b.excerpt && b.excerpt.toLowerCase().includes(query)) ||
           (b.tags && b.tags.some(tag => typeof tag === 'string' && tag.toLowerCase().includes(query)))
         );
       }
       return true;
     })
-    .sort((a, b) => {
-      // 1. Explicit featured flag takes priority
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      
-      // 2. Newest blog (by publishDate or createdAt) comes first
-      const timeA = new Date(a.publishDate || a.createdAt || 0).getTime();
-      const timeB = new Date(b.publishDate || b.createdAt || 0).getTime();
-      return timeB - timeA;
-    });
+    .sort(sortBlogsByDateDesc);
 
-  const featuredArticle = filteredBlogs.length > 0 ? filteredBlogs[0] : null;
-  const latestArticles = !searchQuery 
-    ? filteredBlogs.slice(1, visibleCount + 1) 
-    : filteredBlogs.slice(0, visibleCount);
+  // Latest published blog always takes the top Featured slot; previous ones shift down into Latest Articles
+  const featuredArticle = matchingBlogs[0] || null;
+  const remainingBlogs = matchingBlogs.slice(1);
 
-  const totalRemainingCount = !searchQuery ? Math.max(0, filteredBlogs.length - 1) : filteredBlogs.length;
+  // Ordered list used for SEO structured data (newest first)
+  const filteredBlogs = matchingBlogs;
+
+  const latestArticles = !searchQuery
+    ? remainingBlogs.slice(0, visibleCount)
+    : matchingBlogs.slice(0, visibleCount);
+
+  const totalRemainingCount = !searchQuery ? remainingBlogs.length : matchingBlogs.length;
   const hasMore = visibleCount < totalRemainingCount;
 
   const handleShowAll = () => {
@@ -84,6 +91,14 @@ const Blog = () => {
 
   const seoData = {
     contentType: 'blog',
+    slug: '',
+    canonicalUrl: 'https://pislinfra.com/blog',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'Blog',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    ...(blogPage?.seo || {}),
     title: 'Blog',
     articleSection: 'Blog',
     seoTitle: resolvedTitle,
@@ -91,19 +106,12 @@ const Blog = () => {
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
     seoKeywords: blogPage?.seo?.seoKeywords || resolvedFocusKeywords,
-    slug: '',
-    canonicalUrl: blogPage?.seo?.canonicalUrl || 'https://pislinfra.com/blog',
     ogTitle: searchQuery ? `Search: "${searchQuery}" - Blog | Pislinfra` : (blogPage?.ogTitle || blogPage?.seo?.ogTitle || resolvedTitle),
     ogDescription: searchQuery ? `${filteredBlogs.length} results found for "${searchQuery}"` : (blogPage?.ogDescription || blogPage?.seo?.ogDescription || resolvedDescription),
-    ogImage: blogPage?.seo?.ogImage?.url || 'https://pislinfra.com/images/hero/Blog.png',
-    ogType: 'website',
+    ogImage: getImageUrl(blogPage?.seo?.ogImage || blogPage?.heroImage, 'https://pislinfra.com/images/hero/Blog.png'),
     twitterTitle: searchQuery ? `Search: "${searchQuery}" - Blog | Pislinfra` : (blogPage?.twitterTitle || blogPage?.seo?.twitterTitle || resolvedTitle),
     twitterDescription: searchQuery ? `${filteredBlogs.length} results found for "${searchQuery}"` : (blogPage?.twitterDescription || blogPage?.seo?.twitterDescription || resolvedDescription),
-    twitterImage: blogPage?.seo?.twitterImage?.url || 'https://pislinfra.com/images/hero/Blog.png',
-    twitterCardType: 'summary_large_image',
-    schemaType: 'Blog',
-    breadcrumbSchema: true,
-    organizationSchema: true,
+    twitterImage: getImageUrl(blogPage?.seo?.twitterImage || blogPage?.heroImage, 'https://pislinfra.com/images/hero/Blog.png'),
     tags: ['Blog', 'Infrastructure', 'Construction', 'Insights', 'News'],
     structuredData: {
       "@context": "https://schema.org",
@@ -113,7 +121,8 @@ const Blog = () => {
       "numberOfItems": filteredBlogs.length,
       "itemListElement": filteredBlogs.map((b, idx) => {
         const rawImg = b.featuredImage || b.image || '/images/hero/Blog.png';
-        const absoluteImage = rawImg.startsWith('http') ? rawImg : `https://pislinfra.com${rawImg.startsWith('/') ? '' : '/'}${rawImg}`;
+        const resolvedRawImg = getImageUrl(rawImg, '/images/hero/Blog.png');
+        const absoluteImage = resolvedRawImg.startsWith('http') ? resolvedRawImg : `https://pislinfra.com${resolvedRawImg.startsWith('/') ? '' : '/'}${resolvedRawImg}`;
         return {
           "@type": "ListItem",
           "position": idx + 1,
@@ -135,7 +144,7 @@ const Blog = () => {
             "datePublished": b.publishDate,
             "author": {
               "@type": "Organization",
-              "name": b.authorName || "Pislinfra Team"
+              "name": b.author || b.authorName || "Pislinfra Team"
             },
             "url": `https://pislinfra.com/blog/${b.slug}`
           }
@@ -146,17 +155,21 @@ const Blog = () => {
 
   if (loading) return <Preloader />;
 
+  const showSidebar = blogPage?.showSidebar !== false;
+
   return (
     <div style={{ fontFamily: 'Inter, sans-serif' }}>
       
       <BlogSEO blog={seoData} />
 
-      <PageHero 
-        title={searchQuery ? `Search: "${searchQuery}"` : (blogPage?.heroTitle || "Blog")} 
-        subtitle={searchQuery ? `${filteredBlogs.length} results found` : (blogPage?.heroSubtitle || "Insights, news & updates from Pislinfra")} 
-        breadcrumb={blogPage?.heroBreadcrumb || "Blog"} 
-        bgImage={blogPage?.heroImage?.url ? (blogPage.heroImage.url.startsWith('http') ? blogPage.heroImage.url : `${blogPage.heroImage.url}`) : "/images/hero/Blog.png"} 
-      />
+      {blogPage?.showHero !== false && (
+        <PageHero 
+          title={searchQuery ? `Search: "${searchQuery}"` : (blogPage?.heroTitle || "Blog")} 
+          subtitle={searchQuery ? `${filteredBlogs.length} results found` : (blogPage?.heroSubtitle || "Insights, news & updates from Pislinfra")} 
+          breadcrumb={blogPage?.heroBreadcrumb || "Blog"} 
+          bgImage={getImageUrl(blogPage?.heroImage, "/images/hero/Blog.png")} 
+        />
+      )}
 
       <div style={{ height: isMobile ? '16px' : '32px', backgroundColor: 'white' }} />
 
@@ -172,49 +185,57 @@ const Blog = () => {
         }}>
           <div className="blog-layout">
             
-            <div className="blog-main-content">
-              {!searchQuery && featuredArticle && <FeaturedArticleSection article={featuredArticle} />}
-              <LatestArticlesSection articles={latestArticles} />
-              
-              {hasMore && (
-                <div style={{ textAlign: 'center', marginTop: isMobile ? '24px' : '40px' }}>
-                  <button
-                    onClick={handleShowAll}
-                    className="show-all-btn"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      padding: '12px 32px',
-                      backgroundColor: '#FF6B00',
-                      color: 'white',
-                      fontWeight: '600',
-                      fontSize: '14px',
-                      borderRadius: '8px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                      boxShadow: '0 4px 12px rgba(255, 107, 0, 0.25)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#E55F00';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#FF6B00';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    Load More Articles
-                  </button>
-                </div>
+            <div className={`blog-main-content${showSidebar ? '' : ' full-width'}`}>
+              {blogPage?.showFeatured !== false && !searchQuery && featuredArticle && (
+                <FeaturedArticleSection article={featuredArticle} />
+              )}
+              {blogPage?.showLatest !== false && (
+                <>
+                  <LatestArticlesSection articles={latestArticles} />
+                  
+                  {hasMore && (
+                    <div style={{ textAlign: 'center', marginTop: isMobile ? '24px' : '40px' }}>
+                      <button
+                        onClick={handleShowAll}
+                        className="show-all-btn"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '8px',
+                          padding: '12px 32px',
+                          backgroundColor: '#FF6B00',
+                          color: 'white',
+                          fontWeight: '600',
+                          fontSize: '14px',
+                          borderRadius: '8px',
+                          border: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          boxShadow: '0 4px 12px rgba(255, 107, 0, 0.25)',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#E55F00';
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#FF6B00';
+                          e.currentTarget.style.transform = 'translateY(0)';
+                        }}
+                      >
+                        Load More Articles
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
 
-            <div className="blog-sidebar-wrapper">
-              <BlogSidebarSection blogs={filteredBlogs} />
-            </div>
+            {showSidebar && (
+              <div className="blog-sidebar-wrapper">
+                <BlogSidebarSection blogs={filteredBlogs} />
+              </div>
+            )}
 
           </div>
         </div>
@@ -261,6 +282,10 @@ const Blog = () => {
 
           .blog-sidebar-wrapper {
             width: 28%;
+          }
+
+          .blog-main-content.full-width {
+            width: 100%;
           }
         }
       `}</style>

@@ -1,0 +1,194 @@
+[
+  {
+    "id": 411,
+    "documentId": "policy_risk_management",
+    "createdAt": "2026-11-12T08:09:25+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-11-12T08:09:25+00:00",
+    "slug": "risk-management-policy",
+    "title": "Risk Management Policy",
+    "shortDescription": "Policy framework establishing risk assessment, mitigation, and governance standards across all PISL operations.",
+    "coverImage": {
+      "id": 88,
+      "documentId": "wp_media_88",
+      "name": "Risk_49056e0c4c.jpeg",
+      "alternativeText": "Risk Management Policy Cover",
+      "caption": "",
+      "width": 1254,
+      "height": 1254,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Risk_49056e0c4c-150x150.jpeg",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Risk_49056e0c4c-500x500.jpeg",
+          "width": 500,
+          "height": 500
+        },
+        "medium": {
+          "url": "/images/uploads/Risk_49056e0c4c-750x750.jpeg",
+          "width": 750,
+          "height": 750
+        },
+        "large": {
+          "url": "/images/uploads/Risk_49056e0c4c-1200x1200.jpeg",
+          "width": 1200,
+          "height": 1200
+        }
+      },
+      "mime": "image/jpeg",
+      "url": "/images/uploads/Risk_49056e0c4c.jpeg"
+    },
+    "coverImageAlt": "Risk Management Policy Cover",
+    "pdfFile": {
+      "id": 89,
+      "documentId": "wp_media_89",
+      "name": "Risk_Management_Policy_PISL_37fe051837.pdf",
+      "alternativeText": "Risk_Management_Policy_PISL_37fe051837",
+      "caption": "",
+      "width": null,
+      "height": null,
+      "formats": null,
+      "mime": "application/pdf",
+      "url": "/reports/Risk_Management_Policy_PISL_37fe051837.pdf"
+    },
+    "buttonName": "Risk Management Policy",
+    "documentLabel": "PDF Document",
+    "displayOrder": 1,
+    "accentType": "navy",
+    "updatedLabel": "Last Updated: September 2026",
+    "seo": {
+      "canonicalUrl": "https://pislinfra.com/company-policy"
+    }
+  },
+  {
+    "id": 412,
+    "documentId": "policy_vigil_mechanism",
+    "createdAt": "2026-11-12T08:09:25+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-11-12T08:09:25+00:00",
+    "slug": "vigil-mechanism-policy",
+    "title": "Vigil Mechanism Policy",
+    "shortDescription": "Whistleblower protection and ethical reporting mechanism ensuring transparency and accountability.",
+    "coverImage": {
+      "id": 90,
+      "documentId": "wp_media_90",
+      "name": "Vigil_cc39e832ef.jpeg",
+      "alternativeText": "Vigil Mechanism Policy Cover",
+      "caption": "",
+      "width": 1500,
+      "height": 1000,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Vigil_cc39e832ef-150x150.jpeg",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Vigil_cc39e832ef-500x333.jpeg",
+          "width": 500,
+          "height": 333
+        },
+        "medium": {
+          "url": "/images/uploads/Vigil_cc39e832ef-750x500.jpeg",
+          "width": 750,
+          "height": 500
+        },
+        "large": {
+          "url": "/images/uploads/Vigil_cc39e832ef-1200x800.jpeg",
+          "width": 1200,
+          "height": 800
+        }
+      },
+      "mime": "image/jpeg",
+      "url": "/images/uploads/Vigil_cc39e832ef.jpeg"
+    },
+    "coverImageAlt": "Vigil Mechanism Policy Cover",
+    "pdfFile": {
+      "id": 91,
+      "documentId": "wp_media_91",
+      "name": "Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf",
+      "alternativeText": "Vigil_Mechanism_Policy_PISL_6c1fe65e70",
+      "caption": "",
+      "width": null,
+      "height": null,
+      "formats": null,
+      "mime": "application/pdf",
+      "url": "/reports/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf"
+    },
+    "buttonName": "Vigil Mechanism Policy",
+    "documentLabel": "PDF Document",
+    "displayOrder": 2,
+    "accentType": "orange",
+    "updatedLabel": "Last Updated: September 2026",
+    "seo": {
+      "canonicalUrl": "https://pislinfra.com/company-policy"
+    }
+  },
+  {
+    "id": 413,
+    "documentId": "policy_csr",
+    "createdAt": "2026-11-12T08:09:25+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-11-12T08:09:25+00:00",
+    "slug": "csr-policy",
+    "title": "CSR Policy",
+    "shortDescription": "Corporate Social Responsibility commitment towards community upliftment, environmental sustainability, and education.",
+    "coverImage": {
+      "id": 92,
+      "documentId": "wp_media_92",
+      "name": "CSR_017ee514a5.jpeg",
+      "alternativeText": "CSR Policy Cover",
+      "caption": "",
+      "width": 1500,
+      "height": 1000,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/CSR_017ee514a5-150x150.jpeg",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/CSR_017ee514a5-500x333.jpeg",
+          "width": 500,
+          "height": 333
+        },
+        "medium": {
+          "url": "/images/uploads/CSR_017ee514a5-750x500.jpeg",
+          "width": 750,
+          "height": 500
+        },
+        "large": {
+          "url": "/images/uploads/CSR_017ee514a5-1200x800.jpeg",
+          "width": 1200,
+          "height": 800
+        }
+      },
+      "mime": "image/jpeg",
+      "url": "/images/uploads/CSR_017ee514a5.jpeg"
+    },
+    "coverImageAlt": "CSR Policy Cover",
+    "pdfFile": {
+      "id": 93,
+      "documentId": "wp_media_93",
+      "name": "CSR_Policy_PISL_2e584fd56d.pdf",
+      "alternativeText": "CSR_Policy_PISL_2e584fd56d",
+      "caption": "",
+      "width": null,
+      "height": null,
+      "formats": null,
+      "mime": "application/pdf",
+      "url": "/reports/CSR_Policy_PISL_2e584fd56d.pdf"
+    },
+    "buttonName": "CSR Policy",
+    "documentLabel": "PDF Document",
+    "displayOrder": 3,
+    "accentType": "green",
+    "updatedLabel": "Last Updated: September 2026",
+    "seo": {
+      "canonicalUrl": "https://pislinfra.com/company-policy"
+    }
+  }
+]

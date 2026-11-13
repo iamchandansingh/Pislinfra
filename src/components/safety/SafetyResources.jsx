@@ -5,9 +5,9 @@ import {
   Download, 
   ShieldCheck 
 } from 'lucide-react';
-import { fetchStrapiData, getStrapiMediaUrl } from '../../services/strapi';
+import { fetchWpData, getWpMediaUrl } from '../../services/wordpress';
 
-const DEFAULT_RESOURCES_COVER = 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pisl_EHS_100kb_82653bd4f2.jpeg';
+const DEFAULT_RESOURCES_COVER = '/images/uploads/pisl_EHS_100kb_1da8061955.jpeg';
 const LOCAL_RESOURCES_FALLBACK = '/images/about/ehs-resources-cover.jpeg';
 
 const TARGET_POLICIES = [
@@ -15,28 +15,28 @@ const TARGET_POLICIES = [
     key: 'hse',
     title: 'HSE Policy',
     desc: 'Official Health, Safety & Environment policies, operational guidelines and zero-harm standards.',
-    defaultUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf',
+    defaultUrl: '/reports/HSE_POLICY_PISL_e35061d871.pdf',
     defaultFileName: 'HSE_POLICY_PISL.pdf'
   },
   {
     key: 'risk',
     title: 'Risk Management Policy',
     desc: 'Structured framework for identifying, assessing, and mitigating operational and project risks.',
-    defaultUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Risk_Management_Policy_PISL_37fe051837.pdf',
+    defaultUrl: '/reports/Risk_Management_Policy_PISL_37fe051837.pdf',
     defaultFileName: 'Risk_Management_Policy_PISL.pdf'
   },
   {
     key: 'vigil',
     title: 'Vigil Mechanism Policy',
     desc: 'Whistleblower mechanism ensuring corporate transparency, ethical conduct, and accountability.',
-    defaultUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf',
+    defaultUrl: '/reports/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf',
     defaultFileName: 'Vigil_Mechanism_Policy_PISL.pdf'
   },
   {
     key: 'csr',
     title: 'CSR Policy',
     desc: 'Corporate Social Responsibility commitments towards community welfare and sustainable development.',
-    defaultUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_Policy_PISL_2e584fd56d.pdf',
+    defaultUrl: '/reports/CSR_Policy_PISL_2e584fd56d.pdf',
     defaultFileName: 'CSR_Policy_PISL.pdf'
   }
 ];
@@ -62,7 +62,7 @@ const buildPoliciesFromCMS = (cmsResources) => {
     });
 
     const fileObj = match ? (match.file || match.fileUrl) : null;
-    const cmsUrl = fileObj ? getStrapiMediaUrl(fileObj) : null;
+    const cmsUrl = fileObj ? getWpMediaUrl(fileObj) : null;
     const fileUrl = cmsUrl || target.defaultUrl;
     const fileName = match?.file?.name || target.defaultFileName || `${target.title}.pdf`;
 
@@ -80,7 +80,7 @@ const buildPoliciesFromCMS = (cmsResources) => {
 const SafetyResources = ({ resources, title, subtitle, desc, coverImage }) => {
   const [docCoverUrl, setDocCoverUrl] = useState(() => {
     if (coverImage) {
-      const u = getStrapiMediaUrl(coverImage);
+      const u = getWpMediaUrl(coverImage);
       if (u) return u;
     }
     return DEFAULT_RESOURCES_COVER;
@@ -132,14 +132,14 @@ const SafetyResources = ({ resources, title, subtitle, desc, coverImage }) => {
   useEffect(() => {
     // 1. Sync from passed prop
     if (coverImage) {
-      const url = getStrapiMediaUrl(coverImage);
+      const url = getWpMediaUrl(coverImage);
       if (url) setDocCoverUrl(url);
     }
     if (resources && resources.length > 0) {
       setPolicies(buildPoliciesFromCMS(resources));
       const coverItem = resources.find(r => r.coverImage);
       if (coverItem?.coverImage && !coverImage) {
-        const url = getStrapiMediaUrl(coverItem.coverImage);
+        const url = getWpMediaUrl(coverItem.coverImage);
         if (url) setDocCoverUrl(url);
       }
     }
@@ -147,10 +147,10 @@ const SafetyResources = ({ resources, title, subtitle, desc, coverImage }) => {
     // 2. Fetch fresh published data from CMS API
     const syncFromCMS = async (forceFresh = false) => {
       try {
-        const data = await fetchStrapiData('ehs-page', { forceFresh });
+        const data = await fetchWpData('ehs-page', { forceFresh });
         const sectionCover = data?.resourcesCoverImage || data?.data?.attributes?.resourcesCoverImage;
         if (sectionCover) {
-          const url = getStrapiMediaUrl(sectionCover);
+          const url = getWpMediaUrl(sectionCover);
           if (url) setDocCoverUrl(url);
         }
         const items = data?.resources || data?.data?.attributes?.resources || [];
@@ -159,7 +159,7 @@ const SafetyResources = ({ resources, title, subtitle, desc, coverImage }) => {
           if (!sectionCover) {
             const coverItem = items.find(r => r.coverImage);
             if (coverItem?.coverImage) {
-              const url = getStrapiMediaUrl(coverItem.coverImage);
+              const url = getWpMediaUrl(coverItem.coverImage);
               if (url) setDocCoverUrl(url);
             }
           }
@@ -175,7 +175,7 @@ const SafetyResources = ({ resources, title, subtitle, desc, coverImage }) => {
       if (e.detail?.cleanEndpoint?.includes('ehs-page')) {
         const sectionCover = d?.resourcesCoverImage || d?.attributes?.resourcesCoverImage;
         if (sectionCover) {
-          const url = getStrapiMediaUrl(sectionCover);
+          const url = getWpMediaUrl(sectionCover);
           if (url) setDocCoverUrl(url);
         }
         if (d?.resources) {

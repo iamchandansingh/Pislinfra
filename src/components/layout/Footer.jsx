@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchStrapiData } from '../../services/strapi';
+import { fetchWpData } from '../../services/wordpress';
 import { getImageUrl } from '../../utils/imageUrl';
 import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa';
@@ -13,7 +13,7 @@ const Footer = () => {
 
   useEffect(() => {
     const loadFooter = async () => {
-      const data = await fetchStrapiData('footer?populate[0]=logo&populate[1]=companyLinks&populate[2]=resourceLinks&populate[3]=solutionLinks');
+      const data = await fetchWpData('footer?populate[0]=logo&populate[1]=companyLinks&populate[2]=resourceLinks&populate[3]=solutionLinks');
       if (data) {
         setFooterData(data);
       }

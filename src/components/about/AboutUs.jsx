@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { getImageUrl } from '../../utils/imageUrl';
 
 /* ─── CORPORATE BRAND COLORS ─────────────────────────────────────────────── */
 const NAVY = '#28296F';
@@ -23,14 +24,18 @@ const renderAboutTitle = (title) => {
 const AboutUs = ({ data }) => {
   const navigate = useNavigate();
 
-  // 5 Premium PISL Reference Images
-  const images = [
+  // 5 Premium PISL Reference Images (WP CMS editable via home-page.aboutImages)
+  const defaultImages = [
     "/images/Overview/53.png",
     "/images/Overview/56.png",
     "/images/Overview/62.png",
     "/images/Overview/58.png",
     "/images/Overview/43.png"
   ];
+  const cmsImages = Array.isArray(data?.aboutImages)
+    ? data.aboutImages.map((img, i) => getImageUrl(img, defaultImages[i % defaultImages.length])).filter(Boolean)
+    : [];
+  const images = cmsImages.length > 0 ? cmsImages : defaultImages;
 
   return (
     <section className="pisl-about-modern-section" style={{ 
@@ -80,7 +85,7 @@ const AboutUs = ({ data }) => {
               <SwiperSlide key={idx} style={{ width: '100%', height: '100%' }}>
                 <img 
                   src={img} 
-                  alt="Pislinfrastructure Excellence" 
+                  alt={`Pragati Infra Solutions Engineering & Construction Excellence - Slide ${idx + 1}`} 
                   loading={idx === 0 ? "eager" : "lazy"}
                   style={{ 
                     width: '100%', 
@@ -143,7 +148,14 @@ const AboutUs = ({ data }) => {
           <div style={{ marginTop: '20px' }}>
             <button
               type="button"
-              onClick={() => navigate('/about')}
+              onClick={() => {
+                const target = data?.aboutCtaLink || '/about';
+                if (/^https?:\/\//i.test(target)) {
+                  window.open(target, '_blank', 'noopener,noreferrer');
+                } else {
+                  navigate(target);
+                }
+              }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -171,7 +183,7 @@ const AboutUs = ({ data }) => {
                 e.currentTarget.style.boxShadow = '0 4px 14px rgba(40, 41, 111, 0.22)';
               }}
             >
-              <span>Explore Pislinfra</span>
+              <span>{data?.aboutCtaText || 'Explore Pislinfra'}</span>
               <span style={{ fontSize: '16px', transition: 'transform 0.2s ease' }}>→</span>
             </button>
           </div>

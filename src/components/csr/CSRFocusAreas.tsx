@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/imageUrl';
 import { 
   FiBookOpen, 
   FiHeart, 
@@ -20,6 +21,9 @@ interface FocusAreaItem {
 }
 
 interface CSRFocusAreasProps {
+  badge?: string;
+  title?: string;
+  subtitle?: string;
   areas?: FocusAreaItem[];
 }
 
@@ -72,15 +76,6 @@ const getIcon = (name?: string, size = 24) => {
   }
 };
 
-const getImageUrl = (img: any, fallback?: string): string => {
-  if (!img) return fallback || '';
-  if (typeof img === 'string') return img;
-  if (img.url) {
-    return img.url.startsWith('http') ? img.url : `${img.url}`;
-  }
-  return fallback || '';
-};
-
 const getTint = (color?: string) => {
   if (!color) return 'rgba(5, 42, 115, 0.08)';
   if (color.startsWith('#') && color.length === 7) {
@@ -89,17 +84,16 @@ const getTint = (color?: string) => {
   return 'rgba(5, 42, 115, 0.08)';
 };
 
-const CSRFocusAreas: React.FC<CSRFocusAreasProps> = ({ areas }) => {
-  const focusAreas = areas && areas.length > 0 ? areas : defaultAreas;
+const CSRFocusAreas: React.FC<CSRFocusAreasProps> = ({ title, subtitle, areas }) => {
+  const focusAreas = Array.isArray(areas) ? areas : defaultAreas;
 
   return (
     <section className="csr-focus-section">
       <div className="csr-focus-container">
         
         <div className="csr-focus-header">
-          <div className="csr-focus-badge">CORE FOCUS SECTORS</div>
-          <h2 className="csr-focus-title">Areas Where We Make A Difference</h2>
-          <p className="csr-focus-sub">Targeted interventions creating sustainable, inclusive growth and lasting positive outcomes across communities.</p>
+          <h2 className="csr-focus-title">{title || 'Areas Where We Make A Difference'}</h2>
+          <p className="csr-focus-sub">{subtitle || 'Targeted interventions creating sustainable, inclusive growth and lasting positive outcomes across communities.'}</p>
         </div>
 
         <div className="focus-grid">
@@ -123,7 +117,7 @@ const CSRFocusAreas: React.FC<CSRFocusAreasProps> = ({ areas }) => {
                 <div className="focus-card-img-wrap">
                   <img
                     src={imgSrc}
-                    alt={area.title || 'Focus Area'}
+                    alt={area.title ? `${area.title} - PISL Corporate Social Responsibility` : 'Pragati Infra Solutions CSR Program'}
                     loading="lazy"
                     className="focus-card-img"
                   />

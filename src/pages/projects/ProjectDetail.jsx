@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { fetchStrapiData } from '../../services/strapi'
+import { fetchWpData, getPreviewContext } from '../../services/wordpress'
 import { getImageUrl, getProjectSlug } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import PageHero from '../../components/hero/PageHero'
@@ -20,8 +20,17 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-const getClientInfo = (clientName) => {
+const getClientInfo = (clientName, liveClients = []) => {
   if (!clientName) return []
+
+  const pool = [
+    ...(Array.isArray(liveClients) ? liveClients.map(c => ({
+      name: c.name,
+      logo: getImageUrl(c.logo) || getImageUrl(c.logoUrl) || null,
+      fromCms: true,
+    })).filter(c => c.name && c.logo) : []),
+    ...clientsData,
+  ];
   
   const clientNames = clientName
     .split(/[,/&]|\band\b/i)
@@ -29,13 +38,13 @@ const getClientInfo = (clientName) => {
     .filter(n => n.length > 0)
 
   return clientNames.map(name => {
-    let client = clientsData.find(c => c.name === name)
+    let client = pool.find(c => c.name === name)
     if (client) return { logo: client.logo, name: client.name }
     
-    client = clientsData.find(c => c.name.toLowerCase() === name.toLowerCase())
+    client = pool.find(c => c.name.toLowerCase() === name.toLowerCase())
     if (client) return { logo: client.logo, name: client.name }
     
-    client = clientsData.find(c => 
+    client = pool.find(c => 
       c.name.toLowerCase().includes(name.toLowerCase()) ||
       name.toLowerCase().includes(c.name.toLowerCase())
     )
@@ -51,8 +60,6 @@ const getClientInfo = (clientName) => {
       'AM/NS': 'AM/NS India (ArcelorMittal Nippon Steel India)',
       'PRR Group': 'Prologis',
       'PRR': 'Prologis',
-      'Pislinfra': 'GAR',
-      'PISL': 'GAR',
       'Engineers India': 'EIL (Engineers India Limited)',
       'EIL': 'EIL (Engineers India Limited)',
       'CPWD': 'CPWD (Central Public Works Department)',
@@ -60,11 +67,11 @@ const getClientInfo = (clientName) => {
     
     const mappedName = shortNames[name]
     if (mappedName) {
-      client = clientsData.find(c => c.name === mappedName)
+      client = pool.find(c => c.name === mappedName)
       if (client) return { logo: client.logo, name: client.name }
     }
     
-    client = clientsData.find(c => 
+    client = pool.find(c => 
       c.name.toLowerCase().includes(name.toLowerCase().split('(')[0].trim())
     )
     if (client) return { logo: client.logo, name: client.name }
@@ -81,6 +88,7 @@ const matchProject = (p, target) => {
   const targetClean = targetStr.replace(/[^a-z0-9]/g, '');
 
   if (p.documentId && p.documentId.toLowerCase() === targetStr) return true;
+  if (p.slug && p.slug.toLowerCase() === targetStr) return true;
   if (p.id && p.id.toString() === targetStr) return true;
 
   const pSlug = getProjectSlug(p);
@@ -122,11 +130,8 @@ const ProjectDetail = () => {
 
   const fallbackImages = [
     defaultFallback,
-    'https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    'https://images.pexels.com/photos/159306/pexels-photo-159306.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    'https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    'https://images.pexels.com/photos/3777190/pexels-photo-3777190.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    '/images/hero/Completed-Projects.png',
+    '/images/hero/Ongoing-Projects.png',
   ]
 
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -136,26 +141,57 @@ const ProjectDetail = () => {
 
   const projectIdOrSlug = id || ''
 
+  const isPreview = Boolean(getPreviewContext())
   const localPool = projectType === 'completed' ? completedProjects : projectsData;
-  const initialMatch = (location.state?.projectData && matchProject(location.state.projectData, projectIdOrSlug))
-    ? location.state.projectData
-    : localPool.find(p => matchProject(p, projectIdOrSlug));
+  const initialMatch = !isPreview
+    ? ((location.state?.projectData && matchProject(location.state.projectData, projectIdOrSlug))
+      ? location.state.projectData
+      : localPool.find(p => matchProject(p, projectIdOrSlug)))
+    : null;
 
   const [project, setProject] = useState(initialMatch || null)
-  const [allProjects, setAllProjects] = useState(localPool)
-  const [loading, setLoading] = useState(!initialMatch)
+  const [allProjects, setAllProjects] = useState(isPreview ? [] : localPool)
+  const [liveClients, setLiveClients] = useState([])
+  const [loading, setLoading] = useState(isPreview || !initialMatch)
+  const [dataRevision, setDataRevision] = useState(0)
 
   useEffect(() => {
-    if (location.state?.projectData && matchProject(location.state.projectData, projectIdOrSlug)) {
-      setProject(location.state.projectData);
-    }
-  }, [location.state, projectIdOrSlug]);
+    fetchWpData('clients?pagination[pageSize]=100&sort=order:asc&populate=*', { forceFresh: isPreview })
+      .then((res) => { if (Array.isArray(res) && res.length > 0) setLiveClients(res); })
+      .catch(() => {});
+  }, [isPreview]);
+
+  useEffect(() => {
+    const handleUpdate = (e) => {
+      if (isPreview) return;
+      const cleanEndpoint = e?.detail?.cleanEndpoint || '';
+      if (
+        !cleanEndpoint ||
+        cleanEndpoint.startsWith('ongoing-projects') ||
+        cleanEndpoint.startsWith('completed-projects') ||
+        cleanEndpoint.startsWith('coverage-markers')
+      ) {
+        setDataRevision(prev => prev + 1);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, [isPreview]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [projectIdOrSlug, projectType]);
+
+  useEffect(() => {
+    if (!isPreview && location.state?.projectData && matchProject(location.state.projectData, projectIdOrSlug)) {
+      setProject(location.state.projectData);
+    }
+  }, [location.state, projectIdOrSlug, isPreview]);
+
+  useEffect(() => {
     let isMounted = true;
 
-    const fetchUltraFast = async (forceFresh = false) => {
+    const fetchUltraFast = async (forceFresh = isPreview) => {
       let foundFast = false;
       if (initialMatch && isMounted) {
         setProject(initialMatch);
@@ -167,40 +203,38 @@ const ProjectDetail = () => {
           ? 'completed-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc'
           : 'ongoing-projects?populate=*&pagination[pageSize]=100&sort=createdAt:asc';
         
-        const res = await fetchStrapiData(endpoint, { forceFresh });
-        if (res && Array.isArray(res) && res.length > 0 && isMounted) {
+        const res = await fetchWpData(endpoint, { forceFresh });
+        if (Array.isArray(res) && isMounted) {
           const formattedAll = res.map(item => {
-            const localFallback = localPool.find(lp => {
-              if (item.documentId && lp.documentId && item.documentId === lp.documentId) return true;
-              const sL = slugify(lp.name);
-              const sI = slugify(item.name);
-              const locL = slugify(lp.location);
-              const locI = slugify(item.location);
-              if (sL === sI) {
-                if (locL && locI) return locL === locI;
-                return true;
-              }
-              return false;
-            }) || {};
             const rawImgs = Array.isArray(item.images) && item.images.length > 0
               ? item.images
               : (item.image ? [item.image] : []);
-            const strapiImages = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
-            const imgs = strapiImages.length > 0 ? strapiImages : (localFallback.images || []);
+            let imgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
+
+            if (imgs.length === 0) {
+              const localMatch = localPool.find(lp => matchProject(lp, item.slug || item.name || item.title || ''));
+              if (localMatch?.images?.length > 0) {
+                imgs = localMatch.images.map(img => getImageUrl(img)).filter(Boolean);
+              } else if (localMatch?.image) {
+                imgs = [getImageUrl(localMatch.image)].filter(Boolean);
+              }
+            }
 
             return {
               id: item.documentId || item.id,
               documentId: item.documentId,
-              category: item.category || localFallback.category,
-              name: item.name || localFallback.name,
-              location: item.location || localFallback.location,
-              state: item.state || localFallback.state,
-              area: item.area || localFallback.area,
-              client: item.client || localFallback.client,
-              timeline: item.timeline || localFallback.timeline,
+              slug: item.slug || '',
+              category: item.category || '',
+              name: item.name || item.title || '',
+              location: item.location || '',
+              state: item.state || '',
+              area: item.area || '',
+              client: item.client || '',
+              timeline: item.timeline || '',
               status: item.projectStatus || item.status || (projectType === 'completed' ? 'Completed' : 'Ongoing'),
-              scope: item.scope || localFallback.scope,
-              images: imgs.length > 0 ? imgs : (localFallback.images || [fallbackImages[0]])
+              scope: item.scope || '',
+              images: imgs.length > 0 ? imgs : [fallbackImages[0]],
+              seo: item.seo || {},
             };
           });
           
@@ -221,7 +255,7 @@ const ProjectDetail = () => {
 
           if (!foundProject) {
             try {
-              const markersRes = await fetchStrapiData('coverage-markers?populate=*&pagination[pageSize]=100', { forceFresh });
+              const markersRes = await fetchWpData('coverage-markers?populate=*&pagination[pageSize]=100', { forceFresh });
               const mList = Array.isArray(markersRes) ? markersRes : (markersRes?.data && Array.isArray(markersRes.data) ? markersRes.data : []);
               const mMatch = mList.find(m => {
                 const mName = m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '';
@@ -270,7 +304,7 @@ const ProjectDetail = () => {
     };
 
     if (projectIdOrSlug) {
-      fetchUltraFast();
+      fetchUltraFast(isPreview);
     } else {
       setLoading(false);
     }
@@ -278,11 +312,16 @@ const ProjectDetail = () => {
     return () => {
       isMounted = false;
     };
-  }, [projectIdOrSlug, projectType]);
+  }, [projectIdOrSlug, projectType, dataRevision, isPreview]);
 
-  const rawImages = project?.images?.length > 0 
-    ? project.images 
-    : fallbackImages;
+  let rawImages = [];
+  if (project?.images && Array.isArray(project.images) && project.images.length > 0) {
+    rawImages = project.images;
+  } else if (project?.image) {
+    rawImages = Array.isArray(project.image) ? project.image : [project.image];
+  } else {
+    rawImages = fallbackImages;
+  }
   const projectImages = rawImages.map(img => getImageUrl(img, fallbackImages[0])).filter(Boolean);
 
   const relatedProjects = allProjects.filter(p => p.id !== project?.id);
@@ -320,7 +359,7 @@ const ProjectDetail = () => {
     );
   }
 
-  const clientInfoList = getClientInfo(project.client);
+  const clientInfoList = getClientInfo(project.client, liveClients);
   const hasAnyLogo = clientInfoList.some(c => c.logo);
   const backUrl = projectType === 'completed' ? '/projects/completed' : '/projects/ongoing';
 
@@ -346,7 +385,8 @@ const ProjectDetail = () => {
     tags: [project.category, project.status, project.location, project.state, 'Industrial Construction', 'Pislinfra Project'],
     imageAlt: `${project.name} ${project.category} project site in ${project.location}, ${project.state}`,
     imageTitle: `${project.name} - Pislinfra Infrastructure`,
-    imageCaption: `${project.name} (${project.category}) delivered for ${project.client} in ${project.location}, ${project.state}`
+    imageCaption: `${project.name} (${project.category}) delivered for ${project.client} in ${project.location}, ${project.state}`,
+    ...(project.seo || {}),
   };
 
   return (

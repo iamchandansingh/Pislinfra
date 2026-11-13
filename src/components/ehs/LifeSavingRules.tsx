@@ -194,7 +194,7 @@ const LifeSavingRules = ({ rules, title, subtitle }) => {
                     src={iconSrc} 
                     alt={rule.titleEn} 
                     className="w-full h-full object-contain"
-                    loading="lazy" 
+                    loading="eager" 
                   />
                 </div>
 

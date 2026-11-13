@@ -1,9 +1,11 @@
+import { extractNumericId } from './formatBlog.js';
+
 /**
- * Standard enterprise award sorting:
- * 1. Explicit featured flag (featured: true or isFeatured: true)
- * 2. Year descending (2026 > 2025 > 2024 > ...)
- * 3. CreatedAt descending (newest additions in CMS appear first in featured section)
- * 4. Premier accolade titles (e.g., 🏆)
+ * Standard enterprise award sorting (newest added shows first):
+ * 1. Year descending (2026 > 2025 > 2024 > ...)
+ * 2. CreatedAt descending (newest additions in CMS appear #1 in Latest Achievements & grid; newer additions push previous ones down)
+ * 3. Numeric WP ID descending tie-breaker
+ * 4. Explicit featured flag & premier accolade titles (e.g., 🏆)
  */
 export const sortAwardsByFeaturedAndDate = (awardsList) => {
   if (!Array.isArray(awardsList)) return [];
@@ -27,18 +29,12 @@ export const sortAwardsByFeaturedAndDate = (awardsList) => {
   }
 
   return deduped.sort((a, b) => {
-    // 1. Explicit featured flag takes #1 priority
-    const aFeat = Boolean(a.featured || a.isFeatured);
-    const bFeat = Boolean(b.featured || b.isFeatured);
-    if (aFeat && !bFeat) return -1;
-    if (!aFeat && bFeat) return 1;
-
-    // 2. Year descending (2026 > 2025 > 2024...)
+    // 1. Year descending (2026 > 2025 > 2024...)
     const aYear = parseInt(a.year, 10) || 0;
     const bYear = parseInt(b.year, 10) || 0;
     if (bYear !== aYear) return bYear - aYear;
 
-    // 3. CreatedAt descending (newest additions in CMS appear first in featured section)
+    // 2. CreatedAt descending (newest additions in CMS appear first and shift older ones down)
     if (a.createdAt && b.createdAt) {
       const aTime = new Date(a.createdAt).getTime();
       const bTime = new Date(b.createdAt).getTime();
@@ -51,7 +47,18 @@ export const sortAwardsByFeaturedAndDate = (awardsList) => {
       return 1;
     }
 
-    // 4. Premier recognitions (e.g. trophy emoji in title)
+    // 3. Numeric ID descending tie-breaker
+    const aNumId = extractNumericId(a);
+    const bNumId = extractNumericId(b);
+    if (bNumId !== aNumId) return bNumId - aNumId;
+
+    // 4. Explicit featured flag tie-breaker
+    const aFeat = Boolean(a.featured || a.isFeatured);
+    const bFeat = Boolean(b.featured || b.isFeatured);
+    if (aFeat && !bFeat) return -1;
+    if (!aFeat && bFeat) return 1;
+
+    // 5. Premier recognitions (e.g. trophy emoji in title)
     const aTitle = a.title || a.name || '';
     const bTitle = b.title || b.name || '';
     const aTrophy = aTitle.includes('🏆') ? 1 : 0;

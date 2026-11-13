@@ -3,81 +3,92 @@ import PageHero from '../../components/hero/PageHero'
 import BlogSEO from '../../components/Blog/BlogSEO'
 import ProjectCard from '../../components/cards/ProjectCard'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
-import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../../services/wordpress'
 import { getImageUrl } from '../../utils/imageUrl'
 import Preloader from '../../components/common/Preloader'
 import localProjectsData from '../../data/projectsData'
 
-const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-
 const OngoingProjects = () => {
+  const isPreview = Boolean(getPreviewContext())
   const [currentPage, setCurrentPage] = useState(1)
-  const [projectsData, setProjectsData] = useState(localProjectsData)
-  const [pageData, setPageData] = useState(() => getLocalDataSync('ongoing-page'))
-  const [loading, setLoading] = useState(false)
-  const itemsPerPage = 16
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [projectsData, setProjectsData] = useState(() => (isPreview ? [] : localProjectsData))
+  const [liveClients, setLiveClients] = useState([])
+  const [pageData, setPageData] = useState(() => (isPreview ? null : getLocalDataSync('ongoing-page')))
+  const [loading, setLoading] = useState(() => isPreview)
+  const [dataRevision, setDataRevision] = useState(0)
+
+  const configuredPerPage = Number(pageData?.itemsPerPage)
+  const itemsPerPage = configuredPerPage > 0 ? configuredPerPage : 16
 
   useEffect(() => {
-    const handleUpdate = () => {
+    const handleUpdate = (e) => {
+      if (isPreview) return;
+      const cleanEndpoint = e?.detail?.cleanEndpoint || '';
       const fresh = getLocalDataSync('ongoing-page');
       if (fresh) setPageData(fresh);
+      if (!cleanEndpoint || cleanEndpoint.startsWith('ongoing-projects') || cleanEndpoint.startsWith('clients')) {
+        setDataRevision(prev => prev + 1);
+      }
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   useEffect(() => {
     let isMounted = true;
-    const getData = async (forceFresh = false) => {
+    const getData = async (forceFresh = isPreview) => {
       try {
-        const [pData, projData] = await Promise.all([
-          fetchStrapiData('ongoing-page?populate=*', { forceFresh }),
-          fetchStrapiData('ongoing-projects?populate=*&pagination[pageSize]=100', { forceFresh })
+        const [pData, projData, clientsRes] = await Promise.all([
+          fetchWpData('ongoing-page?populate=*', { forceFresh }),
+          fetchWpData('ongoing-projects?populate=*&pagination[pageSize]=100', { forceFresh }),
+          fetchWpData('clients?pagination[pageSize]=100&sort=order:asc&populate=*', { forceFresh })
         ]);
 
         if (pData && isMounted) {
           setPageData(pData);
         }
 
-        if (projData && Array.isArray(projData) && projData.length > 0 && isMounted) {
-          const filtered = projData.filter(item => {
-            const n = (item.name || item.title || '').toLowerCase();
-            return !n.includes('humsafar') && !n.includes('logistics park llp');
-          });
-          const formatted = filtered.map(item => {
-            const matchLocal = localProjectsData.find(lp => {
-              if (item.documentId && lp.documentId && item.documentId === lp.documentId) return true;
-              const sL = slugify(lp.name);
-              const sI = slugify(item.name);
-              const locL = slugify(lp.location);
-              const locI = slugify(item.location);
-              if (sL === sI) {
-                if (locL && locI) return locL === locI;
-                return true;
-              }
-              return (sL && sI && (sL.includes(sI) || sI.includes(sL)));
-            }) || {};
+        if (Array.isArray(clientsRes) && isMounted) {
+          setLiveClients(clientsRes);
+        }
+
+        if (Array.isArray(projData) && isMounted) {
+          const formatted = projData.map((item, idx) => {
             const rawImgs = Array.isArray(item.images) && item.images.length > 0
               ? item.images
               : (item.image ? [item.image] : []);
-            const strapiImages = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
-            const imgs = strapiImages.length > 0 ? strapiImages : (matchLocal.images || (matchLocal.image ? [matchLocal.image] : []));
+            const imgs = rawImgs.map(img => getImageUrl(img)).filter(Boolean);
+            const numericOrder = item.order !== undefined && item.order !== null && item.order !== ''
+              ? Number(item.order)
+              : null;
 
             return {
               id: item.documentId || item.id,
               documentId: item.documentId,
-              category: item.category || matchLocal.category,
-              name: item.name || matchLocal.name,
-              location: item.location || matchLocal.location,
-              state: item.state || matchLocal.state,
-              area: item.area || matchLocal.area,
-              client: item.client || matchLocal.client,
-              timeline: item.timeline || matchLocal.timeline,
+              slug: item.slug || '',
+              category: item.category || '',
+              name: item.name || item.title || '',
+              location: item.location || '',
+              state: item.state || '',
+              area: item.area || '',
+              client: item.client || '',
+              timeline: item.timeline || '',
               status: item.projectStatus || item.status || 'Ongoing',
-              scope: item.scope || matchLocal.scope,
-              images: imgs.length > 0 ? imgs : (matchLocal.images || [])
+              scope: item.scope || '',
+              order: Number.isFinite(numericOrder) ? numericOrder : null,
+              _idx: idx,
+              images: imgs
             };
           });
+
+          formatted.sort((a, b) => {
+            const aOrd = a.order !== null && a.order > 0 ? a.order : Number.MAX_SAFE_INTEGER;
+            const bOrd = b.order !== null && b.order > 0 ? b.order : Number.MAX_SAFE_INTEGER;
+            if (aOrd !== bOrd) return aOrd - bOrd;
+            return a._idx - b._idx;
+          });
+
           setProjectsData(formatted);
         }
       } catch (err) {
@@ -87,19 +98,34 @@ const OngoingProjects = () => {
       }
     };
 
-    getData();
+    getData(isPreview);
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [dataRevision, isPreview]);
+
+  const showCategoryFilter = Boolean(pageData?.showCategoryFilter);
+  const categories = ['All', ...Array.from(new Set(projectsData.map(p => (p.category || '').trim()).filter(Boolean)))];
+  const filteredProjects = showCategoryFilter && selectedCategory !== 'All'
+    ? projectsData.filter(p => (p.category || '').trim() === selectedCategory)
+    : projectsData;
+
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+
+  useEffect(() => {
+    if (totalPages > 0 && currentPage > totalPages) {
+      setCurrentPage(1);
+    } else if (totalPages === 0 && currentPage !== 1) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
 
   if (loading) return <Preloader />;
 
-  const totalPages = Math.ceil(projectsData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProjects = projectsData.slice(startIndex, endIndex);
+  const currentProjects = filteredProjects.slice(startIndex, endIndex);
 
   const fallbackTitle = 'Ongoing Projects | Pislinfra– Building India’s Future';
   const fallbackDescription = 'Explore Pislinfra\'s ongoing projects across industrial, infrastructure, warehousing and logistics sectors, delivering quality construction solutions across India.';
@@ -110,9 +136,20 @@ const OngoingProjects = () => {
   const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
   const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || 'Ongoing Construction Projects').trim();
   const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Ongoing-Projects.png") : "/images/hero/Ongoing-Projects.png";
+  const resolvedOgImage = getImageUrl(pageData?.seo?.ogImage || pageData?.heroImage, '/images/hero/Ongoing-Projects.png');
+  const resolvedTwitterImage = getImageUrl(pageData?.seo?.twitterImage || pageData?.heroImage, '/images/hero/Ongoing-Projects.png');
 
   const seoData = {
     contentType: 'page',
+    slug: 'projects/ongoing',
+    canonicalUrl: 'https://pislinfra.com/projects/ongoing',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'CollectionPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['Ongoing Projects', 'Industrial Construction', 'Warehousing', 'Infrastructure Sites', 'India Projects'],
     ...(pageData?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
@@ -120,20 +157,12 @@ const OngoingProjects = () => {
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
     seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'Ongoing Construction Projects, ongoing industrial projects, warehouse construction sites India, PEB manufacturing plants under construction, civil infrastructure ongoing work, Pislinfra projects',
-    slug: 'projects/ongoing',
-    canonicalUrl: 'https://pislinfra.com/projects/ongoing',
     ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
     ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
-    ogImage: pageData?.seo?.ogImage || (pageData?.heroImage?.url ? getImageUrl(pageData.heroImage) : '/images/hero/Ongoing-Projects.png'),
-    ogType: 'website',
+    ogImage: resolvedOgImage,
     twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: pageData?.seo?.twitterImage || (pageData?.heroImage?.url ? getImageUrl(pageData.heroImage) : '/images/hero/Ongoing-Projects.png'),
-    twitterCardType: 'summary_large_image',
-    schemaType: 'CollectionPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Ongoing Projects', 'Industrial Construction', 'Warehousing', 'Infrastructure Sites', 'India Projects'],
+    twitterImage: resolvedTwitterImage,
   };
 
   const handlePageChange = (page) => {
@@ -141,48 +170,85 @@ const OngoingProjects = () => {
     window.scrollTo({ top: 350, behavior: 'smooth' });
   };
 
-  const heroImage = pageData?.heroImage ? getImageUrl(pageData.heroImage, "/images/hero/Ongoing-Projects.png") : "/images/hero/Ongoing-Projects.png";
+  const showHero = pageData?.showHero !== false;
+  const showDescription = pageData?.showDescription !== false;
+  const showSectionHeader = pageData?.showSectionHeader !== false;
+  const showCounter = pageData?.showCounter !== false;
+  const sectionHeading = (pageData?.sectionTitle || pageData?.heroTitle || 'Ongoing Projects').trim();
+  const counterLabel = (pageData?.totalCountLabel || 'Total Projects:').trim();
+  const emptyStateMessage = (pageData?.emptyStateText || 'No ongoing projects found.').trim();
 
   return (
     <div>
       <BlogSEO blog={seoData} />
       
-      <PageHero 
-        title={pageData?.heroTitle || "Ongoing Projects"} 
-        subtitle={pageData?.heroSubtitle || "Current projects under development across India"}
-        breadcrumb={pageData?.heroBreadcrumb || "Projects / Ongoing"}
-        bgImage={heroImage}
-      />
+      {showHero && (
+        <PageHero 
+          title={pageData?.heroTitle || "Ongoing Projects"} 
+          subtitle={pageData?.heroSubtitle || "Current projects under development across India"}
+          breadcrumb={pageData?.heroBreadcrumb || "Projects / Ongoing"}
+          bgImage={heroImage}
+        />
+      )}
       
       <section className="ongoing-projects-section">
         <div className="ongoing-projects-container">
           
-          {pageData?.description && (
+          {showDescription && pageData?.description && (
             <div className="ongoing-desc-box" dangerouslySetInnerHTML={{ __html: pageData.description.replace(/\n/g, '<br />') }} />
           )}
 
-          <div className="ongoing-header">
-            <h2 className="ongoing-title">
-              {pageData?.heroTitle || "Ongoing Projects"}
-            </h2>
-            
-            <div className="ongoing-counter-badge">
-              <span className="counter-label">Total Projects:</span>
-              <span className="counter-val">
-                {projectsData.length}
-              </span>
+          {showSectionHeader && (
+            <div className="ongoing-header">
+              <h2 className="ongoing-title">
+                {sectionHeading}
+              </h2>
+              
+              {showCounter && (
+                <div className="ongoing-counter-badge">
+                  <span className="counter-label">{counterLabel}</span>
+                  <span className="counter-val">
+                    {filteredProjects.length}
+                  </span>
+                </div>
+              )}
             </div>
-          </div>
+          )}
 
-          <div className="projects-grid">
-            {currentProjects.map((project) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                type="ongoing"
-              />
-            ))}
-          </div>
+          {showCategoryFilter && categories.length > 1 && (
+            <div className="ongoing-filter-bar">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    setCurrentPage(1);
+                  }}
+                  className={`ongoing-filter-btn ${selectedCategory === cat ? 'active' : ''}`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {currentProjects.length === 0 ? (
+            <div className="ongoing-empty-state">
+              {emptyStateMessage}
+            </div>
+          ) : (
+            <div className="projects-grid">
+              {currentProjects.map((project) => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  type="ongoing"
+                  clientsList={liveClients}
+                />
+              ))}
+            </div>
+          )}
 
           {totalPages > 1 && (
             <div className="ongoing-pagination">
@@ -270,6 +336,38 @@ const OngoingProjects = () => {
           font-size: 16px;
           color: #0a2a66;
           font-weight: 700;
+        }
+        .ongoing-filter-bar {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 24px;
+        }
+        .ongoing-filter-btn {
+          padding: 8px 16px;
+          border-radius: 999px;
+          border: 1px solid #cbd5e1;
+          background-color: #ffffff;
+          color: #334155;
+          font-size: 13px;
+          font-weight: 600;
+          font-family: 'Inter', sans-serif;
+          cursor: pointer;
+        }
+        .ongoing-filter-btn.active {
+          border-color: #ff8755;
+          background-color: #fff5f0;
+          color: #ff8755;
+        }
+        .ongoing-empty-state {
+          background-color: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 48px 24px;
+          text-align: center;
+          font-size: 15px;
+          color: #64748b;
+          font-family: 'Inter', sans-serif;
         }
 
         /* Grid */

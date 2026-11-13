@@ -1,17 +1,94 @@
 [
   {
-    "id": 5,
+    "id": 410,
     "documentId": "gkmtnmfgjy6ggqmjszggqnwa",
+    "createdAt": "2026-11-12T04:53:15+00:00",
+    "updatedAt": "2026-11-12T13:00:37+00:00",
+    "publishedAt": "2026-11-12T04:53:15+00:00",
     "slug": "solutions",
     "title": "Construction & Infrastructure Solutions",
+    "showHero": true,
     "heroSubtitle": "Comprehensive infrastructure solutions tailored to your needs",
     "breadcrumb": "Solutions",
+    "heroImage": {
+      "id": 884,
+      "documentId": "wp_media_884",
+      "name": "Service.png",
+      "alternativeText": "PISL Solutions Hero | Pragati Infra Solutions",
+      "caption": "",
+      "width": 2240,
+      "height": 700,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Service-150x150.png",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Service-500x156.png",
+          "width": 500,
+          "height": 156
+        },
+        "medium": {
+          "url": "/images/uploads/Service-750x234.png",
+          "width": 750,
+          "height": 234
+        },
+        "large": {
+          "url": "/images/uploads/Service-1200x375.png",
+          "width": 1200,
+          "height": 375
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/Service.png"
+    },
     "primaryKeyword": "Construction & Infrastructure Solutions",
     "metaTitle": "Construction & Infrastructure Solutions | Pislinfra",
     "metaDescription": "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches.",
     "focusKeywords": "Construction & Infrastructure Solutions, turnkey industrial EPC, warehouse construction, infrastructure solutions India",
-    "createdAt": "2026-11-09T00:46:26.240Z",
-    "updatedAt": "2026-11-09T00:46:26.240Z",
-    "publishedAt": "2026-11-09T00:46:26.240Z"
+    "showIntro": true,
+    "introText": null,
+    "showMainFeature": true,
+    "mainFeatureTitle": "Our Solutions",
+    "mainFeatureText": null,
+    "mainFeatureImage": null,
+    "showWhyPisl": true,
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "whyPislImage": null,
+    "features": [],
+    "grids": [
+      {
+        "id": "solutions-overview",
+        "title": "Core Capabilities",
+        "items": [
+          {
+            "id": "design",
+            "title": "Design",
+            "description": "Our team of dedicated architects and designers collaboratively envision and execute projects that redefine skylines and set new standards in architectural excellence. From conceptualisation to realisation, our vertical design approach ensures every project stands as a testament to our commitment to shaping environments that not only stand tall but also enrich lives. Explore our portfolio and witness the transformative power of design that reaches for the sky.",
+            "image": "/images/awards/3.png",
+            "imageAlt": "Design"
+          },
+          {
+            "id": "construction",
+            "title": "Construction",
+            "description": "We specialise in the vertical of construction that builds the backbone of industries. Our expertise lies in creating robust and efficient spaces that cater to the unique needs of warehousing and industrial operations. With a keen focus on functionality, durability, and optimised space utilisation, we construct vertical structures that seamlessly integrate with the industrial landscape.",
+            "image": "/images/uploads/12.png",
+            "imageAlt": "Construction"
+          }
+        ]
+      }
+    ],
+    "seo": {
+      "seoTitle": "Construction & Infrastructure Solutions | Pislinfra",
+      "seoDescription": "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches.",
+      "seoKeywords": "Construction & Infrastructure Solutions, turnkey industrial EPC, warehouse construction, infrastructure solutions India",
+      "tags": "Construction & Infrastructure Solutions",
+      "canonicalUrl": "https://pislinfra.com/solutions",
+      "metaTitle": "Construction & Infrastructure Solutions | Pislinfra",
+      "metaDescription": "Explore Pislinfra's comprehensive construction and infrastructure solutions, combining technical expertise, quality execution and innovative approaches."
+    }
   }
 ]

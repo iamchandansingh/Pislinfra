@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { LuSprout, LuHandshake, LuScale } from 'react-icons/lu';
+import { getImageUrl } from '../../utils/imageUrl';
 
 interface StrapiImage {
   url?: string;
@@ -6,6 +8,7 @@ interface StrapiImage {
 }
 
 interface CSRPhilosophyProps {
+  badge?: string;
   title?: string;
   description?: string;
   images?: Array<string | StrapiImage>;
@@ -18,25 +21,16 @@ const defaultImages = [
 ];
 
 const pillars = [
-  { label: 'Sustainable Development', icon: '🌱' },
-  { label: 'Inclusive Growth', icon: '🤝' },
-  { label: 'Social Equity', icon: '⚖️' },
+  { label: 'Sustainable Development', Icon: LuSprout, color: '#16A34A' },
+  { label: 'Inclusive Growth', Icon: LuHandshake, color: '#FF6B35' },
+  { label: 'Social Equity', Icon: LuScale, color: '#052A73' },
 ];
-
-const getImageUrl = (img: any): string => {
-  if (!img) return '';
-  if (typeof img === 'string') return img;
-  if (img.url) {
-    return img.url.startsWith('http') ? img.url : `${img.url}`;
-  }
-  return '';
-};
 
 const CSRPhilosophy: React.FC<CSRPhilosophyProps> = ({ title, description, images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const rawImages = images && images.length > 0 
-    ? images.map(img => getImageUrl(img)).filter(Boolean)
+    ? images.map(img => getImageUrl(img, '')).filter(Boolean)
     : [];
   const csrImages = rawImages.length > 0 ? rawImages : defaultImages;
 
@@ -56,7 +50,6 @@ const CSRPhilosophy: React.FC<CSRPhilosophyProps> = ({ title, description, image
         <div className="phil-grid">
           
           <div className="csr-phil-content">
-            <div className="csr-phil-badge">OUR CSR PHILOSOPHY</div>
             <h2 className="csr-phil-title">
               {formattedTitle.split('\n').map((line, i, arr) => (
                 <React.Fragment key={i}>
@@ -70,10 +63,12 @@ const CSRPhilosophy: React.FC<CSRPhilosophyProps> = ({ title, description, image
             </p>
 
             <div className="csr-phil-pillars">
-              {pillars.map((item, idx) => (
+              {pillars.map(({ label, Icon, color }, idx) => (
                 <div key={idx} className="csr-phil-pill">
-                  <span className="csr-phil-pill-icon">{item.icon}</span>
-                  <span>{item.label}</span>
+                  <span className="csr-phil-pill-icon" style={{ color }}>
+                    <Icon size={15} strokeWidth={2.2} aria-hidden="true" />
+                  </span>
+                  <span>{label}</span>
                 </div>
               ))}
             </div>
@@ -85,7 +80,7 @@ const CSRPhilosophy: React.FC<CSRPhilosophyProps> = ({ title, description, image
                 <img
                   key={index}
                   src={img}
-                  alt={`CSR Philosophy ${index + 1}`}
+                  alt={`Pragati Infra Solutions CSR Initiative - Community Impact ${index + 1}`}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   className="csr-phil-img"
                   style={{
@@ -189,8 +184,11 @@ const CSRPhilosophy: React.FC<CSRPhilosophyProps> = ({ title, description, image
           font-family: 'Inter', sans-serif;
         }
         .csr-phil-pill-icon {
-          font-size: 13px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           line-height: 1;
+          flex-shrink: 0;
         }
         .csr-phil-slider-wrap {
           width: 100%;

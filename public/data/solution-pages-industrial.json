@@ -1,89 +1,126 @@
 [
   {
-    "id": 1,
+    "id": 406,
     "documentId": "vpww0ihdd2m19joe90aczxat",
+    "createdAt": "2026-11-12T04:53:19+00:00",
+    "updatedAt": "2026-11-12T12:26:53+00:00",
+    "publishedAt": "2026-11-12T04:53:19+00:00",
     "slug": "industrial",
     "title": "Industrial Development",
+    "showHero": true,
     "heroSubtitle": "World-class industrial facilities and manufacturing plants",
     "breadcrumb": "Solutions / Industrial",
-    "introText": "At PISL's Industrial Development Hub, you can experience the pinnacle of industrial innovation. PISL is a construction pioneer with over a decade of experience. We blend accuracy, cutting-edge technological integration, and a smart financial strategy into every project, resulting in industrial development spaces that not only meet but surpass expectations and establish new standards for excellence.",
-    "mainFeatureTitle": "What is Industrial Development?",
-    "mainFeatureText": "Industrial development is the dynamic process of creating, expanding, and optimising infrastructure and facilities within the industrial sector. It involves the strategic integration of technology, efficient resource management, and innovative warehouse design to foster economic growth, job creation, and the establishment of industrial ecosystems, driving progress and sustainability.\n\n### Our Unique Methodologies & Approach\n\nRanked among India's premier industrial construction firms, our commitment extends beyond mere project completion—we consider it incomplete until we precisely fulfil our client's unique requirements.\n\nOur methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.",
-    "whyPislBadge": "Core Advantages",
-    "whyPislTitle": "Why Pislinfra?",
-    "whyPislDesc": "At Pislinfra, we thrive on harnessing the creativity of our focused team of engineers, designers, and workers. This collaborative synergy ensures the generation of fresh, inventive ideas, delivering unparalleled results for our clients across diverse industries.",
-    "createdAt": "2026-08-21T12:44:28.680Z",
-    "updatedAt": "2026-11-09T17:58:36.131Z",
-    "publishedAt": "2026-11-09T17:58:35.880Z",
+    "heroImage": {
+      "id": 82,
+      "documentId": "wp_media_82",
+      "name": "compressed_1787754805351.webp",
+      "alternativeText": "Compressed 1787754805351 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/compressed_1787754805351-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/compressed_1787754805351-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/compressed_1787754805351-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/compressed_1787754805351-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/compressed_1787754805351.webp"
+    },
     "primaryKeyword": "Industrial Development",
     "metaTitle": "Industrial Development Company In India | Pislinfra",
     "metaDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.",
     "focusKeywords": "Industrial Development, industrial construction, turnkey EPC contractor India, factory building construction, heavy steel PEB fabrication, manufacturing infrastructure, Pislinfra",
-    "heroImage": {
-      "id": 5,
-      "documentId": "v6ylkycvl1x3x4i38nbgqomn",
-      "name": "flipkart-sampka-pataudi-hr.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "ind_bg_1787316260703",
-      "ext": ".webp",
-      "mime": "image/webp",
-      "size": 353.43,
-      "url": "/images/projects/compressed_1787754805351.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T12:44:20.703Z",
-      "updatedAt": "2026-08-26T13:40:52.224Z",
-      "publishedAt": "2026-08-21T12:44:20.705Z"
-    },
+    "showIntro": true,
+    "introText": "At PISL's Industrial Development Hub, you can experience the pinnacle of industrial innovation. PISL is a construction pioneer with over a decade of experience. We blend accuracy, cutting-edge technological integration, and a smart financial strategy into every project, resulting in industrial development spaces that not only meet but surpass expectations and establish new standards for excellence.",
+    "showMainFeature": true,
+    "mainFeatureTitle": "What is Industrial Development?",
+    "mainFeatureText": "Industrial development is the dynamic process of creating, expanding, and optimising infrastructure and facilities within the industrial sector. It involves the strategic integration of technology, efficient resource management, and innovative warehouse design to foster economic growth, job creation, and the establishment of industrial ecosystems, driving progress and sustainability.\n\n### Our Unique Methodologies & Approach\n\nRanked among India's premier industrial construction firms, our commitment extends beyond mere project completion—we consider it incomplete until we precisely fulfil our client's unique requirements.\n\nOur methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.",
     "mainFeatureImage": {
-      "id": 5,
-      "documentId": "v6ylkycvl1x3x4i38nbgqomn",
-      "name": "flipkart-sampka-pataudi-hr.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "ind_bg_1787316260703",
-      "ext": ".webp",
+      "id": 82,
+      "documentId": "wp_media_82",
+      "name": "compressed_1787754805351.webp",
+      "alternativeText": "Compressed 1787754805351 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/compressed_1787754805351-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/compressed_1787754805351-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/compressed_1787754805351-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/compressed_1787754805351-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
       "mime": "image/webp",
-      "size": 353.43,
-      "url": "/images/projects/compressed_1787754805351.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T12:44:20.703Z",
-      "updatedAt": "2026-08-26T13:40:52.224Z",
-      "publishedAt": "2026-08-21T12:44:20.705Z"
+      "url": "/images/projects/compressed_1787754805351.webp"
     },
+    "showWhyPisl": true,
+    "whyPislBadge": "Core Advantages",
+    "whyPislTitle": "Why Pislinfra?",
+    "whyPislDesc": "At Pislinfra, we thrive on harnessing the creativity of our focused team of engineers, designers, and workers. This collaborative synergy ensures the generation of fresh, inventive ideas, delivering unparalleled results for our clients across diverse industries.",
     "whyPislImage": {
-      "id": 6,
-      "documentId": "l03oeckted9o5wn63ejnezda",
-      "name": "logos-india-industrial-park-bengaluru-ka-6.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "why_bg_1787316262395",
-      "ext": ".webp",
+      "id": 83,
+      "documentId": "wp_media_83",
+      "name": "compressed_1787754806543.webp",
+      "alternativeText": "Compressed 1787754806543 | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1920,
+      "height": 1080,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/compressed_1787754806543-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/compressed_1787754806543-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/compressed_1787754806543-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/compressed_1787754806543-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
       "mime": "image/webp",
-      "size": 238.04,
-      "url": "/images/projects/compressed_1787754806543.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T12:44:22.395Z",
-      "updatedAt": "2026-08-26T13:40:53.798Z",
-      "publishedAt": "2026-08-21T12:44:22.396Z"
+      "url": "/images/projects/compressed_1787754806543.webp"
     },
     "features": [
       {
@@ -117,6 +154,7 @@
         "iconName": null
       }
     ],
+    "grids": [],
     "seo": {
       "id": 70,
       "seoTitle": "Industrial Development Company In India | Pislinfra",
@@ -133,9 +171,11 @@
       "structuredData": null,
       "breadcrumbSchema": true,
       "organizationSchema": false,
-      "tags": null,
+      "tags": "Industrial Development",
       "noIndex": false,
-      "noFollow": false
+      "noFollow": false,
+      "metaTitle": "Industrial Development Company In India | Pislinfra",
+      "metaDescription": "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India."
     }
   }
 ]

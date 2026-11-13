@@ -1,62 +1,48 @@
 {
   "id": 1,
   "documentId": "kt5snwntwen5zdwwz7oi3xtr",
+  "createdAt": "2026-08-22T04:38:54.563Z",
+  "updatedAt": "2026-11-12T04:53:34.850Z",
+  "publishedAt": "2026-11-12T04:53:34.547Z",
+  "showHero": true,
   "title": "Careers",
   "heroSubtitle": "Join Pragti infra  and build tomorrow's India with us.",
   "breadcrumb": "Careers",
-  "benefitsTitle": "Why Join <span style=\"color: #FF6B35\">PISL?</span>",
-  "processTitle": "Our Hiring <span style=\"color: #FF6B35\">Process</span>",
-  "createdAt": "2026-08-22T04:38:54.563Z",
-  "updatedAt": "2026-11-09T17:58:49.191Z",
-  "publishedAt": "2026-11-09T17:58:48.881Z",
-  "formTitle": null,
-  "formSubtitle": null,
-  "primaryKeyword": "Careers at Pislinfra",
-  "metaTitle": "Careers at Pislinfra | Build Your Future With Us",
-  "metaDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
-  "focusKeywords": "Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers",
   "heroImage": {
-    "id": 670,
-    "documentId": null,
-    "name": "Careers.png",
-    "alternativeText": null,
-    "caption": null,
-    "focalPoint": null,
-    "width": null,
-    "height": null,
-    "formats": null,
-    "hash": "Careers_1787753365022",
-    "ext": ".webp",
+    "id": 159,
+    "documentId": "wp_media_159",
+    "name": "optimized_1787755327658_561_Careers_png.webp",
+    "alternativeText": "Optimized 1787755327658 561 Careers Png | Pragati Infra Solutions",
+    "caption": "",
+    "width": 1920,
+    "height": 600,
+    "formats": {
+      "thumbnail": {
+        "url": "/images/uploads/optimized_1787755327658_561_Careers_png-150x150.webp",
+        "width": 150,
+        "height": 150
+      },
+      "small": {
+        "url": "/images/uploads/optimized_1787755327658_561_Careers_png-500x156.webp",
+        "width": 500,
+        "height": 156
+      },
+      "medium": {
+        "url": "/images/uploads/optimized_1787755327658_561_Careers_png-750x234.webp",
+        "width": 750,
+        "height": 234
+      },
+      "large": {
+        "url": "/images/uploads/optimized_1787755327658_561_Careers_png-1200x375.webp",
+        "width": 1200,
+        "height": 375
+      }
+    },
     "mime": "image/webp",
-    "size": 155.5,
-    "url": "/images/uploads/optimized_1787755327658_561_Careers_png.webp",
-    "previewUrl": null,
-    "provider": "aws-s3",
-    "provider_metadata": null,
-    "createdAt": "2026-08-26T08:39:25.262Z",
-    "updatedAt": "2026-08-26T08:39:25.262Z",
-    "publishedAt": null
+    "url": "/images/uploads/optimized_1787755327658_561_Careers_png.webp"
   },
-  "seo": {
-    "id": 75,
-    "seoTitle": "Careers at Pislinfra | Build Your Future With Us",
-    "seoDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
-    "seoKeywords": "Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers",
-    "canonicalUrl": "https://pislinfra.com/careers",
-    "ogTitle": "Careers at Pislinfra | Build Your Future With Us",
-    "ogDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
-    "ogType": "website",
-    "twitterTitle": "Careers at Pislinfra | Build Your Future With Us",
-    "twitterDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
-    "twitterCardType": "summary_large_image",
-    "schemaType": "WebPage",
-    "structuredData": null,
-    "breadcrumbSchema": true,
-    "organizationSchema": true,
-    "tags": "Careers, Jobs, Hiring, Construction, Engineering, Infrastructure",
-    "noIndex": false,
-    "noFollow": false
-  },
+  "showBenefits": true,
+  "benefitsTitle": "Why Join <span style=\"color: #FF6B35\">PISL?</span>",
   "benefits": [
     {
       "id": 259,
@@ -95,6 +81,10 @@
       "iconName": null
     }
   ],
+  "showOpenings": true,
+  "openingsTitle": null,
+  "showProcess": true,
+  "processTitle": "Our Hiring <span style=\"color: #FF6B35\">Process</span>",
   "processSteps": [
     {
       "id": 575,
@@ -126,5 +116,34 @@
       "description": "Successful candidates receive the offer letter within 2-5 working days.",
       "iconName": null
     }
-  ]
+  ],
+  "showApplicationForm": true,
+  "formTitle": null,
+  "formSubtitle": null,
+  "primaryKeyword": "Careers at Pislinfra",
+  "metaTitle": "Careers at Pislinfra | Build Your Future With Us",
+  "metaDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
+  "focusKeywords": "Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers",
+  "seo": {
+    "id": 75,
+    "seoTitle": "Careers at Pislinfra | Build Your Future With Us",
+    "seoDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
+    "seoKeywords": "Careers at Pislinfra, construction jobs India, civil engineering careers, infrastructure job openings, hiring, Pislinfra careers",
+    "canonicalUrl": "https://pislinfra.com/careers",
+    "ogTitle": "Careers at Pislinfra | Build Your Future With Us",
+    "ogDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
+    "ogType": "website",
+    "twitterTitle": "Careers at Pislinfra | Build Your Future With Us",
+    "twitterDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure.",
+    "twitterCardType": "summary_large_image",
+    "schemaType": "WebPage",
+    "structuredData": null,
+    "breadcrumbSchema": true,
+    "organizationSchema": true,
+    "tags": "Careers, Jobs, Hiring, Construction, Engineering, Infrastructure",
+    "noIndex": false,
+    "noFollow": false,
+    "metaTitle": "Careers at Pislinfra | Build Your Future With Us",
+    "metaDescription": "Explore career opportunities at Pislinfra and join a team committed to excellence, innovation, safety and building the future of infrastructure."
+  }
 }

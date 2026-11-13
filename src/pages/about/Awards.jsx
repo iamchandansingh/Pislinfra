@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAwardsData from '../../data/Awards-&-Certifications';
 import defaultClientAppreciations from '../../data/clientAppreciationsData';
-import { fetchStrapiData, getLocalDataSync } from '../../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../../services/wordpress';
 import { getImageUrl } from '../../utils/imageUrl';
 import { sortAwardsByFeaturedAndDate } from '../../utils/awardSort';
+import Preloader from '../../components/common/Preloader';
 import PageHero from '../../components/hero/PageHero';
 import BlogSEO from '../../components/Blog/BlogSEO';
 import AwardsYearFilter from '../../components/Awards-Componet/AwardsYearFilter';
@@ -20,17 +21,91 @@ const ArrowUpIcon = () => (
   </svg>
 );
 
+const mapWpAwards = (rawAwards) =>
+  rawAwards.map((wpItem, i) => {
+    const defaultItem = defaultAwardsData.find(d =>
+      (d.title || '').trim().toLowerCase() === (wpItem.title || '').trim().toLowerCase()
+    );
+
+    const allImgs = [];
+    const addImg = (img) => {
+      if (!img) return;
+      if (Array.isArray(img)) {
+        img.forEach(addImg);
+        return;
+      }
+      const formatted = getImageUrl(img, '');
+      if (formatted && !allImgs.includes(formatted)) {
+        allImgs.push(formatted);
+      }
+    };
+
+    if (wpItem.images && Array.isArray(wpItem.images) && wpItem.images.length > 0) {
+      addImg(wpItem.images);
+    } else if (wpItem.image) {
+      addImg(wpItem.image);
+    } else if (wpItem.featuredImage) {
+      addImg(wpItem.featuredImage);
+    } else if (wpItem.imageUrls && Array.isArray(wpItem.imageUrls) && wpItem.imageUrls.length > 0) {
+      addImg(wpItem.imageUrls);
+    } else if (wpItem.image_urls && Array.isArray(wpItem.image_urls) && wpItem.image_urls.length > 0) {
+      addImg(wpItem.image_urls);
+    } else if (wpItem.clientImage) {
+      addImg(wpItem.clientImage);
+    }
+
+    if (allImgs.length === 0 && defaultItem) {
+      if (defaultItem.images) addImg(defaultItem.images);
+      else {
+        if (defaultItem.image) addImg(defaultItem.image);
+        if (defaultItem.clientImage) addImg(defaultItem.clientImage);
+      }
+    }
+
+    const primaryImg = allImgs[0] || defaultItem?.image || '/images/awards/certificate.jpg';
+    const secondaryImg = allImgs[1] || defaultItem?.clientImage || primaryImg;
+    const fallbackYear = String(new Date(wpItem.createdAt || Date.now()).getFullYear());
+
+    return {
+      id: wpItem.documentId || wpItem.id || (defaultItem ? defaultItem.id : i + 1),
+      title: wpItem.title || 'Award',
+      category: wpItem.category || 'Excellence',
+      year: String(wpItem.year || fallbackYear),
+      company: wpItem.company || 'Industry Recognition',
+      location: wpItem.location || 'India',
+      description: wpItem.desc || wpItem.description || '',
+      videoUrl: wpItem.videoUrl || (defaultItem ? defaultItem.videoUrl : null),
+      featured: Boolean(wpItem.featured || wpItem.isFeatured),
+      isFeatured: Boolean(wpItem.featured || wpItem.isFeatured),
+      order: wpItem.order !== undefined && wpItem.order !== null && wpItem.order !== '' ? Number(wpItem.order) : null,
+      createdAt: wpItem.createdAt || defaultItem?.createdAt || null,
+      image: primaryImg,
+      clientImage: secondaryImg,
+      images: allImgs.length > 0 ? allImgs : [primaryImg],
+      gallery: allImgs.length > 1 ? allImgs.slice(1) : [],
+      pdf: getImageUrl(wpItem.pdf, defaultItem?.pdf),
+    };
+  });
+
 const Awards = () => {
   const navigate = useNavigate();
+  const isPreview = Boolean(getPreviewContext());
 
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [selectedAward, setSelectedAward] = useState(null);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [activePopupType, setActivePopupType] = useState(null);
-  const [pageData, setPageData] = useState(() => getLocalDataSync('awards-page'));
-  const [awardsAndCertifications, setAwardsAndCertifications] = useState(() => sortAwardsByFeaturedAndDate(defaultAwardsData));
-  const [clientAppreciationsData, setClientAppreciationsData] = useState(defaultClientAppreciations);
+  const [loading, setLoading] = useState(() => isPreview);
+  const [liveClients, setLiveClients] = useState([]);
+  const [pageData, setPageData] = useState(() => (isPreview ? null : getLocalDataSync('awards-page')));
+  const [awardsAndCertifications, setAwardsAndCertifications] = useState(() => (
+    isPreview ? [] : sortAwardsByFeaturedAndDate(defaultAwardsData)
+  ));
+  const [clientAppreciationsData, setClientAppreciationsData] = useState(() => (
+    isPreview ? [] : defaultClientAppreciations
+  ));
   const [milestonesData, setMilestonesData] = useState(() => {
+    if (isPreview) return [];
     const raw = getLocalDataSync('milestones') || getLocalDataSync('timeline-milestones');
     if (Array.isArray(raw) && raw.length > 0) {
       return raw.map((m, idx) => ({
@@ -50,15 +125,25 @@ const Awards = () => {
   });
 
   useEffect(() => {
-    const loadData = async () => {
+    let isMounted = true;
+    const loadData = async (forceFresh = isPreview) => {
       try {
-        let pageRes = await fetchStrapiData('awards-page?populate[0]=heroImage&populate[1]=seo').catch(() => null);
-        let awardsList = await fetchStrapiData('awards?populate=*&pagination[pageSize]=100').catch(() => null);
-        let clientAppreciations = await fetchStrapiData('client-appreciations?populate=*&pagination[pageSize]=100').catch(() => null);
-        let milestonesRes = await fetchStrapiData('milestones?populate=*&pagination[pageSize]=100&sort=year:asc').catch(() => null)
-          || await fetchStrapiData('timeline-milestones?populate=*&pagination[pageSize]=100&sort=year:asc').catch(() => null);
-        
-        if (milestonesRes && Array.isArray(milestonesRes) && milestonesRes.length > 0) {
+        const [pageRes, awardsList, clientAppreciations, milestonesRes, clientsRes] = await Promise.all([
+          fetchWpData('awards-page?populate[0]=heroImage&populate[1]=seo', { forceFresh }).catch(() => null),
+          fetchWpData('awards?populate=*&pagination[pageSize]=100', { forceFresh }).catch(() => null),
+          fetchWpData('client-appreciations?populate=*&pagination[pageSize]=100', { forceFresh }).catch(() => null),
+          fetchWpData('milestones?populate=*&pagination[pageSize]=100&sort=year:asc', { forceFresh }).catch(() => null)
+            || fetchWpData('timeline-milestones?populate=*&pagination[pageSize]=100&sort=year:asc', { forceFresh }).catch(() => null),
+          fetchWpData('clients?pagination[pageSize]=100&sort=order:asc&populate=*', { forceFresh }).catch(() => null),
+        ]);
+
+        if (!isMounted) return;
+
+        if (Array.isArray(clientsRes)) {
+          setLiveClients(clientsRes);
+        }
+
+        if (Array.isArray(milestonesRes)) {
           const formattedMilestones = milestonesRes.map((m, idx) => ({
             id: m.documentId || m.id || idx + 1,
             year: String(m.year || ''),
@@ -75,8 +160,8 @@ const Awards = () => {
         }
 
         const rawClientAppreciations = Array.isArray(clientAppreciations) ? clientAppreciations : (clientAppreciations?.data || null);
-        if (rawClientAppreciations && rawClientAppreciations.length > 0) {
-          const formattedClientAppreciations = rawClientAppreciations.map((item, index) => ({
+        if (Array.isArray(rawClientAppreciations)) {
+          const formattedClientAppreciations = rawClientAppreciations.map((item) => ({
             id: item.documentId || item.id,
             company: item.company,
             title: item.title,
@@ -85,9 +170,11 @@ const Awards = () => {
             category: item.category,
             location: item.location,
             icon: item.icon,
-            images: item.images ? item.images.map(img => getImageUrl(img, '')) : []
+            images: Array.isArray(item.images) ? item.images.map(img => getImageUrl(img, '')).filter(Boolean) : []
           }));
           setClientAppreciationsData(formattedClientAppreciations);
+        } else if (isPreview && clientAppreciationsData.length === 0) {
+          setClientAppreciationsData(defaultClientAppreciations);
         }
 
         if (pageRes) {
@@ -95,81 +182,41 @@ const Awards = () => {
         }
 
         const rawAwards = Array.isArray(awardsList) ? awardsList : (awardsList?.data || null);
-        if (rawAwards && rawAwards.length > 0) {
-          const mappedAwards = rawAwards.map((strapiItem, i) => {
-            const defaultItem = defaultAwardsData.find(d => 
-              (d.title || '').trim().toLowerCase() === (strapiItem.title || '').trim().toLowerCase()
-            );
-
-            // Extract all image URLs from strapiItem (images array, image obj, imageUrls, image_urls, clientImage)
-            const allImgs = [];
-            const addImg = (img) => {
-              if (!img) return;
-              if (Array.isArray(img)) {
-                img.forEach(addImg);
-                return;
-              }
-              const formatted = getImageUrl(img, '');
-              if (formatted && !allImgs.includes(formatted)) {
-                allImgs.push(formatted);
-              }
-            };
-
-            // 1. Prioritize Strapi Media uploads (images array or image obj) exclusively
-            if (strapiItem.images && Array.isArray(strapiItem.images) && strapiItem.images.length > 0) {
-              addImg(strapiItem.images);
-            } else if (strapiItem.image) {
-              addImg(strapiItem.image);
-            } else if (strapiItem.imageUrls && Array.isArray(strapiItem.imageUrls) && strapiItem.imageUrls.length > 0) {
-              addImg(strapiItem.imageUrls);
-            } else if (strapiItem.image_urls && Array.isArray(strapiItem.image_urls) && strapiItem.image_urls.length > 0) {
-              addImg(strapiItem.image_urls);
-            } else if (strapiItem.clientImage) {
-              addImg(strapiItem.clientImage);
-            }
-
-            if (allImgs.length === 0 && defaultItem) {
-              if (defaultItem.images) addImg(defaultItem.images);
-              else {
-                if (defaultItem.image) addImg(defaultItem.image);
-                if (defaultItem.clientImage) addImg(defaultItem.clientImage);
-              }
-            }
-
-            const primaryImg = allImgs[0] || defaultItem?.image || '/images/awards/certificate.jpg';
-            const secondaryImg = allImgs[1] || defaultItem?.clientImage || primaryImg;
-
-            return {
-              id: strapiItem.documentId || strapiItem.id || (defaultItem ? defaultItem.id : i + 1),
-              title: strapiItem.title || (defaultItem ? defaultItem.title : 'Award'),
-              category: strapiItem.category || (defaultItem ? defaultItem.category : 'Excellence'),
-              year: String(strapiItem.year || defaultItem?.year || '2025'),
-              company: strapiItem.company || (defaultItem ? defaultItem.company : 'Industry Recognition'),
-              location: strapiItem.location || (defaultItem ? defaultItem.location : 'India'),
-              description: strapiItem.desc || strapiItem.description || (defaultItem ? defaultItem.description : ''),
-              videoUrl: strapiItem.videoUrl || (defaultItem ? defaultItem.videoUrl : null),
-              featured: Boolean(strapiItem.featured || strapiItem.isFeatured || defaultItem?.featured || defaultItem?.isFeatured),
-              isFeatured: Boolean(strapiItem.featured || strapiItem.isFeatured || defaultItem?.featured || defaultItem?.isFeatured),
-              createdAt: strapiItem.createdAt || defaultItem?.createdAt || null,
-              image: primaryImg,
-              clientImage: secondaryImg,
-              images: allImgs.length > 0 ? allImgs : [primaryImg],
-              gallery: allImgs.length > 1 ? allImgs.slice(1) : [],
-              pdf: getImageUrl(strapiItem.pdf, defaultItem?.pdf),
-            };
-          });
-
-          // Strapi live CMS is the master single source of truth; sort by featured and newest date
-          const existingTitles = new Set(mappedAwards.map(a => (a.title || '').trim().toLowerCase()));
-          const missingAwards = defaultAwardsData.filter(d => !existingTitles.has((d.title || '').trim().toLowerCase()));
-          setAwardsAndCertifications(sortAwardsByFeaturedAndDate([...mappedAwards, ...missingAwards]));
+        if (Array.isArray(rawAwards)) {
+          // WordPress CMS is the single source of truth; respect published/drafted/deleted items
+          setAwardsAndCertifications(sortAwardsByFeaturedAndDate(mapWpAwards(rawAwards)));
+        } else if (isPreview && awardsAndCertifications.length === 0) {
+          setAwardsAndCertifications(sortAwardsByFeaturedAndDate(defaultAwardsData));
         }
       } catch (err) {
         console.error('Error fetching Awards data', err);
+      } finally {
+        if (isMounted) setLoading(false);
       }
     };
-    loadData();
-  }, []);
+    loadData(isPreview);
+
+    const handleUpdate = (e) => {
+      if (isPreview) return;
+      const ep = e.detail?.cleanEndpoint || e.detail?.endpoint || '';
+      if (ep.includes('awards-page') && e.detail?.data && isMounted) {
+        setPageData(e.detail.data);
+      }
+      if ((ep === 'awards' || ep.startsWith('awards?')) && isMounted) {
+        const updatedList = Array.isArray(e.detail?.data) ? e.detail.data : (e.detail?.data?.data || null);
+        if (Array.isArray(updatedList)) {
+          setAwardsAndCertifications(sortAwardsByFeaturedAndDate(mapWpAwards(updatedList)));
+        }
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => {
+      isMounted = false;
+      window.removeEventListener('pisl-data-update', handleUpdate);
+    };
+  }, [isPreview]);
+
+  if (loading) return <Preloader />;
 
   const fallbackTitle = 'Awards & Certifications - Safety Milestones & Industry Honors | Pislinfra';
   const fallbackDescription = 'Explore Pislinfra prestigious awards, US LEED Gold certification, and zero-LTI safety milestones awarded by Adani, Reliance, and leading industry councils.';
@@ -180,45 +227,49 @@ const Awards = () => {
   const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
   const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || '').trim();
   const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+  const resolvedOgImage = getImageUrl(pageData?.seo?.ogImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/Awards-Certification.png');
+  const resolvedTwitterImage = getImageUrl(pageData?.seo?.twitterImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/Awards-Certification.png');
 
   const seoData = {
     contentType: 'page',
+    slug: 'about/awards',
+    canonicalUrl: 'https://pislinfra.com/about/awards',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'WebPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['Awards', 'Certifications', 'Safety Excellence', 'LEED Gold', 'Industrial EPC', 'Infrastructure Milestones', 'Pislinfra'],
     ...(pageData?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: pageData?.seo?.seoKeywords || 'Pislinfra awards, construction awards India, safety excellence awards, Adani best safety contractor, LEED Gold warehousing, industrial EPC honors, turnkey infrastructure accolades, 2026 infrastructure award',
-    slug: 'about/awards',
-    canonicalUrl: 'https://pislinfra.com/about/awards',
+    seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'Pislinfra awards, construction awards India, safety excellence awards, Adani best safety contractor, LEED Gold warehousing, industrial EPC honors, turnkey infrastructure accolades, 2026 infrastructure award',
     ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
     ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(pageData?.seo?.ogImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/Awards-Certification.png'),
-    ogType: 'website',
+    ogImage: resolvedOgImage,
     twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(pageData?.seo?.twitterImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/Awards-Certification.png'),
-    twitterCardType: 'summary_large_image',
-    schemaType: 'WebPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['Awards', 'Certifications', 'Safety Excellence', 'LEED Gold', 'Industrial EPC', 'Infrastructure Milestones', 'Pislinfra'],
+    twitterImage: resolvedTwitterImage,
   };
 
   const uniqueYears = useMemo(() => {
+    const currentYear = new Date().getFullYear();
     const dataYears = (awardsAndCertifications || [])
       .map(item => parseInt(item.year, 10))
-      .filter(y => !isNaN(y) && y > 2000);
-    
-    const minYear = dataYears.length > 0 ? Math.min(...dataYears, 2021) : 2021;
-    const maxYear = dataYears.length > 0 ? Math.max(...dataYears, 2026) : 2026;
-    
+      .filter(y => !isNaN(y) && y > 2000 && y <= currentYear + 50);
+
+    const reasonableYears = dataYears.filter(y => y <= currentYear + 1);
+    const minYear = reasonableYears.length > 0 ? Math.min(...reasonableYears, 2021) : 2021;
+    const maxYear = reasonableYears.length > 0 ? Math.max(...reasonableYears, currentYear) : currentYear;
+
     const allYearsRange = [];
     for (let y = maxYear; y >= minYear; y--) {
       allYearsRange.push(y);
     }
-    
+
     const merged = [...new Set([...allYearsRange, ...dataYears])].sort((a, b) => b - a);
     return ['All', ...merged];
   }, [awardsAndCertifications]);
@@ -455,23 +506,11 @@ const Awards = () => {
   return (
     <div style={pageStyle}>
       <BlogSEO blog={seoData} />
-      
-      {/* Search Engine Crawlable Microdata for each Individual Award */}
-      <div style={{ display: 'none' }} aria-hidden="true">
-        {awardsAndCertifications.map((item, idx) => (
-          <article key={item.id || idx} itemScope itemType="https://schema.org/Award">
-            <h3 itemProp="name">{item.title}</h3>
-            <p itemProp="description">{item.description}</p>
-            <span itemProp="dateCreated">{item.year}</span>
-            <span itemProp="category">{item.category}</span>
-            {item.company && <span itemProp="provider">{item.company}</span>}
-            {(item.image || item.clientImage) && <img itemProp="image" src={item.image || item.clientImage} alt={item.title} />}
-          </article>
-        ))}
-      </div>
 
-      <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={getImageUrl(pageData?.heroImage, "/images/hero/Awards-Certification.png")} />
-      {latestAchievementData && (
+      {pageData?.showHero !== false && (
+        <PageHero title={pageData?.title || "Awards & Accolades"} subtitle={pageData?.subtitle || "A legacy of excellence, recognized by industry leaders"} breadcrumb={pageData?.breadcrumb || "About Us / Awards"} bgImage={getImageUrl(pageData?.heroImage, "/images/hero/Awards-Certification.png")} />
+      )}
+      {pageData?.showLatestAchievement !== false && latestAchievementData && (
         <LatestAchievement 
           achievements={(awardsAndCertifications || []).filter(a => a.category !== 'Certification').slice(0, 5)} 
           achievementData={latestAchievementData} 
@@ -480,21 +519,32 @@ const Awards = () => {
           title={pageData?.latestAchievementTitle} 
         />
       )}
-      <div id="excellence-showcase">
-        <ExcellenceShowcase 
-          awards={awardsShowcaseData} 
-          allAwards={awardsAndCertifications}
-          milestones={milestonesData}
-          certificates={certificatesData}
-          clientAppreciations={clientAppreciationsData} 
-          selectedYear={selectedYear}
-          onYearChange={handleYearFilterChange}
-          years={uniqueYears}
-          onViewAward={handleViewAwardDetails}
-          onViewCertificate={handleViewCertificateDetails}
-        />
-      </div>
-      <AwardsJourney statsData={{ awardsWon: pageData?.awardsWon || 50, certificates: pageData?.certificates || 25, yearsOfExcellence: pageData?.yearsOfExcellence || 15, projectsDelivered: pageData?.projectsDelivered || 500 }} onContactClick={handleContactClick} onViewProjects={handleViewProjects} title={pageData?.journeyTitle} desc={pageData?.journeyDesc} />
+      {pageData?.showShowcase !== false && (
+        <div id="excellence-showcase">
+          <ExcellenceShowcase 
+            awards={awardsShowcaseData} 
+            allAwards={awardsAndCertifications}
+            milestones={milestonesData}
+            milestoneBannerImage={getImageUrl(pageData?.milestoneBannerImage, '/images/awards/years_2e23ba7341.avif')}
+            certificates={certificatesData}
+            clientAppreciations={clientAppreciationsData} 
+            clientsList={liveClients}
+            selectedYear={selectedYear}
+            onYearChange={handleYearFilterChange}
+            years={uniqueYears}
+            showcaseTitle={pageData?.showcaseTitle}
+            showcaseSubtitle={pageData?.showcaseSubtitle}
+            milestonesKicker={pageData?.milestonesKicker}
+            milestonesTitle={pageData?.milestonesTitle}
+            clientAppreciationsTitle={pageData?.clientAppreciationsTitle}
+            onViewAward={handleViewAwardDetails}
+            onViewCertificate={handleViewCertificateDetails}
+          />
+        </div>
+      )}
+      {pageData?.showJourney !== false && (
+        <AwardsJourney statsData={{ awardsWon: pageData?.awardsWon ?? 50, certificates: pageData?.certificates ?? 25, yearsOfExcellence: pageData?.yearsOfExcellence ?? 15, projectsDelivered: pageData?.projectsDelivered ?? 500 }} onContactClick={handleContactClick} onViewProjects={handleViewProjects} title={pageData?.journeyTitle} desc={pageData?.journeyDesc} />
+      )}
 
       {activePopupType === 'award' && selectedAward && (
         <AwardPopup 

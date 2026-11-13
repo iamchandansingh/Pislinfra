@@ -1,310 +1,1318 @@
 [
   {
-    "id": 109,
+    "id": 300,
     "documentId": "wy28av72k11gu6tfe7ywugxc",
+    "createdAt": "2026-08-26T11:34:44+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:44+00:00",
+    "slug": "reliance-industries-limited",
     "name": "Reliance Industries Limited",
-    "createdAt": "2026-08-26T11:34:44.454Z",
-    "updatedAt": "2026-08-26T11:34:44.454Z",
-    "publishedAt": "2026-08-26T11:34:44.448Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 974,
+      "documentId": "wp_media_974",
+      "name": "Reliance-logo.webp",
+      "alternativeText": "Reliance Industries Limited Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Reliance-logo-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Reliance-logo.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Reliance-logo.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Reliance-logo.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Reliance-logo.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Reliance-logo.webp",
     "order": 0,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 110,
+    "id": 301,
     "documentId": "kq5qoa405elst6trufdbv4tu",
+    "createdAt": "2026-08-26T11:34:45+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:45+00:00",
+    "slug": "am-ns-india-arcelormittal-nippon-steel-india",
     "name": "AM/NS India (ArcelorMittal Nippon Steel India)",
-    "createdAt": "2026-08-26T11:34:45.577Z",
-    "updatedAt": "2026-08-26T11:34:45.577Z",
-    "publishedAt": "2026-08-26T11:34:45.575Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 975,
+      "documentId": "wp_media_975",
+      "name": "NSINDIA.png",
+      "alternativeText": "AM/NS India (ArcelorMittal Nippon Steel India) Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/NSINDIA-150x147.png",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/NSINDIA.png",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/NSINDIA.png",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/NSINDIA.png",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/client-logos/NSINDIA.png"
+    },
+    "logoUrl": "/images/uploads/client-logos/NSINDIA.png",
     "order": 1,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 111,
+    "id": 302,
     "documentId": "ozdgnlps6yg3mirez9bjr17f",
+    "createdAt": "2026-08-26T11:34:46+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:46+00:00",
+    "slug": "adani",
     "name": "Adani",
-    "createdAt": "2026-08-26T11:34:46.697Z",
-    "updatedAt": "2026-08-26T11:34:46.697Z",
-    "publishedAt": "2026-08-26T11:34:46.696Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 976,
+      "documentId": "wp_media_976",
+      "name": "Adani.webp",
+      "alternativeText": "Adani Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Adani-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Adani.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Adani.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Adani.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Adani.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Adani.webp",
     "order": 2,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 112,
+    "id": 303,
     "documentId": "m72iqhbsynu32j9xx8v8g53s",
+    "createdAt": "2026-08-26T11:34:48+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:48+00:00",
+    "slug": "gar",
     "name": "GAR",
-    "createdAt": "2026-08-26T11:34:48.032Z",
-    "updatedAt": "2026-08-26T11:34:48.032Z",
-    "publishedAt": "2026-08-26T11:34:48.030Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 977,
+      "documentId": "wp_media_977",
+      "name": "GMR.webp",
+      "alternativeText": "GAR Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/GMR-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/GMR.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/GMR.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/GMR.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/GMR.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/GMR.webp",
     "order": 3,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 113,
+    "id": 304,
     "documentId": "wu2y2q2projihwkn7wzheza2",
+    "createdAt": "2026-08-26T11:34:49+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:49+00:00",
+    "slug": "morgan-stanley",
     "name": "Morgan Stanley",
-    "createdAt": "2026-08-26T11:34:49.168Z",
-    "updatedAt": "2026-08-26T11:34:49.168Z",
-    "publishedAt": "2026-08-26T11:34:49.167Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 978,
+      "documentId": "wp_media_978",
+      "name": "MorganStanley.webp",
+      "alternativeText": "Morgan Stanley Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/MorganStanley-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/MorganStanley.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/MorganStanley.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/MorganStanley.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/MorganStanley.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/MorganStanley.webp",
     "order": 4,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 114,
+    "id": 305,
     "documentId": "bba0095905nwrmqkmls66zwa",
+    "createdAt": "2026-08-26T11:34:50+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:50+00:00",
+    "slug": "prologis",
     "name": "Prologis",
-    "createdAt": "2026-08-26T11:34:50.689Z",
-    "updatedAt": "2026-08-26T11:34:50.689Z",
-    "publishedAt": "2026-08-26T11:34:50.688Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 979,
+      "documentId": "wp_media_979",
+      "name": "Prologis.webp",
+      "alternativeText": "Prologis Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Prologis-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Prologis.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Prologis.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Prologis.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Prologis.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Prologis.webp",
     "order": 5,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 115,
+    "id": 306,
     "documentId": "qtkk8vzhju2grop7bkpokfcf",
+    "createdAt": "2026-08-26T11:34:51+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:51+00:00",
+    "slug": "lodha",
     "name": "Lodha",
-    "createdAt": "2026-08-26T11:34:51.837Z",
-    "updatedAt": "2026-08-26T11:34:51.837Z",
-    "publishedAt": "2026-08-26T11:34:51.836Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 980,
+      "documentId": "wp_media_980",
+      "name": "Lodha.webp",
+      "alternativeText": "Lodha Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Lodha-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Lodha.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Lodha.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Lodha.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Lodha.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Lodha.webp",
     "order": 6,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 116,
+    "id": 307,
     "documentId": "vlh00v1nzms1eenabqxnva7w",
+    "createdAt": "2026-08-26T11:34:53+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:53+00:00",
+    "slug": "pmg",
     "name": "PMG",
-    "createdAt": "2026-08-26T11:34:53.095Z",
-    "updatedAt": "2026-08-26T11:34:53.095Z",
-    "publishedAt": "2026-08-26T11:34:53.093Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 981,
+      "documentId": "wp_media_981",
+      "name": "Pmg.png",
+      "alternativeText": "PMG Logo",
+      "caption": "",
+      "width": 438,
+      "height": 438,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Pmg-150x150.png",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Pmg.png",
+          "width": 438,
+          "height": 438
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Pmg.png",
+          "width": 438,
+          "height": 438
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Pmg.png",
+          "width": 438,
+          "height": 438
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/client-logos/Pmg.png"
+    },
+    "logoUrl": "/images/uploads/client-logos/Pmg.png",
     "order": 7,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 117,
+    "id": 308,
     "documentId": "j78o349ijjolsoz0wf6qe2co",
+    "createdAt": "2026-08-26T11:34:54+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:54+00:00",
+    "slug": "cpwd-central-public-works-department",
     "name": "CPWD (Central Public Works Department)",
-    "createdAt": "2026-08-26T11:34:54.576Z",
-    "updatedAt": "2026-08-26T11:34:54.576Z",
-    "publishedAt": "2026-08-26T11:34:54.575Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 982,
+      "documentId": "wp_media_982",
+      "name": "Cpwd.webp",
+      "alternativeText": "CPWD (Central Public Works Department) Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Cpwd-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Cpwd.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Cpwd.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Cpwd.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Cpwd.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Cpwd.webp",
     "order": 8,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 118,
+    "id": 309,
     "documentId": "gb2yiz4039zbnklimmajusjw",
+    "createdAt": "2026-08-26T11:34:55+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:55+00:00",
+    "slug": "vinfast",
     "name": "VinFast",
-    "createdAt": "2026-08-26T11:34:55.870Z",
-    "updatedAt": "2026-08-26T11:34:55.870Z",
-    "publishedAt": "2026-08-26T11:34:55.867Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 983,
+      "documentId": "wp_media_983",
+      "name": "Vinfast.png",
+      "alternativeText": "VinFast Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Vinfast-150x147.png",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Vinfast.png",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Vinfast.png",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Vinfast.png",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/client-logos/Vinfast.png"
+    },
+    "logoUrl": "/images/uploads/client-logos/Vinfast.png",
     "order": 9,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 119,
+    "id": 310,
     "documentId": "v3mhob0zlivr80bmsoucf0w8",
+    "createdAt": "2026-08-26T11:34:57+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:57+00:00",
+    "slug": "semac",
     "name": "SEMAC",
-    "createdAt": "2026-08-26T11:34:57.175Z",
-    "updatedAt": "2026-08-26T11:34:57.175Z",
-    "publishedAt": "2026-08-26T11:34:57.174Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 984,
+      "documentId": "wp_media_984",
+      "name": "semac-2.webp",
+      "alternativeText": "SEMAC Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/semac-2-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/semac-2.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/semac-2.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/semac-2.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/semac-2.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/semac-2.webp",
     "order": 10,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 120,
+    "id": 311,
     "documentId": "sdanz7r93pblup2gttidedao",
+    "createdAt": "2026-08-26T11:34:58+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:58+00:00",
+    "slug": "rajratan",
     "name": "Rajratan",
-    "createdAt": "2026-08-26T11:34:58.297Z",
-    "updatedAt": "2026-08-26T11:34:58.297Z",
-    "publishedAt": "2026-08-26T11:34:58.296Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 985,
+      "documentId": "wp_media_985",
+      "name": "Rajratan-2.webp",
+      "alternativeText": "Rajratan Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Rajratan-2-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Rajratan-2.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Rajratan-2.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Rajratan-2.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Rajratan-2.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Rajratan-2.webp",
     "order": 11,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 121,
+    "id": 312,
     "documentId": "woz6jgal5khxdiwc83xapjv3",
+    "createdAt": "2026-08-26T11:34:59+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:34:59+00:00",
+    "slug": "oswal-group",
     "name": "Oswal Group",
-    "createdAt": "2026-08-26T11:34:59.412Z",
-    "updatedAt": "2026-08-26T11:34:59.412Z",
-    "publishedAt": "2026-08-26T11:34:59.410Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 986,
+      "documentId": "wp_media_986",
+      "name": "OswalGroup.png",
+      "alternativeText": "Oswal Group Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/OswalGroup-150x147.png",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/OswalGroup.png",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/OswalGroup.png",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/OswalGroup.png",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/client-logos/OswalGroup.png"
+    },
+    "logoUrl": "/images/uploads/client-logos/OswalGroup.png",
     "order": 12,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 122,
+    "id": 313,
     "documentId": "vczxiy8dto9a1adq8k1xwagr",
+    "createdAt": "2026-08-26T11:35:00+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:00+00:00",
+    "slug": "avitech",
     "name": "Avitech",
-    "createdAt": "2026-08-26T11:35:00.819Z",
-    "updatedAt": "2026-08-26T11:35:00.819Z",
-    "publishedAt": "2026-08-26T11:35:00.818Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 987,
+      "documentId": "wp_media_987",
+      "name": "avitech.webp",
+      "alternativeText": "Avitech Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/avitech-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/avitech.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/avitech.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/avitech.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/avitech.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/avitech.webp",
     "order": 13,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 123,
+    "id": 314,
     "documentId": "s03r81rkndegayeen8vjhhmy",
+    "createdAt": "2026-08-26T11:35:02+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:02+00:00",
+    "slug": "amazon",
     "name": "Amazon",
-    "createdAt": "2026-08-26T11:35:02.032Z",
-    "updatedAt": "2026-08-26T11:35:02.032Z",
-    "publishedAt": "2026-08-26T11:35:02.031Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 988,
+      "documentId": "wp_media_988",
+      "name": "Amazon.webp",
+      "alternativeText": "Amazon Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Amazon-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Amazon.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Amazon.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Amazon.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Amazon.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Amazon.webp",
     "order": 14,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 124,
+    "id": 315,
     "documentId": "ng0qa2odyza41qw5b9zjjak1",
+    "createdAt": "2026-08-26T11:35:03+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:03+00:00",
+    "slug": "flipkart",
     "name": "Flipkart",
-    "createdAt": "2026-08-26T11:35:03.474Z",
-    "updatedAt": "2026-08-26T11:35:03.474Z",
-    "publishedAt": "2026-08-26T11:35:03.474Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 989,
+      "documentId": "wp_media_989",
+      "name": "Flipkart.webp",
+      "alternativeText": "Flipkart Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Flipkart-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Flipkart.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Flipkart.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Flipkart.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Flipkart.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Flipkart.webp",
     "order": 15,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 125,
+    "id": 316,
     "documentId": "u9j5ibccxzlzd8js11l5uui3",
+    "createdAt": "2026-08-26T11:35:04+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:04+00:00",
+    "slug": "ecom-express",
     "name": "Ecom Express",
-    "createdAt": "2026-08-26T11:35:04.955Z",
-    "updatedAt": "2026-08-26T11:35:04.955Z",
-    "publishedAt": "2026-08-26T11:35:04.953Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 990,
+      "documentId": "wp_media_990",
+      "name": "EcomExpress.webp",
+      "alternativeText": "Ecom Express Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/EcomExpress-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/EcomExpress.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/EcomExpress.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/EcomExpress.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/EcomExpress.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/EcomExpress.webp",
     "order": 16,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 126,
+    "id": 317,
     "documentId": "g7e374doqo5ve7xi2msfz5dq",
+    "createdAt": "2026-08-26T11:35:06+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:06+00:00",
+    "slug": "daikin",
     "name": "Daikin",
-    "createdAt": "2026-08-26T11:35:06.120Z",
-    "updatedAt": "2026-08-26T11:35:06.120Z",
-    "publishedAt": "2026-08-26T11:35:06.119Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 991,
+      "documentId": "wp_media_991",
+      "name": "DAIKIN.webp",
+      "alternativeText": "Daikin Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/DAIKIN-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/DAIKIN.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/DAIKIN.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/DAIKIN.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/DAIKIN.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/DAIKIN.webp",
     "order": 17,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 127,
+    "id": 318,
     "documentId": "e7wj49dqeypi4inpdb0vn1xs",
+    "createdAt": "2026-08-26T11:35:07+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:07+00:00",
+    "slug": "bosch",
     "name": "Bosch",
-    "createdAt": "2026-08-26T11:35:07.302Z",
-    "updatedAt": "2026-08-26T11:35:07.302Z",
-    "publishedAt": "2026-08-26T11:35:07.301Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 992,
+      "documentId": "wp_media_992",
+      "name": "Bosch.webp",
+      "alternativeText": "Bosch Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Bosch-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Bosch.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Bosch.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Bosch.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Bosch.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Bosch.webp",
     "order": 18,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 128,
+    "id": 319,
     "documentId": "akl0itvllpyrp6xciypvh87b",
+    "createdAt": "2026-08-26T11:35:08+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:08+00:00",
+    "slug": "allcargo",
     "name": "Allcargo",
-    "createdAt": "2026-08-26T11:35:08.519Z",
-    "updatedAt": "2026-08-26T11:35:08.519Z",
-    "publishedAt": "2026-08-26T11:35:08.518Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 993,
+      "documentId": "wp_media_993",
+      "name": "allCargo.webp",
+      "alternativeText": "Allcargo Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/allCargo-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/allCargo.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/allCargo.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/allCargo.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/allCargo.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/allCargo.webp",
     "order": 19,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 129,
+    "id": 320,
     "documentId": "vsuvxx0qbrr8o1r39acwzxe8",
+    "createdAt": "2026-08-26T11:35:09+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:09+00:00",
+    "slug": "myntra",
     "name": "Myntra",
-    "createdAt": "2026-08-26T11:35:09.715Z",
-    "updatedAt": "2026-08-26T11:35:09.715Z",
-    "publishedAt": "2026-08-26T11:35:09.714Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 994,
+      "documentId": "wp_media_994",
+      "name": "Myntra.webp",
+      "alternativeText": "Myntra Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Myntra-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Myntra.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Myntra.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Myntra.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Myntra.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Myntra.webp",
     "order": 20,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 130,
+    "id": 321,
     "documentId": "xbqhun1213es8pxfzfdefqjh",
+    "createdAt": "2026-08-26T11:35:11+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:11+00:00",
+    "slug": "cadbury",
     "name": "Cadbury",
-    "createdAt": "2026-08-26T11:35:11.008Z",
-    "updatedAt": "2026-08-26T11:35:11.008Z",
-    "publishedAt": "2026-08-26T11:35:11.007Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 995,
+      "documentId": "wp_media_995",
+      "name": "Cadbury.webp",
+      "alternativeText": "Cadbury Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Cadbury-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Cadbury.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Cadbury.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Cadbury.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Cadbury.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Cadbury.webp",
     "order": 21,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 131,
+    "id": 322,
     "documentId": "ffggiwk6eeeycuwixyxpu08w",
+    "createdAt": "2026-08-26T11:35:12+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:12+00:00",
+    "slug": "blue-dart",
     "name": "Blue Dart",
-    "createdAt": "2026-08-26T11:35:12.553Z",
-    "updatedAt": "2026-08-26T11:35:12.553Z",
-    "publishedAt": "2026-08-26T11:35:12.552Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 996,
+      "documentId": "wp_media_996",
+      "name": "BLUEDART.webp",
+      "alternativeText": "Blue Dart Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/BLUEDART-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/BLUEDART.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/BLUEDART.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/BLUEDART.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/BLUEDART.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/BLUEDART.webp",
     "order": 22,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 132,
+    "id": 323,
     "documentId": "lt466krlxnp14fb5nodnjix9",
+    "createdAt": "2026-08-26T11:35:13+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:13+00:00",
+    "slug": "dhl",
     "name": "DHL",
-    "createdAt": "2026-08-26T11:35:13.783Z",
-    "updatedAt": "2026-08-26T11:35:13.783Z",
-    "publishedAt": "2026-08-26T11:35:13.783Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 997,
+      "documentId": "wp_media_997",
+      "name": "DHL.webp",
+      "alternativeText": "DHL Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/DHL-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/DHL.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/DHL.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/DHL.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/DHL.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/DHL.webp",
     "order": 23,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 133,
+    "id": 324,
     "documentId": "ar44tq0ric616df14euispoq",
+    "createdAt": "2026-08-26T11:35:20+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:20+00:00",
+    "slug": "haryana-government",
     "name": "Haryana Government",
-    "createdAt": "2026-08-26T11:35:20.128Z",
-    "updatedAt": "2026-08-26T11:35:20.128Z",
-    "publishedAt": "2026-08-26T11:35:20.127Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 998,
+      "documentId": "wp_media_998",
+      "name": "HariyanaGoverment.png",
+      "alternativeText": "Haryana Government Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/HariyanaGoverment-150x147.png",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/HariyanaGoverment.png",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/HariyanaGoverment.png",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/HariyanaGoverment.png",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/client-logos/HariyanaGoverment.png"
+    },
+    "logoUrl": "/images/uploads/client-logos/HariyanaGoverment.png",
     "order": 24,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 134,
+    "id": 325,
     "documentId": "mw1cnnab7ym1gitshminhsgv",
+    "createdAt": "2026-08-26T11:35:22+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:22+00:00",
+    "slug": "stellar",
     "name": "Stellar",
-    "createdAt": "2026-08-26T11:35:22.423Z",
-    "updatedAt": "2026-08-26T11:35:22.423Z",
-    "publishedAt": "2026-08-26T11:35:22.422Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 999,
+      "documentId": "wp_media_999",
+      "name": "steller.webp",
+      "alternativeText": "Stellar Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/steller-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/steller.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/steller.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/steller.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/steller.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/steller.webp",
     "order": 25,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 135,
+    "id": 326,
     "documentId": "txs2ppcgjvwxga9ce8f3ny87",
+    "createdAt": "2026-08-26T11:35:23+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:23+00:00",
+    "slug": "lodha-group",
     "name": "Lodha Group",
-    "createdAt": "2026-08-26T11:35:23.886Z",
-    "updatedAt": "2026-08-26T11:35:23.886Z",
-    "publishedAt": "2026-08-26T11:35:23.885Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 1000,
+      "documentId": "wp_media_1000",
+      "name": "LOHIAGrups.webp",
+      "alternativeText": "Lodha Group Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/LOHIAGrups-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/LOHIAGrups.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/LOHIAGrups.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/LOHIAGrups.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/LOHIAGrups.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/LOHIAGrups.webp",
     "order": 26,
-    "logo": null
+    "seo": []
   },
   {
-    "id": 136,
+    "id": 327,
     "documentId": "harmgg32qrgg96hi2pm7a2a8",
+    "createdAt": "2026-08-26T11:35:25+00:00",
+    "updatedAt": "2026-11-12T08:14:53+00:00",
+    "publishedAt": "2026-08-26T11:35:25+00:00",
+    "slug": "logos",
     "name": "LOGOS",
-    "createdAt": "2026-08-26T11:35:25.932Z",
-    "updatedAt": "2026-08-26T11:35:25.932Z",
-    "publishedAt": "2026-08-26T11:35:25.931Z",
-    "logoUrl": null,
+    "category": null,
+    "website": null,
+    "logo": {
+      "id": 1001,
+      "documentId": "wp_media_1001",
+      "name": "Logos.webp",
+      "alternativeText": "LOGOS Logo",
+      "caption": "",
+      "width": 462,
+      "height": 147,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/client-logos/Logos-150x147.webp",
+          "width": 150,
+          "height": 147
+        },
+        "small": {
+          "url": "/images/uploads/client-logos/Logos.webp",
+          "width": 462,
+          "height": 147
+        },
+        "medium": {
+          "url": "/images/uploads/client-logos/Logos.webp",
+          "width": 462,
+          "height": 147
+        },
+        "large": {
+          "url": "/images/uploads/client-logos/Logos.webp",
+          "width": 462,
+          "height": 147
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/client-logos/Logos.webp"
+    },
+    "logoUrl": "/images/uploads/client-logos/Logos.webp",
     "order": 27,
-    "logo": null
+    "seo": []
   }
 ]

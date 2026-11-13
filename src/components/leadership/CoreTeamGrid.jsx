@@ -6,6 +6,14 @@ const NAVY = '#28296F';
 const ORANGE = '#ff904e';
 
 const TeamMemberCard = ({ member, index }) => {
+  const imgSrc = getImageUrl(member.image);
+  const initials = (member.name || 'P')
+    .split(/\s+/)
+    .slice(0, 2)
+    .map(part => part[0])
+    .join('')
+    .toUpperCase();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,19 +44,28 @@ const TeamMemberCard = ({ member, index }) => {
           marginBottom: '16px'
         }}
       >
-        <img 
-          src={getImageUrl(member.image)} 
-          alt={member.name} 
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover',
-            position: 'absolute',
-            top: 0, left: 0,
-            transition: 'transform 0.4s ease'
-          }} 
-          className="pisl-passport-img"
-        />
+        {imgSrc ? (
+          <img 
+            src={imgSrc} 
+            alt={member.name ? `${member.name} - ${member.role || member.designation || 'Engineering Leadership'} - Pragati Infra Solutions` : 'Pragati Infra Solutions Team Member'} 
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover',
+              position: 'absolute',
+              top: 0, left: 0,
+              transition: 'transform 0.4s ease'
+            }} 
+            className="pisl-passport-img"
+          />
+        ) : (
+          <div style={{
+            position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: '#eef2ff', color: NAVY, fontWeight: 800, fontSize: '28px', letterSpacing: '1px'
+          }}>
+            {initials}
+          </div>
+        )}
       </div>
 
       <div className="pisl-passport-info" style={{ display: 'flex', flexDirection: 'column', flex: 1, textAlign: 'left' }}>

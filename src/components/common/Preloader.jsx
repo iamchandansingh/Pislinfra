@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const Preloader = ({ timeout = 2500, fallback = null }) => {
+const Preloader = ({ timeout = 2500, fallback = null, fadeOut = false }) => {
   const [timedOut, setTimedOut] = useState(false);
 
   useEffect(() => {
+    if (!timeout || timeout <= 0) return;
     const timer = setTimeout(() => {
       setTimedOut(true);
     }, timeout);
@@ -53,7 +54,14 @@ const Preloader = ({ timeout = 2500, fallback = null }) => {
           50% { transform: scale(1.05); }
         }
       `}</style>
-      <div className="preloader-container">
+      <div
+        className="preloader-container"
+        style={{
+          opacity: fadeOut ? 0 : 1,
+          pointerEvents: fadeOut ? 'none' : 'auto',
+          transition: 'opacity 0.3s ease-out',
+        }}
+      >
         <div className="spinner-ring">
           <img src="/logo.png" alt="Pislinfra Logo" style={{ animation: 'pulse-logo 2s ease-in-out infinite', willChange: 'transform' }} />
           <svg viewBox="0 0 100 100" className="spinner-svg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', animation: 'spin 0.6s linear infinite', willChange: 'transform' }}>

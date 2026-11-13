@@ -28,6 +28,8 @@ import coverageMarkersData from '../../data/coverageMarkersData';
 import HaryanaCompletedMap from './HaryanaCompletedMap';
 import GujaratMap from './GujaratMap';
 import { getImageUrl, getProjectSlug } from '../../utils/imageUrl';
+import { getLocalDataSync, fetchWpData } from '../../services/wordpress';
+import BlogSEO from '../Blog/BlogSEO';
 
 const ORANGE = '#f97316';
 const GREEN = '#198847';
@@ -281,57 +283,49 @@ const InlineProgress = ({ progress, color }) => (
 );
 
 const SingleProjectPopup = ({ project, anchorPx, mapSize, onClose, onProjectClick, color }) => {
-  const popupW = 200;
+  const popupW = Math.min(220, mapSize.w - 24);
   const flipDown = (anchorPx.y - DOT_R - GAP) < FLIP_TH;
   let left = anchorPx.x - popupW / 2;
   left = Math.max(8, Math.min(left, mapSize.w - popupW - 8));
   const arrowLeft = Math.max(14, Math.min(anchorPx.x - left, popupW - 14));
-  const vertStyle = flipDown ? { top: anchorPx.y + DOT_R + GAP + 10 } : { bottom: mapSize.h - anchorPx.y + DOT_R + GAP + 10 };
+  const vertStyle = flipDown ? { top: anchorPx.y + DOT_R + GAP + 8 } : { bottom: mapSize.h - anchorPx.y + DOT_R + GAP + 8 };
   return (
-    <motion.div initial={{opacity:0,scale:0.88,y:flipDown?-8:8}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.88,y:flipDown?-6:6}} transition={{type:'spring',stiffness:380,damping:28}} style={{position:'absolute',width:popupW,left,zIndex:100,pointerEvents:'all',...vertStyle}}>
-      {!flipDown && <div style={{position:'absolute',bottom:-9,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'9px solid transparent',borderRight:'9px solid transparent',borderTop:'9px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
-      <div onClick={e=>{e.stopPropagation();onProjectClick(project);}} style={{background:'#ffffff',borderRadius:12,border:'1px solid #e2e8f0',boxShadow:'0 8px 24px rgba(0,0,0,0.12)',overflow:'hidden',cursor:'pointer',padding:'14px',position:'relative'}}>
-        <button onClick={e=>{e.stopPropagation();onClose();}} style={{position:'absolute',top:6,right:6,width:20,height:20,borderRadius:'50%',background:'rgba(0,0,0,0.06)',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b',zIndex:5,padding:0}}><X size={10}/></button>
-        <div style={{display:'flex',alignItems:'center',gap:12}}>
-          <RoundProgress progress={project.progress} size={44} strokeWidth={4} color={color} />
-          <span style={{fontSize:12,fontWeight:700,color:'#1e293b',flex:1,lineHeight:1.4}}>{project.name}</span>
+    <motion.div initial={{opacity:0,scale:0.9,y:flipDown?-6:6}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.9,y:flipDown?-4:4}} transition={{type:'spring',stiffness:380,damping:28}} style={{position:'absolute',width:popupW,left,zIndex:100,pointerEvents:'all',...vertStyle}}>
+      {!flipDown && <div style={{position:'absolute',bottom:-8,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'8px solid transparent',borderRight:'8px solid transparent',borderTop:'8px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
+      <div onClick={e=>{e.stopPropagation();onProjectClick(project);}} style={{background:'#ffffff',borderRadius:10,border:'1px solid #e2e8f0',boxShadow:'0 6px 20px rgba(0,0,0,0.12)',overflow:'hidden',cursor:'pointer',padding:'10px 12px',position:'relative'}}>
+        <button onClick={e=>{e.stopPropagation();onClose();}} style={{position:'absolute',top:6,right:6,width:20,height:20,borderRadius:'50%',background:'rgba(0,0,0,0.06)',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b',zIndex:5,padding:0}}><X size={11}/></button>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:6,paddingRight:14}}>
+          <span style={{fontSize:12,fontWeight:700,color:'#1e293b',lineHeight:1.35}}>{project.name}</span>
+          <ChevronRight size={13} color={color} style={{flexShrink:0,opacity:0.7}}/>
         </div>
       </div>
-      {flipDown && <div style={{position:'absolute',top:-9,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'9px solid transparent',borderRight:'9px solid transparent',borderBottom:'9px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
+      {flipDown && <div style={{position:'absolute',top:-8,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'8px solid transparent',borderRight:'8px solid transparent',borderBottom:'8px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
     </motion.div>
   );
 };
 
 const CityProjectsPopup = ({cityProjects,anchorPx,mapSize,onClose,onProjectClick,color}) => {
-  const projectCount=cityProjects.length;
-  const popupW=Math.min(280,mapSize.w-24);
+  const popupW=Math.min(220,mapSize.w-24);
   const flipDown=(anchorPx.y-DOT_R-GAP)<FLIP_TH;
   let left=anchorPx.x-popupW/2;
   left=Math.max(8,Math.min(left,mapSize.w-popupW-8));
   const arrowLeft=Math.max(14,Math.min(anchorPx.x-left,popupW-14));
-  const vertStyle=flipDown?{top:anchorPx.y+DOT_R+GAP+10}:{bottom:mapSize.h-anchorPx.y+DOT_R+GAP+10};
+  const vertStyle=flipDown?{top:anchorPx.y+DOT_R+GAP+8}:{bottom:mapSize.h-anchorPx.y+DOT_R+GAP+8};
   return(
-    <motion.div initial={{opacity:0,scale:0.88,y:flipDown?-8:8}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.88,y:flipDown?-6:6}} transition={{type:'spring',stiffness:380,damping:28}} style={{position:'absolute',width:popupW,left,zIndex:100,pointerEvents:'all',...vertStyle}}>
-      {!flipDown&&<div style={{position:'absolute',bottom:-9,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'9px solid transparent',borderRight:'9px solid transparent',borderTop:'9px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
-      <div style={{background:'#ffffff',borderRadius:12,border:'1px solid #e2e8f0',boxShadow:'0 8px 24px rgba(0,0,0,0.12)',overflow:'hidden',position:'relative',maxHeight:400,overflowY:'auto'}}>
-        <button onClick={e=>{e.stopPropagation();onClose();}} style={{position:'sticky',top:8,float:'right',width:22,height:22,borderRadius:'50%',background:'rgba(0,0,0,0.06)',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b',zIndex:5,padding:0,marginRight:8,marginTop:4}}><X size={11}/></button>
-        <div style={{padding:'10px 14px 6px',borderBottom:'1px solid #f1f5f9',display:'flex',alignItems:'center',gap:8}}>
-          <div style={{background:`${color}15`,borderRadius:6,padding:'4px 8px',display:'flex',alignItems:'center',gap:4}}>
-            <Layers size={12} color={color}/>
-            <span style={{fontSize:10,fontWeight:700,color}}>{projectCount} Projects</span>
-          </div>
-          <span style={{fontSize:10,fontWeight:600,color:'#64748b'}}>{cityProjects[0].city}, {cityProjects[0].state}</span>
-        </div>
-        {cityProjects.map((project,idx)=>(
-          <div key={project.id} onClick={e=>{e.stopPropagation();onProjectClick(project);}} style={{padding:'10px 14px',cursor:'pointer',borderBottom:idx<cityProjects.length-1?'1px solid #f1f5f9':'none',transition:'background 0.15s'}} onMouseEnter={e=>e.currentTarget.style.background='#f8fafc'} onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
-            <div style={{display:'flex',alignItems:'center',gap:10}}>
-              <span style={{flex:1,fontSize:12,fontWeight:700,color:'#1e293b',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{project.name}</span>
-              <InlineProgress progress={project.progress} color={color} />
+    <motion.div initial={{opacity:0,scale:0.9,y:flipDown?-6:6}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.9,y:flipDown?-4:4}} transition={{type:'spring',stiffness:380,damping:28}} style={{position:'absolute',width:popupW,left,zIndex:100,pointerEvents:'all',...vertStyle}}>
+      {!flipDown&&<div style={{position:'absolute',bottom:-8,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'8px solid transparent',borderRight:'8px solid transparent',borderTop:'8px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
+      <div style={{background:'#ffffff',borderRadius:10,border:'1px solid #e2e8f0',boxShadow:'0 6px 20px rgba(0,0,0,0.12)',overflow:'hidden',position:'relative',padding:'10px 12px'}}>
+        <button onClick={e=>{e.stopPropagation();onClose();}} style={{position:'absolute',top:6,right:6,width:20,height:20,borderRadius:'50%',background:'rgba(0,0,0,0.06)',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b',zIndex:5,padding:0}}><X size={11}/></button>
+        <div style={{display:'flex',flexDirection:'column',gap:6,paddingRight:14}}>
+          {cityProjects.map((project,idx)=>(
+            <div key={project.id||idx} onClick={e=>{e.stopPropagation();onProjectClick(project);}} style={{padding:'4px 6px',cursor:'pointer',borderRadius:6,transition:'all 0.15s',display:'flex',alignItems:'center',justifyContent:'space-between',gap:6}} onMouseEnter={e=>e.currentTarget.style.background='#f8fafc'} onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
+              <span style={{fontSize:12,fontWeight:700,color:'#1e293b',lineHeight:1.35}}>{project.name}</span>
+              <ChevronRight size={13} color={color} style={{flexShrink:0,opacity:0.7}}/>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      {flipDown&&<div style={{position:'absolute',top:-9,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'9px solid transparent',borderRight:'9px solid transparent',borderBottom:'9px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
+      {flipDown&&<div style={{position:'absolute',top:-8,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'8px solid transparent',borderRight:'8px solid transparent',borderBottom:'8px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
     </motion.div>
   );
 };
@@ -345,54 +339,51 @@ const MapMarker = ({cityProjects,isSelected,isHovered,onHover,onLeave,onClick,co
     : getLoc(p0, mapMarkers, customLocations); 
   if (!loc || loc.cx == null || loc.cy == null) return null;
   const SIZE=26;
+
   return(
     <div style={{position:'absolute',left:`${loc.cx}%`,top:`${loc.cy}%`,transform:'translate(-50%,-50%)',cursor:'pointer',zIndex:isSelected?60:50,pointerEvents:'all'}} onMouseEnter={onHover} onMouseLeave={onLeave} onClick={onClick}>
-      <span style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:36,height:36,borderRadius:'50%',background:color,opacity:isActive?0.30:0.15,animation:'mmPing 2.4s cubic-bezier(0,.2,.2,1) infinite',animationDuration:isActive?'1.2s':'2.4s',pointerEvents:'none'}}/>
+      <span style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:36,height:36,borderRadius:'50%',background:color,opacity:isSelected?0.30:0.15,animation:'mmPing 2.4s cubic-bezier(0,.2,.2,1) infinite',pointerEvents:'none'}}/>
       {isSelected&&<motion.span initial={{scale:0.5,opacity:0}} animate={{scale:1,opacity:1}} style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:36,height:36,borderRadius:'50%',border:`2px solid ${color}`,animation:'mmGlow 1.6s ease-in-out infinite',pointerEvents:'none'}}/>}
-      <motion.div animate={{scale:isActive?1.4:1}} transition={{type:'spring',stiffness:320,damping:22}} style={{width:SIZE,height:SIZE,borderRadius:'50%',background:color,border:'2.5px solid #ffffff',boxShadow:isSelected?`0 0 0 3px ${color}30`:'0 2px 6px rgba(0,0,0,0.18)',display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
+      <motion.div animate={{scale:isSelected?1.2:1}} transition={{type:'spring',stiffness:320,damping:22}} style={{width:SIZE,height:SIZE,borderRadius:'50%',background:color,border:'2.5px solid #ffffff',boxShadow:isSelected?`0 0 0 3px ${color}30, 0 3px 10px rgba(0,0,0,0.2)`:'0 2px 6px rgba(0,0,0,0.18)',display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
         <MapPin size={14} color="#ffffff" strokeWidth={2.2} style={{flexShrink:0}}/>
       </motion.div>
-      {projectCount>1&&<div style={{position:'absolute',top:-5,right:-12,background:'#ef4444',color:'#ffffff',minWidth:18,height:18,borderRadius:10,fontSize:10,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',padding:'0 4px',border:'2px solid #ffffff',boxShadow:'0 2px 6px rgba(0,0,0,0.2)',pointerEvents:'none',zIndex:5}}>{projectCount}</div>}
+      {projectCount>1&&<div style={{position:'absolute',top:-5,right:-10,background:'#ef4444',color:'#ffffff',minWidth:17,height:17,borderRadius:9,fontSize:9.5,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',padding:'0 4px',border:'2px solid #ffffff',boxShadow:'0 2px 4px rgba(0,0,0,0.25)',pointerEvents:'none',zIndex:5}}>{projectCount}</div>}
     </div>
   );
 };
 
 const StateHubMarker = ({cx,cy,color,isActive,onClick,label}) => (
   <div style={{position:'absolute',left:`${cx}%`,top:`${cy}%`,transform:'translate(-50%,-50%)',cursor:'pointer',zIndex:isActive?60:55,pointerEvents:'all'}} onClick={onClick}>
-    <span style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:44,height:44,borderRadius:'50%',background:color,opacity:isActive?0.35:0.20,animation:'mmPing 2s cubic-bezier(0,.2,.2,1) infinite',pointerEvents:'none'}}/>
-    {isActive&&<motion.span initial={{scale:0.5,opacity:0}} animate={{scale:1,opacity:1}} style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:40,height:40,borderRadius:'50%',border:`3px solid ${color}`,animation:'mmGlow 1.6s ease-in-out infinite',pointerEvents:'none'}}/>}
-    <motion.div animate={{scale:isActive?1.4:1}} transition={{type:'spring',stiffness:320,damping:22}} style={{width:28,height:28,borderRadius:'50%',background:`linear-gradient(135deg,${color},${color}dd)`,border:'3px solid #ffffff',boxShadow:isActive?`0 0 0 6px ${color}40`:'0 3px 10px rgba(0,0,0,0.2)',display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
+    <span style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:44,height:44,borderRadius:'50%',background:color,opacity:0.25,animation:'mmPing 2.4s cubic-bezier(0,.2,.2,1) infinite',pointerEvents:'none'}}/>
+    <div style={{width:28,height:28,borderRadius:'50%',background:`linear-gradient(135deg,${color},${color}dd)`,border:'3px solid #ffffff',boxShadow:'0 3px 10px rgba(0,0,0,0.2)',display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
       <Building2 size={14} color="#ffffff" strokeWidth={2.2} style={{flexShrink:0}}/>
-    </motion.div>
-    <div style={{position:'absolute',top:'100%',left:'50%',transform:'translateX(-50%)',marginTop:6,background:`${color}ee`,color:'#fff',padding:'3px 10px',borderRadius:12,fontSize:9,fontWeight:700,whiteSpace:'nowrap',pointerEvents:'none',letterSpacing:'0.3px'}}>{label}</div>
+    </div>
+    <div style={{position:'absolute',top:'100%',left:'50%',transform:'translateX(-50%)',marginTop:6,background:`${color}ee`,color:'#fff',padding:'3px 10px',borderRadius:4,fontSize:9,fontWeight:700,whiteSpace:'nowrap',pointerEvents:'none',letterSpacing:'0.3px'}}>{label}</div>
   </div>
 );
 
 const StatePopup = ({anchorPx,mapSize,onClose,onViewMore,color,label,count,stateName}) => {
-  const popupW=240;
+  const popupW=175;
   const flipDown=(anchorPx.y-16-GAP)<FLIP_TH;
   let left=anchorPx.x-popupW/2;
   left=Math.max(8,Math.min(left,mapSize.w-popupW-8));
   const arrowLeft=Math.max(14,Math.min(anchorPx.x-left,popupW-14));
-  const vertStyle=flipDown?{top:anchorPx.y+16+GAP+10}:{bottom:mapSize.h-anchorPx.y+16+GAP+10};
+  const vertStyle=flipDown?{top:anchorPx.y+16+GAP+8}:{bottom:mapSize.h-anchorPx.y+16+GAP+8};
   return(
-    <motion.div initial={{opacity:0,scale:0.9,y:flipDown?-8:8}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.9,y:flipDown?-6:6}} transition={{type:'spring',stiffness:380,damping:28}} style={{position:'absolute',width:popupW,left,zIndex:110,pointerEvents:'all',...vertStyle}}>
-      {!flipDown&&<div style={{position:'absolute',bottom:-9,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'9px solid transparent',borderRight:'9px solid transparent',borderTop:'9px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
-      <div style={{background:'#ffffff',borderRadius:14,border:`1.5px solid ${color}`,boxShadow:'0 8px 24px rgba(0,0,0,0.10)',overflow:'hidden',position:'relative'}}>
-        <button onClick={e=>{e.stopPropagation();onClose();}} style={{position:'absolute',top:10,right:10,width:24,height:24,borderRadius:'50%',background:'rgba(0,0,0,0.06)',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b',zIndex:5,padding:0}}><X size={12}/></button>
-        <div style={{background:`linear-gradient(135deg,${color},${color}dd)`,padding:'14px 18px',textAlign:'center'}}>
-          <span style={{fontSize:10,fontWeight:700,textTransform:'uppercase',letterSpacing:'1px',color:'rgba(255,255,255,0.85)',display:'block',marginBottom:3}}>{label}</span>
-          <h4 style={{margin:0,fontSize:15,fontWeight:800,color:'#ffffff',letterSpacing:'-0.3px'}}>{stateName}</h4>
+    <motion.div initial={{opacity:0,scale:0.9,y:flipDown?-6:6}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.9,y:flipDown?-4:4}} transition={{type:'spring',stiffness:380,damping:28}} style={{position:'absolute',width:popupW,left,zIndex:110,pointerEvents:'all',...vertStyle}}>
+      {!flipDown&&<div style={{position:'absolute',bottom:-8,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'8px solid transparent',borderRight:'8px solid transparent',borderTop:'8px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
+      <div style={{background:'#ffffff',borderRadius:10,border:`1.5px solid ${color}50`,boxShadow:'0 6px 20px rgba(0,0,0,0.12)',padding:'10px 12px',position:'relative'}}>
+        <button onClick={e=>{e.stopPropagation();onClose();}} style={{position:'absolute',top:6,right:6,width:20,height:20,borderRadius:'50%',background:'rgba(0,0,0,0.06)',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b',zIndex:5,padding:0}}><X size={11}/></button>
+        <span style={{fontSize:8.5,fontWeight:800,textTransform:'uppercase',letterSpacing:'0.6px',color,display:'block',marginBottom:2}}>{label}</span>
+        <div style={{display:'flex',alignItems:'baseline',justifyContent:'space-between',gap:6,marginBottom:8}}>
+          <h4 style={{margin:0,fontSize:14,fontWeight:800,color:'#1e293b'}}>{stateName}</h4>
+          <span style={{fontSize:10.5,fontWeight:700,color:'#64748b'}}>{count} Projects</span>
         </div>
-        <div style={{padding:'14px 18px'}}>
-          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:10,padding:'7px 10px',background:`${color}12`,borderRadius:8,border:`1px solid ${color}25`}}>
-            <Building2 size={14} color={color}/>
-            <span style={{fontSize:12,fontWeight:700,color}}>{count} Projects</span>
-          </div>
-          <button onClick={e=>{e.stopPropagation();onViewMore();}} style={{width:'100%',padding:'9px 14px',borderRadius:8,background:color,color:'#ffffff',border:'none',fontSize:12.5,fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:7,transition:'all 0.2s'}}>View All Projects <ExternalLink size={13}/></button>
-        </div>
+        <button onClick={e=>{e.stopPropagation();onViewMore();}} style={{width:'100%',padding:'6px 10px',borderRadius:6,background:color,color:'#ffffff',border:'none',fontSize:11,fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:4,transition:'all 0.15s'}}>
+          View All Projects <ChevronRight size={13}/>
+        </button>
       </div>
-      {flipDown&&<div style={{position:'absolute',top:-9,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'9px solid transparent',borderRight:'9px solid transparent',borderBottom:'9px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
+      {flipDown&&<div style={{position:'absolute',top:-8,left:arrowLeft,transform:'translateX(-50%)',width:0,height:0,borderLeft:'8px solid transparent',borderRight:'8px solid transparent',borderBottom:'8px solid #ffffff',pointerEvents:'none',zIndex:2}}/>}
     </motion.div>
   );
 };
@@ -405,24 +396,22 @@ const CardProject = ({project,isSelected,onCardClick}) => {
   const selectedBorder= isOngoing ? '#f97316'                   : '#198847';
   const selectedGlow  = isOngoing ? 'rgba(249,115,22,0.12)'     : 'rgba(25,136,71,0.15)';
 
-  const circ=2*Math.PI*22;
-  const off=circ-(project.progress/100)*circ;
-
   return(
     <div
       className={`cm-card ${isSelected?'cm-card-selected':''} ${isOngoing?'cm-card-ongoing':'cm-card-completed'}`}
       onClick={(e)=>{e.stopPropagation();onCardClick(project);}}
       style={{
         cursor:'pointer',
+        boxShadow:'none',
         ...(isSelected ? {
           border:`1.5px solid ${selectedBorder}`,
-          boxShadow:`0 6px 20px rgba(0,0,0,0.08)`,
+          boxShadow:'none',
         } : {}),
       }}
     >
-      <div className="cm-card-image-wrapper">
+      <div className="cm-card-image-wrapper" style={{boxShadow:'none'}}>
         <img 
-          src={getImageUrl(project.image, isOngoing ? '/images/hero/Ongoing-Projects.png' : '/images/hero/Completed-Projects.png')} 
+          src={getImageUrl(project.image || (project.images && project.images[0]), isOngoing ? '/images/hero/Ongoing-Projects.png' : '/images/hero/Completed-Projects.png')} 
           alt={project.name} 
           className="cm-card-image"
           loading="lazy"
@@ -433,6 +422,7 @@ const CardProject = ({project,isSelected,onCardClick}) => {
               e.currentTarget.src = fallback;
             }
           }}
+          style={{boxShadow:'none'}}
         />
         <div className="cm-badges-overlay">
           <span className="cm-badge-status" style={{background:accentBg,color:accent,border:`1px solid ${accentBorder}`}}>
@@ -462,36 +452,41 @@ const CardProject = ({project,isSelected,onCardClick}) => {
             <div><span className="cm-label-head">Client</span><span className="cm-label-val">{project.client}</span></div>
           </div>
         </div>
-        <div className="cm-divider"/>
-        <div className="cm-card-bottom">
-          <div style={{position:'relative',width:50,height:50,flexShrink:0}}>
-            <svg width="50" height="50" style={{transform:'rotate(-90deg)'}}>
-              <circle cx="25" cy="25" r="22" fill="none" stroke="#f1f5f9" strokeWidth="4.5"/>
-              <motion.circle
-                cx="25" cy="25" r="22" fill="none"
-                stroke={accent} strokeWidth="4.5" strokeLinecap="round"
-                strokeDasharray={circ} strokeDashoffset={circ}
-                initial={{strokeDashoffset:circ}}
-                animate={{strokeDashoffset:off}}
-                transition={{duration:2,ease:'easeOut'}}
-              />
-            </svg>
-            <div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <span style={{fontSize:13,fontWeight:900,color:accent}}>{project.progress}%</span>
-            </div>
-          </div>
-          <div style={{flex:1,marginLeft:12}}>
-            <span style={{fontSize:11,fontWeight:600,color:'#94a3b8',display:'block',marginBottom:4}}>{project.timeline||'N/A'}</span>
-            <span style={{fontSize:12,fontWeight:700,color:accent}}>View Details <ChevronRight size={14} style={{verticalAlign:'middle'}}/></span>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
-export default function CoverageMap({ data, mapMarkers = coverageMarkersData, ongoingProjects: strapiOngoing, completedProjects: strapiCompleted }){
+export default function CoverageMap({ data, mapMarkers = coverageMarkersData, ongoingProjects: strapiOngoing, completedProjects: strapiCompleted, asHomeSection = false }){
   const navigate = useNavigate();
+
+  const [dataRevision, setDataRevision] = useState(0);
+
+  useEffect(() => {
+    Promise.all([
+      fetchWpData('ongoing-projects?populate=*&pagination[pageSize]=100'),
+      fetchWpData('completed-projects?populate=*&pagination[pageSize]=100'),
+      fetchWpData('coverage-markers?populate=*&pagination[pageSize]=100')
+    ]).then(() => {
+      setDataRevision(prev => prev + 1);
+    }).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const handleUpdate = (e) => {
+      const cleanEndpoint = e?.detail?.cleanEndpoint || '';
+      if (
+        !cleanEndpoint ||
+        cleanEndpoint.startsWith('ongoing-projects') ||
+        cleanEndpoint.startsWith('completed-projects') ||
+        cleanEndpoint.startsWith('coverage-markers')
+      ) {
+        setDataRevision(prev => prev + 1);
+      }
+    };
+    window.addEventListener('pisl-data-update', handleUpdate);
+    return () => window.removeEventListener('pisl-data-update', handleUpdate);
+  }, []);
 
   const rawMarkerList = useMemo(() => {
     return Array.isArray(mapMarkers)
@@ -500,7 +495,19 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
   }, [mapMarkers]);
 
   const ongoingProjects = useMemo(() => {
-    const rawOg = (strapiOngoing && strapiOngoing.length > 0) ? strapiOngoing : projectsData;
+    const cachedOg = getLocalDataSync('ongoing-projects');
+    const localStoreOg = (() => {
+      try {
+        const s = window.localStorage.getItem('pisl_ongoing_projects');
+        return s ? JSON.parse(s) : null;
+      } catch (e) { return null; }
+    })();
+    const rawOg = (strapiOngoing && strapiOngoing.length > 0)
+      ? strapiOngoing
+      : ((Array.isArray(cachedOg) && cachedOg.length > 0)
+        ? cachedOg
+        : ((Array.isArray(localStoreOg) && localStoreOg.length > 0) ? localStoreOg : projectsData));
+
     return rawOg.map((p, idx) => {
       const pName = p.name || p.title || 'Project';
       const cityName = (p.city || p.location || '').trim();
@@ -537,6 +544,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         .filter(Boolean);
 
       const finalImages = validImgs.length > 0 ? validImgs : [FALLBACK_IMG];
+      const slug = p.slug || getProjectSlug({ ...p, name: pName, location: cityName, state: stateName });
 
       return {
         id: p.documentId || p.id || `og-${idx}`,
@@ -557,12 +565,25 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         showOnMap: hasValidMarker,
         images: finalImages,
         image: finalImages[0] || FALLBACK_IMG,
+        slug,
       };
     });
-  }, [strapiOngoing, rawMarkerList]);
+  }, [strapiOngoing, rawMarkerList, dataRevision]);
 
   const completedProjects = useMemo(() => {
-    const rawComp = (strapiCompleted && strapiCompleted.length > 0) ? strapiCompleted : completedProjectsData;
+    const cachedComp = getLocalDataSync('completed-projects');
+    const localStoreComp = (() => {
+      try {
+        const s = window.localStorage.getItem('pisl_completed_projects');
+        return s ? JSON.parse(s) : null;
+      } catch (e) { return null; }
+    })();
+    const rawComp = (strapiCompleted && strapiCompleted.length > 0)
+      ? strapiCompleted
+      : ((Array.isArray(cachedComp) && cachedComp.length > 0)
+        ? cachedComp
+        : ((Array.isArray(localStoreComp) && localStoreComp.length > 0) ? localStoreComp : completedProjectsData));
+
     return rawComp.map((p, idx) => {
       const pName = p.name || p.title || 'Project';
       const cityName = (p.city || p.location || '').trim();
@@ -599,6 +620,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         .filter(Boolean);
 
       const finalImages = validImgs.length > 0 ? validImgs : ['/images/hero/Completed-Projects.png'];
+      const slug = p.slug || getProjectSlug({ ...p, name: pName, location: cityName, state: stateName });
 
       return {
         id: p.documentId || p.id || `comp-${idx}`,
@@ -619,9 +641,10 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         showOnMap: hasValidMarker,
         images: finalImages,
         image: finalImages[0] || '/images/hero/Completed-Projects.png',
+        slug,
       };
     });
-  }, [strapiCompleted, rawMarkerList]);
+  }, [strapiCompleted, rawMarkerList, dataRevision]);
 
   const gujaratProjectCount = ongoingProjects.filter(p => (p.state || '').toLowerCase() === 'gujarat').length;
   const haryanaProjectCount = completedProjects.filter(p => (p.state || '').toLowerCase() === 'haryana').length;
@@ -761,16 +784,16 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
     setSelectedCity(null);
     setPopupAnchor(null);
     setShowHaryanaPopup(false);
-    setShowGujaratPopup(!showGujaratPopup);
-    setGujaratPopupAnchor({ x: (8 / 100) * mapSize.w, y: (48 / 100) * mapSize.h });
+    setShowGujaratPopup(false);
+    setShowGujaratMap(true);
   };
 
   const handleHaryanaHubClick = () => {
     setSelectedCity(null);
     setPopupAnchor(null);
     setShowGujaratPopup(false);
-    setShowHaryanaPopup(!showHaryanaPopup);
-    setHaryanaPopupAnchor({ x: (29 / 100) * mapSize.w, y: (30 / 100) * mapSize.h });
+    setShowHaryanaPopup(false);
+    setShowHaryanaMap(true);
   };
 
   const closePopup = () => {
@@ -812,25 +835,36 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
 
   if (showGujaratMap) return (
-    <div style={{ position: 'relative' }}>
-      <button onClick={() => setShowGujaratMap(false)} style={{ position: 'absolute', top: 20, left: 20, zIndex: 1000, padding: '10px 20px', borderRadius: 8, background: ORANGE, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+    <div style={{ position: 'relative', isolation: 'isolate' }}>
+      <button onClick={() => setShowGujaratMap(false)} style={{ position: 'absolute', top: 20, left: 20, zIndex: 30, padding: '10px 20px', borderRadius: 8, background: ORANGE, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
         <ChevronLeft size={16}/>Back to India Map
       </button>
-      <GujaratMap/>
+      <GujaratMap ongoingProjects={ongoingProjects} mapMarkers={mapMarkers}/>
     </div>
   );
 
   if (showHaryanaMap) return (
-    <div style={{ position: 'relative' }}>
-      <button onClick={() => setShowHaryanaMap(false)} style={{ position: 'absolute', top: 20, left: 20, zIndex: 1000, padding: '10px 20px', borderRadius: 8, background: GREEN, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+    <div style={{ position: 'relative', isolation: 'isolate' }}>
+      <button onClick={() => setShowHaryanaMap(false)} style={{ position: 'absolute', top: 20, left: 20, zIndex: 30, padding: '10px 20px', borderRadius: 8, background: GREEN, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
         <ChevronLeft size={16}/>Back to India Map
       </button>
-      <HaryanaCompletedMap/>
+      <HaryanaCompletedMap completedProjects={completedProjects} mapMarkers={mapMarkers}/>
     </div>
   );
 
   return (
-    <div className="cm-wrapper">
+    <div className="cm-wrapper" style={{ position: 'relative', isolation: 'isolate' }}>
+      {!asHomeSection && (
+        <BlogSEO
+          blog={{
+            title: 'Nationwide Project Coverage across India | Pragati Infra Solutions',
+            seoTitle: 'Nationwide Project Coverage | Pragati Infra Solutions Pvt. Ltd.',
+            seoDescription: 'Explore Pragati Infra Solutions project footprint across India, covering ongoing and completed warehouse, industrial, and infrastructure developments.',
+            canonicalUrl: 'https://pislinfra.com/coverage',
+            ogType: 'website',
+          }}
+        />
+      )}
 
       <div className="cm-layout" style={{ marginBottom: "20px" }}>
         <div className="cm-left-panel">
@@ -864,25 +898,14 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
                   <CityProjectsPopup key={selectedCity} cityProjects={selectedCityProjects} anchorPx={popupAnchor} mapSize={mapSize} onClose={closePopup} onProjectClick={handleProjectClickFromPopup} color={currentColor} />
                 )}
               </AnimatePresence>
-
-              <AnimatePresence>
-                {showGujaratPopup && gujaratPopupAnchor && mapSize.w > 0 && (
-                  <StatePopup anchorPx={gujaratPopupAnchor} mapSize={mapSize} onClose={() => setShowGujaratPopup(false)} onViewMore={() => { setShowGujaratPopup(false); setShowGujaratMap(true); }} color="#f97316" label="Ongoing Projects" count={gujaratProjectCount} stateName="Gujarat" />
-                )}
-
-                {showHaryanaPopup && haryanaPopupAnchor && mapSize.w > 0 && (
-                  <StatePopup anchorPx={haryanaPopupAnchor} mapSize={mapSize} onClose={() => setShowHaryanaPopup(false)} onViewMore={() => { setShowHaryanaPopup(false); setShowHaryanaMap(true); }} color="#198847" label="Completed Projects" count={haryanaProjectCount} stateName="Haryana" />
-                )}
-              </AnimatePresence>
             </div>
           </div>
           <div className="cm-legend">
-            <h4>Infrastructure Network</h4>
             <div className="cm-legend-items-row">
               <div
                 className="cm-legend-item"
                 onClick={() => setActiveTab('ongoing')}
-                style={{ cursor: 'pointer', opacity: activeTab === 'ongoing' ? 1 : 0.7 }}
+                style={{ cursor: 'pointer', opacity: activeTab === 'ongoing' ? 1 : 0.6 }}
                 title="Filter Ongoing Projects"
               >
                 <span className="cm-legend-dot" style={{ backgroundColor: '#f97316' }} />
@@ -891,7 +914,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
               <div
                 className="cm-legend-item"
                 onClick={() => setActiveTab('completed')}
-                style={{ cursor: 'pointer', opacity: activeTab === 'completed' ? 1 : 0.7 }}
+                style={{ cursor: 'pointer', opacity: activeTab === 'completed' ? 1 : 0.6 }}
                 title="Filter Completed Projects"
               >
                 <span className="cm-legend-dot" style={{ backgroundColor: '#198847' }} />
@@ -905,20 +928,36 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
           <div className="cm-header">
             <div className="cm-header-top">
               <div>
-                <h1 className="cm-main-title">
-                  {data?.coverageTitle ? <span dangerouslySetInnerHTML={{ __html: data.coverageTitle }} /> : <>Nationwide <span style={{ color: "#f97316" }}>Coverage</span></>}
-                </h1>
+                {asHomeSection ? (
+                  <h2 className="cm-main-title">
+                    {data?.coverageTitle ? <span dangerouslySetInnerHTML={{ __html: data.coverageTitle }} /> : <>Nationwide <span style={{ color: "#f97316" }}>Coverage</span></>}
+                  </h2>
+                ) : (
+                  <h1 className="cm-main-title">
+                    {data?.coverageTitle ? <span dangerouslySetInnerHTML={{ __html: data.coverageTitle }} /> : <>Nationwide <span style={{ color: "#f97316" }}>Coverage</span></>}
+                  </h1>
+                )}
                 <p className="cm-subtitle">Click marker to highlight city projects</p>
               </div>
-              <div className="cm-tabs-wrap" style={{ display: 'flex', gap: 10 }}>
-                <button className="cm-tab-btn" onClick={() => handleTabChange('ongoing')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'ongoing' ? '2px solid #f97316' : '1px solid #e2e8f0', background: activeTab === 'ongoing' ? '#fff7ed' : '#ffffff', color: activeTab === 'ongoing' ? '#f97316' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
-                  <Activity size={15}/>Ongoing
-                  <span style={{ background: activeTab === 'ongoing' ? '#f97316' : '#e2e8f0', color: activeTab === 'ongoing' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{ongoingProjects.length}</span>
-                </button>
-                <button className="cm-tab-btn" onClick={() => handleTabChange('completed')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'completed' ? '2px solid #198847' : '1px solid #e2e8f0', background: activeTab === 'completed' ? 'rgba(25,136,71,0.08)' : '#ffffff', color: activeTab === 'completed' ? '#166534' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
-                  <CheckCircle2 size={15}/>Completed
-                  <span style={{ background: activeTab === 'completed' ? '#198847' : '#e2e8f0', color: activeTab === 'completed' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{completedProjects.length}</span>
-                </button>
+              <div className="cm-header-right">
+                <div className="cm-tabs-wrap" style={{ display: 'flex', gap: 10 }}>
+                  <button className="cm-tab-btn" onClick={() => handleTabChange('ongoing')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'ongoing' ? '2px solid #f97316' : '1px solid #e2e8f0', background: activeTab === 'ongoing' ? '#fff7ed' : '#ffffff', color: activeTab === 'ongoing' ? '#f97316' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
+                    <Activity size={15}/>Ongoing
+                    <span style={{ background: activeTab === 'ongoing' ? '#f97316' : '#e2e8f0', color: activeTab === 'ongoing' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{ongoingProjects.length}</span>
+                  </button>
+                  <button className="cm-tab-btn" onClick={() => handleTabChange('completed')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: activeTab === 'completed' ? '2px solid #198847' : '1px solid #e2e8f0', background: activeTab === 'completed' ? 'rgba(25,136,71,0.08)' : '#ffffff', color: activeTab === 'completed' ? '#166534' : '#64748b', fontWeight: 700, fontSize: 14, cursor: 'pointer', transition: 'all 0.2s', userSelect: 'none' }}>
+                    <CheckCircle2 size={15}/>Completed
+                    <span style={{ background: activeTab === 'completed' ? '#198847' : '#e2e8f0', color: activeTab === 'completed' ? '#fff' : '#64748b', borderRadius: 20, padding: '2px 10px', fontSize: 12, fontWeight: 800 }}>{completedProjects.length}</span>
+                  </button>
+                </div>
+                <div className="cm-nav-arrows">
+                  <button ref={prevRef} className="cm-nav-btn cm-nav-prev-btn" onClick={() => swiperRef.current?.slidePrev()} aria-label="Previous Slide">
+                    <ChevronLeft size={18}/>
+                  </button>
+                  <button ref={nextRef} className="cm-nav-btn cm-nav-next-btn" onClick={() => swiperRef.current?.slideNext()} aria-label="Next Slide">
+                    <ChevronRight size={18}/>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -928,11 +967,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
               {filteredProjects.length > 0 ? (
                 <motion.div key={`sw-${activeTab}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <div className={`cm-slider-wrapper ${activeTab === 'ongoing' ? 'cm-ongoing-active' : 'cm-completed-active'}`}>
-                    <div className="cm-nav-arrows">
-                      <button ref={prevRef} className="cm-nav-btn cm-nav-prev-btn" onClick={() => swiperRef.current?.slidePrev()}><ChevronLeft size={20}/></button>
-                      <button ref={nextRef} className="cm-nav-btn cm-nav-next-btn" onClick={() => swiperRef.current?.slideNext()}><ChevronRight size={20}/></button>
-                    </div>
-                    <Swiper key={swiperKey} onSwiper={s => { swiperRef.current = s; }} modules={[Navigation, Pagination, Autoplay]} spaceBetween={16} slidesPerView={2} slidesPerGroup={2} navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }} pagination={{ clickable: true, dynamicBullets: true }} autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }} breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 1024: { slidesPerView: 2, slidesPerGroup: 2 } }} onBeforeInit={sw => { sw.params.navigation.prevEl = prevRef.current; sw.params.navigation.nextEl = nextRef.current; }} style={{ paddingBottom: '50px' }}>
+                    <Swiper key={swiperKey} onSwiper={s => { swiperRef.current = s; }} modules={[Navigation, Pagination, Autoplay]} spaceBetween={16} slidesPerView={2} slidesPerGroup={2} navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }} pagination={{ clickable: true, dynamicBullets: true }} autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }} breakpoints={{ 0: { slidesPerView: 1, slidesPerGroup: 1 }, 1024: { slidesPerView: 2, slidesPerGroup: 2 } }} onBeforeInit={sw => { sw.params.navigation.prevEl = prevRef.current; sw.params.navigation.nextEl = nextRef.current; }} style={{ paddingBottom: '40px' }}>
                       {filteredProjects.map(project => (
                         <SwiperSlide key={`${project.id}-${project.status}`} style={{ height: 'auto' }}>
                           <div onMouseEnter={() => setHoveredCity(project.locationKey || project.city || project.location)} onMouseLeave={() => setHoveredCity(null)}>
@@ -954,56 +989,43 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
         </div>
       </div>
 
-      {showGujaratMap && (
-        <GujaratMap onClose={() => setShowGujaratMap(false)} />
-      )}
-      {showHaryanaMap && (
-        <HaryanaCompletedMap onClose={() => setShowHaryanaMap(false)} />
-      )}
 
       <style>{`
         @keyframes mmPing{0%{transform:translate(-50%,-50%) scale(0.5);opacity:0.4;}70%{transform:translate(-50%,-50%) scale(2.3);opacity:0;}100%{transform:translate(-50%,-50%) scale(2.3);opacity:0;}}
         @keyframes mmGlow{0%,100%{opacity:0.9;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.4;transform:translate(-50%,-50%) scale(1.35);}}
         .cm-wrapper{width:100%;background:#ffffff;}
         @media(min-width:1024px){.cm-wrapper{background:linear-gradient(to right, #f8fafc 45%, #ffffff 45%);}}
-        .cm-layout{display:flex;flex-direction:column;min-height:100vh;background:transparent;color:#0f172a;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:1536px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,0.03);}
-        @media(min-width:1024px){.cm-layout{flex-direction:row;height:auto;min-height:650px;}}
-        .cm-left-panel{width:100%;min-height:50vh;position:relative;background:#f8fafc;border-right:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;padding:40px;}
-        @media(min-width:1024px){.cm-left-panel{width:45%;min-height:100%;align-items:flex-start;padding-top:65px;position:relative;}}
-        .cm-map-container{position:relative;width:100%;max-width:465px;aspect-ratio:1/1.18;overflow:visible;}
+        .cm-layout{display:flex;flex-direction:column;min-height:auto;background:transparent;color:#0f172a;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:1536px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,0.03);}
+        @media(min-width:1024px){.cm-layout{flex-direction:row;height:auto;min-height:560px;}}
+        .cm-left-panel{width:100%;min-height:auto;position:relative;background:#f8fafc;border-right:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;padding:24px;}
+        @media(min-width:1024px){.cm-left-panel{width:45%;min-height:100%;align-items:flex-start;padding-top:40px;position:relative;}}
+        .cm-map-container{position:relative;width:100%;max-width:430px;aspect-ratio:1/1.18;overflow:visible;}
         .cm-svg-wrapper{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
         .cm-india-svg{width:100%;height:100%;fill:#28286e;stroke:#3b3b8e;stroke-width:1.2px;}
         .cm-missing-svg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:2px dashed #cbd5e1;border-radius:12px;color:#64748b;font-size:14px;text-align:center;padding:24px;background:#f8fafc;}
         .cm-markers-overlay{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;}
-        .cm-legend{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border:1px solid #e2e8f0;padding:12px 16px;border-radius:12px;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,0.04);}
-        .cm-legend h4{margin:0 0 8px;font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:0.6px;font-weight:700;}
-        .cm-legend-items-row{display:flex;flex-direction:column;gap:6px;}
-        .cm-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#28286e;transition:all 0.2s;user-select:none;}
-        .cm-legend-item:hover{opacity:0.85;}
-        .cm-legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+        .cm-legend{position:absolute;bottom:24px;left:24px;background:transparent!important;backdrop-filter:none!important;border:none!important;padding:0!important;border-radius:0!important;z-index:20;box-shadow:none!important;}
+        .cm-legend-items-row{display:flex;flex-direction:row;align-items:center;gap:16px;}
+        .cm-legend-item{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#28286e;transition:all 0.2s;user-select:none;}
+        .cm-legend-item:hover{opacity:1;}
+        .cm-legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 
         @media(max-width:1023px){
           .cm-left-panel{padding:24px 16px 20px!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;min-height:auto!important;}
           .cm-map-container{width:100%!important;max-width:380px!important;margin:0 auto!important;}
           .cm-legend{
             position:static!important;
-            margin:16px auto 0!important;
+            margin:12px auto 0!important;
             display:flex!important;
-            flex-direction:column!important;
+            flex-direction:row!important;
             align-items:center!important;
-            background:#ffffff!important;
-            border:1px solid #e2e8f0!important;
-            box-shadow:0 3px 12px rgba(0,0,0,0.04)!important;
-            padding:10px 20px!important;
-            border-radius:14px!important;
+            justify-content:center!important;
+            background:transparent!important;
+            border:none!important;
+            box-shadow:none!important;
+            padding:0!important;
+            border-radius:0!important;
             width:auto!important;
-            max-width:320px!important;
-            text-align:center!important;
-          }
-          .cm-legend h4{
-            margin:0 0 6px 0!important;
-            font-size:10.5px!important;
-            letter-spacing:0.8px!important;
             text-align:center!important;
           }
           .cm-legend-items-row{
@@ -1011,7 +1033,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
             align-items:center!important;
             justify-content:center!important;
             flex-wrap:wrap!important;
-            gap:18px!important;
+            gap:16px!important;
           }
           .cm-legend-item{
             font-size:12.5px!important;
@@ -1025,12 +1047,12 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
           .cm-left-panel{padding:18px 12px 14px!important;}
           .cm-map-container{max-width:340px!important;}
           .cm-legend{
-            margin:12px auto 0!important;
-            padding:8px 14px!important;
-            max-width:280px!important;
-            border-radius:10px!important;
+            margin:10px auto 0!important;
+            padding:0!important;
+            background:transparent!important;
+            border:none!important;
+            box-shadow:none!important;
           }
-          .cm-legend h4{font-size:9.5px!important;margin-bottom:3px!important;}
           .cm-legend-items-row{gap:12px!important;}
           .cm-legend-item{font-size:11.5px!important;gap:6px!important;}
           .cm-legend-dot{width:7px!important;height:7px!important;}
@@ -1046,8 +1068,15 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
             letter-spacing:-0.5px!important;
           }
           .cm-subtitle{font-size:11.5px!important;margin-top:2px!important;}
-          .cm-tabs-wrap{
+          .cm-header-right{
             width:100%!important;
+            display:flex!important;
+            align-items:center!important;
+            justify-content:space-between!important;
+            gap:8px!important;
+          }
+          .cm-tabs-wrap{
+            flex:1!important;
             display:flex!important;
             gap:8px!important;
           }
@@ -1059,16 +1088,24 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
             border-radius:8px!important;
             gap:6px!important;
           }
+          .cm-nav-arrows{
+            display:flex!important;
+            gap:4px!important;
+          }
+          .cm-nav-btn{
+            width:32px!important;
+            height:32px!important;
+          }
 
           .cm-content-area{padding:14px 14px 20px!important;}
           .cm-card{border-radius:12px!important;}
-          .cm-card-image-wrapper{height:clamp(170px, 48vw, 205px)!important;}
-          .cm-card-content{padding:12px 14px 14px!important;gap:8px!important;}
-          .cm-card-title{font-size:14px!important;}
+          .cm-card-image-wrapper{height:clamp(185px, 50vw, 220px)!important;}
+          .cm-card-content{padding:13px 15px 15px!important;gap:9px!important;}
+          .cm-card-title{font-size:14.5px!important;min-height:auto!important;}
           .cm-labels-grid{gap:6px!important;}
-          .cm-label-item{padding:5px 7px!important;gap:5px!important;border-radius:6px!important;}
+          .cm-label-item{padding:6px 9px!important;gap:6px!important;border-radius:6px!important;}
           .cm-label-head{font-size:7.5px!important;}
-          .cm-label-val{font-size:10px!important;}
+          .cm-label-val{font-size:10.5px!important;}
           .cm-card-bottom{padding-top:2px!important;}
         }
 
@@ -1080,36 +1117,34 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
 
         .cm-right-panel{width:100%;display:flex;flex-direction:column;background:#ffffff;}
         @media(min-width:1024px){.cm-right-panel{width:55%;}}
-        .cm-header{flex-shrink:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);padding:24px 40px 20px;border-bottom:1px solid #e2e8f0;}
+        .cm-header{flex-shrink:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);padding:18px 36px 14px;border-bottom:1px solid #e2e8f0;}
         .cm-header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-        .cm-main-title{margin:0;font-size:26px;font-weight:900;color:#28286e;letter-spacing:-0.5px;}
+        .cm-main-title{margin:0;font-size:24px;font-weight:900;color:#28286e;letter-spacing:-0.5px;}
         .cm-subtitle{margin:4px 0 0;color:#64748b;font-size:13px;}
-        .cm-content-area{padding:28px 40px;flex:1;display:flex;flex-direction:column;}
+        .cm-header-right{display:flex;align-items:center;gap:14px;}
+        .cm-content-area{padding:20px 36px;flex:1;display:flex;flex-direction:column;}
         .cm-slider-wrapper{position:relative;width:100%;height:100%;}
-        .cm-nav-arrows{position:absolute;top:-54px;right:0;display:flex;gap:6px;z-index:10;}
-        .cm-nav-btn{width:34px;height:34px;border-radius:8px;background:#ffffff;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#28286e;transition:all 0.2s;}
+        .cm-nav-arrows{display:flex;align-items:center;gap:6px;}
+        .cm-nav-btn{width:36px;height:36px;border-radius:8px;background:#ffffff;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#28286e;transition:all 0.2s;}
         .cm-nav-btn:hover{background:#f8fafc;border-color:#f97316;color:#f97316;}
-        .cm-nav-btn.swiper-button-disabled{opacity:0.4;cursor:not-allowed;}
-        @media(max-width:1024px){.cm-nav-arrows{display:none;}}
-        .cm-card{background:#ffffff;border:1px solid #e2e8f0;border-radius:14px;transition:all 0.3s ease;display:flex;flex-direction:column;overflow:hidden;height:100%;}
-        .cm-card:hover{border-color:#cbd5e1;transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.06);}
-        .cm-card-ongoing.cm-card-selected{border:1.5px solid #f97316!important;box-shadow:0 6px 20px rgba(249,115,22,0.15)!important;}
-        .cm-card-completed.cm-card-selected{border:1.5px solid #198847!important;box-shadow:0 6px 20px rgba(25,136,71,0.15)!important;}
-        .cm-card-image-wrapper{position:relative;width:100%;height:185px;overflow:hidden;flex-shrink:0;}
-        .cm-card-image{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
-        .cm-card:hover .cm-card-image{transform:scale(1.06);}
-        .cm-badges-overlay{position:absolute;top:12px;left:12px;}
-        .cm-badge-status{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;backdrop-filter:blur(4px);}
-        .cm-card-content{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column;gap:9px;}
-        .cm-badge-cat{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;padding:3px 8px;border-radius:10px;display:inline-block;background:#f1f5f9;color:#475569;width:fit-content;}
-        .cm-card-title{margin:0;font-size:15px;font-weight:800;color:#28286e;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-        .cm-labels-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-        .cm-label-item{display:flex;align-items:flex-start;gap:7px;padding:7px 9px;background:#f8fafc;border-radius:8px;border:1px solid #f1f5f9;}
+        .cm-nav-btn.swiper-button-disabled{opacity:0.35;cursor:not-allowed;}
+        .cm-card{background:#ffffff;border:1px solid #e2e8f0;border-radius:4px;transition:border-color 0.2s;display:flex;flex-direction:column;overflow:hidden;height:100%;box-shadow:none!important;}
+        .cm-card:hover{border-color:#cbd5e1;transform:none!important;box-shadow:none!important;}
+        .cm-card-ongoing.cm-card-selected{border:1.5px solid #f97316!important;box-shadow:none!important;}
+        .cm-card-completed.cm-card-selected{border:1.5px solid #198847!important;box-shadow:none!important;}
+        .cm-card-image-wrapper{position:relative;width:100%;height:190px;overflow:hidden;flex-shrink:0;border-radius:4px 4px 0 0;box-shadow:none!important;}
+        .cm-card-image{width:100%;height:100%;object-fit:cover;border-radius:4px 4px 0 0;transition:none!important;box-shadow:none!important;}
+        .cm-card:hover .cm-card-image{transform:none!important;}
+        .cm-badges-overlay{position:absolute;top:10px;left:10px;}
+        .cm-badge-status{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;padding:3px 8px;border-radius:4px;display:flex;align-items:center;gap:4px;backdrop-filter:blur(4px);}
+        .cm-card-content{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:9px;}
+        .cm-badge-cat{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;padding:2px 7px;border-radius:4px;display:inline-block;background:#f1f5f9;color:#475569;width:fit-content;}
+        .cm-card-title{margin:0;font-size:15px;font-weight:800;color:#28286e;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px;}
+        .cm-labels-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+        .cm-label-item{display:flex;align-items:flex-start;gap:7px;padding:7px 10px;background:#f8fafc;border-radius:4px;border:1px solid #f1f5f9;}
         .cm-label-full{grid-column:1/-1;}
-        .cm-label-head{font-size:8px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.6px;display:block;margin-bottom:2px;}
-        .cm-label-val{font-size:11px;font-weight:600;color:#334155;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-        .cm-divider{height:1px;background:#e2e8f0;margin:2px 0;}
-        .cm-card-bottom{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:4px;}
+        .cm-label-head{font-size:8px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.6px;display:block;margin-bottom:1px;}
+        .cm-label-val{font-size:11px;font-weight:600;color:#334155;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
         .cm-empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 0;color:#94a3b8;text-align:center;flex:1;}
         .cm-empty-state svg{opacity:0.3;margin-bottom:16px;}
         .cm-empty-state h3{margin:0;color:#28286e;fontSize:20px;fontWeight:700;}

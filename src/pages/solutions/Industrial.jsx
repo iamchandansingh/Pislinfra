@@ -1,23 +1,69 @@
 import React, { useState, useEffect } from 'react'
-import { fetchStrapiData, getLocalDataSync } from '../../services/strapi'
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../../services/wordpress'
 import { getImageUrl } from '../../utils/imageUrl'
 import SolutionLayout from '../../components/solutions/SolutionLayout'
 import industrialBg from '../../assets/images/Project/complete/Pataudi-HR/flipkart-sampka-pataudi-hr.png'
-import { FaCircle, FaCheck, FaBuilding, FaWarehouse, FaTruck, FaIndustry } from 'react-icons/fa';
+import {
+  FaCircle,
+  FaCheck,
+  FaCheckCircle,
+  FaBuilding,
+  FaWarehouse,
+  FaTruck,
+  FaIndustry,
+  FaCogs,
+  FaShieldAlt,
+  FaTools,
+  FaAward,
+  FaHardHat,
+  FaCubes,
+  FaHandshake,
+  FaThumbsUp,
+  FaLightbulb,
+  FaUsers,
+  FaLayerGroup,
+  FaRulerCombined,
+  FaMapMarkedAlt,
+  FaDraftingCompass,
+} from 'react-icons/fa';
 import Preloader from '../../components/common/Preloader';
 
 const commonIcons = {
   FaCircle,
   FaCheck,
+  FaCheckCircle,
   FaBuilding,
   FaWarehouse,
   FaTruck,
   FaIndustry,
+  FaCogs,
+  FaShieldAlt,
+  FaTools,
+  FaAward,
+  FaHardHat,
+  FaCubes,
+  FaHandshake,
+  FaThumbsUp,
+  FaLightbulb,
+  FaUsers,
+  FaLayerGroup,
+  FaRulerCombined,
+  FaMapMarkedAlt,
+  FaDraftingCompass,
 };
 
-const getIcon = (iconName) => {
+const getIcon = (iconName, title = '') => {
   if (iconName && commonIcons[iconName]) return commonIcons[iconName];
-  return FaCircle;
+  const t = (title || '').toLowerCase();
+  if (t.includes('quality') || t.includes('services')) return FaAward;
+  if (t.includes('expert') || t.includes('team')) return FaHardHat;
+  if (t.includes('partner') || t.includes('trusted')) return FaHandshake;
+  if (t.includes('satisfaction') || t.includes('client')) return FaThumbsUp;
+  if (t.includes('innovation') || t.includes('continuous')) return FaLightbulb;
+  if (t.includes('steel') || t.includes('structural')) return FaBuilding;
+  if (t.includes('turnkey') || t.includes('epc')) return FaCogs;
+  if (t.includes('safety') || t.includes('compliance')) return FaShieldAlt;
+  return FaCheckCircle;
 };
 
 
@@ -37,14 +83,17 @@ const defaultIndustrialData = {
 };
 
 const Industrial = () => {
+  const isPreview = Boolean(getPreviewContext());
   const [data, setData] = useState(() => {
+    if (isPreview) return null;
     const raw = getLocalDataSync('solution-pages-industrial') || getLocalDataSync('solution-pages?filters[slug]=industrial');
     if (raw) return Array.isArray(raw) ? (raw[0] || defaultIndustrialData) : raw;
     return defaultIndustrialData;
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(isPreview);
 
   useEffect(() => {
+    if (isPreview) return;
     const handleUpdate = () => {
       const fresh = getLocalDataSync('solution-pages-industrial') || getLocalDataSync('solution-pages?filters[slug]=industrial');
       if (fresh) {
@@ -53,13 +102,16 @@ const Industrial = () => {
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   useEffect(() => {
     let isMounted = true;
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('solution-pages?filters[slug]=industrial&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo');
+        const response = await fetchWpData(
+          'solution-pages?filters[slug]=industrial&populate[0]=heroImage&populate[1]=mainFeatureImage&populate[2]=whyPislImage&populate[3]=features&populate[4]=seo',
+          { forceFresh: isPreview }
+        );
         if (response && isMounted) {
           if (Array.isArray(response) && response.length > 0) {
             setData(response[0]);
@@ -75,9 +127,11 @@ const Industrial = () => {
     };
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [isPreview]);
 
   if (loading && !data) return <Preloader />;
+
+  const activeData = data || defaultIndustrialData;
 
   const fallbackTitle = "Industrial Development Company In India | Pislinfra";
   const fallbackDescription = "Discover Pislinfra's industrial construction solutions, delivering reliable, efficient and quality-driven infrastructure for diverse industrial requirements across India.";
@@ -86,59 +140,136 @@ const Industrial = () => {
 
   // Connect CMS Industrial Solutions page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
   // Safely falls back to existing SEO component or default metadata if fields are empty
-  const resolvedTitle = (data.metaTitle || data.seo?.seoTitle || fallbackTitle).trim();
-  const resolvedDescription = (data.metaDescription || data.seo?.seoDescription || fallbackDescription).trim();
-  const resolvedPrimaryKeyword = (data.primaryKeyword || data.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
-  const resolvedFocusKeywords = (data.focusKeywords || data.seo?.focusKeywords || fallbackFocusKeywords).trim();
+  const resolvedTitle = (activeData.metaTitle || activeData.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (activeData.metaDescription || activeData.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (activeData.primaryKeyword || activeData.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
+  const resolvedFocusKeywords = (activeData.focusKeywords || activeData.seo?.focusKeywords || fallbackFocusKeywords).trim();
 
   const seoData = {
     contentType: 'page',
-    ...(data.seo || {}),
+    slug: 'solutions/industrial',
+    canonicalUrl: "https://pislinfra.com/solutions/industrial",
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'Service',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    noIndex: false,
+    noFollow: false,
+    ...(activeData.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: data.seo?.seoKeywords || resolvedFocusKeywords,
-    slug: 'solutions/industrial',
-    canonicalUrl: data.seo?.canonicalUrl || "https://pislinfra.com/solutions/industrial",
-    ogTitle: data.ogTitle || data.seo?.ogTitle || resolvedTitle,
-    ogDescription: data.ogDescription || data.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(data.seo?.ogImage || data.heroImage, 'https://pislinfra.com/images/hero/Industrial.png'),
-    ogType: data.seo?.ogType || 'website',
-    twitterTitle: data.twitterTitle || data.seo?.twitterTitle || resolvedTitle,
-    twitterDescription: data.twitterDescription || data.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(data.seo?.twitterImage || data.heroImage, 'https://pislinfra.com/images/hero/Industrial.png'),
-    twitterCardType: data.seo?.twitterCardType || 'summary_large_image',
-    schemaType: data.seo?.schemaType || 'Service',
-    breadcrumbSchema: data.seo?.breadcrumbSchema !== undefined ? data.seo.breadcrumbSchema : true,
-    organizationSchema: data.seo?.organizationSchema !== undefined ? data.seo.organizationSchema : true,
-    tags: data.seo?.tags ? (typeof data.seo.tags === 'string' ? data.seo.tags.split(',').map(t => t.trim()) : data.seo.tags) : ['Industrial Construction', 'Manufacturing Plants', 'Turnkey EPC', 'Factory Engineering', 'PEB Structures'],
-    noIndex: data.seo?.noIndex || false,
-    noFollow: data.seo?.noFollow || false,
-    structuredData: data.seo?.structuredData
+    seoKeywords: activeData.seo?.seoKeywords || resolvedFocusKeywords,
+    ogTitle: activeData.ogTitle || activeData.seo?.ogTitle || resolvedTitle,
+    ogDescription: activeData.ogDescription || activeData.seo?.ogDescription || resolvedDescription,
+    ogImage: getImageUrl(activeData.seo?.ogImage || activeData.heroImage, 'https://pislinfra.com/images/hero/Industrial.png'),
+    twitterTitle: activeData.twitterTitle || activeData.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: activeData.twitterDescription || activeData.seo?.twitterDescription || resolvedDescription,
+    twitterImage: getImageUrl(activeData.seo?.twitterImage || activeData.heroImage, 'https://pislinfra.com/images/hero/Industrial.png'),
+    tags: activeData.seo?.tags
+      ? (typeof activeData.seo.tags === 'string' ? activeData.seo.tags.split(',').map(t => t.trim()) : activeData.seo.tags)
+      : ['Industrial Construction', 'Manufacturing Plants', 'Turnkey EPC', 'Factory Engineering', 'PEB Structures'],
+    structuredData: activeData.seo?.structuredData
   };
 
-  const features = data.features || [];
+  const features = activeData.features || [];
+
+  const whyPislGrid = (activeData.showWhyPisl !== false && (activeData.whyPislTitle || features.length > 0)) ? [{
+    title: (
+      <span>
+        Why <span style={{ color: '#ff8755' }}>Pislinfra?</span>
+      </span>
+    ),
+    description: activeData.whyPislDesc || "At Pislinfra, we thrive on harnessing the creativity of our focused team of engineers, designers, and workers. This collaborative synergy ensures the generation of fresh, inventive ideas, delivering unparalleled results for our clients across diverse industries.",
+    titleColor: '#ffffff',
+    descColor: '#e2e8f0',
+    items: features.map(f => ({
+      icon: getIcon(f.iconName || f.icon, f.title),
+      title: f.title,
+      desc: f.description || f.desc
+    })),
+    vertical: false,
+    boxLayout: true,
+    centeredItems: true,
+    showNumbers: true,
+    compact: true,
+    circleAnimation: true,
+    fullWidth: true,
+    borderless: true,
+    noOrangeBorder: true,
+    bgImage: getImageUrl(activeData.whyPislImage, industrialBg),
+    bgOverlay: 'linear-gradient(135deg, rgba(10, 42, 102, 0.72) 0%, rgba(30, 32, 95, 0.78) 100%)',
+    imageFilter: 'brightness(0.92) contrast(1.05)',
+    cardBg: '#ffffff',
+    cardBorder: 'none',
+    cardBottomBorder: 'none',
+    cardShadow: '0 10px 30px rgba(0, 0, 0, 0.14)',
+    iconBg: '#fff2ec',
+    iconColor: '#ff8755',
+    containerClass: 'industrial-advantages-section',
+    containerStyle: {
+      border: 'none',
+      borderRadius: '0',
+      boxShadow: 'none',
+      padding: '75px 0',
+    }
+  }] : [];
+
+  const allGrids = [...whyPislGrid, ...(Array.isArray(activeData.grids) ? activeData.grids : [])];
+
+  const rawMainFeatureText = activeData.mainFeatureText || '';
+  const textParts = rawMainFeatureText.split(/(?:###\s*)?Our Unique Methodologies & Approach/i);
+  const introPart = textParts[0] ? textParts[0].trim() : rawMainFeatureText;
+  const afterHeading = textParts[1] ? textParts[1].trim() : '';
+  const methodologyParagraphs = afterHeading ? afterHeading.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean) : [];
+
+  const methodologyP1 = methodologyParagraphs[0] || "Ranked among India's premier industrial construction firms, our commitment extends beyond mere project completion—we consider it incomplete until we precisely fulfil our client's unique requirements.";
+  const methodologyP2 = methodologyParagraphs[1] || "Our methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.";
+
+  const leftColumnContent = (
+    <div>
+      <div style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8', marginBottom: '24px' }}>
+        {introPart ? (
+          <div dangerouslySetInnerHTML={{ __html: introPart.replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>') }} />
+        ) : (
+          <p style={{ margin: 0 }}>
+            Industrial development is the dynamic process of creating, expanding, and optimising infrastructure and facilities within the industrial sector. It involves the strategic integration of technology, efficient resource management, and innovative warehouse design to foster economic growth, job creation, and the establishment of industrial ecosystems, driving progress and sustainability.
+          </p>
+        )}
+      </div>
+
+      <div>
+        <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#2a2a75', marginBottom: '12px' }}>
+          Our Unique Methodologies &amp; <span style={{ color: '#0a2a66' }}>Approach</span>
+        </h3>
+        <p style={{ color: '#4b5563', fontSize: '15px', lineHeight: '1.8', margin: 0 }}>
+          {methodologyP1}
+        </p>
+      </div>
+    </div>
+  );
 
   return (
     <SolutionLayout
       seoData={seoData}
       hero={{
-        title: "Industrial Development",
-        subtitle: "World-class industrial facilities and manufacturing plants",
-        breadcrumb: "Solutions / Industrial",
-        bgImage: data.heroImage ? getImageUrl(data.heroImage, industrialBg) : industrialBg
+        show: activeData.showHero !== false,
+        title: activeData.title || "Industrial Development",
+        subtitle: activeData.heroSubtitle || "World-class industrial facilities and manufacturing plants",
+        breadcrumb: activeData.breadcrumb || "Solutions / Industrial",
+        bgImage: activeData.heroImage ? getImageUrl(activeData.heroImage, industrialBg) : industrialBg
       }}
-      intro={{
-        text: data.introText ? (<div dangerouslySetInnerHTML={{ __html: data.introText.replace(/\n/g, '<br/>') }} />) : null
-      }}
-      mainFeature={{
-        
+      intro={activeData.showIntro !== false ? {
+        text: activeData.introText ? (<div dangerouslySetInnerHTML={{ __html: activeData.introText.replace(/\n/g, '<br/>') }} />) : null
+      } : null}
+      mainFeature={activeData.showMainFeature !== false ? {
         title: (
           <span>
             {(() => {
-              const words = (data.mainFeatureTitle || "What is Industrial Development?").split(' ');
+              const words = (activeData.mainFeatureTitle || "What is Industrial Development?").split(' ');
               if (words.length <= 2) return <span style={{ color: '#0a2a66' }}>{words.join(' ')}</span>;
               const firstPart = words.slice(0, words.length - 2).join(' ');
               const lastPart = words.slice(-2).join(' ');
@@ -146,275 +277,14 @@ const Industrial = () => {
             })()}
           </span>
         ),
-        text: data.mainFeatureText ? (<div style={{ marginBottom: '16px', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: data.mainFeatureText.replace(/### (.*?)\n/g, '<h3 style="font-size: 22px; font-weight: bold; color: #2a2a75; margin-bottom: 16px; margin-top: 32px;">$1</h3>').replace(/\n\n/g, '<br/><br/>') }} />) : null,
-        image: getImageUrl(data.mainFeatureImage, industrialBg)
-      }}
-    >
-      <style>{`
-        .why-pisl-split-wrapper {
-          max-width: 1400px; /* Increased width */
-          margin: 80px auto;
-          padding: 0 30px; /* Slightly more padding on edges */
-          display: flex;
-          gap: 40px; /* Increased gap to utilize extra width */
-          align-items: stretch; /* Stretches both sides to be equal height! */
-        }
-
-        /* Left Side Image container */
-        .why-pisl-left {
-          width: 40%;
-          /* Removed sticky so it acts as a normal flex child stretching to height */
-        }
-
-        .why-pisl-image-card {
-          position: relative;
-          width: 100%;
-          height: 100%; /* Fills the stretched column */
-          border-radius: 20px;
-          overflow: hidden;
-          background-image: url('${data.whyPislImage ? getImageUrl(data.whyPislImage, "") : ""}');
-          background-size: cover;
-          background-position: center;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-          border: 2px solid #ffede5; /* Small orange-tinted border */
-          display: flex;
-          align-items: flex-end;
-        }
-
-        .why-pisl-image-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to bottom, rgba(10,42,102,0.1) 0%, rgba(10,42,102,0.7) 40%, rgba(10,42,102,0.95) 100%);
-          z-index: 1;
-        }
-
-        .why-pisl-image-content {
-          position: relative;
-          z-index: 2;
-          padding: 40px;
-          color: #ffffff;
-        }
-
-        .why-pisl-image-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 13px;
-          font-weight: bold;
-          color: #ffffff;
-          background-color: rgba(255, 135, 85, 0.9);
-          padding: 6px 14px;
-          border-radius: 20px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          margin-bottom: 24px;
-          backdrop-filter: blur(4px);
-        }
-
-        .why-pisl-image-badge::before {
-          content: '';
-          display: block;
-          width: 6px;
-          height: 6px;
-          background-color: #ffffff;
-          border-radius: 50%;
-        }
-
-        .why-pisl-left-title {
-          font-size: 28px;
-          font-weight: bold;
-          color: #ffffff;
-          margin-bottom: 20px;
-          line-height: 1.3;
-        }
-
-        .why-pisl-left-title span {
-          color: #ff8755;
-        }
-
-        .why-pisl-left-desc {
-          color: #e2e8f0;
-          font-size: 15px;
-          line-height: 1.8;
-          margin: 0;
-        }
-
-        /* Right Side Box Grid (Bento Style) */
-        .why-pisl-right {
-          width: 60%;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 16px;
-        }
-
-        .why-pisl-list-card {
-          background: #ffffff;
-          border: 1px solid #f0f0f0;
-          border-radius: 12px;
-          padding: 24px;
-          display: flex;
-          flex-direction: column; /* Box type layout */
-          align-items: flex-start;
-          gap: 16px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .why-pisl-list-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background-color: #ff8755;
-        }
-
-        .why-pisl-list-card:hover {
-          box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-          border-color: #ffe8df;
-        }
-        
-        /* Make the 5th card span full width for symmetry */
-        .why-pisl-list-card:last-child {
-          grid-column: 1 / -1;
-          flex-direction: row;
-          align-items: flex-start;
-        }
-
-        .why-pisl-list-icon-wrap {
-          width: 44px;
-          height: 44px;
-          background-color: #fff5f0;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .why-pisl-list-icon {
-          color: #ff8755;
-          font-size: 20px;
-        }
-
-        .why-pisl-list-text {
-          flex: 1;
-        }
-
-        .why-pisl-list-title {
-          font-size: 17px;
-          font-weight: bold;
-          color: #2a2a75;
-          margin-bottom: 6px;
-        }
-
-        .why-pisl-list-desc {
-          color: #6b7280;
-          font-size: 14px;
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        /* Tablet & Mobile responsive */
-        @media screen and (max-width: 900px) {
-          .why-pisl-split-wrapper {
-            flex-direction: column;
-            margin: 60px auto;
-            padding: 0 20px;
-            gap: 32px;
-          }
-          .why-pisl-left, .why-pisl-right {
-            width: 100%;
-          }
-          .why-pisl-right {
-            grid-template-columns: 1fr;
-          }
-          .why-pisl-list-card,
-          .why-pisl-list-card:last-child {
-            flex-direction: row;
-            align-items: flex-start;
-          }
-          .why-pisl-image-card {
-            min-height: 400px;
-          }
-          .why-pisl-image-content {
-            padding: 32px;
-          }
-        }
-
-        /* Small Phones responsive */
-        @media screen and (max-width: 600px) {
-          .why-pisl-split-wrapper {
-            margin: 40px auto;
-            padding: 0 16px;
-            gap: 24px;
-          }
-          .why-pisl-image-card {
-            min-height: 350px;
-            border-radius: 16px;
-          }
-          .why-pisl-image-content {
-            padding: 24px 20px;
-          }
-          .why-pisl-left-title {
-            font-size: 24px;
-            margin-bottom: 12px;
-          }
-          .why-pisl-left-desc {
-            font-size: 14px;
-            line-height: 1.6;
-          }
-          .why-pisl-list-card,
-          .why-pisl-list-card:last-child {
-            flex-direction: column;
-            padding: 20px;
-            gap: 12px;
-          }
-        }
-      `}</style>
-
-      {(data.whyPislTitle || (data.features && data.features.length > 0)) && (
-      <div className="why-pisl-split-wrapper">
-        
-        {/* Left Fixed Area */}
-        <div className="why-pisl-left">
-          <div className="why-pisl-image-card">
-            <div className="why-pisl-image-overlay"></div>
-            <div className="why-pisl-image-content">
-              {data.whyPislBadge && <div className="why-pisl-image-badge">{data.whyPislBadge}</div>}
-              <h2 className="why-pisl-left-title" dangerouslySetInnerHTML={{ __html: data.whyPislTitle ? data.whyPislTitle.replace('Pislinfra?', '<span>Pislinfra?</span>') : 'Why <span>Pislinfra?</span>' }}></h2>
-              <p className="why-pisl-left-desc">{data.whyPislDesc}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Box Grid Area */}
-        <div className="why-pisl-right">
-          {features.map((feature, index) => (
-            <div key={index} className="why-pisl-list-card">
-              <div className="why-pisl-list-icon-wrap">
-                {(() => { const Icon = getIcon(feature.icon); return <Icon className="why-pisl-list-icon" />; })()}
-              </div>
-              <div className="why-pisl-list-text">
-                <h3 className="why-pisl-list-title">
-                  {feature.title}
-                </h3>
-                <p className="why-pisl-list-desc">
-                  {feature.description || feature.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-      </div>
-      )}</SolutionLayout>
+        text: leftColumnContent,
+        image: getImageUrl(activeData.mainFeatureImage, industrialBg),
+        imageOverlayContent: methodologyP2,
+        imageHeight: '410px',
+        imageBorder: '2px solid #0a2a66'
+      } : null}
+      grids={allGrids}
+    />
   )
 }
 

@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "node scripts/syncStrapiToBackup.js && node scripts/generateSitemap.js && rm -rf dist && vite build && node scripts/prerenderBlogs.js && node scripts/syncStrapiToBackup.js",
-    "sync": "node scripts/syncStrapiToBackup.js",
+    "build": "node scripts/syncWordpressToBackup.js && rm -rf dist && vite build && node scripts/prerenderBlogs.js && node scripts/generateSitemap.js && node scripts/syncWordpressToBackup.js",
+    "sync": "node scripts/syncWordpressToBackup.js",
     "sync:watch": "node scripts/autoSyncDaemon.js",
     "sync:verify": "node scripts/verifyAutoSync.js",
     "sitemap": "node scripts/generateSitemap.js",

@@ -4,6 +4,31 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronDown, FiChevronUp, FiCheckCircle } from 'react-icons/fi';
 import { useBlogs } from '../../context/BlogContext';
+import { stripHtmlAndWpBlocks, slugifyHeading } from '../../utils/formatBlog';
+
+const isRichHtmlContent = (raw = '') =>
+  typeof raw === 'string' && /<!--\s*wp:|<(p|h[1-6]|figure|ul|ol|blockquote|table|div|section)\b[^>]*>/i.test(raw);
+
+const sanitizeWordPressHtml = (raw = '') => {
+  if (typeof raw !== 'string') return '';
+  let html = raw
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<(script|style|object|embed)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
+    .replace(/\son[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/\s(href|src)\s*=\s*(["'])\s*(?:javascript|vbscript):[\s\S]*?\2/gi, ' $1="#"')
+    .replace(/<p(?:\s[^>]*)?>\s*(?:&nbsp;|<br\s*\/?>|\s)*<\/p>/gi, '');
+
+  html = html.replace(/<h([1-6])([^>]*)>([\s\S]*?)<\/h\1>/gi, (full, level, attrs, inner) => {
+    if (/\bid\s*=/i.test(attrs)) return full;
+    const id = slugifyHeading(stripHtmlAndWpBlocks(inner));
+    const className = Number(level) <= 2 ? 'content-h2' : 'content-h3';
+    const idAttr = id ? ` id="${id}"` : '';
+    const hasClass = /\bclass\s*=/i.test(attrs);
+    return `<h${level}${attrs}${idAttr}${hasClass ? '' : ` class="${className}"`} data-speakable="true">${inner}</h${level}>`;
+  });
+
+  return html.trim();
+};
 
 const getInternalLinks = (BlogDB) => {
   const links = {};
@@ -133,7 +158,10 @@ const BlogContent = ({ content = '', images = [], faq = [], onContentReady }) =>
 
   useEffect(() => {
     if (contentRef.current && onContentReady) {
-      const cleanText = content
+      const baseText = isRichHtmlContent(content)
+        ? stripHtmlAndWpBlocks(content)
+        : content;
+      const cleanText = baseText
         .replace(/!\[(.*?)\]\((.*?)\)/g, '')
         .replace(/<img[^>]*>/gi, '')
         .replace(/^(#{1,6})\s+/gm, '')
@@ -162,6 +190,20 @@ const BlogContent = ({ content = '', images = [], faq = [], onContentReady }) =>
   const renderContent = (rawContent) => {
     if (!rawContent) return <p style={{ color: '#64748B', fontFamily: 'Inter, sans-serif' }}>No content available.</p>;
     if (typeof rawContent !== 'string') return null;
+
+    if (isRichHtmlContent(rawContent)) {
+      const sanitizedHtml = sanitizeWordPressHtml(rawContent);
+      if (!sanitizedHtml) {
+        return <p style={{ color: '#64748B', fontFamily: 'Inter, sans-serif' }}>No content available.</p>;
+      }
+      return (
+        <div
+          className="blog-wp-html content-p"
+          data-speakable="true"
+          dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+        />
+      );
+    }
 
     // Normalizing newlines
     const normalized = rawContent.replace(/\r\n/g, '\n');
@@ -203,7 +245,8 @@ const BlogContent = ({ content = '', images = [], faq = [], onContentReady }) =>
           // HTML Image <img src="..." />
           const htmlM = pTrim.match(/<img\s+[^>]*src=["'](.*?)["'][^>]*>/i);
           if (htmlM) {
-            elements.push(<RenderImageBlock keyId={`img-html-${index}-${pIdx}`} src={htmlM[1]} alt="Pislinfra Project" />);
+            const altM = pTrim.match(/\balt=["'](.*?)["']/i);
+            elements.push(<RenderImageBlock keyId={`img-html-${index}-${pIdx}`} src={htmlM[1]} alt={altM ? altM[1] : ''} />);
             return;
           }
 
@@ -425,8 +468,27 @@ const BlogContent = ({ content = '', images = [], faq = [], onContentReady }) =>
         </section>
       )}
       <style>{`
+        .blog-wp-html { font-family: 'Inter', sans-serif; color: #334155; font-size: 15px; line-height: 1.8; }
+        .blog-wp-html p { margin: 0 0 16px 0; color: #334155; font-size: 15px; line-height: 1.8; }
+        .blog-wp-html p:last-child { margin-bottom: 0; }
+        .blog-wp-html h1, .blog-wp-html h2 { font-size: 22px; font-weight: 800; color: #081B4B; margin: 32px 0 14px 0; letter-spacing: -0.02em; line-height: 1.3; }
+        .blog-wp-html h3, .blog-wp-html h4 { font-size: 18px; font-weight: 700; color: #081B4B; margin: 24px 0 10px 0; line-height: 1.3; }
+        .blog-wp-html figure, .blog-wp-html .wp-block-image { margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); background-color: #F8FAFC; }
+        .blog-wp-html img { width: 100%; max-height: 520px; height: auto; object-fit: cover; display: block; border-radius: 12px; }
+        .blog-wp-html figcaption { padding: 10px 16px; font-size: 12.5px; color: #64748B; background-color: #F8FAFC; border-top: 1px solid #EEF2F7; font-style: italic; text-align: center; }
+        .blog-wp-html ul, .blog-wp-html ol { margin: 0 0 18px 22px; padding: 0; color: #334155; }
+        .blog-wp-html li { margin-bottom: 8px; line-height: 1.7; }
+        .blog-wp-html a { color: #FF6B00; font-weight: 600; text-decoration: none; }
+        .blog-wp-html a:hover { text-decoration: underline; }
+        .blog-wp-html blockquote { margin: 20px 0; padding: 14px 20px; border-left: 4px solid #FF6B00; background-color: #F8FAFC; color: #081B4B; font-style: italic; border-radius: 0 8px 8px 0; }
+        .blog-wp-html table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; border: 1px solid #E5E7EB; }
+        .blog-wp-html th { background-color: #081B4B; color: #FFFFFF; padding: 12px 16px; text-align: left; font-weight: 600; }
+        .blog-wp-html td { padding: 10px 16px; border-bottom: 1px solid #EEF2F7; color: #334155; }
         @media (max-width: 640px) {
           .blog-content-article { padding: 24px 16px !important; border-radius: 10px !important; }
+          .blog-wp-html p { font-size: 13.5px; line-height: 1.7; }
+          .blog-wp-html h1, .blog-wp-html h2 { font-size: 18px; margin-top: 20px; }
+          .blog-wp-html h3, .blog-wp-html h4 { font-size: 15px; margin-top: 16px; }
           .content-h1 { font-size: 22px !important; margin-bottom: 16px !important; }
           .content-h2 { font-size: 18px !important; margin-top: 20px !important; }
           .content-h3 { font-size: 15px !important; margin-top: 16px !important; }

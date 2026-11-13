@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fetchStrapiData, getLocalDataSync } from '../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext } from '../services/wordpress';
 import { getImageUrl } from '../utils/imageUrl.js';
 import PageHero from '../components/hero/PageHero';
 import BlogSEO from '../components/Blog/BlogSEO';
@@ -69,17 +69,19 @@ const fallbackData = {
 };
 
 const AnnualReports = () => {
-  const [data, setData] = useState(() => getLocalDataSync('annual-report-page') || fallbackData);
-  const [loading, setLoading] = useState(false);
+  const isPreview = Boolean(getPreviewContext());
+  const [data, setData] = useState(() => (isPreview ? null : (getLocalDataSync('annual-report-page') || fallbackData)));
+  const [loading, setLoading] = useState(isPreview);
 
   useEffect(() => {
+    if (isPreview) return;
     const handleUpdate = () => {
       const fresh = getLocalDataSync('annual-report-page');
       if (fresh) setData(fresh);
     };
     window.addEventListener('pisl-data-update', handleUpdate);
     return () => window.removeEventListener('pisl-data-update', handleUpdate);
-  }, []);
+  }, [isPreview]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -87,7 +89,10 @@ const AnnualReports = () => {
 
     const loadData = async () => {
       try {
-        const response = await fetchStrapiData('annual-report-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage&populate[3]=reports&populate[4]=reports.pdfFile');
+        const response = await fetchWpData(
+          'annual-report-page?populate[0]=heroImage&populate[1]=seo.ogImage&populate[2]=seo.twitterImage&populate[3]=reports&populate[4]=reports.pdfFile',
+          { forceFresh: isPreview }
+        );
         if (response && isMounted) {
           setData(response);
         }
@@ -99,17 +104,23 @@ const AnnualReports = () => {
     };
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [isPreview]);
 
   const getFileUrl = (fileUrl, pdfFileObj) => {
-    if (fileUrl && fileUrl.startsWith('/reports/')) return fileUrl;
-    const url = pdfFileObj?.url || pdfFileObj?.data?.attributes?.url || fileUrl;
-    if (url) {
-      if (url.startsWith('/reports/')) return url;
-      const fn = url.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+    const resolvedMediaUrl = pdfFileObj ? getImageUrl(pdfFileObj, '') : '';
+    if (resolvedMediaUrl) return resolvedMediaUrl;
+
+    if (fileUrl) {
+      if (fileUrl.startsWith('/reports/') || fileUrl.includes('/wp-content/uploads/')) {
+        return getImageUrl(fileUrl, fileUrl);
+      }
+      if (fileUrl.startsWith('/wp-content/uploads/')) {
+        return getImageUrl(fileUrl, fileUrl);
+      }
+      const fn = fileUrl.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
       return `/reports/${fn}`;
     }
-    return fileUrl || '#';
+    return '#';
   };
 
   const handleDownload = (url) => {
@@ -134,25 +145,27 @@ const AnnualReports = () => {
   const resolvedDescription = (currentData?.metaDescription || currentData?.seo?.seoDescription || fallbackDescription).trim();
   const resolvedPrimaryKeyword = (currentData?.primaryKeyword || currentData?.seo?.primaryKeyword || fallbackPrimaryKeyword).trim();
   const resolvedFocusKeywords = (currentData?.focusKeywords || currentData?.seo?.focusKeywords || fallbackFocusKeywords).trim();
+  const resolvedOgImage = getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png');
+  const resolvedTwitterImage = getImageUrl(currentData.seo?.twitterImage || currentData.seo?.ogImage || currentData.heroImage, resolvedOgImage);
 
   const seoData = {
     contentType: 'page',
     ...(currentData.seo || {}),
+    slug: 'annual-reports',
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
     seoKeywords: currentData?.seo?.seoKeywords || resolvedFocusKeywords,
-    slug: 'annual-reports',
     canonicalUrl: currentData?.seo?.canonicalUrl || 'https://pislinfra.com/annual-reports',
     ogTitle: currentData?.ogTitle || currentData?.seo?.ogTitle || resolvedTitle,
     ogDescription: currentData?.ogDescription || currentData?.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(currentData.seo?.ogImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png'),
+    ogImage: resolvedOgImage,
     ogType: currentData?.seo?.ogType || 'website',
     twitterTitle: currentData?.twitterTitle || currentData?.seo?.twitterTitle || resolvedTitle,
     twitterDescription: currentData?.twitterDescription || currentData?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(currentData.seo?.twitterImage || currentData.heroImage, 'https://pislinfra.com/images/hero/Annual-Reports.png'),
+    twitterImage: resolvedTwitterImage,
     twitterCardType: currentData?.seo?.twitterCardType || 'summary_large_image',
     schemaType: currentData?.seo?.schemaType || 'WebPage',
     breadcrumbSchema: currentData?.seo?.breadcrumbSchema !== undefined ? currentData.seo.breadcrumbSchema : true,
@@ -168,15 +181,18 @@ const AnnualReports = () => {
   return (
     <div className="annual-reports-wrapper" style={{ background: '#ffffff', fontFamily: '"Inter", "Helvetica Neue", sans-serif' }}>
       <BlogSEO blog={seoData} />
-      
-      <PageHero 
-        title={currentData.title || fallbackData.title} 
-        subtitle={currentData.subtitle || fallbackData.subtitle}
-        breadcrumb={currentData.breadcrumb || fallbackData.breadcrumb}
-        bgImage={getImageUrl(currentData.heroImage, "/images/hero/Annual-Reports.png")}
-      />
 
-      <section className="annual-reports-section">
+      {currentData.showHero !== false && (
+        <PageHero
+          title={currentData.title || fallbackData.title}
+          subtitle={currentData.subtitle || fallbackData.subtitle}
+          breadcrumb={currentData.breadcrumb || fallbackData.breadcrumb}
+          bgImage={getImageUrl(currentData.heroImage, "/images/hero/Annual-Reports.png")}
+        />
+      )}
+
+      {currentData.showReports !== false && (
+        <section className="annual-reports-section">
         <div className="annual-reports-container">
           
           <motion.div 
@@ -243,6 +259,7 @@ const AnnualReports = () => {
 
         </div>
       </section>
+      )}
 
       <style>{`
         .annual-reports-wrapper {

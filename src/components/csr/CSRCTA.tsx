@@ -2,8 +2,24 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUsers, FiArrowRight } from 'react-icons/fi';
 
-const CSRCTA = () => {
+interface CSRCTAProps {
+  heading?: string;
+  subtext?: string;
+  buttonText?: string;
+  buttonLink?: string;
+}
+
+const CSRCTA: React.FC<CSRCTAProps> = ({ heading, subtext, buttonText, buttonLink }) => {
   const navigate = useNavigate();
+
+  const handleAction = () => {
+    const target = buttonLink || '/contact-us';
+    if (/^https?:\/\//i.test(target)) {
+      window.open(target, '_blank', 'noopener,noreferrer');
+    } else {
+      navigate(target);
+    }
+  };
 
   return (
     <section className="csr-cta-section">
@@ -17,19 +33,25 @@ const CSRCTA = () => {
 
           <div className="cta-text">
             <h2 className="cta-heading">
-              Together, we can build a <span style={{ color: '#FF7A1A' }}>better tomorrow</span>
+              {heading ? (
+                heading
+              ) : (
+                <>
+                  Together, we can build a <span style={{ color: '#FF7A1A' }}>better tomorrow</span>
+                </>
+              )}
             </h2>
             <p className="cta-sub">
-              Partner with us in our journey to create a positive impact on society.
+              {subtext || 'Partner with us in our journey to create a positive impact on society.'}
             </p>
           </div>
 
           <div className="cta-btn-wrap">
             <button 
-              onClick={() => navigate('/contact-us')}
+              onClick={handleAction}
               className="cta-action-btn"
             >
-              Partner With Us
+              {buttonText || 'Partner With Us'}
               <FiArrowRight size={16} color="#FF7A1A" />
             </button>
           </div>

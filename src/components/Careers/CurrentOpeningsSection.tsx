@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Briefcase, ChevronLeft, ChevronRight, Search, Filter, ChevronDown, MapPin, GraduationCap, Clock } from 'lucide-react';
 
 // Types
 interface JobOpening {
   id: number;
+  slug?: string;
   title: string;
   department: string;
   experience: string;
@@ -54,6 +56,8 @@ const cleanTitle = (rawTitle?: string) => {
   if (!rawTitle) return 'Current Openings';
   return rawTitle.replace(/<[^>]*>?/gm, '').trim();
 };
+
+const getJobSlug = (job: JobOpening) => job.slug || job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -161,10 +165,10 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
               paginatedJobs.map((job) => (
                 <div key={job.id} className="opening-mobile-card">
                   <div className="opening-mobile-card-header">
-                    <div className="opening-mobile-title-wrap">
+                    <Link to={`/careers/${getJobSlug(job)}`} className="opening-mobile-title-wrap" style={{ textDecoration: 'none' }}>
                       <Briefcase size={16} color="#FF6B35" style={{ marginTop: '2px', flexShrink: 0 }} />
                       <span className="opening-mobile-title">{job.title}</span>
-                    </div>
+                    </Link>
                     <span className="opening-dept-badge">{job.department}</span>
                   </div>
 
@@ -183,13 +187,35 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
                     </div>
                   </div>
 
-                  <button 
-                    type="button"
-                    onClick={() => onApplyNow(job.title)}
-                    className="opening-apply-btn"
-                  >
-                    Apply Now
-                  </button>
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+                    <Link
+                      to={`/careers/${getJobSlug(job)}`}
+                      style={{
+                        flex: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '8px',
+                        background: '#F1F5F9',
+                        color: '#1E2A5A',
+                        borderRadius: '6px',
+                        textDecoration: 'none',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        border: '1px solid #CBD5E1'
+                      }}
+                    >
+                      View Details
+                    </Link>
+                    <button 
+                      type="button"
+                      onClick={() => onApplyNow(job.title)}
+                      className="opening-apply-btn"
+                      style={{ flex: 1, margin: 0 }}
+                    >
+                      Apply Now
+                    </button>
+                  </div>
                 </div>
               ))
             )}
@@ -230,35 +256,56 @@ const CurrentOpeningsSection: React.FC<Props> = ({ onApplyNow, openings, title }
                         onMouseLeave={() => setHoveredRow(null)}
                       >
                         <td style={{ padding: '0 16px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                          <Link to={`/careers/${getJobSlug(job)}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '7px' }}>
                             <Briefcase size={14} color="#64748B" />
                             <span style={{ fontSize: '13px', fontWeight: 600, color: '#1E2A5A', fontFamily: 'Inter, sans-serif' }}>{job.title}</span>
-                          </div>
+                          </Link>
                         </td>
                         <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.department}</td>
                         <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.experience}</td>
                         <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.qualification}</td>
                         <td style={{ fontSize: '13px', fontWeight: 500, color: '#475569', padding: '0 16px', fontFamily: 'Inter, sans-serif' }}>{job.location}</td>
                         <td style={{ padding: '0 16px' }}>
-                          <button 
-                            type="button"
-                            onClick={() => onApplyNow(job.title)}
-                            style={{
-                              height: '30px', 
-                              padding: '0 14px', 
-                              backgroundColor: '#1E2A5A', 
-                              color: '#FFFFFF',
-                              border: 'none', 
-                              borderRadius: '5px', 
-                              fontSize: '12px', 
-                              fontWeight: 600, 
-                              cursor: 'pointer',
-                              fontFamily: 'Inter, sans-serif', 
-                              transition: 'none',
-                            }}
-                          >
-                            Apply Now
-                          </button>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <Link 
+                              to={`/careers/${getJobSlug(job)}`}
+                              style={{
+                                height: '30px', 
+                                padding: '0 10px', 
+                                backgroundColor: '#F1F5F9', 
+                                color: '#1E2A5A',
+                                border: '1px solid #CBD5E1', 
+                                borderRadius: '5px', 
+                                fontSize: '12px', 
+                                fontWeight: 600, 
+                                textDecoration: 'none',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                fontFamily: 'Inter, sans-serif', 
+                              }}
+                            >
+                              Details
+                            </Link>
+                            <button 
+                              type="button"
+                              onClick={() => onApplyNow(job.title)}
+                              style={{
+                                height: '30px', 
+                                padding: '0 14px', 
+                                backgroundColor: '#1E2A5A', 
+                                color: '#FFFFFF',
+                                border: 'none', 
+                                borderRadius: '5px', 
+                                fontSize: '12px', 
+                                fontWeight: 600, 
+                                cursor: 'pointer',
+                                fontFamily: 'Inter, sans-serif', 
+                                transition: 'none',
+                              }}
+                            >
+                              Apply Now
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}

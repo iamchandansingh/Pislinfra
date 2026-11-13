@@ -12,11 +12,11 @@ import SafetyCulture from '../../components/safety/SafetyCulture';
 import SafetyPhilosophy from '../../components/safety/SafetyPhilosophy';
 import IndustryRecognition from '../../components/safety/IndustryRecognition';
 import SafetyResources from '../../components/safety/SafetyResources';
-import { fetchStrapiData, getStrapiMediaUrl, getLocalDataSync } from '../../services/strapi';
+import { fetchWpData, getWpMediaUrl, getLocalDataSync, getPreviewContext } from '../../services/wordpress';
 import Preloader from '../../components/common/Preloader';
 
 const getImageUrl = (imgObj, defaultImg) => {
-  return getStrapiMediaUrl(imgObj, defaultImg);
+  return getWpMediaUrl(imgObj, defaultImg);
 };
 
 const defaultEHSData = {
@@ -49,81 +49,93 @@ const defaultEHSData = {
   resourcesCoverImage: {
     id: 823,
     name: 'pisl_EHS-100kb.jpeg',
-    url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/pisl_EHS_100kb_82653bd4f2.jpeg'
+    url: '/images/uploads/pisl_EHS_100kb_1da8061955.jpeg'
   },
   resources: [
     {
       id: 18,
       title: 'HSE Policy',
       desc: 'Official Health, Safety & Environment policies, operational guidelines and zero-harm standards.',
-      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf',
+      fileUrl: '/reports/HSE_POLICY_PISL_e35061d871.pdf',
       file: {
         id: 819,
         name: 'HSE POLICY PISL.pdf',
-        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/HSE_POLICY_PISL_e35061d871.pdf'
+        url: '/reports/HSE_POLICY_PISL_e35061d871.pdf'
       }
     },
     {
       id: 22,
       title: 'Risk Management Policy',
       desc: 'Structured framework for identifying, assessing, and mitigating operational and project risks.',
-      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Risk_Management_Policy_PISL_37fe051837.pdf',
+      fileUrl: '/reports/Risk_Management_Policy_PISL_37fe051837.pdf',
       file: {
         id: 821,
         name: 'Risk Management Policy-PISL.pdf',
-        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Risk_Management_Policy_PISL_37fe051837.pdf'
+        url: '/reports/Risk_Management_Policy_PISL_37fe051837.pdf'
       }
     },
     {
       id: 23,
       title: 'Vigil Mechanism Policy',
       desc: 'Whistleblower mechanism ensuring corporate transparency, ethical conduct, and accountability.',
-      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf',
+      fileUrl: '/reports/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf',
       file: {
         id: 820,
         name: 'Vigil Mechanism Policy-PISL.pdf',
-        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf'
+        url: '/reports/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf'
       }
     },
     {
       id: 24,
       title: 'CSR Policy',
       desc: 'Corporate Social Responsibility commitments towards community welfare and sustainable development.',
-      fileUrl: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_Policy_PISL_2e584fd56d.pdf',
+      fileUrl: '/reports/CSR_Policy_PISL_2e584fd56d.pdf',
       file: {
         id: 822,
         name: 'CSR_Policy-PISL.pdf',
-        url: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_Policy_PISL_2e584fd56d.pdf'
+        url: '/reports/CSR_Policy_PISL_2e584fd56d.pdf'
       }
     }
   ]
 };
 
 const EHS = () => {
-  // Stale-While-Revalidate: Instant synchronous render from localStorage cache or defaults (0ms load!)
+  const isPreview = Boolean(getPreviewContext());
+  // Stale-While-Revalidate: Instant synchronous render from localStorage cache or defaults (skip stale cache on preview)
   const [data, setData] = useState(() => {
+    if (isPreview) return null;
     const local = getLocalDataSync('ehs-page');
-    if (local && typeof local === 'object') return local;
+    if (local && typeof local === 'object' && Object.keys(local).length > 0) return local;
     return defaultEHSData;
   });
+  const [loading, setLoading] = useState(() => isPreview);
 
   useEffect(() => {
     let isMounted = true;
-    const loadData = async (forceFresh = false) => {
+    const loadData = async (forceFresh = true) => {
       try {
-        const res = await fetchStrapiData('ehs-page', { forceFresh });
-        if (res && isMounted) {
+        const res = await fetchWpData('ehs-page?populate=*', { forceFresh });
+        if (res && typeof res === 'object' && isMounted) {
           setData(res);
+        } else if (isMounted && !data) {
+          setData(defaultEHSData);
         }
       } catch (err) {
         console.error('Error fetching EHS data', err);
+        if (isMounted && !data) {
+          setData(defaultEHSData);
+        }
+      } finally {
+        if (isMounted) setLoading(false);
       }
     };
     loadData(true);
 
     // Instant update when SWR revalidation resolves fresh data in background
     const handleDataUpdate = (e) => {
-      if (e.detail?.cleanEndpoint?.includes('ehs-page') && e.detail?.data && isMounted) {
+      if (isPreview) return;
+      const ep = e.detail?.cleanEndpoint || e.detail?.endpoint || '';
+      if (ep.includes('ehs-page') && e.detail?.data && isMounted) {
         setData(e.detail.data);
       }
     };
@@ -144,103 +156,131 @@ const EHS = () => {
       window.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('focus', handleVisibility);
     };
-  }, []);
+  }, [isPreview]);
+
+  if (loading && !data) return <Preloader />;
+
+  const pageData = data || defaultEHSData;
 
   const fallbackTitle = "EHS Safety Protocols & Zero-Accident Construction Standards | Pislinfra";
   const fallbackDescription = "Pislinfra is committed to world-class Environment, Health & Safety (EHS) standards with over 15+ million safe man-hours, ISO certifications, and zero-LTI safety protocols on construction sites.";
 
   // Connect CMS EHS page SEO fields (metaTitle, metaDescription, primaryKeyword, focusKeywords)
   // Safely falls back to existing SEO component or default metadata if fields are empty
-  const resolvedTitle = (data?.metaTitle || data?.seo?.seoTitle || fallbackTitle).trim();
-  const resolvedDescription = (data?.metaDescription || data?.seo?.seoDescription || fallbackDescription).trim();
-  const resolvedPrimaryKeyword = (data?.primaryKeyword || data?.seo?.primaryKeyword || '').trim();
-  const resolvedFocusKeywords = (data?.focusKeywords || data?.seo?.focusKeywords || '').trim();
+  const resolvedTitle = (pageData?.metaTitle || pageData?.seo?.seoTitle || fallbackTitle).trim();
+  const resolvedDescription = (pageData?.metaDescription || pageData?.seo?.seoDescription || fallbackDescription).trim();
+  const resolvedPrimaryKeyword = (pageData?.primaryKeyword || pageData?.seo?.primaryKeyword || '').trim();
+  const resolvedFocusKeywords = (pageData?.focusKeywords || pageData?.seo?.focusKeywords || '').trim();
+  const resolvedOgImage = getImageUrl(pageData?.seo?.ogImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/EHS.png');
+  const resolvedTwitterImage = getImageUrl(pageData?.seo?.twitterImage || pageData?.heroImage, 'https://pislinfra.com/images/hero/EHS.png');
 
   const seoData = {
     contentType: 'page',
-    ...(data?.seo || {}),
+    slug: 'about/ehs',
+    canonicalUrl: 'https://pislinfra.com/about/ehs',
+    ogType: 'website',
+    twitterCardType: 'summary_large_image',
+    schemaType: 'AboutPage',
+    breadcrumbSchema: true,
+    organizationSchema: true,
+    tags: ['EHS', 'Safety Policy', 'Safe Man Hours', 'ISO 45001', 'Construction Safety', 'Pislinfra'],
+    ...(pageData?.seo || {}),
     title: resolvedTitle,
     seoTitle: resolvedTitle,
     seoDescription: resolvedDescription,
     primaryKeyword: resolvedPrimaryKeyword,
     focusKeywords: resolvedFocusKeywords,
-    seoKeywords: data?.seo?.seoKeywords || 'EHS policy construction, safety standards industrial construction, ISO 45001 contractor India, zero harm safety culture, safe man hours construction, Pislinfra EHS',
-    slug: 'about/ehs',
-    canonicalUrl: 'https://pislinfra.com/about/ehs',
-    ogTitle: data?.ogTitle || data?.seo?.ogTitle || resolvedTitle,
-    ogDescription: data?.ogDescription || data?.seo?.ogDescription || resolvedDescription,
-    ogImage: getImageUrl(data?.seo?.ogImage || data?.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
-    ogType: 'website',
-    twitterTitle: data?.twitterTitle || data?.seo?.twitterTitle || resolvedTitle,
-    twitterDescription: data?.twitterDescription || data?.seo?.twitterDescription || resolvedDescription,
-    twitterImage: getImageUrl(data?.seo?.twitterImage || data?.heroImage, 'https://pislinfra.com/images/hero/EHS.png'),
-    twitterCardType: 'summary_large_image',
-    schemaType: 'AboutPage',
-    breadcrumbSchema: true,
-    organizationSchema: true,
-    tags: ['EHS', 'Safety Policy', 'Safe Man Hours', 'ISO 45001', 'Construction Safety', 'Pislinfra']
+    seoKeywords: pageData?.seo?.seoKeywords || resolvedFocusKeywords || 'EHS policy construction, safety standards industrial construction, ISO 45001 contractor India, zero harm safety culture, safe man hours construction, Pislinfra EHS',
+    ogTitle: pageData?.ogTitle || pageData?.seo?.ogTitle || resolvedTitle,
+    ogDescription: pageData?.ogDescription || pageData?.seo?.ogDescription || resolvedDescription,
+    ogImage: resolvedOgImage,
+    twitterTitle: pageData?.twitterTitle || pageData?.seo?.twitterTitle || resolvedTitle,
+    twitterDescription: pageData?.twitterDescription || pageData?.seo?.twitterDescription || resolvedDescription,
+    twitterImage: resolvedTwitterImage,
   };
 
   return (
     <div style={{ fontFamily: 'Inter, sans-serif' }}>
       <BlogSEO blog={seoData} />
       
-      <PageHero 
-        title={data.title} 
-        subtitle={data.subtitle}
-        breadcrumb={data.breadcrumb}
-        bgImage={getImageUrl(data.heroImage, "/images/hero/EHS.png")}
-      />
+      {pageData?.showHero !== false && (
+        <PageHero 
+          title={pageData.title} 
+          subtitle={pageData.subtitle}
+          breadcrumb={pageData.breadcrumb}
+          bgImage={getImageUrl(pageData.heroImage, "/images/hero/EHS.png")}
+        />
+      )}
       
       <div style={{ height: '40px', backgroundColor: '#FFFFFF' }} />
       
-      <EHSStats stats={data.stats} />
-      <SafeManHoursAndCommitment 
-        features={data.features} 
-        title={data.commitmentTitle} 
-      />
-      <SafetyPhilosophy 
-        philosophyItems={data.philosophy} 
-        title={data.philosophySectionTitle} 
-      />
-      <SafetyApproach 
-        approaches={data.approaches} 
-        title={data.approachesSectionTitle} 
-        subtitle={data.approachesSectionSubtitle} 
-      />
-      <LifeSavingRules 
-        rules={data.rules} 
-        title={data.rulesSectionTitle} 
-        subtitle={data.rulesSectionSubtitle} 
-      />
-      <SafetyCulture 
-        title={data.safetyCultureTitle} 
-        desc={data.safetyCultureDesc} 
-      />
-      <EHSPillarsAndPrograms 
-        pillars={data.pillars} 
-        title={data.pillarsSectionTitle} 
-      />
-      <EHSSafetyPrograms 
-        programs={data.programs} 
-        title={data.programsSectionTitle} 
-      />
-      <CertificationsAndEHSAction 
-        gallery={data.gallery} 
-        title={data.gallerySectionTitle} 
-      />
-      <IndustryRecognition 
-        awards={data.awards} 
-        title={data.awardsSectionTitle} 
-        subtitle={data.awardsSectionSubtitle} 
-      />
-      <SafetyResources 
-        resources={data.resources} 
-        title={data.resourcesSectionTitle} 
-        subtitle={data.resourcesSectionSubtitle} 
-        desc={data.resourcesSectionDesc} 
-        coverImage={data.resourcesCoverImage}
-      />
+      {pageData?.showStats !== false && <EHSStats stats={pageData.stats} />}
+      {pageData?.showCommitment !== false && (
+        <SafeManHoursAndCommitment 
+          features={pageData.features} 
+          title={pageData.commitmentTitle} 
+        />
+      )}
+      {pageData?.showPhilosophy !== false && (
+        <SafetyPhilosophy 
+          philosophyItems={pageData.philosophy} 
+          title={pageData.philosophySectionTitle} 
+        />
+      )}
+      {pageData?.showApproaches !== false && (
+        <SafetyApproach 
+          approaches={pageData.approaches} 
+          title={pageData.approachesSectionTitle} 
+          subtitle={pageData.approachesSectionSubtitle} 
+        />
+      )}
+      {pageData?.showRules !== false && (
+        <LifeSavingRules 
+          rules={pageData.rules} 
+          title={pageData.rulesSectionTitle} 
+          subtitle={pageData.rulesSectionSubtitle} 
+        />
+      )}
+      {pageData?.showSafetyCulture !== false && (
+        <SafetyCulture 
+          title={pageData.safetyCultureTitle} 
+          desc={pageData.safetyCultureDesc} 
+        />
+      )}
+      {pageData?.showPillars !== false && (
+        <EHSPillarsAndPrograms 
+          pillars={pageData.pillars} 
+          title={pageData.pillarsSectionTitle} 
+        />
+      )}
+      {pageData?.showPrograms !== false && (
+        <EHSSafetyPrograms 
+          programs={pageData.programs} 
+          title={pageData.programsSectionTitle} 
+        />
+      )}
+      {pageData?.showGallery !== false && (
+        <CertificationsAndEHSAction 
+          gallery={pageData.gallery} 
+          title={pageData.gallerySectionTitle} 
+        />
+      )}
+      {pageData?.showAwards !== false && (
+        <IndustryRecognition 
+          awards={pageData.awards} 
+          title={pageData.awardsSectionTitle} 
+          subtitle={pageData.awardsSectionSubtitle} 
+        />
+      )}
+      {pageData?.showResources !== false && (
+        <SafetyResources 
+          resources={pageData.resources} 
+          title={pageData.resourcesSectionTitle} 
+          subtitle={pageData.resourcesSectionSubtitle} 
+          desc={pageData.resourcesSectionDesc} 
+          coverImage={pageData.resourcesCoverImage}
+        />
+      )}
     </div>
   )
 }

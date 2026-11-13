@@ -1,68 +1,96 @@
 [
   {
-    "id": 3,
+    "id": 408,
     "documentId": "zx8v9bwbcluk3zmibaw3gdjc",
+    "createdAt": "2026-11-12T04:53:25+00:00",
+    "updatedAt": "2026-11-12T12:39:22+00:00",
+    "publishedAt": "2026-11-12T04:53:25+00:00",
     "slug": "logistic",
     "title": "Logistic Park Development",
+    "showHero": true,
     "heroSubtitle": "Modern logistics & warehousing solutions",
     "breadcrumb": "Solutions / Logistic",
-    "introText": "",
-    "mainFeatureTitle": "Introduction",
-    "mainFeatureText": "PISL stands as India's premier construction company, renowned for delivering exceptional services across diverse sectors. With a vast portfolio exceeding 8 million sq. ft., PISL embodies enthusiasm, hard work, and integrity. Committed to excellence, we've successfully crafted numerous projects, spanning millions of square metres, over our 13-year journey. Our unwavering ethical standards and strong track record make us a trusted industry leader in logistic park development.",
-    "whyPislBadge": null,
-    "whyPislTitle": null,
-    "whyPislDesc": null,
-    "createdAt": "2026-08-21T14:02:34.249Z",
-    "updatedAt": "2026-11-09T17:58:41.026Z",
-    "publishedAt": "2026-11-09T17:58:40.778Z",
+    "heroImage": {
+      "id": 86,
+      "documentId": "wp_media_86",
+      "name": "optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+      "alternativeText": "Optimized 1787754972742 595 All Cargo Logistics Park Farrukhnagar Hr 2 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp"
+    },
     "primaryKeyword": "Logistics Park Development",
     "metaTitle": "Logistics Park Development Company in India | Pislinfra",
     "metaDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains.",
     "focusKeywords": "Logistics Park Development, Grade-A logistics parks, warehousing and logistics solutions, supply chain infrastructure India, Pislinfra",
-    "heroImage": {
-      "id": 9,
-      "documentId": "e7mwgr3jqi80ipy8mk53izxc",
-      "name": "all-cargo-logistics-park-farrukhnagar-hr-2.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "log_bg_1787320943420",
-      "ext": ".webp",
-      "mime": "image/webp",
-      "size": 162.81,
-      "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T14:02:23.420Z",
-      "updatedAt": "2026-08-26T13:40:56.662Z",
-      "publishedAt": "2026-08-21T14:02:23.422Z"
-    },
+    "showIntro": true,
+    "introText": "",
+    "showMainFeature": true,
+    "mainFeatureTitle": "Introduction",
+    "mainFeatureText": "PISL stands as India's premier construction company, renowned for delivering exceptional services across diverse sectors. With a vast portfolio exceeding 8 million sq. ft., PISL embodies enthusiasm, hard work, and integrity. Committed to excellence, we've successfully crafted numerous projects, spanning millions of square metres, over our 13-year journey. Our unwavering ethical standards and strong track record make us a trusted industry leader in logistic park development.",
     "mainFeatureImage": {
-      "id": 9,
-      "documentId": "e7mwgr3jqi80ipy8mk53izxc",
-      "name": "all-cargo-logistics-park-farrukhnagar-hr-2.png",
-      "alternativeText": null,
-      "caption": null,
-      "focalPoint": null,
-      "width": null,
-      "height": null,
-      "formats": null,
-      "hash": "log_bg_1787320943420",
-      "ext": ".webp",
+      "id": 86,
+      "documentId": "wp_media_86",
+      "name": "optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
+      "alternativeText": "Optimized 1787754972742 595 All Cargo Logistics Park Farrukhnagar Hr 2 Png | Pragati Infra Solutions",
+      "caption": "",
+      "width": 1680,
+      "height": 945,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-500x281.webp",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-750x422.webp",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-1200x675.webp",
+          "width": 1200,
+          "height": 675
+        }
+      },
       "mime": "image/webp",
-      "size": 162.81,
-      "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp",
-      "previewUrl": null,
-      "provider": "aws-s3",
-      "provider_metadata": null,
-      "createdAt": "2026-08-21T14:02:23.420Z",
-      "updatedAt": "2026-08-26T13:40:56.662Z",
-      "publishedAt": "2026-08-21T14:02:23.422Z"
+      "url": "/images/projects/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png.webp"
     },
+    "showWhyPisl": true,
+    "whyPislBadge": null,
+    "whyPislTitle": null,
+    "whyPislDesc": null,
+    "whyPislImage": null,
+    "features": [],
     "grids": [
       {
         "id": 31,
@@ -151,7 +179,9 @@
       "organizationSchema": true,
       "tags": "Logistics, Warehouse, Supply Chain, Industrial, Construction",
       "noIndex": false,
-      "noFollow": false
+      "noFollow": false,
+      "metaTitle": "Logistics Park Development Company in India | Pislinfra",
+      "metaDescription": "Pislinfra's develops Grade-A logistics parks across India with integrated design, procurement and construction solutions for modern supply chains."
     }
   }
 ]

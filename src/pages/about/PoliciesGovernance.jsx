@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { HiHome, HiOutlineDownload, HiOutlineDocumentText } from 'react-icons/hi';
 import BlogSEO from '../../components/Blog/BlogSEO';
+import Preloader from '../../components/common/Preloader';
 import NotFound from '../NotFound';
-import { fetchStrapiData, getLocalDataSync, getStrapiMediaUrl } from '../../services/strapi';
+import { fetchWpData, getLocalDataSync, getPreviewContext, getWpMediaUrl } from '../../services/wordpress';
 
 // Single request: page hero + published policy documents (Strapi only populates published relations)
 const GOVERNANCE_ENDPOINT = 'governance-page?populate[heroCoverImage]=true&populate[seo][populate][0]=ogImage&populate[policies][sort][0]=displayOrder:asc&populate[policies][populate][coverImage]=true&populate[policies][populate][pdfFile]=true';
@@ -25,7 +26,7 @@ const DEFAULT_POLICIES = [
     buttonName: 'Download PDF',
     documentLabel: 'PDF Document',
     accentType: 'navy',
-    coverImage: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Risk_49056e0c4c.jpeg',
+    coverImage: '/images/uploads/Risk_49056e0c4c.jpeg',
     pdfUrl: '/reports/Risk_Management_Policy_PISL_37fe051837.pdf'
   },
   {
@@ -37,7 +38,7 @@ const DEFAULT_POLICIES = [
     buttonName: 'Download PDF',
     documentLabel: 'PDF Document',
     accentType: 'orange',
-    coverImage: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/Vigil_cc39e832ef.jpeg',
+    coverImage: '/images/uploads/Vigil_cc39e832ef.jpeg',
     pdfUrl: '/reports/Vigil_Mechanism_Policy_PISL_6c1fe65e70.pdf'
   },
   {
@@ -49,7 +50,7 @@ const DEFAULT_POLICIES = [
     buttonName: 'Download PDF',
     documentLabel: 'PDF Document',
     accentType: 'green',
-    coverImage: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/CSR_017ee514a5.jpeg',
+    coverImage: '/images/uploads/CSR_017ee514a5.jpeg',
     pdfUrl: '/reports/CSR_Policy_PISL_2e584fd56d.pdf'
   }
 ];
@@ -61,7 +62,7 @@ const DEFAULT_PAGE_DATA = {
   heroTitle: 'Company Policy',
   heroDescription: 'Corporate policies that guide ethical, transparent and responsible growth across Pislinfra.',
   slug: 'company-policy',
-  heroCoverImage: 'https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787756480751_Extra-2.webp',
+  heroCoverImage: '/images/uploads/optimized_1787756480751_Extra-2.webp',
   policies: DEFAULT_POLICIES
 };
 
@@ -101,10 +102,12 @@ const normalizePageData = (raw) => {
 const resolvePdfUrl = (pdfFile, fallbackUrl = '') => {
   if (!pdfFile && !fallbackUrl) return '';
   if (typeof pdfFile === 'string') {
+    if (pdfFile.startsWith('/wp-content/uploads/')) return getWpMediaUrl(pdfFile, fallbackUrl);
     if (pdfFile.startsWith('http') || pdfFile.startsWith('/')) return pdfFile;
     return `/reports/${pdfFile}`;
   }
   if (pdfFile?.url) {
+    if (pdfFile.url.startsWith('/wp-content/uploads/')) return getWpMediaUrl(pdfFile.url, fallbackUrl);
     if (pdfFile.url.startsWith('http') || pdfFile.url.startsWith('/')) return pdfFile.url;
     return `/${pdfFile.url.replace(/^\/+/, '')}`;
   }
@@ -117,17 +120,19 @@ const resolvePdfUrl = (pdfFile, fallbackUrl = '') => {
 const resolveCoverUrl = (img, fallbackUrl = '') => {
   if (!img) return fallbackUrl;
   if (typeof img === 'string') {
+    if (img.startsWith('/wp-content/uploads/')) return getWpMediaUrl(img, fallbackUrl);
     if (img.startsWith('http') || img.startsWith('/')) return img;
-    return getStrapiMediaUrl(img, fallbackUrl);
+    return getWpMediaUrl(img, fallbackUrl);
   }
   if (img.url) {
+    if (img.url.startsWith('/wp-content/uploads/')) return getWpMediaUrl(img.url, fallbackUrl);
     if (img.url.startsWith('http') || img.url.startsWith('/')) return img.url;
-    return getStrapiMediaUrl(img.url, fallbackUrl);
+    return getWpMediaUrl(img.url, fallbackUrl);
   }
   if (img.formats?.medium?.url) return img.formats.medium.url;
   if (img.formats?.large?.url) return img.formats.large.url;
   if (img.formats?.small?.url) return img.formats.small.url;
-  return getStrapiMediaUrl(img, fallbackUrl);
+  return getWpMediaUrl(img, fallbackUrl);
 };
 
 const sortPolicies = (policies) =>
@@ -188,14 +193,19 @@ const PolicyCard = ({ policy }) => {
 
 const PoliciesGovernance = () => {
   const { slug } = useParams();
-  const [rawData, setRawData] = useState(() => getLocalDataSync(GOVERNANCE_ENDPOINT) || DEFAULT_PAGE_DATA);
-  const [loading, setLoading] = useState(false);
+  const isPreview = Boolean(getPreviewContext());
+  const [rawData, setRawData] = useState(() => (
+    isPreview
+      ? null
+      : (getLocalDataSync('governance-page') || getLocalDataSync(GOVERNANCE_ENDPOINT) || DEFAULT_PAGE_DATA)
+  ));
+  const [loading, setLoading] = useState(isPreview);
 
   useEffect(() => {
     let isMounted = true;
     const getData = async () => {
       try {
-        const res = await fetchStrapiData(GOVERNANCE_ENDPOINT);
+        const res = await fetchWpData(GOVERNANCE_ENDPOINT, { forceFresh: isPreview });
         if (res && isMounted) setRawData(res);
       } catch (err) {
         console.warn('Network fetch for governance page fell back to local store:', err);
@@ -206,8 +216,12 @@ const PoliciesGovernance = () => {
     getData();
 
     const handleUpdate = (e) => {
+      if (isPreview) return;
       if (e.detail?.endpoint?.startsWith('governance-page') && e.detail.data) {
         setRawData(e.detail.data);
+      } else {
+        const fresh = getLocalDataSync('governance-page') || getLocalDataSync(GOVERNANCE_ENDPOINT);
+        if (fresh) setRawData(fresh);
       }
     };
     window.addEventListener('pisl-data-update', handleUpdate);
@@ -215,7 +229,7 @@ const PoliciesGovernance = () => {
       isMounted = false;
       window.removeEventListener('pisl-data-update', handleUpdate);
     };
-  }, []);
+  }, [isPreview]);
 
   const pageData = useMemo(() => normalizePageData(rawData), [rawData]);
   const heroImageUrl = resolveCoverUrl(pageData?.heroCoverImage, DEFAULT_PAGE_DATA.heroCoverImage);
@@ -224,18 +238,25 @@ const PoliciesGovernance = () => {
   const seoData = useMemo(() => {
     if (!pageData) return null;
     const seo = pageData.seo || {};
+    const resolvedOgImage = resolveCoverUrl(seo.ogImage, heroImageUrl);
+    const resolvedTwitterImage = resolveCoverUrl(seo.twitterImage || seo.ogImage, resolvedOgImage);
     return {
       ...seo,
+      slug: pageData.slug || 'company-policy',
       title: pageData.pageTitle || 'Company Policy',
       seoTitle: seo.seoTitle || `${pageData.pageTitle || 'Company Policy'} | Pislinfra`,
       seoDescription: seo.seoDescription || pageData.pageDescription || pageData.heroDescription,
-      canonicalUrl: seo.canonicalUrl || `https://pislinfra.com/about/${pageData.slug || 'company-policy'}`,
-      ogImage: resolveCoverUrl(seo.ogImage, heroImageUrl),
+      canonicalUrl: seo.canonicalUrl || 'https://pislinfra.com/company-policy',
+      ogImage: resolvedOgImage,
       ogType: seo.ogType || 'website',
+      twitterImage: resolvedTwitterImage,
+      twitterCardType: seo.twitterCardType || 'summary_large_image',
       schemaType: undefined,
       breadcrumbSchema: false,
     };
   }, [pageData, heroImageUrl]);
+
+  if (loading && !rawData) return <Preloader />;
 
   const validSlugs = [pageData?.slug, 'company-policy', 'policies-governance', 'policies', 'governance'].filter(Boolean);
   if (slug && !validSlugs.includes(slug)) return <NotFound />;
@@ -246,44 +267,48 @@ const PoliciesGovernance = () => {
     <div className="pg-page">
       {seoData && <BlogSEO blog={seoData} />}
 
-      <section className="pg-hero" aria-labelledby="pg-hero-title">
-        {heroImageUrl && (
-          <img
-            className="pg-hero-img"
-            src={heroImageUrl}
-            alt={pageData?.heroImageAlt || 'Company Policy'}
-            fetchpriority="high"
-            decoding="async"
-          />
-        )}
-        <div className="pg-hero-overlay" aria-hidden="true" />
-        <div className="pg-hero-container pg-hero-content">
-          <nav className="pg-breadcrumb" aria-label="Breadcrumb">
-            <Link to="/"><HiHome aria-hidden="true" /> Home</Link>
-            <span className="pg-breadcrumb-sep" aria-hidden="true">/</span>
-            <Link to="/about">About Us</Link>
-            <span className="pg-breadcrumb-sep" aria-hidden="true">/</span>
-            <span className="pg-breadcrumb-current" aria-current="page">{breadcrumbLabel}</span>
-          </nav>
-          <h1 id="pg-hero-title" className="pg-hero-title">{pageData?.heroTitle || 'Company Policy'}</h1>
-          {pageData?.heroDescription && <p className="pg-hero-desc">{pageData.heroDescription}</p>}
-        </div>
-      </section>
+      {pageData?.showHero !== false && (
+        <section className="pg-hero" aria-labelledby="pg-hero-title">
+          {heroImageUrl && (
+            <img
+              className="pg-hero-img"
+              src={heroImageUrl}
+              alt={pageData?.heroImageAlt || 'Company Policy'}
+              fetchpriority="high"
+              decoding="async"
+            />
+          )}
+          <div className="pg-hero-overlay" aria-hidden="true" />
+          <div className="pg-hero-container pg-hero-content">
+            <nav className="pg-breadcrumb" aria-label="Breadcrumb">
+              <Link to="/"><HiHome aria-hidden="true" /> Home</Link>
+              <span className="pg-breadcrumb-sep" aria-hidden="true">/</span>
+              <Link to="/about">About Us</Link>
+              <span className="pg-breadcrumb-sep" aria-hidden="true">/</span>
+              <span className="pg-breadcrumb-current" aria-current="page">{breadcrumbLabel}</span>
+            </nav>
+            <h1 id="pg-hero-title" className="pg-hero-title">{pageData?.heroTitle || 'Company Policy'}</h1>
+            {pageData?.heroDescription && <p className="pg-hero-desc">{pageData.heroDescription}</p>}
+          </div>
+        </section>
+      )}
 
-      <section className="pg-body-container pg-cards-section" aria-label={pageData?.pageTitle || 'Policies'} aria-busy={loading && policies.length === 0}>
-        {policies.length === 0 ? (
-          <div className="pg-message" role="status">
-            <h2>No policies published yet</h2>
-            <p>Policy documents will appear here once they are published.</p>
-          </div>
-        ) : (
-          <div className="pg-grid">
-            {policies.map((policy) => (
-              <PolicyCard key={policy.documentId || policy.id || policy.slug || policy.title} policy={policy} />
-            ))}
-          </div>
-        )}
-      </section>
+      {pageData?.showPolicies !== false && (
+        <section className="pg-body-container pg-cards-section" aria-label={pageData?.pageTitle || 'Policies'} aria-busy={loading && policies.length === 0}>
+          {policies.length === 0 ? (
+            <div className="pg-message" role="status">
+              <h2>No policies published yet</h2>
+              <p>Policy documents will appear here once they are published.</p>
+            </div>
+          ) : (
+            <div className="pg-grid">
+              {policies.map((policy) => (
+                <PolicyCard key={policy.documentId || policy.id || policy.slug || policy.title} policy={policy} />
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       <style>{`
         .pg-page {

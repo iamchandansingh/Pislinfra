@@ -69,9 +69,9 @@ export function crawlMediaUrls(data, currentKey = '', context = '', foundMap = n
 
   if (typeof data === 'string') {
     const s = data.trim();
-    const isUrl = s.startsWith('http://') || s.startsWith('https://') || s.startsWith('/uploads/');
+    const isUrl = s.startsWith('http://') || s.startsWith('https://') || s.startsWith('/uploads/') || s.startsWith('/wp-content/uploads/');
     const hasMediaExt = /\.(png|jpe?g|webp|avif|svg|pdf)$/i.test(s.split('?')[0]);
-    const isCdn = s.includes('r2.dev/') || s.includes('res.cloudinary.com/') || s.includes(':1337/uploads/');
+    const isCdn = s.includes('/wp-content/uploads/') || s.includes('r2.dev/') || s.includes('res.cloudinary.com/');
 
     if (isUrl && (hasMediaExt || isCdn)) {
       if (!foundMap.has(s)) {
@@ -148,10 +148,11 @@ export async function downloadMediaAsset(urlInfo, explicitTargetPath = null) {
     }
   }
 
-  // Handle local Strapi relative URL
+  // Handle local WordPress relative media URL
+  const WP_ORIGIN = (process.env.VITE_WP_URL || 'http://127.0.0.1:8080').replace(/\/$/, '');
   let fetchUrl = url;
-  if (url.startsWith('/uploads/')) {
-    fetchUrl = `http://localhost:1337${url}`;
+  if (url.startsWith('/wp-content/') || url.startsWith('/uploads/')) {
+    fetchUrl = `${WP_ORIGIN}${url}`;
   }
 
   try {
@@ -254,26 +255,30 @@ function resolveLocalMediaPath(filename) {
 }
 
 /**
- * Deep-rewrites any localhost:1337, 127.0.0.1:1337, Cloudflare R2, or Render URLs in content to relative production paths.
+ * Deep-rewrites any local development WordPress, legacy localhost:1337, or external CDN URLs in offline snapshots to relative production paths.
  */
 export function sanitizeLocalhostUrls(data) {
   if (!data) return data;
   if (typeof data === 'string') {
     let str = data;
-    // 1. Rewrite localhost and 127.0.0.1 URLs
+    // 1. Rewrite local development WordPress upload URLs to relative paths
+    str = str.replace(/https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/wp-content\/uploads\/(?:[0-9]{4}\/[0-9]{2}\/)?([a-zA-Z0-9._-]+)/g, (match, fn) => {
+      const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
+      return resolveLocalMediaPath(clean);
+    });
+
+    // 2. Rewrite legacy localhost upload URLs
     str = str.replace(/https?:\/\/(?:localhost|127\.0\.0\.1):1337\/uploads\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
       const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
       return resolveLocalMediaPath(clean);
     });
 
-    // 2. Rewrite Cloudflare R2 URLs
+    // 3. Rewrite legacy CDN / Render URLs if present in historical backups
     str = str.replace(/https?:\/\/[a-zA-Z0-9.-]*\.r2\.dev\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
       const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
       return resolveLocalMediaPath(clean);
     });
-
-    // 3. Rewrite onrender Strapi URLs
-    str = str.replace(/https?:\/\/cms-pislinfra\.onrender\.com\/uploads\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
+    str = str.replace(/https?:\/\/[a-zA-Z0-9.-]*\.onrender\.com\/uploads\/([a-zA-Z0-9._-]+)/g, (match, fn) => {
       const clean = fn.replace(/[^a-zA-Z0-9._-]/g, '_');
       return resolveLocalMediaPath(clean);
     });

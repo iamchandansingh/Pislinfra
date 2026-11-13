@@ -166,14 +166,20 @@ const CSRStats: React.FC<CSRStatsProps> = ({ stats }) => {
         }
         .csr-stats-card {
           background-color: #FFFFFF;
-          border: 1px solid #EEF2F7;
+          border: 2px solid #E2E8F0;
           border-radius: 16px;
           padding: 22px 20px;
-          box-shadow: 0 10px 30px rgba(5, 42, 115, 0.05);
+          box-shadow: none;
           display: flex;
           align-items: center;
           justify-content: space-between;
           box-sizing: border-box;
+          transition: none !important;
+        }
+        .csr-stats-card:hover {
+          border-color: #E2E8F0 !important;
+          box-shadow: none !important;
+          transform: none !important;
         }
         .csr-stat-item {
           flex: 1 1 auto;
@@ -185,6 +191,10 @@ const CSRStats: React.FC<CSRStatsProps> = ({ stats }) => {
           min-width: 0;
           box-sizing: border-box;
           transition: none !important;
+        }
+        .csr-stat-item:hover {
+          box-shadow: none !important;
+          transform: none !important;
         }
         .csr-stat-icon-wrap {
           width: 52px;
@@ -224,7 +234,7 @@ const CSRStats: React.FC<CSRStatsProps> = ({ stats }) => {
         .csr-stat-divider {
           width: 1px;
           height: 54px;
-          background-color: #EEF2F7;
+          background-color: #E2E8F0;
           flex-shrink: 0;
         }
 
@@ -279,10 +289,10 @@ const CSRStats: React.FC<CSRStatsProps> = ({ stats }) => {
             align-items: center !important;
             text-align: center !important;
             background: #FFFFFF !important;
-            border: 1.5px solid #EEF2F7 !important;
+            border: 2px solid #E2E8F0 !important;
             border-radius: 14px !important;
             padding: 18px 10px 14px 10px !important;
-            box-shadow: 0 2px 10px rgba(5, 42, 115, 0.04) !important;
+            box-shadow: none !important;
             width: 100% !important;
             height: 100% !important;
             gap: 8px !important;

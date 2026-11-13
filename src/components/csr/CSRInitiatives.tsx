@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/imageUrl';
 
 interface CardItem {
   id?: string | number;
@@ -9,6 +10,9 @@ interface CardItem {
 }
 
 interface CSRInitiativesProps {
+  givingBackTitle?: string;
+  environmentTitle?: string;
+  celebrationsTitle?: string;
   givingBackCards?: CardItem[];
   envCards?: CardItem[];
   celebCards?: CardItem[];
@@ -69,15 +73,6 @@ const defaultCelebrations: CardItem[] = [
   },
 ];
 
-const getImageUrl = (img: any, fallback?: string): string => {
-  if (!img) return fallback || '';
-  if (typeof img === 'string') return img;
-  if (img.url) {
-    return img.url.startsWith('http') ? img.url : `${img.url}`;
-  }
-  return fallback || '';
-};
-
 const SectionTitle = ({ title, badge }: { title: string; badge?: string }) => (
   <div className="init-section-header">
     {badge && <div className="init-badge">{badge}</div>}
@@ -85,10 +80,17 @@ const SectionTitle = ({ title, badge }: { title: string; badge?: string }) => (
   </div>
 );
 
-const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCards, celebCards }) => {
-  const gBackCards = givingBackCards && givingBackCards.length > 0 ? givingBackCards : defaultGivingBack;
-  const environmentCards = envCards && envCards.length > 0 ? envCards : defaultEnvironment;
-  const celebrationCards = celebCards && celebCards.length > 0 ? celebCards : defaultCelebrations;
+const CSRInitiatives: React.FC<CSRInitiativesProps> = ({
+  givingBackTitle,
+  environmentTitle,
+  celebrationsTitle,
+  givingBackCards,
+  envCards,
+  celebCards,
+}) => {
+  const gBackCards = Array.isArray(givingBackCards) ? givingBackCards : defaultGivingBack;
+  const environmentCards = Array.isArray(envCards) ? envCards : defaultEnvironment;
+  const celebrationCards = Array.isArray(celebCards) ? celebCards : defaultCelebrations;
 
   return (
     <section className="csr-initiatives-section">
@@ -97,7 +99,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
         {/* 1. GIVING IT BACK TO THE SOCIETY */}
         {gBackCards.length > 0 && (
           <div className="init-block">
-            <SectionTitle badge="SOCIAL OUTREACH" title="GIVING IT BACK TO THE SOCIETY" />
+            <SectionTitle title={givingBackTitle || 'GIVING IT BACK TO THE SOCIETY'} />
             <div className="init-grid-2">
               {gBackCards.map((card, idx) => {
                 const fallback = defaultGivingBack[idx % defaultGivingBack.length];
@@ -107,7 +109,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
                 return (
                   <div key={card.id || idx} className={`init-card-2 ${isImageLeft ? 'img-left' : 'img-right'}`}>
                     <div className="init-card-img-wrap">
-                      <img src={imgSrc} alt={card.title || 'Initiative'} loading="lazy" className="init-card-img" />
+                      <img src={imgSrc} alt={card.title ? `${card.title} - Pragati Infra CSR Initiative` : 'Pragati Infra Solutions CSR Initiative'} loading="lazy" className="init-card-img" />
                     </div>
                     <div className="init-card-content">
                       <h3 className="init-card-title">{card.title || fallback?.title}</h3>
@@ -123,7 +125,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
         {/* 2. ENVIRONMENT & HEALTH INITIATIVES */}
         {environmentCards.length > 0 && (
           <div className="init-block">
-            <SectionTitle badge="HEALTH & ECOLOGY" title="ENVIRONMENT & HEALTH INITIATIVES" />
+            <SectionTitle title={environmentTitle || 'ENVIRONMENT & HEALTH INITIATIVES'} />
             <div className="init-grid-2">
               {environmentCards.map((card, idx) => {
                 const fallback = defaultEnvironment[idx % defaultEnvironment.length];
@@ -133,7 +135,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
                 return (
                   <div key={card.id || idx} className={`init-card-2 ${isImageLeft ? 'img-left' : 'img-right'}`}>
                     <div className="init-card-img-wrap">
-                      <img src={imgSrc} alt={card.title || 'Initiative'} loading="lazy" className="init-card-img" />
+                      <img src={imgSrc} alt={card.title ? `${card.title} - Pragati Infra CSR Initiative` : 'Pragati Infra Solutions CSR Initiative'} loading="lazy" className="init-card-img" />
                     </div>
                     <div className="init-card-content">
                       <h3 className="init-card-title">{card.title || fallback?.title}</h3>
@@ -149,7 +151,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
         {/* 3. CELEBRATIONS AT PISLINFRA */}
         {celebrationCards.length > 0 && (
           <div className="init-block" style={{ marginBottom: 0 }}>
-            <SectionTitle badge="PEOPLE & CULTURE" title="CELEBRATIONS AT PISLINFRA" />
+            <SectionTitle title={celebrationsTitle || 'CELEBRATIONS AT PISLINFRA'} />
             <div className="init-grid-3">
               {celebrationCards.map((card, idx) => {
                 const fallback = defaultCelebrations[idx % defaultCelebrations.length];
@@ -158,7 +160,7 @@ const CSRInitiatives: React.FC<CSRInitiativesProps> = ({ givingBackCards, envCar
                 return (
                   <div key={card.id || idx} className="celeb-card">
                     <div className="celeb-card-img-wrap">
-                      <img src={imgSrc} alt={card.title || 'Celebration'} loading="lazy" className="celeb-card-img" />
+                      <img src={imgSrc} alt={card.title ? `${card.title} - Celebration at Pragati Infra Solutions` : 'Pragati Infra Solutions Celebration'} loading="lazy" className="celeb-card-img" />
                     </div>
                     <div className="celeb-card-content">
                       <h3 className="celeb-card-title">{card.title || fallback?.title}</h3>

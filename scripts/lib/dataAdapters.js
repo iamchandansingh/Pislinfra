@@ -37,6 +37,23 @@ export function sanitizeBrand(data) {
   return data;
 }
 
+export function cleanLocalhostUrls(data) {
+  if (!data) return data;
+  if (typeof data === 'string') {
+    let str = data;
+    str = str.replace(/https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\/wp-content\/uploads\/(?:[0-9]{4}\/[0-9]{2}\/)?([a-zA-Z0-9._-]+)/g, '/images/uploads/$1');
+    str = str.replace(/https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?/g, 'https://cms.pislinfra.com');
+    return str;
+  }
+  if (Array.isArray(data)) return data.map(cleanLocalhostUrls);
+  if (typeof data === 'object') {
+    const res = {};
+    for (const [k, v] of Object.entries(data)) res[k] = cleanLocalhostUrls(v);
+    return res;
+  }
+  return data;
+}
+
 /**
  * Adapter for Ongoing Projects (replaces rigid length === 16 check)
  */
@@ -79,7 +96,7 @@ export function adaptOngoingProjects(rawList) {
     };
   });
 
-  fs.writeFileSync(DATA_PATHS.projects, `const projectsData = ${JSON.stringify(formatted, null, 2)};\n\nexport default projectsData;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.projects, `const projectsData = ${JSON.stringify(cleanLocalhostUrls(formatted), null, 2)};\n\nexport default projectsData;\n`, 'utf8');
   return formatted;
 }
 
@@ -139,7 +156,7 @@ export function adaptCompletedProjects(rawList) {
   }
 
   const reindexed = merged.map((p, idx) => ({ ...p, id: idx + 1 }));
-  fs.writeFileSync(DATA_PATHS.completed, `const completedProjects = ${JSON.stringify(reindexed, null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.completed, `const completedProjects = ${JSON.stringify(cleanLocalhostUrls(reindexed), null, 2)};\n\nexport default completedProjects;\n`, 'utf8');
   return reindexed;
 }
 
@@ -168,6 +185,7 @@ export function adaptAwards(rawAwards) {
 
     if (item.images) addImg(item.images);
     if (item.image) addImg(item.image);
+    if (item.featuredImage) addImg(item.featuredImage);
     if (item.imageUrls) addImg(item.imageUrls);
     if (item.clientImage) addImg(item.clientImage);
 
@@ -209,11 +227,6 @@ export function adaptAwards(rawAwards) {
   }
 
   const sorted = deduped.sort((a, b) => {
-    const aFeat = Boolean(a.featured || a.isFeatured);
-    const bFeat = Boolean(b.featured || b.isFeatured);
-    if (aFeat && !bFeat) return -1;
-    if (!aFeat && bFeat) return 1;
-
     const aYear = parseInt(a.year, 10) || 0;
     const bYear = parseInt(b.year, 10) || 0;
     if (bYear !== aYear) return bYear - aYear;
@@ -223,10 +236,18 @@ export function adaptAwards(rawAwards) {
       const bTime = new Date(b.createdAt).getTime();
       if (!isNaN(aTime) && !isNaN(bTime) && bTime !== aTime) return bTime - aTime;
     }
+    const aId = parseInt(String(a.id || '').match(/(\d+)$/)?.[1] || '0', 10);
+    const bId = parseInt(String(b.id || '').match(/(\d+)$/)?.[1] || '0', 10);
+    if (bId !== aId) return bId - aId;
+
+    const aFeat = Boolean(a.featured || a.isFeatured);
+    const bFeat = Boolean(b.featured || b.isFeatured);
+    if (aFeat && !bFeat) return -1;
+    if (!aFeat && bFeat) return 1;
     return 0;
   });
 
-  fs.writeFileSync(DATA_PATHS.awards, `const awardsAndCertifications = ${JSON.stringify(sorted, null, 2)};\n\nexport default awardsAndCertifications;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.awards, `const awardsAndCertifications = ${JSON.stringify(cleanLocalhostUrls(sorted), null, 2)};\n\nexport default awardsAndCertifications;\n`, 'utf8');
   return sorted;
 }
 
@@ -271,7 +292,7 @@ export function adaptBlogs(rawBlogs) {
     };
   });
 
-  fs.writeFileSync(DATA_PATHS.blogs, `const blogDB = ${JSON.stringify(formatted, null, 2)};\n\nexport default blogDB;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.blogs, `const blogDB = ${JSON.stringify(cleanLocalhostUrls(formatted), null, 2)};\n\nexport default blogDB;\n`, 'utf8');
   return formatted;
 }
 
@@ -280,7 +301,7 @@ export function adaptBlogs(rawBlogs) {
  */
 export function adaptLeadership(rawLeadership) {
   if (!rawLeadership || !rawLeadership.topLeaderName) return null;
-  fs.writeFileSync(DATA_PATHS.leadership, `const leadershipData = ${JSON.stringify(rawLeadership, null, 2)};\n\nexport default leadershipData;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.leadership, `const leadershipData = ${JSON.stringify(cleanLocalhostUrls(rawLeadership), null, 2)};\n\nexport default leadershipData;\n`, 'utf8');
   return rawLeadership;
 }
 
@@ -305,7 +326,7 @@ export function adaptCoverageMarkers(rawMarkers) {
     return m;
   });
 
-  fs.writeFileSync(DATA_PATHS.coverageMarkers, `const coverageMarkersData = ${JSON.stringify(formatted, null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.coverageMarkers, `const coverageMarkersData = ${JSON.stringify(cleanLocalhostUrls(formatted), null, 2)};\n\nexport default coverageMarkersData;\n`, 'utf8');
   return formatted;
 }
 
@@ -314,6 +335,6 @@ export function adaptCoverageMarkers(rawMarkers) {
  */
 export function adaptClientAppreciations(rawApprec) {
   if (!Array.isArray(rawApprec) || rawApprec.length === 0) return null;
-  fs.writeFileSync(DATA_PATHS.clientAppreciations, `export const clientAppreciations = ${JSON.stringify(rawApprec, null, 2)};\n\nexport default clientAppreciations;\n`, 'utf8');
+  fs.writeFileSync(DATA_PATHS.clientAppreciations, `export const clientAppreciations = ${JSON.stringify(cleanLocalhostUrls(rawApprec), null, 2)};\n\nexport default clientAppreciations;\n`, 'utf8');
   return rawApprec;
 }

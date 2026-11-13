@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { getStrapiMediaUrl } from '../../services/strapi';
+import { getWpMediaUrl } from '../../services/wordpress';
 
 const NAVY = '#0a2a66';
 const ORANGE = '#ff8755';
@@ -48,7 +48,7 @@ const philosophyData = [
 const SafetyPhilosophy = ({ philosophyItems, title }) => {
   const activeData = philosophyItems && philosophyItems.length > 0 
     ? philosophyItems.map((p, i) => {
-        const customImg = getStrapiMediaUrl(p.image);
+        const customImg = getWpMediaUrl(p.image);
         return { 
           title: p.title || philosophyData[i]?.title, 
           description: p.description || philosophyData[i]?.description, 

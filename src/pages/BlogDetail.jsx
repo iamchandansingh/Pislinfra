@@ -7,8 +7,8 @@ import BlogSidebar from '../components/BlogDetail/BlogSidebar';
 import RelatedSection from '../components/BlogDetail/RelatedSection';
 import BlogSEO from '../components/Blog/BlogSEO';
 import { useBlogs } from '../context/BlogContext';
-import { fetchStrapiData } from '../services/strapi';
-import { formatStrapiBlogs } from '../utils/formatBlog';
+import { fetchWpData } from '../services/wordpress';
+import { formatStrapiBlogs, stripHtmlAndWpBlocks, slugifyHeading } from '../utils/formatBlog';
 import Preloader from '../components/common/Preloader';
 
 const DEFAULT_IMAGE = '/images/hero/Completed-Projects.png';
@@ -34,7 +34,7 @@ const BlogDetail = () => {
     if (!blog && !contextLoading && !hasAttemptedDirect) {
       setDirectLoading(true);
       setHasAttemptedDirect(true);
-      fetchStrapiData(`blogs?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`, { forceFresh: true })
+      fetchWpData(`blogs?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`, { forceFresh: true })
         .then(res => {
           if (res && res.length > 0) {
             const formatted = formatStrapiBlogs(res);
@@ -76,10 +76,26 @@ const BlogDetail = () => {
   const extractHeadings = (content) => {
     if (!content) return [];
     const normalized = typeof content === 'string' ? content.replace(/\r\n/g, '\n') : '';
-    const lines = normalized.split('\n');
     const headings = [];
     const seen = new Set();
 
+    // Handle WordPress Gutenberg / HTML headings cleanly
+    if (/<!--\s*wp:|<(p|h[1-6]|figure|ul|ol|blockquote|table|div|section)\b[^>]*>/i.test(normalized)) {
+      const cleanedHtml = normalized.replace(/<!--[\s\S]*?-->/g, '');
+      const htmlHeadingRegex = /<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi;
+      let match;
+      while ((match = htmlHeadingRegex.exec(cleanedHtml)) !== null) {
+        const text = stripHtmlAndWpBlocks(match[2]);
+        const id = slugifyHeading(text);
+        if (text && id && !seen.has(id)) {
+          seen.add(id);
+          headings.push({ id, text });
+        }
+      }
+      return headings;
+    }
+
+    const lines = normalized.split('\n');
     lines.forEach((line) => {
       const str = line.trim();
       if (!str) return;

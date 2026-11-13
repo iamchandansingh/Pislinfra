@@ -12,14 +12,21 @@ const EHSHero: React.FC = () => {
     }}>
       
       {/* Background Image */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: 'url(https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        zIndex: 0,
-      }} />
+      <img
+        src="/images/hero/EHS.png"
+        alt="Environment, Health and Safety Standards at Pragati Infra Solutions"
+        loading="eager"
+        decoding="async"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center',
+          zIndex: 0,
+        }}
+      />
 
       {/* Dark Blue Gradient Overlay */}
       <div style={{

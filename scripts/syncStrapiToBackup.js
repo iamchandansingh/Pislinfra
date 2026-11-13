@@ -17,7 +17,8 @@ import { syncAllDiscoveredMedia, sanitizeLocalhostUrls } from './lib/mediaSyncEn
 import {
   loadCurrentSnapshot,
   safeCommitSnapshot,
-  exportStaticCollections
+  exportStaticCollections,
+  syncQueryAliases
 } from './lib/snapshotManager.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,6 +45,27 @@ async function runUniversalSyncPipeline() {
   // 3. Adapt and format core structured models
   console.log('\n[3/6] Applying content adapters to generate live data models...');
   let masterData = sanitizeBrand(syncedRawData);
+
+  // Propagate freshly fetched base collection data across any legacy query-variant keys
+  for (const baseKey of [
+    'ongoing-projects',
+    'completed-projects',
+    'awards',
+    'blogs',
+    'clients',
+    'coverage-markers',
+    'job-openings',
+    'case-studies',
+    'client-appreciations',
+    'solution-pages',
+    'milestones',
+    'timeline-milestones'
+  ]) {
+    const freshRaw = masterData[`${baseKey}?populate=*`] || masterData[baseKey];
+    if (Array.isArray(freshRaw) && freshRaw.length > 0) {
+      syncQueryAliases(masterData, baseKey, freshRaw);
+    }
+  }
 
   // Adapt Ongoing Projects
   const ongoing = adaptOngoingProjects(masterData['ongoing-projects'] || masterData['ongoing-projects?populate=*']);

@@ -34,6 +34,7 @@ const Warehouse = lazy(() => import('./pages/solutions/Warehouse'))
 const Blog = lazy(() => import('./pages/Blog'))
 const BlogDetail = lazy(() => import('./pages/BlogDetail'))
 const Careers = lazy(() => import('./pages/Careers'))
+const JobDetail = lazy(() => import('./pages/JobDetail'))
 const ContactUs = lazy(() => import('./pages/ContactUs'))
 const AnnualReports = lazy(() => import('./pages/AnnualReports'))
 const Sitemap = lazy(() => import('./pages/Sitemap'))
@@ -100,9 +101,12 @@ function App() {
               <Route path="about/ehs" element={<EHS />} />
               <Route path="about/awards" element={<Awards />} />
               <Route path="about/csr" element={<CSR />} />
-              {/* Policies & Governance; slug is managed in Strapi (static about/* routes above take precedence) */}
+              {/* Policies & Governance Canonical Redirects & Fallback */}
+              <Route path="about/company-policy" element={<Navigate to="/company-policy" replace />} />
+              <Route path="about/policies" element={<Navigate to="/company-policy" replace />} />
+              <Route path="about/policies-governance" element={<Navigate to="/company-policy" replace />} />
               <Route path="about/:slug" element={<PoliciesGovernance />} />
-              <Route path="projects" element={<OngoingProjects />} />
+              <Route path="projects" element={<Navigate to="/projects/ongoing" replace />} />
               <Route path="projects/ongoing" element={<OngoingProjects />} />
               <Route path="projects/completed" element={<CompletedProjects />} />
               <Route path="projects/case-study" element={<CaseStudy />} />
@@ -116,6 +120,7 @@ function App() {
               <Route path="blog/ndustrial-construction-modern-infrastructure-growth" element={<Navigate to="/blog/industrial-construction-modern-infrastructure-growth" replace />} />
               <Route path="blog/:slug" element={<BlogDetail />} />
               <Route path="careers" element={<Careers />} />
+              <Route path="careers/:slug" element={<JobDetail />} />
               <Route path="contact-us" element={<ContactUs />} />
               <Route path="annual-reports" element={<AnnualReports />} />
               <Route path="sitemap" element={<Sitemap />} />

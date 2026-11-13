@@ -25,7 +25,7 @@
       "formats": {
         "large": {
           "ext": ".webp",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755061623_300_large_Ongoing-Projects_png.webp",
+          "url": "/images/projects/optimized_1787755061623_300_large_Ongoing-Projects_png.webp",
           "hash": "large_Ongoing_Projects_9b4c941b51",
           "mime": "image/webp",
           "name": "large_Ongoing-Projects.png",
@@ -37,7 +37,7 @@
         },
         "small": {
           "ext": ".webp",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755062985_958_small_Ongoing-Projects_png.webp",
+          "url": "/images/projects/optimized_1787755062985_958_small_Ongoing-Projects_png.webp",
           "hash": "small_Ongoing_Projects_9b4c941b51",
           "mime": "image/webp",
           "name": "small_Ongoing-Projects.png",
@@ -49,7 +49,7 @@
         },
         "medium": {
           "ext": ".webp",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755064202_934_medium_Ongoing-Projects_png.webp",
+          "url": "/images/projects/optimized_1787755064202_934_medium_Ongoing-Projects_png.webp",
           "hash": "medium_Ongoing_Projects_9b4c941b51",
           "mime": "image/webp",
           "name": "medium_Ongoing-Projects.png",
@@ -61,7 +61,7 @@
         },
         "thumbnail": {
           "ext": ".webp",
-          "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755065067_785_thumbnail_Ongoing-Projects_png.webp",
+          "url": "/images/projects/optimized_1787755065067_785_thumbnail_Ongoing-Projects_png.webp",
           "hash": "thumbnail_Ongoing_Projects_9b4c941b51",
           "mime": "image/webp",
           "name": "thumbnail_Ongoing-Projects.png",
@@ -76,7 +76,7 @@
       "ext": ".webp",
       "mime": "image/webp",
       "size": 149.18,
-      "url": "https://pub-eeb28a3c927b4ae1b67e3e8e731ee105.r2.dev/optimized_1787755060405_537_Ongoing-Projects_png.webp",
+      "url": "/images/projects/optimized_1787755060405_537_Ongoing-Projects_png.webp",
       "previewUrl": null,
       "provider": "aws-s3",
       "provider_metadata": null,
