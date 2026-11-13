@@ -159,14 +159,22 @@ const getLoc = (p0, mapMarkers = [], customLocations = {}) => {
     ? mapMarkers
     : (mapMarkers?.data && Array.isArray(mapMarkers.data) ? mapMarkers.data : []);
 
-  if (markerList.length > 0) {
+  const pType = (p0.projectType || p0.status || '').toLowerCase().trim();
+  const targetedMarkerList = pType
+    ? markerList.filter(m => {
+        const mType = (m.projectType || m.type || m.attributes?.projectType || '').toLowerCase().trim();
+        return !mType || mType === pType;
+      })
+    : markerList;
+
+  if (targetedMarkerList.length > 0) {
     const slugify = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const pSlug = slugify(pName);
     const pCitySlug = slugify(city);
     const pStateSlug = slugify(p0.state || p0.attributes?.state || '');
 
     // 1. Exact Name + City match
-    let strapiMarker = markerList.find(m => {
+    let strapiMarker = targetedMarkerList.find(m => {
       const mName = slugify(m.projectName || m.project_name || m.name || m.title || m.attributes?.projectName || '');
       const mCity = slugify(m.city || m.location || m.attributes?.city || '');
       if (mName === pSlug || (mName && pSlug && (mName.includes(pSlug) || pSlug.includes(mName)))) {
@@ -519,7 +527,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       } else if (p.cx != null && p.cy != null && Number(p.cx) > 0 && Number(p.cy) > 0) {
         loc = { cx: Number(p.cx), cy: Number(p.cy), marker: null };
       } else {
-        loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, rawMarkerList, {});
+        loc = getLoc({ ...p, name: pName, city: cityName, state: stateName, projectType: 'Ongoing' }, rawMarkerList, {});
       }
 
       const hasValidMarker = !!(loc && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0);
@@ -595,7 +603,7 @@ export default function CoverageMap({ data, mapMarkers = coverageMarkersData, on
       } else if (p.cx != null && p.cy != null && Number(p.cx) > 0 && Number(p.cy) > 0) {
         loc = { cx: Number(p.cx), cy: Number(p.cy), marker: null };
       } else {
-        loc = getLoc({ ...p, name: pName, city: cityName, state: stateName }, rawMarkerList, {});
+        loc = getLoc({ ...p, name: pName, city: cityName, state: stateName, projectType: 'Completed' }, rawMarkerList, {});
       }
 
       const hasValidMarker = !!(loc && loc.cx != null && loc.cy != null && Number(loc.cx) > 0 && Number(loc.cy) > 0);
