@@ -11,15 +11,16 @@ export const isLocalhost = Boolean(
   )
 );
 
-const DEFAULT_WP_ORIGIN = (import.meta.env.DEV && isLocalhost)
-  ? 'http://127.0.0.1:8080'
-  : (import.meta.env.VITE_WP_URL || (typeof window !== 'undefined' ? `${window.location.origin}/wp-cms` : ''));
+const DEFAULT_WP_ORIGIN = import.meta.env.VITE_WP_URL || (
+  (import.meta.env.DEV && isLocalhost)
+    ? 'http://127.0.0.1:8080'
+    : (typeof window !== 'undefined' ? `${window.location.origin}/wp-cms` : '')
+);
 
 export const WP_URL = (DEFAULT_WP_ORIGIN || '').replace(/\/+$/, '');
 export const WP_API_BASE = (
-  (import.meta.env.DEV && isLocalhost)
-    ? (import.meta.env.VITE_WP_API_URL || 'http://127.0.0.1:8080/wp-json/pislinfra/v1')
-    : (import.meta.env.VITE_WP_API_URL || `${WP_URL}/wp-json/pislinfra/v1`)
+  import.meta.env.VITE_WP_API_URL ||
+  (WP_URL ? `${WP_URL}/wp-json/pislinfra/v1` : '')
 ).replace(/\/+$/, '');
 
 let cmsOfflineState = false;
