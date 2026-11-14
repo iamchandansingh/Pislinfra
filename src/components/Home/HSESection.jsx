@@ -40,9 +40,7 @@ const HSESection = ({ data }) => {
   const navigate = useNavigate();
   const [currentImg, setCurrentImg] = useState(0);
 
-  const images = data?.hseImage?.url 
-    ? [getImageUrl(data.hseImage.url)] 
-    : fallbackImages;
+  const images = fallbackImages;
 
   useEffect(() => {
     const timer = setInterval(() => {

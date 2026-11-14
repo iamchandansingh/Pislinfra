@@ -15849,37 +15849,8 @@
         "title": "DESIGN",
         "desc": "Our team of dedicated architects and designers collaboratively envision and execute projects that redefine skylines and set new standards in architectural excellence. From conceptualisation to realisation, our vertical design approach ensures every project stands as a testament to our commitment to shaping environments that not only stand tall but also enrich lives.",
         "img": {
-          "id": 889,
-          "documentId": "wp_media_889",
           "name": "3.png",
-          "alternativeText": "PISL Design Capability | Pragati Infra Solutions",
-          "caption": "",
-          "width": 1200,
-          "height": 750,
-          "formats": {
-            "thumbnail": {
-              "url": "/images/uploads/3-150x150.png",
-              "width": 150,
-              "height": 150
-            },
-            "small": {
-              "url": "/images/uploads/3-500x313.png",
-              "width": 500,
-              "height": 313
-            },
-            "medium": {
-              "url": "/images/uploads/3-750x469.png",
-              "width": 750,
-              "height": 469
-            },
-            "large": {
-              "url": "/images/awards/3.png",
-              "width": 1200,
-              "height": 750
-            }
-          },
-          "mime": "image/png",
-          "url": "/images/awards/3.png"
+          "url": "/images/Overview/3.png"
         },
         "link": "/solutions"
       },
@@ -15888,37 +15859,8 @@
         "title": "CONSTRUCTION",
         "desc": "We specialise in the vertical of construction that builds the backbone of industries. Our expertise lies in creating robust and efficient spaces that cater to the unique needs of warehousing and industrial operations. From large-scale warehouses to specialised industrial facilities, we are committed to constructing vertical spaces that facilitate streamlined operations.",
         "img": {
-          "id": 871,
-          "documentId": "wp_media_871",
           "name": "vpw.png",
-          "alternativeText": "PISL Construction Capability | Pragati Infra Solutions",
-          "caption": "",
-          "width": 1680,
-          "height": 945,
-          "formats": {
-            "thumbnail": {
-              "url": "/images/uploads/vpw-150x150.png",
-              "width": 150,
-              "height": 150
-            },
-            "small": {
-              "url": "/images/uploads/vpw-500x281.png",
-              "width": 500,
-              "height": 281
-            },
-            "medium": {
-              "url": "/images/uploads/vpw-750x422.png",
-              "width": 750,
-              "height": 422
-            },
-            "large": {
-              "url": "/images/uploads/vpw-1200x675.png",
-              "width": 1200,
-              "height": 675
-            }
-          },
-          "mime": "image/png",
-          "url": "/images/uploads/vpw.png"
+          "url": "/images/Overview/vpw.png"
         },
         "link": "/solutions"
       }
@@ -15945,37 +15887,8 @@
     "hseQuote": "Zero Harm Is Possible",
     "hseQuoteDesc": "We are committed to continuous improvement in HSE performance, fostering an environment where safety is everyone's responsibility.",
     "hseImage": {
-      "id": 1048,
-      "documentId": "wp_media_1048",
       "name": "2.png",
-      "alternativeText": "Home HSE Section Image | Pragati Infra Solutions",
-      "caption": "",
-      "width": 1050,
-      "height": 656,
-      "formats": {
-        "thumbnail": {
-          "url": "/images/uploads/2-150x150.png",
-          "width": 150,
-          "height": 150
-        },
-        "small": {
-          "url": "/images/uploads/2-500x312.png",
-          "width": 500,
-          "height": 312
-        },
-        "medium": {
-          "url": "/images/uploads/2-750x469.png",
-          "width": 750,
-          "height": 469
-        },
-        "large": {
-          "url": "/images/awards/2.png",
-          "width": 1050,
-          "height": 656
-        }
-      },
-      "mime": "image/png",
-      "url": "/images/awards/2.png"
+      "url": "/images/EHS/Heroimages/2.png"
     },
     "hsePillar1Title": "Occupational Health & Safety",
     "hsePillar1Desc": "Personal commitment to safe workplace, healthy environment & culture.",
