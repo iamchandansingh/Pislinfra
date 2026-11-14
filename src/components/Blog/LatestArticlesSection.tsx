@@ -58,6 +58,14 @@ const LatestArticlesSection = ({ articles: inputArticles }) => {
                 loading="lazy"
                 decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                onError={(e) => {
+                  const fname = (article.image || '').split('/').pop();
+                  if (fname && !article.image?.startsWith('/images/blogs/')) {
+                    e.currentTarget.src = `/images/blogs/${fname}`;
+                  } else {
+                    e.currentTarget.src = '/images/hero/Blog.png';
+                  }
+                }}
               />
             </div>
 

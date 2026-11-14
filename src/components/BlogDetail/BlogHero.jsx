@@ -24,7 +24,12 @@ const BlogHero = ({
             style={{ height: '100%', width: '100%', objectFit: 'cover' }}
             loading="eager"
             onError={(e) => {
-              e.currentTarget.src = '/images/hero/Blog.png';
+              const fname = (coverImage || '').split('/').pop();
+              if (fname && !coverImage?.startsWith('/images/blogs/')) {
+                e.currentTarget.src = `/images/blogs/${fname}`;
+              } else {
+                e.currentTarget.src = '/images/hero/Blog.png';
+              }
             }}
           />
         </div>

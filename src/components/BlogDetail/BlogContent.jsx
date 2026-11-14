@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronDown, FiChevronUp, FiCheckCircle } from 'react-icons/fi';
 import { useBlogs } from '../../context/BlogContext';
-import { stripHtmlAndWpBlocks, slugifyHeading } from '../../utils/formatBlog';
+import { stripHtmlAndWpBlocks, slugifyHeading, normalizeBlogImageUrl } from '../../utils/formatBlog';
 
 const isRichHtmlContent = (raw = '') =>
   typeof raw === 'string' && /<!--\s*wp:|<(p|h[1-6]|figure|ul|ol|blockquote|table|div|section)\b[^>]*>/i.test(raw);
@@ -12,6 +12,7 @@ const isRichHtmlContent = (raw = '') =>
 const sanitizeWordPressHtml = (raw = '') => {
   if (typeof raw !== 'string') return '';
   let html = raw
+    .replace(/https?:\/\/cms\.pislinfra\.com/g, 'https://pislinfra.com/cms')
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<(script|style|object|embed)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
     .replace(/\son[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
@@ -122,6 +123,7 @@ const RenderImageBlock = ({ src, alt, caption, keyId }) => {
   if (!src) return null;
   const cleanAlt = alt && !alt.endsWith('.avif') && !alt.endsWith('.png') && !alt.endsWith('.jpg') && !alt.endsWith('.webp') ? alt : 'Pislinfra Infrastructure';
   const showCaption = caption || (alt && !alt.endsWith('.avif') && !alt.endsWith('.png') && !alt.endsWith('.jpg') && !alt.endsWith('.webp') && alt.length > 5 ? alt : null);
+  const resolvedSrc = normalizeBlogImageUrl(src) || src;
 
   return (
     <figure 
@@ -131,7 +133,7 @@ const RenderImageBlock = ({ src, alt, caption, keyId }) => {
       style={{ margin: '28px 0', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', backgroundColor: '#F8FAFC' }}
     >
       <img 
-        src={src} 
+        src={resolvedSrc} 
         alt={cleanAlt} 
         title={cleanAlt}
         itemProp="contentUrl"
@@ -139,7 +141,12 @@ const RenderImageBlock = ({ src, alt, caption, keyId }) => {
         decoding="async"
         style={{ width: '100%', maxHeight: '480px', objectFit: 'cover', display: 'block', borderRadius: '12px' }} 
         onError={(e) => {
-          e.currentTarget.style.display = 'none';
+          const fname = (resolvedSrc || '').split('/').pop();
+          if (fname && !resolvedSrc.startsWith('/images/blogs/')) {
+            e.currentTarget.src = `/images/blogs/${fname}`;
+          } else {
+            e.currentTarget.style.display = 'none';
+          }
         }}
       />
       {showCaption && (
@@ -324,9 +331,11 @@ const BlogContent = ({ content = '', images = [], faq = [], onContentReady }) =>
       // Google Image optimized dual image grid [IMAGE:2]
       if (trimmed === '[IMAGE:2]') {
         const img1 = images[imageIndex]; const img2 = images[imageIndex + 1]; imageIndex += 2;
-        const src1 = typeof img1 === 'string' ? img1 : img1?.src;
+        const rawSrc1 = typeof img1 === 'string' ? img1 : img1?.src;
+        const src1 = normalizeBlogImageUrl(rawSrc1) || rawSrc1;
         const alt1 = typeof img1 === 'string' ? 'Pislinfra industrial construction site' : (img1?.alt || 'Pislinfra construction');
-        const src2 = typeof img2 === 'string' ? img2 : img2?.src;
+        const rawSrc2 = typeof img2 === 'string' ? img2 : img2?.src;
+        const src2 = normalizeBlogImageUrl(rawSrc2) || rawSrc2;
         const alt2 = typeof img2 === 'string' ? 'Pislinfra engineering quality' : (img2?.alt || 'Pislinfra engineering');
 
         elements.push(

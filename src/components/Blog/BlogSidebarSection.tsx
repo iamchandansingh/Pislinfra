@@ -67,6 +67,14 @@ const BlogSidebarSection = () => {
                   loading="lazy"
                   decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                  onError={(e) => {
+                    const fname = (post.image || '').split('/').pop();
+                    if (fname && !post.image?.startsWith('/images/blogs/')) {
+                      e.currentTarget.src = `/images/blogs/${fname}`;
+                    } else {
+                      e.currentTarget.src = '/images/hero/Blog.png';
+                    }
+                  }}
                 />
               </div>
               <div className="recent-post-content">
