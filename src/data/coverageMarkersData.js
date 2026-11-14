@@ -15,9 +15,9 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
-      "/images/uploads/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
-      "/images/uploads/large_dhanbad_210kb_6b077476b0.jpeg"
+      "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
+      "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
+      "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg"
     ]
   },
   {
@@ -36,10 +36,10 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
-      "/images/uploads/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
-      "/images/uploads/large_AMNS_d5d027bbdc.jpeg",
-      "/images/uploads/large_AAMNS_1_c32916c58d.jpeg"
+      "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
+      "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
+      "/images/projects/large_AMNS_d5d027bbdc.jpeg",
+      "/images/projects/large_AAMNS_1_c32916c58d.jpeg"
     ]
   },
   {
@@ -58,9 +58,9 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_YUVA_Bio_Energy_68c0582388.jpeg",
-      "/images/uploads/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
-      "/images/uploads/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
+      "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg",
+      "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
+      "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
     ]
   },
   {
@@ -79,10 +79,10 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-      "/images/uploads/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
-      "/images/uploads/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-      "/images/uploads/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg"
+      "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+      "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
+      "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+      "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg"
     ]
   },
   {
@@ -101,10 +101,10 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
-      "/images/uploads/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
-      "/images/uploads/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
-      "/images/uploads/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
+      "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+      "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+      "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+      "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
     ]
   },
   {
@@ -123,11 +123,11 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
-      "/images/uploads/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
-      "/images/uploads/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
-      "/images/uploads/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
-      "/images/uploads/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
+      "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+      "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+      "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+      "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+      "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
     ]
   },
   {
@@ -146,12 +146,12 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755732015_768_large_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
-      "/images/uploads/large_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
-      "/images/uploads/optimized_1787755551918_184_large_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
-      "/images/uploads/optimized_1787755546108_364_large_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
-      "/images/uploads/optimized_1787755570793_781_large_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
-      "/images/uploads/optimized_1787755570560_282_large_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp"
+      "/images/projects/optimized_1787755732015_768_large_highway-humsafar-delhi-mumbai-expressway-hr_png.webp",
+      "/images/projects/large_highway_humsafar_delhi_mumbai_expressway_hr_2_28247d40e6.png",
+      "/images/projects/optimized_1787755551918_184_large_highway-humsafar-delhi-mumbai-expressway-hr-3_png.webp",
+      "/images/projects/optimized_1787755546108_364_large_highway-humsafar-delhi-mumbai-expressway-hr-4_png.webp",
+      "/images/projects/optimized_1787755570793_781_large_highway-humsafar-delhi-mumbai-expressway-hr-5_png.webp",
+      "/images/projects/optimized_1787755570560_282_large_highway-humsafar-delhi-mumbai-expressway-hr-6_png.webp"
     ]
   },
   {
@@ -189,7 +189,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png"
+      "/images/projects/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png"
     ]
   },
   {
@@ -208,7 +208,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_75e18124c0.png"
+      "/images/projects/large_rajratan_global_wires_chennai_tn_75e18124c0.png"
     ]
   },
   {
@@ -227,7 +227,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png"
+      "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png"
     ]
   },
   {
@@ -246,7 +246,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp"
+      "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp"
     ]
   },
   {
@@ -265,7 +265,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png"
+      "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png"
     ]
   },
   {
@@ -284,7 +284,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp"
+      "/images/projects/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp"
     ]
   },
   {
@@ -303,7 +303,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_41a8d15490.png"
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_41a8d15490.png"
     ]
   },
   {
@@ -322,7 +322,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png"
+      "/images/projects/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png"
     ]
   },
   {
@@ -341,7 +341,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_ncr_bigbox_patli_hr_61fcc6ba59.png"
+      "/images/projects/large_ncr_bigbox_patli_hr_61fcc6ba59.png"
     ]
   },
   {
@@ -360,7 +360,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp"
+      "/images/projects/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp"
     ]
   },
   {
@@ -379,7 +379,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp"
+      "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp"
     ]
   },
   {
@@ -399,7 +399,7 @@ const coverageMarkersData = [
     "markerStatus": null,
     "images": [
       "/images/uploads/compressed_1787754806543-1200x675.webp",
-      "/images/uploads/large_CSR_7_c15937b80b.png"
+      "/images/projects/large_CSR_7_c15937b80b.png"
     ]
   },
   {
@@ -418,7 +418,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp"
+      "/images/projects/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp"
     ]
   },
   {
@@ -437,7 +437,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp"
+      "/images/projects/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp"
     ]
   },
   {
@@ -456,7 +456,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp"
+      "/images/projects/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp"
     ]
   },
   {
@@ -494,7 +494,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_f04011dd73.png"
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_f04011dd73.png"
     ]
   },
   {
@@ -513,7 +513,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png"
+      "/images/projects/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png"
     ]
   },
   {
@@ -532,7 +532,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png"
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png"
     ]
   },
   {
@@ -551,7 +551,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png"
+      "/images/projects/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png"
     ]
   },
   {
@@ -570,7 +570,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png"
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png"
     ]
   },
   {
@@ -589,7 +589,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp"
+      "/images/projects/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp"
     ]
   },
   {
@@ -608,7 +608,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp"
+      "/images/projects/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp"
     ]
   },
   {
@@ -665,7 +665,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp"
+      "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp"
     ]
   },
   {
@@ -684,7 +684,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png"
+      "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png"
     ]
   },
   {
@@ -703,7 +703,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755239207_582_large_sanaswadi-industrial-project-pune-mh_png.webp"
+      "/images/projects/optimized_1787755239207_582_large_sanaswadi-industrial-project-pune-mh_png.webp"
     ]
   },
   {
@@ -722,7 +722,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755241070_281_large_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp"
+      "/images/projects/optimized_1787755241070_281_large_reliance-solar-unit-manufacturing-plant-jamnagar-gj_png.webp"
     ]
   },
   {
@@ -741,7 +741,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755113794_27_large_reliance-dmd-plant-dahej-gj_png.webp"
+      "/images/projects/optimized_1787755113794_27_large_reliance-dmd-plant-dahej-gj_png.webp"
     ]
   },
   {
@@ -760,7 +760,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
+      "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
     ]
   },
   {
@@ -779,7 +779,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
+      "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
     ]
   },
   {
@@ -798,7 +798,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
+      "/images/projects/large_pmg_logistics_park_kolathur_ka_7fddb12bf8.png"
     ]
   },
   {
@@ -817,7 +817,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp"
+      "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp"
     ]
   },
   {
@@ -836,7 +836,7 @@ const coverageMarkersData = [
     "showOnMap": false,
     "markerStatus": null,
     "images": [
-      "/images/uploads/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp"
+      "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp"
     ]
   }
 ];

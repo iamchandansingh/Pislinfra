@@ -1,2974 +1,350 @@
 [
   {
-    "id": 718,
+    "id": 1,
     "documentId": "wqd7gr6n1eodf36348atvtn4",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "cpwd-iit-ism-campus-project",
-    "name": "CPWD – IIT ISM Campus Project",
     "category": "Institutional",
+    "name": "CPWD – IIT ISM Campus Project",
     "location": "Dhanbad",
     "state": "Jharkhand",
     "area": "1.82 Lakh Sq. ft",
     "client": "IIT ISM Dhanbad (CPWD)",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Excavation, Concreting, Shuttering, PEB, Steel, Fire, Plumbing, Road Work, Playground Development",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 488,
-        "documentId": "wp_media_488",
-        "name": "large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
-        "alternativeText": "Large Aerial View Of Construction Site 210kb 86673afa22 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 753,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Aerial_View_of_Construction_Site_210kb_86673afa22-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Aerial_View_of_Construction_Site_210kb_86673afa22-500x377.jpeg",
-            "width": 500,
-            "height": 377
-          },
-          "medium": {
-            "url": "/images/uploads/large_Aerial_View_of_Construction_Site_210kb_86673afa22-750x565.jpeg",
-            "width": 750,
-            "height": 565
-          },
-          "large": {
-            "url": "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
-            "width": 1000,
-            "height": 753
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg"
-      },
-      {
-        "id": 489,
-        "documentId": "wp_media_489",
-        "name": "large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
-        "alternativeText": "Large CPWD Dhanbad 210kb A10a868318 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 754,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_CPWD_Dhanbad_210kb_a10a868318-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_CPWD_Dhanbad_210kb_a10a868318-500x377.jpeg",
-            "width": 500,
-            "height": 377
-          },
-          "medium": {
-            "url": "/images/uploads/large_CPWD_Dhanbad_210kb_a10a868318-750x566.jpeg",
-            "width": 750,
-            "height": 566
-          },
-          "large": {
-            "url": "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
-            "width": 1000,
-            "height": 754
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg"
-      },
-      {
-        "id": 490,
-        "documentId": "wp_media_490",
-        "name": "large_dhanbad_210kb_6b077476b0.jpeg",
-        "alternativeText": "Large Dhanbad 210kb 6b077476b0 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 754,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_dhanbad_210kb_6b077476b0-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_dhanbad_210kb_6b077476b0-500x377.jpeg",
-            "width": 500,
-            "height": 377
-          },
-          "medium": {
-            "url": "/images/uploads/large_dhanbad_210kb_6b077476b0-750x566.jpeg",
-            "width": 750,
-            "height": 566
-          },
-          "large": {
-            "url": "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg",
-            "width": 1000,
-            "height": 754
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/cpwd-iit-ism-campus-project",
-      "seoTitle": "CPWD – IIT ISM Campus Project | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "CPWD – IIT ISM Campus Project | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the CPWD – IIT ISM Campus Project ongoing construction and infrastructure project in Dhanbad by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the CPWD – IIT ISM Campus Project ongoing construction and infrastructure project in Dhanbad by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
+      "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
+      "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg"
+    ]
   },
   {
-    "id": 717,
+    "id": 2,
     "documentId": "n3hwjilrop1oleltf6fwjxmx",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "amns-ssc-gidc-project",
-    "name": "AMNS SSC GIDC Project",
     "category": "Industrial",
+    "name": "AMNS SSC GIDC Project",
     "location": "GIDC Sanand",
     "state": "Gujarat",
     "area": "16.15 Lakh Sq. Ft",
     "client": "AMNS",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 484,
-        "documentId": "wp_media_484",
-        "name": "large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
-        "alternativeText": "Large AMNS SSC GIDC Project1 E8dfd9f15d | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg"
-      },
-      {
-        "id": 485,
-        "documentId": "wp_media_485",
-        "name": "large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
-        "alternativeText": "Large AMNSSSC GIDC Project1s 5e656f3410 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_AMNSSSC_GIDC_Project1s_5e656f3410-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_AMNSSSC_GIDC_Project1s_5e656f3410-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_AMNSSSC_GIDC_Project1s_5e656f3410-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg"
-      },
-      {
-        "id": 486,
-        "documentId": "wp_media_486",
-        "name": "large_AMNS_d5d027bbdc.jpeg",
-        "alternativeText": "Large AMNS D5d027bbdc | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_AMNS_d5d027bbdc-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_AMNS_d5d027bbdc-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_AMNS_d5d027bbdc-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_AMNS_d5d027bbdc.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_AMNS_d5d027bbdc.jpeg"
-      },
-      {
-        "id": 487,
-        "documentId": "wp_media_487",
-        "name": "large_AAMNS_1_c32916c58d.jpeg",
-        "alternativeText": "Large AAMNS 1 C32916c58d | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_AAMNS_1_c32916c58d-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_AAMNS_1_c32916c58d-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_AAMNS_1_c32916c58d-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_AAMNS_1_c32916c58d.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_AAMNS_1_c32916c58d.jpeg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/amns-ssc-gidc-project",
-      "seoTitle": "AMNS SSC GIDC Project | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "AMNS SSC GIDC Project | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the AMNS SSC GIDC Project ongoing construction and infrastructure project in GIDC Sanand by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the AMNS SSC GIDC Project ongoing construction and infrastructure project in GIDC Sanand by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
+      "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
+      "/images/projects/large_AMNS_d5d027bbdc.jpeg",
+      "/images/projects/large_AAMNS_1_c32916c58d.jpeg"
+    ]
   },
   {
-    "id": 716,
+    "id": 3,
     "documentId": "amba9u870vie2hx8hmse641h",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "cbg-plant",
-    "name": "CBG Plant",
     "category": "Bio Energy",
+    "name": "CBG Plant",
     "location": "Najibabad",
     "state": "Uttar Pradesh",
     "area": "6.96 Lakh Sq.ft",
     "client": "Yuva Bio Energy Pvt Ltd",
     "timeline": "2022 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Excavation, Concreting, Shuttering, Reinforcement",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 481,
-        "documentId": "wp_media_481",
-        "name": "large_YUVA_Bio_Energy_68c0582388.jpeg",
-        "alternativeText": "Large YUVA Bio Energy 68c0582388 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_YUVA_Bio_Energy_68c0582388-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_YUVA_Bio_Energy_68c0582388-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_YUVA_Bio_Energy_68c0582388-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg"
-      },
-      {
-        "id": 482,
-        "documentId": "wp_media_482",
-        "name": "large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
-        "alternativeText": "Large YUVA Bio Energy1 592c9f7fa7 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_YUVA_Bio_Energy1_592c9f7fa7-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_YUVA_Bio_Energy1_592c9f7fa7-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_YUVA_Bio_Energy1_592c9f7fa7-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg"
-      },
-      {
-        "id": 483,
-        "documentId": "wp_media_483",
-        "name": "large_YUVA_Bio_Energyssa_39be1d30ad.jpeg",
-        "alternativeText": "Large YUVA Bio Energyssa 39be1d30ad | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_YUVA_Bio_Energyssa_39be1d30ad-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_YUVA_Bio_Energyssa_39be1d30ad-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_YUVA_Bio_Energyssa_39be1d30ad-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/cbg-plant",
-      "seoTitle": "CBG Plant | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "CBG Plant | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the CBG Plant ongoing construction and infrastructure project in Najibabad by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the CBG Plant ongoing construction and infrastructure project in Najibabad by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg",
+      "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
+      "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
+    ]
   },
   {
-    "id": 715,
+    "id": 4,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "hanno-one-logistics-park",
-    "name": "HANNO ONE Logistics Park",
     "category": "Warehousing",
+    "name": "HANNO ONE Logistics Park",
     "location": "Hosur",
     "state": "Tamil Nadu",
     "area": "3.43 Lakh Sq. Ft",
     "client": "Hanno One Warehouse Pvt. Ltd.",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 477,
-        "documentId": "wp_media_477",
-        "name": "large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-        "alternativeText": "Large DJI 20261006170514 0026 D INDUS 500kb 51c1c9049d | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d-500x282.jpg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d-750x422.jpg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg"
-      },
-      {
-        "id": 478,
-        "documentId": "wp_media_478",
-        "name": "large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-        "alternativeText": "Large DJI 20261006170600 0029 D INDUS 500kb Fedcd208d6 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6-500x282.jpg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6-750x422.jpg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg"
-      },
-      {
-        "id": 479,
-        "documentId": "wp_media_479",
-        "name": "large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-        "alternativeText": "Large DJI 20261006171028 0036 D INDUS 500kb 04c6e638c1 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1-500x282.jpg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1-750x422.jpg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg"
-      },
-      {
-        "id": 480,
-        "documentId": "wp_media_480",
-        "name": "large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
-        "alternativeText": "Large DJI 20261006170548 0028 D INDUS 500kb 60ce85caa9 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9-500x282.jpg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9-750x422.jpg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/hanno-one-logistics-park",
-      "seoTitle": "HANNO ONE Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "HANNO ONE Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the HANNO ONE Logistics Park ongoing construction and infrastructure project in Hosur by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the HANNO ONE Logistics Park ongoing construction and infrastructure project in Hosur by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+      "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+      "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+      "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
+    ]
   },
   {
-    "id": 714,
+    "id": 5,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "pmg-logistics-park-3",
-    "name": "PMG Logistics Park",
     "category": "Warehousing",
+    "name": "PMG Logistics Park",
     "location": "Neemrana",
     "state": "Rajasthan",
     "area": "1.75 Lakh Sq. ft",
     "client": "PMG",
     "timeline": "2026 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 473,
-        "documentId": "wp_media_473",
-        "name": "large_Neemrana_eafebb4ad2.jpeg",
-        "alternativeText": "Large Neemrana Eafebb4ad2 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 558,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Neemrana_eafebb4ad2-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Neemrana_eafebb4ad2-500x279.jpeg",
-            "width": 500,
-            "height": 279
-          },
-          "medium": {
-            "url": "/images/uploads/large_Neemrana_eafebb4ad2-750x419.jpeg",
-            "width": 750,
-            "height": 419
-          },
-          "large": {
-            "url": "/images/projects/large_Neemrana_eafebb4ad2.jpeg",
-            "width": 1000,
-            "height": 558
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Neemrana_eafebb4ad2.jpeg"
-      },
-      {
-        "id": 474,
-        "documentId": "wp_media_474",
-        "name": "large_Neemrana_4_d0566c8bd9.jpg",
-        "alternativeText": "Large Neemrana 4 D0566c8bd9 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 667,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Neemrana_4_d0566c8bd9-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Neemrana_4_d0566c8bd9-500x334.jpg",
-            "width": 500,
-            "height": 334
-          },
-          "medium": {
-            "url": "/images/uploads/large_Neemrana_4_d0566c8bd9-750x500.jpg",
-            "width": 750,
-            "height": 500
-          },
-          "large": {
-            "url": "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
-            "width": 1000,
-            "height": 667
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Neemrana_4_d0566c8bd9.jpg"
-      },
-      {
-        "id": 475,
-        "documentId": "wp_media_475",
-        "name": "large_Neemrana_3_884fd40dde.jpg",
-        "alternativeText": "Large Neemrana 3 884fd40dde | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 667,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Neemrana_3_884fd40dde-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Neemrana_3_884fd40dde-500x334.jpg",
-            "width": 500,
-            "height": 334
-          },
-          "medium": {
-            "url": "/images/uploads/large_Neemrana_3_884fd40dde-750x500.jpg",
-            "width": 750,
-            "height": 500
-          },
-          "large": {
-            "url": "/images/projects/large_Neemrana_3_884fd40dde.jpg",
-            "width": 1000,
-            "height": 667
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Neemrana_3_884fd40dde.jpg"
-      },
-      {
-        "id": 476,
-        "documentId": "wp_media_476",
-        "name": "large_Neemrana_6a53c4c5cf.jpg",
-        "alternativeText": "Large Neemrana 6a53c4c5cf | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 667,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Neemrana_6a53c4c5cf-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Neemrana_6a53c4c5cf-500x334.jpg",
-            "width": 500,
-            "height": 334
-          },
-          "medium": {
-            "url": "/images/uploads/large_Neemrana_6a53c4c5cf-750x500.jpg",
-            "width": 750,
-            "height": 500
-          },
-          "large": {
-            "url": "/images/projects/large_Neemrana_6a53c4c5cf.jpg",
-            "width": 1000,
-            "height": 667
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/pmg-logistics-park-3",
-      "seoTitle": "PMG Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "PMG Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the PMG Logistics Park ongoing construction and infrastructure project in Neemrana by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the PMG Logistics Park ongoing construction and infrastructure project in Neemrana by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_Neemrana_eafebb4ad2.jpeg",
+      "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
+      "/images/projects/large_Neemrana_3_884fd40dde.jpg",
+      "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
+    ]
   },
   {
-    "id": 713,
+    "id": 6,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "reliance-dmd-plant",
-    "name": "Reliance DMD Plant",
     "category": "Industrial",
+    "name": "Reliance DMD Plant",
     "location": "Dahej",
     "state": "Gujarat",
     "area": "N/A",
     "client": "Reliance Industries Limited",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Precasting & Erection of 75,000 MT Piperack Structures, CPCV Plant Civil & Structural Works, External Development",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 468,
-        "documentId": "wp_media_468",
-        "name": "large_Dahej_200kb_4d3b82c2de.jpeg",
-        "alternativeText": "Large Dahej 200kb 4d3b82c2de | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Dahej_200kb_4d3b82c2de-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Dahej_200kb_4d3b82c2de-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Dahej_200kb_4d3b82c2de-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg"
-      },
-      {
-        "id": 469,
-        "documentId": "wp_media_469",
-        "name": "large_Dahej1_200kb_85a21c1ac9.jpeg",
-        "alternativeText": "Large Dahej1 200kb 85a21c1ac9 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Dahej1_200kb_85a21c1ac9-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Dahej1_200kb_85a21c1ac9-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Dahej1_200kb_85a21c1ac9-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg"
-      },
-      {
-        "id": 470,
-        "documentId": "wp_media_470",
-        "name": "large_Dahej_1_dcba3adeed.jpeg",
-        "alternativeText": "Large Dahej 1 Dcba3adeed | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Dahej_1_dcba3adeed-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Dahej_1_dcba3adeed-500x282.jpeg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_Dahej_1_dcba3adeed-750x422.jpeg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Dahej_1_dcba3adeed.jpeg"
-      },
-      {
-        "id": 471,
-        "documentId": "wp_media_471",
-        "name": "optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
-        "alternativeText": "Optimized 1787755193887 649 Large Reliance Dmd Plant Dahej Gj 5 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp"
-      },
-      {
-        "id": 472,
-        "documentId": "wp_media_472",
-        "name": "large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png",
-        "alternativeText": "Large Reliance Dmd Plant Dahej Gj 6 2155c22e80 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_reliance_dmd_plant_dahej_gj_6_2155c22e80-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_reliance_dmd_plant_dahej_gj_6_2155c22e80-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_reliance_dmd_plant_dahej_gj_6_2155c22e80-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/reliance-dmd-plant",
-      "seoTitle": "Reliance DMD Plant | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "Reliance DMD Plant | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the Reliance DMD Plant ongoing construction and infrastructure project in Dahej by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the Reliance DMD Plant ongoing construction and infrastructure project in Dahej by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg",
+      "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg",
+      "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
+      "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
+      "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
+    ]
   },
   {
-    "id": 712,
+    "id": 7,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "sanaswadi-industrial-project",
-    "name": "Sanaswadi Industrial Project",
     "category": "Industrial",
+    "name": "Sanaswadi Industrial Project",
     "location": "Pune",
     "state": "Maharashtra",
     "area": "3.91 Lakh Sq. Ft",
     "client": "Pragati",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Foundations, PEB Structural Works, Buildings, Sheds, Roads & Infrastructure",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 464,
-        "documentId": "wp_media_464",
-        "name": "large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
-        "alternativeText": "Large Sanaswadi Industrial Project 8b1cc2dfb0 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_8b1cc2dfb0-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_8b1cc2dfb0-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_8b1cc2dfb0-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg"
-      },
-      {
-        "id": 465,
-        "documentId": "wp_media_465",
-        "name": "large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
-        "alternativeText": "Large Sanaswadi Industrial Project 2 948ecc1001 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_2_948ecc1001-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_2_948ecc1001-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_2_948ecc1001-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg"
-      },
-      {
-        "id": 466,
-        "documentId": "wp_media_466",
-        "name": "large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
-        "alternativeText": "Large Sanaswadi Industrial Project 1 2f441095ec | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_1_2f441095ec-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_1_2f441095ec-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_1_2f441095ec-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg"
-      },
-      {
-        "id": 467,
-        "documentId": "wp_media_467",
-        "name": "large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg",
-        "alternativeText": "Large Sanaswadi Industrial Project 3 B6426fba8f | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_3_b6426fba8f-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_3_b6426fba8f-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Sanaswadi_Industrial_Project_3_b6426fba8f-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/sanaswadi-industrial-project",
-      "seoTitle": "Sanaswadi Industrial Project | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "Sanaswadi Industrial Project | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the Sanaswadi Industrial Project ongoing construction and infrastructure project in Pune by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the Sanaswadi Industrial Project ongoing construction and infrastructure project in Pune by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
+    ]
   },
   {
-    "id": 711,
+    "id": 8,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "tr-building-township-jamnagar",
-    "name": "TR Building Township Jamnagar",
     "category": "Building Construction",
+    "name": "TR Building Township Jamnagar",
     "location": "Jamnagar",
     "state": "Gujarat",
     "area": "2 Nos. (G+12) Buildings, 2,500 Sqm per Floor",
     "client": "Reliance Industries Limited",
     "timeline": "2026 WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Construction Works for Core & Shell of TR Type Buildings No. 105 & 106.",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 459,
-        "documentId": "wp_media_459",
-        "name": "large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
-        "alternativeText": "Large 4 TR Building Township Jamnagar 13bfc57dab | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_4_TR_Building_Township_Jamnagar_13bfc57dab-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_4_TR_Building_Township_Jamnagar_13bfc57dab-500x282.jpeg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_4_TR_Building_Township_Jamnagar_13bfc57dab-750x422.jpeg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg"
-      },
-      {
-        "id": 460,
-        "documentId": "wp_media_460",
-        "name": "large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
-        "alternativeText": "Large 1 TR Building Township Jamnagar 3416f89107 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_1_TR_Building_Township_Jamnagar_3416f89107-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_1_TR_Building_Township_Jamnagar_3416f89107-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_1_TR_Building_Township_Jamnagar_3416f89107-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg"
-      },
-      {
-        "id": 461,
-        "documentId": "wp_media_461",
-        "name": "large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
-        "alternativeText": "Large 2 TR Building Township Jamnagar Deb7b7161c | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_2_TR_Building_Township_Jamnagar_deb7b7161c-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_2_TR_Building_Township_Jamnagar_deb7b7161c-500x282.jpeg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_2_TR_Building_Township_Jamnagar_deb7b7161c-750x422.jpeg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg"
-      },
-      {
-        "id": 462,
-        "documentId": "wp_media_462",
-        "name": "large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
-        "alternativeText": "Large 3 TR Building Township Jamnagar Cdcea5a284 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_3_TR_Building_Township_Jamnagar_cdcea5a284-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_3_TR_Building_Township_Jamnagar_cdcea5a284-500x282.jpeg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_3_TR_Building_Township_Jamnagar_cdcea5a284-750x422.jpeg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg"
-      },
-      {
-        "id": 463,
-        "documentId": "wp_media_463",
-        "name": "large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
-        "alternativeText": "Large 5 TR Building Township Jamnagar Bc04226f23 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_5_TR_Building_Township_Jamnagar_bc04226f23-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_5_TR_Building_Township_Jamnagar_bc04226f23-500x282.jpeg",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_5_TR_Building_Township_Jamnagar_bc04226f23-750x422.jpeg",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/tr-building-township-jamnagar",
-      "seoTitle": "TR Building Township Jamnagar | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "TR Building Township Jamnagar | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the TR Building Township Jamnagar ongoing construction and infrastructure project in Jamnagar by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the TR Building Township Jamnagar ongoing construction and infrastructure project in Jamnagar by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+      "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+      "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+      "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+      "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
+    ]
   },
   {
-    "id": 710,
+    "id": 9,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "crestway-projects-private-limited",
-    "name": "Crestway Projects Private Limited",
     "category": "Industrial",
+    "name": "Crestway Projects Private Limited",
     "location": "Farrukhnagar",
     "state": "Haryana",
     "area": "4.39 Lakh Sq. ft",
     "client": "Prologis",
     "timeline": "2025 WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Design and Build",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 455,
-        "documentId": "wp_media_455",
-        "name": "large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
-        "alternativeText": "Large Rebar Wall Construction Site 500kb C2264ddb63 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 713,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63-500x357.jpeg",
-            "width": 500,
-            "height": 357
-          },
-          "medium": {
-            "url": "/images/uploads/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63-750x535.jpeg",
-            "width": 750,
-            "height": 535
-          },
-          "large": {
-            "url": "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
-            "width": 1000,
-            "height": 713
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg"
-      },
-      {
-        "id": 456,
-        "documentId": "wp_media_456",
-        "name": "large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
-        "alternativeText": "Large Open Sky Construction Site 500kb 0045f305de | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 737,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Open_Sky_Construction_Site_500kb_0045f305de-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Open_Sky_Construction_Site_500kb_0045f305de-500x369.jpeg",
-            "width": 500,
-            "height": 369
-          },
-          "medium": {
-            "url": "/images/uploads/large_Open_Sky_Construction_Site_500kb_0045f305de-750x553.jpeg",
-            "width": 750,
-            "height": 553
-          },
-          "large": {
-            "url": "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
-            "width": 1000,
-            "height": 737
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg"
-      },
-      {
-        "id": 457,
-        "documentId": "wp_media_457",
-        "name": "large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
-        "alternativeText": "Large Rebar Lines Across The Construction Site 500kb D3739c37e3 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3-150x150.jpeg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3-500x375.jpeg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3-750x563.jpeg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg"
-      },
-      {
-        "id": 458,
-        "documentId": "wp_media_458",
-        "name": "large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
-        "alternativeText": "Large Workers Building Rebar Scaffold Under Blue Skies 74308da22b | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 848,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b-500x424.png",
-            "width": 500,
-            "height": 424
-          },
-          "medium": {
-            "url": "/images/uploads/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b-750x636.png",
-            "width": 750,
-            "height": 636
-          },
-          "large": {
-            "url": "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png",
-            "width": 1000,
-            "height": 848
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/crestway-projects-private-limited",
-      "seoTitle": "Crestway Projects Private Limited | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "Crestway Projects Private Limited | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the Crestway Projects Private Limited ongoing construction and infrastructure project in Farrukhnagar by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the Crestway Projects Private Limited ongoing construction and infrastructure project in Farrukhnagar by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+      "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+      "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+      "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
+    ]
   },
   {
-    "id": 709,
+    "id": 10,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "reliance-solar-unit-manufacturing-plant",
-    "name": "Reliance Solar Unit Manufacturing Plant",
     "category": "Industrial",
+    "name": "Reliance Solar Unit Manufacturing Plant",
     "location": "Jamnagar",
     "state": "Gujarat",
     "area": "21.09 Lakh Sq. ft.",
     "client": "Reliance New Solar Energy Limited",
     "timeline": "2022 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Excavation, Concreting, Shuttering, Reinforcement",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 449,
-        "documentId": "wp_media_449",
-        "name": "large_1_fec39f116d.png",
-        "alternativeText": "Large 1 Fec39f116d | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_1_fec39f116d-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_1_fec39f116d-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_1_fec39f116d-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_1_fec39f116d.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_1_fec39f116d.png"
-      },
-      {
-        "id": 450,
-        "documentId": "wp_media_450",
-        "name": "large_3_318cf6a93d.png",
-        "alternativeText": "Large 3 318cf6a93d | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_3_318cf6a93d-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_3_318cf6a93d-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_3_318cf6a93d-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_3_318cf6a93d.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_3_318cf6a93d.png"
-      },
-      {
-        "id": 451,
-        "documentId": "wp_media_451",
-        "name": "large_5_ba5057d1f1.png",
-        "alternativeText": "Large 5 Ba5057d1f1 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_5_ba5057d1f1-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_5_ba5057d1f1-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_5_ba5057d1f1-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_5_ba5057d1f1.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_5_ba5057d1f1.png"
-      },
-      {
-        "id": 452,
-        "documentId": "wp_media_452",
-        "name": "large_4_9fb455d2e9.png",
-        "alternativeText": "Large 4 9fb455d2e9 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_4_9fb455d2e9-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_4_9fb455d2e9-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_4_9fb455d2e9-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_4_9fb455d2e9.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_4_9fb455d2e9.png"
-      },
-      {
-        "id": 453,
-        "documentId": "wp_media_453",
-        "name": "large_2_761b33d651.png",
-        "alternativeText": "Large 2 761b33d651 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_2_761b33d651-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_2_761b33d651-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_2_761b33d651-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_2_761b33d651.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_2_761b33d651.png"
-      },
-      {
-        "id": 454,
-        "documentId": "wp_media_454",
-        "name": "large_6_dfe6b76dab.png",
-        "alternativeText": "Large 6 Dfe6b76dab | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_6_dfe6b76dab-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_6_dfe6b76dab-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_6_dfe6b76dab-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_6_dfe6b76dab.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_6_dfe6b76dab.png"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/reliance-solar-unit-manufacturing-plant",
-      "seoTitle": "Reliance Solar Unit Manufacturing Plant | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "Reliance Solar Unit Manufacturing Plant | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the Reliance Solar Unit Manufacturing Plant ongoing construction and infrastructure project in Jamnagar by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the Reliance Solar Unit Manufacturing Plant ongoing construction and infrastructure project in Jamnagar by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_1_fec39f116d.png",
+      "/images/projects/large_3_318cf6a93d.png",
+      "/images/projects/large_5_ba5057d1f1.png",
+      "/images/projects/large_4_9fb455d2e9.png",
+      "/images/projects/large_2_761b33d651.png",
+      "/images/projects/large_6_dfe6b76dab.png"
+    ]
   },
   {
-    "id": 708,
+    "id": 11,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "pmg-logistics-park-2",
-    "name": "PMG Logistics Park",
     "category": "Warehousing",
+    "name": "PMG Logistics Park",
     "location": "Kolathur, Bangalore",
     "state": "Karnataka",
     "area": "5.79 Lakh Sq. ft",
     "client": "PMG",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 445,
-        "documentId": "wp_media_445",
-        "name": "large_3_PISL_f570401ce9.jpg",
-        "alternativeText": "Large 3 PISL F570401ce9 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_3_PISL_f570401ce9-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_3_PISL_f570401ce9-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_3_PISL_f570401ce9-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_3_PISL_f570401ce9.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_3_PISL_f570401ce9.jpg"
-      },
-      {
-        "id": 446,
-        "documentId": "wp_media_446",
-        "name": "large_2_PISL_40549a305b.jpg",
-        "alternativeText": "Large 2 PISL 40549a305b | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_2_PISL_40549a305b-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_2_PISL_40549a305b-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_2_PISL_40549a305b-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_2_PISL_40549a305b.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_2_PISL_40549a305b.jpg"
-      },
-      {
-        "id": 447,
-        "documentId": "wp_media_447",
-        "name": "large_1_PISL_eaba1bf8da.jpg",
-        "alternativeText": "Large 1 PISL Eaba1bf8da | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_1_PISL_eaba1bf8da-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_1_PISL_eaba1bf8da-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_1_PISL_eaba1bf8da-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_1_PISL_eaba1bf8da.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_1_PISL_eaba1bf8da.jpg"
-      },
-      {
-        "id": 448,
-        "documentId": "wp_media_448",
-        "name": "large_4_PISL_3d32e8072c.jpg",
-        "alternativeText": "Large 4 PISL 3d32e8072c | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 750,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_4_PISL_3d32e8072c-150x150.jpg",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_4_PISL_3d32e8072c-500x375.jpg",
-            "width": 500,
-            "height": 375
-          },
-          "medium": {
-            "url": "/images/uploads/large_4_PISL_3d32e8072c-750x563.jpg",
-            "width": 750,
-            "height": 563
-          },
-          "large": {
-            "url": "/images/projects/large_4_PISL_3d32e8072c.jpg",
-            "width": 1000,
-            "height": 750
-          }
-        },
-        "mime": "image/jpeg",
-        "url": "/images/projects/large_4_PISL_3d32e8072c.jpg"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/pmg-logistics-park-2",
-      "seoTitle": "PMG Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "PMG Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the PMG Logistics Park ongoing construction and infrastructure project in Kolathur, Bangalore by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the PMG Logistics Park ongoing construction and infrastructure project in Kolathur, Bangalore by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_3_PISL_f570401ce9.jpg",
+      "/images/projects/large_2_PISL_40549a305b.jpg",
+      "/images/projects/large_1_PISL_eaba1bf8da.jpg",
+      "/images/projects/large_4_PISL_3d32e8072c.jpg"
+    ]
   },
   {
-    "id": 707,
+    "id": 12,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "vinyl-project-at-dmd-osbl-area",
-    "name": "Vinyl Project at DMD, OSBL Area",
     "category": "Industrial",
+    "name": "Vinyl Project at DMD, OSBL Area",
     "location": "Dahej-02",
     "state": "Gujarat",
     "area": "N/A",
     "client": "Reliance Industries Limited",
     "timeline": "2025 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Construction Work of pipe rack, sleeper, and foundations, Utility Building, Water Reservoir, Pump House",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 439,
-        "documentId": "wp_media_439",
-        "name": "optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
-        "alternativeText": "Optimized 1787755547676 19 Large Vinyl Project At Dmd Osbl Area Dahej Gj Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp"
-      },
-      {
-        "id": 440,
-        "documentId": "wp_media_440",
-        "name": "optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
-        "alternativeText": "Optimized 1787755545714 16 Large Vinyl Project At Dmd Osbl Area Dahej Gj 2 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp"
-      },
-      {
-        "id": 441,
-        "documentId": "wp_media_441",
-        "name": "large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
-        "alternativeText": "Large Vinyl Project At Dmd Osbl Area Dahej Gj 3 2d0fbb6c7e | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png"
-      },
-      {
-        "id": 442,
-        "documentId": "wp_media_442",
-        "name": "large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
-        "alternativeText": "Large Vinyl Project At Dmd Osbl Area Dahej Gj 4 11cf8acc6e | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png"
-      },
-      {
-        "id": 443,
-        "documentId": "wp_media_443",
-        "name": "optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
-        "alternativeText": "Optimized 1787755570638 288 Large Vinyl Project At Dmd Osbl Area Dahej Gj 5 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp"
-      },
-      {
-        "id": 444,
-        "documentId": "wp_media_444",
-        "name": "optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp",
-        "alternativeText": "Optimized 1787755598682 926 Large Vinyl Project At Dmd Osbl Area Dahej Gj 6 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/vinyl-project-at-dmd-osbl-area",
-      "seoTitle": "Vinyl Project at DMD, OSBL Area | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "Vinyl Project at DMD, OSBL Area | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the Vinyl Project at DMD, OSBL Area ongoing construction and infrastructure project in Dahej-02 by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the Vinyl Project at DMD, OSBL Area ongoing construction and infrastructure project in Dahej-02 by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+      "/images/projects/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
+      "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
+      "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
+      "/images/projects/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
+      "/images/projects/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
+    ]
   },
   {
-    "id": 706,
+    "id": 13,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "pmg-logistics-park",
-    "name": "PMG Logistics Park",
     "category": "Warehousing",
+    "name": "PMG Logistics Park",
     "location": "Hyderabad",
     "state": "Telangana",
     "area": "9.15 Lakh Sq.ft",
     "client": "PMG",
     "timeline": "2026 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 433,
-        "documentId": "wp_media_433",
-        "name": "optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
-        "alternativeText": "Optimized 1787755503475 87 Large Pmg Logistics Park Hyderabad Tg Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp"
-      },
-      {
-        "id": 434,
-        "documentId": "wp_media_434",
-        "name": "optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
-        "alternativeText": "Optimized 1787755299323 594 Large Pmg Logistics Park Hyderabad Tg 2 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp"
-      },
-      {
-        "id": 435,
-        "documentId": "wp_media_435",
-        "name": "optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
-        "alternativeText": "Optimized 1787755505244 969 Large Pmg Logistics Park Hyderabad Tg 3 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp"
-      },
-      {
-        "id": 436,
-        "documentId": "wp_media_436",
-        "name": "optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
-        "alternativeText": "Optimized 1787755504132 96 Large Pmg Logistics Park Hyderabad Tg 4 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp"
-      },
-      {
-        "id": 437,
-        "documentId": "wp_media_437",
-        "name": "optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
-        "alternativeText": "Optimized 1787755545828 639 Large Pmg Logistics Park Hyderabad Tg 5 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp"
-      },
-      {
-        "id": 438,
-        "documentId": "wp_media_438",
-        "name": "optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp",
-        "alternativeText": "Optimized 1787755546861 766 Large Pmg Logistics Park Hyderabad Tg 6 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/pmg-logistics-park",
-      "seoTitle": "PMG Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "PMG Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the PMG Logistics Park ongoing construction and infrastructure project in Hyderabad by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the PMG Logistics Park ongoing construction and infrastructure project in Hyderabad by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
+      "/images/projects/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
+      "/images/projects/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
+      "/images/projects/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
+      "/images/projects/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
+      "/images/projects/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
+    ]
   },
   {
-    "id": 705,
+    "id": 14,
     "documentId": "ywzyrpkgrji1iuhjn72mt0kd",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "vpw-logistics-park",
-    "name": "VPW Logistics Park",
     "category": "Warehousing",
+    "name": "VPW Logistics Park",
     "location": "Mappedu, Chennai",
     "state": "Tamil Nadu",
     "area": "12.73 Lakh Sq.ft",
     "client": "VPW Warehousing Pvt Ltd",
     "timeline": "2023 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for Warehousing, Infrastructure & Utilities",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 427,
-        "documentId": "wp_media_427",
-        "name": "large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
-        "alternativeText": "Large Vpw Logistics Park Mappedu Tn 1523a1ec59 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_vpw_logistics_park_mappedu_tn_1523a1ec59-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_vpw_logistics_park_mappedu_tn_1523a1ec59-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_vpw_logistics_park_mappedu_tn_1523a1ec59-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png"
-      },
-      {
-        "id": 428,
-        "documentId": "wp_media_428",
-        "name": "optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
-        "alternativeText": "Optimized 1787755421549 194 Large Vpw Logistics Park Mappedu Tn 2 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp"
-      },
-      {
-        "id": 429,
-        "documentId": "wp_media_429",
-        "name": "optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
-        "alternativeText": "Optimized 1787755095486 801 Large Vpw Logistics Park Mappedu Tn 3 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp"
-      },
-      {
-        "id": 430,
-        "documentId": "wp_media_430",
-        "name": "optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
-        "alternativeText": "Optimized 1787755104253 498 Large Vpw Logistics Park Mappedu Tn 4 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp"
-      },
-      {
-        "id": 431,
-        "documentId": "wp_media_431",
-        "name": "optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
-        "alternativeText": "Optimized 1787755415827 935 Large Vpw Logistics Park Mappedu Tn 5 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp"
-      },
-      {
-        "id": 432,
-        "documentId": "wp_media_432",
-        "name": "optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp",
-        "alternativeText": "Optimized 1787755417680 253 Large Vpw Logistics Park Mappedu Tn 6 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/vpw-logistics-park",
-      "seoTitle": "VPW Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "VPW Logistics Park | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the VPW Logistics Park ongoing construction and infrastructure project in Mappedu, Chennai by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the VPW Logistics Park ongoing construction and infrastructure project in Mappedu, Chennai by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+      "/images/projects/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
+      "/images/projects/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
+      "/images/projects/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
+      "/images/projects/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
+      "/images/projects/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
+    ]
   },
   {
-    "id": 704,
+    "id": 15,
     "documentId": "jedk9e503yua67xjpnytptxj",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "amns-steel-plant",
-    "name": "AMNS Steel Plant",
     "category": "Industrial",
+    "name": "AMNS Steel Plant",
     "location": "Hazira, Surat",
     "state": "Gujarat",
     "area": "N/A",
     "client": "AMNS",
     "timeline": "2023 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for CRM, Packaging Line, Admin Building, Cooling Tower",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 421,
-        "documentId": "wp_media_421",
-        "name": "optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
-        "alternativeText": "Optimized 1787755373765 847 Large Amns Steel Plant Hazira Gj Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp"
-      },
-      {
-        "id": 422,
-        "documentId": "wp_media_422",
-        "name": "optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
-        "alternativeText": "Optimized 1787755357955 62 Large Amns Steel Plant Hazira Gj 6 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp"
-      },
-      {
-        "id": 423,
-        "documentId": "wp_media_423",
-        "name": "large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
-        "alternativeText": "Large Amns Steel Plant Hazira Gj 5 F151f3bf62 | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/large_amns_steel_plant_hazira_gj_5_f151f3bf62-150x150.png",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/large_amns_steel_plant_hazira_gj_5_f151f3bf62-500x282.png",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/large_amns_steel_plant_hazira_gj_5_f151f3bf62-750x422.png",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/png",
-        "url": "/images/projects/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png"
-      },
-      {
-        "id": 424,
-        "documentId": "wp_media_424",
-        "name": "optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
-        "alternativeText": "Optimized 1787755358125 793 Large Amns Steel Plant Hazira Gj 4 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp"
-      },
-      {
-        "id": 425,
-        "documentId": "wp_media_425",
-        "name": "optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
-        "alternativeText": "Optimized 1787755387519 321 Large Amns Steel Plant Hazira Gj 3 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp"
-      },
-      {
-        "id": 426,
-        "documentId": "wp_media_426",
-        "name": "optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp",
-        "alternativeText": "Optimized 1787755388656 233 Large Amns Steel Plant Hazira Gj 2 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/amns-steel-plant",
-      "seoTitle": "AMNS Steel Plant | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "AMNS Steel Plant | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the AMNS Steel Plant ongoing construction and infrastructure project in Hazira, Surat by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the AMNS Steel Plant ongoing construction and infrastructure project in Hazira, Surat by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
+      "/images/projects/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
+      "/images/projects/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
+      "/images/projects/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
+      "/images/projects/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
+      "/images/projects/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
+    ]
   },
   {
-    "id": 703,
+    "id": 16,
     "documentId": "om6mchzq1j5wa8d49sr93edi",
-    "createdAt": "2026-11-12T08:14:52+00:00",
-    "updatedAt": "2026-11-12T08:14:52+00:00",
-    "publishedAt": "2026-11-12T08:14:52+00:00",
-    "slug": "adani-copper-smelter-project",
-    "name": "Adani Copper Smelter Project",
     "category": "Industrial",
+    "name": "Adani Copper Smelter Project",
     "location": "Mundra",
     "state": "Gujarat",
     "area": "5.47 Lakh Sq. ft",
     "client": "Adani Group",
     "timeline": "2022 - WIP",
-    "projectStatus": "Ongoing",
+    "status": "Ongoing",
     "scope": "Civil Work for CRM, Packaging Line, Admin Building, Cooling Tower",
     "cx": null,
     "cy": null,
-    "order": null,
     "images": [
-      {
-        "id": 415,
-        "documentId": "wp_media_415",
-        "name": "optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
-        "alternativeText": "Optimized 1787754985347 867 Large Adani Copper Smelter Mundra Gj 1 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp"
-      },
-      {
-        "id": 416,
-        "documentId": "wp_media_416",
-        "name": "optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
-        "alternativeText": "Optimized 1787755039983 716 Large Adani Copper Smelter Mundra Gj 2 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp"
-      },
-      {
-        "id": 417,
-        "documentId": "wp_media_417",
-        "name": "optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
-        "alternativeText": "Optimized 1787754985028 676 Large Adani Copper Smelter Mundra Gj 3 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp"
-      },
-      {
-        "id": 418,
-        "documentId": "wp_media_418",
-        "name": "optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
-        "alternativeText": "Optimized 1787755307751 580 Large Adani Copper Smelter Mundra Gj 4 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp"
-      },
-      {
-        "id": 419,
-        "documentId": "wp_media_419",
-        "name": "optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
-        "alternativeText": "Optimized 1787755049149 794 Large Adani Copper Smelter Mundra Gj 5 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp"
-      },
-      {
-        "id": 420,
-        "documentId": "wp_media_420",
-        "name": "optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp",
-        "alternativeText": "Optimized 1787755315973 816 Large Adani Copper Smelter Mundra Gj 6 Png | Pragati Infra Solutions",
-        "caption": "",
-        "width": 1000,
-        "height": 563,
-        "formats": {
-          "thumbnail": {
-            "url": "/images/uploads/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png-150x150.webp",
-            "width": 150,
-            "height": 150
-          },
-          "small": {
-            "url": "/images/uploads/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png-500x282.webp",
-            "width": 500,
-            "height": 282
-          },
-          "medium": {
-            "url": "/images/uploads/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png-750x422.webp",
-            "width": 750,
-            "height": 422
-          },
-          "large": {
-            "url": "/images/projects/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp",
-            "width": 1000,
-            "height": 563
-          }
-        },
-        "mime": "image/webp",
-        "url": "/images/projects/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
-      }
-    ],
-    "seo": {
-      "canonicalUrl": "https://pislinfra.com/project/ongoing/adani-copper-smelter-project",
-      "seoTitle": "Adani Copper Smelter Project | Ongoing Projects | Pragati Infra Solutions",
-      "metaTitle": "Adani Copper Smelter Project | Ongoing Projects | Pragati Infra Solutions",
-      "seoDescription": "Learn about the Adani Copper Smelter Project ongoing construction and infrastructure project in Mundra by Pragati Infra Solutions Pvt. Ltd.",
-      "metaDescription": "Learn about the Adani Copper Smelter Project ongoing construction and infrastructure project in Mundra by Pragati Infra Solutions Pvt. Ltd."
-    }
+      "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
+      "/images/projects/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
+      "/images/projects/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
+      "/images/projects/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
+      "/images/projects/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
+      "/images/projects/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
+    ]
   }
 ]

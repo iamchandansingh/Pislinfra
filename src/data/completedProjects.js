@@ -14,10 +14,10 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_3_Ludhiana_08fe0ac214.jpeg",
-      "/images/uploads/large_2_Ludhiana_30fd41522e.jpeg",
-      "/images/uploads/large_4_Ludhiana_0cb21412eb.jpeg",
-      "/images/uploads/large_1_Ludhiana_14dce031dc.jpeg"
+      "/images/projects/large_3_Ludhiana_08fe0ac214.jpeg",
+      "/images/projects/large_2_Ludhiana_30fd41522e.jpeg",
+      "/images/projects/large_4_Ludhiana_0cb21412eb.jpeg",
+      "/images/projects/large_1_Ludhiana_14dce031dc.jpeg"
     ]
   },
   {
@@ -35,11 +35,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_Highway_1_0f80b91f8c.png",
-      "/images/uploads/large_Highway_2_327c66d033.png",
-      "/images/uploads/large_Highway_3_a79fa57c80.png",
-      "/images/uploads/large_Highway_4_4952c44ce1.png",
-      "/images/uploads/large_Highway_5_1c0aded13d.png"
+      "/images/projects/large_Highway_1_0f80b91f8c.png",
+      "/images/projects/large_Highway_2_327c66d033.png",
+      "/images/projects/large_Highway_3_a79fa57c80.png",
+      "/images/projects/large_Highway_4_4952c44ce1.png",
+      "/images/projects/large_Highway_5_1c0aded13d.png"
     ]
   },
   {
@@ -57,11 +57,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
-      "/images/uploads/large_blue_dart_warehouse_bilaspur_hr_2_cd3114de67.png",
-      "/images/uploads/large_blue_dart_warehouse_bilaspur_hr_3_f5c4061325.png",
-      "/images/uploads/optimized_1787755104338_650_large_blue-dart-warehouse-bilaspur-hr-4_png.webp",
-      "/images/uploads/large_blue_dart_warehouse_bilaspur_hr_5_9d0e7a4732.png"
+      "/images/projects/large_blue_dart_warehouse_bilaspur_hr_d28e220d09.png",
+      "/images/projects/large_blue_dart_warehouse_bilaspur_hr_2_cd3114de67.png",
+      "/images/projects/large_blue_dart_warehouse_bilaspur_hr_3_f5c4061325.png",
+      "/images/projects/optimized_1787755104338_650_large_blue-dart-warehouse-bilaspur-hr-4_png.webp",
+      "/images/projects/large_blue_dart_warehouse_bilaspur_hr_5_9d0e7a4732.png"
     ]
   },
   {
@@ -79,11 +79,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
-      "/images/uploads/optimized_1787755080058_327_large_cadbury-warehouse-dharuhera-hr-2_png.webp",
-      "/images/uploads/large_cadbury_warehouse_dharuhera_hr_3_7e56369fbc.png",
-      "/images/uploads/large_cadbury_warehouse_dharuhera_hr_4_63544691ed.png",
-      "/images/uploads/large_cadbury_warehouse_dharuhera_hr_5_48d2ac00b4.png"
+      "/images/projects/large_cadbury_warehouse_dharuhera_hr_d17448dec2.png",
+      "/images/projects/optimized_1787755080058_327_large_cadbury-warehouse-dharuhera-hr-2_png.webp",
+      "/images/projects/large_cadbury_warehouse_dharuhera_hr_3_7e56369fbc.png",
+      "/images/projects/large_cadbury_warehouse_dharuhera_hr_4_63544691ed.png",
+      "/images/projects/large_cadbury_warehouse_dharuhera_hr_5_48d2ac00b4.png"
     ]
   },
   {
@@ -101,10 +101,10 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755379749_965_large_amazon-del5-billaspur-hr_png.webp",
-      "/images/uploads/optimized_1787755047655_963_large_amazon-del5-billaspur-hr-2_png.webp",
-      "/images/uploads/large_amazon_del5_billaspur_hr_3_73eaf5707b.png",
-      "/images/uploads/optimized_1787755113063_262_large_amazon-del5-billaspur-hr-4_png.webp",
+      "/images/projects/optimized_1787755379749_965_large_amazon-del5-billaspur-hr_png.webp",
+      "/images/projects/optimized_1787755047655_963_large_amazon-del5-billaspur-hr-2_png.webp",
+      "/images/projects/large_amazon_del5_billaspur_hr_3_73eaf5707b.png",
+      "/images/projects/optimized_1787755113063_262_large_amazon-del5-billaspur-hr-4_png.webp",
       "/images/uploads/optimized_1787754972679_771_amazon-del5-billaspur-hr-5_png-1200x675.webp",
       "/images/uploads/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png-1200x675.webp"
     ]
@@ -124,11 +124,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp",
-      "/images/uploads/large_amazon_delu_manesar_hr_2_703371239d.png",
-      "/images/uploads/large_amazon_delu_manesar_hr_3_a41fcae59d.png",
-      "/images/uploads/optimized_1787755104892_976_large_amazon-delu-manesar-hr-4_png.webp",
-      "/images/uploads/optimized_1787755057134_775_large_amazon-delu-manesar-hr-5_png.webp"
+      "/images/projects/optimized_1787755069776_658_large_amazon-delu-manesar-hr_png.webp",
+      "/images/projects/large_amazon_delu_manesar_hr_2_703371239d.png",
+      "/images/projects/large_amazon_delu_manesar_hr_3_a41fcae59d.png",
+      "/images/projects/optimized_1787755104892_976_large_amazon-delu-manesar-hr-4_png.webp",
+      "/images/projects/optimized_1787755057134_775_large_amazon-delu-manesar-hr-5_png.webp"
     ]
   },
   {
@@ -146,11 +146,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_all_cargo_logistics_park_farrukhnagar_hr_9429b75b58.png",
+      "/images/projects/large_all_cargo_logistics_park_farrukhnagar_hr_9429b75b58.png",
       "/images/uploads/optimized_1787754972742_595_all-cargo-logistics-park-farrukhnagar-hr-2_png-1200x675.webp",
-      "/images/uploads/optimized_1787755357279_603_large_all-cargo-logistics-park-farrukhnagar-hr-3_png.webp",
-      "/images/uploads/large_all_cargo_logistics_park_farrukhnagar_hr_4_f262af57de.png",
-      "/images/uploads/large_all_cargo_logistics_park_farrukhnagar_hr_5_a62322f7ca.png"
+      "/images/projects/optimized_1787755357279_603_large_all-cargo-logistics-park-farrukhnagar-hr-3_png.webp",
+      "/images/projects/large_all_cargo_logistics_park_farrukhnagar_hr_4_f262af57de.png",
+      "/images/projects/large_all_cargo_logistics_park_farrukhnagar_hr_5_a62322f7ca.png"
     ]
   },
   {
@@ -168,11 +168,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp",
-      "/images/uploads/optimized_1787755329637_690_large_amazon-ncrun-jamalpur-hr-2_png.webp",
-      "/images/uploads/large_amazon_ncrun_jamalpur_hr_3_66eacb508a.png",
-      "/images/uploads/optimized_1787755020331_47_large_amazon-ncrun-jamalpur-hr-4_png.webp",
-      "/images/uploads/optimized_1787755315620_233_large_amazon-ncrun-jamalpur-hr-5_png.webp"
+      "/images/projects/optimized_1787755048803_67_large_amazon-ncrun-jamalpur-hr_png.webp",
+      "/images/projects/optimized_1787755329637_690_large_amazon-ncrun-jamalpur-hr-2_png.webp",
+      "/images/projects/large_amazon_ncrun_jamalpur_hr_3_66eacb508a.png",
+      "/images/projects/optimized_1787755020331_47_large_amazon-ncrun-jamalpur-hr-4_png.webp",
+      "/images/projects/optimized_1787755315620_233_large_amazon-ncrun-jamalpur-hr-5_png.webp"
     ]
   },
   {
@@ -190,12 +190,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_f04011dd73.png",
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_2_ad2ce8bcbe.png",
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_3_7f220a4d7c.png",
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_4_4a160ab759.png",
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_5_3ee93d0d6d.png",
-      "/images/uploads/large_ecom_express_india_one_pathreri_hr_6_23cf50ac79.png"
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_f04011dd73.png",
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_2_ad2ce8bcbe.png",
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_3_7f220a4d7c.png",
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_4_4a160ab759.png",
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_5_3ee93d0d6d.png",
+      "/images/projects/large_ecom_express_india_one_pathreri_hr_6_23cf50ac79.png"
     ]
   },
   {
@@ -213,12 +213,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
-      "/images/uploads/optimized_1787755358411_467_large_pragati-one-logistics-park-khijuri-hr-2_png.webp",
-      "/images/uploads/optimized_1787755388613_119_large_pragati-one-logistics-park-khijuri-hr-3_png.webp",
-      "/images/uploads/large_pragati_one_logistics_park_khijuri_hr_4_566bf03456.png",
-      "/images/uploads/large_pragati_one_logistics_park_khijuri_hr_5_9b9eec824c.png",
-      "/images/uploads/large_pragati_one_logistics_park_khijuri_hr_6_ae59696886.png"
+      "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
+      "/images/projects/optimized_1787755358411_467_large_pragati-one-logistics-park-khijuri-hr-2_png.webp",
+      "/images/projects/optimized_1787755388613_119_large_pragati-one-logistics-park-khijuri-hr-3_png.webp",
+      "/images/projects/large_pragati_one_logistics_park_khijuri_hr_4_566bf03456.png",
+      "/images/projects/large_pragati_one_logistics_park_khijuri_hr_5_9b9eec824c.png",
+      "/images/projects/large_pragati_one_logistics_park_khijuri_hr_6_ae59696886.png"
     ]
   },
   {
@@ -236,11 +236,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755082970_50_large_flipkart-sampka-ptaudi-hr_png.webp",
-      "/images/uploads/optimized_1787755432834_746_large_flipkart-sampka-ptaudi-hr-2_png.webp",
+      "/images/projects/optimized_1787755082970_50_large_flipkart-sampka-ptaudi-hr_png.webp",
+      "/images/projects/optimized_1787755432834_746_large_flipkart-sampka-ptaudi-hr-2_png.webp",
       "/images/uploads/compressed_1787754805351-1200x675.webp",
-      "/images/uploads/optimized_1787754984616_365_large_flipkart-sampka-pataudi-hr-3_png.webp",
-      "/images/uploads/optimized_1787755429656_533_large_flipkart-sampka-pataudi-hr-2_png.webp"
+      "/images/projects/optimized_1787754984616_365_large_flipkart-sampka-pataudi-hr-3_png.webp",
+      "/images/projects/optimized_1787755429656_533_large_flipkart-sampka-pataudi-hr-2_png.webp"
     ]
   },
   {
@@ -258,13 +258,13 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_logos_india_industrial_park_bengaluru_ka_4df1caedcf.png",
-      "/images/uploads/large_logos_india_industrial_park_bengaluru_ka_2_393ad417ab.png",
-      "/images/uploads/large_logos_india_industrial_park_bengaluru_ka_3_5fe8388786.png",
-      "/images/uploads/large_logos_india_industrial_park_bengaluru_ka_4_632a7d96fb.png",
-      "/images/uploads/large_logos_india_industrial_park_bengaluru_ka_5_ccc52139bd.png",
+      "/images/projects/large_logos_india_industrial_park_bengaluru_ka_4df1caedcf.png",
+      "/images/projects/large_logos_india_industrial_park_bengaluru_ka_2_393ad417ab.png",
+      "/images/projects/large_logos_india_industrial_park_bengaluru_ka_3_5fe8388786.png",
+      "/images/projects/large_logos_india_industrial_park_bengaluru_ka_4_632a7d96fb.png",
+      "/images/projects/large_logos_india_industrial_park_bengaluru_ka_5_ccc52139bd.png",
       "/images/uploads/compressed_1787754806543-1200x675.webp",
-      "/images/uploads/large_7_6e661086a2.png"
+      "/images/projects/large_7_6e661086a2.png"
     ]
   },
   {
@@ -282,11 +282,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
-      "/images/uploads/optimized_1787755358411_467_large_pragati-one-logistics-park-khijuri-hr-2_png.webp",
-      "/images/uploads/optimized_1787755388613_119_large_pragati-one-logistics-park-khijuri-hr-3_png.webp",
-      "/images/uploads/large_pragati_one_logistics_park_khijuri_hr_4_566bf03456.png",
-      "/images/uploads/large_pragati_one_logistics_park_khijuri_hr_6_ae59696886.png"
+      "/images/projects/optimized_1787755299036_191_large_pragati-one-logistics-park-khijuri-hr_png.webp",
+      "/images/projects/optimized_1787755358411_467_large_pragati-one-logistics-park-khijuri-hr-2_png.webp",
+      "/images/projects/optimized_1787755388613_119_large_pragati-one-logistics-park-khijuri-hr-3_png.webp",
+      "/images/projects/large_pragati_one_logistics_park_khijuri_hr_4_566bf03456.png",
+      "/images/projects/large_pragati_one_logistics_park_khijuri_hr_6_ae59696886.png"
     ]
   },
   {
@@ -304,12 +304,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
-      "/images/uploads/optimized_1787755268839_900_large_pragati-farrukhnagar-logistics-park-hr-2_png.webp",
-      "/images/uploads/optimized_1787755280763_782_large_pragati-farrukhnagar-logistics-park-hr-3_png.webp",
-      "/images/uploads/optimized_1787755105826_50_large_pragati-farrukhnagar-logistics-park-hr-4_png.webp",
-      "/images/uploads/large_pragati_farrukhnagar_logistics_park_hr_5_77b7c5e95c.png",
-      "/images/uploads/large_pragati_farrukhnagar_logistics_park_hr_6_cda4aafe4b.png"
+      "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_cfabd902b6.png",
+      "/images/projects/optimized_1787755268839_900_large_pragati-farrukhnagar-logistics-park-hr-2_png.webp",
+      "/images/projects/optimized_1787755280763_782_large_pragati-farrukhnagar-logistics-park-hr-3_png.webp",
+      "/images/projects/optimized_1787755105826_50_large_pragati-farrukhnagar-logistics-park-hr-4_png.webp",
+      "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_5_77b7c5e95c.png",
+      "/images/projects/large_pragati_farrukhnagar_logistics_park_hr_6_cda4aafe4b.png"
     ]
   },
   {
@@ -327,12 +327,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp",
-      "/images/uploads/large_ludhiana_logistics_park_pb_2_1cc5d647ab.png",
-      "/images/uploads/large_ludhiana_logistics_park_pb_3_ab877c975d.png",
-      "/images/uploads/optimized_1787754986323_797_large_ludhiana-logistics-park-pb-4_png.webp",
-      "/images/uploads/large_ludhiana_logistics_park_pb_5_5826a28bc1.png",
-      "/images/uploads/optimized_1787754973279_341_large_ludhiana-logistics-park-pb-6_png.webp"
+      "/images/projects/optimized_1787754985241_987_large_ludhiana-logistics-park-pb_png.webp",
+      "/images/projects/large_ludhiana_logistics_park_pb_2_1cc5d647ab.png",
+      "/images/projects/large_ludhiana_logistics_park_pb_3_ab877c975d.png",
+      "/images/projects/optimized_1787754986323_797_large_ludhiana-logistics-park-pb-4_png.webp",
+      "/images/projects/large_ludhiana_logistics_park_pb_5_5826a28bc1.png",
+      "/images/projects/optimized_1787754973279_341_large_ludhiana-logistics-park-pb-6_png.webp"
     ]
   },
   {
@@ -350,11 +350,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
-      "/images/uploads/optimized_1787755269561_31_large_pragati-prathamus-logistics-park-neemrana-rj-2_png.webp",
-      "/images/uploads/large_pragati_prathamus_logistics_park_neemrana_rj_3_59adbe324f.png",
-      "/images/uploads/large_pragati_prathamus_logistics_park_neemrana_rj_4_2831790815.png",
-      "/images/uploads/large_pragati_prathamus_logistics_park_neemrana_rj_5_654ed411bc.png"
+      "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_0a7d2cc8ac.png",
+      "/images/projects/optimized_1787755269561_31_large_pragati-prathamus-logistics-park-neemrana-rj-2_png.webp",
+      "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_3_59adbe324f.png",
+      "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_4_2831790815.png",
+      "/images/projects/large_pragati_prathamus_logistics_park_neemrana_rj_5_654ed411bc.png"
     ]
   },
   {
@@ -372,12 +372,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_41a8d15490.png",
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_2_2b2d7f3917.png",
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_3_8194b0dbfd.png",
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_4_4f0219a390.png",
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_5_62aace5755.png",
-      "/images/uploads/large_oswal_logistics_park_jaipur_hr_6_1e783dd17f.png"
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_41a8d15490.png",
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_2_2b2d7f3917.png",
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_3_8194b0dbfd.png",
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_4_4f0219a390.png",
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_5_62aace5755.png",
+      "/images/projects/large_oswal_logistics_park_jaipur_hr_6_1e783dd17f.png"
     ]
   },
   {
@@ -395,12 +395,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_2_115ef01bfe.png",
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_3_40d3734168.png",
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_4_0fb80e7329.png",
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_5_4d1688d59b.png",
-      "/images/uploads/large_avitech_nutrition_farukhnager_hr_6_46a165558b.png"
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_04fad9dcbe.png",
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_2_115ef01bfe.png",
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_3_40d3734168.png",
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_4_0fb80e7329.png",
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_5_4d1688d59b.png",
+      "/images/projects/large_avitech_nutrition_farukhnager_hr_6_46a165558b.png"
     ]
   },
   {
@@ -418,12 +418,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
-      "/images/uploads/large_lodha_industrial_park_development_a5_mumbai_mh_2_d8d776d4aa.png",
-      "/images/uploads/large_lodha_industrial_park_development_a5_mumbai_mh_3_ce885a87fd.png",
-      "/images/uploads/optimized_1787755255091_281_large_lodha-industrial-park-development-a5-mumbai-mh-4_png.webp",
-      "/images/uploads/large_lodha_industrial_park_development_a5_mumbai_mh_5_8ece88244d.png",
-      "/images/uploads/large_lodha_industrial_park_development_a5_mumbai_mh_6_3277387f1e.png"
+      "/images/projects/optimized_1787755253518_605_large_lodha-industrial-park-development-a5-mumbai-mh_png.webp",
+      "/images/projects/large_lodha_industrial_park_development_a5_mumbai_mh_2_d8d776d4aa.png",
+      "/images/projects/large_lodha_industrial_park_development_a5_mumbai_mh_3_ce885a87fd.png",
+      "/images/projects/optimized_1787755255091_281_large_lodha-industrial-park-development-a5-mumbai-mh-4_png.webp",
+      "/images/projects/large_lodha_industrial_park_development_a5_mumbai_mh_5_8ece88244d.png",
+      "/images/projects/large_lodha_industrial_park_development_a5_mumbai_mh_6_3277387f1e.png"
     ]
   },
   {
@@ -441,12 +441,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_75e18124c0.png",
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_2_ff63f8d056.png",
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_3_f23f1581d4.png",
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_4_f42dfaba0e.png",
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_5_d2f97517f7.png",
-      "/images/uploads/large_rajratan_global_wires_chennai_tn_6_b5a6da8a21.png"
+      "/images/projects/large_rajratan_global_wires_chennai_tn_75e18124c0.png",
+      "/images/projects/large_rajratan_global_wires_chennai_tn_2_ff63f8d056.png",
+      "/images/projects/large_rajratan_global_wires_chennai_tn_3_f23f1581d4.png",
+      "/images/projects/large_rajratan_global_wires_chennai_tn_4_f42dfaba0e.png",
+      "/images/projects/large_rajratan_global_wires_chennai_tn_5_d2f97517f7.png",
+      "/images/projects/large_rajratan_global_wires_chennai_tn_6_b5a6da8a21.png"
     ]
   },
   {
@@ -464,12 +464,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_2_c75493593e.png",
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_3_b367f0f47e.png",
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_4_5050a81a67.png",
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_5_08b392ba91.png",
-      "/images/uploads/large_bluestar_realtors_ltd_palwal_hr_6_eb02af78cd.png"
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_76ec876648.png",
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_2_c75493593e.png",
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_3_b367f0f47e.png",
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_4_5050a81a67.png",
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_5_08b392ba91.png",
+      "/images/projects/large_bluestar_realtors_ltd_palwal_hr_6_eb02af78cd.png"
     ]
   },
   {
@@ -487,12 +487,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp",
-      "/images/uploads/optimized_1787755213253_866_large_gmr-hoskote-logistics-park-ka-2_png.webp",
-      "/images/uploads/large_gmr_hoskote_logistics_park_ka_3_bf62689cf9.png",
-      "/images/uploads/large_gmr_hoskote_logistics_park_ka_4_ddac5cb3dd.png",
-      "/images/uploads/large_gmr_hoskote_logistics_park_ka_5_b8842149e9.png",
-      "/images/uploads/large_gmr_hoskote_logistics_park_ka_6_2e36ecff94.png"
+      "/images/projects/optimized_1787755068415_729_large_gmr-hoskote-logistics-park-ka_png.webp",
+      "/images/projects/optimized_1787755213253_866_large_gmr-hoskote-logistics-park-ka-2_png.webp",
+      "/images/projects/large_gmr_hoskote_logistics_park_ka_3_bf62689cf9.png",
+      "/images/projects/large_gmr_hoskote_logistics_park_ka_4_ddac5cb3dd.png",
+      "/images/projects/large_gmr_hoskote_logistics_park_ka_5_b8842149e9.png",
+      "/images/projects/large_gmr_hoskote_logistics_park_ka_6_2e36ecff94.png"
     ]
   },
   {
@@ -510,12 +510,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
-      "/images/uploads/optimized_1787755732557_487_large_vinfast-factory-phase-1-thoothukudi-tn-2_png.webp",
-      "/images/uploads/optimized_1787754985487_506_large_vinfast-factory-phase-1-thoothukudi-tn-3_png.webp",
-      "/images/uploads/optimized_1787755213190_224_large_vinfast-factory-phase-1-thoothukudi-tn-4_png.webp",
-      "/images/uploads/optimized_1787755213089_918_large_vinfast-factory-phase-1-thoothukudi-tn-5_png.webp",
-      "/images/uploads/large_vinfast_factory_phase_1_thoothukudi_tn_6_58749cc94b.png"
+      "/images/projects/large_vinfast_factory_phase_1_thoothukudi_tn_07876ff1ec.png",
+      "/images/projects/optimized_1787755732557_487_large_vinfast-factory-phase-1-thoothukudi-tn-2_png.webp",
+      "/images/projects/optimized_1787754985487_506_large_vinfast-factory-phase-1-thoothukudi-tn-3_png.webp",
+      "/images/projects/optimized_1787755213190_224_large_vinfast-factory-phase-1-thoothukudi-tn-4_png.webp",
+      "/images/projects/optimized_1787755213089_918_large_vinfast-factory-phase-1-thoothukudi-tn-5_png.webp",
+      "/images/projects/large_vinfast_factory_phase_1_thoothukudi_tn_6_58749cc94b.png"
     ]
   },
   {
@@ -533,12 +533,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
-      "/images/uploads/optimized_1787755238494_389_large_gmr-coimbatore-logistics-park-coimbatore-tn-2_png.webp",
-      "/images/uploads/optimized_1787755731630_889_large_gmr-coimbatore-logistics-park-coimbatore-tn-3_png.webp",
-      "/images/uploads/optimized_1787755731625_209_large_gmr-coimbatore-logistics-park-coimbatore-tn-4_png.webp",
-      "/images/uploads/optimized_1787755732764_375_large_gmr-coimbatore-logistics-park-coimbatore-tn-5_png.webp",
-      "/images/uploads/large_gmr_coimbatore_logistics_park_coimbatore_tn_6_dcdee5a9a8.png"
+      "/images/projects/optimized_1787755622686_899_large_gmr-coimbatore-logistics-park-coimbatore-tn_png.webp",
+      "/images/projects/optimized_1787755238494_389_large_gmr-coimbatore-logistics-park-coimbatore-tn-2_png.webp",
+      "/images/projects/optimized_1787755731630_889_large_gmr-coimbatore-logistics-park-coimbatore-tn-3_png.webp",
+      "/images/projects/optimized_1787755731625_209_large_gmr-coimbatore-logistics-park-coimbatore-tn-4_png.webp",
+      "/images/projects/optimized_1787755732764_375_large_gmr-coimbatore-logistics-park-coimbatore-tn-5_png.webp",
+      "/images/projects/large_gmr_coimbatore_logistics_park_coimbatore_tn_6_dcdee5a9a8.png"
     ]
   },
   {
@@ -556,12 +556,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
-      "/images/uploads/large_prr_warehousing_pvt_ltd_tauru_hr_2_23df44b440.png",
-      "/images/uploads/large_prr_warehousing_pvt_ltd_tauru_hr_3_d58c6c961e.png",
-      "/images/uploads/large_prr_warehousing_pvt_ltd_tauru_hr_4_ac0f2d0ce8.png",
-      "/images/uploads/large_prr_warehousing_pvt_ltd_tauru_hr_5_e6975194e4.png",
-      "/images/uploads/large_prr_warehousing_pvt_ltd_tauru_hr_6_2c228f2520.png"
+      "/images/projects/optimized_1787755622843_263_large_prr-warehousing-pvt-ltd-tauru-hr_png.webp",
+      "/images/projects/large_prr_warehousing_pvt_ltd_tauru_hr_2_23df44b440.png",
+      "/images/projects/large_prr_warehousing_pvt_ltd_tauru_hr_3_d58c6c961e.png",
+      "/images/projects/large_prr_warehousing_pvt_ltd_tauru_hr_4_ac0f2d0ce8.png",
+      "/images/projects/large_prr_warehousing_pvt_ltd_tauru_hr_5_e6975194e4.png",
+      "/images/projects/large_prr_warehousing_pvt_ltd_tauru_hr_6_2c228f2520.png"
     ]
   },
   {
@@ -579,12 +579,12 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_ncr_bigbox_patli_hr_61fcc6ba59.png",
-      "/images/uploads/large_ncr_bigbox_patli_hr_2_fa19e0116e.png",
-      "/images/uploads/large_ncr_bigbox_patli_hr_3_6aa090f432.png",
-      "/images/uploads/optimized_1787755592434_629_large_ncr-bigbox-patli-hr-4_png.webp",
-      "/images/uploads/large_ncr_bigbox_patli_hr_5_3056591fca.png",
-      "/images/uploads/large_ncr_bigbox_patli_hr_6_27734fc998.png"
+      "/images/projects/large_ncr_bigbox_patli_hr_61fcc6ba59.png",
+      "/images/projects/large_ncr_bigbox_patli_hr_2_fa19e0116e.png",
+      "/images/projects/large_ncr_bigbox_patli_hr_3_6aa090f432.png",
+      "/images/projects/optimized_1787755592434_629_large_ncr-bigbox-patli-hr-4_png.webp",
+      "/images/projects/large_ncr_bigbox_patli_hr_5_3056591fca.png",
+      "/images/projects/large_ncr_bigbox_patli_hr_6_27734fc998.png"
     ]
   },
   {
@@ -602,11 +602,11 @@ const completedProjects = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
-      "/images/uploads/optimized_1787755591950_425_large_om-sukh-logistics-park-pataudi-hr-2_png.webp",
-      "/images/uploads/large_om_sukh_logistics_park_pataudi_hr_3_c62a9212a2.png",
-      "/images/uploads/large_om_sukh_logistics_park_pataudi_hr_5_c3d992c9de.png",
-      "/images/uploads/optimized_1787755592291_98_large_om-sukh-logistics-park-pataudi-hr-6_png.webp"
+      "/images/projects/large_om_sukh_logistics_park_pataudi_hr_be3f72c0a7.png",
+      "/images/projects/optimized_1787755591950_425_large_om-sukh-logistics-park-pataudi-hr-2_png.webp",
+      "/images/projects/large_om_sukh_logistics_park_pataudi_hr_3_c62a9212a2.png",
+      "/images/projects/large_om_sukh_logistics_park_pataudi_hr_5_c3d992c9de.png",
+      "/images/projects/optimized_1787755592291_98_large_om-sukh-logistics-park-pataudi-hr-6_png.webp"
     ]
   }
 ];

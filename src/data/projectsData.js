@@ -14,9 +14,9 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
-      "/images/uploads/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
-      "/images/uploads/large_dhanbad_210kb_6b077476b0.jpeg"
+      "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
+      "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
+      "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg"
     ]
   },
   {
@@ -34,10 +34,10 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
-      "/images/uploads/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
-      "/images/uploads/large_AMNS_d5d027bbdc.jpeg",
-      "/images/uploads/large_AAMNS_1_c32916c58d.jpeg"
+      "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
+      "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
+      "/images/projects/large_AMNS_d5d027bbdc.jpeg",
+      "/images/projects/large_AAMNS_1_c32916c58d.jpeg"
     ]
   },
   {
@@ -55,9 +55,9 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_YUVA_Bio_Energy_68c0582388.jpeg",
-      "/images/uploads/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
-      "/images/uploads/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
+      "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg",
+      "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
+      "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
     ]
   },
   {
@@ -75,10 +75,10 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-      "/images/uploads/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-      "/images/uploads/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-      "/images/uploads/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
+      "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+      "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+      "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+      "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
     ]
   },
   {
@@ -96,10 +96,10 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_Neemrana_eafebb4ad2.jpeg",
-      "/images/uploads/large_Neemrana_4_d0566c8bd9.jpg",
-      "/images/uploads/large_Neemrana_3_884fd40dde.jpg",
-      "/images/uploads/large_Neemrana_6a53c4c5cf.jpg"
+      "/images/projects/large_Neemrana_eafebb4ad2.jpeg",
+      "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
+      "/images/projects/large_Neemrana_3_884fd40dde.jpg",
+      "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
     ]
   },
   {
@@ -117,11 +117,11 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_Dahej_200kb_4d3b82c2de.jpeg",
-      "/images/uploads/large_Dahej1_200kb_85a21c1ac9.jpeg",
-      "/images/uploads/large_Dahej_1_dcba3adeed.jpeg",
-      "/images/uploads/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
-      "/images/uploads/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
+      "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg",
+      "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg",
+      "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
+      "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
+      "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
     ]
   },
   {
@@ -139,10 +139,10 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
-      "/images/uploads/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
-      "/images/uploads/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
-      "/images/uploads/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
+      "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
+      "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
     ]
   },
   {
@@ -160,11 +160,11 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
-      "/images/uploads/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
-      "/images/uploads/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
-      "/images/uploads/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
-      "/images/uploads/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
+      "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+      "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+      "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+      "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+      "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
     ]
   },
   {
@@ -182,10 +182,10 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
-      "/images/uploads/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
-      "/images/uploads/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
-      "/images/uploads/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
+      "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+      "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+      "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+      "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
     ]
   },
   {
@@ -203,12 +203,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_1_fec39f116d.png",
-      "/images/uploads/large_3_318cf6a93d.png",
-      "/images/uploads/large_5_ba5057d1f1.png",
-      "/images/uploads/large_4_9fb455d2e9.png",
-      "/images/uploads/large_2_761b33d651.png",
-      "/images/uploads/large_6_dfe6b76dab.png"
+      "/images/projects/large_1_fec39f116d.png",
+      "/images/projects/large_3_318cf6a93d.png",
+      "/images/projects/large_5_ba5057d1f1.png",
+      "/images/projects/large_4_9fb455d2e9.png",
+      "/images/projects/large_2_761b33d651.png",
+      "/images/projects/large_6_dfe6b76dab.png"
     ]
   },
   {
@@ -226,10 +226,10 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_3_PISL_f570401ce9.jpg",
-      "/images/uploads/large_2_PISL_40549a305b.jpg",
-      "/images/uploads/large_1_PISL_eaba1bf8da.jpg",
-      "/images/uploads/large_4_PISL_3d32e8072c.jpg"
+      "/images/projects/large_3_PISL_f570401ce9.jpg",
+      "/images/projects/large_2_PISL_40549a305b.jpg",
+      "/images/projects/large_1_PISL_eaba1bf8da.jpg",
+      "/images/projects/large_4_PISL_3d32e8072c.jpg"
     ]
   },
   {
@@ -247,12 +247,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
-      "/images/uploads/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
-      "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
-      "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
-      "/images/uploads/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
-      "/images/uploads/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
+      "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+      "/images/projects/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
+      "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
+      "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
+      "/images/projects/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
+      "/images/projects/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
     ]
   },
   {
@@ -270,12 +270,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
-      "/images/uploads/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
-      "/images/uploads/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
-      "/images/uploads/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
-      "/images/uploads/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
-      "/images/uploads/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
+      "/images/projects/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
+      "/images/projects/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
+      "/images/projects/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
+      "/images/projects/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
+      "/images/projects/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
+      "/images/projects/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
     ]
   },
   {
@@ -293,12 +293,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
-      "/images/uploads/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
-      "/images/uploads/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
-      "/images/uploads/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
-      "/images/uploads/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
-      "/images/uploads/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
+      "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+      "/images/projects/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
+      "/images/projects/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
+      "/images/projects/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
+      "/images/projects/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
+      "/images/projects/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
     ]
   },
   {
@@ -316,12 +316,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
-      "/images/uploads/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
-      "/images/uploads/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
-      "/images/uploads/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
-      "/images/uploads/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
-      "/images/uploads/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
+      "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
+      "/images/projects/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
+      "/images/projects/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
+      "/images/projects/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
+      "/images/projects/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
+      "/images/projects/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
     ]
   },
   {
@@ -339,12 +339,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/uploads/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
-      "/images/uploads/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
-      "/images/uploads/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
-      "/images/uploads/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
-      "/images/uploads/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
-      "/images/uploads/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
+      "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
+      "/images/projects/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
+      "/images/projects/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
+      "/images/projects/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
+      "/images/projects/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
+      "/images/projects/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
     ]
   }
 ];

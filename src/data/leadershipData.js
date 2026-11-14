@@ -33,13 +33,13 @@ const leadershipData = {
         "height": 234
       },
       "large": {
-        "url": "/images/uploads/leadership_e1cdd98d80-1200x375.png",
+        "url": "/images/leadership/leadership_e1cdd98d80-1200x375.png",
         "width": 1200,
         "height": 375
       }
     },
     "mime": "image/png",
-    "url": "/images/uploads/leadership_e1cdd98d80.png"
+    "url": "/images/leadership/leadership_e1cdd98d80.png"
   },
   "showTopLeader": true,
   "topLeaderName": "Shubhendra Mittal",
