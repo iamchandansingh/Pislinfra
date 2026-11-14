@@ -127,31 +127,31 @@
         "id": 234,
         "title": "High-Quality Services",
         "description": "PISL provides high-quality industrial building services and solutions at competitive rates. Our persistent commitment to quality and strict adherence to rigorous safety standards demonstrate our commitment to providing outstanding value.",
-        "iconName": null
+        "iconName": "FaAward"
       },
       {
         "id": 235,
         "title": "Expert Team",
         "description": "Engineers, designers, and labourers at PISL have the knowledge and experience to manage projects of any scale and complexity. Their strengths include managing challenging tasks and guaranteeing effective outcomes.",
-        "iconName": null
+        "iconName": "FaHardHat"
       },
       {
         "id": 236,
         "title": "Trusted Partner",
         "description": "As a dependable industrial construction company, PISL consistently earns the trust of clients, forming partnerships built on transparency, professionalism, and reliability.",
-        "iconName": null
+        "iconName": "FaHandshake"
       },
       {
         "id": 237,
         "title": "Client Satisfaction",
         "description": "PISL prioritises attaining complete client satisfaction and assistance. Our concentrated efforts are focused on understanding and addressing our client's specific needs.",
-        "iconName": null
+        "iconName": "FaThumbsUp"
       },
       {
         "id": 238,
         "title": "Continuous Innovation",
         "description": "PISL is committed to continuous improvement and innovation in our processes and functions. By constantly evolving, we ensure the delivery of effective and cutting-edge services.",
-        "iconName": null
+        "iconName": "FaLightbulb"
       }
     ],
     "grids": [],

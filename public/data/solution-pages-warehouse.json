@@ -97,7 +97,7 @@
         "title": "Construction (Considerations)",
         "description": "When undertaking warehouse construction, numerous warehouse design and construction intricacies must be taken into account to achieve a successful development. Working with an experienced contractor who is actively involved in the design and early stages of a project ensures optimal results.",
         "vertical": false,
-        "minWidth": "400px",
+        "minWidth": "280px",
         "cardBg": null,
         "cardBorder": null,
         "iconBg": null,
@@ -147,10 +147,10 @@
         "description": null,
         "vertical": true,
         "minWidth": "300px",
-        "cardBg": "#fff5f0",
-        "cardBorder": "#ffd5c2",
-        "iconBg": "#ff8755",
-        "iconColor": "white",
+        "cardBg": "#ffffff",
+        "cardBorder": "none",
+        "iconBg": "#fff2ec",
+        "iconColor": "#ff8755",
         "items": [
           {
             "id": 206,

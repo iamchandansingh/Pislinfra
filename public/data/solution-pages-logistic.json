@@ -107,19 +107,19 @@
             "id": 243,
             "title": "Design",
             "description": "PISL's design expertise transcends aesthetics, focusing on robust foundations that endure the test of time. Our dedicated architects envision and execute projects that redefine skylines, represent architectural excellence and enrich lives.",
-            "iconName": null
+            "iconName": "FaDraftingCompass"
           },
           {
             "id": 244,
             "title": "Construction",
             "description": "Pislinfra specialises in constructing industrial backbones with a keen eye on functionality, durability, and space optimisation. Our experienced team ensures meticulous planning and execution, delivering exceptional results. Whether it is large-scale warehouses or specialised facilities, our warehouse contractors contribute to streamlined operations and business growth.",
-            "iconName": null
+            "iconName": "FaHardHat"
           },
           {
             "id": 245,
             "title": "Procurement",
             "description": "Through smart sourcing, efficient procedures, and high-quality products, PISL's procurement sector offers considerable value. We ensure timely and cost-effective procurement with our vast network and industry experience, facilitating the flawless execution of warehousing and industrial initiatives.",
-            "iconName": null
+            "iconName": "FaBoxes"
           }
         ]
       },
@@ -129,34 +129,34 @@
         "description": null,
         "vertical": false,
         "minWidth": "340px",
-        "cardBg": null,
-        "cardBorder": null,
-        "iconBg": null,
-        "iconColor": null,
+        "cardBg": "#ffffff",
+        "cardBorder": "#edf2f7",
+        "iconBg": "#fff2ec",
+        "iconColor": "#ff8755",
         "items": [
           {
             "id": 246,
             "title": "Cutting-Edge Industrial and Warehousing Spaces",
             "description": "PISL sets itself apart by delivering top-notch Grade-A infrastructure tailored for our BTS (Built-To-Suit) clients. Our commitment to excellence permeates every aspect, guaranteeing efficiency and quality in both design and construction for every project.",
-            "iconName": null
+            "iconName": "FaIndustry"
           },
           {
             "id": 247,
             "title": "Tech-Driven Innovation",
             "description": "PISL welcomes the future through the strategic integration of information technology. We use cutting-edge techniques to expedite procurement procedures and efficiently manage construction timelines. This technological integration allows us to deliver projects with more precision and agility.",
-            "iconName": null
+            "iconName": "FaLightbulb"
           },
           {
             "id": 248,
             "title": "Precision in Execution",
             "description": "At PISL, execution is at the heart of our services. We guarantee our clients a smooth and accurate execution across all of our solutions, ensuring that their investment is maximised and their vision is fulfilled.",
-            "iconName": null
+            "iconName": "FaBullseye"
           },
           {
             "id": 249,
             "title": "Strategic Financial Approach",
             "description": "PISL is at the forefront of India's thriving warehousing industry, providing not just secure but also profitable financial opportunities. Our dedication to a balanced and prosperous financial perspective is in sync with the industry's rapid expansion, assuring a safe investment for our clients.",
-            "iconName": null
+            "iconName": "FaChartLine"
           }
         ]
       }

@@ -1,5 +1,1228 @@
 [
   {
+    "id": 1119,
+    "documentId": "wp_client_1119",
+    "createdAt": "2026-11-13T12:26:55+00:00",
+    "updatedAt": "2026-11-13T12:26:55+00:00",
+    "publishedAt": "2026-11-13T12:26:55+00:00",
+    "slug": "coteccons-construction",
+    "name": "Coteccons Construction",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1120,
+      "documentId": "wp_media_1120",
+      "name": "Coteccons-Construction.png",
+      "alternativeText": "Coteccons Construction",
+      "caption": "Coteccons Construction",
+      "width": 200,
+      "height": 200,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Coteccons-Construction-150x150.png",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Coteccons-Construction.png",
+          "width": 200,
+          "height": 200
+        },
+        "medium": {
+          "url": "/images/uploads/Coteccons-Construction.png",
+          "width": 200,
+          "height": 200
+        },
+        "large": {
+          "url": "/images/uploads/Coteccons-Construction.png",
+          "width": 200,
+          "height": 200
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/Coteccons-Construction.png"
+    },
+    "logoUrl": "/images/uploads/Coteccons-Construction.png",
+    "order": null,
+    "seo": {
+      "seoTitle": "Coteccons Construction",
+      "seoDescription": "Coteccons Construction",
+      "focusKeyword": "Coteccons Construction",
+      "secondaryKeywords": "Coteccons Construction",
+      "seoKeywords": "Coteccons Construction",
+      "canonicalUrl": "",
+      "ogTitle": "Coteccons Construction",
+      "ogDescription": "Coteccons Construction",
+      "ogImage": {
+        "id": 1120,
+        "documentId": "wp_media_1120",
+        "name": "Coteccons-Construction.png",
+        "alternativeText": "Coteccons Construction",
+        "caption": "Coteccons Construction",
+        "width": 200,
+        "height": 200,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Coteccons-Construction-150x150.png",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/Coteccons-Construction.png",
+            "width": 200,
+            "height": 200
+          },
+          "medium": {
+            "url": "/images/uploads/Coteccons-Construction.png",
+            "width": 200,
+            "height": 200
+          },
+          "large": {
+            "url": "/images/uploads/Coteccons-Construction.png",
+            "width": 200,
+            "height": 200
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/Coteccons-Construction.png"
+      },
+      "ogType": "website",
+      "twitterTitle": "Coteccons Construction",
+      "twitterDescription": "Coteccons Construction",
+      "twitterImage": {
+        "id": 1120,
+        "documentId": "wp_media_1120",
+        "name": "Coteccons-Construction.png",
+        "alternativeText": "Coteccons Construction",
+        "caption": "Coteccons Construction",
+        "width": 200,
+        "height": 200,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Coteccons-Construction-150x150.png",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/Coteccons-Construction.png",
+            "width": 200,
+            "height": 200
+          },
+          "medium": {
+            "url": "/images/uploads/Coteccons-Construction.png",
+            "width": 200,
+            "height": 200
+          },
+          "large": {
+            "url": "/images/uploads/Coteccons-Construction.png",
+            "width": 200,
+            "height": 200
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/Coteccons-Construction.png"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "Coteccons Construction",
+      "metaTitle": "Coteccons Construction",
+      "metaDescription": "Coteccons Construction",
+      "primaryKeyword": "Coteccons Construction"
+    }
+  },
+  {
+    "id": 1117,
+    "documentId": "wp_client_1117",
+    "createdAt": "2026-11-13T12:25:21+00:00",
+    "updatedAt": "2026-11-13T12:25:21+00:00",
+    "publishedAt": "2026-11-13T12:25:21+00:00",
+    "slug": "gmr-hoskote-logistics-pvt-ltd",
+    "name": "GMR Hoskote Logistics",
+    "category": "",
+    "website": "https://www.gmrgroup.com/",
+    "logo": {
+      "id": 1118,
+      "documentId": "wp_media_1118",
+      "name": "GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+      "alternativeText": "GMR Hoskote Logistics Pvt Ltd",
+      "caption": "GMR Hoskote Logistics Pvt Ltd",
+      "width": null,
+      "height": null,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+          "width": 1,
+          "height": 1
+        },
+        "small": {
+          "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+          "width": 1,
+          "height": 1
+        },
+        "medium": {
+          "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+          "width": 1,
+          "height": 1
+        },
+        "large": {
+          "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+          "width": 1,
+          "height": 1
+        }
+      },
+      "mime": "image/svg+xml",
+      "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg"
+    },
+    "logoUrl": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+    "order": null,
+    "seo": {
+      "seoTitle": "GMR Hoskote Logistics",
+      "seoDescription": "GMR Hoskote Logistics",
+      "focusKeyword": "GMR Hoskote Logistics",
+      "secondaryKeywords": "GMR Hoskote Logistics",
+      "seoKeywords": "GMR Hoskote Logistics",
+      "canonicalUrl": "",
+      "ogTitle": "GMR Hoskote Logistics",
+      "ogDescription": "GMR Hoskote Logistics",
+      "ogImage": {
+        "id": 1118,
+        "documentId": "wp_media_1118",
+        "name": "GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+        "alternativeText": "GMR Hoskote Logistics Pvt Ltd",
+        "caption": "GMR Hoskote Logistics Pvt Ltd",
+        "width": null,
+        "height": null,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          },
+          "small": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          },
+          "medium": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          },
+          "large": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          }
+        },
+        "mime": "image/svg+xml",
+        "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg"
+      },
+      "ogType": "website",
+      "twitterTitle": "GMR Hoskote Logistics",
+      "twitterDescription": "GMR Hoskote Logistics",
+      "twitterImage": {
+        "id": 1118,
+        "documentId": "wp_media_1118",
+        "name": "GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+        "alternativeText": "GMR Hoskote Logistics Pvt Ltd",
+        "caption": "GMR Hoskote Logistics Pvt Ltd",
+        "width": null,
+        "height": null,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          },
+          "small": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          },
+          "medium": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          },
+          "large": {
+            "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg",
+            "width": 1,
+            "height": 1
+          }
+        },
+        "mime": "image/svg+xml",
+        "url": "/images/uploads/GMR-Hoskote-Logistics-Pvt-Ltd.svg"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "GMR Hoskote Logistics",
+      "metaTitle": "GMR Hoskote Logistics",
+      "metaDescription": "GMR Hoskote Logistics",
+      "primaryKeyword": "GMR Hoskote Logistics"
+    }
+  },
+  {
+    "id": 1115,
+    "documentId": "wp_client_1115",
+    "createdAt": "2026-11-13T12:23:10+00:00",
+    "updatedAt": "2026-11-13T12:23:10+00:00",
+    "publishedAt": "2026-11-13T12:23:10+00:00",
+    "slug": "ip-integrated-services",
+    "name": "IP Integrated Services",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1116,
+      "documentId": "wp_media_1116",
+      "name": "IP-Integrated-Services.png",
+      "alternativeText": "IP Integrated Services",
+      "caption": "IP Integrated Services",
+      "width": 1936,
+      "height": 1936,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/IP-Integrated-Services-150x150.png",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/IP-Integrated-Services-500x500.png",
+          "width": 500,
+          "height": 500
+        },
+        "medium": {
+          "url": "/images/uploads/IP-Integrated-Services-750x750.png",
+          "width": 750,
+          "height": 750
+        },
+        "large": {
+          "url": "/images/uploads/IP-Integrated-Services-1200x1200.png",
+          "width": 1200,
+          "height": 1200
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/IP-Integrated-Services.png"
+    },
+    "logoUrl": "/images/uploads/IP-Integrated-Services.png",
+    "order": null,
+    "seo": {
+      "seoTitle": "IP Integrated Services",
+      "seoDescription": "IP Integrated Services",
+      "focusKeyword": "IP Integrated Services",
+      "secondaryKeywords": "IP Integrated Services",
+      "seoKeywords": "IP Integrated Services",
+      "canonicalUrl": "",
+      "ogTitle": "IP Integrated Services",
+      "ogDescription": "IP Integrated Services",
+      "ogImage": {
+        "id": 1116,
+        "documentId": "wp_media_1116",
+        "name": "IP-Integrated-Services.png",
+        "alternativeText": "IP Integrated Services",
+        "caption": "IP Integrated Services",
+        "width": 1936,
+        "height": 1936,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/IP-Integrated-Services-150x150.png",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/IP-Integrated-Services-500x500.png",
+            "width": 500,
+            "height": 500
+          },
+          "medium": {
+            "url": "/images/uploads/IP-Integrated-Services-750x750.png",
+            "width": 750,
+            "height": 750
+          },
+          "large": {
+            "url": "/images/uploads/IP-Integrated-Services-1200x1200.png",
+            "width": 1200,
+            "height": 1200
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/IP-Integrated-Services.png"
+      },
+      "ogType": "website",
+      "twitterTitle": "IP Integrated Services",
+      "twitterDescription": "IP Integrated Services",
+      "twitterImage": {
+        "id": 1116,
+        "documentId": "wp_media_1116",
+        "name": "IP-Integrated-Services.png",
+        "alternativeText": "IP Integrated Services",
+        "caption": "IP Integrated Services",
+        "width": 1936,
+        "height": 1936,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/IP-Integrated-Services-150x150.png",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/IP-Integrated-Services-500x500.png",
+            "width": 500,
+            "height": 500
+          },
+          "medium": {
+            "url": "/images/uploads/IP-Integrated-Services-750x750.png",
+            "width": 750,
+            "height": 750
+          },
+          "large": {
+            "url": "/images/uploads/IP-Integrated-Services-1200x1200.png",
+            "width": 1200,
+            "height": 1200
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/IP-Integrated-Services.png"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "IP Integrated Services",
+      "metaTitle": "IP Integrated Services",
+      "metaDescription": "IP Integrated Services",
+      "primaryKeyword": "IP Integrated Services"
+    }
+  },
+  {
+    "id": 1113,
+    "documentId": "wp_client_1113",
+    "createdAt": "2026-11-13T12:21:43+00:00",
+    "updatedAt": "2026-11-13T12:21:43+00:00",
+    "publishedAt": "2026-11-13T12:21:43+00:00",
+    "slug": "mahindra-logistics",
+    "name": "Mahindra Logistics",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1114,
+      "documentId": "wp_media_1114",
+      "name": "Mahindra-Logistics-scaled.jpg",
+      "alternativeText": "Mahindra Logistics",
+      "caption": "Mahindra Logistics",
+      "width": 2560,
+      "height": 1061,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Mahindra-Logistics-150x150.jpg",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Mahindra-Logistics-500x207.jpg",
+          "width": 500,
+          "height": 207
+        },
+        "medium": {
+          "url": "/images/uploads/Mahindra-Logistics-750x311.jpg",
+          "width": 750,
+          "height": 311
+        },
+        "large": {
+          "url": "/images/uploads/Mahindra-Logistics-1200x497.jpg",
+          "width": 1200,
+          "height": 497
+        }
+      },
+      "mime": "image/jpeg",
+      "url": "/images/uploads/Mahindra-Logistics-scaled.jpg"
+    },
+    "logoUrl": "/images/uploads/Mahindra-Logistics-scaled.jpg",
+    "order": null,
+    "seo": {
+      "seoTitle": "Mahindra Logistics",
+      "seoDescription": "Mahindra Logistics",
+      "focusKeyword": "Mahindra Logistics",
+      "secondaryKeywords": "Mahindra Logistics",
+      "seoKeywords": "Mahindra Logistics",
+      "canonicalUrl": "",
+      "ogTitle": "Mahindra Logistics",
+      "ogDescription": "Mahindra Logistics",
+      "ogImage": {
+        "id": 1114,
+        "documentId": "wp_media_1114",
+        "name": "Mahindra-Logistics-scaled.jpg",
+        "alternativeText": "Mahindra Logistics",
+        "caption": "Mahindra Logistics",
+        "width": 2560,
+        "height": 1061,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Mahindra-Logistics-150x150.jpg",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/Mahindra-Logistics-500x207.jpg",
+            "width": 500,
+            "height": 207
+          },
+          "medium": {
+            "url": "/images/uploads/Mahindra-Logistics-750x311.jpg",
+            "width": 750,
+            "height": 311
+          },
+          "large": {
+            "url": "/images/uploads/Mahindra-Logistics-1200x497.jpg",
+            "width": 1200,
+            "height": 497
+          }
+        },
+        "mime": "image/jpeg",
+        "url": "/images/uploads/Mahindra-Logistics-scaled.jpg"
+      },
+      "ogType": "website",
+      "twitterTitle": "Mahindra Logistics",
+      "twitterDescription": "Mahindra Logistics",
+      "twitterImage": {
+        "id": 1114,
+        "documentId": "wp_media_1114",
+        "name": "Mahindra-Logistics-scaled.jpg",
+        "alternativeText": "Mahindra Logistics",
+        "caption": "Mahindra Logistics",
+        "width": 2560,
+        "height": 1061,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Mahindra-Logistics-150x150.jpg",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/Mahindra-Logistics-500x207.jpg",
+            "width": 500,
+            "height": 207
+          },
+          "medium": {
+            "url": "/images/uploads/Mahindra-Logistics-750x311.jpg",
+            "width": 750,
+            "height": 311
+          },
+          "large": {
+            "url": "/images/uploads/Mahindra-Logistics-1200x497.jpg",
+            "width": 1200,
+            "height": 497
+          }
+        },
+        "mime": "image/jpeg",
+        "url": "/images/uploads/Mahindra-Logistics-scaled.jpg"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "Mahindra Logistics",
+      "metaTitle": "Mahindra Logistics",
+      "metaDescription": "Mahindra Logistics",
+      "primaryKeyword": "Mahindra Logistics"
+    }
+  },
+  {
+    "id": 1111,
+    "documentId": "wp_client_1111",
+    "createdAt": "2026-11-13T12:20:08+00:00",
+    "updatedAt": "2026-11-13T12:20:08+00:00",
+    "publishedAt": "2026-11-13T12:20:08+00:00",
+    "slug": "highway-hub-amenity-private-limited",
+    "name": "Highway-Hub",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1112,
+      "documentId": "wp_media_1112",
+      "name": "Highway-Hub-Amenity-Private-Limited.webp",
+      "alternativeText": "Highway-Hub",
+      "caption": "Highway-Hub",
+      "width": 1553,
+      "height": 712,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-500x229.webp",
+          "width": 500,
+          "height": 229
+        },
+        "medium": {
+          "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-750x344.webp",
+          "width": 750,
+          "height": 344
+        },
+        "large": {
+          "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-1200x550.webp",
+          "width": 1200,
+          "height": 550
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited.webp"
+    },
+    "logoUrl": "/images/uploads/Highway-Hub-Amenity-Private-Limited.webp",
+    "order": null,
+    "seo": {
+      "seoTitle": "Highway-Hub",
+      "seoDescription": "Highway-Hub",
+      "focusKeyword": "Highway-Hub",
+      "secondaryKeywords": "Highway-Hub",
+      "seoKeywords": "Highway-Hub",
+      "canonicalUrl": "",
+      "ogTitle": "Highway-Hub",
+      "ogDescription": "Highway-Hub",
+      "ogImage": {
+        "id": 1112,
+        "documentId": "wp_media_1112",
+        "name": "Highway-Hub-Amenity-Private-Limited.webp",
+        "alternativeText": "Highway-Hub",
+        "caption": "Highway-Hub",
+        "width": 1553,
+        "height": 712,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-150x150.webp",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-500x229.webp",
+            "width": 500,
+            "height": 229
+          },
+          "medium": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-750x344.webp",
+            "width": 750,
+            "height": 344
+          },
+          "large": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-1200x550.webp",
+            "width": 1200,
+            "height": 550
+          }
+        },
+        "mime": "image/webp",
+        "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited.webp"
+      },
+      "ogType": "website",
+      "twitterTitle": "Highway-Hub",
+      "twitterDescription": "Highway-Hub",
+      "twitterImage": {
+        "id": 1112,
+        "documentId": "wp_media_1112",
+        "name": "Highway-Hub-Amenity-Private-Limited.webp",
+        "alternativeText": "Highway-Hub",
+        "caption": "Highway-Hub",
+        "width": 1553,
+        "height": 712,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-150x150.webp",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-500x229.webp",
+            "width": 500,
+            "height": 229
+          },
+          "medium": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-750x344.webp",
+            "width": 750,
+            "height": 344
+          },
+          "large": {
+            "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited-1200x550.webp",
+            "width": 1200,
+            "height": 550
+          }
+        },
+        "mime": "image/webp",
+        "url": "/images/uploads/Highway-Hub-Amenity-Private-Limited.webp"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "Highway-Hub",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "",
+      "metaTitle": "Highway-Hub",
+      "metaDescription": "Highway-Hub",
+      "primaryKeyword": "Highway-Hub"
+    }
+  },
+  {
+    "id": 1109,
+    "documentId": "wp_client_1109",
+    "createdAt": "2026-11-13T12:17:43+00:00",
+    "updatedAt": "2026-11-13T12:17:43+00:00",
+    "publishedAt": "2026-11-13T12:17:43+00:00",
+    "slug": "reliance-new-solar-energy-limited",
+    "name": "Reliance New Solar Energy",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1110,
+      "documentId": "wp_media_1110",
+      "name": "Reliance-New-Solar-Energy-Limited.png",
+      "alternativeText": "Reliance New Solar Energy",
+      "caption": "Reliance New Solar Energy ",
+      "width": 192,
+      "height": 44,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/Reliance-New-Solar-Energy-Limited-150x44.png",
+          "width": 150,
+          "height": 44
+        },
+        "small": {
+          "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+          "width": 192,
+          "height": 44
+        },
+        "medium": {
+          "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+          "width": 192,
+          "height": 44
+        },
+        "large": {
+          "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+          "width": 192,
+          "height": 44
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png"
+    },
+    "logoUrl": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+    "order": null,
+    "seo": {
+      "seoTitle": "Reliance New Solar Energy",
+      "seoDescription": "Reliance New Solar Energy",
+      "focusKeyword": "Reliance New Solar Energy",
+      "secondaryKeywords": "Reliance New Solar Energy",
+      "seoKeywords": "Reliance New Solar Energy",
+      "canonicalUrl": "",
+      "ogTitle": "Reliance New Solar Energy",
+      "ogDescription": "Reliance New Solar Energy",
+      "ogImage": {
+        "id": 1110,
+        "documentId": "wp_media_1110",
+        "name": "Reliance-New-Solar-Energy-Limited.png",
+        "alternativeText": "Reliance New Solar Energy",
+        "caption": "Reliance New Solar Energy ",
+        "width": 192,
+        "height": 44,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited-150x44.png",
+            "width": 150,
+            "height": 44
+          },
+          "small": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+            "width": 192,
+            "height": 44
+          },
+          "medium": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+            "width": 192,
+            "height": 44
+          },
+          "large": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+            "width": 192,
+            "height": 44
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png"
+      },
+      "ogType": "website",
+      "twitterTitle": "",
+      "twitterDescription": "Reliance New Solar Energy",
+      "twitterImage": {
+        "id": 1110,
+        "documentId": "wp_media_1110",
+        "name": "Reliance-New-Solar-Energy-Limited.png",
+        "alternativeText": "Reliance New Solar Energy",
+        "caption": "Reliance New Solar Energy ",
+        "width": 192,
+        "height": 44,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited-150x44.png",
+            "width": 150,
+            "height": 44
+          },
+          "small": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+            "width": 192,
+            "height": 44
+          },
+          "medium": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+            "width": 192,
+            "height": 44
+          },
+          "large": {
+            "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png",
+            "width": 192,
+            "height": 44
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/Reliance-New-Solar-Energy-Limited.png"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "Reliance New Solar Energy",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "",
+      "metaTitle": "Reliance New Solar Energy",
+      "metaDescription": "Reliance New Solar Energy",
+      "primaryKeyword": "Reliance New Solar Energy"
+    }
+  },
+  {
+    "id": 1107,
+    "documentId": "wp_client_1107",
+    "createdAt": "2026-11-13T12:16:01+00:00",
+    "updatedAt": "2026-11-13T12:16:01+00:00",
+    "publishedAt": "2026-11-13T12:16:01+00:00",
+    "slug": "iit-ism-dhanbad-cpwd",
+    "name": "IIT ISM Dhanbad",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1108,
+      "documentId": "wp_media_1108",
+      "name": "IIT-ISM-Dhanbad-CPWD.webp",
+      "alternativeText": "IIT ISM Dhanbad (CPWD)",
+      "caption": "IIT ISM Dhanbad (CPWD)",
+      "width": 1280,
+      "height": 1458,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-150x150.webp",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-439x500.webp",
+          "width": 439,
+          "height": 500
+        },
+        "medium": {
+          "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-658x750.webp",
+          "width": 658,
+          "height": 750
+        },
+        "large": {
+          "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-1053x1200.webp",
+          "width": 1053,
+          "height": 1200
+        }
+      },
+      "mime": "image/webp",
+      "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD.webp"
+    },
+    "logoUrl": "/images/uploads/IIT-ISM-Dhanbad-CPWD.webp",
+    "order": null,
+    "seo": {
+      "seoTitle": "IIT ISM Dhanbad (CPWD)",
+      "seoDescription": "IIT ISM Dhanbad (CPWD)",
+      "focusKeyword": "IIT ISM Dhanbad (CPWD)",
+      "secondaryKeywords": "IIT ISM Dhanbad (CPWD)",
+      "seoKeywords": "IIT ISM Dhanbad (CPWD)",
+      "canonicalUrl": "",
+      "ogTitle": "IIT ISM Dhanbad (CPWD)",
+      "ogDescription": "IIT ISM Dhanbad (CPWD)",
+      "ogImage": {
+        "id": 1108,
+        "documentId": "wp_media_1108",
+        "name": "IIT-ISM-Dhanbad-CPWD.webp",
+        "alternativeText": "IIT ISM Dhanbad (CPWD)",
+        "caption": "IIT ISM Dhanbad (CPWD)",
+        "width": 1280,
+        "height": 1458,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-150x150.webp",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-439x500.webp",
+            "width": 439,
+            "height": 500
+          },
+          "medium": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-658x750.webp",
+            "width": 658,
+            "height": 750
+          },
+          "large": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-1053x1200.webp",
+            "width": 1053,
+            "height": 1200
+          }
+        },
+        "mime": "image/webp",
+        "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD.webp"
+      },
+      "ogType": "website",
+      "twitterTitle": "IIT ISM Dhanbad (CPWD)",
+      "twitterDescription": "IIT ISM Dhanbad (CPWD)",
+      "twitterImage": {
+        "id": 1108,
+        "documentId": "wp_media_1108",
+        "name": "IIT-ISM-Dhanbad-CPWD.webp",
+        "alternativeText": "IIT ISM Dhanbad (CPWD)",
+        "caption": "IIT ISM Dhanbad (CPWD)",
+        "width": 1280,
+        "height": 1458,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-150x150.webp",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-439x500.webp",
+            "width": 439,
+            "height": 500
+          },
+          "medium": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-658x750.webp",
+            "width": 658,
+            "height": 750
+          },
+          "large": {
+            "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD-1053x1200.webp",
+            "width": 1053,
+            "height": 1200
+          }
+        },
+        "mime": "image/webp",
+        "url": "/images/uploads/IIT-ISM-Dhanbad-CPWD.webp"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": false,
+      "tags": "",
+      "metaTitle": "IIT ISM Dhanbad (CPWD)",
+      "metaDescription": "IIT ISM Dhanbad (CPWD)",
+      "primaryKeyword": "IIT ISM Dhanbad (CPWD)"
+    }
+  },
+  {
+    "id": 1102,
+    "documentId": "wp_client_1102",
+    "createdAt": "2026-11-13T11:54:19+00:00",
+    "updatedAt": "2026-11-13T11:56:39+00:00",
+    "publishedAt": "2026-11-13T11:54:19+00:00",
+    "slug": "1102",
+    "name": "Pragati",
+    "category": "",
+    "website": "https://pragatiwarehousing.com/",
+    "logo": {
+      "id": 1103,
+      "documentId": "wp_media_1103",
+      "name": "pragatiwarehousing.png",
+      "alternativeText": "pragatiwarehousing",
+      "caption": "",
+      "width": 183,
+      "height": 61,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/pragatiwarehousing-150x61.png",
+          "width": 150,
+          "height": 61
+        },
+        "small": {
+          "url": "/images/uploads/pragatiwarehousing.png",
+          "width": 183,
+          "height": 61
+        },
+        "medium": {
+          "url": "/images/uploads/pragatiwarehousing.png",
+          "width": 183,
+          "height": 61
+        },
+        "large": {
+          "url": "/images/uploads/pragatiwarehousing.png",
+          "width": 183,
+          "height": 61
+        }
+      },
+      "mime": "image/png",
+      "url": "/images/uploads/pragatiwarehousing.png"
+    },
+    "logoUrl": "/images/uploads/pragatiwarehousing.png",
+    "order": null,
+    "seo": {
+      "seoTitle": "Pragati Warehousing",
+      "seoDescription": "Pragati Warehousing, backed by one of Asia's largest private equity funds, is a full-cycle development platform for Grade-A industrial and logistics parks in",
+      "focusKeyword": "Pragati Warehousing",
+      "secondaryKeywords": "Pragati Warehousing, backed by one of Asia's largest private equity funds, is a full-cycle development platform for Grade-A industrial and logistics parks in",
+      "seoKeywords": "Pragati Warehousing",
+      "canonicalUrl": "",
+      "ogTitle": "Pragati Warehousing",
+      "ogDescription": "Pragati Warehousing, backed by one of Asia's largest private equity funds, is a full-cycle development platform for Grade-A industrial and logistics parks in",
+      "ogImage": {
+        "id": 1103,
+        "documentId": "wp_media_1103",
+        "name": "pragatiwarehousing.png",
+        "alternativeText": "pragatiwarehousing",
+        "caption": "",
+        "width": 183,
+        "height": 61,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/pragatiwarehousing-150x61.png",
+            "width": 150,
+            "height": 61
+          },
+          "small": {
+            "url": "/images/uploads/pragatiwarehousing.png",
+            "width": 183,
+            "height": 61
+          },
+          "medium": {
+            "url": "/images/uploads/pragatiwarehousing.png",
+            "width": 183,
+            "height": 61
+          },
+          "large": {
+            "url": "/images/uploads/pragatiwarehousing.png",
+            "width": 183,
+            "height": 61
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/pragatiwarehousing.png"
+      },
+      "ogType": "website",
+      "twitterTitle": "Pragati Warehousing",
+      "twitterDescription": "Pragati Warehousing, backed by one of Asia's largest private equity funds, is a full-cycle development platform for Grade-A industrial and logistics parks in",
+      "twitterImage": {
+        "id": 1103,
+        "documentId": "wp_media_1103",
+        "name": "pragatiwarehousing.png",
+        "alternativeText": "pragatiwarehousing",
+        "caption": "",
+        "width": 183,
+        "height": 61,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/pragatiwarehousing-150x61.png",
+            "width": 150,
+            "height": 61
+          },
+          "small": {
+            "url": "/images/uploads/pragatiwarehousing.png",
+            "width": 183,
+            "height": 61
+          },
+          "medium": {
+            "url": "/images/uploads/pragatiwarehousing.png",
+            "width": 183,
+            "height": 61
+          },
+          "large": {
+            "url": "/images/uploads/pragatiwarehousing.png",
+            "width": 183,
+            "height": 61
+          }
+        },
+        "mime": "image/png",
+        "url": "/images/uploads/pragatiwarehousing.png"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": true,
+      "tags": "",
+      "metaTitle": "Pragati Warehousing",
+      "metaDescription": "Pragati Warehousing, backed by one of Asia's largest private equity funds, is a full-cycle development platform for Grade-A industrial and logistics parks in",
+      "primaryKeyword": "Pragati Warehousing"
+    }
+  },
+  {
+    "id": 1104,
+    "documentId": "wp_client_1104",
+    "createdAt": "2026-11-13T12:09:35+00:00",
+    "updatedAt": "2026-11-13T12:09:35+00:00",
+    "publishedAt": "2026-11-13T12:09:35+00:00",
+    "slug": "yuva-bio-energy",
+    "name": "Yuva Bio Energy",
+    "category": "",
+    "website": "",
+    "logo": {
+      "id": 1106,
+      "documentId": "wp_media_1106",
+      "name": "YUVA-Full-Logo_page-0001-scaled.jpg",
+      "alternativeText": "Yuva Bio Energy",
+      "caption": "Yuva Bio Energy",
+      "width": 2560,
+      "height": 1440,
+      "formats": {
+        "thumbnail": {
+          "url": "/images/uploads/YUVA-Full-Logo_page-0001-150x150.jpg",
+          "width": 150,
+          "height": 150
+        },
+        "small": {
+          "url": "/images/uploads/YUVA-Full-Logo_page-0001-500x281.jpg",
+          "width": 500,
+          "height": 281
+        },
+        "medium": {
+          "url": "/images/uploads/YUVA-Full-Logo_page-0001-750x422.jpg",
+          "width": 750,
+          "height": 422
+        },
+        "large": {
+          "url": "/images/uploads/YUVA-Full-Logo_page-0001-1200x675.jpg",
+          "width": 1200,
+          "height": 675
+        }
+      },
+      "mime": "image/jpeg",
+      "url": "/images/uploads/YUVA-Full-Logo_page-0001-scaled.jpg"
+    },
+    "logoUrl": "/images/uploads/YUVA-Full-Logo_page-0001-scaled.jpg",
+    "order": 0,
+    "seo": {
+      "seoTitle": "Yuva Bio Energy",
+      "seoDescription": "",
+      "focusKeyword": "Yuva Bio Energy",
+      "secondaryKeywords": "",
+      "seoKeywords": "Yuva Bio Energy",
+      "canonicalUrl": "",
+      "ogTitle": "Yuva Bio Energy",
+      "ogDescription": "Yuva Bio Energy",
+      "ogImage": {
+        "id": 1106,
+        "documentId": "wp_media_1106",
+        "name": "YUVA-Full-Logo_page-0001-scaled.jpg",
+        "alternativeText": "Yuva Bio Energy",
+        "caption": "Yuva Bio Energy",
+        "width": 2560,
+        "height": 1440,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-150x150.jpg",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-500x281.jpg",
+            "width": 500,
+            "height": 281
+          },
+          "medium": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-750x422.jpg",
+            "width": 750,
+            "height": 422
+          },
+          "large": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-1200x675.jpg",
+            "width": 1200,
+            "height": 675
+          }
+        },
+        "mime": "image/jpeg",
+        "url": "/images/uploads/YUVA-Full-Logo_page-0001-scaled.jpg"
+      },
+      "ogType": "website",
+      "twitterTitle": "Yuva Bio Energy",
+      "twitterDescription": "Yuva Bio Energy",
+      "twitterImage": {
+        "id": 1106,
+        "documentId": "wp_media_1106",
+        "name": "YUVA-Full-Logo_page-0001-scaled.jpg",
+        "alternativeText": "Yuva Bio Energy",
+        "caption": "Yuva Bio Energy",
+        "width": 2560,
+        "height": 1440,
+        "formats": {
+          "thumbnail": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-150x150.jpg",
+            "width": 150,
+            "height": 150
+          },
+          "small": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-500x281.jpg",
+            "width": 500,
+            "height": 281
+          },
+          "medium": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-750x422.jpg",
+            "width": 750,
+            "height": 422
+          },
+          "large": {
+            "url": "/images/uploads/YUVA-Full-Logo_page-0001-1200x675.jpg",
+            "width": 1200,
+            "height": 675
+          }
+        },
+        "mime": "image/jpeg",
+        "url": "/images/uploads/YUVA-Full-Logo_page-0001-scaled.jpg"
+      },
+      "twitterCardType": "summary_large_image",
+      "schemaType": "",
+      "noIndex": false,
+      "noFollow": false,
+      "structuredData": "",
+      "breadcrumbSchema": false,
+      "organizationSchema": true,
+      "tags": "Yuva Bio Energy",
+      "metaTitle": "Yuva Bio Energy",
+      "primaryKeyword": "Yuva Bio Energy"
+    }
+  },
+  {
     "id": 300,
     "documentId": "wy28av72k11gu6tfe7ywugxc",
     "createdAt": "2026-08-26T11:34:44+00:00",

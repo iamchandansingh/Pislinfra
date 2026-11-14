@@ -19,11 +19,14 @@ const WpAdminBar = () => {
   const previewCtx = getPreviewContext();
 
   useEffect(() => {
+    // Only fetch session & preview info when actively previewing a page from WordPress
+    if (!previewCtx) return;
+
     let active = true;
     const loadSession = async () => {
       const [sess, prev] = await Promise.all([
         fetchAdminSession(location.pathname),
-        previewCtx ? fetchPreviewRecord(previewCtx) : Promise.resolve(null),
+        fetchPreviewRecord(previewCtx),
       ]);
       if (!active) return;
       setSession(sess && sess.authenticated ? sess : null);
@@ -35,7 +38,8 @@ const WpAdminBar = () => {
     };
   }, [location.pathname, location.search]);
 
-  if (!session && !previewInfo && !previewCtx) {
+  // NEVER show on normal browsing. Only show when user specifically clicked "Preview" in WordPress
+  if (!previewCtx) {
     return null;
   }
 

@@ -117,6 +117,13 @@ const Navbar = () => {
           logo: hData.logo || null,
           navigation: (hData.navigation && hData.navigation.length > 0) ? hData.navigation : defaultNavigationData
         });
+        if (hData.address || hData.phone || hData.email) {
+          setTopHeaderData(prev => ({
+            address: hData.address || prev.address,
+            phone: hData.phone || prev.phone,
+            email: hData.email || prev.email
+          }));
+        }
       }
     };
     loadData();

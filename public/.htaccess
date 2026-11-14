@@ -21,6 +21,10 @@ ServerSignature Off
     RewriteEngine On
     RewriteBase /
 
+    # Pass all /cms requests directly to WordPress subdirectory
+    RewriteCond %{REQUEST_URI} ^/cms(/.*)?$ [NC]
+    RewriteRule ^ - [L]
+
     # Force HTTPS for all production visitors (Skip on localhost)
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
@@ -111,6 +115,7 @@ ServerSignature Off
 
 # ==================== 7. SPA ROUTING (REACT SINGLE PAGE APPLICATION) ====================
 <IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_URI} !^/cms
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|webp|avif|ico|pdf|xml|txt|json|webmanifest|mp4|webm|woff|woff2|ttf|eot)$ [NC]

@@ -426,7 +426,10 @@ function wrapWithLayout({ title, canonicalUrl, breadcrumbHtml = '', contentHtml 
 }
 
 /**
- * Injects head meta tags and visible static body into dist HTML template
+ * Injects head meta tags and SEO crawlable static body into dist HTML template
+ * Preserves the clean animated preloader inside #root for real JS visitors to eliminate
+ * any 1-second flash of unstyled content / wrong page on route refresh.
+ * Static body is placed inside <noscript> so search engine crawlers index all content.
  */
 function injectPrerender(baseHtml, headBlock, rootBodyHtml) {
   let html = baseHtml;
@@ -440,20 +443,13 @@ function injectPrerender(baseHtml, headBlock, rootBodyHtml) {
 
   html = html.replace('</head>', `${headBlock}\n</head>`);
 
-  // Robust insertion into <div id="root"> replacing initial preloader
-  const rootStart = html.indexOf('<div id="root">');
-  if (rootStart !== -1) {
-    const searchFrom = rootStart + '<div id="root">'.length;
-    const scriptIndex = html.indexOf('<script', searchFrom);
-    if (scriptIndex !== -1) {
-      const lastDiv = html.lastIndexOf('</div>', scriptIndex);
-      if (lastDiv > searchFrom) {
-        html = html.substring(0, searchFrom) +
-               `\n${rootBodyHtml}\n    ` +
-               html.substring(lastDiv);
-      }
-    }
+  // Place crawlable static HTML in <noscript> so search engine crawlers get 100% of text and links
+  // while human users never experience any jarring layout shift or page flash on refresh
+  if (rootBodyHtml) {
+    const noscriptBlock = `\n    <noscript>\n      ${rootBodyHtml}\n    </noscript>`;
+    html = html.replace('</body>', `${noscriptBlock}\n  </body>`);
   }
+
   return html;
 }
 

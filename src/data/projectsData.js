@@ -1,10 +1,9 @@
 const projectsData = [
   {
-    "id": 718,
+    "id": 1,
     "documentId": "wqd7gr6n1eodf36348atvtn4",
     "category": "Institutional",
-    "name": "CPWD \u2013 IIT ISM Campus Project",
-    "slug": "cpwd-iit-ism-campus-project",
+    "name": "CPWD – IIT ISM Campus Project",
     "location": "Dhanbad",
     "state": "Jharkhand",
     "area": "1.82 Lakh Sq. ft",
@@ -15,17 +14,16 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
-      "/images/projects/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
-      "/images/projects/large_dhanbad_210kb_6b077476b0.jpeg"
+      "/images/uploads/large_Aerial_View_of_Construction_Site_210kb_86673afa22.jpeg",
+      "/images/uploads/large_CPWD_Dhanbad_210kb_a10a868318.jpeg",
+      "/images/uploads/large_dhanbad_210kb_6b077476b0.jpeg"
     ]
   },
   {
-    "id": 717,
+    "id": 2,
     "documentId": "n3hwjilrop1oleltf6fwjxmx",
     "category": "Industrial",
     "name": "AMNS SSC GIDC Project",
-    "slug": "amns-ssc-gidc-project",
     "location": "GIDC Sanand",
     "state": "Gujarat",
     "area": "16.15 Lakh Sq. Ft",
@@ -36,18 +34,17 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
-      "/images/projects/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
-      "/images/projects/large_AMNS_d5d027bbdc.jpeg",
-      "/images/projects/large_AAMNS_1_c32916c58d.jpeg"
+      "/images/uploads/large_AMNS_SSC_GIDC_Project1_e8dfd9f15d.jpeg",
+      "/images/uploads/large_AMNSSSC_GIDC_Project1s_5e656f3410.jpeg",
+      "/images/uploads/large_AMNS_d5d027bbdc.jpeg",
+      "/images/uploads/large_AAMNS_1_c32916c58d.jpeg"
     ]
   },
   {
-    "id": 716,
+    "id": 3,
     "documentId": "amba9u870vie2hx8hmse641h",
     "category": "Bio Energy",
     "name": "CBG Plant",
-    "slug": "cbg-plant",
     "location": "Najibabad",
     "state": "Uttar Pradesh",
     "area": "6.96 Lakh Sq.ft",
@@ -58,17 +55,16 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_YUVA_Bio_Energy_68c0582388.jpeg",
-      "/images/projects/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
-      "/images/projects/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
+      "/images/uploads/large_YUVA_Bio_Energy_68c0582388.jpeg",
+      "/images/uploads/large_YUVA_Bio_Energy1_592c9f7fa7.jpeg",
+      "/images/uploads/large_YUVA_Bio_Energyssa_39be1d30ad.jpeg"
     ]
   },
   {
-    "id": 715,
+    "id": 4,
     "documentId": "jaoghcghfrr1twfmyl3x799k",
     "category": "Warehousing",
     "name": "HANNO ONE Logistics Park",
-    "slug": "hanno-one-logistics-park",
     "location": "Hosur",
     "state": "Tamil Nadu",
     "area": "3.43 Lakh Sq. Ft",
@@ -79,18 +75,17 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
-      "/images/projects/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
-      "/images/projects/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
-      "/images/projects/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
+      "/images/uploads/large_DJI_20261006170514_0026_D_INDUS_500kb_51c1c9049d.jpg",
+      "/images/uploads/large_DJI_20261006170600_0029_D_INDUS_500kb_fedcd208d6.jpg",
+      "/images/uploads/large_DJI_20261006171028_0036_D_INDUS_500kb_04c6e638c1.jpg",
+      "/images/uploads/large_DJI_20261006170548_0028_D_INDUS_500kb_60ce85caa9.jpg"
     ]
   },
   {
-    "id": 714,
+    "id": 5,
     "documentId": "nkhb1g7b9rdlzluefhxx5nv8",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
-    "slug": "pmg-logistics-park-3",
     "location": "Neemrana",
     "state": "Rajasthan",
     "area": "1.75 Lakh Sq. ft",
@@ -101,18 +96,17 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_Neemrana_eafebb4ad2.jpeg",
-      "/images/projects/large_Neemrana_4_d0566c8bd9.jpg",
-      "/images/projects/large_Neemrana_3_884fd40dde.jpg",
-      "/images/projects/large_Neemrana_6a53c4c5cf.jpg"
+      "/images/uploads/large_Neemrana_eafebb4ad2.jpeg",
+      "/images/uploads/large_Neemrana_4_d0566c8bd9.jpg",
+      "/images/uploads/large_Neemrana_3_884fd40dde.jpg",
+      "/images/uploads/large_Neemrana_6a53c4c5cf.jpg"
     ]
   },
   {
-    "id": 713,
+    "id": 6,
     "documentId": "xhuokr1xr7tncr8i800f3jb2",
     "category": "Industrial",
     "name": "Reliance DMD Plant",
-    "slug": "reliance-dmd-plant",
     "location": "Dahej",
     "state": "Gujarat",
     "area": "N/A",
@@ -123,19 +117,18 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_Dahej_200kb_4d3b82c2de.jpeg",
-      "/images/projects/large_Dahej1_200kb_85a21c1ac9.jpeg",
-      "/images/projects/large_Dahej_1_dcba3adeed.jpeg",
-      "/images/projects/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
-      "/images/projects/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
+      "/images/uploads/large_Dahej_200kb_4d3b82c2de.jpeg",
+      "/images/uploads/large_Dahej1_200kb_85a21c1ac9.jpeg",
+      "/images/uploads/large_Dahej_1_dcba3adeed.jpeg",
+      "/images/uploads/optimized_1787755193887_649_large_reliance-dmd-plant-dahej-gj-5_png.webp",
+      "/images/uploads/large_reliance_dmd_plant_dahej_gj_6_2155c22e80.png"
     ]
   },
   {
-    "id": 712,
+    "id": 7,
     "documentId": "xy98xvmm6o3y66d62e5p76u8",
     "category": "Industrial",
     "name": "Sanaswadi Industrial Project",
-    "slug": "sanaswadi-industrial-project",
     "location": "Pune",
     "state": "Maharashtra",
     "area": "3.91 Lakh Sq. Ft",
@@ -146,18 +139,17 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
-      "/images/projects/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
-      "/images/projects/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
-      "/images/projects/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
+      "/images/uploads/large_Sanaswadi_Industrial_Project_8b1cc2dfb0.jpg",
+      "/images/uploads/large_Sanaswadi_Industrial_Project_2_948ecc1001.jpg",
+      "/images/uploads/large_Sanaswadi_Industrial_Project_1_2f441095ec.jpg",
+      "/images/uploads/large_Sanaswadi_Industrial_Project_3_b6426fba8f.jpg"
     ]
   },
   {
-    "id": 711,
+    "id": 8,
     "documentId": "s9c61ng7zi9ht7st5r2gjj50",
     "category": "Building Construction",
     "name": "TR Building Township Jamnagar",
-    "slug": "tr-building-township-jamnagar",
     "location": "Jamnagar",
     "state": "Gujarat",
     "area": "2 Nos. (G+12) Buildings, 2,500 Sqm per Floor",
@@ -168,19 +160,18 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
-      "/images/projects/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
-      "/images/projects/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
-      "/images/projects/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
-      "/images/projects/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
+      "/images/uploads/large_4_TR_Building_Township_Jamnagar_13bfc57dab.jpeg",
+      "/images/uploads/large_1_TR_Building_Township_Jamnagar_3416f89107.jpeg",
+      "/images/uploads/large_2_TR_Building_Township_Jamnagar_deb7b7161c.jpeg",
+      "/images/uploads/large_3_TR_Building_Township_Jamnagar_cdcea5a284.jpeg",
+      "/images/uploads/large_5_TR_Building_Township_Jamnagar_bc04226f23.jpeg"
     ]
   },
   {
-    "id": 710,
+    "id": 9,
     "documentId": "bp21qkt8v34g0l0gbdipv1o1",
     "category": "Industrial",
     "name": "Crestway Projects Private Limited",
-    "slug": "crestway-projects-private-limited",
     "location": "Farrukhnagar",
     "state": "Haryana",
     "area": "4.39 Lakh Sq. ft",
@@ -191,18 +182,17 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
-      "/images/projects/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
-      "/images/projects/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
-      "/images/projects/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
+      "/images/uploads/large_Rebar_Wall_Construction_Site_500kb_c2264ddb63.jpeg",
+      "/images/uploads/large_Open_Sky_Construction_Site_500kb_0045f305de.jpeg",
+      "/images/uploads/large_Rebar_Lines_Across_the_Construction_Site_500kb_d3739c37e3.jpeg",
+      "/images/uploads/large_Workers_Building_Rebar_Scaffold_Under_Blue_Skies_74308da22b.png"
     ]
   },
   {
-    "id": 709,
+    "id": 10,
     "documentId": "hz2fwqbqv8txit8nef7yavfu",
     "category": "Industrial",
     "name": "Reliance Solar Unit Manufacturing Plant",
-    "slug": "reliance-solar-unit-manufacturing-plant",
     "location": "Jamnagar",
     "state": "Gujarat",
     "area": "21.09 Lakh Sq. ft.",
@@ -213,20 +203,19 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_1_fec39f116d.png",
-      "/images/projects/large_3_318cf6a93d.png",
-      "/images/projects/large_5_ba5057d1f1.png",
-      "/images/projects/large_4_9fb455d2e9.png",
-      "/images/projects/large_2_761b33d651.png",
-      "/images/projects/large_6_dfe6b76dab.png"
+      "/images/uploads/large_1_fec39f116d.png",
+      "/images/uploads/large_3_318cf6a93d.png",
+      "/images/uploads/large_5_ba5057d1f1.png",
+      "/images/uploads/large_4_9fb455d2e9.png",
+      "/images/uploads/large_2_761b33d651.png",
+      "/images/uploads/large_6_dfe6b76dab.png"
     ]
   },
   {
-    "id": 708,
+    "id": 11,
     "documentId": "j79vn6ntpnv4dk7hdwx16ars",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
-    "slug": "pmg-logistics-park-2",
     "location": "Kolathur, Bangalore",
     "state": "Karnataka",
     "area": "5.79 Lakh Sq. ft",
@@ -237,18 +226,17 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_3_PISL_f570401ce9.jpg",
-      "/images/projects/large_2_PISL_40549a305b.jpg",
-      "/images/projects/large_1_PISL_eaba1bf8da.jpg",
-      "/images/projects/large_4_PISL_3d32e8072c.jpg"
+      "/images/uploads/large_3_PISL_f570401ce9.jpg",
+      "/images/uploads/large_2_PISL_40549a305b.jpg",
+      "/images/uploads/large_1_PISL_eaba1bf8da.jpg",
+      "/images/uploads/large_4_PISL_3d32e8072c.jpg"
     ]
   },
   {
-    "id": 707,
+    "id": 12,
     "documentId": "qqg8hdm59gz0vvjdte526ga4",
     "category": "Industrial",
     "name": "Vinyl Project at DMD, OSBL Area",
-    "slug": "vinyl-project-at-dmd-osbl-area",
     "location": "Dahej-02",
     "state": "Gujarat",
     "area": "N/A",
@@ -259,20 +247,19 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
-      "/images/projects/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
-      "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
-      "/images/projects/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
-      "/images/projects/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
-      "/images/projects/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
+      "/images/uploads/optimized_1787755547676_19_large_vinyl-project-at-dmd_-osbl-area-dahej-gj_png.webp",
+      "/images/uploads/optimized_1787755545714_16_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-2_png.webp",
+      "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_3_2d0fbb6c7e.png",
+      "/images/uploads/large_vinyl_project_at_dmd_osbl_area_dahej_gj_4_11cf8acc6e.png",
+      "/images/uploads/optimized_1787755570638_288_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-5_png.webp",
+      "/images/uploads/optimized_1787755598682_926_large_vinyl-project-at-dmd_-osbl-area-dahej-gj-6_png.webp"
     ]
   },
   {
-    "id": 706,
+    "id": 13,
     "documentId": "vbh5m1os3xdq22qcmucvfiyq",
     "category": "Warehousing",
     "name": "PMG Logistics Park",
-    "slug": "pmg-logistics-park",
     "location": "Hyderabad",
     "state": "Telangana",
     "area": "9.15 Lakh Sq.ft",
@@ -283,20 +270,19 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
-      "/images/projects/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
-      "/images/projects/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
-      "/images/projects/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
-      "/images/projects/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
-      "/images/projects/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
+      "/images/uploads/optimized_1787755503475_87_large_pmg-logistics-park-hyderabad-tg_png.webp",
+      "/images/uploads/optimized_1787755299323_594_large_pmg-logistics-park-hyderabad-tg-2_png.webp",
+      "/images/uploads/optimized_1787755505244_969_large_pmg-logistics-park-hyderabad-tg-3_png.webp",
+      "/images/uploads/optimized_1787755504132_96_large_pmg-logistics-park-hyderabad-tg-4_png.webp",
+      "/images/uploads/optimized_1787755545828_639_large_pmg-logistics-park-hyderabad-tg-5_png.webp",
+      "/images/uploads/optimized_1787755546861_766_large_pmg-logistics-park-hyderabad-tg-6_png.webp"
     ]
   },
   {
-    "id": 705,
+    "id": 14,
     "documentId": "ywzyrpkgrji1iuhjn72mt0kd",
     "category": "Warehousing",
     "name": "VPW Logistics Park",
-    "slug": "vpw-logistics-park",
     "location": "Mappedu, Chennai",
     "state": "Tamil Nadu",
     "area": "12.73 Lakh Sq.ft",
@@ -307,20 +293,19 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
-      "/images/projects/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
-      "/images/projects/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
-      "/images/projects/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
-      "/images/projects/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
-      "/images/projects/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
+      "/images/uploads/large_vpw_logistics_park_mappedu_tn_1523a1ec59.png",
+      "/images/uploads/optimized_1787755421549_194_large_vpw-logistics-park-mappedu-tn-2_png.webp",
+      "/images/uploads/optimized_1787755095486_801_large_vpw-logistics-park-mappedu-tn-3_png.webp",
+      "/images/uploads/optimized_1787755104253_498_large_vpw-logistics-park-mappedu-tn-4_png.webp",
+      "/images/uploads/optimized_1787755415827_935_large_vpw-logistics-park-mappedu-tn-5_png.webp",
+      "/images/uploads/optimized_1787755417680_253_large_vpw-logistics-park-mappedu-tn-6_png.webp"
     ]
   },
   {
-    "id": 704,
+    "id": 15,
     "documentId": "jedk9e503yua67xjpnytptxj",
     "category": "Industrial",
     "name": "AMNS Steel Plant",
-    "slug": "amns-steel-plant",
     "location": "Hazira, Surat",
     "state": "Gujarat",
     "area": "N/A",
@@ -331,20 +316,19 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
-      "/images/projects/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
-      "/images/projects/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
-      "/images/projects/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
-      "/images/projects/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
-      "/images/projects/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
+      "/images/uploads/optimized_1787755373765_847_large_amns-steel-plant-hazira-gj_png.webp",
+      "/images/uploads/optimized_1787755357955_62_large_amns-steel-plant-hazira-gj-6_png.webp",
+      "/images/uploads/large_amns_steel_plant_hazira_gj_5_f151f3bf62.png",
+      "/images/uploads/optimized_1787755358125_793_large_amns-steel-plant-hazira-gj-4_png.webp",
+      "/images/uploads/optimized_1787755387519_321_large_amns-steel-plant-hazira-gj-3_png.webp",
+      "/images/uploads/optimized_1787755388656_233_large_amns-steel-plant-hazira-gj-2_png.webp"
     ]
   },
   {
-    "id": 703,
+    "id": 16,
     "documentId": "om6mchzq1j5wa8d49sr93edi",
     "category": "Industrial",
     "name": "Adani Copper Smelter Project",
-    "slug": "adani-copper-smelter-project",
     "location": "Mundra",
     "state": "Gujarat",
     "area": "5.47 Lakh Sq. ft",
@@ -355,12 +339,12 @@ const projectsData = [
     "cx": null,
     "cy": null,
     "images": [
-      "/images/projects/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
-      "/images/projects/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
-      "/images/projects/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
-      "/images/projects/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
-      "/images/projects/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
-      "/images/projects/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
+      "/images/uploads/optimized_1787754985347_867_large_adani-copper-smelter-mundra-gj-1_png.webp",
+      "/images/uploads/optimized_1787755039983_716_large_adani-copper-smelter-mundra-gj-2_png.webp",
+      "/images/uploads/optimized_1787754985028_676_large_adani-copper-smelter-mundra-gj-3_png.webp",
+      "/images/uploads/optimized_1787755307751_580_large_adani-copper-smelter-mundra-gj-4_png.webp",
+      "/images/uploads/optimized_1787755049149_794_large_adani-copper-smelter-mundra-gj-5_png.webp",
+      "/images/uploads/optimized_1787755315973_816_large_adani-copper-smelter-mundra-gj-6_png.webp"
     ]
   }
 ];

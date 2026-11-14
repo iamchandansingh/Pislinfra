@@ -2,8 +2,8 @@ const leadershipData = {
   "id": 1,
   "documentId": "athzbmjocb082bae4thenf6n",
   "createdAt": "2026-08-22T10:37:29.211Z",
-  "updatedAt": "2026-11-12T15:39:49+00:00",
-  "publishedAt": "2026-11-12T15:39:49+00:00",
+  "updatedAt": "2026-11-13T12:41:11+00:00",
+  "publishedAt": "2026-11-13T12:41:11+00:00",
   "showHero": true,
   "title": "Our Leadership",
   "subtitle": "The visionaries and domain experts steering our growth",
@@ -729,7 +729,7 @@ const leadershipData = {
     },
     {
       "name": "MOHSIN KHAN",
-      "designation": "AGM Procurement",
+      "designation": "GM Procurement",
       "department": "Procurement",
       "bio": "Managing procurement operations and strategic vendor coordination.",
       "image": {

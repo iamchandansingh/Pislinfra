@@ -147,10 +147,10 @@
         "description": null,
         "vertical": true,
         "minWidth": "300px",
-        "cardBg": "#fff5f0",
-        "cardBorder": "#ffd5c2",
-        "iconBg": "#ff8755",
-        "iconColor": "white",
+        "cardBg": "#ffffff",
+        "cardBorder": "none",
+        "iconBg": "#fff2ec",
+        "iconColor": "#ff8755",
         "items": [
           {
             "id": 206,
@@ -304,19 +304,19 @@
             "id": 243,
             "title": "Design",
             "description": "PISL's design expertise transcends aesthetics, focusing on robust foundations that endure the test of time. Our dedicated architects envision and execute projects that redefine skylines, represent architectural excellence and enrich lives.",
-            "iconName": null
+            "iconName": "FaDraftingCompass"
           },
           {
             "id": 244,
             "title": "Construction",
             "description": "Pislinfra specialises in constructing industrial backbones with a keen eye on functionality, durability, and space optimisation. Our experienced team ensures meticulous planning and execution, delivering exceptional results. Whether it is large-scale warehouses or specialised facilities, our warehouse contractors contribute to streamlined operations and business growth.",
-            "iconName": null
+            "iconName": "FaHardHat"
           },
           {
             "id": 245,
             "title": "Procurement",
             "description": "Through smart sourcing, efficient procedures, and high-quality products, PISL's procurement sector offers considerable value. We ensure timely and cost-effective procurement with our vast network and industry experience, facilitating the flawless execution of warehousing and industrial initiatives.",
-            "iconName": null
+            "iconName": "FaBoxes"
           }
         ]
       },
@@ -326,34 +326,34 @@
         "description": null,
         "vertical": false,
         "minWidth": "340px",
-        "cardBg": null,
-        "cardBorder": null,
-        "iconBg": null,
-        "iconColor": null,
+        "cardBg": "#ffffff",
+        "cardBorder": "#edf2f7",
+        "iconBg": "#fff2ec",
+        "iconColor": "#ff8755",
         "items": [
           {
             "id": 246,
             "title": "Cutting-Edge Industrial and Warehousing Spaces",
             "description": "PISL sets itself apart by delivering top-notch Grade-A infrastructure tailored for our BTS (Built-To-Suit) clients. Our commitment to excellence permeates every aspect, guaranteeing efficiency and quality in both design and construction for every project.",
-            "iconName": null
+            "iconName": "FaIndustry"
           },
           {
             "id": 247,
             "title": "Tech-Driven Innovation",
             "description": "PISL welcomes the future through the strategic integration of information technology. We use cutting-edge techniques to expedite procurement procedures and efficiently manage construction timelines. This technological integration allows us to deliver projects with more precision and agility.",
-            "iconName": null
+            "iconName": "FaLightbulb"
           },
           {
             "id": 248,
             "title": "Precision in Execution",
             "description": "At PISL, execution is at the heart of our services. We guarantee our clients a smooth and accurate execution across all of our solutions, ensuring that their investment is maximised and their vision is fulfilled.",
-            "iconName": null
+            "iconName": "FaBullseye"
           },
           {
             "id": 249,
             "title": "Strategic Financial Approach",
             "description": "PISL is at the forefront of India's thriving warehousing industry, providing not just secure but also profitable financial opportunities. Our dedication to a balanced and prosperous financial perspective is in sync with the industry's rapid expansion, assuring a safe investment for our clients.",
-            "iconName": null
+            "iconName": "FaChartLine"
           }
         ]
       }
@@ -433,7 +433,7 @@
     "introText": "Experience the zenith of construction prowess with Pislinfra's Infrastructure Development. Armed with a profound understanding of industry requirements, we are well-equipped to undertake major commercial building projects nationwide. We specialise in offering premium yet affordable factory construction services. From factory sheds to diverse manufacturing facilities, our services align with our clients' business goals.",
     "showMainFeature": true,
     "mainFeatureTitle": "Introduction to Infrastructure Development",
-    "mainFeatureText": "Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.\n\n### Services Offered by Pislinfra\n\nPISL is an infrastructure development firm that oversees all stages of construction.\n\nWe take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.",
+    "mainFeatureText": "Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.\n\n### Services Offered by Pislinfra\n\nPISL is an infrastructure development firm that oversees all stages of construction.\n\nWe take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.\n\nOur methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.",
     "mainFeatureImage": {
       "id": 84,
       "documentId": "wp_media_84",
@@ -468,7 +468,7 @@
       "url": "/images/projects/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp"
     },
     "showWhyPisl": true,
-    "whyPislBadge": "Core Advantages",
+    "whyPislBadge": "",
     "whyPislTitle": "What Differentiates Us?",
     "whyPislDesc": "Our steadfast dedication to essential distinguishing qualities demonstrates our commitment to attaining operational excellence and maintaining the highest industry standards.",
     "whyPislImage": {
@@ -509,25 +509,25 @@
         "id": 239,
         "title": "Timely Delivery",
         "description": "At Pislinfra, punctual project completion is our hallmark. We understand the importance of timelines and are committed to delivering results efficiently without compromising on quality.",
-        "iconName": null
+        "iconName": "FaClock"
       },
       {
         "id": 240,
         "title": "Quality Construction",
         "description": "Our unwavering dedication to delivering high-quality building services sets us apart. We uphold strict standards to ensure that every aspect of our work meets or exceeds industry expectations.",
-        "iconName": null
+        "iconName": "FaAward"
       },
       {
         "id": 241,
         "title": "Professional Management",
         "description": "A team of highly qualified and experienced individuals forms the backbone of our operations. Their expertise ensures precision and excellence in every phase of the construction process.",
-        "iconName": null
+        "iconName": "FaUserTie"
       },
       {
         "id": 242,
         "title": "Safety Commitment",
         "description": "Safety is non-negotiable at Pislinfra. We adhere strictly to safety requirements, prioritising the well-being of our team, clients, and the community in every project we undertake.",
-        "iconName": null
+        "iconName": "FaShieldAlt"
       }
     ],
     "grids": [],
@@ -682,31 +682,31 @@
         "id": 234,
         "title": "High-Quality Services",
         "description": "PISL provides high-quality industrial building services and solutions at competitive rates. Our persistent commitment to quality and strict adherence to rigorous safety standards demonstrate our commitment to providing outstanding value.",
-        "iconName": null
+        "iconName": "FaAward"
       },
       {
         "id": 235,
         "title": "Expert Team",
         "description": "Engineers, designers, and labourers at PISL have the knowledge and experience to manage projects of any scale and complexity. Their strengths include managing challenging tasks and guaranteeing effective outcomes.",
-        "iconName": null
+        "iconName": "FaHardHat"
       },
       {
         "id": 236,
         "title": "Trusted Partner",
         "description": "As a dependable industrial construction company, PISL consistently earns the trust of clients, forming partnerships built on transparency, professionalism, and reliability.",
-        "iconName": null
+        "iconName": "FaHandshake"
       },
       {
         "id": 237,
         "title": "Client Satisfaction",
         "description": "PISL prioritises attaining complete client satisfaction and assistance. Our concentrated efforts are focused on understanding and addressing our client's specific needs.",
-        "iconName": null
+        "iconName": "FaThumbsUp"
       },
       {
         "id": 238,
         "title": "Continuous Innovation",
         "description": "PISL is committed to continuous improvement and innovation in our processes and functions. By constantly evolving, we ensure the delivery of effective and cutting-edge services.",
-        "iconName": null
+        "iconName": "FaLightbulb"
       }
     ],
     "grids": [],

@@ -51,7 +51,7 @@
     "introText": "Experience the zenith of construction prowess with Pislinfra's Infrastructure Development. Armed with a profound understanding of industry requirements, we are well-equipped to undertake major commercial building projects nationwide. We specialise in offering premium yet affordable factory construction services. From factory sheds to diverse manufacturing facilities, our services align with our clients' business goals.",
     "showMainFeature": true,
     "mainFeatureTitle": "Introduction to Infrastructure Development",
-    "mainFeatureText": "Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.\n\n### Services Offered by Pislinfra\n\nPISL is an infrastructure development firm that oversees all stages of construction.\n\nWe take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.",
+    "mainFeatureText": "Infrastructure development is the foundational framework that sustains a society's operational functions and enhances the quality of life. The scope encompasses the design, construction, and maintenance of essential facilities like roads, bridges, water supply systems, and energy networks. Beyond mere physical structures, it acts as the catalyst for economic growth and societal progress.\n\n### Services Offered by Pislinfra\n\nPISL is an infrastructure development firm that oversees all stages of construction.\n\nWe take pride in building world-class manufacturing infrastructures. We firmly believe our construction process makes us a one-stop solution for major infrastructure developments. The company works closely with the stakeholders and clients to design effective and robust spaces. PISL works towards optimising resources without compromising the quality of final products.\n\nOur methodologies and approach distinguish us from competitors, as we aspire not just to finish projects but to craft exceptional infrastructure and designs. We specialise in civil construction, which helps us construct mammoths and industries for their specific business goals and objectives.",
     "mainFeatureImage": {
       "id": 84,
       "documentId": "wp_media_84",
@@ -86,7 +86,7 @@
       "url": "/images/projects/optimized_1787754972790_157_amazon-del5-billaspur-hr-6_png.webp"
     },
     "showWhyPisl": true,
-    "whyPislBadge": "Core Advantages",
+    "whyPislBadge": "",
     "whyPislTitle": "What Differentiates Us?",
     "whyPislDesc": "Our steadfast dedication to essential distinguishing qualities demonstrates our commitment to attaining operational excellence and maintaining the highest industry standards.",
     "whyPislImage": {
@@ -127,25 +127,25 @@
         "id": 239,
         "title": "Timely Delivery",
         "description": "At Pislinfra, punctual project completion is our hallmark. We understand the importance of timelines and are committed to delivering results efficiently without compromising on quality.",
-        "iconName": null
+        "iconName": "FaClock"
       },
       {
         "id": 240,
         "title": "Quality Construction",
         "description": "Our unwavering dedication to delivering high-quality building services sets us apart. We uphold strict standards to ensure that every aspect of our work meets or exceeds industry expectations.",
-        "iconName": null
+        "iconName": "FaAward"
       },
       {
         "id": 241,
         "title": "Professional Management",
         "description": "A team of highly qualified and experienced individuals forms the backbone of our operations. Their expertise ensures precision and excellence in every phase of the construction process.",
-        "iconName": null
+        "iconName": "FaUserTie"
       },
       {
         "id": 242,
         "title": "Safety Commitment",
         "description": "Safety is non-negotiable at Pislinfra. We adhere strictly to safety requirements, prioritising the well-being of our team, clients, and the community in every project we undertake.",
-        "iconName": null
+        "iconName": "FaShieldAlt"
       }
     ],
     "grids": [],
