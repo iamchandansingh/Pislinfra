@@ -41,24 +41,46 @@ export const getImageUrl = (url, defaultImg = '') => {
     return '/images/awards/years_2e23ba7341.webp';
   }
 
-  // Preserve live WordPress Media Library URLs directly before legacy local-asset rewrites
-  if (url.startsWith('/wp-content/uploads/')) {
-    return WP_BASE ? `${WP_BASE}${url}` : url;
-  }
-  if (url.includes('/wp-content/uploads/')) {
+  // Check if this WordPress / external upload matches a bundled local asset first
+  if (url.includes('/wp-content/uploads/') || url.includes('/uploads/')) {
+    const cleanUrl = url.split('?')[0];
+    const rawFilename = cleanUrl.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
+    const baseFilename = rawFilename.replace(/-\d+x\d+(\.[a-zA-Z0-9]+)$/, '$1');
+
+    if (AWARD_FILES.has(rawFilename) || AWARD_FILES.has(baseFilename) || rawFilename.includes('_Pragati_') || rawFilename.includes('AMNS_india')) {
+      const match = AWARD_FILES.has(rawFilename) ? rawFilename : (AWARD_FILES.has(baseFilename) ? baseFilename : rawFilename);
+      if (match.endsWith('.avif')) {
+        return '/images/awards/' + match.replace(/\.avif$/, '.webp');
+      }
+      return '/images/awards/' + match;
+    }
+    if (BLOG_FILES.has(rawFilename) || BLOG_FILES.has(baseFilename)) {
+      return '/images/blogs/' + (BLOG_FILES.has(rawFilename) ? rawFilename : baseFilename);
+    }
+    if (PROJECT_FILES.has(rawFilename) || PROJECT_FILES.has(baseFilename)) {
+      return '/images/projects/' + (PROJECT_FILES.has(rawFilename) ? rawFilename : baseFilename);
+    }
+    if (LEADERSHIP_FILES.has(rawFilename) || LEADERSHIP_FILES.has(baseFilename)) {
+      return '/images/leadership/' + (LEADERSHIP_FILES.has(rawFilename) ? rawFilename : baseFilename);
+    }
+    if (UPLOAD_FILES.has(rawFilename) || UPLOAD_FILES.has(baseFilename)) {
+      const match = UPLOAD_FILES.has(rawFilename) ? rawFilename : baseFilename;
+      if (match.endsWith('.avif')) {
+        return '/images/uploads/' + match.replace(/\.avif$/, '.webp');
+      }
+      return '/images/uploads/' + match;
+    }
+
+    if (url.startsWith('/wp-content/uploads/')) {
+      return WP_BASE ? `${WP_BASE}${url}` : url;
+    }
     return url;
   }
 
-  // If already a local asset path, return directly
+  // If already a local asset path, return directly (with .avif -> .webp rewrite)
   if (url.startsWith('/images/') || url.startsWith('/reports/') || url.startsWith('/documents/') || url.startsWith('/')) {
-    if (url.startsWith('/uploads')) {
-      const cleanUrl = url.split('?')[0];
-      const filename = cleanUrl.split('/').pop().replace(/[^a-zA-Z0-9._-]/g, '_');
-      if (BLOG_FILES.has(filename)) return '/images/blogs/' + filename;
-      if (AWARD_FILES.has(filename)) return '/images/awards/' + filename;
-      if (PROJECT_FILES.has(filename)) return '/images/projects/' + filename;
-      if (LEADERSHIP_FILES.has(filename)) return '/images/leadership/' + filename;
-      return '/images/uploads/' + filename;
+    if (url.endsWith('.avif')) {
+      return url.replace(/\.avif$/, '.webp');
     }
     return url;
   }

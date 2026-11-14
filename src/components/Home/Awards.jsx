@@ -63,6 +63,50 @@ const defaultAwards = sortAwardsByFeaturedAndDate(awardsAndCertifications.map((i
 const NAVY   = '#0a2a66';
 const ORANGE = '#ff8755';
 
+const processAwardItem = (item, logoPool = clientsData) => {
+  const allImgs = [];
+  const addImg = (img) => {
+    if (!img) return;
+    if (Array.isArray(img)) {
+      img.forEach(addImg);
+      return;
+    }
+    const formatted = getImageUrl(img, '');
+    if (formatted && !allImgs.includes(formatted)) {
+      allImgs.push(formatted);
+    }
+  };
+
+  if (item.images && Array.isArray(item.images) && item.images.length > 0) {
+    addImg(item.images);
+  } else if (item.image) {
+    addImg(item.image);
+  } else if (item.imageUrls && Array.isArray(item.imageUrls) && item.imageUrls.length > 0) {
+    addImg(item.imageUrls);
+  } else if (item.image_urls && Array.isArray(item.image_urls) && item.image_urls.length > 0) {
+    addImg(item.image_urls);
+  } else if (item.clientImage) {
+    addImg(item.clientImage);
+  }
+
+  const imageArray = allImgs.length > 0 ? allImgs : ['/images/awards/certificate.jpg'];
+
+  return {
+    id: item.documentId || item.id,
+    title: item.title || 'Award Title',
+    category: item.category || 'Award',
+    year: item.year || new Date().getFullYear(),
+    desc: item.desc || item.description || '',
+    company: item.company || 'Pragati Infra Solutions Pvt. Ltd.',
+    location: item.location || 'India',
+    featured: Boolean(item.featured || item.isFeatured),
+    isFeatured: Boolean(item.featured || item.isFeatured),
+    createdAt: item.createdAt || null,
+    images: imageArray,
+    logo: item.logo ? getImageUrl(item.logo, getLogo(item.company, logoPool)) : getLogo(item.company, logoPool)
+  };
+};
+
 const ImageSlider = ({ images, isHovered }) => {
   const [current, setCurrent] = useState(0);
   
@@ -75,12 +119,24 @@ const ImageSlider = ({ images, isHovered }) => {
     return () => clearInterval(timer);
   }, [images, isHovered]);
 
-  if (!images || images.length === 0) return <div style={{ position: 'absolute', inset: 0, background: '#e2e8f0' }} />;
+  if (!images || images.length === 0) return <div style={{ position: 'absolute', inset: 0, background: '#0a2a66' }} />;
 
   return (
-    <div style={{ position: 'absolute', inset: 0 }}>
+    <div style={{ position: 'absolute', inset: 0, background: '#0a2a66' }}>
       {images.map((img, i) => (
-        <img key={i} src={img} alt={`Pragati Infra Solutions Award & Recognition - Slide ${i + 1}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: current === i ? 1 : 0, transition: 'opacity 0.8s ease' }} />
+        <img 
+          key={i} 
+          src={img} 
+          alt={`Pragati Infra Solutions Award & Recognition - Slide ${i + 1}`} 
+          onError={(e) => {
+            if (e.currentTarget.src.endsWith('.avif')) {
+              e.currentTarget.src = e.currentTarget.src.replace(/\.avif$/, '.webp');
+            } else if (!e.currentTarget.src.includes('certificate.jpg')) {
+              e.currentTarget.src = '/images/awards/certificate.jpg';
+            }
+          }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: current === i ? 1 : 0, transition: 'opacity 0.8s ease' }} 
+        />
       ))}
     </div>
   );
@@ -88,7 +144,13 @@ const ImageSlider = ({ images, isHovered }) => {
 
 const Awards = ({ awardsData: propAwardsData, clientsList, data: strapiHomeData, isPreview = false }) => {
   const navigate = useNavigate();
-  const [awards, setAwards] = useState(isPreview || Array.isArray(propAwardsData) ? [] : defaultAwards);
+  const [awards, setAwards] = useState(() => {
+    if (isPreview) return [];
+    if (Array.isArray(propAwardsData) && propAwardsData.length > 0) {
+      return sortAwardsByFeaturedAndDate(propAwardsData.map(item => processAwardItem(item, clientsList || clientsData)));
+    }
+    return defaultAwards;
+  });
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -101,52 +163,9 @@ const Awards = ({ awardsData: propAwardsData, clientsList, data: strapiHomeData,
     async function loadData() {
       try {
         const logoPool = Array.isArray(clientsList) && clientsList.length > 0 ? clientsList : clientsData;
-        const processAwardItem = (item) => {
-          const allImgs = [];
-          const addImg = (img) => {
-            if (!img) return;
-            if (Array.isArray(img)) {
-              img.forEach(addImg);
-              return;
-            }
-            const formatted = getImageUrl(img, '');
-            if (formatted && !allImgs.includes(formatted)) {
-              allImgs.push(formatted);
-            }
-          };
 
-          if (item.images && Array.isArray(item.images) && item.images.length > 0) {
-            addImg(item.images);
-          } else if (item.image) {
-            addImg(item.image);
-          } else if (item.imageUrls && Array.isArray(item.imageUrls) && item.imageUrls.length > 0) {
-            addImg(item.imageUrls);
-          } else if (item.image_urls && Array.isArray(item.image_urls) && item.image_urls.length > 0) {
-            addImg(item.image_urls);
-          } else if (item.clientImage) {
-            addImg(item.clientImage);
-          }
-
-          const imageArray = allImgs.length > 0 ? allImgs : ['/images/awards/certificate.jpg'];
-
-          return {
-            id: item.documentId || item.id,
-            title: item.title || 'Award Title',
-            category: item.category || 'Award',
-            year: item.year || new Date().getFullYear(),
-            desc: item.desc || item.description || 'Award Description',
-            company: item.company || 'Pragati Infra Solutions Pvt. Ltd.',
-            location: item.location || 'India',
-            featured: Boolean(item.featured || item.isFeatured),
-            isFeatured: Boolean(item.featured || item.isFeatured),
-            createdAt: item.createdAt || null,
-            images: imageArray,
-            logo: item.logo ? getImageUrl(item.logo, getLogo(item.company, logoPool)) : getLogo(item.company, logoPool)
-          };
-        };
-
-        if (Array.isArray(propAwardsData)) {
-          const mapped = sortAwardsByFeaturedAndDate(propAwardsData.map(processAwardItem));
+        if (Array.isArray(propAwardsData) && propAwardsData.length > 0) {
+          const mapped = sortAwardsByFeaturedAndDate(propAwardsData.map(item => processAwardItem(item, logoPool)));
           setAwards(mapped);
           return;
         }
@@ -154,7 +173,7 @@ const Awards = ({ awardsData: propAwardsData, clientsList, data: strapiHomeData,
         const data = await fetchWpData('awards?populate=*&sort=createdAt:desc', { forceFresh: isPreview });
         const rawList = Array.isArray(data) ? data : (data?.data || null);
         if (Array.isArray(rawList)) {
-          setAwards(sortAwardsByFeaturedAndDate(rawList.map(processAwardItem)));
+          setAwards(sortAwardsByFeaturedAndDate(rawList.map(item => processAwardItem(item, logoPool))));
         }
       } catch (err) {
         console.error("Awards WP fetch error:", err);
@@ -298,7 +317,19 @@ const Awards = ({ awardsData: propAwardsData, clientsList, data: strapiHomeData,
               >
                 <div className="awards-mobile-img-wrap" style={{ height: '135px', overflow: 'hidden', position: 'relative', background: '#f1f5f9' }}>
                   {award.images && award.images.length > 0 ? (
-                    <img src={award.images[0]} alt={award.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    <img 
+                      src={award.images[0]} 
+                      alt={award.title} 
+                      loading="lazy" 
+                      onError={(e) => {
+                        if (e.currentTarget.src.endsWith('.avif')) {
+                          e.currentTarget.src = e.currentTarget.src.replace(/\.avif$/, '.webp');
+                        } else if (!e.currentTarget.src.includes('certificate.jpg')) {
+                          e.currentTarget.src = '/images/awards/certificate.jpg';
+                        }
+                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                    />
                   ) : (
                     <div style={{ width: '100%', height: '100%', background: '#eee' }} />
                   )}
