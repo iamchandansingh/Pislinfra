@@ -525,7 +525,7 @@ const Awards = () => {
             awards={awardsShowcaseData} 
             allAwards={awardsAndCertifications}
             milestones={milestonesData}
-            milestoneBannerImage={getImageUrl(pageData?.milestoneBannerImage, '/images/awards/years_2e23ba7341.avif')}
+            milestoneBannerImage={getImageUrl(pageData?.milestoneBannerImage, '/images/awards/years_2e23ba7341.webp')}
             certificates={certificatesData}
             clientAppreciations={clientAppreciationsData} 
             clientsList={liveClients}

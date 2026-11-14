@@ -208,7 +208,7 @@ const ExcellenceShowcase = ({
   awards = [], 
   allAwards = [],
   milestones = [],
-  milestoneBannerImage = '/images/awards/years_2e23ba7341.avif',
+  milestoneBannerImage = '/images/awards/years_2e23ba7341.webp',
   certificates = [],
   clientAppreciations = [], 
   clientsList = null,
@@ -842,13 +842,21 @@ const ExcellenceShowcase = ({
                             position: 'relative', 
                             marginBottom: '14px',
                             border: '1.5px solid rgba(243, 115, 70, 0.35)',
-                            boxShadow: '0 6px 18px rgba(0, 0, 0, 0.12)'
+                            boxShadow: '0 6px 18px rgba(0, 0, 0, 0.12)',
+                            background: '#1E2A5A'
                           }}>
                             <img
-                              src={milestoneBannerImage || '/images/awards/years_2e23ba7341.avif'}
+                              src={milestoneBannerImage || '/images/awards/years_2e23ba7341.webp'}
                               alt={`PISL Excellence Milestone Year ${item.year}`}
                               loading="lazy"
                               decoding="async"
+                              onError={(e) => {
+                                if (!e.currentTarget.src.includes('years_2e23ba7341.webp') && !e.currentTarget.src.includes('years_2e23ba7341.jpg') && !e.currentTarget.src.includes('years_2e23ba7341.png')) {
+                                  e.currentTarget.src = '/images/awards/years_2e23ba7341.webp';
+                                } else if (!e.currentTarget.src.includes('years_2e23ba7341.jpg')) {
+                                  e.currentTarget.src = '/images/awards/years_2e23ba7341.jpg';
+                                }
+                              }}
                               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
                             />
                             {/* Crisp Dark Gradient Overlay for Maximum Contrast & Zero Blur */}
@@ -977,10 +985,17 @@ const ExcellenceShowcase = ({
                       {/* Top Header Banner */}
                       <div className="mobile-milestone-banner" style={{ position: 'relative', overflow: 'hidden' }}>
                         <img
-                          src={milestoneBannerImage || '/images/awards/years_2e23ba7341.avif'}
+                          src={milestoneBannerImage || '/images/awards/years_2e23ba7341.webp'}
                           alt={`PISL Excellence Milestone Year ${item.year}`}
                           loading="lazy"
                           decoding="async"
+                          onError={(e) => {
+                            if (!e.currentTarget.src.includes('years_2e23ba7341.webp') && !e.currentTarget.src.includes('years_2e23ba7341.jpg') && !e.currentTarget.src.includes('years_2e23ba7341.png')) {
+                              e.currentTarget.src = '/images/awards/years_2e23ba7341.webp';
+                            } else if (!e.currentTarget.src.includes('years_2e23ba7341.jpg')) {
+                              e.currentTarget.src = '/images/awards/years_2e23ba7341.jpg';
+                            }
+                          }}
                           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}
                         />
                         <div className="mobile-milestone-banner-overlay" style={{ position: 'relative', zIndex: 1 }}>
@@ -1497,7 +1512,7 @@ const ExcellenceShowcase = ({
           width: 100%;
           position: relative;
           overflow: hidden;
-          background-image: url('/images/awards/years_2e23ba7341.avif');
+          background-image: url('/images/awards/years_2e23ba7341.webp');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
